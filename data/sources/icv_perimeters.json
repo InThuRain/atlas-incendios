@@ -1,0 +1,5923 @@
+{
+  "schema_version": 1,
+  "inventory_type": "arcgis_mapserver_annual_wildfire_perimeters",
+  "generated_at": "2026-08-19T10:21:11.593895Z",
+  "source": {
+    "endpoint": "https://carto.icv.gva.es/arcgis/rest/services/Prevencion_de_incendios2/MapServer",
+    "metadata_url": "https://carto.icv.gva.es/arcgis/rest/services/Prevencion_de_incendios2/MapServer?f=pjson",
+    "service_current_version": 10.61,
+    "service_description": "Conselleria d'Agricultura, Medi Ambient, Canvi Climàtic i Desenvolupament Rural, Generalitat Valenciana - Servicio de Prevención de incendios",
+    "description": "Conselleria d'Agricultura, Medi Ambient, Canvi Climàtic i Desenvolupament Rural, Generalitat Valenciana - Servicio de Prevención de incendios",
+    "map_name": "Prevención de incendios",
+    "supported_query_formats": "JSON, AMF, geoJSON",
+    "max_record_count": 2000,
+    "access_information": null,
+    "copyright_text": "",
+    "document_info": {
+      "Title": "forestal",
+      "Author": "",
+      "Comments": "Conselleria d'Agricultura, Medi Ambient, Canvi Climàtic i Desenvolupament Rural, Generalitat Valenciana - Servicio de Prevención de incendios",
+      "Subject": "Servicio de cartografía temática forestal",
+      "Category": "",
+      "AntialiasingMode": "Fast",
+      "TextAntialiasingMode": "Force",
+      "Keywords": "prevencion incendios"
+    },
+    "license": null,
+    "license_status": "not_declared_in_service_metadata"
+  },
+  "scope": {
+    "start_year": 1993,
+    "end_year": 2024,
+    "expected_years": [
+      1993,
+      1994,
+      1995,
+      1996,
+      1997,
+      1998,
+      1999,
+      2000,
+      2001,
+      2002,
+      2003,
+      2004,
+      2005,
+      2006,
+      2007,
+      2008,
+      2009,
+      2010,
+      2011,
+      2012,
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024
+    ],
+    "missing_years": [],
+    "duplicate_years": []
+  },
+  "project_limitations": [
+    {
+      "statement": "La cartografía valenciana es informativa y puede no contener todos los incendios del periodo; los recuentos son de perímetros publicados y no sustituyen a EGIF.",
+      "basis": "DATA_SOURCES.md"
+    }
+  ],
+  "summary": {
+    "layer_count": 32,
+    "total_feature_count": 13739,
+    "geometry_types": [
+      "esriGeometryPolygon"
+    ],
+    "all_layers_support_pagination": true,
+    "field_schema_variants": [
+      {
+        "schema_hash": "155e29481cb1f47aa8324fd5c040a7396a064f2fc620280feafb47d52dbe5a7d",
+        "years": [
+          1993,
+          1994,
+          1995,
+          1997,
+          1998,
+          1999,
+          2000,
+          2001,
+          2002,
+          2004,
+          2005,
+          2006,
+          2007,
+          2008,
+          2009,
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023,
+          2024
+        ]
+      },
+      {
+        "schema_hash": "709a660cf0c8693281cfc2625c4c2d49276477789012817a5636e781c8b647b0",
+        "years": [
+          1996
+        ]
+      },
+      {
+        "schema_hash": "baf92ee47c28af0482e5f73878a564f7467caedc3bab12b6712b9a84f0b0a391",
+        "years": [
+          2003
+        ]
+      }
+    ]
+  },
+  "alternate_endpoint_check": {
+    "url": "https://carto.icv.gva.es/arcgis/rest/services/tm_medio_ambiente/prevencion_de_incendios/MapServer",
+    "reachable": true,
+    "service_current_version": 10.61,
+    "service_description": "Conselleria d'Agricultura, Medi Ambient, Canvi Climàtic i Desenvolupament Rural, Generalitat Valenciana - Servicio de Prevención de incendios",
+    "map_name": "Prevención de incendios",
+    "annual_layer_map_matches_primary": true,
+    "note": "Observed equivalence at inventory time does not establish future stability."
+  },
+  "layers": [
+    {
+      "year": 1993,
+      "layer_id": 1,
+      "name": "Incendios 1993 | Incendis 1993 | Fires 1993",
+      "url": "https://carto.icv.gva.es/arcgis/rest/services/Prevencion_de_incendios2/MapServer/1",
+      "type": "Feature Layer",
+      "geometry_type": "esriGeometryPolygon",
+      "object_id_field": "OBJECTID",
+      "feature_count": 715,
+      "max_record_count": 2000,
+      "supported_query_formats": "JSON, AMF, geoJSON",
+      "capabilities": "Map,Query,Data",
+      "query_capabilities": {
+        "supports_pagination": true,
+        "supports_statistics": true,
+        "supports_count_distinct": true,
+        "supports_returning_query_extent": true,
+        "uses_standardized_queries": true
+      },
+      "extent": {
+        "xmin": -171003.58321829478,
+        "ymin": 4557837.216929323,
+        "xmax": 58511.79406906824,
+        "ymax": 4984880.163161572,
+        "spatialReference": {
+          "wkid": 102100,
+          "latestWkid": 3857,
+          "xyTolerance": 0.001,
+          "zTolerance": 0.001,
+          "mTolerance": 0.001,
+          "falseX": -20037700,
+          "falseY": -30241100,
+          "xyUnits": 148923141.92838538,
+          "falseZ": -100000,
+          "zUnits": 10000,
+          "falseM": -100000,
+          "mUnits": 10000
+        }
+      },
+      "schema_hash": "155e29481cb1f47aa8324fd5c040a7396a064f2fc620280feafb47d52dbe5a7d",
+      "fields": [
+        {
+          "name": "OBJECTID",
+          "alias": "ObjectId",
+          "type": "esriFieldTypeOID"
+        },
+        {
+          "name": "Shape",
+          "alias": "shape",
+          "type": "esriFieldTypeGeometry"
+        },
+        {
+          "name": "NumPIF_CV",
+          "alias": "NumPIF_CV",
+          "type": "esriFieldTypeString",
+          "length": 254
+        },
+        {
+          "name": "NumPIF_Min",
+          "alias": "NumPIF_Min",
+          "type": "esriFieldTypeString",
+          "length": 254
+        },
+        {
+          "name": "anyo",
+          "alias": "Año",
+          "type": "esriFieldTypeInteger"
+        },
+        {
+          "name": "ccaa_nom",
+          "alias": "Com. Autónoma",
+          "type": "esriFieldTypeString",
+          "length": 25
+        },
+        {
+          "name": "prov_nom",
+          "alias": "Provincia",
+          "type": "esriFieldTypeString",
+          "length": 20
+        },
+        {
+          "name": "com_nom",
+          "alias": "Comarca",
+          "type": "esriFieldTypeString",
+          "length": 50
+        },
+        {
+          "name": "nom_mun",
+          "alias": "Municipio",
+          "type": "esriFieldTypeString",
+          "length": 150
+        },
+        {
+          "name": "paraje",
+          "alias": "Paraje",
+          "type": "esriFieldTypeString",
+          "length": 100
+        },
+        {
+          "name": "x",
+          "alias": "X",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "y",
+          "alias": "Y",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "f_detec",
+          "alias": "Fecha detec.",
+          "type": "esriFieldTypeString",
+          "length": 12
+        },
+        {
+          "name": "h_detec",
+          "alias": "Hora detec.",
+          "type": "esriFieldTypeString",
+          "length": 8
+        },
+        {
+          "name": "fextinc",
+          "alias": "F. Extinción",
+          "type": "esriFieldTypeString",
+          "length": 12
+        },
+        {
+          "name": "hextinc",
+          "alias": "H. Extinción",
+          "type": "esriFieldTypeString",
+          "length": 8
+        },
+        {
+          "name": "detecp_txt",
+          "alias": "Detect. Por Texto",
+          "type": "esriFieldTypeString",
+          "length": 20
+        },
+        {
+          "name": "g_caus_txt",
+          "alias": "Grupo Causa Texto",
+          "type": "esriFieldTypeString",
+          "length": 50
+        },
+        {
+          "name": "tot_arb",
+          "alias": "Arb. Total",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "tot_narb",
+          "alias": "No Arb. Total",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "sup_f",
+          "alias": "Sup. Forestal",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "shape_Leng",
+          "alias": "shape_Leng",
+          "type": "esriFieldTypeDouble"
+        }
+      ],
+      "identifier_completeness": {
+        "NumPIF_CV": {
+          "present_count": 715,
+          "missing_or_blank_count": 0,
+          "missing_or_blank_percent": 0.0
+        },
+        "NumPIF_Min": {
+          "present_count": 715,
+          "missing_or_blank_count": 0,
+          "missing_or_blank_percent": 0.0
+        }
+      },
+      "warnings": [
+        "objectIdField is absent in layer metadata; inferred from esriFieldTypeOID"
+      ]
+    },
+    {
+      "year": 1994,
+      "layer_id": 2,
+      "name": "Incendios 1994 | Incendis 1994 | Fires 1994",
+      "url": "https://carto.icv.gva.es/arcgis/rest/services/Prevencion_de_incendios2/MapServer/2",
+      "type": "Feature Layer",
+      "geometry_type": "esriGeometryPolygon",
+      "object_id_field": "OBJECTID",
+      "feature_count": 752,
+      "max_record_count": 2000,
+      "supported_query_formats": "JSON, AMF, geoJSON",
+      "capabilities": "Map,Query,Data",
+      "query_capabilities": {
+        "supports_pagination": true,
+        "supports_statistics": true,
+        "supports_count_distinct": true,
+        "supports_returning_query_extent": true,
+        "uses_standardized_queries": true
+      },
+      "extent": {
+        "xmin": -171003.58321829478,
+        "ymin": 4557837.216929323,
+        "xmax": 58511.79406906824,
+        "ymax": 4984880.163161572,
+        "spatialReference": {
+          "wkid": 102100,
+          "latestWkid": 3857,
+          "xyTolerance": 0.001,
+          "zTolerance": 0.001,
+          "mTolerance": 0.001,
+          "falseX": -20037700,
+          "falseY": -30241100,
+          "xyUnits": 148923141.92838538,
+          "falseZ": -100000,
+          "zUnits": 10000,
+          "falseM": -100000,
+          "mUnits": 10000
+        }
+      },
+      "schema_hash": "155e29481cb1f47aa8324fd5c040a7396a064f2fc620280feafb47d52dbe5a7d",
+      "fields": [
+        {
+          "name": "OBJECTID",
+          "alias": "ObjectId",
+          "type": "esriFieldTypeOID"
+        },
+        {
+          "name": "Shape",
+          "alias": "shape",
+          "type": "esriFieldTypeGeometry"
+        },
+        {
+          "name": "NumPIF_CV",
+          "alias": "NumPIF_CV",
+          "type": "esriFieldTypeString",
+          "length": 254
+        },
+        {
+          "name": "NumPIF_Min",
+          "alias": "NumPIF_Min",
+          "type": "esriFieldTypeString",
+          "length": 254
+        },
+        {
+          "name": "anyo",
+          "alias": "Año",
+          "type": "esriFieldTypeInteger"
+        },
+        {
+          "name": "ccaa_nom",
+          "alias": "Com. Autónoma",
+          "type": "esriFieldTypeString",
+          "length": 25
+        },
+        {
+          "name": "prov_nom",
+          "alias": "Provincia",
+          "type": "esriFieldTypeString",
+          "length": 20
+        },
+        {
+          "name": "com_nom",
+          "alias": "Comarca",
+          "type": "esriFieldTypeString",
+          "length": 50
+        },
+        {
+          "name": "nom_mun",
+          "alias": "Municipio",
+          "type": "esriFieldTypeString",
+          "length": 150
+        },
+        {
+          "name": "paraje",
+          "alias": "Paraje",
+          "type": "esriFieldTypeString",
+          "length": 100
+        },
+        {
+          "name": "x",
+          "alias": "X",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "y",
+          "alias": "Y",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "f_detec",
+          "alias": "Fecha detec.",
+          "type": "esriFieldTypeString",
+          "length": 12
+        },
+        {
+          "name": "h_detec",
+          "alias": "Hora detec.",
+          "type": "esriFieldTypeString",
+          "length": 8
+        },
+        {
+          "name": "fextinc",
+          "alias": "F. Extinción",
+          "type": "esriFieldTypeString",
+          "length": 12
+        },
+        {
+          "name": "hextinc",
+          "alias": "H. Extinción",
+          "type": "esriFieldTypeString",
+          "length": 8
+        },
+        {
+          "name": "detecp_txt",
+          "alias": "Detect. Por Texto",
+          "type": "esriFieldTypeString",
+          "length": 20
+        },
+        {
+          "name": "g_caus_txt",
+          "alias": "Grupo Causa Texto",
+          "type": "esriFieldTypeString",
+          "length": 50
+        },
+        {
+          "name": "tot_arb",
+          "alias": "Arb. Total",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "tot_narb",
+          "alias": "No Arb. Total",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "sup_f",
+          "alias": "Sup. Forestal",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "shape_Leng",
+          "alias": "shape_Leng",
+          "type": "esriFieldTypeDouble"
+        }
+      ],
+      "identifier_completeness": {
+        "NumPIF_CV": {
+          "present_count": 752,
+          "missing_or_blank_count": 0,
+          "missing_or_blank_percent": 0.0
+        },
+        "NumPIF_Min": {
+          "present_count": 752,
+          "missing_or_blank_count": 0,
+          "missing_or_blank_percent": 0.0
+        }
+      },
+      "warnings": [
+        "objectIdField is absent in layer metadata; inferred from esriFieldTypeOID"
+      ]
+    },
+    {
+      "year": 1995,
+      "layer_id": 3,
+      "name": "Incendios 1995 | Incendis 1995 | Fires 1995",
+      "url": "https://carto.icv.gva.es/arcgis/rest/services/Prevencion_de_incendios2/MapServer/3",
+      "type": "Feature Layer",
+      "geometry_type": "esriGeometryPolygon",
+      "object_id_field": "OBJECTID",
+      "feature_count": 467,
+      "max_record_count": 2000,
+      "supported_query_formats": "JSON, AMF, geoJSON",
+      "capabilities": "Map,Query,Data",
+      "query_capabilities": {
+        "supports_pagination": true,
+        "supports_statistics": true,
+        "supports_count_distinct": true,
+        "supports_returning_query_extent": true,
+        "uses_standardized_queries": true
+      },
+      "extent": {
+        "xmin": -171003.58321829478,
+        "ymin": 4557837.216929323,
+        "xmax": 58511.79406906824,
+        "ymax": 4984880.163161572,
+        "spatialReference": {
+          "wkid": 102100,
+          "latestWkid": 3857,
+          "xyTolerance": 0.001,
+          "zTolerance": 0.001,
+          "mTolerance": 0.001,
+          "falseX": -20037700,
+          "falseY": -30241100,
+          "xyUnits": 148923141.92838538,
+          "falseZ": -100000,
+          "zUnits": 10000,
+          "falseM": -100000,
+          "mUnits": 10000
+        }
+      },
+      "schema_hash": "155e29481cb1f47aa8324fd5c040a7396a064f2fc620280feafb47d52dbe5a7d",
+      "fields": [
+        {
+          "name": "OBJECTID",
+          "alias": "ObjectId",
+          "type": "esriFieldTypeOID"
+        },
+        {
+          "name": "Shape",
+          "alias": "shape",
+          "type": "esriFieldTypeGeometry"
+        },
+        {
+          "name": "NumPIF_CV",
+          "alias": "NumPIF_CV",
+          "type": "esriFieldTypeString",
+          "length": 254
+        },
+        {
+          "name": "NumPIF_Min",
+          "alias": "NumPIF_Min",
+          "type": "esriFieldTypeString",
+          "length": 254
+        },
+        {
+          "name": "anyo",
+          "alias": "Año",
+          "type": "esriFieldTypeInteger"
+        },
+        {
+          "name": "ccaa_nom",
+          "alias": "Com. Autónoma",
+          "type": "esriFieldTypeString",
+          "length": 25
+        },
+        {
+          "name": "prov_nom",
+          "alias": "Provincia",
+          "type": "esriFieldTypeString",
+          "length": 20
+        },
+        {
+          "name": "com_nom",
+          "alias": "Comarca",
+          "type": "esriFieldTypeString",
+          "length": 50
+        },
+        {
+          "name": "nom_mun",
+          "alias": "Municipio",
+          "type": "esriFieldTypeString",
+          "length": 150
+        },
+        {
+          "name": "paraje",
+          "alias": "Paraje",
+          "type": "esriFieldTypeString",
+          "length": 100
+        },
+        {
+          "name": "x",
+          "alias": "X",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "y",
+          "alias": "Y",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "f_detec",
+          "alias": "Fecha detec.",
+          "type": "esriFieldTypeString",
+          "length": 12
+        },
+        {
+          "name": "h_detec",
+          "alias": "Hora detec.",
+          "type": "esriFieldTypeString",
+          "length": 8
+        },
+        {
+          "name": "fextinc",
+          "alias": "F. Extinción",
+          "type": "esriFieldTypeString",
+          "length": 12
+        },
+        {
+          "name": "hextinc",
+          "alias": "H. Extinción",
+          "type": "esriFieldTypeString",
+          "length": 8
+        },
+        {
+          "name": "detecp_txt",
+          "alias": "Detect. Por Texto",
+          "type": "esriFieldTypeString",
+          "length": 20
+        },
+        {
+          "name": "g_caus_txt",
+          "alias": "Grupo Causa Texto",
+          "type": "esriFieldTypeString",
+          "length": 50
+        },
+        {
+          "name": "tot_arb",
+          "alias": "Arb. Total",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "tot_narb",
+          "alias": "No Arb. Total",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "sup_f",
+          "alias": "Sup. Forestal",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "shape_Leng",
+          "alias": "shape_Leng",
+          "type": "esriFieldTypeDouble"
+        }
+      ],
+      "identifier_completeness": {
+        "NumPIF_CV": {
+          "present_count": 467,
+          "missing_or_blank_count": 0,
+          "missing_or_blank_percent": 0.0
+        },
+        "NumPIF_Min": {
+          "present_count": 467,
+          "missing_or_blank_count": 0,
+          "missing_or_blank_percent": 0.0
+        }
+      },
+      "warnings": [
+        "objectIdField is absent in layer metadata; inferred from esriFieldTypeOID"
+      ]
+    },
+    {
+      "year": 1996,
+      "layer_id": 4,
+      "name": "Incendios 1996 | Incendis 1996 | Fires 1996",
+      "url": "https://carto.icv.gva.es/arcgis/rest/services/Prevencion_de_incendios2/MapServer/4",
+      "type": "Feature Layer",
+      "geometry_type": "esriGeometryPolygon",
+      "object_id_field": "OBJECTID",
+      "feature_count": 383,
+      "max_record_count": 2000,
+      "supported_query_formats": "JSON, AMF, geoJSON",
+      "capabilities": "Map,Query,Data",
+      "query_capabilities": {
+        "supports_pagination": true,
+        "supports_statistics": true,
+        "supports_count_distinct": true,
+        "supports_returning_query_extent": true,
+        "uses_standardized_queries": true
+      },
+      "extent": {
+        "xmin": -171003.58321829478,
+        "ymin": 4557837.216929323,
+        "xmax": 58511.79406906824,
+        "ymax": 4984880.163161572,
+        "spatialReference": {
+          "wkid": 102100,
+          "latestWkid": 3857,
+          "xyTolerance": 0.001,
+          "zTolerance": 0.001,
+          "mTolerance": 0.001,
+          "falseX": -20037700,
+          "falseY": -30241100,
+          "xyUnits": 148923141.92838538,
+          "falseZ": -100000,
+          "zUnits": 10000,
+          "falseM": -100000,
+          "mUnits": 10000
+        }
+      },
+      "schema_hash": "709a660cf0c8693281cfc2625c4c2d49276477789012817a5636e781c8b647b0",
+      "fields": [
+        {
+          "name": "OBJECTID",
+          "alias": "ObjectId",
+          "type": "esriFieldTypeOID"
+        },
+        {
+          "name": "Shape",
+          "alias": "shape",
+          "type": "esriFieldTypeGeometry"
+        },
+        {
+          "name": "NumPIF_CV",
+          "alias": "NumPIF_CV",
+          "type": "esriFieldTypeString",
+          "length": 254
+        },
+        {
+          "name": "NumPIF_Min",
+          "alias": "NumPIF_Min",
+          "type": "esriFieldTypeString",
+          "length": 254
+        },
+        {
+          "name": "anyo",
+          "alias": "Año",
+          "type": "esriFieldTypeInteger"
+        },
+        {
+          "name": "prov_nom",
+          "alias": "Provincia",
+          "type": "esriFieldTypeString",
+          "length": 20
+        },
+        {
+          "name": "com_nom",
+          "alias": "Comarca",
+          "type": "esriFieldTypeString",
+          "length": 50
+        },
+        {
+          "name": "nom_mun",
+          "alias": "Municipio",
+          "type": "esriFieldTypeString",
+          "length": 150
+        },
+        {
+          "name": "paraje",
+          "alias": "Paraje",
+          "type": "esriFieldTypeString",
+          "length": 100
+        },
+        {
+          "name": "x",
+          "alias": "X",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "y",
+          "alias": "Y",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "f_detec",
+          "alias": "Fecha detec.",
+          "type": "esriFieldTypeString",
+          "length": 12
+        },
+        {
+          "name": "h_detec",
+          "alias": "Hora detec.",
+          "type": "esriFieldTypeString",
+          "length": 8
+        },
+        {
+          "name": "fextinc",
+          "alias": "F. Extinción",
+          "type": "esriFieldTypeString",
+          "length": 12
+        },
+        {
+          "name": "hextinc",
+          "alias": "H. Extinción",
+          "type": "esriFieldTypeString",
+          "length": 8
+        },
+        {
+          "name": "detecp_txt",
+          "alias": "Detect. Por Texto",
+          "type": "esriFieldTypeString",
+          "length": 20
+        },
+        {
+          "name": "g_caus_txt",
+          "alias": "Grupo Causa Texto",
+          "type": "esriFieldTypeString",
+          "length": 50
+        },
+        {
+          "name": "tot_arb",
+          "alias": "Arb. Total",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "tot_narb",
+          "alias": "No Arb. Total",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "sup_f",
+          "alias": "Sup. Forestal",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "shape_Leng",
+          "alias": "shape_Leng",
+          "type": "esriFieldTypeDouble"
+        }
+      ],
+      "identifier_completeness": {
+        "NumPIF_CV": {
+          "present_count": 383,
+          "missing_or_blank_count": 0,
+          "missing_or_blank_percent": 0.0
+        },
+        "NumPIF_Min": {
+          "present_count": 383,
+          "missing_or_blank_count": 0,
+          "missing_or_blank_percent": 0.0
+        }
+      },
+      "warnings": [
+        "objectIdField is absent in layer metadata; inferred from esriFieldTypeOID"
+      ]
+    },
+    {
+      "year": 1997,
+      "layer_id": 5,
+      "name": "Incendios 1997 | Incendis 1997 | Fires 1997",
+      "url": "https://carto.icv.gva.es/arcgis/rest/services/Prevencion_de_incendios2/MapServer/5",
+      "type": "Feature Layer",
+      "geometry_type": "esriGeometryPolygon",
+      "object_id_field": "OBJECTID",
+      "feature_count": 348,
+      "max_record_count": 2000,
+      "supported_query_formats": "JSON, AMF, geoJSON",
+      "capabilities": "Map,Query,Data",
+      "query_capabilities": {
+        "supports_pagination": true,
+        "supports_statistics": true,
+        "supports_count_distinct": true,
+        "supports_returning_query_extent": true,
+        "uses_standardized_queries": true
+      },
+      "extent": {
+        "xmin": -171003.58321829478,
+        "ymin": 4557837.216929323,
+        "xmax": 58511.79406906824,
+        "ymax": 4984880.163161572,
+        "spatialReference": {
+          "wkid": 102100,
+          "latestWkid": 3857,
+          "xyTolerance": 0.001,
+          "zTolerance": 0.001,
+          "mTolerance": 0.001,
+          "falseX": -20037700,
+          "falseY": -30241100,
+          "xyUnits": 148923141.92838538,
+          "falseZ": -100000,
+          "zUnits": 10000,
+          "falseM": -100000,
+          "mUnits": 10000
+        }
+      },
+      "schema_hash": "155e29481cb1f47aa8324fd5c040a7396a064f2fc620280feafb47d52dbe5a7d",
+      "fields": [
+        {
+          "name": "OBJECTID",
+          "alias": "ObjectId",
+          "type": "esriFieldTypeOID"
+        },
+        {
+          "name": "Shape",
+          "alias": "shape",
+          "type": "esriFieldTypeGeometry"
+        },
+        {
+          "name": "NumPIF_CV",
+          "alias": "NumPIF_CV",
+          "type": "esriFieldTypeString",
+          "length": 254
+        },
+        {
+          "name": "NumPIF_Min",
+          "alias": "NumPIF_Min",
+          "type": "esriFieldTypeString",
+          "length": 254
+        },
+        {
+          "name": "anyo",
+          "alias": "Año",
+          "type": "esriFieldTypeInteger"
+        },
+        {
+          "name": "ccaa_nom",
+          "alias": "Com. Autónoma",
+          "type": "esriFieldTypeString",
+          "length": 25
+        },
+        {
+          "name": "prov_nom",
+          "alias": "Provincia",
+          "type": "esriFieldTypeString",
+          "length": 20
+        },
+        {
+          "name": "com_nom",
+          "alias": "Comarca",
+          "type": "esriFieldTypeString",
+          "length": 50
+        },
+        {
+          "name": "nom_mun",
+          "alias": "Municipio",
+          "type": "esriFieldTypeString",
+          "length": 150
+        },
+        {
+          "name": "paraje",
+          "alias": "Paraje",
+          "type": "esriFieldTypeString",
+          "length": 100
+        },
+        {
+          "name": "x",
+          "alias": "X",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "y",
+          "alias": "Y",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "f_detec",
+          "alias": "Fecha detec.",
+          "type": "esriFieldTypeString",
+          "length": 12
+        },
+        {
+          "name": "h_detec",
+          "alias": "Hora detec.",
+          "type": "esriFieldTypeString",
+          "length": 8
+        },
+        {
+          "name": "fextinc",
+          "alias": "F. Extinción",
+          "type": "esriFieldTypeString",
+          "length": 12
+        },
+        {
+          "name": "hextinc",
+          "alias": "H. Extinción",
+          "type": "esriFieldTypeString",
+          "length": 8
+        },
+        {
+          "name": "detecp_txt",
+          "alias": "Detect. Por Texto",
+          "type": "esriFieldTypeString",
+          "length": 20
+        },
+        {
+          "name": "g_caus_txt",
+          "alias": "Grupo Causa Texto",
+          "type": "esriFieldTypeString",
+          "length": 50
+        },
+        {
+          "name": "tot_arb",
+          "alias": "Arb. Total",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "tot_narb",
+          "alias": "No Arb. Total",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "sup_f",
+          "alias": "Sup. Forestal",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "shape_Leng",
+          "alias": "shape_Leng",
+          "type": "esriFieldTypeDouble"
+        }
+      ],
+      "identifier_completeness": {
+        "NumPIF_CV": {
+          "present_count": 348,
+          "missing_or_blank_count": 0,
+          "missing_or_blank_percent": 0.0
+        },
+        "NumPIF_Min": {
+          "present_count": 348,
+          "missing_or_blank_count": 0,
+          "missing_or_blank_percent": 0.0
+        }
+      },
+      "warnings": [
+        "objectIdField is absent in layer metadata; inferred from esriFieldTypeOID"
+      ]
+    },
+    {
+      "year": 1998,
+      "layer_id": 6,
+      "name": "Incendios 1998 | Incendis 1998 | Fires 1998",
+      "url": "https://carto.icv.gva.es/arcgis/rest/services/Prevencion_de_incendios2/MapServer/6",
+      "type": "Feature Layer",
+      "geometry_type": "esriGeometryPolygon",
+      "object_id_field": "OBJECTID",
+      "feature_count": 546,
+      "max_record_count": 2000,
+      "supported_query_formats": "JSON, AMF, geoJSON",
+      "capabilities": "Map,Query,Data",
+      "query_capabilities": {
+        "supports_pagination": true,
+        "supports_statistics": true,
+        "supports_count_distinct": true,
+        "supports_returning_query_extent": true,
+        "uses_standardized_queries": true
+      },
+      "extent": {
+        "xmin": -171003.58321829478,
+        "ymin": 4557837.216929323,
+        "xmax": 58511.79406906824,
+        "ymax": 4984880.163161572,
+        "spatialReference": {
+          "wkid": 102100,
+          "latestWkid": 3857,
+          "xyTolerance": 0.001,
+          "zTolerance": 0.001,
+          "mTolerance": 0.001,
+          "falseX": -20037700,
+          "falseY": -30241100,
+          "xyUnits": 148923141.92838538,
+          "falseZ": -100000,
+          "zUnits": 10000,
+          "falseM": -100000,
+          "mUnits": 10000
+        }
+      },
+      "schema_hash": "155e29481cb1f47aa8324fd5c040a7396a064f2fc620280feafb47d52dbe5a7d",
+      "fields": [
+        {
+          "name": "OBJECTID",
+          "alias": "ObjectId",
+          "type": "esriFieldTypeOID"
+        },
+        {
+          "name": "Shape",
+          "alias": "shape",
+          "type": "esriFieldTypeGeometry"
+        },
+        {
+          "name": "NumPIF_CV",
+          "alias": "NumPIF_CV",
+          "type": "esriFieldTypeString",
+          "length": 254
+        },
+        {
+          "name": "NumPIF_Min",
+          "alias": "NumPIF_Min",
+          "type": "esriFieldTypeString",
+          "length": 254
+        },
+        {
+          "name": "anyo",
+          "alias": "Año",
+          "type": "esriFieldTypeInteger"
+        },
+        {
+          "name": "ccaa_nom",
+          "alias": "Com. Autónoma",
+          "type": "esriFieldTypeString",
+          "length": 25
+        },
+        {
+          "name": "prov_nom",
+          "alias": "Provincia",
+          "type": "esriFieldTypeString",
+          "length": 20
+        },
+        {
+          "name": "com_nom",
+          "alias": "Comarca",
+          "type": "esriFieldTypeString",
+          "length": 50
+        },
+        {
+          "name": "nom_mun",
+          "alias": "Municipio",
+          "type": "esriFieldTypeString",
+          "length": 150
+        },
+        {
+          "name": "paraje",
+          "alias": "Paraje",
+          "type": "esriFieldTypeString",
+          "length": 100
+        },
+        {
+          "name": "x",
+          "alias": "X",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "y",
+          "alias": "Y",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "f_detec",
+          "alias": "Fecha detec.",
+          "type": "esriFieldTypeString",
+          "length": 12
+        },
+        {
+          "name": "h_detec",
+          "alias": "Hora detec.",
+          "type": "esriFieldTypeString",
+          "length": 8
+        },
+        {
+          "name": "fextinc",
+          "alias": "F. Extinción",
+          "type": "esriFieldTypeString",
+          "length": 12
+        },
+        {
+          "name": "hextinc",
+          "alias": "H. Extinción",
+          "type": "esriFieldTypeString",
+          "length": 8
+        },
+        {
+          "name": "detecp_txt",
+          "alias": "Detect. Por Texto",
+          "type": "esriFieldTypeString",
+          "length": 20
+        },
+        {
+          "name": "g_caus_txt",
+          "alias": "Grupo Causa Texto",
+          "type": "esriFieldTypeString",
+          "length": 50
+        },
+        {
+          "name": "tot_arb",
+          "alias": "Arb. Total",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "tot_narb",
+          "alias": "No Arb. Total",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "sup_f",
+          "alias": "Sup. Forestal",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "shape_Leng",
+          "alias": "shape_Leng",
+          "type": "esriFieldTypeDouble"
+        }
+      ],
+      "identifier_completeness": {
+        "NumPIF_CV": {
+          "present_count": 546,
+          "missing_or_blank_count": 0,
+          "missing_or_blank_percent": 0.0
+        },
+        "NumPIF_Min": {
+          "present_count": 546,
+          "missing_or_blank_count": 0,
+          "missing_or_blank_percent": 0.0
+        }
+      },
+      "warnings": [
+        "objectIdField is absent in layer metadata; inferred from esriFieldTypeOID"
+      ]
+    },
+    {
+      "year": 1999,
+      "layer_id": 7,
+      "name": "Incendios 1999 | Incendis 1999 | Fires 1999",
+      "url": "https://carto.icv.gva.es/arcgis/rest/services/Prevencion_de_incendios2/MapServer/7",
+      "type": "Feature Layer",
+      "geometry_type": "esriGeometryPolygon",
+      "object_id_field": "OBJECTID",
+      "feature_count": 579,
+      "max_record_count": 2000,
+      "supported_query_formats": "JSON, AMF, geoJSON",
+      "capabilities": "Map,Query,Data",
+      "query_capabilities": {
+        "supports_pagination": true,
+        "supports_statistics": true,
+        "supports_count_distinct": true,
+        "supports_returning_query_extent": true,
+        "uses_standardized_queries": true
+      },
+      "extent": {
+        "xmin": -171003.58321829478,
+        "ymin": 4557837.216929323,
+        "xmax": 58511.79406906824,
+        "ymax": 4984880.163161572,
+        "spatialReference": {
+          "wkid": 102100,
+          "latestWkid": 3857,
+          "xyTolerance": 0.001,
+          "zTolerance": 0.001,
+          "mTolerance": 0.001,
+          "falseX": -20037700,
+          "falseY": -30241100,
+          "xyUnits": 148923141.92838538,
+          "falseZ": -100000,
+          "zUnits": 10000,
+          "falseM": -100000,
+          "mUnits": 10000
+        }
+      },
+      "schema_hash": "155e29481cb1f47aa8324fd5c040a7396a064f2fc620280feafb47d52dbe5a7d",
+      "fields": [
+        {
+          "name": "OBJECTID",
+          "alias": "ObjectId",
+          "type": "esriFieldTypeOID"
+        },
+        {
+          "name": "Shape",
+          "alias": "shape",
+          "type": "esriFieldTypeGeometry"
+        },
+        {
+          "name": "NumPIF_CV",
+          "alias": "NumPIF_CV",
+          "type": "esriFieldTypeString",
+          "length": 254
+        },
+        {
+          "name": "NumPIF_Min",
+          "alias": "NumPIF_Min",
+          "type": "esriFieldTypeString",
+          "length": 254
+        },
+        {
+          "name": "anyo",
+          "alias": "Año",
+          "type": "esriFieldTypeInteger"
+        },
+        {
+          "name": "ccaa_nom",
+          "alias": "Com. Autónoma",
+          "type": "esriFieldTypeString",
+          "length": 25
+        },
+        {
+          "name": "prov_nom",
+          "alias": "Provincia",
+          "type": "esriFieldTypeString",
+          "length": 20
+        },
+        {
+          "name": "com_nom",
+          "alias": "Comarca",
+          "type": "esriFieldTypeString",
+          "length": 50
+        },
+        {
+          "name": "nom_mun",
+          "alias": "Municipio",
+          "type": "esriFieldTypeString",
+          "length": 150
+        },
+        {
+          "name": "paraje",
+          "alias": "Paraje",
+          "type": "esriFieldTypeString",
+          "length": 100
+        },
+        {
+          "name": "x",
+          "alias": "X",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "y",
+          "alias": "Y",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "f_detec",
+          "alias": "Fecha detec.",
+          "type": "esriFieldTypeString",
+          "length": 12
+        },
+        {
+          "name": "h_detec",
+          "alias": "Hora detec.",
+          "type": "esriFieldTypeString",
+          "length": 8
+        },
+        {
+          "name": "fextinc",
+          "alias": "F. Extinción",
+          "type": "esriFieldTypeString",
+          "length": 12
+        },
+        {
+          "name": "hextinc",
+          "alias": "H. Extinción",
+          "type": "esriFieldTypeString",
+          "length": 8
+        },
+        {
+          "name": "detecp_txt",
+          "alias": "Detect. Por Texto",
+          "type": "esriFieldTypeString",
+          "length": 20
+        },
+        {
+          "name": "g_caus_txt",
+          "alias": "Grupo Causa Texto",
+          "type": "esriFieldTypeString",
+          "length": 50
+        },
+        {
+          "name": "tot_arb",
+          "alias": "Arb. Total",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "tot_narb",
+          "alias": "No Arb. Total",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "sup_f",
+          "alias": "Sup. Forestal",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "shape_Leng",
+          "alias": "shape_Leng",
+          "type": "esriFieldTypeDouble"
+        }
+      ],
+      "identifier_completeness": {
+        "NumPIF_CV": {
+          "present_count": 579,
+          "missing_or_blank_count": 0,
+          "missing_or_blank_percent": 0.0
+        },
+        "NumPIF_Min": {
+          "present_count": 579,
+          "missing_or_blank_count": 0,
+          "missing_or_blank_percent": 0.0
+        }
+      },
+      "warnings": [
+        "objectIdField is absent in layer metadata; inferred from esriFieldTypeOID"
+      ]
+    },
+    {
+      "year": 2000,
+      "layer_id": 8,
+      "name": "Incendios 2000 | Incendis 2000 | Fires 2000",
+      "url": "https://carto.icv.gva.es/arcgis/rest/services/Prevencion_de_incendios2/MapServer/8",
+      "type": "Feature Layer",
+      "geometry_type": "esriGeometryPolygon",
+      "object_id_field": "OBJECTID",
+      "feature_count": 606,
+      "max_record_count": 2000,
+      "supported_query_formats": "JSON, AMF, geoJSON",
+      "capabilities": "Map,Query,Data",
+      "query_capabilities": {
+        "supports_pagination": true,
+        "supports_statistics": true,
+        "supports_count_distinct": true,
+        "supports_returning_query_extent": true,
+        "uses_standardized_queries": true
+      },
+      "extent": {
+        "xmin": -171003.58321829478,
+        "ymin": 4557837.216929323,
+        "xmax": 58511.79406906824,
+        "ymax": 4984880.163161572,
+        "spatialReference": {
+          "wkid": 102100,
+          "latestWkid": 3857,
+          "xyTolerance": 0.001,
+          "zTolerance": 0.001,
+          "mTolerance": 0.001,
+          "falseX": -20037700,
+          "falseY": -30241100,
+          "xyUnits": 148923141.92838538,
+          "falseZ": -100000,
+          "zUnits": 10000,
+          "falseM": -100000,
+          "mUnits": 10000
+        }
+      },
+      "schema_hash": "155e29481cb1f47aa8324fd5c040a7396a064f2fc620280feafb47d52dbe5a7d",
+      "fields": [
+        {
+          "name": "OBJECTID",
+          "alias": "ObjectId",
+          "type": "esriFieldTypeOID"
+        },
+        {
+          "name": "Shape",
+          "alias": "shape",
+          "type": "esriFieldTypeGeometry"
+        },
+        {
+          "name": "NumPIF_CV",
+          "alias": "NumPIF_CV",
+          "type": "esriFieldTypeString",
+          "length": 254
+        },
+        {
+          "name": "NumPIF_Min",
+          "alias": "NumPIF_Min",
+          "type": "esriFieldTypeString",
+          "length": 254
+        },
+        {
+          "name": "anyo",
+          "alias": "Año",
+          "type": "esriFieldTypeInteger"
+        },
+        {
+          "name": "ccaa_nom",
+          "alias": "Com. Autónoma",
+          "type": "esriFieldTypeString",
+          "length": 25
+        },
+        {
+          "name": "prov_nom",
+          "alias": "Provincia",
+          "type": "esriFieldTypeString",
+          "length": 20
+        },
+        {
+          "name": "com_nom",
+          "alias": "Comarca",
+          "type": "esriFieldTypeString",
+          "length": 50
+        },
+        {
+          "name": "nom_mun",
+          "alias": "Municipio",
+          "type": "esriFieldTypeString",
+          "length": 150
+        },
+        {
+          "name": "paraje",
+          "alias": "Paraje",
+          "type": "esriFieldTypeString",
+          "length": 100
+        },
+        {
+          "name": "x",
+          "alias": "X",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "y",
+          "alias": "Y",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "f_detec",
+          "alias": "Fecha detec.",
+          "type": "esriFieldTypeString",
+          "length": 12
+        },
+        {
+          "name": "h_detec",
+          "alias": "Hora detec.",
+          "type": "esriFieldTypeString",
+          "length": 8
+        },
+        {
+          "name": "fextinc",
+          "alias": "F. Extinción",
+          "type": "esriFieldTypeString",
+          "length": 12
+        },
+        {
+          "name": "hextinc",
+          "alias": "H. Extinción",
+          "type": "esriFieldTypeString",
+          "length": 8
+        },
+        {
+          "name": "detecp_txt",
+          "alias": "Detect. Por Texto",
+          "type": "esriFieldTypeString",
+          "length": 20
+        },
+        {
+          "name": "g_caus_txt",
+          "alias": "Grupo Causa Texto",
+          "type": "esriFieldTypeString",
+          "length": 50
+        },
+        {
+          "name": "tot_arb",
+          "alias": "Arb. Total",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "tot_narb",
+          "alias": "No Arb. Total",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "sup_f",
+          "alias": "Sup. Forestal",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "shape_Leng",
+          "alias": "shape_Leng",
+          "type": "esriFieldTypeDouble"
+        }
+      ],
+      "identifier_completeness": {
+        "NumPIF_CV": {
+          "present_count": 606,
+          "missing_or_blank_count": 0,
+          "missing_or_blank_percent": 0.0
+        },
+        "NumPIF_Min": {
+          "present_count": 606,
+          "missing_or_blank_count": 0,
+          "missing_or_blank_percent": 0.0
+        }
+      },
+      "warnings": [
+        "objectIdField is absent in layer metadata; inferred from esriFieldTypeOID"
+      ]
+    },
+    {
+      "year": 2001,
+      "layer_id": 9,
+      "name": "Incendios 2001 | Incendis 2001 | Fires 2001",
+      "url": "https://carto.icv.gva.es/arcgis/rest/services/Prevencion_de_incendios2/MapServer/9",
+      "type": "Feature Layer",
+      "geometry_type": "esriGeometryPolygon",
+      "object_id_field": "OBJECTID",
+      "feature_count": 442,
+      "max_record_count": 2000,
+      "supported_query_formats": "JSON, AMF, geoJSON",
+      "capabilities": "Map,Query,Data",
+      "query_capabilities": {
+        "supports_pagination": true,
+        "supports_statistics": true,
+        "supports_count_distinct": true,
+        "supports_returning_query_extent": true,
+        "uses_standardized_queries": true
+      },
+      "extent": {
+        "xmin": -171003.58321829478,
+        "ymin": 4557837.216929323,
+        "xmax": 58511.79406906824,
+        "ymax": 4984880.163161572,
+        "spatialReference": {
+          "wkid": 102100,
+          "latestWkid": 3857,
+          "xyTolerance": 0.001,
+          "zTolerance": 0.001,
+          "mTolerance": 0.001,
+          "falseX": -20037700,
+          "falseY": -30241100,
+          "xyUnits": 148923141.92838538,
+          "falseZ": -100000,
+          "zUnits": 10000,
+          "falseM": -100000,
+          "mUnits": 10000
+        }
+      },
+      "schema_hash": "155e29481cb1f47aa8324fd5c040a7396a064f2fc620280feafb47d52dbe5a7d",
+      "fields": [
+        {
+          "name": "OBJECTID",
+          "alias": "ObjectId",
+          "type": "esriFieldTypeOID"
+        },
+        {
+          "name": "Shape",
+          "alias": "shape",
+          "type": "esriFieldTypeGeometry"
+        },
+        {
+          "name": "NumPIF_CV",
+          "alias": "NumPIF_CV",
+          "type": "esriFieldTypeString",
+          "length": 254
+        },
+        {
+          "name": "NumPIF_Min",
+          "alias": "NumPIF_Min",
+          "type": "esriFieldTypeString",
+          "length": 254
+        },
+        {
+          "name": "anyo",
+          "alias": "Año",
+          "type": "esriFieldTypeInteger"
+        },
+        {
+          "name": "ccaa_nom",
+          "alias": "Com. Autónoma",
+          "type": "esriFieldTypeString",
+          "length": 25
+        },
+        {
+          "name": "prov_nom",
+          "alias": "Provincia",
+          "type": "esriFieldTypeString",
+          "length": 20
+        },
+        {
+          "name": "com_nom",
+          "alias": "Comarca",
+          "type": "esriFieldTypeString",
+          "length": 50
+        },
+        {
+          "name": "nom_mun",
+          "alias": "Municipio",
+          "type": "esriFieldTypeString",
+          "length": 150
+        },
+        {
+          "name": "paraje",
+          "alias": "Paraje",
+          "type": "esriFieldTypeString",
+          "length": 100
+        },
+        {
+          "name": "x",
+          "alias": "X",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "y",
+          "alias": "Y",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "f_detec",
+          "alias": "Fecha detec.",
+          "type": "esriFieldTypeString",
+          "length": 12
+        },
+        {
+          "name": "h_detec",
+          "alias": "Hora detec.",
+          "type": "esriFieldTypeString",
+          "length": 8
+        },
+        {
+          "name": "fextinc",
+          "alias": "F. Extinción",
+          "type": "esriFieldTypeString",
+          "length": 12
+        },
+        {
+          "name": "hextinc",
+          "alias": "H. Extinción",
+          "type": "esriFieldTypeString",
+          "length": 8
+        },
+        {
+          "name": "detecp_txt",
+          "alias": "Detect. Por Texto",
+          "type": "esriFieldTypeString",
+          "length": 20
+        },
+        {
+          "name": "g_caus_txt",
+          "alias": "Grupo Causa Texto",
+          "type": "esriFieldTypeString",
+          "length": 50
+        },
+        {
+          "name": "tot_arb",
+          "alias": "Arb. Total",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "tot_narb",
+          "alias": "No Arb. Total",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "sup_f",
+          "alias": "Sup. Forestal",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "shape_Leng",
+          "alias": "shape_Leng",
+          "type": "esriFieldTypeDouble"
+        }
+      ],
+      "identifier_completeness": {
+        "NumPIF_CV": {
+          "present_count": 442,
+          "missing_or_blank_count": 0,
+          "missing_or_blank_percent": 0.0
+        },
+        "NumPIF_Min": {
+          "present_count": 442,
+          "missing_or_blank_count": 0,
+          "missing_or_blank_percent": 0.0
+        }
+      },
+      "warnings": [
+        "objectIdField is absent in layer metadata; inferred from esriFieldTypeOID"
+      ]
+    },
+    {
+      "year": 2002,
+      "layer_id": 10,
+      "name": "Incendios 2002 | Incendis 2002 | Fires 2002",
+      "url": "https://carto.icv.gva.es/arcgis/rest/services/Prevencion_de_incendios2/MapServer/10",
+      "type": "Feature Layer",
+      "geometry_type": "esriGeometryPolygon",
+      "object_id_field": "OBJECTID",
+      "feature_count": 321,
+      "max_record_count": 2000,
+      "supported_query_formats": "JSON, AMF, geoJSON",
+      "capabilities": "Map,Query,Data",
+      "query_capabilities": {
+        "supports_pagination": true,
+        "supports_statistics": true,
+        "supports_count_distinct": true,
+        "supports_returning_query_extent": true,
+        "uses_standardized_queries": true
+      },
+      "extent": {
+        "xmin": -171003.58321829478,
+        "ymin": 4557837.216929323,
+        "xmax": 58511.79406906824,
+        "ymax": 4984880.163161572,
+        "spatialReference": {
+          "wkid": 102100,
+          "latestWkid": 3857,
+          "xyTolerance": 0.001,
+          "zTolerance": 0.001,
+          "mTolerance": 0.001,
+          "falseX": -20037700,
+          "falseY": -30241100,
+          "xyUnits": 148923141.92838538,
+          "falseZ": -100000,
+          "zUnits": 10000,
+          "falseM": -100000,
+          "mUnits": 10000
+        }
+      },
+      "schema_hash": "155e29481cb1f47aa8324fd5c040a7396a064f2fc620280feafb47d52dbe5a7d",
+      "fields": [
+        {
+          "name": "OBJECTID",
+          "alias": "ObjectId",
+          "type": "esriFieldTypeOID"
+        },
+        {
+          "name": "Shape",
+          "alias": "shape",
+          "type": "esriFieldTypeGeometry"
+        },
+        {
+          "name": "NumPIF_CV",
+          "alias": "NumPIF_CV",
+          "type": "esriFieldTypeString",
+          "length": 254
+        },
+        {
+          "name": "NumPIF_Min",
+          "alias": "NumPIF_Min",
+          "type": "esriFieldTypeString",
+          "length": 254
+        },
+        {
+          "name": "anyo",
+          "alias": "Año",
+          "type": "esriFieldTypeInteger"
+        },
+        {
+          "name": "ccaa_nom",
+          "alias": "Com. Autónoma",
+          "type": "esriFieldTypeString",
+          "length": 25
+        },
+        {
+          "name": "prov_nom",
+          "alias": "Provincia",
+          "type": "esriFieldTypeString",
+          "length": 20
+        },
+        {
+          "name": "com_nom",
+          "alias": "Comarca",
+          "type": "esriFieldTypeString",
+          "length": 50
+        },
+        {
+          "name": "nom_mun",
+          "alias": "Municipio",
+          "type": "esriFieldTypeString",
+          "length": 150
+        },
+        {
+          "name": "paraje",
+          "alias": "Paraje",
+          "type": "esriFieldTypeString",
+          "length": 100
+        },
+        {
+          "name": "x",
+          "alias": "X",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "y",
+          "alias": "Y",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "f_detec",
+          "alias": "Fecha detec.",
+          "type": "esriFieldTypeString",
+          "length": 12
+        },
+        {
+          "name": "h_detec",
+          "alias": "Hora detec.",
+          "type": "esriFieldTypeString",
+          "length": 8
+        },
+        {
+          "name": "fextinc",
+          "alias": "F. Extinción",
+          "type": "esriFieldTypeString",
+          "length": 12
+        },
+        {
+          "name": "hextinc",
+          "alias": "H. Extinción",
+          "type": "esriFieldTypeString",
+          "length": 8
+        },
+        {
+          "name": "detecp_txt",
+          "alias": "Detect. Por Texto",
+          "type": "esriFieldTypeString",
+          "length": 20
+        },
+        {
+          "name": "g_caus_txt",
+          "alias": "Grupo Causa Texto",
+          "type": "esriFieldTypeString",
+          "length": 50
+        },
+        {
+          "name": "tot_arb",
+          "alias": "Arb. Total",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "tot_narb",
+          "alias": "No Arb. Total",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "sup_f",
+          "alias": "Sup. Forestal",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "shape_Leng",
+          "alias": "shape_Leng",
+          "type": "esriFieldTypeDouble"
+        }
+      ],
+      "identifier_completeness": {
+        "NumPIF_CV": {
+          "present_count": 321,
+          "missing_or_blank_count": 0,
+          "missing_or_blank_percent": 0.0
+        },
+        "NumPIF_Min": {
+          "present_count": 321,
+          "missing_or_blank_count": 0,
+          "missing_or_blank_percent": 0.0
+        }
+      },
+      "warnings": [
+        "objectIdField is absent in layer metadata; inferred from esriFieldTypeOID"
+      ]
+    },
+    {
+      "year": 2003,
+      "layer_id": 11,
+      "name": "Incendios 2003 | Incendis 2003 | Fires 2003",
+      "url": "https://carto.icv.gva.es/arcgis/rest/services/Prevencion_de_incendios2/MapServer/11",
+      "type": "Feature Layer",
+      "geometry_type": "esriGeometryPolygon",
+      "object_id_field": "OBJECTID",
+      "feature_count": 408,
+      "max_record_count": 2000,
+      "supported_query_formats": "JSON, AMF, geoJSON",
+      "capabilities": "Map,Query,Data",
+      "query_capabilities": {
+        "supports_pagination": true,
+        "supports_statistics": true,
+        "supports_count_distinct": true,
+        "supports_returning_query_extent": true,
+        "uses_standardized_queries": true
+      },
+      "extent": {
+        "xmin": -171003.58321829478,
+        "ymin": 4557837.216929323,
+        "xmax": 58511.79406906824,
+        "ymax": 4984880.163161572,
+        "spatialReference": {
+          "wkid": 102100,
+          "latestWkid": 3857,
+          "xyTolerance": 0.001,
+          "zTolerance": 0.001,
+          "mTolerance": 0.001,
+          "falseX": -20037700,
+          "falseY": -30241100,
+          "xyUnits": 148923141.92838538,
+          "falseZ": -100000,
+          "zUnits": 10000,
+          "falseM": -100000,
+          "mUnits": 10000
+        }
+      },
+      "schema_hash": "baf92ee47c28af0482e5f73878a564f7467caedc3bab12b6712b9a84f0b0a391",
+      "fields": [
+        {
+          "name": "OBJECTID",
+          "alias": "ObjectId",
+          "type": "esriFieldTypeOID"
+        },
+        {
+          "name": "Shape",
+          "alias": "shape",
+          "type": "esriFieldTypeGeometry"
+        },
+        {
+          "name": "NumPIF_CV",
+          "alias": "NumPIF_CV",
+          "type": "esriFieldTypeString",
+          "length": 254
+        },
+        {
+          "name": "NumPIF_Min",
+          "alias": "NumPIF_Min",
+          "type": "esriFieldTypeString",
+          "length": 254
+        },
+        {
+          "name": "anyo",
+          "alias": "Año",
+          "type": "esriFieldTypeInteger"
+        },
+        {
+          "name": "ccaa_nom",
+          "alias": "Com. Autónoma",
+          "type": "esriFieldTypeString",
+          "length": 25
+        },
+        {
+          "name": "prov_nom",
+          "alias": "Provincia",
+          "type": "esriFieldTypeString",
+          "length": 20
+        },
+        {
+          "name": "com_nom",
+          "alias": "Comarca",
+          "type": "esriFieldTypeString",
+          "length": 50
+        },
+        {
+          "name": "nom_mun",
+          "alias": "Municipio",
+          "type": "esriFieldTypeString",
+          "length": 150
+        },
+        {
+          "name": "paraje",
+          "alias": "Paraje",
+          "type": "esriFieldTypeString",
+          "length": 100
+        },
+        {
+          "name": "x",
+          "alias": "X",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "y",
+          "alias": "Y",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "f_detec",
+          "alias": "Fecha detec.",
+          "type": "esriFieldTypeString",
+          "length": 12
+        },
+        {
+          "name": "h_detec",
+          "alias": "Hora detec.",
+          "type": "esriFieldTypeString",
+          "length": 8
+        },
+        {
+          "name": "fextinc",
+          "alias": "F. Extinción",
+          "type": "esriFieldTypeString",
+          "length": 12
+        },
+        {
+          "name": "hextinc",
+          "alias": "H. Extinción",
+          "type": "esriFieldTypeString",
+          "length": 8
+        },
+        {
+          "name": "g_caus_txt",
+          "alias": "Grupo Causa Texto",
+          "type": "esriFieldTypeString",
+          "length": 50
+        },
+        {
+          "name": "tot_arb",
+          "alias": "Arb. Total",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "tot_narb",
+          "alias": "No Arb. Total",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "sup_f",
+          "alias": "Sup. Forestal",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "shape_Leng",
+          "alias": "shape_Leng",
+          "type": "esriFieldTypeDouble"
+        }
+      ],
+      "identifier_completeness": {
+        "NumPIF_CV": {
+          "present_count": 408,
+          "missing_or_blank_count": 0,
+          "missing_or_blank_percent": 0.0
+        },
+        "NumPIF_Min": {
+          "present_count": 408,
+          "missing_or_blank_count": 0,
+          "missing_or_blank_percent": 0.0
+        }
+      },
+      "warnings": [
+        "objectIdField is absent in layer metadata; inferred from esriFieldTypeOID"
+      ]
+    },
+    {
+      "year": 2004,
+      "layer_id": 12,
+      "name": "Incendios 2004 | Incendis 2004 | Fires 2004",
+      "url": "https://carto.icv.gva.es/arcgis/rest/services/Prevencion_de_incendios2/MapServer/12",
+      "type": "Feature Layer",
+      "geometry_type": "esriGeometryPolygon",
+      "object_id_field": "OBJECTID",
+      "feature_count": 487,
+      "max_record_count": 2000,
+      "supported_query_formats": "JSON, AMF, geoJSON",
+      "capabilities": "Map,Query,Data",
+      "query_capabilities": {
+        "supports_pagination": true,
+        "supports_statistics": true,
+        "supports_count_distinct": true,
+        "supports_returning_query_extent": true,
+        "uses_standardized_queries": true
+      },
+      "extent": {
+        "xmin": -171003.58321829478,
+        "ymin": 4557837.216929323,
+        "xmax": 58511.79406906824,
+        "ymax": 4984880.163161572,
+        "spatialReference": {
+          "wkid": 102100,
+          "latestWkid": 3857,
+          "xyTolerance": 0.001,
+          "zTolerance": 0.001,
+          "mTolerance": 0.001,
+          "falseX": -20037700,
+          "falseY": -30241100,
+          "xyUnits": 148923141.92838538,
+          "falseZ": -100000,
+          "zUnits": 10000,
+          "falseM": -100000,
+          "mUnits": 10000
+        }
+      },
+      "schema_hash": "155e29481cb1f47aa8324fd5c040a7396a064f2fc620280feafb47d52dbe5a7d",
+      "fields": [
+        {
+          "name": "OBJECTID",
+          "alias": "ObjectId",
+          "type": "esriFieldTypeOID"
+        },
+        {
+          "name": "Shape",
+          "alias": "shape",
+          "type": "esriFieldTypeGeometry"
+        },
+        {
+          "name": "NumPIF_CV",
+          "alias": "NumPIF_CV",
+          "type": "esriFieldTypeString",
+          "length": 254
+        },
+        {
+          "name": "NumPIF_Min",
+          "alias": "NumPIF_Min",
+          "type": "esriFieldTypeString",
+          "length": 254
+        },
+        {
+          "name": "anyo",
+          "alias": "Año",
+          "type": "esriFieldTypeInteger"
+        },
+        {
+          "name": "ccaa_nom",
+          "alias": "Com. Autónoma",
+          "type": "esriFieldTypeString",
+          "length": 25
+        },
+        {
+          "name": "prov_nom",
+          "alias": "Provincia",
+          "type": "esriFieldTypeString",
+          "length": 20
+        },
+        {
+          "name": "com_nom",
+          "alias": "Comarca",
+          "type": "esriFieldTypeString",
+          "length": 50
+        },
+        {
+          "name": "nom_mun",
+          "alias": "Municipio",
+          "type": "esriFieldTypeString",
+          "length": 150
+        },
+        {
+          "name": "paraje",
+          "alias": "Paraje",
+          "type": "esriFieldTypeString",
+          "length": 100
+        },
+        {
+          "name": "x",
+          "alias": "X",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "y",
+          "alias": "Y",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "f_detec",
+          "alias": "Fecha detec.",
+          "type": "esriFieldTypeString",
+          "length": 12
+        },
+        {
+          "name": "h_detec",
+          "alias": "Hora detec.",
+          "type": "esriFieldTypeString",
+          "length": 8
+        },
+        {
+          "name": "fextinc",
+          "alias": "F. Extinción",
+          "type": "esriFieldTypeString",
+          "length": 12
+        },
+        {
+          "name": "hextinc",
+          "alias": "H. Extinción",
+          "type": "esriFieldTypeString",
+          "length": 8
+        },
+        {
+          "name": "detecp_txt",
+          "alias": "Detect. Por Texto",
+          "type": "esriFieldTypeString",
+          "length": 20
+        },
+        {
+          "name": "g_caus_txt",
+          "alias": "Grupo Causa Texto",
+          "type": "esriFieldTypeString",
+          "length": 50
+        },
+        {
+          "name": "tot_arb",
+          "alias": "Arb. Total",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "tot_narb",
+          "alias": "No Arb. Total",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "sup_f",
+          "alias": "Sup. Forestal",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "shape_Leng",
+          "alias": "shape_Leng",
+          "type": "esriFieldTypeDouble"
+        }
+      ],
+      "identifier_completeness": {
+        "NumPIF_CV": {
+          "present_count": 487,
+          "missing_or_blank_count": 0,
+          "missing_or_blank_percent": 0.0
+        },
+        "NumPIF_Min": {
+          "present_count": 487,
+          "missing_or_blank_count": 0,
+          "missing_or_blank_percent": 0.0
+        }
+      },
+      "warnings": [
+        "objectIdField is absent in layer metadata; inferred from esriFieldTypeOID"
+      ]
+    },
+    {
+      "year": 2005,
+      "layer_id": 13,
+      "name": "Incendios 2005 | Incendis 2005 | Fires 2005",
+      "url": "https://carto.icv.gva.es/arcgis/rest/services/Prevencion_de_incendios2/MapServer/13",
+      "type": "Feature Layer",
+      "geometry_type": "esriGeometryPolygon",
+      "object_id_field": "OBJECTID",
+      "feature_count": 686,
+      "max_record_count": 2000,
+      "supported_query_formats": "JSON, AMF, geoJSON",
+      "capabilities": "Map,Query,Data",
+      "query_capabilities": {
+        "supports_pagination": true,
+        "supports_statistics": true,
+        "supports_count_distinct": true,
+        "supports_returning_query_extent": true,
+        "uses_standardized_queries": true
+      },
+      "extent": {
+        "xmin": -171003.58321829478,
+        "ymin": 4557837.216929323,
+        "xmax": 58511.79406906824,
+        "ymax": 4984880.163161572,
+        "spatialReference": {
+          "wkid": 102100,
+          "latestWkid": 3857,
+          "xyTolerance": 0.001,
+          "zTolerance": 0.001,
+          "mTolerance": 0.001,
+          "falseX": -20037700,
+          "falseY": -30241100,
+          "xyUnits": 148923141.92838538,
+          "falseZ": -100000,
+          "zUnits": 10000,
+          "falseM": -100000,
+          "mUnits": 10000
+        }
+      },
+      "schema_hash": "155e29481cb1f47aa8324fd5c040a7396a064f2fc620280feafb47d52dbe5a7d",
+      "fields": [
+        {
+          "name": "OBJECTID",
+          "alias": "ObjectId",
+          "type": "esriFieldTypeOID"
+        },
+        {
+          "name": "Shape",
+          "alias": "shape",
+          "type": "esriFieldTypeGeometry"
+        },
+        {
+          "name": "NumPIF_CV",
+          "alias": "NumPIF_CV",
+          "type": "esriFieldTypeString",
+          "length": 254
+        },
+        {
+          "name": "NumPIF_Min",
+          "alias": "NumPIF_Min",
+          "type": "esriFieldTypeString",
+          "length": 254
+        },
+        {
+          "name": "anyo",
+          "alias": "Año",
+          "type": "esriFieldTypeInteger"
+        },
+        {
+          "name": "ccaa_nom",
+          "alias": "Com. Autónoma",
+          "type": "esriFieldTypeString",
+          "length": 25
+        },
+        {
+          "name": "prov_nom",
+          "alias": "Provincia",
+          "type": "esriFieldTypeString",
+          "length": 20
+        },
+        {
+          "name": "com_nom",
+          "alias": "Comarca",
+          "type": "esriFieldTypeString",
+          "length": 50
+        },
+        {
+          "name": "nom_mun",
+          "alias": "Municipio",
+          "type": "esriFieldTypeString",
+          "length": 150
+        },
+        {
+          "name": "paraje",
+          "alias": "Paraje",
+          "type": "esriFieldTypeString",
+          "length": 100
+        },
+        {
+          "name": "x",
+          "alias": "X",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "y",
+          "alias": "Y",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "f_detec",
+          "alias": "Fecha detec.",
+          "type": "esriFieldTypeString",
+          "length": 12
+        },
+        {
+          "name": "h_detec",
+          "alias": "Hora detec.",
+          "type": "esriFieldTypeString",
+          "length": 8
+        },
+        {
+          "name": "fextinc",
+          "alias": "F. Extinción",
+          "type": "esriFieldTypeString",
+          "length": 12
+        },
+        {
+          "name": "hextinc",
+          "alias": "H. Extinción",
+          "type": "esriFieldTypeString",
+          "length": 8
+        },
+        {
+          "name": "detecp_txt",
+          "alias": "Detect. Por Texto",
+          "type": "esriFieldTypeString",
+          "length": 20
+        },
+        {
+          "name": "g_caus_txt",
+          "alias": "Grupo Causa Texto",
+          "type": "esriFieldTypeString",
+          "length": 50
+        },
+        {
+          "name": "tot_arb",
+          "alias": "Arb. Total",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "tot_narb",
+          "alias": "No Arb. Total",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "sup_f",
+          "alias": "Sup. Forestal",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "shape_Leng",
+          "alias": "shape_Leng",
+          "type": "esriFieldTypeDouble"
+        }
+      ],
+      "identifier_completeness": {
+        "NumPIF_CV": {
+          "present_count": 686,
+          "missing_or_blank_count": 0,
+          "missing_or_blank_percent": 0.0
+        },
+        "NumPIF_Min": {
+          "present_count": 686,
+          "missing_or_blank_count": 0,
+          "missing_or_blank_percent": 0.0
+        }
+      },
+      "warnings": [
+        "objectIdField is absent in layer metadata; inferred from esriFieldTypeOID"
+      ]
+    },
+    {
+      "year": 2006,
+      "layer_id": 14,
+      "name": "Incendios 2006 | Incendis 2006 | Fires 2006",
+      "url": "https://carto.icv.gva.es/arcgis/rest/services/Prevencion_de_incendios2/MapServer/14",
+      "type": "Feature Layer",
+      "geometry_type": "esriGeometryPolygon",
+      "object_id_field": "OBJECTID",
+      "feature_count": 472,
+      "max_record_count": 2000,
+      "supported_query_formats": "JSON, AMF, geoJSON",
+      "capabilities": "Map,Query,Data",
+      "query_capabilities": {
+        "supports_pagination": true,
+        "supports_statistics": true,
+        "supports_count_distinct": true,
+        "supports_returning_query_extent": true,
+        "uses_standardized_queries": true
+      },
+      "extent": {
+        "xmin": -171003.58321829478,
+        "ymin": 4557837.216929323,
+        "xmax": 58511.79406906824,
+        "ymax": 4984880.163161572,
+        "spatialReference": {
+          "wkid": 102100,
+          "latestWkid": 3857,
+          "xyTolerance": 0.001,
+          "zTolerance": 0.001,
+          "mTolerance": 0.001,
+          "falseX": -20037700,
+          "falseY": -30241100,
+          "xyUnits": 148923141.92838538,
+          "falseZ": -100000,
+          "zUnits": 10000,
+          "falseM": -100000,
+          "mUnits": 10000
+        }
+      },
+      "schema_hash": "155e29481cb1f47aa8324fd5c040a7396a064f2fc620280feafb47d52dbe5a7d",
+      "fields": [
+        {
+          "name": "OBJECTID",
+          "alias": "ObjectId",
+          "type": "esriFieldTypeOID"
+        },
+        {
+          "name": "Shape",
+          "alias": "shape",
+          "type": "esriFieldTypeGeometry"
+        },
+        {
+          "name": "NumPIF_CV",
+          "alias": "NumPIF_CV",
+          "type": "esriFieldTypeString",
+          "length": 254
+        },
+        {
+          "name": "NumPIF_Min",
+          "alias": "NumPIF_Min",
+          "type": "esriFieldTypeString",
+          "length": 254
+        },
+        {
+          "name": "anyo",
+          "alias": "Año",
+          "type": "esriFieldTypeInteger"
+        },
+        {
+          "name": "ccaa_nom",
+          "alias": "Com. Autónoma",
+          "type": "esriFieldTypeString",
+          "length": 25
+        },
+        {
+          "name": "prov_nom",
+          "alias": "Provincia",
+          "type": "esriFieldTypeString",
+          "length": 20
+        },
+        {
+          "name": "com_nom",
+          "alias": "Comarca",
+          "type": "esriFieldTypeString",
+          "length": 50
+        },
+        {
+          "name": "nom_mun",
+          "alias": "Municipio",
+          "type": "esriFieldTypeString",
+          "length": 150
+        },
+        {
+          "name": "paraje",
+          "alias": "Paraje",
+          "type": "esriFieldTypeString",
+          "length": 100
+        },
+        {
+          "name": "x",
+          "alias": "X",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "y",
+          "alias": "Y",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "f_detec",
+          "alias": "Fecha detec.",
+          "type": "esriFieldTypeString",
+          "length": 12
+        },
+        {
+          "name": "h_detec",
+          "alias": "Hora detec.",
+          "type": "esriFieldTypeString",
+          "length": 8
+        },
+        {
+          "name": "fextinc",
+          "alias": "F. Extinción",
+          "type": "esriFieldTypeString",
+          "length": 12
+        },
+        {
+          "name": "hextinc",
+          "alias": "H. Extinción",
+          "type": "esriFieldTypeString",
+          "length": 8
+        },
+        {
+          "name": "detecp_txt",
+          "alias": "Detect. Por Texto",
+          "type": "esriFieldTypeString",
+          "length": 20
+        },
+        {
+          "name": "g_caus_txt",
+          "alias": "Grupo Causa Texto",
+          "type": "esriFieldTypeString",
+          "length": 50
+        },
+        {
+          "name": "tot_arb",
+          "alias": "Arb. Total",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "tot_narb",
+          "alias": "No Arb. Total",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "sup_f",
+          "alias": "Sup. Forestal",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "shape_Leng",
+          "alias": "shape_Leng",
+          "type": "esriFieldTypeDouble"
+        }
+      ],
+      "identifier_completeness": {
+        "NumPIF_CV": {
+          "present_count": 472,
+          "missing_or_blank_count": 0,
+          "missing_or_blank_percent": 0.0
+        },
+        "NumPIF_Min": {
+          "present_count": 472,
+          "missing_or_blank_count": 0,
+          "missing_or_blank_percent": 0.0
+        }
+      },
+      "warnings": [
+        "objectIdField is absent in layer metadata; inferred from esriFieldTypeOID"
+      ]
+    },
+    {
+      "year": 2007,
+      "layer_id": 15,
+      "name": "Incendios 2007 | Incendis 2007 | Fires 2007",
+      "url": "https://carto.icv.gva.es/arcgis/rest/services/Prevencion_de_incendios2/MapServer/15",
+      "type": "Feature Layer",
+      "geometry_type": "esriGeometryPolygon",
+      "object_id_field": "OBJECTID",
+      "feature_count": 375,
+      "max_record_count": 2000,
+      "supported_query_formats": "JSON, AMF, geoJSON",
+      "capabilities": "Map,Query,Data",
+      "query_capabilities": {
+        "supports_pagination": true,
+        "supports_statistics": true,
+        "supports_count_distinct": true,
+        "supports_returning_query_extent": true,
+        "uses_standardized_queries": true
+      },
+      "extent": {
+        "xmin": -171003.58321829478,
+        "ymin": 4557837.216929323,
+        "xmax": 58511.79406906824,
+        "ymax": 4984880.163161572,
+        "spatialReference": {
+          "wkid": 102100,
+          "latestWkid": 3857,
+          "xyTolerance": 0.001,
+          "zTolerance": 0.001,
+          "mTolerance": 0.001,
+          "falseX": -20037700,
+          "falseY": -30241100,
+          "xyUnits": 148923141.92838538,
+          "falseZ": -100000,
+          "zUnits": 10000,
+          "falseM": -100000,
+          "mUnits": 10000
+        }
+      },
+      "schema_hash": "155e29481cb1f47aa8324fd5c040a7396a064f2fc620280feafb47d52dbe5a7d",
+      "fields": [
+        {
+          "name": "OBJECTID",
+          "alias": "ObjectId",
+          "type": "esriFieldTypeOID"
+        },
+        {
+          "name": "Shape",
+          "alias": "shape",
+          "type": "esriFieldTypeGeometry"
+        },
+        {
+          "name": "NumPIF_CV",
+          "alias": "NumPIF_CV",
+          "type": "esriFieldTypeString",
+          "length": 254
+        },
+        {
+          "name": "NumPIF_Min",
+          "alias": "NumPIF_Min",
+          "type": "esriFieldTypeString",
+          "length": 254
+        },
+        {
+          "name": "anyo",
+          "alias": "Año",
+          "type": "esriFieldTypeInteger"
+        },
+        {
+          "name": "ccaa_nom",
+          "alias": "Com. Autónoma",
+          "type": "esriFieldTypeString",
+          "length": 25
+        },
+        {
+          "name": "prov_nom",
+          "alias": "Provincia",
+          "type": "esriFieldTypeString",
+          "length": 20
+        },
+        {
+          "name": "com_nom",
+          "alias": "Comarca",
+          "type": "esriFieldTypeString",
+          "length": 50
+        },
+        {
+          "name": "nom_mun",
+          "alias": "Municipio",
+          "type": "esriFieldTypeString",
+          "length": 150
+        },
+        {
+          "name": "paraje",
+          "alias": "Paraje",
+          "type": "esriFieldTypeString",
+          "length": 100
+        },
+        {
+          "name": "x",
+          "alias": "X",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "y",
+          "alias": "Y",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "f_detec",
+          "alias": "Fecha detec.",
+          "type": "esriFieldTypeString",
+          "length": 12
+        },
+        {
+          "name": "h_detec",
+          "alias": "Hora detec.",
+          "type": "esriFieldTypeString",
+          "length": 8
+        },
+        {
+          "name": "fextinc",
+          "alias": "F. Extinción",
+          "type": "esriFieldTypeString",
+          "length": 12
+        },
+        {
+          "name": "hextinc",
+          "alias": "H. Extinción",
+          "type": "esriFieldTypeString",
+          "length": 8
+        },
+        {
+          "name": "detecp_txt",
+          "alias": "Detect. Por Texto",
+          "type": "esriFieldTypeString",
+          "length": 20
+        },
+        {
+          "name": "g_caus_txt",
+          "alias": "Grupo Causa Texto",
+          "type": "esriFieldTypeString",
+          "length": 50
+        },
+        {
+          "name": "tot_arb",
+          "alias": "Arb. Total",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "tot_narb",
+          "alias": "No Arb. Total",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "sup_f",
+          "alias": "Sup. Forestal",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "shape_Leng",
+          "alias": "shape_Leng",
+          "type": "esriFieldTypeDouble"
+        }
+      ],
+      "identifier_completeness": {
+        "NumPIF_CV": {
+          "present_count": 375,
+          "missing_or_blank_count": 0,
+          "missing_or_blank_percent": 0.0
+        },
+        "NumPIF_Min": {
+          "present_count": 375,
+          "missing_or_blank_count": 0,
+          "missing_or_blank_percent": 0.0
+        }
+      },
+      "warnings": [
+        "objectIdField is absent in layer metadata; inferred from esriFieldTypeOID"
+      ]
+    },
+    {
+      "year": 2008,
+      "layer_id": 16,
+      "name": "Incendios 2008 | Incendis 2008 | Fires 2008",
+      "url": "https://carto.icv.gva.es/arcgis/rest/services/Prevencion_de_incendios2/MapServer/16",
+      "type": "Feature Layer",
+      "geometry_type": "esriGeometryPolygon",
+      "object_id_field": "OBJECTID",
+      "feature_count": 326,
+      "max_record_count": 2000,
+      "supported_query_formats": "JSON, AMF, geoJSON",
+      "capabilities": "Map,Query,Data",
+      "query_capabilities": {
+        "supports_pagination": true,
+        "supports_statistics": true,
+        "supports_count_distinct": true,
+        "supports_returning_query_extent": true,
+        "uses_standardized_queries": true
+      },
+      "extent": {
+        "xmin": -171003.58321829478,
+        "ymin": 4557837.216929323,
+        "xmax": 58511.79406906824,
+        "ymax": 4984880.163161572,
+        "spatialReference": {
+          "wkid": 102100,
+          "latestWkid": 3857,
+          "xyTolerance": 0.001,
+          "zTolerance": 0.001,
+          "mTolerance": 0.001,
+          "falseX": -20037700,
+          "falseY": -30241100,
+          "xyUnits": 148923141.92838538,
+          "falseZ": -100000,
+          "zUnits": 10000,
+          "falseM": -100000,
+          "mUnits": 10000
+        }
+      },
+      "schema_hash": "155e29481cb1f47aa8324fd5c040a7396a064f2fc620280feafb47d52dbe5a7d",
+      "fields": [
+        {
+          "name": "OBJECTID",
+          "alias": "ObjectId",
+          "type": "esriFieldTypeOID"
+        },
+        {
+          "name": "Shape",
+          "alias": "shape",
+          "type": "esriFieldTypeGeometry"
+        },
+        {
+          "name": "NumPIF_CV",
+          "alias": "NumPIF_CV",
+          "type": "esriFieldTypeString",
+          "length": 254
+        },
+        {
+          "name": "NumPIF_Min",
+          "alias": "NumPIF_Min",
+          "type": "esriFieldTypeString",
+          "length": 254
+        },
+        {
+          "name": "anyo",
+          "alias": "Año",
+          "type": "esriFieldTypeInteger"
+        },
+        {
+          "name": "ccaa_nom",
+          "alias": "Com. Autónoma",
+          "type": "esriFieldTypeString",
+          "length": 25
+        },
+        {
+          "name": "prov_nom",
+          "alias": "Provincia",
+          "type": "esriFieldTypeString",
+          "length": 20
+        },
+        {
+          "name": "com_nom",
+          "alias": "Comarca",
+          "type": "esriFieldTypeString",
+          "length": 50
+        },
+        {
+          "name": "nom_mun",
+          "alias": "Municipio",
+          "type": "esriFieldTypeString",
+          "length": 150
+        },
+        {
+          "name": "paraje",
+          "alias": "Paraje",
+          "type": "esriFieldTypeString",
+          "length": 100
+        },
+        {
+          "name": "x",
+          "alias": "X",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "y",
+          "alias": "Y",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "f_detec",
+          "alias": "Fecha detec.",
+          "type": "esriFieldTypeString",
+          "length": 12
+        },
+        {
+          "name": "h_detec",
+          "alias": "Hora detec.",
+          "type": "esriFieldTypeString",
+          "length": 8
+        },
+        {
+          "name": "fextinc",
+          "alias": "F. Extinción",
+          "type": "esriFieldTypeString",
+          "length": 12
+        },
+        {
+          "name": "hextinc",
+          "alias": "H. Extinción",
+          "type": "esriFieldTypeString",
+          "length": 8
+        },
+        {
+          "name": "detecp_txt",
+          "alias": "Detect. Por Texto",
+          "type": "esriFieldTypeString",
+          "length": 20
+        },
+        {
+          "name": "g_caus_txt",
+          "alias": "Grupo Causa Texto",
+          "type": "esriFieldTypeString",
+          "length": 50
+        },
+        {
+          "name": "tot_arb",
+          "alias": "Arb. Total",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "tot_narb",
+          "alias": "No Arb. Total",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "sup_f",
+          "alias": "Sup. Forestal",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "shape_Leng",
+          "alias": "shape_Leng",
+          "type": "esriFieldTypeDouble"
+        }
+      ],
+      "identifier_completeness": {
+        "NumPIF_CV": {
+          "present_count": 326,
+          "missing_or_blank_count": 0,
+          "missing_or_blank_percent": 0.0
+        },
+        "NumPIF_Min": {
+          "present_count": 326,
+          "missing_or_blank_count": 0,
+          "missing_or_blank_percent": 0.0
+        }
+      },
+      "warnings": [
+        "objectIdField is absent in layer metadata; inferred from esriFieldTypeOID"
+      ]
+    },
+    {
+      "year": 2009,
+      "layer_id": 17,
+      "name": "Incendios 2009 | Incendis 2009 | Fires 2009",
+      "url": "https://carto.icv.gva.es/arcgis/rest/services/Prevencion_de_incendios2/MapServer/17",
+      "type": "Feature Layer",
+      "geometry_type": "esriGeometryPolygon",
+      "object_id_field": "OBJECTID",
+      "feature_count": 427,
+      "max_record_count": 2000,
+      "supported_query_formats": "JSON, AMF, geoJSON",
+      "capabilities": "Map,Query,Data",
+      "query_capabilities": {
+        "supports_pagination": true,
+        "supports_statistics": true,
+        "supports_count_distinct": true,
+        "supports_returning_query_extent": true,
+        "uses_standardized_queries": true
+      },
+      "extent": {
+        "xmin": -171003.58321829478,
+        "ymin": 4557837.216929323,
+        "xmax": 58511.79406906824,
+        "ymax": 4984880.163161572,
+        "spatialReference": {
+          "wkid": 102100,
+          "latestWkid": 3857,
+          "xyTolerance": 0.001,
+          "zTolerance": 0.001,
+          "mTolerance": 0.001,
+          "falseX": -20037700,
+          "falseY": -30241100,
+          "xyUnits": 148923141.92838538,
+          "falseZ": -100000,
+          "zUnits": 10000,
+          "falseM": -100000,
+          "mUnits": 10000
+        }
+      },
+      "schema_hash": "155e29481cb1f47aa8324fd5c040a7396a064f2fc620280feafb47d52dbe5a7d",
+      "fields": [
+        {
+          "name": "OBJECTID",
+          "alias": "ObjectId",
+          "type": "esriFieldTypeOID"
+        },
+        {
+          "name": "Shape",
+          "alias": "shape",
+          "type": "esriFieldTypeGeometry"
+        },
+        {
+          "name": "NumPIF_CV",
+          "alias": "NumPIF_CV",
+          "type": "esriFieldTypeString",
+          "length": 254
+        },
+        {
+          "name": "NumPIF_Min",
+          "alias": "NumPIF_Min",
+          "type": "esriFieldTypeString",
+          "length": 254
+        },
+        {
+          "name": "anyo",
+          "alias": "Año",
+          "type": "esriFieldTypeInteger"
+        },
+        {
+          "name": "ccaa_nom",
+          "alias": "Com. Autónoma",
+          "type": "esriFieldTypeString",
+          "length": 25
+        },
+        {
+          "name": "prov_nom",
+          "alias": "Provincia",
+          "type": "esriFieldTypeString",
+          "length": 20
+        },
+        {
+          "name": "com_nom",
+          "alias": "Comarca",
+          "type": "esriFieldTypeString",
+          "length": 50
+        },
+        {
+          "name": "nom_mun",
+          "alias": "Municipio",
+          "type": "esriFieldTypeString",
+          "length": 150
+        },
+        {
+          "name": "paraje",
+          "alias": "Paraje",
+          "type": "esriFieldTypeString",
+          "length": 100
+        },
+        {
+          "name": "x",
+          "alias": "X",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "y",
+          "alias": "Y",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "f_detec",
+          "alias": "Fecha detec.",
+          "type": "esriFieldTypeString",
+          "length": 12
+        },
+        {
+          "name": "h_detec",
+          "alias": "Hora detec.",
+          "type": "esriFieldTypeString",
+          "length": 8
+        },
+        {
+          "name": "fextinc",
+          "alias": "F. Extinción",
+          "type": "esriFieldTypeString",
+          "length": 12
+        },
+        {
+          "name": "hextinc",
+          "alias": "H. Extinción",
+          "type": "esriFieldTypeString",
+          "length": 8
+        },
+        {
+          "name": "detecp_txt",
+          "alias": "Detect. Por Texto",
+          "type": "esriFieldTypeString",
+          "length": 20
+        },
+        {
+          "name": "g_caus_txt",
+          "alias": "Grupo Causa Texto",
+          "type": "esriFieldTypeString",
+          "length": 50
+        },
+        {
+          "name": "tot_arb",
+          "alias": "Arb. Total",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "tot_narb",
+          "alias": "No Arb. Total",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "sup_f",
+          "alias": "Sup. Forestal",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "shape_Leng",
+          "alias": "shape_Leng",
+          "type": "esriFieldTypeDouble"
+        }
+      ],
+      "identifier_completeness": {
+        "NumPIF_CV": {
+          "present_count": 427,
+          "missing_or_blank_count": 0,
+          "missing_or_blank_percent": 0.0
+        },
+        "NumPIF_Min": {
+          "present_count": 427,
+          "missing_or_blank_count": 0,
+          "missing_or_blank_percent": 0.0
+        }
+      },
+      "warnings": [
+        "objectIdField is absent in layer metadata; inferred from esriFieldTypeOID"
+      ]
+    },
+    {
+      "year": 2010,
+      "layer_id": 18,
+      "name": "Incendios 2010 | Incendis 2010 | Fires 2010",
+      "url": "https://carto.icv.gva.es/arcgis/rest/services/Prevencion_de_incendios2/MapServer/18",
+      "type": "Feature Layer",
+      "geometry_type": "esriGeometryPolygon",
+      "object_id_field": "OBJECTID",
+      "feature_count": 328,
+      "max_record_count": 2000,
+      "supported_query_formats": "JSON, AMF, geoJSON",
+      "capabilities": "Map,Query,Data",
+      "query_capabilities": {
+        "supports_pagination": true,
+        "supports_statistics": true,
+        "supports_count_distinct": true,
+        "supports_returning_query_extent": true,
+        "uses_standardized_queries": true
+      },
+      "extent": {
+        "xmin": -171003.58321829478,
+        "ymin": 4557837.216929323,
+        "xmax": 58511.79406906824,
+        "ymax": 4984880.163161572,
+        "spatialReference": {
+          "wkid": 102100,
+          "latestWkid": 3857,
+          "xyTolerance": 0.001,
+          "zTolerance": 0.001,
+          "mTolerance": 0.001,
+          "falseX": -20037700,
+          "falseY": -30241100,
+          "xyUnits": 148923141.92838538,
+          "falseZ": -100000,
+          "zUnits": 10000,
+          "falseM": -100000,
+          "mUnits": 10000
+        }
+      },
+      "schema_hash": "155e29481cb1f47aa8324fd5c040a7396a064f2fc620280feafb47d52dbe5a7d",
+      "fields": [
+        {
+          "name": "OBJECTID",
+          "alias": "ObjectId",
+          "type": "esriFieldTypeOID"
+        },
+        {
+          "name": "Shape",
+          "alias": "shape",
+          "type": "esriFieldTypeGeometry"
+        },
+        {
+          "name": "NumPIF_CV",
+          "alias": "NumPIF_CV",
+          "type": "esriFieldTypeString",
+          "length": 254
+        },
+        {
+          "name": "NumPIF_Min",
+          "alias": "NumPIF_Min",
+          "type": "esriFieldTypeString",
+          "length": 254
+        },
+        {
+          "name": "anyo",
+          "alias": "Año",
+          "type": "esriFieldTypeInteger"
+        },
+        {
+          "name": "ccaa_nom",
+          "alias": "Com. Autónoma",
+          "type": "esriFieldTypeString",
+          "length": 25
+        },
+        {
+          "name": "prov_nom",
+          "alias": "Provincia",
+          "type": "esriFieldTypeString",
+          "length": 20
+        },
+        {
+          "name": "com_nom",
+          "alias": "Comarca",
+          "type": "esriFieldTypeString",
+          "length": 50
+        },
+        {
+          "name": "nom_mun",
+          "alias": "Municipio",
+          "type": "esriFieldTypeString",
+          "length": 150
+        },
+        {
+          "name": "paraje",
+          "alias": "Paraje",
+          "type": "esriFieldTypeString",
+          "length": 100
+        },
+        {
+          "name": "x",
+          "alias": "X",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "y",
+          "alias": "Y",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "f_detec",
+          "alias": "Fecha detec.",
+          "type": "esriFieldTypeString",
+          "length": 12
+        },
+        {
+          "name": "h_detec",
+          "alias": "Hora detec.",
+          "type": "esriFieldTypeString",
+          "length": 8
+        },
+        {
+          "name": "fextinc",
+          "alias": "F. Extinción",
+          "type": "esriFieldTypeString",
+          "length": 12
+        },
+        {
+          "name": "hextinc",
+          "alias": "H. Extinción",
+          "type": "esriFieldTypeString",
+          "length": 8
+        },
+        {
+          "name": "detecp_txt",
+          "alias": "Detect. Por Texto",
+          "type": "esriFieldTypeString",
+          "length": 20
+        },
+        {
+          "name": "g_caus_txt",
+          "alias": "Grupo Causa Texto",
+          "type": "esriFieldTypeString",
+          "length": 50
+        },
+        {
+          "name": "tot_arb",
+          "alias": "Arb. Total",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "tot_narb",
+          "alias": "No Arb. Total",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "sup_f",
+          "alias": "Sup. Forestal",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "shape_Leng",
+          "alias": "shape_Leng",
+          "type": "esriFieldTypeDouble"
+        }
+      ],
+      "identifier_completeness": {
+        "NumPIF_CV": {
+          "present_count": 328,
+          "missing_or_blank_count": 0,
+          "missing_or_blank_percent": 0.0
+        },
+        "NumPIF_Min": {
+          "present_count": 328,
+          "missing_or_blank_count": 0,
+          "missing_or_blank_percent": 0.0
+        }
+      },
+      "warnings": [
+        "objectIdField is absent in layer metadata; inferred from esriFieldTypeOID"
+      ]
+    },
+    {
+      "year": 2011,
+      "layer_id": 19,
+      "name": "Incendios 2011 | Incendis 2011 | Fires 2011",
+      "url": "https://carto.icv.gva.es/arcgis/rest/services/Prevencion_de_incendios2/MapServer/19",
+      "type": "Feature Layer",
+      "geometry_type": "esriGeometryPolygon",
+      "object_id_field": "OBJECTID",
+      "feature_count": 419,
+      "max_record_count": 2000,
+      "supported_query_formats": "JSON, AMF, geoJSON",
+      "capabilities": "Map,Query,Data",
+      "query_capabilities": {
+        "supports_pagination": true,
+        "supports_statistics": true,
+        "supports_count_distinct": true,
+        "supports_returning_query_extent": true,
+        "uses_standardized_queries": true
+      },
+      "extent": {
+        "xmin": -171003.58321829478,
+        "ymin": 4557837.216929323,
+        "xmax": 58511.79406906824,
+        "ymax": 4984880.163161572,
+        "spatialReference": {
+          "wkid": 102100,
+          "latestWkid": 3857,
+          "xyTolerance": 0.001,
+          "zTolerance": 0.001,
+          "mTolerance": 0.001,
+          "falseX": -20037700,
+          "falseY": -30241100,
+          "xyUnits": 148923141.92838538,
+          "falseZ": -100000,
+          "zUnits": 10000,
+          "falseM": -100000,
+          "mUnits": 10000
+        }
+      },
+      "schema_hash": "155e29481cb1f47aa8324fd5c040a7396a064f2fc620280feafb47d52dbe5a7d",
+      "fields": [
+        {
+          "name": "OBJECTID",
+          "alias": "ObjectId",
+          "type": "esriFieldTypeOID"
+        },
+        {
+          "name": "Shape",
+          "alias": "shape",
+          "type": "esriFieldTypeGeometry"
+        },
+        {
+          "name": "NumPIF_CV",
+          "alias": "NumPIF_CV",
+          "type": "esriFieldTypeString",
+          "length": 254
+        },
+        {
+          "name": "NumPIF_Min",
+          "alias": "NumPIF_Min",
+          "type": "esriFieldTypeString",
+          "length": 254
+        },
+        {
+          "name": "anyo",
+          "alias": "Año",
+          "type": "esriFieldTypeInteger"
+        },
+        {
+          "name": "ccaa_nom",
+          "alias": "Com. Autónoma",
+          "type": "esriFieldTypeString",
+          "length": 25
+        },
+        {
+          "name": "prov_nom",
+          "alias": "Provincia",
+          "type": "esriFieldTypeString",
+          "length": 20
+        },
+        {
+          "name": "com_nom",
+          "alias": "Comarca",
+          "type": "esriFieldTypeString",
+          "length": 50
+        },
+        {
+          "name": "nom_mun",
+          "alias": "Municipio",
+          "type": "esriFieldTypeString",
+          "length": 150
+        },
+        {
+          "name": "paraje",
+          "alias": "Paraje",
+          "type": "esriFieldTypeString",
+          "length": 100
+        },
+        {
+          "name": "x",
+          "alias": "X",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "y",
+          "alias": "Y",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "f_detec",
+          "alias": "Fecha detec.",
+          "type": "esriFieldTypeString",
+          "length": 12
+        },
+        {
+          "name": "h_detec",
+          "alias": "Hora detec.",
+          "type": "esriFieldTypeString",
+          "length": 8
+        },
+        {
+          "name": "fextinc",
+          "alias": "F. Extinción",
+          "type": "esriFieldTypeString",
+          "length": 12
+        },
+        {
+          "name": "hextinc",
+          "alias": "H. Extinción",
+          "type": "esriFieldTypeString",
+          "length": 8
+        },
+        {
+          "name": "detecp_txt",
+          "alias": "Detect. Por Texto",
+          "type": "esriFieldTypeString",
+          "length": 20
+        },
+        {
+          "name": "g_caus_txt",
+          "alias": "Grupo Causa Texto",
+          "type": "esriFieldTypeString",
+          "length": 50
+        },
+        {
+          "name": "tot_arb",
+          "alias": "Arb. Total",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "tot_narb",
+          "alias": "No Arb. Total",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "sup_f",
+          "alias": "Sup. Forestal",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "shape_Leng",
+          "alias": "shape_Leng",
+          "type": "esriFieldTypeDouble"
+        }
+      ],
+      "identifier_completeness": {
+        "NumPIF_CV": {
+          "present_count": 419,
+          "missing_or_blank_count": 0,
+          "missing_or_blank_percent": 0.0
+        },
+        "NumPIF_Min": {
+          "present_count": 419,
+          "missing_or_blank_count": 0,
+          "missing_or_blank_percent": 0.0
+        }
+      },
+      "warnings": [
+        "objectIdField is absent in layer metadata; inferred from esriFieldTypeOID"
+      ]
+    },
+    {
+      "year": 2012,
+      "layer_id": 20,
+      "name": "Incendios 2012 | Incendis 2012 | Fires 2012",
+      "url": "https://carto.icv.gva.es/arcgis/rest/services/Prevencion_de_incendios2/MapServer/20",
+      "type": "Feature Layer",
+      "geometry_type": "esriGeometryPolygon",
+      "object_id_field": "OBJECTID",
+      "feature_count": 486,
+      "max_record_count": 2000,
+      "supported_query_formats": "JSON, AMF, geoJSON",
+      "capabilities": "Map,Query,Data",
+      "query_capabilities": {
+        "supports_pagination": true,
+        "supports_statistics": true,
+        "supports_count_distinct": true,
+        "supports_returning_query_extent": true,
+        "uses_standardized_queries": true
+      },
+      "extent": {
+        "xmin": -171003.58321829478,
+        "ymin": 4557837.216929323,
+        "xmax": 58511.79406906824,
+        "ymax": 4984880.163161572,
+        "spatialReference": {
+          "wkid": 102100,
+          "latestWkid": 3857,
+          "xyTolerance": 0.001,
+          "zTolerance": 0.001,
+          "mTolerance": 0.001,
+          "falseX": -20037700,
+          "falseY": -30241100,
+          "xyUnits": 148923141.92838538,
+          "falseZ": -100000,
+          "zUnits": 10000,
+          "falseM": -100000,
+          "mUnits": 10000
+        }
+      },
+      "schema_hash": "155e29481cb1f47aa8324fd5c040a7396a064f2fc620280feafb47d52dbe5a7d",
+      "fields": [
+        {
+          "name": "OBJECTID",
+          "alias": "ObjectId",
+          "type": "esriFieldTypeOID"
+        },
+        {
+          "name": "Shape",
+          "alias": "shape",
+          "type": "esriFieldTypeGeometry"
+        },
+        {
+          "name": "NumPIF_CV",
+          "alias": "NumPIF_CV",
+          "type": "esriFieldTypeString",
+          "length": 254
+        },
+        {
+          "name": "NumPIF_Min",
+          "alias": "NumPIF_Min",
+          "type": "esriFieldTypeString",
+          "length": 254
+        },
+        {
+          "name": "anyo",
+          "alias": "Año",
+          "type": "esriFieldTypeInteger"
+        },
+        {
+          "name": "ccaa_nom",
+          "alias": "Com. Autónoma",
+          "type": "esriFieldTypeString",
+          "length": 25
+        },
+        {
+          "name": "prov_nom",
+          "alias": "Provincia",
+          "type": "esriFieldTypeString",
+          "length": 20
+        },
+        {
+          "name": "com_nom",
+          "alias": "Comarca",
+          "type": "esriFieldTypeString",
+          "length": 50
+        },
+        {
+          "name": "nom_mun",
+          "alias": "Municipio",
+          "type": "esriFieldTypeString",
+          "length": 150
+        },
+        {
+          "name": "paraje",
+          "alias": "Paraje",
+          "type": "esriFieldTypeString",
+          "length": 100
+        },
+        {
+          "name": "x",
+          "alias": "X",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "y",
+          "alias": "Y",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "f_detec",
+          "alias": "Fecha detec.",
+          "type": "esriFieldTypeString",
+          "length": 12
+        },
+        {
+          "name": "h_detec",
+          "alias": "Hora detec.",
+          "type": "esriFieldTypeString",
+          "length": 8
+        },
+        {
+          "name": "fextinc",
+          "alias": "F. Extinción",
+          "type": "esriFieldTypeString",
+          "length": 12
+        },
+        {
+          "name": "hextinc",
+          "alias": "H. Extinción",
+          "type": "esriFieldTypeString",
+          "length": 8
+        },
+        {
+          "name": "detecp_txt",
+          "alias": "Detect. Por Texto",
+          "type": "esriFieldTypeString",
+          "length": 20
+        },
+        {
+          "name": "g_caus_txt",
+          "alias": "Grupo Causa Texto",
+          "type": "esriFieldTypeString",
+          "length": 50
+        },
+        {
+          "name": "tot_arb",
+          "alias": "Arb. Total",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "tot_narb",
+          "alias": "No Arb. Total",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "sup_f",
+          "alias": "Sup. Forestal",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "shape_Leng",
+          "alias": "shape_Leng",
+          "type": "esriFieldTypeDouble"
+        }
+      ],
+      "identifier_completeness": {
+        "NumPIF_CV": {
+          "present_count": 486,
+          "missing_or_blank_count": 0,
+          "missing_or_blank_percent": 0.0
+        },
+        "NumPIF_Min": {
+          "present_count": 486,
+          "missing_or_blank_count": 0,
+          "missing_or_blank_percent": 0.0
+        }
+      },
+      "warnings": [
+        "objectIdField is absent in layer metadata; inferred from esriFieldTypeOID"
+      ]
+    },
+    {
+      "year": 2013,
+      "layer_id": 21,
+      "name": "Incendios 2013 | Incendis 2013 | Fires 2013",
+      "url": "https://carto.icv.gva.es/arcgis/rest/services/Prevencion_de_incendios2/MapServer/21",
+      "type": "Feature Layer",
+      "geometry_type": "esriGeometryPolygon",
+      "object_id_field": "OBJECTID",
+      "feature_count": 335,
+      "max_record_count": 2000,
+      "supported_query_formats": "JSON, AMF, geoJSON",
+      "capabilities": "Map,Query,Data",
+      "query_capabilities": {
+        "supports_pagination": true,
+        "supports_statistics": true,
+        "supports_count_distinct": true,
+        "supports_returning_query_extent": true,
+        "uses_standardized_queries": true
+      },
+      "extent": {
+        "xmin": -171003.58321829478,
+        "ymin": 4557837.216929323,
+        "xmax": 58511.79406906824,
+        "ymax": 4984880.163161572,
+        "spatialReference": {
+          "wkid": 102100,
+          "latestWkid": 3857,
+          "xyTolerance": 0.001,
+          "zTolerance": 0.001,
+          "mTolerance": 0.001,
+          "falseX": -20037700,
+          "falseY": -30241100,
+          "xyUnits": 148923141.92838538,
+          "falseZ": -100000,
+          "zUnits": 10000,
+          "falseM": -100000,
+          "mUnits": 10000
+        }
+      },
+      "schema_hash": "155e29481cb1f47aa8324fd5c040a7396a064f2fc620280feafb47d52dbe5a7d",
+      "fields": [
+        {
+          "name": "OBJECTID",
+          "alias": "ObjectId",
+          "type": "esriFieldTypeOID"
+        },
+        {
+          "name": "Shape",
+          "alias": "shape",
+          "type": "esriFieldTypeGeometry"
+        },
+        {
+          "name": "NumPIF_CV",
+          "alias": "NumPIF_CV",
+          "type": "esriFieldTypeString",
+          "length": 254
+        },
+        {
+          "name": "NumPIF_Min",
+          "alias": "NumPIF_Min",
+          "type": "esriFieldTypeString",
+          "length": 254
+        },
+        {
+          "name": "anyo",
+          "alias": "Año",
+          "type": "esriFieldTypeInteger"
+        },
+        {
+          "name": "ccaa_nom",
+          "alias": "Com. Autónoma",
+          "type": "esriFieldTypeString",
+          "length": 25
+        },
+        {
+          "name": "prov_nom",
+          "alias": "Provincia",
+          "type": "esriFieldTypeString",
+          "length": 20
+        },
+        {
+          "name": "com_nom",
+          "alias": "Comarca",
+          "type": "esriFieldTypeString",
+          "length": 50
+        },
+        {
+          "name": "nom_mun",
+          "alias": "Municipio",
+          "type": "esriFieldTypeString",
+          "length": 150
+        },
+        {
+          "name": "paraje",
+          "alias": "Paraje",
+          "type": "esriFieldTypeString",
+          "length": 100
+        },
+        {
+          "name": "x",
+          "alias": "X",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "y",
+          "alias": "Y",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "f_detec",
+          "alias": "Fecha detec.",
+          "type": "esriFieldTypeString",
+          "length": 12
+        },
+        {
+          "name": "h_detec",
+          "alias": "Hora detec.",
+          "type": "esriFieldTypeString",
+          "length": 8
+        },
+        {
+          "name": "fextinc",
+          "alias": "F. Extinción",
+          "type": "esriFieldTypeString",
+          "length": 12
+        },
+        {
+          "name": "hextinc",
+          "alias": "H. Extinción",
+          "type": "esriFieldTypeString",
+          "length": 8
+        },
+        {
+          "name": "detecp_txt",
+          "alias": "Detect. Por Texto",
+          "type": "esriFieldTypeString",
+          "length": 20
+        },
+        {
+          "name": "g_caus_txt",
+          "alias": "Grupo Causa Texto",
+          "type": "esriFieldTypeString",
+          "length": 50
+        },
+        {
+          "name": "tot_arb",
+          "alias": "Arb. Total",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "tot_narb",
+          "alias": "No Arb. Total",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "sup_f",
+          "alias": "Sup. Forestal",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "shape_Leng",
+          "alias": "shape_Leng",
+          "type": "esriFieldTypeDouble"
+        }
+      ],
+      "identifier_completeness": {
+        "NumPIF_CV": {
+          "present_count": 335,
+          "missing_or_blank_count": 0,
+          "missing_or_blank_percent": 0.0
+        },
+        "NumPIF_Min": {
+          "present_count": 335,
+          "missing_or_blank_count": 0,
+          "missing_or_blank_percent": 0.0
+        }
+      },
+      "warnings": [
+        "objectIdField is absent in layer metadata; inferred from esriFieldTypeOID"
+      ]
+    },
+    {
+      "year": 2014,
+      "layer_id": 22,
+      "name": "Incendios 2014 | Incendis 2014 | Fires 2014",
+      "url": "https://carto.icv.gva.es/arcgis/rest/services/Prevencion_de_incendios2/MapServer/22",
+      "type": "Feature Layer",
+      "geometry_type": "esriGeometryPolygon",
+      "object_id_field": "OBJECTID",
+      "feature_count": 499,
+      "max_record_count": 2000,
+      "supported_query_formats": "JSON, AMF, geoJSON",
+      "capabilities": "Map,Query,Data",
+      "query_capabilities": {
+        "supports_pagination": true,
+        "supports_statistics": true,
+        "supports_count_distinct": true,
+        "supports_returning_query_extent": true,
+        "uses_standardized_queries": true
+      },
+      "extent": {
+        "xmin": -171003.58321829478,
+        "ymin": 4557837.216929323,
+        "xmax": 58511.79406906824,
+        "ymax": 4984880.163161572,
+        "spatialReference": {
+          "wkid": 102100,
+          "latestWkid": 3857,
+          "xyTolerance": 0.001,
+          "zTolerance": 0.001,
+          "mTolerance": 0.001,
+          "falseX": -20037700,
+          "falseY": -30241100,
+          "xyUnits": 148923141.92838538,
+          "falseZ": -100000,
+          "zUnits": 10000,
+          "falseM": -100000,
+          "mUnits": 10000
+        }
+      },
+      "schema_hash": "155e29481cb1f47aa8324fd5c040a7396a064f2fc620280feafb47d52dbe5a7d",
+      "fields": [
+        {
+          "name": "OBJECTID",
+          "alias": "ObjectId",
+          "type": "esriFieldTypeOID"
+        },
+        {
+          "name": "Shape",
+          "alias": "shape",
+          "type": "esriFieldTypeGeometry"
+        },
+        {
+          "name": "NumPIF_CV",
+          "alias": "NumPIF_CV",
+          "type": "esriFieldTypeString",
+          "length": 254
+        },
+        {
+          "name": "NumPIF_Min",
+          "alias": "NumPIF_Min",
+          "type": "esriFieldTypeString",
+          "length": 254
+        },
+        {
+          "name": "anyo",
+          "alias": "Año",
+          "type": "esriFieldTypeInteger"
+        },
+        {
+          "name": "ccaa_nom",
+          "alias": "Com. Autónoma",
+          "type": "esriFieldTypeString",
+          "length": 25
+        },
+        {
+          "name": "prov_nom",
+          "alias": "Provincia",
+          "type": "esriFieldTypeString",
+          "length": 20
+        },
+        {
+          "name": "com_nom",
+          "alias": "Comarca",
+          "type": "esriFieldTypeString",
+          "length": 50
+        },
+        {
+          "name": "nom_mun",
+          "alias": "Municipio",
+          "type": "esriFieldTypeString",
+          "length": 150
+        },
+        {
+          "name": "paraje",
+          "alias": "Paraje",
+          "type": "esriFieldTypeString",
+          "length": 100
+        },
+        {
+          "name": "x",
+          "alias": "X",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "y",
+          "alias": "Y",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "f_detec",
+          "alias": "Fecha detec.",
+          "type": "esriFieldTypeString",
+          "length": 12
+        },
+        {
+          "name": "h_detec",
+          "alias": "Hora detec.",
+          "type": "esriFieldTypeString",
+          "length": 8
+        },
+        {
+          "name": "fextinc",
+          "alias": "F. Extinción",
+          "type": "esriFieldTypeString",
+          "length": 12
+        },
+        {
+          "name": "hextinc",
+          "alias": "H. Extinción",
+          "type": "esriFieldTypeString",
+          "length": 8
+        },
+        {
+          "name": "detecp_txt",
+          "alias": "Detect. Por Texto",
+          "type": "esriFieldTypeString",
+          "length": 20
+        },
+        {
+          "name": "g_caus_txt",
+          "alias": "Grupo Causa Texto",
+          "type": "esriFieldTypeString",
+          "length": 50
+        },
+        {
+          "name": "tot_arb",
+          "alias": "Arb. Total",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "tot_narb",
+          "alias": "No Arb. Total",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "sup_f",
+          "alias": "Sup. Forestal",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "shape_Leng",
+          "alias": "shape_Leng",
+          "type": "esriFieldTypeDouble"
+        }
+      ],
+      "identifier_completeness": {
+        "NumPIF_CV": {
+          "present_count": 499,
+          "missing_or_blank_count": 0,
+          "missing_or_blank_percent": 0.0
+        },
+        "NumPIF_Min": {
+          "present_count": 499,
+          "missing_or_blank_count": 0,
+          "missing_or_blank_percent": 0.0
+        }
+      },
+      "warnings": [
+        "objectIdField is absent in layer metadata; inferred from esriFieldTypeOID"
+      ]
+    },
+    {
+      "year": 2015,
+      "layer_id": 23,
+      "name": "Incendios 2015 | Incendis 2015 | Fires 2015",
+      "url": "https://carto.icv.gva.es/arcgis/rest/services/Prevencion_de_incendios2/MapServer/23",
+      "type": "Feature Layer",
+      "geometry_type": "esriGeometryPolygon",
+      "object_id_field": "OBJECTID",
+      "feature_count": 315,
+      "max_record_count": 2000,
+      "supported_query_formats": "JSON, AMF, geoJSON",
+      "capabilities": "Map,Query,Data",
+      "query_capabilities": {
+        "supports_pagination": true,
+        "supports_statistics": true,
+        "supports_count_distinct": true,
+        "supports_returning_query_extent": true,
+        "uses_standardized_queries": true
+      },
+      "extent": {
+        "xmin": -171003.58321829478,
+        "ymin": 4557837.216929323,
+        "xmax": 58511.79406906824,
+        "ymax": 4984880.163161572,
+        "spatialReference": {
+          "wkid": 102100,
+          "latestWkid": 3857,
+          "xyTolerance": 0.001,
+          "zTolerance": 0.001,
+          "mTolerance": 0.001,
+          "falseX": -20037700,
+          "falseY": -30241100,
+          "xyUnits": 148923141.92838538,
+          "falseZ": -100000,
+          "zUnits": 10000,
+          "falseM": -100000,
+          "mUnits": 10000
+        }
+      },
+      "schema_hash": "155e29481cb1f47aa8324fd5c040a7396a064f2fc620280feafb47d52dbe5a7d",
+      "fields": [
+        {
+          "name": "OBJECTID",
+          "alias": "ObjectId",
+          "type": "esriFieldTypeOID"
+        },
+        {
+          "name": "Shape",
+          "alias": "shape",
+          "type": "esriFieldTypeGeometry"
+        },
+        {
+          "name": "NumPIF_CV",
+          "alias": "NumPIF_CV",
+          "type": "esriFieldTypeString",
+          "length": 254
+        },
+        {
+          "name": "NumPIF_Min",
+          "alias": "NumPIF_Min",
+          "type": "esriFieldTypeString",
+          "length": 254
+        },
+        {
+          "name": "anyo",
+          "alias": "Año",
+          "type": "esriFieldTypeInteger"
+        },
+        {
+          "name": "ccaa_nom",
+          "alias": "Com. Autónoma",
+          "type": "esriFieldTypeString",
+          "length": 25
+        },
+        {
+          "name": "prov_nom",
+          "alias": "Provincia",
+          "type": "esriFieldTypeString",
+          "length": 20
+        },
+        {
+          "name": "com_nom",
+          "alias": "Comarca",
+          "type": "esriFieldTypeString",
+          "length": 50
+        },
+        {
+          "name": "nom_mun",
+          "alias": "Municipio",
+          "type": "esriFieldTypeString",
+          "length": 150
+        },
+        {
+          "name": "paraje",
+          "alias": "Paraje",
+          "type": "esriFieldTypeString",
+          "length": 100
+        },
+        {
+          "name": "x",
+          "alias": "X",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "y",
+          "alias": "Y",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "f_detec",
+          "alias": "Fecha detec.",
+          "type": "esriFieldTypeString",
+          "length": 12
+        },
+        {
+          "name": "h_detec",
+          "alias": "Hora detec.",
+          "type": "esriFieldTypeString",
+          "length": 8
+        },
+        {
+          "name": "fextinc",
+          "alias": "F. Extinción",
+          "type": "esriFieldTypeString",
+          "length": 12
+        },
+        {
+          "name": "hextinc",
+          "alias": "H. Extinción",
+          "type": "esriFieldTypeString",
+          "length": 8
+        },
+        {
+          "name": "detecp_txt",
+          "alias": "Detect. Por Texto",
+          "type": "esriFieldTypeString",
+          "length": 20
+        },
+        {
+          "name": "g_caus_txt",
+          "alias": "Grupo Causa Texto",
+          "type": "esriFieldTypeString",
+          "length": 50
+        },
+        {
+          "name": "tot_arb",
+          "alias": "Arb. Total",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "tot_narb",
+          "alias": "No Arb. Total",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "sup_f",
+          "alias": "Sup. Forestal",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "shape_Leng",
+          "alias": "shape_Leng",
+          "type": "esriFieldTypeDouble"
+        }
+      ],
+      "identifier_completeness": {
+        "NumPIF_CV": {
+          "present_count": 315,
+          "missing_or_blank_count": 0,
+          "missing_or_blank_percent": 0.0
+        },
+        "NumPIF_Min": {
+          "present_count": 315,
+          "missing_or_blank_count": 0,
+          "missing_or_blank_percent": 0.0
+        }
+      },
+      "warnings": [
+        "objectIdField is absent in layer metadata; inferred from esriFieldTypeOID"
+      ]
+    },
+    {
+      "year": 2016,
+      "layer_id": 24,
+      "name": "Incendios 2016 | Incendis 2016 | Fires 2016",
+      "url": "https://carto.icv.gva.es/arcgis/rest/services/Prevencion_de_incendios2/MapServer/24",
+      "type": "Feature Layer",
+      "geometry_type": "esriGeometryPolygon",
+      "object_id_field": "OBJECTID",
+      "feature_count": 341,
+      "max_record_count": 2000,
+      "supported_query_formats": "JSON, AMF, geoJSON",
+      "capabilities": "Map,Query,Data",
+      "query_capabilities": {
+        "supports_pagination": true,
+        "supports_statistics": true,
+        "supports_count_distinct": true,
+        "supports_returning_query_extent": true,
+        "uses_standardized_queries": true
+      },
+      "extent": {
+        "xmin": -171003.58321829478,
+        "ymin": 4557837.216929323,
+        "xmax": 58511.79406906824,
+        "ymax": 4984880.163161572,
+        "spatialReference": {
+          "wkid": 102100,
+          "latestWkid": 3857,
+          "xyTolerance": 0.001,
+          "zTolerance": 0.001,
+          "mTolerance": 0.001,
+          "falseX": -20037700,
+          "falseY": -30241100,
+          "xyUnits": 148923141.92838538,
+          "falseZ": -100000,
+          "zUnits": 10000,
+          "falseM": -100000,
+          "mUnits": 10000
+        }
+      },
+      "schema_hash": "155e29481cb1f47aa8324fd5c040a7396a064f2fc620280feafb47d52dbe5a7d",
+      "fields": [
+        {
+          "name": "OBJECTID",
+          "alias": "ObjectId",
+          "type": "esriFieldTypeOID"
+        },
+        {
+          "name": "Shape",
+          "alias": "shape",
+          "type": "esriFieldTypeGeometry"
+        },
+        {
+          "name": "NumPIF_CV",
+          "alias": "NumPIF_CV",
+          "type": "esriFieldTypeString",
+          "length": 254
+        },
+        {
+          "name": "NumPIF_Min",
+          "alias": "NumPIF_Min",
+          "type": "esriFieldTypeString",
+          "length": 254
+        },
+        {
+          "name": "anyo",
+          "alias": "Año",
+          "type": "esriFieldTypeInteger"
+        },
+        {
+          "name": "ccaa_nom",
+          "alias": "Com. Autónoma",
+          "type": "esriFieldTypeString",
+          "length": 25
+        },
+        {
+          "name": "prov_nom",
+          "alias": "Provincia",
+          "type": "esriFieldTypeString",
+          "length": 20
+        },
+        {
+          "name": "com_nom",
+          "alias": "Comarca",
+          "type": "esriFieldTypeString",
+          "length": 50
+        },
+        {
+          "name": "nom_mun",
+          "alias": "Municipio",
+          "type": "esriFieldTypeString",
+          "length": 150
+        },
+        {
+          "name": "paraje",
+          "alias": "Paraje",
+          "type": "esriFieldTypeString",
+          "length": 100
+        },
+        {
+          "name": "x",
+          "alias": "X",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "y",
+          "alias": "Y",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "f_detec",
+          "alias": "Fecha detec.",
+          "type": "esriFieldTypeString",
+          "length": 12
+        },
+        {
+          "name": "h_detec",
+          "alias": "Hora detec.",
+          "type": "esriFieldTypeString",
+          "length": 8
+        },
+        {
+          "name": "fextinc",
+          "alias": "F. Extinción",
+          "type": "esriFieldTypeString",
+          "length": 12
+        },
+        {
+          "name": "hextinc",
+          "alias": "H. Extinción",
+          "type": "esriFieldTypeString",
+          "length": 8
+        },
+        {
+          "name": "detecp_txt",
+          "alias": "Detect. Por Texto",
+          "type": "esriFieldTypeString",
+          "length": 20
+        },
+        {
+          "name": "g_caus_txt",
+          "alias": "Grupo Causa Texto",
+          "type": "esriFieldTypeString",
+          "length": 50
+        },
+        {
+          "name": "tot_arb",
+          "alias": "Arb. Total",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "tot_narb",
+          "alias": "No Arb. Total",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "sup_f",
+          "alias": "Sup. Forestal",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "shape_Leng",
+          "alias": "shape_Leng",
+          "type": "esriFieldTypeDouble"
+        }
+      ],
+      "identifier_completeness": {
+        "NumPIF_CV": {
+          "present_count": 341,
+          "missing_or_blank_count": 0,
+          "missing_or_blank_percent": 0.0
+        },
+        "NumPIF_Min": {
+          "present_count": 341,
+          "missing_or_blank_count": 0,
+          "missing_or_blank_percent": 0.0
+        }
+      },
+      "warnings": [
+        "objectIdField is absent in layer metadata; inferred from esriFieldTypeOID"
+      ]
+    },
+    {
+      "year": 2017,
+      "layer_id": 25,
+      "name": "Incendios 2017 | Incendis 2017 | Fires 2017",
+      "url": "https://carto.icv.gva.es/arcgis/rest/services/Prevencion_de_incendios2/MapServer/25",
+      "type": "Feature Layer",
+      "geometry_type": "esriGeometryPolygon",
+      "object_id_field": "OBJECTID",
+      "feature_count": 346,
+      "max_record_count": 2000,
+      "supported_query_formats": "JSON, AMF, geoJSON",
+      "capabilities": "Map,Query,Data",
+      "query_capabilities": {
+        "supports_pagination": true,
+        "supports_statistics": true,
+        "supports_count_distinct": true,
+        "supports_returning_query_extent": true,
+        "uses_standardized_queries": true
+      },
+      "extent": {
+        "xmin": -171003.58321829478,
+        "ymin": 4557837.216929323,
+        "xmax": 58511.79406906824,
+        "ymax": 4984880.163161572,
+        "spatialReference": {
+          "wkid": 102100,
+          "latestWkid": 3857,
+          "xyTolerance": 0.001,
+          "zTolerance": 0.001,
+          "mTolerance": 0.001,
+          "falseX": -20037700,
+          "falseY": -30241100,
+          "xyUnits": 148923141.92838538,
+          "falseZ": -100000,
+          "zUnits": 10000,
+          "falseM": -100000,
+          "mUnits": 10000
+        }
+      },
+      "schema_hash": "155e29481cb1f47aa8324fd5c040a7396a064f2fc620280feafb47d52dbe5a7d",
+      "fields": [
+        {
+          "name": "OBJECTID",
+          "alias": "ObjectId",
+          "type": "esriFieldTypeOID"
+        },
+        {
+          "name": "Shape",
+          "alias": "shape",
+          "type": "esriFieldTypeGeometry"
+        },
+        {
+          "name": "NumPIF_CV",
+          "alias": "NumPIF_CV",
+          "type": "esriFieldTypeString",
+          "length": 254
+        },
+        {
+          "name": "NumPIF_Min",
+          "alias": "NumPIF_Min",
+          "type": "esriFieldTypeString",
+          "length": 254
+        },
+        {
+          "name": "anyo",
+          "alias": "Año",
+          "type": "esriFieldTypeInteger"
+        },
+        {
+          "name": "ccaa_nom",
+          "alias": "Com. Autónoma",
+          "type": "esriFieldTypeString",
+          "length": 25
+        },
+        {
+          "name": "prov_nom",
+          "alias": "Provincia",
+          "type": "esriFieldTypeString",
+          "length": 20
+        },
+        {
+          "name": "com_nom",
+          "alias": "Comarca",
+          "type": "esriFieldTypeString",
+          "length": 50
+        },
+        {
+          "name": "nom_mun",
+          "alias": "Municipio",
+          "type": "esriFieldTypeString",
+          "length": 150
+        },
+        {
+          "name": "paraje",
+          "alias": "Paraje",
+          "type": "esriFieldTypeString",
+          "length": 100
+        },
+        {
+          "name": "x",
+          "alias": "X",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "y",
+          "alias": "Y",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "f_detec",
+          "alias": "Fecha detec.",
+          "type": "esriFieldTypeString",
+          "length": 12
+        },
+        {
+          "name": "h_detec",
+          "alias": "Hora detec.",
+          "type": "esriFieldTypeString",
+          "length": 8
+        },
+        {
+          "name": "fextinc",
+          "alias": "F. Extinción",
+          "type": "esriFieldTypeString",
+          "length": 12
+        },
+        {
+          "name": "hextinc",
+          "alias": "H. Extinción",
+          "type": "esriFieldTypeString",
+          "length": 8
+        },
+        {
+          "name": "detecp_txt",
+          "alias": "Detect. Por Texto",
+          "type": "esriFieldTypeString",
+          "length": 20
+        },
+        {
+          "name": "g_caus_txt",
+          "alias": "Grupo Causa Texto",
+          "type": "esriFieldTypeString",
+          "length": 50
+        },
+        {
+          "name": "tot_arb",
+          "alias": "Arb. Total",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "tot_narb",
+          "alias": "No Arb. Total",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "sup_f",
+          "alias": "Sup. Forestal",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "shape_Leng",
+          "alias": "shape_Leng",
+          "type": "esriFieldTypeDouble"
+        }
+      ],
+      "identifier_completeness": {
+        "NumPIF_CV": {
+          "present_count": 346,
+          "missing_or_blank_count": 0,
+          "missing_or_blank_percent": 0.0
+        },
+        "NumPIF_Min": {
+          "present_count": 346,
+          "missing_or_blank_count": 0,
+          "missing_or_blank_percent": 0.0
+        }
+      },
+      "warnings": [
+        "objectIdField is absent in layer metadata; inferred from esriFieldTypeOID"
+      ]
+    },
+    {
+      "year": 2018,
+      "layer_id": 26,
+      "name": "Incendios 2018 | Incendis 2018 | Fires 2018",
+      "url": "https://carto.icv.gva.es/arcgis/rest/services/Prevencion_de_incendios2/MapServer/26",
+      "type": "Feature Layer",
+      "geometry_type": "esriGeometryPolygon",
+      "object_id_field": "OBJECTID",
+      "feature_count": 375,
+      "max_record_count": 2000,
+      "supported_query_formats": "JSON, AMF, geoJSON",
+      "capabilities": "Map,Query,Data",
+      "query_capabilities": {
+        "supports_pagination": true,
+        "supports_statistics": true,
+        "supports_count_distinct": true,
+        "supports_returning_query_extent": true,
+        "uses_standardized_queries": true
+      },
+      "extent": {
+        "xmin": -171003.58321829478,
+        "ymin": 4557837.216929323,
+        "xmax": 58511.79406906824,
+        "ymax": 4984880.163161572,
+        "spatialReference": {
+          "wkid": 102100,
+          "latestWkid": 3857,
+          "xyTolerance": 0.001,
+          "zTolerance": 0.001,
+          "mTolerance": 0.001,
+          "falseX": -20037700,
+          "falseY": -30241100,
+          "xyUnits": 148923141.92838538,
+          "falseZ": -100000,
+          "zUnits": 10000,
+          "falseM": -100000,
+          "mUnits": 10000
+        }
+      },
+      "schema_hash": "155e29481cb1f47aa8324fd5c040a7396a064f2fc620280feafb47d52dbe5a7d",
+      "fields": [
+        {
+          "name": "OBJECTID",
+          "alias": "ObjectId",
+          "type": "esriFieldTypeOID"
+        },
+        {
+          "name": "Shape",
+          "alias": "shape",
+          "type": "esriFieldTypeGeometry"
+        },
+        {
+          "name": "NumPIF_CV",
+          "alias": "NumPIF_CV",
+          "type": "esriFieldTypeString",
+          "length": 254
+        },
+        {
+          "name": "NumPIF_Min",
+          "alias": "NumPIF_Min",
+          "type": "esriFieldTypeString",
+          "length": 254
+        },
+        {
+          "name": "anyo",
+          "alias": "Año",
+          "type": "esriFieldTypeInteger"
+        },
+        {
+          "name": "ccaa_nom",
+          "alias": "Com. Autónoma",
+          "type": "esriFieldTypeString",
+          "length": 25
+        },
+        {
+          "name": "prov_nom",
+          "alias": "Provincia",
+          "type": "esriFieldTypeString",
+          "length": 20
+        },
+        {
+          "name": "com_nom",
+          "alias": "Comarca",
+          "type": "esriFieldTypeString",
+          "length": 50
+        },
+        {
+          "name": "nom_mun",
+          "alias": "Municipio",
+          "type": "esriFieldTypeString",
+          "length": 150
+        },
+        {
+          "name": "paraje",
+          "alias": "Paraje",
+          "type": "esriFieldTypeString",
+          "length": 100
+        },
+        {
+          "name": "x",
+          "alias": "X",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "y",
+          "alias": "Y",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "f_detec",
+          "alias": "Fecha detec.",
+          "type": "esriFieldTypeString",
+          "length": 12
+        },
+        {
+          "name": "h_detec",
+          "alias": "Hora detec.",
+          "type": "esriFieldTypeString",
+          "length": 8
+        },
+        {
+          "name": "fextinc",
+          "alias": "F. Extinción",
+          "type": "esriFieldTypeString",
+          "length": 12
+        },
+        {
+          "name": "hextinc",
+          "alias": "H. Extinción",
+          "type": "esriFieldTypeString",
+          "length": 8
+        },
+        {
+          "name": "detecp_txt",
+          "alias": "Detect. Por Texto",
+          "type": "esriFieldTypeString",
+          "length": 20
+        },
+        {
+          "name": "g_caus_txt",
+          "alias": "Grupo Causa Texto",
+          "type": "esriFieldTypeString",
+          "length": 50
+        },
+        {
+          "name": "tot_arb",
+          "alias": "Arb. Total",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "tot_narb",
+          "alias": "No Arb. Total",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "sup_f",
+          "alias": "Sup. Forestal",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "shape_Leng",
+          "alias": "shape_Leng",
+          "type": "esriFieldTypeDouble"
+        }
+      ],
+      "identifier_completeness": {
+        "NumPIF_CV": {
+          "present_count": 375,
+          "missing_or_blank_count": 0,
+          "missing_or_blank_percent": 0.0
+        },
+        "NumPIF_Min": {
+          "present_count": 375,
+          "missing_or_blank_count": 0,
+          "missing_or_blank_percent": 0.0
+        }
+      },
+      "warnings": [
+        "objectIdField is absent in layer metadata; inferred from esriFieldTypeOID"
+      ]
+    },
+    {
+      "year": 2019,
+      "layer_id": 27,
+      "name": "Incendios 2019 | Incendis 2019 | Fires 2019",
+      "url": "https://carto.icv.gva.es/arcgis/rest/services/Prevencion_de_incendios2/MapServer/27",
+      "type": "Feature Layer",
+      "geometry_type": "esriGeometryPolygon",
+      "object_id_field": "OBJECTID",
+      "feature_count": 272,
+      "max_record_count": 2000,
+      "supported_query_formats": "JSON, AMF, geoJSON",
+      "capabilities": "Map,Query,Data",
+      "query_capabilities": {
+        "supports_pagination": true,
+        "supports_statistics": true,
+        "supports_count_distinct": true,
+        "supports_returning_query_extent": true,
+        "uses_standardized_queries": true
+      },
+      "extent": {
+        "xmin": -171003.58321829478,
+        "ymin": 4557837.216929323,
+        "xmax": 58511.79406906824,
+        "ymax": 4984880.163161572,
+        "spatialReference": {
+          "wkid": 102100,
+          "latestWkid": 3857,
+          "xyTolerance": 0.001,
+          "zTolerance": 0.001,
+          "mTolerance": 0.001,
+          "falseX": -20037700,
+          "falseY": -30241100,
+          "xyUnits": 148923141.92838538,
+          "falseZ": -100000,
+          "zUnits": 10000,
+          "falseM": -100000,
+          "mUnits": 10000
+        }
+      },
+      "schema_hash": "155e29481cb1f47aa8324fd5c040a7396a064f2fc620280feafb47d52dbe5a7d",
+      "fields": [
+        {
+          "name": "OBJECTID",
+          "alias": "ObjectId",
+          "type": "esriFieldTypeOID"
+        },
+        {
+          "name": "Shape",
+          "alias": "shape",
+          "type": "esriFieldTypeGeometry"
+        },
+        {
+          "name": "NumPIF_CV",
+          "alias": "NumPIF_CV",
+          "type": "esriFieldTypeString",
+          "length": 254
+        },
+        {
+          "name": "NumPIF_Min",
+          "alias": "NumPIF_Min",
+          "type": "esriFieldTypeString",
+          "length": 254
+        },
+        {
+          "name": "anyo",
+          "alias": "Año",
+          "type": "esriFieldTypeInteger"
+        },
+        {
+          "name": "ccaa_nom",
+          "alias": "Com. Autónoma",
+          "type": "esriFieldTypeString",
+          "length": 25
+        },
+        {
+          "name": "prov_nom",
+          "alias": "Provincia",
+          "type": "esriFieldTypeString",
+          "length": 20
+        },
+        {
+          "name": "com_nom",
+          "alias": "Comarca",
+          "type": "esriFieldTypeString",
+          "length": 50
+        },
+        {
+          "name": "nom_mun",
+          "alias": "Municipio",
+          "type": "esriFieldTypeString",
+          "length": 150
+        },
+        {
+          "name": "paraje",
+          "alias": "Paraje",
+          "type": "esriFieldTypeString",
+          "length": 100
+        },
+        {
+          "name": "x",
+          "alias": "X",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "y",
+          "alias": "Y",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "f_detec",
+          "alias": "Fecha detec.",
+          "type": "esriFieldTypeString",
+          "length": 12
+        },
+        {
+          "name": "h_detec",
+          "alias": "Hora detec.",
+          "type": "esriFieldTypeString",
+          "length": 8
+        },
+        {
+          "name": "fextinc",
+          "alias": "F. Extinción",
+          "type": "esriFieldTypeString",
+          "length": 12
+        },
+        {
+          "name": "hextinc",
+          "alias": "H. Extinción",
+          "type": "esriFieldTypeString",
+          "length": 8
+        },
+        {
+          "name": "detecp_txt",
+          "alias": "Detect. Por Texto",
+          "type": "esriFieldTypeString",
+          "length": 20
+        },
+        {
+          "name": "g_caus_txt",
+          "alias": "Grupo Causa Texto",
+          "type": "esriFieldTypeString",
+          "length": 50
+        },
+        {
+          "name": "tot_arb",
+          "alias": "Arb. Total",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "tot_narb",
+          "alias": "No Arb. Total",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "sup_f",
+          "alias": "Sup. Forestal",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "shape_Leng",
+          "alias": "shape_Leng",
+          "type": "esriFieldTypeDouble"
+        }
+      ],
+      "identifier_completeness": {
+        "NumPIF_CV": {
+          "present_count": 272,
+          "missing_or_blank_count": 0,
+          "missing_or_blank_percent": 0.0
+        },
+        "NumPIF_Min": {
+          "present_count": 272,
+          "missing_or_blank_count": 0,
+          "missing_or_blank_percent": 0.0
+        }
+      },
+      "warnings": [
+        "objectIdField is absent in layer metadata; inferred from esriFieldTypeOID"
+      ]
+    },
+    {
+      "year": 2020,
+      "layer_id": 28,
+      "name": "Incendios 2020 | Incendis 2020 | Fires 2020",
+      "url": "https://carto.icv.gva.es/arcgis/rest/services/Prevencion_de_incendios2/MapServer/28",
+      "type": "Feature Layer",
+      "geometry_type": "esriGeometryPolygon",
+      "object_id_field": "OBJECTID",
+      "feature_count": 253,
+      "max_record_count": 2000,
+      "supported_query_formats": "JSON, AMF, geoJSON",
+      "capabilities": "Map,Query,Data",
+      "query_capabilities": {
+        "supports_pagination": true,
+        "supports_statistics": true,
+        "supports_count_distinct": true,
+        "supports_returning_query_extent": true,
+        "uses_standardized_queries": true
+      },
+      "extent": {
+        "xmin": -171003.58321829478,
+        "ymin": 4557837.216929323,
+        "xmax": 58511.79406906824,
+        "ymax": 4984880.163161572,
+        "spatialReference": {
+          "wkid": 102100,
+          "latestWkid": 3857,
+          "xyTolerance": 0.001,
+          "zTolerance": 0.001,
+          "mTolerance": 0.001,
+          "falseX": -20037700,
+          "falseY": -30241100,
+          "xyUnits": 148923141.92838538,
+          "falseZ": -100000,
+          "zUnits": 10000,
+          "falseM": -100000,
+          "mUnits": 10000
+        }
+      },
+      "schema_hash": "155e29481cb1f47aa8324fd5c040a7396a064f2fc620280feafb47d52dbe5a7d",
+      "fields": [
+        {
+          "name": "OBJECTID",
+          "alias": "ObjectId",
+          "type": "esriFieldTypeOID"
+        },
+        {
+          "name": "Shape",
+          "alias": "shape",
+          "type": "esriFieldTypeGeometry"
+        },
+        {
+          "name": "NumPIF_CV",
+          "alias": "NumPIF_CV",
+          "type": "esriFieldTypeString",
+          "length": 254
+        },
+        {
+          "name": "NumPIF_Min",
+          "alias": "NumPIF_Min",
+          "type": "esriFieldTypeString",
+          "length": 254
+        },
+        {
+          "name": "anyo",
+          "alias": "Año",
+          "type": "esriFieldTypeInteger"
+        },
+        {
+          "name": "ccaa_nom",
+          "alias": "Com. Autónoma",
+          "type": "esriFieldTypeString",
+          "length": 25
+        },
+        {
+          "name": "prov_nom",
+          "alias": "Provincia",
+          "type": "esriFieldTypeString",
+          "length": 20
+        },
+        {
+          "name": "com_nom",
+          "alias": "Comarca",
+          "type": "esriFieldTypeString",
+          "length": 50
+        },
+        {
+          "name": "nom_mun",
+          "alias": "Municipio",
+          "type": "esriFieldTypeString",
+          "length": 150
+        },
+        {
+          "name": "paraje",
+          "alias": "Paraje",
+          "type": "esriFieldTypeString",
+          "length": 100
+        },
+        {
+          "name": "x",
+          "alias": "X",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "y",
+          "alias": "Y",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "f_detec",
+          "alias": "Fecha detec.",
+          "type": "esriFieldTypeString",
+          "length": 12
+        },
+        {
+          "name": "h_detec",
+          "alias": "Hora detec.",
+          "type": "esriFieldTypeString",
+          "length": 8
+        },
+        {
+          "name": "fextinc",
+          "alias": "F. Extinción",
+          "type": "esriFieldTypeString",
+          "length": 12
+        },
+        {
+          "name": "hextinc",
+          "alias": "H. Extinción",
+          "type": "esriFieldTypeString",
+          "length": 8
+        },
+        {
+          "name": "detecp_txt",
+          "alias": "Detect. Por Texto",
+          "type": "esriFieldTypeString",
+          "length": 20
+        },
+        {
+          "name": "g_caus_txt",
+          "alias": "Grupo Causa Texto",
+          "type": "esriFieldTypeString",
+          "length": 50
+        },
+        {
+          "name": "tot_arb",
+          "alias": "Arb. Total",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "tot_narb",
+          "alias": "No Arb. Total",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "sup_f",
+          "alias": "Sup. Forestal",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "shape_Leng",
+          "alias": "shape_Leng",
+          "type": "esriFieldTypeDouble"
+        }
+      ],
+      "identifier_completeness": {
+        "NumPIF_CV": {
+          "present_count": 253,
+          "missing_or_blank_count": 0,
+          "missing_or_blank_percent": 0.0
+        },
+        "NumPIF_Min": {
+          "present_count": 253,
+          "missing_or_blank_count": 0,
+          "missing_or_blank_percent": 0.0
+        }
+      },
+      "warnings": [
+        "objectIdField is absent in layer metadata; inferred from esriFieldTypeOID"
+      ]
+    },
+    {
+      "year": 2021,
+      "layer_id": 101,
+      "name": "Incendios 2021 | Incendis 2021 | Fires 2021",
+      "url": "https://carto.icv.gva.es/arcgis/rest/services/Prevencion_de_incendios2/MapServer/101",
+      "type": "Feature Layer",
+      "geometry_type": "esriGeometryPolygon",
+      "object_id_field": "OBJECTID",
+      "feature_count": 240,
+      "max_record_count": 2000,
+      "supported_query_formats": "JSON, AMF, geoJSON",
+      "capabilities": "Map,Query,Data",
+      "query_capabilities": {
+        "supports_pagination": true,
+        "supports_statistics": true,
+        "supports_count_distinct": true,
+        "supports_returning_query_extent": true,
+        "uses_standardized_queries": true
+      },
+      "extent": {
+        "xmin": -171003.58321829478,
+        "ymin": 4557837.216929323,
+        "xmax": 58511.79406906824,
+        "ymax": 4984880.163161572,
+        "spatialReference": {
+          "wkid": 102100,
+          "latestWkid": 3857,
+          "xyTolerance": 0.001,
+          "zTolerance": 0.001,
+          "mTolerance": 0.001,
+          "falseX": -20037700,
+          "falseY": -30241100,
+          "xyUnits": 148923141.92838538,
+          "falseZ": -100000,
+          "zUnits": 10000,
+          "falseM": -100000,
+          "mUnits": 10000
+        }
+      },
+      "schema_hash": "155e29481cb1f47aa8324fd5c040a7396a064f2fc620280feafb47d52dbe5a7d",
+      "fields": [
+        {
+          "name": "OBJECTID",
+          "alias": "ObjectId",
+          "type": "esriFieldTypeOID"
+        },
+        {
+          "name": "Shape",
+          "alias": "shape",
+          "type": "esriFieldTypeGeometry"
+        },
+        {
+          "name": "NumPIF_CV",
+          "alias": "NumPIF_CV",
+          "type": "esriFieldTypeString",
+          "length": 254
+        },
+        {
+          "name": "NumPIF_Min",
+          "alias": "NumPIF_Min",
+          "type": "esriFieldTypeString",
+          "length": 254
+        },
+        {
+          "name": "anyo",
+          "alias": "Año",
+          "type": "esriFieldTypeInteger"
+        },
+        {
+          "name": "ccaa_nom",
+          "alias": "Com. Autónoma",
+          "type": "esriFieldTypeString",
+          "length": 25
+        },
+        {
+          "name": "prov_nom",
+          "alias": "Provincia",
+          "type": "esriFieldTypeString",
+          "length": 20
+        },
+        {
+          "name": "com_nom",
+          "alias": "Comarca",
+          "type": "esriFieldTypeString",
+          "length": 50
+        },
+        {
+          "name": "nom_mun",
+          "alias": "Municipio",
+          "type": "esriFieldTypeString",
+          "length": 150
+        },
+        {
+          "name": "paraje",
+          "alias": "Paraje",
+          "type": "esriFieldTypeString",
+          "length": 100
+        },
+        {
+          "name": "x",
+          "alias": "X",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "y",
+          "alias": "Y",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "f_detec",
+          "alias": "Fecha detec.",
+          "type": "esriFieldTypeString",
+          "length": 12
+        },
+        {
+          "name": "h_detec",
+          "alias": "Hora detec.",
+          "type": "esriFieldTypeString",
+          "length": 8
+        },
+        {
+          "name": "fextinc",
+          "alias": "F. Extinción",
+          "type": "esriFieldTypeString",
+          "length": 12
+        },
+        {
+          "name": "hextinc",
+          "alias": "H. Extinción",
+          "type": "esriFieldTypeString",
+          "length": 8
+        },
+        {
+          "name": "detecp_txt",
+          "alias": "Detect. Por Texto",
+          "type": "esriFieldTypeString",
+          "length": 20
+        },
+        {
+          "name": "g_caus_txt",
+          "alias": "Grupo Causa Texto",
+          "type": "esriFieldTypeString",
+          "length": 50
+        },
+        {
+          "name": "tot_arb",
+          "alias": "Arb. Total",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "tot_narb",
+          "alias": "No Arb. Total",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "sup_f",
+          "alias": "Sup. Forestal",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "shape_Leng",
+          "alias": "shape_Leng",
+          "type": "esriFieldTypeDouble"
+        }
+      ],
+      "identifier_completeness": {
+        "NumPIF_CV": {
+          "present_count": 240,
+          "missing_or_blank_count": 0,
+          "missing_or_blank_percent": 0.0
+        },
+        "NumPIF_Min": {
+          "present_count": 240,
+          "missing_or_blank_count": 0,
+          "missing_or_blank_percent": 0.0
+        }
+      },
+      "warnings": [
+        "objectIdField is absent in layer metadata; inferred from esriFieldTypeOID"
+      ]
+    },
+    {
+      "year": 2022,
+      "layer_id": 102,
+      "name": "Incendios 2022 | Incendis 2022 | Fires 2022",
+      "url": "https://carto.icv.gva.es/arcgis/rest/services/Prevencion_de_incendios2/MapServer/102",
+      "type": "Feature Layer",
+      "geometry_type": "esriGeometryPolygon",
+      "object_id_field": "OBJECTID",
+      "feature_count": 292,
+      "max_record_count": 2000,
+      "supported_query_formats": "JSON, AMF, geoJSON",
+      "capabilities": "Map,Query,Data",
+      "query_capabilities": {
+        "supports_pagination": true,
+        "supports_statistics": true,
+        "supports_count_distinct": true,
+        "supports_returning_query_extent": true,
+        "uses_standardized_queries": true
+      },
+      "extent": {
+        "xmin": -171003.58321829478,
+        "ymin": 4557837.216929323,
+        "xmax": 58511.79406906824,
+        "ymax": 4984880.163161572,
+        "spatialReference": {
+          "wkid": 102100,
+          "latestWkid": 3857,
+          "xyTolerance": 0.001,
+          "zTolerance": 0.001,
+          "mTolerance": 0.001,
+          "falseX": -20037700,
+          "falseY": -30241100,
+          "xyUnits": 148923141.92838538,
+          "falseZ": -100000,
+          "zUnits": 10000,
+          "falseM": -100000,
+          "mUnits": 10000
+        }
+      },
+      "schema_hash": "155e29481cb1f47aa8324fd5c040a7396a064f2fc620280feafb47d52dbe5a7d",
+      "fields": [
+        {
+          "name": "OBJECTID",
+          "alias": "ObjectId",
+          "type": "esriFieldTypeOID"
+        },
+        {
+          "name": "Shape",
+          "alias": "shape",
+          "type": "esriFieldTypeGeometry"
+        },
+        {
+          "name": "NumPIF_CV",
+          "alias": "NumPIF_CV",
+          "type": "esriFieldTypeString",
+          "length": 254
+        },
+        {
+          "name": "NumPIF_Min",
+          "alias": "NumPIF_Min",
+          "type": "esriFieldTypeString",
+          "length": 254
+        },
+        {
+          "name": "anyo",
+          "alias": "Año",
+          "type": "esriFieldTypeInteger"
+        },
+        {
+          "name": "ccaa_nom",
+          "alias": "Com. Autónoma",
+          "type": "esriFieldTypeString",
+          "length": 25
+        },
+        {
+          "name": "prov_nom",
+          "alias": "Provincia",
+          "type": "esriFieldTypeString",
+          "length": 20
+        },
+        {
+          "name": "com_nom",
+          "alias": "Comarca",
+          "type": "esriFieldTypeString",
+          "length": 50
+        },
+        {
+          "name": "nom_mun",
+          "alias": "Municipio",
+          "type": "esriFieldTypeString",
+          "length": 150
+        },
+        {
+          "name": "paraje",
+          "alias": "Paraje",
+          "type": "esriFieldTypeString",
+          "length": 100
+        },
+        {
+          "name": "x",
+          "alias": "X",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "y",
+          "alias": "Y",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "f_detec",
+          "alias": "Fecha detec.",
+          "type": "esriFieldTypeString",
+          "length": 12
+        },
+        {
+          "name": "h_detec",
+          "alias": "Hora detec.",
+          "type": "esriFieldTypeString",
+          "length": 8
+        },
+        {
+          "name": "fextinc",
+          "alias": "F. Extinción",
+          "type": "esriFieldTypeString",
+          "length": 12
+        },
+        {
+          "name": "hextinc",
+          "alias": "H. Extinción",
+          "type": "esriFieldTypeString",
+          "length": 8
+        },
+        {
+          "name": "detecp_txt",
+          "alias": "Detect. Por Texto",
+          "type": "esriFieldTypeString",
+          "length": 20
+        },
+        {
+          "name": "g_caus_txt",
+          "alias": "Grupo Causa Texto",
+          "type": "esriFieldTypeString",
+          "length": 50
+        },
+        {
+          "name": "tot_arb",
+          "alias": "Arb. Total",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "tot_narb",
+          "alias": "No Arb. Total",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "sup_f",
+          "alias": "Sup. Forestal",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "shape_Leng",
+          "alias": "shape_Leng",
+          "type": "esriFieldTypeDouble"
+        }
+      ],
+      "identifier_completeness": {
+        "NumPIF_CV": {
+          "present_count": 292,
+          "missing_or_blank_count": 0,
+          "missing_or_blank_percent": 0.0
+        },
+        "NumPIF_Min": {
+          "present_count": 292,
+          "missing_or_blank_count": 0,
+          "missing_or_blank_percent": 0.0
+        }
+      },
+      "warnings": [
+        "objectIdField is absent in layer metadata; inferred from esriFieldTypeOID"
+      ]
+    },
+    {
+      "year": 2023,
+      "layer_id": 120,
+      "name": "Incendios 2023 | Incendis 2023 | Fires 2023",
+      "url": "https://carto.icv.gva.es/arcgis/rest/services/Prevencion_de_incendios2/MapServer/120",
+      "type": "Feature Layer",
+      "geometry_type": "esriGeometryPolygon",
+      "object_id_field": "OBJECTID",
+      "feature_count": 425,
+      "max_record_count": 2000,
+      "supported_query_formats": "JSON, AMF, geoJSON",
+      "capabilities": "Map,Query,Data",
+      "query_capabilities": {
+        "supports_pagination": true,
+        "supports_statistics": true,
+        "supports_count_distinct": true,
+        "supports_returning_query_extent": true,
+        "uses_standardized_queries": true
+      },
+      "extent": {
+        "xmin": -171003.58321829478,
+        "ymin": 4557837.216929323,
+        "xmax": 58511.79406906824,
+        "ymax": 4984880.163161572,
+        "spatialReference": {
+          "wkid": 102100,
+          "latestWkid": 3857,
+          "xyTolerance": 0.001,
+          "zTolerance": 0.001,
+          "mTolerance": 0.001,
+          "falseX": -20037700,
+          "falseY": -30241100,
+          "xyUnits": 148923141.92838538,
+          "falseZ": -100000,
+          "zUnits": 10000,
+          "falseM": -100000,
+          "mUnits": 10000
+        }
+      },
+      "schema_hash": "155e29481cb1f47aa8324fd5c040a7396a064f2fc620280feafb47d52dbe5a7d",
+      "fields": [
+        {
+          "name": "OBJECTID",
+          "alias": "ObjectId",
+          "type": "esriFieldTypeOID"
+        },
+        {
+          "name": "Shape",
+          "alias": "shape",
+          "type": "esriFieldTypeGeometry"
+        },
+        {
+          "name": "NumPIF_CV",
+          "alias": "NumPIF_CV",
+          "type": "esriFieldTypeString",
+          "length": 254
+        },
+        {
+          "name": "NumPIF_Min",
+          "alias": "NumPIF_Min",
+          "type": "esriFieldTypeString",
+          "length": 254
+        },
+        {
+          "name": "anyo",
+          "alias": "Año",
+          "type": "esriFieldTypeInteger"
+        },
+        {
+          "name": "ccaa_nom",
+          "alias": "Com. Autónoma",
+          "type": "esriFieldTypeString",
+          "length": 25
+        },
+        {
+          "name": "prov_nom",
+          "alias": "Provincia",
+          "type": "esriFieldTypeString",
+          "length": 20
+        },
+        {
+          "name": "com_nom",
+          "alias": "Comarca",
+          "type": "esriFieldTypeString",
+          "length": 50
+        },
+        {
+          "name": "nom_mun",
+          "alias": "Municipio",
+          "type": "esriFieldTypeString",
+          "length": 150
+        },
+        {
+          "name": "paraje",
+          "alias": "Paraje",
+          "type": "esriFieldTypeString",
+          "length": 100
+        },
+        {
+          "name": "x",
+          "alias": "X",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "y",
+          "alias": "Y",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "f_detec",
+          "alias": "Fecha detec.",
+          "type": "esriFieldTypeString",
+          "length": 12
+        },
+        {
+          "name": "h_detec",
+          "alias": "Hora detec.",
+          "type": "esriFieldTypeString",
+          "length": 8
+        },
+        {
+          "name": "fextinc",
+          "alias": "F. Extinción",
+          "type": "esriFieldTypeString",
+          "length": 12
+        },
+        {
+          "name": "hextinc",
+          "alias": "H. Extinción",
+          "type": "esriFieldTypeString",
+          "length": 8
+        },
+        {
+          "name": "detecp_txt",
+          "alias": "Detect. Por Texto",
+          "type": "esriFieldTypeString",
+          "length": 20
+        },
+        {
+          "name": "g_caus_txt",
+          "alias": "Grupo Causa Texto",
+          "type": "esriFieldTypeString",
+          "length": 50
+        },
+        {
+          "name": "tot_arb",
+          "alias": "Arb. Total",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "tot_narb",
+          "alias": "No Arb. Total",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "sup_f",
+          "alias": "Sup. Forestal",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "shape_Leng",
+          "alias": "shape_Leng",
+          "type": "esriFieldTypeDouble"
+        }
+      ],
+      "identifier_completeness": {
+        "NumPIF_CV": {
+          "present_count": 425,
+          "missing_or_blank_count": 0,
+          "missing_or_blank_percent": 0.0
+        },
+        "NumPIF_Min": {
+          "present_count": 425,
+          "missing_or_blank_count": 0,
+          "missing_or_blank_percent": 0.0
+        }
+      },
+      "warnings": [
+        "objectIdField is absent in layer metadata; inferred from esriFieldTypeOID"
+      ]
+    },
+    {
+      "year": 2024,
+      "layer_id": 121,
+      "name": "Incendios 2024 | Incendis 2024 | Fires 2024",
+      "url": "https://carto.icv.gva.es/arcgis/rest/services/Prevencion_de_incendios2/MapServer/121",
+      "type": "Feature Layer",
+      "geometry_type": "esriGeometryPolygon",
+      "object_id_field": "OBJECTID",
+      "feature_count": 473,
+      "max_record_count": 2000,
+      "supported_query_formats": "JSON, AMF, geoJSON",
+      "capabilities": "Map,Query,Data",
+      "query_capabilities": {
+        "supports_pagination": true,
+        "supports_statistics": true,
+        "supports_count_distinct": true,
+        "supports_returning_query_extent": true,
+        "uses_standardized_queries": true
+      },
+      "extent": {
+        "xmin": -171003.58321829478,
+        "ymin": 4557837.216929323,
+        "xmax": 58511.79406906824,
+        "ymax": 4984880.163161572,
+        "spatialReference": {
+          "wkid": 102100,
+          "latestWkid": 3857,
+          "xyTolerance": 0.001,
+          "zTolerance": 0.001,
+          "mTolerance": 0.001,
+          "falseX": -20037700,
+          "falseY": -30241100,
+          "xyUnits": 148923141.92838538,
+          "falseZ": -100000,
+          "zUnits": 10000,
+          "falseM": -100000,
+          "mUnits": 10000
+        }
+      },
+      "schema_hash": "155e29481cb1f47aa8324fd5c040a7396a064f2fc620280feafb47d52dbe5a7d",
+      "fields": [
+        {
+          "name": "OBJECTID",
+          "alias": "ObjectId",
+          "type": "esriFieldTypeOID"
+        },
+        {
+          "name": "Shape",
+          "alias": "shape",
+          "type": "esriFieldTypeGeometry"
+        },
+        {
+          "name": "NumPIF_CV",
+          "alias": "NumPIF_CV",
+          "type": "esriFieldTypeString",
+          "length": 254
+        },
+        {
+          "name": "NumPIF_Min",
+          "alias": "NumPIF_Min",
+          "type": "esriFieldTypeString",
+          "length": 254
+        },
+        {
+          "name": "anyo",
+          "alias": "Año",
+          "type": "esriFieldTypeInteger"
+        },
+        {
+          "name": "ccaa_nom",
+          "alias": "Com. Autónoma",
+          "type": "esriFieldTypeString",
+          "length": 25
+        },
+        {
+          "name": "prov_nom",
+          "alias": "Provincia",
+          "type": "esriFieldTypeString",
+          "length": 20
+        },
+        {
+          "name": "com_nom",
+          "alias": "Comarca",
+          "type": "esriFieldTypeString",
+          "length": 50
+        },
+        {
+          "name": "nom_mun",
+          "alias": "Municipio",
+          "type": "esriFieldTypeString",
+          "length": 150
+        },
+        {
+          "name": "paraje",
+          "alias": "Paraje",
+          "type": "esriFieldTypeString",
+          "length": 100
+        },
+        {
+          "name": "x",
+          "alias": "X",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "y",
+          "alias": "Y",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "f_detec",
+          "alias": "Fecha detec.",
+          "type": "esriFieldTypeString",
+          "length": 12
+        },
+        {
+          "name": "h_detec",
+          "alias": "Hora detec.",
+          "type": "esriFieldTypeString",
+          "length": 8
+        },
+        {
+          "name": "fextinc",
+          "alias": "F. Extinción",
+          "type": "esriFieldTypeString",
+          "length": 12
+        },
+        {
+          "name": "hextinc",
+          "alias": "H. Extinción",
+          "type": "esriFieldTypeString",
+          "length": 8
+        },
+        {
+          "name": "detecp_txt",
+          "alias": "Detect. Por Texto",
+          "type": "esriFieldTypeString",
+          "length": 20
+        },
+        {
+          "name": "g_caus_txt",
+          "alias": "Grupo Causa Texto",
+          "type": "esriFieldTypeString",
+          "length": 50
+        },
+        {
+          "name": "tot_arb",
+          "alias": "Arb. Total",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "tot_narb",
+          "alias": "No Arb. Total",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "sup_f",
+          "alias": "Sup. Forestal",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "shape_Leng",
+          "alias": "shape_Leng",
+          "type": "esriFieldTypeDouble"
+        }
+      ],
+      "identifier_completeness": {
+        "NumPIF_CV": {
+          "present_count": 473,
+          "missing_or_blank_count": 0,
+          "missing_or_blank_percent": 0.0
+        },
+        "NumPIF_Min": {
+          "present_count": 473,
+          "missing_or_blank_count": 0,
+          "missing_or_blank_percent": 0.0
+        }
+      },
+      "warnings": [
+        "objectIdField is absent in layer metadata; inferred from esriFieldTypeOID"
+      ]
+    }
+  ]
+}
