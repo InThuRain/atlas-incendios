@@ -4,6 +4,12 @@ __pycache__/
 # Snapshots descargados: no redistribuir hasta verificar licencia y atribución.
 data/raw/gva/
 
+# Snapshots recientes SIGIF/EFFIS y sus derivados. SIGIF no se redistribuye
+# mientras sus condiciones de reutilizacion no esten aclaradas; todos se
+# regeneran mediante el pipeline CV-2.2.
+data/raw/recent/gva/
+data/processed/recent/gva/
+
 # Salidas reproducibles con atributos y geometría ICV original.
 data/processed/gva/*.jsonl
 data/processed/gva/manifest.json

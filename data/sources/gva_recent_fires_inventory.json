@@ -55,7 +55,7 @@
       "provides": {
         "administrative_fire": true,
         "perimeter": false,
-        "point": "X1/Y1 published; semantics and CRS not documented in table",
+        "point": "X1/Y1 demonstrated in CV-2.2 as wildfire start point in EPSG:25830; EPSG:4326 is derived",
         "reported_area": true,
         "dates": true,
         "cause": true,
@@ -82,9 +82,17 @@
           "wooded_area_ha": 13.9635,
           "total_area_ha": 121.9289,
           "complete_year": false
+        },
+        "coordinate_evidence_cv_2_2": {
+          "reference_year": 2024,
+          "sigif_rows": 473,
+          "icv_features": 473,
+          "date_and_normalized_municipality_matches": 387,
+          "exact_x_y_matches_within_date_municipality": 351,
+          "result": "wildfire_start_point; EPSG:25830; X=easting; Y=northing; metres"
         }
       },
-      "geometry_quality": "D until X1/Y1 semantics and CRS are confirmed; no perimeter",
+      "geometry_quality": "D for perimeter availability; the documented point is not promoted to a perimeter",
       "license": "SIGIF-specific legal notice restricts use to personal/non-commercial viewing and requires clarification before redistribution"
     },
     {
@@ -142,8 +150,9 @@
         "linkable_identifier": "EFFIS-source identifier only"
       },
       "coverage": "Approximately 30 ha threshold historically; smaller Sentinel-2 detections may be present since 2018; only a fraction of fire count but EFFIS estimates about 95% of annual EU burnt area",
-      "observed_valencian_province_counts": {
-        "method": "WFS BBOX followed by exact PROVINCE label filter; dynamic snapshot, not expected totals",
+      "observed_valencian_intersection_counts_cv_2_2": {
+        "snapshot_id": "20260819T174426Z",
+        "method": "WFS BBOX followed by true geometry intersection with the dissolved official ICV municipal boundary; PROVINCE was not used for selection",
         "2025": 9,
         "2026": 16
       },
@@ -202,6 +211,17 @@
       "license": "MITECO general reuse terms"
     }
   ],
+  "cv_2_2_snapshot": {
+    "snapshot_id": "20260819T174426Z",
+    "acquired_at": "2026-08-19T17:44:26.023443Z",
+    "sigif_rows": {"2025": 281, "2026": 143},
+    "sigif_2026_max_observed_date": "2026-06-30",
+    "sigif_2026_coverage_complete": false,
+    "effis_true_intersection_counts": {"2025": 9, "2026": 16},
+    "candidate_counts": {"2025": 36, "2026": 17},
+    "publication_allowed": false,
+    "report": "CV_2_2_REPORT.md"
+  },
   "recommended_model": {
     "historical_consolidated": "ICV 1993-2024 snapshot",
     "recent_official": "GVA/SIGIF provisional administrative observations",
@@ -212,7 +232,6 @@
   },
   "open_questions": [
     "SIGIF row/PDF redistribution permission",
-    "X1/Y1 semantics and CRS",
     "SIGIF 2026 update lag",
     "ICV 2025 publication date",
     "EFFIS id and rolling CLASS lifecycle stability",

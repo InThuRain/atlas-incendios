@@ -1,0 +1,79 @@
+{
+  "schema_version": 1,
+  "phase": "CV-2.2",
+  "territory": "Comunitat Valenciana",
+  "years": {
+    "2025": {
+      "coverage_start_requested": "2025-01-01",
+      "coverage_end_requested": "2025-12-31",
+      "coverage_complete": true,
+      "expected_sigif_rows_at_2026_08_19": 281,
+      "expected_distinct_visible_rows_at_2026_08_19": 280
+    },
+    "2026": {
+      "coverage_start_requested": "2026-01-01",
+      "coverage_end_requested": "2026-12-31",
+      "coverage_complete": false,
+      "expected_sigif_rows_at_2026_08_19": 143,
+      "expected_distinct_visible_rows_at_2026_08_19": 143
+    }
+  },
+  "sigif": {
+    "form_url": "https://prevencionincendiosgva.es/Incendios/EstadisticasIncendios",
+    "provisional_results_url": "https://prevencionincendiosgva.es/Incendios/EstadisticasProvisionalesList",
+    "legal_notice_url": "https://prevencionincendiosgva.es/AvisoLegal",
+    "table_id": "estadisticasProvisionaleTable",
+    "expected_columns": [
+      "Fecha",
+      "Municipio",
+      "Paraje",
+      "Causa",
+      "Rasa",
+      "Arbolada",
+      "Total",
+      "Hora ini",
+      "Hora fin",
+      "Deteccion",
+      "Alerta",
+      "Comarca",
+      "X1",
+      "Y1"
+    ],
+    "redistribution_status": "blocked_pending_written_clarification",
+    "warning": "El aviso legal especifico de SIGIF restringe la reutilizacion. Los snapshots no deben publicarse."
+  },
+  "coordinate_evidence": {
+    "reference_year": 2024,
+    "icv_layer_url": "https://carto.icv.gva.es/arcgis/rest/services/Prevencion_de_incendios2/MapServer/121",
+    "official_methodology_url": "https://prevencionincendiosgva.es/Documents/PlanesVigilancia/legislacion/Orden%2030-2017%20normas%20t%C3%A9cnicas%20PLPIF.pdf",
+    "candidate_crs": "EPSG:25830",
+    "candidate_semantics": "wildfire_start_point"
+  },
+  "administrative_boundary": {
+    "layer_url": "https://carto.icv.gva.es/arcgis/rest/services/0105_delimitaciones/0105_Delimitaciones/MapServer/0",
+    "source_authority": "Institut Cartografic Valencia / Generalitat Valenciana",
+    "source_crs": "EPSG:25830",
+    "request_crs": "EPSG:4326",
+    "license_url": "https://icv.gva.es/es/condiciones-de-uso-de-la-geoinformacion-icv",
+    "derivation": "union of every municipality returned by the official layer; no manual approximation"
+  },
+  "effis": {
+    "wfs_url": "https://maps.effis.emergency.copernicus.eu/effis",
+    "type_name": "ms:modis.ba.poly",
+    "request_crs": "EPSG:4326",
+    "technical_documentation_url": "https://forest-fire.emergency.copernicus.eu/about-effis/technical-background/rapid-damage-assessment",
+    "license_url": "https://forest-fire.emergency.copernicus.eu/about-effis/data-license",
+    "license": "CC BY 4.0",
+    "attribution": "European Union, Copernicus EMS / EFFIS",
+    "geometry_source": "EFFIS",
+    "geometry_quality": "B_provisional_satellite",
+    "warning": "EFFIS representa areas quemadas detectadas por satelite, no incendios administrativos; sus fechas no equivalen necesariamente a ignicion y extincion."
+  },
+  "candidate_linking": {
+    "maximum_distance_m": 20000,
+    "maximum_date_difference_days": 14,
+    "strong_score_min": 75,
+    "possible_score_min": 50,
+    "link_status": "candidate"
+  }
+}

@@ -126,8 +126,13 @@ actualidad mediante una tabla con fecha, municipio, paraje, causa, superficies,
 horas, comarca y coordenadas `X1`/`Y1`. No publica un identificador de parte en
 esa vista ni un perímetro. En la comprobación CV-2.1 devolvió 281 filas para
 2025 y 143 para 2026; la última fecha visible de 2026 era 30 de junio, por lo
-que no debe tratarse como cobertura corriente completa. La semántica y CRS de
-`X1`/`Y1` requieren confirmación.
+que no debe tratarse como cobertura corriente completa.
+
+CV-2.2 demostró técnicamente la semántica de `X1`/`Y1`: la norma GVA describe
+el punto de inicio en UTM y 351 filas SIGIF 2024 coinciden exactamente en fecha,
+municipio y coordenadas con la capa ICV 2024, cuyo CRS fuente es EPSG:25830.
+Por ello se conservan como punto de inicio ETRS89/UTM 30N y se genera EPSG:4326
+solo como derivado, sin borrar los valores originales.
 
 El aviso legal específico de SIGIF limita la carga a uso personal y no
 comercial y no autoriza hacerla extensiva a terceros. No se asumirá que la
@@ -142,11 +147,18 @@ sin garantía de que sus fechas sean ignición/extinción. Su identificador solo
 es enlazable dentro de EFFIS y no sustituye `NumPIF_CV` ni el identificador
 EGIF.
 
+El snapshot CV-2.2 filtrado mediante intersección con la unión de los 542
+municipios oficiales ICV contiene 9 geometrías EFFIS de 2025 y 16 de 2026. No
+se usó el atributo provincia. SIGIF y EFFIS permanecen en colecciones separadas
+y los 53 pares espaciales/temporales resultantes son solo candidatos puntuados.
+
 Los avances MITECO sirven para contrastar agregados provisionales y grandes
 incendios. El buscador EGIF contiene partes revisados y cerrados, pero en la
 revisión no ofrecía registros 2024–2026. El inventario, las comprobaciones y la
 propuesta de incorporación están en `CV_2_1_SOURCE_INVENTORY.md` y
-`data/sources/gva_recent_fires_inventory.json`.
+`data/sources/gva_recent_fires_inventory.json`. La ejecución, anomalías,
+licencias y caso Ibi–Font Roja se documentan en `CV_2_2_REPORT.md`; el pipeline
+usa `data/sources/gva_recent_pipeline.json`.
 
 ## 3. Fuentes autonómicas
 

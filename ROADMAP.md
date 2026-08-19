@@ -28,10 +28,14 @@ Objetivo: tener un piloto local fiable y agradable de usar.
 - [ ] Buscar planes de prevención y cartografía histórica.
 - [x] CV-2.1: inventariar y diseñar la incorporación 2025–2026 sin alterar el
   consolidado 1993–2024.
-- [ ] CV-2.2: aclarar reutilización SIGIF y CRS/semántica de `X1`/`Y1`.
-- [ ] Incorporar 2025 como reciente administrativo provisional y EFFIS como
-  geometría B separada; promover el perímetro ICV cuando se publique.
-- [ ] Incorporar 2026 como snapshots fechados e incompletos; cerrar el año y
+- [x] CV-2.2: construir snapshots locales separados SIGIF/EFFIS para 2025–2026,
+  demostrar `X1`/`Y1` como punto de inicio EPSG:25830, intersectar EFFIS con el
+  límite oficial y generar únicamente candidatos puntuados.
+- [ ] Obtener autorización escrita para redistribuir filas o derivados SIGIF;
+  los snapshots CV-2.2 permanecen locales e ignorados por Git.
+- [ ] CV-2.3: integrar 2025 como reciente administrativo provisional y EFFIS
+  como geometría B separada; promover el perímetro ICV cuando se publique.
+- [ ] CV-2.3: integrar 2026 como snapshot fechado e incompleto; cerrar el año y
   promoverlo solo cuando existan datos consolidados.
 - [ ] Marcar calidad A/B/C/D.
 
