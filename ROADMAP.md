@@ -32,7 +32,7 @@ Objetivo: tener un piloto local fiable y agradable de usar.
 
 ## Fase 3 — Comunitat Valenciana
 
-- [ ] Descargar todas las capas 1993–2024.
+- [x] Descargar todas las capas 1993–2024.
 - [ ] Crear dataset único normalizado.
 - [ ] Relacionar con EGIF cuando sea posible.
 - [ ] Probar rendimiento regional.
