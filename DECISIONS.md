@@ -53,6 +53,22 @@ Se utilizarán geometrías simplificadas/teselas y mayor detalle al acercarse.
 
 Los datos y el frontend deben poder evolucionar independientemente.
 
+## 2026-08-19 — Primera normalización valenciana en JSON Lines
+
+La primera salida normalizada del ICV se divide en `fires.jsonl` y `geometries.jsonl`. Las geometrías se conservan como objetos Esri JSON en su CRS original, sin conversión, simplificación ni reparación.
+
+**Motivo:** JSON Lines se puede generar y validar por streaming con la biblioteca estándar de Python, mantiene separadas las entidades incendio y geometría y evita introducir dependencias geoespaciales en esta fase inicial.
+
+**Consecuencias:** es un formato intermedio de análisis, no el formato de distribución definitivo. La posible adopción de GeoParquet, SQLite, FlatGeobuf o PMTiles se decidirá al medir las necesidades de análisis y publicación.
+
+## 2026-08-19 — `fire_id` valenciano provisional basado en `NumPIF_CV`
+
+Se usa `gva:pif-cv:<NumPIF_CV>` cuando `NumPIF_CV` está presente, mantiene una relación uno a uno con `NumPIF_Min`, pertenece a un solo año y las features repetidas no discrepan en sus atributos de incendio. Los casos que incumplan estas condiciones conservan provisionalmente un identificador por feature y se registran como ambiguos.
+
+**Motivo:** en el snapshot ICV 1993–2024, los 13.739 registros tienen ambos identificadores; hay 13.738 valores distintos de cada uno y la única repetición es `2024AL0005` / `2024030005`, cuyas dos features comparten año y atributos de incendio.
+
+**Consecuencias:** `2024AL0005` se representa como un incendio con dos registros geométricos separados. La regla deberá revisarse al relacionar los datos con EGIF y nunca permite fusionar incendios solo porque compartan geometría.
+
 ## 2026-08-19 — Frontend valenciano estático guiado por manifiesto
 
 El visor de la Comunitat Valenciana descubre los derivados web mediante un único

@@ -33,7 +33,7 @@ Objetivo: tener un piloto local fiable y agradable de usar.
 ## Fase 3 — Comunitat Valenciana
 
 - [x] Descargar todas las capas 1993–2024.
-- [ ] Crear dataset único normalizado.
+- [x] Crear dataset único normalizado.
 - [ ] Relacionar con EGIF cuando sea posible.
 - [ ] Probar rendimiento regional.
 - [x] Sustituir el prototipo Mariola–Font Roja por el primer visor estático de
