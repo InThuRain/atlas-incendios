@@ -102,6 +102,17 @@ def main():
     static_assets = list(manifest["attributes"].values())
     assets = geometry_assets + static_assets
     expected_paths = {local_path(args.asset_dir, asset["url"]).resolve() for asset in assets}
+    runtime_manifest = args.asset_dir / "manifest.json"
+    recent_manifest = args.asset_dir / "recent/assets-manifest.json"
+    if runtime_manifest.exists() or recent_manifest.exists():
+        if not runtime_manifest.exists() or not recent_manifest.exists():
+            raise ValidationError("CV-2.3 runtime/recent manifests must exist together")
+        expected_paths.update({runtime_manifest.resolve(), recent_manifest.resolve()})
+        recent_payload = load_json(recent_manifest)
+        expected_paths.update(
+            local_path(args.asset_dir, asset["url"]).resolve()
+            for asset in recent_payload["assets"]
+        )
     actual_paths = {
         path.resolve() for path in args.asset_dir.rglob("*") if path.is_file()
     }

@@ -1,0 +1,3 @@
+# Dependencias necesarias para ejecutar todos los tests y validadores Python.
+# Mantener sincronizado con los requirements específicos de los pipelines.
+-r scripts/ingest/comunitat_valenciana/requirements-recent.txt

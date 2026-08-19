@@ -214,3 +214,7 @@ def run_page(chrome, url, window_size, timeout=150, screenshot_path=None):
                 process.wait(timeout=5)
             except subprocess.TimeoutExpired:
                 process.kill()
+                process.wait(timeout=5)
+            # Chrome helpers can finish flushing the temporary profile a few
+            # milliseconds after the browser process exits.
+            time.sleep(0.25)

@@ -33,9 +33,9 @@ Objetivo: tener un piloto local fiable y agradable de usar.
   límite oficial y generar únicamente candidatos puntuados.
 - [ ] Obtener autorización escrita para redistribuir filas o derivados SIGIF;
   los snapshots CV-2.2 permanecen locales e ignorados por Git.
-- [ ] CV-2.3: integrar 2025 como reciente administrativo provisional y EFFIS
+- [x] CV-2.3: integrar localmente 2025 como reciente administrativo provisional y EFFIS
   como geometría B separada; promover el perímetro ICV cuando se publique.
-- [ ] CV-2.3: integrar 2026 como snapshot fechado e incompleto; cerrar el año y
+- [x] CV-2.3: integrar localmente 2026 como snapshot fechado e incompleto; cerrar el año y
   promoverlo solo cuando existan datos consolidados.
 - [ ] Marcar calidad A/B/C/D.
 

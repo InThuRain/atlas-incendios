@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Measure CV-1.5 initial/full-period performance with Chrome's real clock."""
+"""Measure CV-2.3 recent, consolidated and full-period frontend performance."""
 
 import argparse
 import json
@@ -61,9 +61,10 @@ def main():
     args = parse_args()
     root = repository_root()
     scenarios = {
-        "desktop_initial_2024": ({}, "1440,900"),
-        "desktop_full_1993_2024": ({"from": 1993, "to": 2024}, "1440,900"),
-        "mobile_initial_2024": ({}, "390,844"),
+        "desktop_initial_2026": ({}, "1440,900"),
+        "desktop_consolidated_2024": ({"from": 2024, "to": 2024}, "1440,900"),
+        "desktop_full_1993_2026": ({"from": 1993, "to": 2026}, "1440,900"),
+        "mobile_initial_2026": ({}, "390,844"),
     }
     handler = lambda *items, **kwargs: QuietHandler(
         *items, directory=str(root.parent), **kwargs
@@ -86,6 +87,8 @@ def main():
                 "window_size": window_size,
                 "visible_fire_count": runs[0]["visibleFireCount"],
                 "visible_perimeter_count": runs[0]["visiblePerimeterCount"],
+                "visible_sigif_record_count": runs[0]["visibleSigifRecordCount"],
+                "visible_effis_perimeter_count": runs[0]["visibleEffisPerimeterCount"],
                 "active_asset_count": runs[0]["activeAssetCount"],
                 "raw_geometry_bytes": runs[0]["lastLoad"]["rawBytes"],
                 "estimated_gzip_geometry_bytes": runs[0]["lastLoad"]["estimatedGzipBytes"],

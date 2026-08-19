@@ -1,0 +1,84 @@
+#!/usr/bin/env python3
+"""Validate CV-2.3 reduced assets, identity separation and coverage metadata."""
+
+import gzip
+import hashlib
+import json
+import subprocess
+import sys
+import tempfile
+from pathlib import Path
+
+
+ROOT = Path(__file__).resolve().parents[1]
+MANIFEST = ROOT / "data/web/gva/recent/assets-manifest.json"
+
+
+def fail(message):
+    raise RuntimeError(message)
+
+
+def load(path):
+    return json.loads(path.read_text(encoding="utf-8"))
+
+
+def asset_path(url):
+    return ROOT / url
+
+
+def main():
+    manifest = load(MANIFEST)
+    assets = {asset["kind"] + (f":{asset['year']}" if asset.get("year") else ""): asset for asset in manifest["assets"]}
+    expected = {"sigif_points:2025": 281, "sigif_points:2026": 143, "effis_perimeters:2025": 9,
+                "effis_perimeters:2026": 16, "link_candidates_visible": 11, "link_candidates_debug": 42}
+    for key, count in expected.items():
+        asset = assets.get(key)
+        if not asset or asset["feature_count"] != count:
+            fail(f"Unexpected count for {key}")
+        payload = asset_path(asset["url"]).read_bytes()
+        actual = {"bytes": len(payload), "gzip_bytes": len(gzip.compress(payload, compresslevel=9)), "sha256": hashlib.sha256(payload).hexdigest()}
+        if any(actual[field] != asset[field] for field in actual):
+            fail(f"Integrity mismatch for {key}")
+
+    sigif_2025 = load(asset_path(assets["sigif_points:2025"]["url"]))["features"]
+    effis_2025 = load(asset_path(assets["effis_perimeters:2025"]["url"]))["features"]
+    effis_2026 = load(asset_path(assets["effis_perimeters:2026"]["url"]))["features"]
+    candidates = load(asset_path(assets["link_candidates_visible"]["url"]))
+    ibi_sigif = [item for item in sigif_2025 if item["properties"]["municipality"] == "Ibi" and item["properties"]["place_name"] == "Sant Pasqual"]
+    ibi_effis = [item for item in effis_2025 if item["properties"]["effis_id"] == "275862"]
+    ibi_links = [item for item in candidates if item["effis_id"] == "275862"]
+    if len(ibi_sigif) != 1 or len(ibi_effis) != 1 or len(ibi_links) != 1:
+        fail("Ibi acceptance records missing")
+    if ibi_links[0]["candidate_strength"] != "strong_candidate" or ibi_links[0]["score"] != 90 or ibi_links[0]["link_status"] != "candidate":
+        fail("Ibi candidate was changed or confirmed")
+    if ibi_sigif[0]["properties"]["entity_id"] == ibi_effis[0]["properties"]["entity_id"]:
+        fail("SIGIF and EFFIS identities were merged")
+    for effis_id in ("570518", "612812"):
+        matches = [item for item in effis_2026 if item["properties"]["effis_id"] == effis_id]
+        if len(matches) != 1 or matches[0]["properties"]["date"] <= "2026-06-30":
+            fail(f"Post-cutoff case missing: {effis_id}")
+    coverage = {item["year"]: item for item in manifest["coverage"]}
+    if coverage[2026]["coverage_complete"] is not False or coverage[2026]["sigif_max_date"] != "2026-06-30":
+        fail("2026 incomplete coverage lost")
+    for collection in (sigif_2025, effis_2025, effis_2026):
+        if any("original_attributes" in item["properties"] for item in collection):
+            fail("Raw original_attributes leaked into web assets")
+
+    with tempfile.TemporaryDirectory() as directory:
+        public = subprocess.run([sys.executable, str(ROOT / "scripts/build_frontend_profile.py"), "--profile", "public", "--output", str(Path(directory) / "public.json")], capture_output=True, text=True)
+        blocked = subprocess.run([sys.executable, str(ROOT / "scripts/build_frontend_profile.py"), "--profile", "public", "--include-source", "sigif", "--output", str(Path(directory) / "blocked.json")], capture_output=True, text=True)
+        if public.returncode or blocked.returncode == 0:
+            fail("Public profile guard failed")
+    total = sum(asset["bytes"] for asset in manifest["assets"])
+    gzip_total = sum(asset["gzip_bytes"] for asset in manifest["assets"])
+    print(json.dumps({"status": "passed", "assets": 6, "bytes": total, "gzip_bytes": gzip_total,
+                      "sigif": {"2025": 281, "2026": 143}, "effis": {"2025": 9, "2026": 16},
+                      "visible_candidates": 11, "weak_debug_candidates": 42, "public_guard": "passed"}, indent=2))
+
+
+if __name__ == "__main__":
+    try:
+        main()
+    except (RuntimeError, OSError, KeyError, ValueError, json.JSONDecodeError) as error:
+        print(f"recent frontend validation failed: {error}", file=sys.stderr)
+        sys.exit(1)

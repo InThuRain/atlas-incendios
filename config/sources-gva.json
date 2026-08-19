@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "territory": "comunitat_valenciana",
+  "timeline": {
+    "min_year": 1993,
+    "default_year": 2026
+  },
+  "query": {
+    "sigif_proximity_m": 5000,
+    "show_candidate_strengths": ["strong_candidate", "possible_candidate"],
+    "debug_candidate_strengths": ["weak_candidate"]
+  },
+  "profiles": {
+    "development": {
+      "sources": ["icv", "sigif", "effis"]
+    },
+    "public": {
+      "sources": ["effis"]
+    }
+  },
+  "sources": {
+    "icv": {
+      "label": "Institut Cartogràfic Valencià / Generalitat Valenciana",
+      "short_label": "ICV",
+      "entity_type": "official_consolidated_perimeter",
+      "source_status": "consolidated_official",
+      "geometry_quality": "A_official_vector",
+      "year_min": 1993,
+      "year_max": 2024,
+      "publishable": false,
+      "license_status": "blocked_pending_written_clarification",
+      "attribution": "Incendios forestales de la Comunitat Valenciana (1993–2024) CC BY 4.0 © Institut Cartogràfic Valencià, Generalitat Valenciana",
+      "methodology_url": "https://dadesobertes.gva.es/dataset/incendios-forestales-de-la-comunitat-valenciana-1993-2024"
+    },
+    "sigif": {
+      "label": "SIGIF / Generalitat Valenciana",
+      "short_label": "SIGIF/GVA",
+      "entity_type": "provisional_administrative_record",
+      "source_status": "provisional_administrative",
+      "geometry_quality": "start_point_epsg25830_transformed_to_epsg4326",
+      "year_min": 2025,
+      "year_max": 2026,
+      "publishable": false,
+      "license_status": "blocked_pending_written_clarification",
+      "attribution": "Estadísticas provisionales de incendios forestales, SIGIF / Generalitat Valenciana",
+      "methodology_url": "https://prevencionincendiosgva.es/Incendios/EstadisticasProvisionales"
+    },
+    "effis": {
+      "label": "European Forest Fire Information System (EFFIS) / Copernicus EMS",
+      "short_label": "EFFIS/Copernicus",
+      "entity_type": "provisional_satellite_perimeter",
+      "source_status": "provisional_satellite",
+      "geometry_quality": "B_provisional_satellite",
+      "year_min": 2025,
+      "year_max": 2026,
+      "publishable": true,
+      "license_status": "CC_BY_4_0_attribution_and_modification_notice_required",
+      "attribution": "European Union, Copernicus EMS / EFFIS (CC BY 4.0); selección espacial y reducción de atributos realizadas por el Atlas",
+      "methodology_url": "https://effis.jrc.ec.europa.eu/about-effis/technical-background/rapid-damage-assessment"
+    }
+  }
+}

@@ -122,6 +122,29 @@ identidad administrativa y el ICV no tiene capas posteriores a 2024.
 revisión; un `id` EFFIS nunca se convierte por sí solo en `fire_id`, y la
 promoción de una fuente posterior no elimina la procedencia histórica.
 
+## 2026-08-19 — Catálogo de fuentes y perfiles de distribución cerrados por defecto
+
+La disponibilidad técnica de una fuente se separa de su permiso de
+redistribución en `config/sources-gva.json`. El build `development` puede
+referenciar los tres conjuntos locales; el build `public` incluye únicamente
+fuentes con `publishable=true` y termina con error si se fuerza una fuente
+bloqueada.
+
+Los registros ICV, SIGIF y EFFIS conservan entidades, métricas y simbología
+independientes. Las relaciones SIGIF–EFFIS siguen siendo candidatos puntuados,
+no fusiones ni confirmaciones. El timeline obtiene sus límites de los
+manifiestos y no contiene un `maxYear` fijado en el componente.
+
+**Motivo:** ICV y SIGIF están técnicamente disponibles en local pero todavía no
+hay base documental suficiente para redistribuir sus derivados. EFFIS tiene
+otra autoridad y metodología. Centralizar el control evita publicar por error
+una fuente bloqueada o presentar varias medidas como una sola.
+
+**Consecuencias:** añadir un año o fuente exige actualizar datos y catálogo, no
+reescribir el timeline. Cualquier perfil público futuro falla de forma segura
+hasta que el estado legal se cambie explícitamente. Promover una geometría
+oficial posterior no borrará la geometría EFFIS ni su procedencia.
+
 ## Plantilla para nuevas decisiones
 
 ```markdown

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Capture desktop/mobile CV-1.5 screenshots after data loading completes."""
+"""Capture desktop/mobile viewer screenshots after data loading completes."""
 
 import argparse
 import threading

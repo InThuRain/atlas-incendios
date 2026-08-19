@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="Atlas histórico de perímetros de incendios forestales de la Comunitat Valenciana, 1993–2024.">
+  <meta name="description" content="Atlas de incendios forestales de la Comunitat Valenciana: histórico consolidado y datos recientes provisionales.">
   <title>Atlas de incendios · Comunitat Valenciana</title>
   <link rel="preconnect" href="https://unpkg.com">
   <link rel="preconnect" href="https://tile.openstreetmap.org">
@@ -14,7 +14,7 @@
   <main id="app">
     <aside id="sidebar" aria-label="Controles y resultados">
       <header class="brand">
-        <p class="eyebrow">1993–2024 · datos cartográficos ICV</p>
+        <p id="coverage-eyebrow" class="eyebrow">Cobertura definida por los manifiestos</p>
         <h1>Atlas histórico de incendios</h1>
         <p class="intro">Explora los incendios identificados y sus perímetros disponibles en toda la Comunitat Valenciana.</p>
       </header>
@@ -37,16 +37,27 @@
       <section class="panel" aria-labelledby="time-title">
         <div class="section-heading">
           <h2 id="time-title">Periodo</h2>
-          <button id="full-period" type="button" class="text-button">1993–2024</button>
+          <button id="full-period" type="button" class="text-button">Periodo completo</button>
         </div>
         <div class="range-row">
-          <label for="year-from">Desde <output id="year-from-value">2024</output></label>
-          <input id="year-from" type="range" min="1993" max="2024" value="2024">
+          <label for="year-from">Desde <output id="year-from-value">—</output></label>
+          <input id="year-from" type="range">
         </div>
         <div class="range-row">
-          <label for="year-to">Hasta <output id="year-to-value">2024</output></label>
-          <input id="year-to" type="range" min="1993" max="2024" value="2024">
+          <label for="year-to">Hasta <output id="year-to-value">—</output></label>
+          <input id="year-to" type="range">
         </div>
+      </section>
+
+      <section class="panel" aria-labelledby="sources-title">
+        <h2 id="sources-title">Fuentes visibles</h2>
+        <div id="source-filters" class="source-filters"></div>
+        <p class="help">Las fuentes permanecen separadas aunque exista una correspondencia candidata.</p>
+      </section>
+
+      <section id="coverage-panel" class="panel coverage-panel" aria-labelledby="coverage-title">
+        <h2 id="coverage-title">Cobertura y provisionalidad</h2>
+        <div id="coverage-detail" class="result-copy">Leyendo cobertura de los manifiestos…</div>
       </section>
 
       <section class="panel" aria-labelledby="filters-title">
@@ -79,19 +90,14 @@
         <label class="check-row"><input id="gif-only" type="checkbox"> Mostrar solo GIF ≥ 500 ha</label>
       </section>
 
-      <section class="metrics" aria-label="Resumen de elementos visibles">
-        <div class="metric"><strong id="metric-fires">—</strong><span>incendios visibles</span></div>
-        <div class="metric"><strong id="metric-perimeters">—</strong><span>perímetros visibles</span></div>
-        <div class="metric"><strong id="metric-area">—</strong><span>ha forestales declaradas</span></div>
-        <div class="metric"><strong id="metric-gif">—</strong><span>GIF ≥ 500 ha</span></div>
-      </section>
+      <section id="metrics" class="metrics" aria-label="Resumen separado por fuente"></section>
 
       <section class="panel" aria-labelledby="histogram-title">
         <div class="section-heading">
-          <h2 id="histogram-title">Incendios por año</h2>
-          <span class="microcopy">fire_id únicos</span>
+          <h2 id="histogram-title">Elementos por año y fuente</h2>
+          <span class="microcopy">sin fusionar fuentes</span>
         </div>
-        <div id="histogram" class="histogram" aria-label="Histograma de incendios por año"></div>
+        <div id="histogram" class="histogram" aria-label="Histograma de elementos por año"></div>
         <p class="help">Pulsa una barra para seleccionar únicamente ese año.</p>
       </section>
 
@@ -99,29 +105,35 @@
         <h2 id="history-title">Historia de un lugar</h2>
         <button id="point-query" type="button" class="primary full-width">Consultar un punto del mapa</button>
         <p id="point-hint" class="notice" hidden>Selecciona un punto. Mientras este modo esté activo no se abrirán fichas de perímetros.</p>
-        <div id="point-history" class="result-copy">La consulta respetará el periodo y los filtros activos.</div>
+        <div id="point-history" class="result-copy">Se consultarán por separado perímetros ICV, perímetros EFFIS y puntos SIGIF próximos.</div>
       </section>
 
       <section id="details-panel" class="panel" aria-labelledby="details-title">
-        <h2 id="details-title">Ficha del incendio</h2>
-        <div id="details" class="result-copy">Selecciona un perímetro en el mapa o un incendio de la lista.</div>
+        <h2 id="details-title">Ficha del elemento</h2>
+        <div id="details" class="result-copy">Selecciona un perímetro o un punto en el mapa.</div>
       </section>
 
       <section class="panel" aria-labelledby="list-title">
-        <h2 id="list-title">Mayores incendios visibles</h2>
+        <h2 id="list-title">Elementos visibles destacados</h2>
         <div id="fire-list" class="fire-list"></div>
       </section>
 
-      <footer class="data-note">
-        <p><strong>Cobertura:</strong> perímetros cartografiados por el ICV; no equivalen a un inventario estadístico completo de todos los incendios.</p>
-        <p><strong>Calidad geométrica:</strong> provisional/no asignada. No se interpreta la igualdad geométrica como recurrencia.</p>
-        <p><a id="source-link" href="#" target="_blank" rel="noopener">Fuente y condiciones de uso</a> · <span id="active-period">2024</span></p>
-      </footer>
+      <section class="panel methodology" aria-labelledby="methodology-title">
+        <h2 id="methodology-title">Fuentes y metodología</h2>
+        <div id="methodology-content" class="result-copy"></div>
+        <p class="notice">Este atlas es un proyecto independiente y no es un producto oficial del ICV, la Generalitat Valenciana, EFFIS ni Copernicus.</p>
+      </section>
+      <footer class="data-note"><p>No se interpreta la igualdad geométrica ni una correspondencia candidata como recurrencia o identidad confirmada.</p><p>Periodo activo: <span id="active-period">—</span></p></footer>
     </aside>
 
     <section id="map-region" aria-label="Mapa de incendios">
       <div id="map"></div>
-      <div class="map-legend" aria-hidden="true"><span class="legend-old"></span> más antiguo <span class="legend-new"></span> más reciente</div>
+      <div class="map-legend" aria-label="Leyenda de fuentes">
+        <div class="temporal-legend"><span class="temporal-gradient"></span><span id="legend-year-old">1993</span> más antiguo · más reciente <span id="legend-year-new">2026</span></div>
+        <span class="legend-symbol legend-icv"></span> Perímetro ICV · oficial consolidado<br>
+        <span class="legend-symbol legend-sigif"></span> Punto SIGIF · administrativo provisional<br>
+        <span class="legend-symbol legend-effis"></span> Perímetro EFFIS · satelital provisional
+      </div>
     </section>
   </main>
   <pre id="debug-output" hidden></pre>

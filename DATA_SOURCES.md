@@ -160,6 +160,23 @@ propuesta de incorporación están en `CV_2_1_SOURCE_INVENTORY.md` y
 licencias y caso Ibi–Font Roja se documentan en `CV_2_2_REPORT.md`; el pipeline
 usa `data/sources/gva_recent_pipeline.json`.
 
+### Derivados locales para el visor (CV-2.3)
+
+`scripts/build_recent_frontend_assets.py` reduce los campos del último snapshot
+procesado de CV-2.2 y genera GeoJSON web separados por fuente y año. Conserva
+identificadores internos y de fuente, adquisición, cobertura, provisionalidad y
+procedencia mínima. No incluye `original_attributes` ni sirve snapshots raw.
+
+El punto SIGIF se toma exclusivamente del campo derivado EPSG:4326 demostrado
+en CV-2.2; `X1`/`Y1` originales se mantienen como referencia. La geometría EFFIS
+no se simplifica en esta fase y se etiqueta `B_provisional_satellite`. Los
+candidatos strong/possible forman un asset de interfaz y los weak otro asset que
+solo se solicita con `quality_debug=1`.
+
+La disponibilidad técnica no cambia la autorización: ICV y SIGIF continúan con
+`publishable=false`; EFFIS figura como CC BY 4.0 con atribución y aviso de
+transformación. Ninguno de estos derivados se versiona ni publica todavía.
+
 ## 3. Fuentes autonómicas
 
 Para la versión española será necesario localizar las fuentes oficiales de cada comunidad autónoma.

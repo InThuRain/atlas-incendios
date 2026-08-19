@@ -209,3 +209,26 @@ Posibles plataformas:
 - servidor propio.
 
 Los archivos de datos grandes pueden requerir almacenamiento independiente.
+
+## Integración reciente y perfiles de build (CV-2.3)
+
+El frontend consume un manifiesto de ejecución compuesto a partir de
+`config/sources-gva.json`. La configuración concentra rango temporal, estado,
+licencia, permiso de redistribución y rol de cada fuente. No hay decisiones de
+publicación dispersas en el JavaScript.
+
+El recorrido de datos recientes es:
+
+```text
+raw CV-2.2 -> processed CV-2.2 -> web reducido CV-2.3 -> perfil de ejecución
+```
+
+El perfil `development` habilita los assets locales ICV, SIGIF y EFFIS. El
+perfil `public` solo admite fuentes con `publishable=true` y falla si se intenta
+forzar una fuente bloqueada. Componer un perfil no publica ni copia datos.
+
+Las entidades siguen separadas también en el navegador: `fire_id` ICV,
+`sigif_record_id` y `geometry_id`/`effis_id`. Los candidatos son relaciones
+puntuadas con estado `candidate`; nunca sustituyen esas identidades. Los
+puntos SIGIF y los polígonos EFFIS se cargan por año. Los atributos y perímetros
+ICV continúan con carga diferida por provincia, bloque temporal y zoom.

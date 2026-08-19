@@ -1,5 +1,6 @@
 __pycache__/
 *.py[cod]
+.venv/
 
 # Snapshots descargados: no redistribuir hasta verificar licencia y atribución.
 data/raw/gva/
