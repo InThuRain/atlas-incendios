@@ -1,0 +1,24 @@
+__pycache__/
+*.py[cod]
+
+# Snapshots descargados: no redistribuir hasta verificar licencia y atribución.
+data/raw/gva/
+
+# Salidas reproducibles con atributos y geometría ICV original.
+data/processed/gva/*.jsonl
+data/processed/gva/manifest.json
+data/processed/gva/report.json
+data/processed/gva/duplicate_geometry_report.json
+data/processed/gva/duplicate_geometry_report.csv
+
+# Derivados web y matrices de benchmark reproducibles. No redistribuir hasta
+# verificar licencia; la matriz CV-1.4 contiene muchas variantes redundantes.
+data/derived/gva/web/
+data/derived/gva/frontend/
+
+# Subconjunto estático candidato para producción. Mantener local hasta cerrar
+# atribución/licencia ICV; se reconstruye con scripts/build_frontend_assets.py.
+data/web/gva/
+
+# Dependencias locales de los benchmarks JavaScript.
+benchmarks/gva_web/node_modules/

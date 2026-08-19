@@ -53,6 +53,29 @@ Se utilizarán geometrías simplificadas/teselas y mayor detalle al acercarse.
 
 Los datos y el frontend deben poder evolucionar independientemente.
 
+## 2026-08-19 — Frontend valenciano estático guiado por manifiesto
+
+El visor de la Comunitat Valenciana descubre los derivados web mediante un único
+manifiesto versionable. Usa `overview` hasta zoom 8, `regional` en zoom 9–10 y
+`local` desde zoom 11. En cada cambio sustituye el nivel anterior y conserva en
+memoria los bloques ya descargados. La unidad de carga es provincia × bloque
+temporal y la sesión empieza en el último año disponible, actualmente 2024.
+
+El navegador no consulta ArcGIS: GitHub Pages sirve el frontend y los GeoJSON
+como archivos estáticos. `fire_id` y `geometry_id` permanecen separados y la
+igualdad geométrica auditada solo genera una advertencia, nunca recurrencia.
+
+**Motivo:** el arranque autonómico medido requiere tres bloques `overview` y
+transfiere unos 909 kB gzip de datos de aplicación. Mantiene una mediana local de
+22 ms de render tanto en escritorio como en la emulación móvil probada. La vista
+completa 1993–2024 sigue siendo posible, pero eleva el heap medido a unos 161 MiB,
+por lo que no debe ser la carga inicial.
+
+**Consecuencias:** añadir años o cambiar particiones no exige reescribir el
+frontend si se actualiza el manifiesto. El subconjunto candidato contiene 38
+archivos y continúa ignorado por Git hasta completar la revisión operativa de
+licencia, atribución y redistribución del ICV.
+
 ## Plantilla para nuevas decisiones
 
 ```markdown

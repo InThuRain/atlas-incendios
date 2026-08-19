@@ -1,15 +1,133 @@
-<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Atlas de incendios · Mariola–Font Roja v3</title><link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"><style>
-*{box-sizing:border-box}html,body{height:100%;margin:0;font-family:system-ui,sans-serif;color:#18232d}#app{height:100%;display:grid;grid-template-columns:360px 1fr}#side{overflow:auto;padding:15px;border-right:1px solid #dde3e7}#map{height:100%;min-height:550px;background:#e8edef}h1{font-size:1.15rem;margin:0 0 5px}.intro,.small{font-size:.76rem;color:#65717b;line-height:1.4}.sec{border-top:1px solid #e1e6e9;padding-top:11px;margin-top:12px}.sec h2{font-size:.87rem;margin:0 0 8px}label{display:block;font-size:.78rem;font-weight:650;margin:6px 0 3px}input[type=range]{width:100%}select{width:100%;padding:7px;border:1px solid #ccd5da;border-radius:7px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}.btns{display:grid;grid-template-columns:1fr 1fr;gap:7px}button{border:0;border-radius:8px;padding:8px;font-weight:650;cursor:pointer}.p{background:#294d68;color:#fff}.s{background:#edf2f5;color:#24333e}.metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:10px}.m{background:#f4f7f8;padding:8px;border-radius:8px}.m b{display:block}.m span{font-size:.67rem;color:#68737c}#status{font-size:.75rem;background:#f4f7f8;padding:8px;border-radius:7px;margin-top:8px;white-space:pre-wrap}#status.err{background:#fff0ef;color:#7b211e}#bars{display:flex;align-items:flex-end;gap:1px;height:70px;border-bottom:1px solid #ccd4d9}.bar{flex:1;min-width:2px;background:#294d68;opacity:.7;cursor:pointer}.row{font-size:.76rem;padding:6px 0;border-bottom:1px solid #edf0f2;cursor:pointer}.row:hover{background:#f7f9fa}.hint{font-size:.75rem;background:#fff8df;border:1px solid #ead88c;padding:7px;border-radius:7px;margin-top:7px}.pill{display:inline-block;background:#edf2f5;border-radius:999px;padding:3px 7px;margin:2px;font-size:.7rem}@media(max-width:760px){#app{grid-template-columns:1fr;grid-template-rows:auto 68vh;height:auto}#side{border-right:0;border-bottom:1px solid #ddd}#map{height:68vh}}
-</style></head><body><div id="app"><aside id="side"><h1>Atlas histórico de incendios</h1><div class="intro">Prototipo Mariola–Font Roja · perímetros oficiales cartografiados 1993–2024.</div><div class="btns"><button id="load" class="p">Cargar 1993–2024</button><button id="home" class="s">Volver a la zona</button></div><div id="status">Preparando mapa…</div>
-<div class="sec"><h2>Tiempo</h2><label>Desde <b id="fv">1993</b></label><input id="from" type="range" min="1993" max="2024" value="1993"><label>Hasta <b id="tv">2024</b></label><input id="to" type="range" min="1993" max="2024" value="2024"></div>
-<div class="sec"><h2>Filtros</h2><div class="grid"><div><label>Superficie mínima</label><select id="min"><option value="0">Todas</option><option value="10">≥10 ha</option><option value="100">≥100 ha</option><option value="500">≥500 ha (GIF)</option><option value="1000">≥1.000 ha</option></select></div><div><label>Causa</label><select id="cause"><option value="">Todas</option></select></div></div></div>
-<div class="metrics"><div class="m"><b id="mc">—</b><span>incendios</span></div><div class="m"><b id="mh">—</b><span>ha declaradas</span></div><div class="m"><b id="mg">—</b><span>GIF ≥500 ha</span></div></div>
-<div class="sec"><h2>Incendios por año</h2><div id="bars"></div><div class="small">Pulsa una barra para aislar ese año.</div></div>
-<div class="sec"><h2>Historia de un lugar</h2><button id="point" class="s" style="width:100%">Consultar un punto del mapa</button><div id="hint" class="hint" style="display:none">Pulsa un punto del mapa; buscaré todos los perímetros cargados que lo contienen.</div><div id="history" class="small" style="margin-top:7px">Carga primero el historial completo.</div></div>
-<div class="sec"><h2>Mayores incendios visibles</h2><div id="list"></div></div>
-<div class="sec small"><b>Nota:</b> la propia Generalitat advierte de que no todos los incendios del periodo están cartografiados. Este visor representa perímetros disponibles; EGIF será la referencia estadística nacional en la futura versión España.</div></aside><div id="map"></div></div>
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script><script src="https://unpkg.com/esri-leaflet@3.0.15/dist/esri-leaflet.js"></script><script src="https://cdn.jsdelivr.net/npm/@turf/turf@7.2.0/turf.min.js"></script><script>
-(()=>{if(typeof L==='undefined')return;const openPopup=L.Layer.prototype._openPopup;L.Layer.prototype._openPopup=function(event){const hint=document.getElementById('hint');if(hint&&hint.style.display==='block')return;return openPopup.call(this,event)}})();
-</script><script>
-(()=>{const $=x=>document.getElementById(x),st=$('status');if(typeof L==='undefined'||!L.esri){st.className='err';st.textContent='No se pudieron cargar las librerías del mapa. Se necesita conexión a Internet.';return}const map=L.map('map',{preferCanvas:true}),study=L.latLngBounds([[38.48,-.91],[38.93,-.20]]);map.fitBounds(study);L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,attribution:'&copy; OpenStreetMap'}).addTo(map);L.rectangle(study,{color:'#666',weight:1,dashArray:'5,5',fill:false,opacity:.3}).addTo(map);const ids={};for(let y=1993;y<=2020;y++)ids[y]=y-1992;Object.assign(ids,{2021:101,2022:102,2023:120,2024:121});const root='https://carto.icv.gva.es/arcgis/rest/services/Prevencion_de_incendios2/MapServer/';let all=[],group=L.layerGroup().addTo(map),full=false,pm=false,marker=null;const val=(p,ns)=>{for(const n of ns)if(p&&p[n]!=null&&p[n]!=='')return p[n];return'—'},area=p=>Number(val(p,['sup_f','SUP_F']))||0,cause=p=>String(val(p,['g_caus_txt','G_CAUS_TXT'])),mun=p=>String(val(p,['nom_mun','NOM_MUN'])),par=p=>String(val(p,['paraje','PARAJE'])),date=p=>String(val(p,['f_detec','F_DETEC'])),num=n=>Number(n).toLocaleString('es-ES',{maximumFractionDigits:2}),esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));function col(y,a,b){const t=(y-a)/Math.max(1,b-a),A=[44,123,182],B=[240,59,32],c=A.map((v,i)=>Math.round(v+(B[i]-v)*t));return`rgb(${c})`}function query(y){return new Promise((res,rej)=>L.esri.query({url:root+ids[y],useCors:true}).intersects(study).where('1=1').fields('*').returnGeometry(true).run((e,fc)=>e?rej(new Error(e.message||'Error ArcGIS')):res(fc||{features:[]})))}function pop(x){const p=x.f.properties||{};return`<b>${x.y} · ${esc(mun(p))}</b><br>${esc(par(p))}<br><b>Fecha:</b> ${esc(date(p))}<br><b>Causa:</b> ${esc(cause(p))}<br><b>Superficie:</b> ${num(area(p))} ha`}async function load(){if(full){st.textContent='El historial ya está cargado.';return}$('load').disabled=true;all=[];let done=0,fail=[];for(let a=1993;a<=2024;a+=4){const ys=[a,a+1,a+2,a+3].filter(y=>y<=2024),rr=await Promise.all(ys.map(async y=>{try{return{y,fc:await query(y)}}catch(e){return{y,e}}}));for(const r of rr){done++;if(r.e){fail.push(r.y);continue}for(const f of(r.fc.features||[])){const g=L.geoJSON(f);all.push({y:r.y,f,g,b:g.getBounds(),a:area(f.properties||{}),c:cause(f.properties||{}),m:mun(f.properties||{})})}}st.textContent=`Cargando ${done}/32 años · ${all.length} perímetros`}full=fail.length===0;$('load').disabled=false;causes();render();st.textContent=fail.length?`Carga parcial. Fallaron: ${fail.join(', ')}. Puedes reintentarlo.`:`Historial cargado: ${all.length} perímetros cartografiados.`;if(fail.length)st.className='err'}function causes(){const cs=[...new Set(all.map(x=>x.c).filter(x=>x!=='—'))].sort((a,b)=>a.localeCompare(b,'es'));$('cause').innerHTML='<option value="">Todas</option>'+cs.map(c=>`<option>${esc(c)}</option>`).join('')}function sel(){const a=+$('from').value,b=+$('to').value,m=+$('min').value,c=$('cause').value;return all.filter(x=>x.y>=a&&x.y<=b&&x.a>=m&&(!c||x.c===c))}function render(){group.clearLayers();const s=sel(),a=+$('from').value,b=+$('to').value;for(const x of s){const C=col(x.y,a,b);x.g.setStyle({color:C,weight:1.2,fillColor:C,fillOpacity:.28}).bindPopup(pop(x)).addTo(group)}$('mc').textContent=num(s.length);$('mh').textContent=num(s.reduce((z,x)=>z+x.a,0));$('mg').textContent=num(s.filter(x=>x.a>=500).length);bars(s,a,b);list(s)}function bars(s,a,b){const c={};for(let y=a;y<=b;y++)c[y]=0;s.forEach(x=>c[x.y]++);const mx=Math.max(1,...Object.values(c));$('bars').innerHTML='';for(let y=a;y<=b;y++){const d=document.createElement('div');d.className='bar';d.style.height=(c[y]/mx*100)+'%';d.title=`${y}: ${c[y]}`;d.onclick=()=>{$('from').value=y;$('to').value=y;sync();render()};$('bars').appendChild(d)}}function list(s){const d=$('list');d.innerHTML='';[...s].sort((a,b)=>b.a-a.a).slice(0,60).forEach(x=>{const r=document.createElement('div');r.className='row';r.innerHTML=`<b>${x.y} · ${esc(x.m)} · ${num(x.a)} ha</b><span class="small">${esc(par(x.f.properties||{}))} · ${esc(x.c)}</span>`;r.onclick=()=>{map.fitBounds(x.b,{padding:[25,25],maxZoom:15});const l=x.g.getLayers()[0];if(l)setTimeout(()=>l.openPopup(),220)};d.appendChild(r)})}function sync(ch){if(+$('from').value>+$('to').value){if(ch==='f')$('to').value=$('from').value;else $('from').value=$('to').value}$('fv').textContent=$('from').value;$('tv').textContent=$('to').value}$('from').oninput=()=>{sync('f');render()};$('to').oninput=()=>{sync('t');render()};$('min').onchange=render;$('cause').onchange=render;$('load').onclick=load;$('home').onclick=()=>map.fitBounds(study);$('point').onclick=()=>{pm=!pm;$('hint').style.display=pm?'block':'none';map.getContainer().style.cursor=pm?'crosshair':''};map.on('click',e=>{if(!pm)return;pm=false;$('hint').style.display='none';map.getContainer().style.cursor='';if(marker)map.removeLayer(marker);marker=L.circleMarker(e.latlng,{radius:6,color:'#111',fillColor:'#fff',fillOpacity:1}).addTo(map);const pt=turf.point([e.latlng.lng,e.latlng.lat]),hits=[];for(const x of all){try{if(x.b.contains(e.latlng)&&turf.booleanPointInPolygon(pt,x.f))hits.push(x)}catch(_){} }hits.sort((a,b)=>a.y-b.y);$('history').innerHTML=(full?'':'<b>Resultado parcial.</b><br>')+(hits.length?`<b>${hits.length} incendio${hits.length>1?'s':''}</b>: `+hits.map(x=>`<span class="pill">${x.y}</span>`).join('')+hits.map(x=>`<div class="row"><b>${x.y} · ${esc(x.m)} · ${num(x.a)} ha</b>${esc(par(x.f.properties||{}))}</div>`).join(''):'Ningún perímetro cargado contiene este punto.')});sync();st.textContent='Mapa preparado. Pulsa «Cargar 1993–2024».'})();
-</script></body></html>
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Atlas histórico de perímetros de incendios forestales de la Comunitat Valenciana, 1993–2024.">
+  <title>Atlas de incendios · Comunitat Valenciana</title>
+  <link rel="preconnect" href="https://unpkg.com">
+  <link rel="preconnect" href="https://tile.openstreetmap.org">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+  <main id="app">
+    <aside id="sidebar" aria-label="Controles y resultados">
+      <header class="brand">
+        <p class="eyebrow">1993–2024 · datos cartográficos ICV</p>
+        <h1>Atlas histórico de incendios</h1>
+        <p class="intro">Explora los incendios identificados y sus perímetros disponibles en toda la Comunitat Valenciana.</p>
+      </header>
+
+      <section class="panel territory-panel" aria-labelledby="territory-title">
+        <div class="section-heading">
+          <h2 id="territory-title">Ir a</h2>
+          <span id="level-badge" class="badge">overview</span>
+        </div>
+        <div class="territory-buttons">
+          <button type="button" data-territory="comunitat_valenciana" class="territory-button wide">Comunitat Valenciana</button>
+          <button type="button" data-territory="castellon" class="territory-button">Castellón</button>
+          <button type="button" data-territory="valencia" class="territory-button">Valencia</button>
+          <button type="button" data-territory="alicante" class="territory-button">Alicante</button>
+          <button type="button" data-territory="mariola_font_roja" class="territory-button wide secondary">Mariola–Font Roja</button>
+        </div>
+        <div id="status" class="status" role="status" aria-live="polite">Preparando el visor…</div>
+      </section>
+
+      <section class="panel" aria-labelledby="time-title">
+        <div class="section-heading">
+          <h2 id="time-title">Periodo</h2>
+          <button id="full-period" type="button" class="text-button">1993–2024</button>
+        </div>
+        <div class="range-row">
+          <label for="year-from">Desde <output id="year-from-value">2024</output></label>
+          <input id="year-from" type="range" min="1993" max="2024" value="2024">
+        </div>
+        <div class="range-row">
+          <label for="year-to">Hasta <output id="year-to-value">2024</output></label>
+          <input id="year-to" type="range" min="1993" max="2024" value="2024">
+        </div>
+      </section>
+
+      <section class="panel" aria-labelledby="filters-title">
+        <h2 id="filters-title">Filtros</h2>
+        <div class="form-grid">
+          <label>Provincia
+            <select id="province-filter">
+              <option value="all">Visibles en el mapa</option>
+              <option value="castellon">Castellón</option>
+              <option value="valencia">Valencia</option>
+              <option value="alicante">Alicante</option>
+            </select>
+          </label>
+          <label>Municipio
+            <select id="municipality-filter"><option value="">Todos</option></select>
+          </label>
+          <label>Superficie mínima
+            <select id="minimum-area">
+              <option value="0">Todas</option>
+              <option value="10">≥ 10 ha</option>
+              <option value="100">≥ 100 ha</option>
+              <option value="500">≥ 500 ha</option>
+              <option value="1000">≥ 1.000 ha</option>
+            </select>
+          </label>
+          <label>Causa
+            <select id="cause-filter"><option value="">Todas</option></select>
+          </label>
+        </div>
+        <label class="check-row"><input id="gif-only" type="checkbox"> Mostrar solo GIF ≥ 500 ha</label>
+      </section>
+
+      <section class="metrics" aria-label="Resumen de elementos visibles">
+        <div class="metric"><strong id="metric-fires">—</strong><span>incendios visibles</span></div>
+        <div class="metric"><strong id="metric-perimeters">—</strong><span>perímetros visibles</span></div>
+        <div class="metric"><strong id="metric-area">—</strong><span>ha forestales declaradas</span></div>
+        <div class="metric"><strong id="metric-gif">—</strong><span>GIF ≥ 500 ha</span></div>
+      </section>
+
+      <section class="panel" aria-labelledby="histogram-title">
+        <div class="section-heading">
+          <h2 id="histogram-title">Incendios por año</h2>
+          <span class="microcopy">fire_id únicos</span>
+        </div>
+        <div id="histogram" class="histogram" aria-label="Histograma de incendios por año"></div>
+        <p class="help">Pulsa una barra para seleccionar únicamente ese año.</p>
+      </section>
+
+      <section class="panel" aria-labelledby="history-title">
+        <h2 id="history-title">Historia de un lugar</h2>
+        <button id="point-query" type="button" class="primary full-width">Consultar un punto del mapa</button>
+        <p id="point-hint" class="notice" hidden>Selecciona un punto. Mientras este modo esté activo no se abrirán fichas de perímetros.</p>
+        <div id="point-history" class="result-copy">La consulta respetará el periodo y los filtros activos.</div>
+      </section>
+
+      <section id="details-panel" class="panel" aria-labelledby="details-title">
+        <h2 id="details-title">Ficha del incendio</h2>
+        <div id="details" class="result-copy">Selecciona un perímetro en el mapa o un incendio de la lista.</div>
+      </section>
+
+      <section class="panel" aria-labelledby="list-title">
+        <h2 id="list-title">Mayores incendios visibles</h2>
+        <div id="fire-list" class="fire-list"></div>
+      </section>
+
+      <footer class="data-note">
+        <p><strong>Cobertura:</strong> perímetros cartografiados por el ICV; no equivalen a un inventario estadístico completo de todos los incendios.</p>
+        <p><strong>Calidad geométrica:</strong> provisional/no asignada. No se interpreta la igualdad geométrica como recurrencia.</p>
+        <p><a id="source-link" href="#" target="_blank" rel="noopener">Fuente y condiciones de uso</a> · <span id="active-period">2024</span></p>
+      </footer>
+    </aside>
+
+    <section id="map-region" aria-label="Mapa de incendios">
+      <div id="map"></div>
+      <div class="map-legend" aria-hidden="true"><span class="legend-old"></span> más antiguo <span class="legend-new"></span> más reciente</div>
+    </section>
+  </main>
+  <pre id="debug-output" hidden></pre>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@turf/turf@7.2.0/turf.min.js"></script>
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>

@@ -36,6 +36,9 @@ Objetivo: tener un piloto local fiable y agradable de usar.
 - [ ] Crear dataset único normalizado.
 - [ ] Relacionar con EGIF cuando sea posible.
 - [ ] Probar rendimiento regional.
+- [x] Sustituir el prototipo Mariola–Font Roja por el primer visor estático de
+  toda la Comunitat Valenciana (CV-1.5: manifiesto, carga progresiva por zoom,
+  provincia y bloque temporal, sin consultas ArcGIS en el navegador).
 - [ ] Incorporar incendios sin geometría al modelo.
 
 ## Fase 4 — Modelo nacional
