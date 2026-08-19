@@ -100,6 +100,18 @@ python3 -m venv .venv
 Los tests de navegador requieren además Google Chrome o Chromium. Los datasets
 locales necesarios para los validadores continúan ignorados por Git.
 
+### Pipeline histórico EGIF 1968–1992
+
+La descarga y normalización valenciana de CV-3.2 se ejecuta con:
+
+```bash
+.venv/bin/python scripts/ingest/egif/gva_1968_1992.py all
+```
+
+Genera un manifiesto verificable y 9.175 partes administrativos con geometría
+nula. Los ZIP raw y las salidas procesadas se mantienen fuera de Git; véase
+`CV_3_2_EGIF_AUDIT.md` para alcance, identidad y limitaciones.
+
 ## Principio fundamental
 
 **Nunca dibujar un perímetro inventado.**

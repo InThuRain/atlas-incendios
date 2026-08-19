@@ -1,0 +1,390 @@
+{
+  "schema_version": 1,
+  "pipeline_version": "cv-3.2-1",
+  "phase": "CV-3.2",
+  "dataset": "EGIF Comunitat Valenciana 1968-1992",
+  "created_at": "2026-08-19T22:10:53Z",
+  "source_authority": "Ministerio para la Transición Ecológica y el Reto Demográfico",
+  "source_system": "Estadística General de Incendios Forestales (EGIF)",
+  "period": {
+    "start_year": 1968,
+    "end_year": 1992
+  },
+  "expected_total": 9175,
+  "downloaded_total": 9175,
+  "validation_status": "complete",
+  "provinces": [
+    {
+      "province": "Alicante",
+      "province_code": "03",
+      "search_province_id": 3,
+      "period": {
+        "start_year": 1968,
+        "end_year": 1992
+      },
+      "source_url": "https://servicio.mapa.gob.es/incendios/Search/Publico",
+      "export_endpoint": "https://servicio.mapa.gob.es/incendios/Search/Public_XmlZip",
+      "retrieved_at": "2026-08-19T21:27:18Z",
+      "raw_path": "data/raw/egif/gva/1968_1992/egif_03_1968_1992.zip",
+      "format": "ZIP containing complete EGIF XML export",
+      "size_bytes": 565322,
+      "sha256": "4c41efead6f26c2a5e7c1d0be96d3266262cd0e8d4eeb27325ab396e60deb98b",
+      "feature_count_expected": 2514,
+      "feature_count_service": 2514,
+      "feature_count_downloaded": 2514,
+      "annual_counts_expected": {
+        "1968": 52,
+        "1969": 21,
+        "1970": 43,
+        "1971": 18,
+        "1972": 0,
+        "1973": 26,
+        "1974": 63,
+        "1975": 50,
+        "1976": 69,
+        "1977": 48,
+        "1978": 125,
+        "1979": 96,
+        "1980": 135,
+        "1981": 237,
+        "1982": 90,
+        "1983": 105,
+        "1984": 100,
+        "1985": 99,
+        "1986": 88,
+        "1987": 137,
+        "1988": 115,
+        "1989": 115,
+        "1990": 222,
+        "1991": 259,
+        "1992": 201
+      },
+      "annual_counts_downloaded": {
+        "1968": 52,
+        "1969": 21,
+        "1970": 43,
+        "1971": 18,
+        "1972": 0,
+        "1973": 26,
+        "1974": 63,
+        "1975": 50,
+        "1976": 69,
+        "1977": 48,
+        "1978": 125,
+        "1979": 96,
+        "1980": 135,
+        "1981": 237,
+        "1982": 90,
+        "1983": 105,
+        "1984": 100,
+        "1985": 99,
+        "1986": 88,
+        "1987": 137,
+        "1988": 115,
+        "1989": 115,
+        "1990": 222,
+        "1991": 259,
+        "1992": 201
+      },
+      "province_counts_in_xml": {
+        "3": 2514
+      },
+      "members": [
+        {
+          "name": "Xml_20260819_232733_1.xml",
+          "size_bytes": 14069001,
+          "compressed_size_bytes": 565134,
+          "crc32": "ccbbe0e0"
+        }
+      ],
+      "search_criteria": "soypm=0_CA2=9_Pr2=3_AD=1968_AH=1992_ZIF=_TI=_AEP=-1",
+      "search_parameters": {
+        "txtNumAnioDesde": 1968,
+        "txtNumAnioHasta": 1992,
+        "cbxCCAA_Common2": 9,
+        "cbxProvincias_Common2": 3,
+        "hdd_ca2": 9,
+        "hdd_pr2": 3,
+        "hdd_pr2Aux": 3,
+        "hdd_soypm": 0,
+        "egif_pin": "<session-pin>",
+        "cbxNumPaginas": 100
+      },
+      "export_iterations": 1,
+      "download_url_template": "https://servicio.mapa.gob.es/incendios/Search/DescargaZipXml?guid=<session-guid>&pakete=<package>",
+      "validation_status": "complete",
+      "errors": [],
+      "warnings": [],
+      "xsd_schemas": [
+        {
+          "xml_member": "Xml_20260819_232733_1.xml",
+          "sha256": "8f7de846d6c9a3f2a2c0f0ee9546dfdc7e2f1a44c0fbc66fb5332df874d1a04a",
+          "element_declaration_count": 299
+        }
+      ],
+      "source_generated_at": [
+        "2026-08-19T23:27:33"
+      ]
+    },
+    {
+      "province": "Castellon",
+      "province_code": "12",
+      "search_province_id": 12,
+      "period": {
+        "start_year": 1968,
+        "end_year": 1992
+      },
+      "source_url": "https://servicio.mapa.gob.es/incendios/Search/Publico",
+      "export_endpoint": "https://servicio.mapa.gob.es/incendios/Search/Public_XmlZip",
+      "retrieved_at": "2026-08-19T21:27:18Z",
+      "raw_path": "data/raw/egif/gva/1968_1992/egif_12_1968_1992.zip",
+      "format": "ZIP containing complete EGIF XML export",
+      "size_bytes": 614194,
+      "sha256": "3ff4f7149666b572a2c898975e4876bae677ad4352a11101f359c3c04e713f45",
+      "feature_count_expected": 2600,
+      "feature_count_service": 2600,
+      "feature_count_downloaded": 2600,
+      "annual_counts_expected": {
+        "1968": 20,
+        "1969": 30,
+        "1970": 40,
+        "1971": 25,
+        "1972": 8,
+        "1973": 39,
+        "1974": 82,
+        "1975": 66,
+        "1976": 39,
+        "1977": 30,
+        "1978": 161,
+        "1979": 167,
+        "1980": 123,
+        "1981": 169,
+        "1982": 97,
+        "1983": 147,
+        "1984": 156,
+        "1985": 162,
+        "1986": 111,
+        "1987": 83,
+        "1988": 86,
+        "1989": 104,
+        "1990": 190,
+        "1991": 252,
+        "1992": 213
+      },
+      "annual_counts_downloaded": {
+        "1968": 20,
+        "1969": 30,
+        "1970": 40,
+        "1971": 25,
+        "1972": 8,
+        "1973": 39,
+        "1974": 82,
+        "1975": 66,
+        "1976": 39,
+        "1977": 30,
+        "1978": 161,
+        "1979": 167,
+        "1980": 123,
+        "1981": 169,
+        "1982": 97,
+        "1983": 147,
+        "1984": 156,
+        "1985": 162,
+        "1986": 111,
+        "1987": 83,
+        "1988": 86,
+        "1989": 104,
+        "1990": 190,
+        "1991": 252,
+        "1992": 213
+      },
+      "province_counts_in_xml": {
+        "12": 2600
+      },
+      "members": [
+        {
+          "name": "Xml_20260819_232757_1.xml",
+          "size_bytes": 14474014,
+          "compressed_size_bytes": 614006,
+          "crc32": "0edbdf2e"
+        }
+      ],
+      "search_criteria": "soypm=0_CA2=9_Pr2=12_AD=1968_AH=1992_ZIF=_TI=_AEP=-1",
+      "search_parameters": {
+        "txtNumAnioDesde": 1968,
+        "txtNumAnioHasta": 1992,
+        "cbxCCAA_Common2": 9,
+        "cbxProvincias_Common2": 12,
+        "hdd_ca2": 9,
+        "hdd_pr2": 12,
+        "hdd_pr2Aux": 12,
+        "hdd_soypm": 0,
+        "egif_pin": "<session-pin>",
+        "cbxNumPaginas": 100
+      },
+      "export_iterations": 1,
+      "download_url_template": "https://servicio.mapa.gob.es/incendios/Search/DescargaZipXml?guid=<session-guid>&pakete=<package>",
+      "validation_status": "complete",
+      "errors": [],
+      "warnings": [],
+      "xsd_schemas": [
+        {
+          "xml_member": "Xml_20260819_232757_1.xml",
+          "sha256": "8f7de846d6c9a3f2a2c0f0ee9546dfdc7e2f1a44c0fbc66fb5332df874d1a04a",
+          "element_declaration_count": 299
+        }
+      ],
+      "source_generated_at": [
+        "2026-08-19T23:27:56"
+      ]
+    },
+    {
+      "province": "Valencia",
+      "province_code": "46",
+      "search_province_id": 46,
+      "period": {
+        "start_year": 1968,
+        "end_year": 1992
+      },
+      "source_url": "https://servicio.mapa.gob.es/incendios/Search/Publico",
+      "export_endpoint": "https://servicio.mapa.gob.es/incendios/Search/Public_XmlZip",
+      "retrieved_at": "2026-08-19T21:27:18Z",
+      "raw_path": "data/raw/egif/gva/1968_1992/egif_46_1968_1992.zip",
+      "format": "ZIP containing complete EGIF XML export",
+      "size_bytes": 963591,
+      "sha256": "6c691ac49a4351d4eacc0dde7caf5f27221df65eb91ce1ed42787d97078f45f4",
+      "feature_count_expected": 4061,
+      "feature_count_service": 4061,
+      "feature_count_downloaded": 4061,
+      "annual_counts_expected": {
+        "1968": 41,
+        "1969": 22,
+        "1970": 55,
+        "1971": 37,
+        "1972": 22,
+        "1973": 85,
+        "1974": 148,
+        "1975": 140,
+        "1976": 134,
+        "1977": 121,
+        "1978": 272,
+        "1979": 0,
+        "1980": 195,
+        "1981": 301,
+        "1982": 178,
+        "1983": 242,
+        "1984": 214,
+        "1985": 262,
+        "1986": 186,
+        "1987": 186,
+        "1988": 119,
+        "1989": 173,
+        "1990": 214,
+        "1991": 358,
+        "1992": 356
+      },
+      "annual_counts_downloaded": {
+        "1968": 41,
+        "1969": 22,
+        "1970": 55,
+        "1971": 37,
+        "1972": 22,
+        "1973": 85,
+        "1974": 148,
+        "1975": 140,
+        "1976": 134,
+        "1977": 121,
+        "1978": 272,
+        "1979": 0,
+        "1980": 195,
+        "1981": 301,
+        "1982": 178,
+        "1983": 242,
+        "1984": 214,
+        "1985": 262,
+        "1986": 186,
+        "1987": 186,
+        "1988": 119,
+        "1989": 173,
+        "1990": 214,
+        "1991": 358,
+        "1992": 356
+      },
+      "province_counts_in_xml": {
+        "46": 4061
+      },
+      "members": [
+        {
+          "name": "Xml_20260819_232825_1.xml",
+          "size_bytes": 23648175,
+          "compressed_size_bytes": 963403,
+          "crc32": "e9f1ef33"
+        }
+      ],
+      "search_criteria": "soypm=0_CA2=9_Pr2=46_AD=1968_AH=1992_ZIF=_TI=_AEP=-1",
+      "search_parameters": {
+        "txtNumAnioDesde": 1968,
+        "txtNumAnioHasta": 1992,
+        "cbxCCAA_Common2": 9,
+        "cbxProvincias_Common2": 46,
+        "hdd_ca2": 9,
+        "hdd_pr2": 46,
+        "hdd_pr2Aux": 46,
+        "hdd_soypm": 0,
+        "egif_pin": "<session-pin>",
+        "cbxNumPaginas": 100
+      },
+      "export_iterations": 1,
+      "download_url_template": "https://servicio.mapa.gob.es/incendios/Search/DescargaZipXml?guid=<session-guid>&pakete=<package>",
+      "validation_status": "complete",
+      "errors": [],
+      "warnings": [],
+      "xsd_schemas": [
+        {
+          "xml_member": "Xml_20260819_232825_1.xml",
+          "sha256": "8f7de846d6c9a3f2a2c0f0ee9546dfdc7e2f1a44c0fbc66fb5332df874d1a04a",
+          "element_declaration_count": 299
+        }
+      ],
+      "source_generated_at": [
+        "2026-08-19T23:28:25"
+      ]
+    }
+  ],
+  "dictionaries": {
+    "municipalities": {
+      "source_url": "https://datos.iepnb.es/sparql",
+      "query": "SELECT DISTINCT ?municipality ?name ?code WHERE {\n  ?municipality <http://www.geonames.org/ontology#officialName> ?name ;\n    <http://vocab.linkeddata.es/datosabiertos/def/sector-publico/territorio#codigoINE> ?code .\n  FILTER(STRSTARTS(STR(?municipality),\n    \"https://datos.iepnb.es/recurso/sector-publico/medio-ambiente/incendios-forestales/Municipio/CODINE/\"))\n  FILTER(STRSTARTS(STR(?municipality),\n    \"https://datos.iepnb.es/recurso/sector-publico/medio-ambiente/incendios-forestales/Municipio/CODINE/03\") ||\n    STRSTARTS(STR(?municipality),\n    \"https://datos.iepnb.es/recurso/sector-publico/medio-ambiente/incendios-forestales/Municipio/CODINE/12\") ||\n    STRSTARTS(STR(?municipality),\n    \"https://datos.iepnb.es/recurso/sector-publico/medio-ambiente/incendios-forestales/Municipio/CODINE/46\"))\n}\nORDER BY ?municipality",
+      "retrieved_at": "2026-08-19T21:29:40Z",
+      "raw_path": "data/raw/egif/gva/1968_1992/dictionaries/municipalities.sparql.json",
+      "format": "SPARQL Results JSON",
+      "row_count": 542,
+      "size_bytes": 209403,
+      "sha256": "b9a528e449a759cba0af32ecf34fd227b21ba3229f0bf8963946ece8cca6d0da",
+      "license": "CC BY 4.0 for the linked EGIF dataset (1983-2015)"
+    },
+    "causes": {
+      "source_url": "https://datos.iepnb.es/sparql",
+      "query": "SELECT DISTINCT ?cause ?label ?description WHERE {\n  ?cause <http://www.w3.org/2000/01/rdf-schema#label> ?label .\n  OPTIONAL {\n    ?cause <http://purl.org/dc/elements/1.1/description> ?description .\n    FILTER(LANG(?description) = \"es\")\n  }\n  FILTER(STRSTARTS(STR(?cause),\n    \"https://datos.iepnb.es/recurso/sector-publico/medio-ambiente/incendios-forestales/Causa/España/\"))\n}\nORDER BY ?cause",
+      "retrieved_at": "2026-08-19T21:27:18Z",
+      "raw_path": "data/raw/egif/gva/1968_1992/dictionaries/causes.sparql.json",
+      "format": "SPARQL Results JSON",
+      "row_count": 35,
+      "size_bytes": 12408,
+      "sha256": "0fed1ad06c17c9a9256cb1c21fbd0bd4177cc0042f964995d03f989eb169f9a2",
+      "license": "CC BY 4.0 for the linked EGIF dataset (1983-2015)"
+    }
+  },
+  "reuse": {
+    "terms_url": "https://www.datosabiertos.miteco.gob.es/es/aviso-legal.html",
+    "attribution": "Origen de los datos: Ministerio para la Transición Ecológica y el Reto Demográfico.",
+    "summary": "General MITECO open-data reuse terms; linked dictionary snapshot is CC BY 4.0.",
+    "redistribution_assessment": "allowed_with_attribution_and_preserved_reuse_metadata",
+    "publication_action": "withheld_by_project_during_CV-3.2"
+  },
+  "notes": [
+    "Raw ZIP snapshots are byte-for-byte responses from the public EGIF exporter.",
+    "The current XML exporter maps historical records to one current hierarchical XML/XSD representation.",
+    "No geometries are created or inferred by this pipeline."
+  ]
+}

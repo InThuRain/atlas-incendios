@@ -102,6 +102,26 @@ frontend si se actualiza el manifiesto. El subconjunto candidato contiene 38
 archivos y continúa ignorado por Git hasta completar la revisión operativa de
 licencia, atribución y redistribución del ICV.
 
+## 2026-08-20 — EGIF histórico identifica partes, no episodios físicos únicos
+
+Los registros EGIF 1968–1992 se normalizan en JSON Lines conservando el XML
+completo en `original_attributes` y siempre con `geometry=null`. Cuando
+`NumeroParte` es único y concuerda con año/provincia, el identificador interno
+es `egif-record:<NumeroParte>`, con `identity_status=source_record_only` y
+`episode_identity_status=unresolved`.
+
+**Motivo:** los 9.175 `NumeroParte` y `IdPif` del snapshot CV-3.2 son únicos,
+pero la publicación definitiva de 1992 describe Marines–Altura como un solo
+incendio interprovincial mientras el XML actual contiene varios partes
+compatibles con componentes de ese episodio. Un identificador único de parte no
+demuestra una relación uno a uno con el incendio físico.
+
+**Consecuencias:** no se deduplican los seis pares de atributos idénticos ni se
+fusionan partes por fecha, municipio, cuadrícula o proximidad. Hasta una
+auditoría de identidad posterior, el visor deberá contar “partes EGIF”, no
+“incendios únicos”. Los GIF se calculan con superficie forestal declarada; la
+superficie agrícola/no forestal se conserva separada.
+
 ## 2026-08-19 — Datos recientes estratificados y sustitución no destructiva
 
 Los años recientes se representarán con autoridad y madurez independientes:

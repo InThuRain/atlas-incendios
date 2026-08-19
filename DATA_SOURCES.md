@@ -36,8 +36,8 @@ También revisar recursos del Banco de Datos de la Naturaleza y servicios IDE de
 ### Inventario histórico valenciano CV-3.1
 
 La revisión de 1968–1992 identificó **9.175 registros** en el buscador público:
-2.514 en Alicante, 2.600 en Castellón y 4.061 en Valencia; 181 tienen superficie
-declarada igual o superior a 500 ha. Son recuentos del snapshot consultado el
+2.514 en Alicante, 2.600 en Castellón y 4.061 en Valencia; 181 superan el umbral
+de 500 ha si se usa superficie total. Son recuentos del snapshot consultado el
 19 de agosto de 2026, no una afirmación de cobertura histórica uniforme.
 
 La documentación oficial establece una ruptura metodológica importante. Entre
@@ -62,6 +62,37 @@ ni sugerir respaldo ministerial.
 El detalle, los recuentos anuales, las lagunas y las fuentes cartográficas
 revisadas están en `CV_3_1_HISTORICAL_INVENTORY.md` y
 `data/sources/gva_historical_inventory.json`.
+
+### Snapshot normalizado CV-3.2
+
+El 19 de agosto de 2026 se descargaron mediante el exportador oficial los tres
+ZIP de parte completo XML. El contenido suma **9.175 registros** y coincide con
+todos los recuentos provincia × año de CV-3.1. El manifiesto conserva URL,
+parámetros, fechas, tamaños, miembros XML y SHA-256 en
+`data/sources/egif_gva_1968_1992_manifest.json`.
+
+El exportador actual aplica un mismo XSD jerárquico a los seis periodos
+históricos. La matriz de campos confirma diferencias de población —por ejemplo,
+hoja/cuadrícula no aparece en 1968–1971 y la superficie agrícola empieza en
+1989—, pero no permite recuperar sin inferencia los nombres originales de los
+seis formularios.
+
+`NumeroParte` e `IdPif` son únicos, aunque `NumeroParte` identifica un parte
+administrativo y no garantiza un episodio físico único. La salida usa
+`egif-record:<NumeroParte>`, `identity_status=source_record_only` y
+`episode_identity_status=unresolved`. La publicación definitiva de 1992
+describe Marines–Altura como un incendio interprovincial mientras el XML
+contiene varios partes compatibles; no se han fusionado.
+
+No hay coordenadas X/Y pobladas en el periodo. Hay hoja/cuadrícula en 8.565
+registros y municipio oficial resuelto en 5.254, pero las 9.175 geometrías son
+`null`. El umbral de GIF se calcula sobre superficie forestal: da 180 partes.
+El valor 181 de CV-3.1 corresponde a superficie total; la única diferencia es
+`1992030104` (400 ha forestales y 100 ha agrícolas).
+
+El detalle, contraste 1992, anomalías y límites están en
+`CV_3_2_EGIF_AUDIT.md`. Los snapshots raw y normalizados continúan ignorados y
+no se han publicado.
 
 ## 2. Generalitat Valenciana / ICV
 

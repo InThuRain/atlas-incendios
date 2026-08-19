@@ -11,6 +11,11 @@ data/raw/gva/
 data/raw/recent/gva/
 data/processed/recent/gva/
 
+# Snapshot XML EGIF 1968-1992 y normalizados históricos reproducibles.
+# Mantener locales hasta revisar el resultado de CV-3.2 y su publicación.
+data/raw/egif/gva/
+data/processed/egif/gva/
+
 # Salidas reproducibles con atributos y geometría ICV original.
 data/processed/gva/*.jsonl
 data/processed/gva/manifest.json

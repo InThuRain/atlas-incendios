@@ -25,12 +25,20 @@ Objetivo: tener un piloto local fiable y agradable de usar.
 
 - [x] CV-3.1: inventariar incendios 1968–1992 mediante EGIF, cuantificar los
   9.175 registros valencianos y documentar las rupturas de cobertura y esquema.
-- [ ] CV-3.2: descargar un snapshot EGIF 1968–1992 reproducible, verificarlo
+- [x] CV-3.2: descargar un snapshot EGIF 1968–1992 reproducible, verificarlo
   contra los recuentos CV-3.1, auditar los seis esquemas históricos y crear
   registros `fires` sin inferir perímetros.
-- [ ] CV-3.2: cuantificar municipio, superficie, coordenadas, CRS, duplicados e
-  identificadores problemáticos por provincia/año y contrastar publicaciones
-  definitivas.
+- [x] CV-3.2: cuantificar municipio, superficie, coordenadas, CRS, duplicados e
+  identificadores problemáticos por provincia/año; contrastar completamente el
+  anuario definitivo de 1992 y generar un índice OCR de los 25 anuarios.
+- [ ] CV-3.3: generar derivados web ligeros de los partes EGIF históricos e
+  integrarlos en timeline, métricas y listados como registros sin geometría,
+  mostrando régimen de cobertura y sin contar partes como episodios físicos
+  únicos.
+- [ ] Completar la transcripción y contraste controlado de los anuarios
+  definitivos 1968–1991; el OCR de CV-3.2 solo localiza tablas candidatas.
+- [ ] Auditar identidad de episodios multiparte, empezando por Marines–Altura
+  1992 y los seis pares de atributos idénticos, sin fusionar por proximidad.
 - [ ] Identificar cuáles tienen perímetro histórico recuperable.
 - [ ] Buscar planes de prevención y cartografía histórica.
 - [ ] Solicitar a Generalitat/ICV y parques la cartografía histórica fuente de

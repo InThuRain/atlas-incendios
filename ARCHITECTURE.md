@@ -95,9 +95,9 @@ La cobertura histórica se modelará separada de la calidad geométrica:
 
 ```text
 collection_regime
-  early_selective  1968-1979
-  transition       1980-1991
-  systematic       1992
+  selective                    1968-1979
+  transitional                 1980-1991
+  systematic_or_near_systematic 1992
 
 location_type
   none | municipality | sheet_grid | reported_point
@@ -110,6 +110,14 @@ Estos cortes proceden de cambios documentados en la recogida EGIF y no asignan
 automáticamente calidad a cada parte. Los seis periodos de formulario se
 conservarán mediante `schema_period`, evitando forzar a los años antiguos a un
 esquema moderno.
+
+CV-3.2 confirmó que el exportador aplica un XSD actual único a los seis
+periodos. Por ello `form_model` expresa el periodo documental, no un esquema
+original recuperado del registro. `fire_id=egif-record:<NumeroParte>` identifica
+el parte administrativo; `episode_identity_status=unresolved` impide usarlo
+como afirmación de que cada parte equivale a un episodio físico distinto. Los
+recuentos de frontend deberán denominarse “partes EGIF” hasta resolver esa
+identidad.
 
 Una geometría histórica solo entrará en `geometries` desde una fuente
 independiente, con método, escala, CRS, licencia y procedencia. El enlace con un
