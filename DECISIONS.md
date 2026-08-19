@@ -102,6 +102,26 @@ frontend si se actualiza el manifiesto. El subconjunto candidato contiene 38
 archivos y continúa ignorado por Git hasta completar la revisión operativa de
 licencia, atribución y redistribución del ICV.
 
+## 2026-08-19 — Datos recientes estratificados y sustitución no destructiva
+
+Los años recientes se representarán con autoridad y madurez independientes:
+histórico consolidado, registro administrativo provisional y geometría
+satelital provisional. EFFIS no se tratará como si tuviera la misma autoridad
+que ICV, SIGIF o EGIF.
+
+La geometría preferente será una selección derivada. Si llega un perímetro
+oficial para un incendio que ya tiene geometría EFFIS, se añadirá la oficial y
+la provisional quedará conservada, enlazada y marcada como sustituida, no
+borrada.
+
+**Motivo:** a 19 de agosto de 2026, SIGIF aporta registros administrativos sin
+perímetro ni identificador público, EFFIS aporta cicatrices satelitales sin
+identidad administrativa y el ICV no tiene capas posteriores a 2024.
+
+**Consecuencias:** los enlaces recientes deben registrar método y estado de
+revisión; un `id` EFFIS nunca se convierte por sí solo en `fire_id`, y la
+promoción de una fuente posterior no elimina la procedencia histórica.
+
 ## Plantilla para nuevas decisiones
 
 ```markdown

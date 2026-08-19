@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "phase": "CV-2.1",
+  "inventory_type": "recent_wildfire_sources",
+  "checked_at": "2026-08-19T17:13:00Z",
+  "scope": {
+    "territory": "Comunitat Valenciana",
+    "years": [2025, 2026],
+    "inventory_only": true
+  },
+  "sources": [
+    {
+      "source_id": "gva_icv_annual_perimeters",
+      "authority": "Institut Cartografic Valencia / Generalitat Valenciana",
+      "role": "official_vector_perimeters",
+      "urls": [
+        "https://carto.icv.gva.es/arcgis/rest/services/Prevencion_de_incendios2/MapServer",
+        "https://carto.icv.gva.es/arcgis/rest/services/tm_medio_ambiente/prevencion_de_incendios/MapServer"
+      ],
+      "latest_available_year": 2024,
+      "years_2025_2026_available": false,
+      "format": ["ArcGIS REST JSON", "GeoJSON"],
+      "identifiers": ["NumPIF_CV", "NumPIF_Min", "OBJECTID"],
+      "provides": {
+        "administrative_fire": "partial_attributes_only",
+        "perimeter": true,
+        "point": true,
+        "reported_area": true,
+        "dates": true,
+        "cause": true,
+        "municipality": true,
+        "province": true,
+        "linkable_identifier": true
+      },
+      "geometry_quality": "A when an official annual perimeter exists",
+      "license": "CC BY 4.0; project redistribution remains blocked pending CV-1.5b clarification"
+    },
+    {
+      "source_id": "gva_sigif_provisional_statistics",
+      "authority": "Servicio de Prevencion de Incendios Forestales / Generalitat Valenciana",
+      "role": "provisional_administrative_fire_records",
+      "urls": [
+        "https://prevencionincendiosgva.es/Incendios/EstadisticasIncendios",
+        "https://mediambient.gva.es/es/web/prevencion-de-incendios/estadistica-de-incendios-forestales",
+        "https://prevencionincendiosgva.es/AvisoLegal"
+      ],
+      "temporal_coverage_declared": "2017-current",
+      "format": ["HTML table", "PDF export"],
+      "public_columns": [
+        "Fecha", "Municipio", "Paraje", "Causa", "Rasa", "Arbolada",
+        "Total", "Hora ini", "Hora fin", "Deteccion", "Alerta", "Comarca",
+        "X1", "Y1"
+      ],
+      "identifiers": [],
+      "provides": {
+        "administrative_fire": true,
+        "perimeter": false,
+        "point": "X1/Y1 published; semantics and CRS not documented in table",
+        "reported_area": true,
+        "dates": true,
+        "cause": true,
+        "municipality": true,
+        "province": "query filter only",
+        "linkable_identifier": false
+      },
+      "observations": {
+        "2025": {
+          "row_count": 281,
+          "distinct_visible_rows": 280,
+          "first_visible_date": "2025-01-03",
+          "last_visible_date": "2025-12-31",
+          "shrub_grass_area_ha": 305.5766,
+          "wooded_area_ha": 480.1972,
+          "total_area_ha": 785.7738
+        },
+        "2026": {
+          "row_count": 143,
+          "distinct_visible_rows": 143,
+          "first_visible_date": "2026-01-11",
+          "last_visible_date": "2026-06-30",
+          "shrub_grass_area_ha": 107.9654,
+          "wooded_area_ha": 13.9635,
+          "total_area_ha": 121.9289,
+          "complete_year": false
+        }
+      },
+      "geometry_quality": "D until X1/Y1 semantics and CRS are confirmed; no perimeter",
+      "license": "SIGIF-specific legal notice restricts use to personal/non-commercial viewing and requires clarification before redistribution"
+    },
+    {
+      "source_id": "gva_aggregate_statistics",
+      "authority": "Generalitat Valenciana",
+      "role": "aggregate_quality_control",
+      "urls": [
+        "https://mediambient.gva.es/es/web/prevencion-de-incendios/estadistica-de-incendios-forestales",
+        "https://storymaps.arcgis.com/stories/0c09f4db279c4444a9e6d4a060ab1046"
+      ],
+      "last_documented_update": "2025-12-31 for annual graphs; 2026 dashboard declares weekly updates",
+      "format": ["HTML", "PDF", "ArcGIS StoryMap"],
+      "identifiers": [],
+      "provides": {
+        "administrative_fire": "aggregates_only",
+        "perimeter": false,
+        "point": false,
+        "reported_area": true,
+        "dates": "reporting_period",
+        "cause": "aggregates_only",
+        "municipality": "varies_by_product",
+        "province": "varies_by_product",
+        "linkable_identifier": false
+      },
+      "license": "CC BY 4.0 unless otherwise indicated on the product"
+    },
+    {
+      "source_id": "effis_rda_burnt_areas",
+      "authority": "European Commission Joint Research Centre / Copernicus EMS",
+      "role": "satellite_derived_provisional_geometry",
+      "urls": [
+        "https://forest-fire.emergency.copernicus.eu/about-effis/technical-background/rapid-damage-assessment",
+        "https://forest-fire.emergency.copernicus.eu/applications/data-and-services",
+        "https://maps.effis.emergency.copernicus.eu/effis",
+        "https://forest-fire.emergency.copernicus.eu/about-effis/data-license"
+      ],
+      "update_frequency": "daily/near-real-time during fire monitoring; real-time-updated download",
+      "format": ["WFS", "WMS", "Shapefile", "SpatiaLite"],
+      "identifiers": ["id"],
+      "public_fields_observed": [
+        "id", "FIREDATE", "FINALDATE", "LASTUPDATE", "COUNTRY", "PROVINCE",
+        "COMMUNE", "AREA_HA", "BROADLEA", "CONIFER", "MIXED", "SCLEROPH",
+        "TRANSIT", "OTHERNATLC", "AGRIAREAS", "ARTIFSURF", "OTHERLC",
+        "PERCNA2K", "CLASS"
+      ],
+      "provides": {
+        "administrative_fire": false,
+        "perimeter": true,
+        "point": false,
+        "reported_area": "satellite-derived area",
+        "dates": "observation dates, not guaranteed ignition/extinction",
+        "cause": false,
+        "municipality": true,
+        "province": true,
+        "linkable_identifier": "EFFIS-source identifier only"
+      },
+      "coverage": "Approximately 30 ha threshold historically; smaller Sentinel-2 detections may be present since 2018; only a fraction of fire count but EFFIS estimates about 95% of annual EU burnt area",
+      "observed_valencian_province_counts": {
+        "method": "WFS BBOX followed by exact PROVINCE label filter; dynamic snapshot, not expected totals",
+        "2025": 9,
+        "2026": 16
+      },
+      "geometry_quality": "B; MODIS 250 m refined with Sentinel-2 20 m",
+      "license": "CC BY 4.0; attribution and indication of changes required"
+    },
+    {
+      "source_id": "miteco_provisional_advances",
+      "authority": "Ministerio para la Transicion Ecologica y el Reto Demografico",
+      "role": "provisional_aggregate_quality_control",
+      "urls": [
+        "https://www.miteco.gob.es/es/biodiversidad/temas/incendios-forestales/estadisticas-avances.html",
+        "https://www.miteco.gob.es/content/dam/miteco/es/biodiversidad/temas/incendios-forestales/Avance_IIFF_2025_rev.pdf",
+        "https://www.miteco.gob.es/content/dam/miteco/es/biodiversidad/temas/incendios-forestales/Avance%20informativo%209%20de%20agosto%20de%202026.pdf"
+      ],
+      "latest_reviewed_period": "2026-01-01/2026-08-09; published 2026-08-14",
+      "update_frequency": "weekly from June 1 to October 15; monthly otherwise",
+      "format": ["PDF"],
+      "identifiers": [],
+      "provides": {
+        "administrative_fire": "aggregates and selected large fires only",
+        "perimeter": false,
+        "point": false,
+        "reported_area": true,
+        "dates": true,
+        "cause": false,
+        "municipality": "large-fire list only",
+        "province": "large-fire list only",
+        "linkable_identifier": false
+      },
+      "license": "MITECO general reuse terms: attribution, update date and metadata preservation required"
+    },
+    {
+      "source_id": "miteco_egif_web",
+      "authority": "Ministerio para la Transicion Ecologica y el Reto Demografico",
+      "role": "consolidated_national_administrative_records",
+      "urls": [
+        "https://www.miteco.gob.es/es/biodiversidad/temas/incendios-forestales/estadisticas-datos.html",
+        "https://servicio.mapa.gob.es/incendios/Search/Publico",
+        "https://www.miteco.gob.es/content/dam/miteco/es/biodiversidad/temas/incendios-forestales/Ayuda%20uso%20BUSCADOR%20EGIF_v3.pdf"
+      ],
+      "format": ["HTML query", "Excel summary", "XML full fire report"],
+      "identifiers": ["fire report identifier when records are available"],
+      "observed_coverage": "Search results existed through 2023; zero results observed for 2024, 2025 and 2026 on 2026-08-19",
+      "provides": {
+        "administrative_fire": true,
+        "perimeter": false,
+        "point": "fire report location, not a homogeneous perimeter series",
+        "reported_area": true,
+        "dates": true,
+        "cause": true,
+        "municipality": true,
+        "province": true,
+        "linkable_identifier": true
+      },
+      "license": "MITECO general reuse terms"
+    }
+  ],
+  "recommended_model": {
+    "historical_consolidated": "ICV 1993-2024 snapshot",
+    "recent_official": "GVA/SIGIF provisional administrative observations",
+    "recent_satellite_provisional": "EFFIS RDA geometries kept under independent provenance",
+    "preferred_geometry_is_derived": true,
+    "superseded_geometries_are_retained": true,
+    "effis_is_not_an_administrative_fire_authority": true
+  },
+  "open_questions": [
+    "SIGIF row/PDF redistribution permission",
+    "X1/Y1 semantics and CRS",
+    "SIGIF 2026 update lag",
+    "ICV 2025 publication date",
+    "EFFIS id and rolling CLASS lifecycle stability",
+    "validated linkage rule among SIGIF, ICV, EGIF and EFFIS"
+  ]
+}

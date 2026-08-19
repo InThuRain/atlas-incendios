@@ -80,6 +80,41 @@ Fuentes verificadas:
 
 - [registro del catálogo de datos abiertos GVA](https://dadesobertes.gva.es/dataset/incendios-forestales-de-la-comunitat-valenciana-1993-2024);
 - [metadatos ISO del ICV](https://catalogo.icv.gva.es/geonetwork/srv/api/records/spa_icv_ince_incendios/formatters/xml).
+- [información oficial para reutilizadores de la GVA](https://portaldadesobertes.gva.es/es/informacio-per-a-reutilitzadors);
+- [aviso legal y condiciones generales de reutilización de la GVA](https://portaldadesobertes.gva.es/es/avis-legal).
+
+### Fuentes recientes 2025–2026: inventario CV-2.1
+
+A 19 de agosto de 2026, los servicios cartográficos ICV revisados siguen
+terminando en 2024. Para años recientes no existe aún una fuente pública única
+equivalente al producto ICV histórico.
+
+SIGIF publica estadísticas administrativas provisionales desde 2017 hasta la
+actualidad mediante una tabla con fecha, municipio, paraje, causa, superficies,
+horas, comarca y coordenadas `X1`/`Y1`. No publica un identificador de parte en
+esa vista ni un perímetro. En la comprobación CV-2.1 devolvió 281 filas para
+2025 y 143 para 2026; la última fecha visible de 2026 era 30 de junio, por lo
+que no debe tratarse como cobertura corriente completa. La semántica y CRS de
+`X1`/`Y1` requieren confirmación.
+
+El aviso legal específico de SIGIF limita la carga a uso personal y no
+comercial y no autoriza hacerla extensiva a terceros. No se asumirá que la
+licencia CC BY 4.0 de la página estadística general de la Conselleria elimina
+esa condición particular. Antes de redistribuir filas o PDFs SIGIF se pedirá
+confirmación al organismo responsable.
+
+EFFIS Rapid Damage Assessment aporta polígonos satelitales recientes, no partes
+administrativos. Se conservará como fuente independiente de calidad B: MODIS
+250 m refinado con Sentinel-2 20 m, cobertura parcial del número de incendios y
+sin garantía de que sus fechas sean ignición/extinción. Su identificador solo
+es enlazable dentro de EFFIS y no sustituye `NumPIF_CV` ni el identificador
+EGIF.
+
+Los avances MITECO sirven para contrastar agregados provisionales y grandes
+incendios. El buscador EGIF contiene partes revisados y cerrados, pero en la
+revisión no ofrecía registros 2024–2026. El inventario, las comprobaciones y la
+propuesta de incorporación están en `CV_2_1_SOURCE_INVENTORY.md` y
+`data/sources/gva_recent_fires_inventory.json`.
 
 ## 3. Fuentes autonómicas
 

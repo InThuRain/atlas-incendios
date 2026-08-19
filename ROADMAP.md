@@ -26,8 +26,13 @@ Objetivo: tener un piloto local fiable y agradable de usar.
 - [ ] Inventariar incendios 1976–1992 mediante EGIF.
 - [ ] Identificar cuáles tienen perímetro histórico recuperable.
 - [ ] Buscar planes de prevención y cartografía histórica.
-- [ ] Incorporar 2025.
-- [ ] Revisar 2026 cuando existan datos consolidados.
+- [x] CV-2.1: inventariar y diseñar la incorporación 2025–2026 sin alterar el
+  consolidado 1993–2024.
+- [ ] CV-2.2: aclarar reutilización SIGIF y CRS/semántica de `X1`/`Y1`.
+- [ ] Incorporar 2025 como reciente administrativo provisional y EFFIS como
+  geometría B separada; promover el perímetro ICV cuando se publique.
+- [ ] Incorporar 2026 como snapshots fechados e incompletos; cerrar el año y
+  promoverlo solo cuando existan datos consolidados.
 - [ ] Marcar calidad A/B/C/D.
 
 ## Fase 3 — Comunitat Valenciana

@@ -50,6 +50,38 @@ geometries
 
 Esto permite varios perímetros para un mismo incendio y registros sin perímetro.
 
+### 2.1. Ciclo de vida de datos recientes
+
+Los datos recientes mantendrán dos ejes distintos: autoridad de la fuente y
+madurez del registro. No se utilizará una única bandera "oficial" que mezcle
+ambos conceptos.
+
+```text
+record_maturity
+  consolidated | provisional | operational
+
+authority_type
+  regional_administrative | national_administrative | satellite
+
+identity_status
+  unlinked | candidate | verified
+```
+
+El histórico ICV 1993–2024 se mantiene como snapshot consolidado. Los registros
+SIGIF 2025–2026 serán observaciones administrativas provisionales y los
+perímetros EFFIS serán geometrías satelitales provisionales independientes.
+
+La geometría preferente se resolverá como estado derivado, no mediante
+sobrescritura. Cada geometría conservará `source`, identificador de fuente,
+fechas de adquisición/actualización, método, calidad y estado de preferencia.
+Cuando una geometría oficial sustituya visualmente a una provisional, la
+anterior quedará marcada como `superseded` y enlazada mediante
+`superseded_by`; nunca se borrará.
+
+Una propuesta de enlace espacial/temporal no basta para fusionar incendios. El
+enlace tendrá método, confianza y estado de revisión propios. Los identificadores
+EFFIS no se usarán como `fire_id` administrativo.
+
 ### 3. Validación
 
 Comprobar:
