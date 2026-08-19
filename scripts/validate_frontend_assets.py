@@ -57,6 +57,47 @@ def local_path(asset_dir, url):
 def main():
     args = parse_args()
     manifest = load_json(args.manifest)
+    source = manifest["source"]
+    required_source_fields = (
+        "dataset_identifier",
+        "owner",
+        "publisher",
+        "catalog_url",
+        "metadata_url",
+        "metadata_revision_date",
+        "license_id",
+        "license_url",
+        "terms_url",
+        "attribution",
+        "credit",
+    )
+    missing_source_fields = [
+        field for field in required_source_fields if not source.get(field)
+    ]
+    if missing_source_fields:
+        raise ValidationError(
+            "Missing source/license metadata: {}".format(missing_source_fields)
+        )
+    if source["license_id"] != "CC-BY-4.0":
+        raise ValidationError("Unexpected source license")
+    derivation = manifest["derivation"]
+    if (
+        not derivation.get("is_modified")
+        or derivation.get("geometry_repaired")
+        or derivation.get("geometry_deduplicated")
+        or not derivation.get("modification_notice")
+    ):
+        raise ValidationError("Incomplete or inconsistent derivation metadata")
+    publication = manifest["publication"]
+    if publication.get("status") not in (
+        "blocked_pending_icv_clarification",
+        "ready",
+    ):
+        raise ValidationError("Unknown publication status")
+    if publication["status"] == "ready" and publication.get(
+        "license_review_required"
+    ):
+        raise ValidationError("Publication cannot be ready with a pending review")
     geometry_assets = manifest["geometry_assets"]
     static_assets = list(manifest["attributes"].values())
     assets = geometry_assets + static_assets
@@ -141,6 +182,9 @@ def main():
         "raw_bytes": raw_bytes,
         "gzip_bytes": gzip_bytes,
         "benchmark_assets_included": False,
+        "publication_status": publication["status"],
+        "license_id": source["license_id"],
+        "derivative_changes_disclosed": derivation["is_modified"],
         "fires": {"count": len(fires), "unique_fire_id_count": len(fire_by_id)},
         "levels": level_results,
     }

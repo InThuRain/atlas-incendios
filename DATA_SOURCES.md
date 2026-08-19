@@ -74,7 +74,39 @@ El registro oficial `spa_icv_ince_incendios` del catálogo ICV, revisado el 27 d
 
 La ficha no explica por qué una misma secuencia de coordenadas puede aparecer con identificadores distintos ni en años diferentes. Por tanto, no se debe interpretar esa igualdad como republicación, duplicado administrativo o recurrencia real sin otra evidencia.
 
-El registro declara licencia CC BY 4.0 y remite a las [condiciones de uso de la geoinformación ICV](https://icv.gva.es/es/condiciones-de-uso-de-la-geoinformacion-icv), que exigen atribución visible e incluyen condiciones para la redistribución. Antes de publicar snapshots se debe concretar la atribución y cómo cumplir esas condiciones.
+El registro declara licencia **Creative Commons Atribución 4.0 Internacional
+(CC BY 4.0)** y no registra limitaciones al acceso público. La página oficial de
+[condiciones de uso de la geoinformación
+ICV](https://icv.gva.es/es/condiciones-de-uso-de-la-geoinformacion-icv) exige
+citar la procedencia en lugar visible. Para este producto se propone conservar
+la siguiente fórmula, basada en el modelo de cita del ICV y en el crédito del
+registro ISO:
+
+> Incendios forestales de la Comunitat Valenciana (1993–2024) CC BY 4.0
+> © Institut Cartogràfic Valencià, Generalitat. Servicio de Prevención de
+> Incendios Forestales, DGPIF, Generalitat Valenciana.
+
+Los derivados del atlas deben añadir que han sido normalizados, reproyectados,
+particionados y simplificados, enlazar la ficha y las condiciones oficiales,
+conservar la fecha de revisión y no sugerir respaldo de la Generalitat.
+
+### Publicación de derivados: estado CV-1.5b
+
+La documentación oficial también establece que la redistribución total,
+parcial o de un producto derivado, comercial o no comercial, requiere la
+aceptación expresa de las condiciones por el nuevo usuario. Las
+[condiciones generales de reutilización de la
+GVA](https://portaldadesobertes.gva.es/es/avis-legal) añaden que no debe
+alterarse ni desnaturalizarse la información y que han de conservarse sin
+alteración los metadatos de actualización y reutilización.
+
+No se ha encontrado en la documentación oficial una explicación de cómo
+cumplir la aceptación expresa cuando los GeoJSON se sirven mediante URLs
+públicas directas, ni una confirmación de que la simplificación geométrica
+documentada sea compatible con la condición de no alteración. Por ello,
+**CV-1.5b no autoriza todavía la publicación**: antes se solicitará confirmación
+escrita al ICV o al órgano titular. El detalle y el texto propuesto figuran en
+`LICENSE_DATA.md` y `CV_1_5B_LICENSE_REPORT.md`.
 
 Fuentes verificadas:
 

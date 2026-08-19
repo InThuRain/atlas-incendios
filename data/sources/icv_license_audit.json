@@ -1,0 +1,70 @@
+{
+  "schema_version": 1,
+  "phase": "CV-1.5b",
+  "checked_on": "2026-08-19",
+  "publication_status": "blocked_pending_icv_clarification",
+  "dataset": {
+    "identifier": "spa_icv_ince_incendios",
+    "title": "Incendios forestales de la Comunitat Valenciana (1993-2024)",
+    "owner": "Servicio de Prevención de Incendios Forestales, Dirección General de Prevención de Incendios Forestales, Generalitat Valenciana",
+    "publisher": "Institut Cartogràfic Valencià, Generalitat Valenciana",
+    "metadata_revision_date": "2026-07-27",
+    "license_id": "CC-BY-4.0",
+    "license_label": "Creative Commons Atribución 4.0 Internacional (CC BY 4.0)"
+  },
+  "official_sources": [
+    {
+      "role": "dataset_catalogue",
+      "url": "https://dadesobertes.gva.es/dataset/incendios-forestales-de-la-comunitat-valenciana-1993-2024"
+    },
+    {
+      "role": "dataset_catalogue_api",
+      "url": "https://dadesobertes.gva.es/api/3/action/package_show?id=84ea3b70-2cbb-4f94-bf3b-4cad6f53d4df"
+    },
+    {
+      "role": "iso_metadata",
+      "url": "https://catalogo.icv.gva.es/geonetwork/srv/api/records/spa_icv_ince_incendios/formatters/xml"
+    },
+    {
+      "role": "icv_terms",
+      "url": "https://icv.gva.es/es/condiciones-de-uso-de-la-geoinformacion-icv"
+    },
+    {
+      "role": "gva_reuser_information",
+      "url": "https://portaldadesobertes.gva.es/es/informacio-per-a-reutilitzadors"
+    },
+    {
+      "role": "gva_general_reuse_terms",
+      "url": "https://portaldadesobertes.gva.es/es/avis-legal"
+    }
+  ],
+  "documented_facts": {
+    "public_access_restrictions": "Sin limitaciones al acceso público",
+    "license": "CC BY 4.0",
+    "visible_attribution_required": true,
+    "source_and_update_metadata_must_be_preserved": true,
+    "alteration_or_denaturalisation_forbidden": true,
+    "false_endorsement_forbidden": true,
+    "reuse_at_user_risk": true,
+    "redistribution_covers_derived_products": true,
+    "redistribution_covers_commercial_and_noncommercial_use": true,
+    "express_acceptance_by_new_recipient_required": true,
+    "dataset_is_informative_and_non_binding": true,
+    "dataset_is_complete_fire_inventory": false
+  },
+  "reasonable_interpretations": [
+    "GitHub Pages is not prohibited as a hosting technology, but publishing direct public asset URLs is redistribution.",
+    "The atlas should disclose reprojection, normalization, partitioning and simplification and should state that the result is not an official ICV product or endorsement.",
+    "A root data-license file plus manifest metadata is necessary for traceability, but does not itself prove express acceptance by every direct asset recipient."
+  ],
+  "unresolved_questions": [
+    "How must express acceptance be obtained for static public web redistribution and direct GeoJSON URLs?",
+    "Is topology-preserving multiscale simplification compatible with the no-alteration/no-denaturalisation condition when fully disclosed?",
+    "Which exact attribution formula applies when the dataset owner is DGPIF and the publisher is ICV?",
+    "Does the ICV require an explicit indication of modifications beyond attribution and preservation of metadata?"
+  ],
+  "recommended_contacts": [
+    "responde_icv@gva.es",
+    "dgpif@gva.es"
+  ]
+}
