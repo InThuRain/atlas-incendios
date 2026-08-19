@@ -145,6 +145,29 @@ reescribir el timeline. Cualquier perfil público futuro falla de forma segura
 hasta que el estado legal se cambie explícitamente. Promover una geometría
 oficial posterior no borrará la geometría EFFIS ni su procedencia.
 
+## 2026-08-19 — EGIF histórico sin geometría implícita y cobertura por regímenes
+
+Los partes EGIF 1968–1992 se incorporarán como registros administrativos
+históricos con geometría nullable. Una geometría solo se asociará desde una
+fuente independiente y documentada; municipio, hoja/cuadrícula o coordenada no
+permiten construir un perímetro.
+
+La cobertura se expondrá mediante los regímenes documentados
+`early_selective` (1968–1979), `transition` (1980–1991) y `systematic` (1992),
+además del periodo de formulario. Las coordenadas históricas se conservarán
+como `raw_unverified` hasta auditar semántica y CRS, porque el producto enlazado
+oficial solo declara geometrías puntuales validadas desde 2005.
+
+**Motivo:** EGIF contiene 9.175 partes valencianos en el periodo, pero la propia
+documentación describe cobertura selectiva antes de 1980, seis modelos de
+parte y sistematización en 1992. El servicio ICV empieza en 1993 y no se ha
+localizado una serie vectorial oficial homogénea anterior.
+
+**Consecuencias:** el timeline futuro 1968–2026 mostrará por separado madurez
+administrativa, disponibilidad espacial y calidad geométrica. Los histogramas
+podrán contar registros EGIF, pero no presentarlos como perímetros ni como una
+serie exhaustiva homogénea.
+
 ## Plantilla para nuevas decisiones
 
 ```markdown

@@ -23,9 +23,19 @@ Objetivo: tener un piloto local fiable y agradable de usar.
 
 ## Fase 2 — Completar cronología local
 
-- [ ] Inventariar incendios 1976–1992 mediante EGIF.
+- [x] CV-3.1: inventariar incendios 1968–1992 mediante EGIF, cuantificar los
+  9.175 registros valencianos y documentar las rupturas de cobertura y esquema.
+- [ ] CV-3.2: descargar un snapshot EGIF 1968–1992 reproducible, verificarlo
+  contra los recuentos CV-3.1, auditar los seis esquemas históricos y crear
+  registros `fires` sin inferir perímetros.
+- [ ] CV-3.2: cuantificar municipio, superficie, coordenadas, CRS, duplicados e
+  identificadores problemáticos por provincia/año y contrastar publicaciones
+  definitivas.
 - [ ] Identificar cuáles tienen perímetro histórico recuperable.
 - [ ] Buscar planes de prevención y cartografía histórica.
+- [ ] Solicitar a Generalitat/ICV y parques la cartografía histórica fuente de
+  Chera–Sot de Chera y Mariola–Font Roja, incluida metodología, escala, CRS y
+  condiciones de reutilización.
 - [x] CV-2.1: inventariar y diseñar la incorporación 2025–2026 sin alterar el
   consolidado 1993–2024.
 - [x] CV-2.2: construir snapshots locales separados SIGIF/EFFIS para 2025–2026,

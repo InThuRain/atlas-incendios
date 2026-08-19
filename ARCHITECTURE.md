@@ -82,6 +82,41 @@ Una propuesta de enlace espacial/temporal no basta para fusionar incendios. El
 enlace tendrá método, confianza y estado de revisión propios. Los identificadores
 EFFIS no se usarán como `fire_id` administrativo.
 
+### 2.2. Registros históricos 1968–1992
+
+EGIF será la entidad administrativa histórica, pero no una fuente de perímetros.
+Los partes se cargarán en `fires` aunque no exista geometría. Municipio,
+hoja/cuadrícula y coordenadas originales son tipos de localización distintos y
+no se convertirán entre sí. Una coordenada anterior a 2005 se conservará como
+`raw_unverified` hasta validar por registro su semántica, CRS, datum, huso,
+unidades y rango.
+
+La cobertura histórica se modelará separada de la calidad geométrica:
+
+```text
+collection_regime
+  early_selective  1968-1979
+  transition       1980-1991
+  systematic       1992
+
+location_type
+  none | municipality | sheet_grid | reported_point
+
+coordinate_status
+  absent | raw_unverified | validated
+```
+
+Estos cortes proceden de cambios documentados en la recogida EGIF y no asignan
+automáticamente calidad a cada parte. Los seis periodos de formulario se
+conservarán mediante `schema_period`, evitando forzar a los años antiguos a un
+esquema moderno.
+
+Una geometría histórica solo entrará en `geometries` desde una fuente
+independiente, con método, escala, CRS, licencia y procedencia. El enlace con un
+parte EGIF será `candidate` hasta disponer de identificador o revisión
+documental suficiente. Un mapa agregado, un municipio o un punto nunca se
+usarán para fabricar un polígono.
+
 ### 3. Validación
 
 Comprobar:
@@ -232,3 +267,13 @@ Las entidades siguen separadas también en el navegador: `fire_id` ICV,
 puntuadas con estado `candidate`; nunca sustituyen esas identidades. Los
 puntos SIGIF y los polígonos EFFIS se cargan por año. Los atributos y perímetros
 ICV continúan con carga diferida por provincia, bloque temporal y zoom.
+
+## Timeline con cobertura heterogénea
+
+La futura extensión 1968–2026 debe representar la madurez de los datos además
+del año. El frontend contará por separado registros administrativos y
+perímetros disponibles y mostrará bandas visibles: histórico temprano EGIF
+1968–1979, transición 1980–1991, EGIF sistematizado desde 1992, cartografía ICV
+consolidada 1993–2024 y fuentes provisionales separadas 2025–2026. Que un año
+sea seleccionable no implica que tenga geometría ni la misma completitud que
+los demás.

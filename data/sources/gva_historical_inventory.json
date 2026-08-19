@@ -1,0 +1,300 @@
+{
+  "schema_version": 1,
+  "phase": "CV-3.1",
+  "inventory_type": "historical_wildfire_sources",
+  "checked_at": "2026-08-19",
+  "scope": {
+    "territory": "Comunitat Valenciana",
+    "years": [1968, 1992],
+    "inventory_only": true,
+    "mass_download_performed": false,
+    "frontend_modified": false,
+    "existing_datasets_modified": false
+  },
+  "egif": {
+    "authority": "Ministerio para la Transicion Ecologica y el Reto Demografico",
+    "role": "national_historical_administrative_inventory",
+    "urls": {
+      "overview": "https://www.miteco.gob.es/es/biodiversidad/temas/incendios-forestales/estadisticas-datos.html",
+      "public_search": "https://servicio.mapa.gob.es/incendios/Search/Publico",
+      "methodology": "https://www.miteco.gob.es/content/dam/miteco/es/biodiversidad/temas/incendios-forestales/estad%C3%ADstica-iiff/Estad%C3%ADstica-General-IF-Metodolog%C3%ADa.pdf",
+      "search_help": "https://www.miteco.gob.es/content/dam/miteco/es/biodiversidad/temas/incendios-forestales/Ayuda%20uso%20BUSCADOR%20EGIF_v3.pdf",
+      "database_interpretation": "https://www.miteco.gob.es/content/dam/miteco/es/biodiversidad/temas/incendios-forestales/Interpretaci%C3%B3n%20BD_Egifweb.pdf",
+      "linked_dataset": "https://datos.gob.es/es/catalogo/e05068001-estadistica-general-de-incendios-forestales",
+      "ontology": "https://datos.iepnb.es/def/sector-publico/medio-ambiente/incendios-forestales/index-es.html",
+      "reuse_terms": "https://www.datosabiertos.miteco.gob.es/es/aviso-legal.html"
+    },
+    "declared_start_year": 1968,
+    "search_observed_year_range": [1968, 2026],
+    "target_period": [1968, 1992],
+    "coverage_regimes": [
+      {
+        "start_year": 1968,
+        "end_year": 1979,
+        "code": "early_selective",
+        "description": "Collection focused mainly on publicly managed/intervened forests, especially reforestation; some private-land fires may appear.",
+        "complete_inventory": false
+      },
+      {
+        "start_year": 1980,
+        "end_year": 1991,
+        "code": "transition",
+        "description": "Collection of all events begins during the 1980s, with changing forms and procedures.",
+        "complete_inventory": "improving_not_uniform"
+      },
+      {
+        "start_year": 1992,
+        "end_year": 1992,
+        "code": "systematic",
+        "description": "Common computer application and revised form deployed for every autonomous community and province; collection becomes systematic and more complete.",
+        "complete_inventory": "more_complete_not_assumed_perfect"
+      }
+    ],
+    "form_periods": [
+      {"start_year": 1968, "end_year": 1971, "form_number": 1},
+      {"start_year": 1972, "end_year": 1979, "form_number": 2},
+      {"start_year": 1980, "end_year": 1982, "form_number": 3},
+      {"start_year": 1983, "end_year": 1988, "form_number": 4},
+      {"start_year": 1989, "end_year": 1989, "form_number": 5, "known_change": "non-forest area added"},
+      {"start_year": 1990, "end_year": 1997, "form_number": 6}
+    ],
+    "formats": {
+      "public_view": "HTML",
+      "summary_export": "Excel",
+      "complete_report_export": "XML",
+      "linked_open_dataset": "Turtle, 1983-2015 only"
+    },
+    "data_model_notes": [
+      "Current reports contain more than 150 fields.",
+      "The downloadable full report is relational/hierarchical: some chapters are one-to-many and may be absent when no information exists.",
+      "The public search only exposes provincially consolidated records at query time.",
+      "The current identifier format must not be assumed to describe every historical identifier before an audit."
+    ],
+    "expected_fields_to_inventory": [
+      "source_report_id",
+      "dates_and_times",
+      "origin_municipality",
+      "affected_municipalities",
+      "province",
+      "location_text",
+      "map_sheet_or_grid",
+      "reported_coordinates",
+      "coordinate_datum",
+      "coordinate_zone",
+      "reported_areas",
+      "cause",
+      "means_and_damage_chapters"
+    ],
+    "spatial": {
+      "perimeters_provided": false,
+      "current_form_coordinate_semantics": "UTM wildfire origin point with datum and zone, plus 1:250000 military map sheet/grid",
+      "historical_semantics_status": "must_be_audited_by_form_period",
+      "linked_dataset_crs_individuals": ["ETRS89 / UTM 27N", "ETRS89 / UTM 28N", "ETRS89 / UTM 29N", "ETRS89 / UTM 30N", "ETRS89 / UTM 31N", "EPSG-0"],
+      "official_point_validation_start_year": 2005,
+      "validated_points_in_target_period": 0,
+      "raw_coordinate_presence_in_target_period": null,
+      "raw_coordinate_presence_status": "not_measured_without_record_export",
+      "rule": "Preserve original location fields. Do not transform or display a precise point until semantics, CRS, zone, datum, units and range are validated per record/form. Never derive a perimeter from a point, municipality or grid."
+    },
+    "license": {
+      "general_terms": "Commercial and non-commercial reuse, including copying, diffusion, modification, adaptation, extraction, reordering and combination, is permitted.",
+      "required_attribution": "Origen de los datos: Ministerio para la Transicion Ecologica y el Reto Demografico.",
+      "requirements": [
+        "do not distort the meaning",
+        "include the source attribution",
+        "include the last update date when present",
+        "do not imply ministry participation, sponsorship or endorsement",
+        "preserve update and reuse metadata"
+      ],
+      "linked_dataset_license": "CC BY 4.0",
+      "historical_document_license_audit_separate": true
+    }
+  },
+  "counts": {
+    "method": "Aggregated queries to the official public EGIF search by autonomous community, province and year; no bulk record export.",
+    "snapshot_date": "2026-08-19",
+    "province_codes": {"Alicante": "03", "Castellon": "12", "Valencia": "46"},
+    "by_year": [
+      {"year": 1968, "Alicante": 52, "Castellon": 20, "Valencia": 41, "total": 113, "gif_ge_500_ha": 2},
+      {"year": 1969, "Alicante": 21, "Castellon": 30, "Valencia": 22, "total": 73, "gif_ge_500_ha": 2},
+      {"year": 1970, "Alicante": 43, "Castellon": 40, "Valencia": 55, "total": 138, "gif_ge_500_ha": 9},
+      {"year": 1971, "Alicante": 18, "Castellon": 25, "Valencia": 37, "total": 80, "gif_ge_500_ha": 2},
+      {"year": 1972, "Alicante": 0, "Castellon": 8, "Valencia": 22, "total": 30, "gif_ge_500_ha": 0},
+      {"year": 1973, "Alicante": 26, "Castellon": 39, "Valencia": 85, "total": 150, "gif_ge_500_ha": 1},
+      {"year": 1974, "Alicante": 63, "Castellon": 82, "Valencia": 148, "total": 293, "gif_ge_500_ha": 7},
+      {"year": 1975, "Alicante": 50, "Castellon": 66, "Valencia": 140, "total": 256, "gif_ge_500_ha": 3},
+      {"year": 1976, "Alicante": 69, "Castellon": 39, "Valencia": 134, "total": 242, "gif_ge_500_ha": 2},
+      {"year": 1977, "Alicante": 48, "Castellon": 30, "Valencia": 121, "total": 199, "gif_ge_500_ha": 5},
+      {"year": 1978, "Alicante": 125, "Castellon": 161, "Valencia": 272, "total": 558, "gif_ge_500_ha": 29},
+      {"year": 1979, "Alicante": 96, "Castellon": 167, "Valencia": 0, "total": 263, "gif_ge_500_ha": 22},
+      {"year": 1980, "Alicante": 135, "Castellon": 123, "Valencia": 195, "total": 453, "gif_ge_500_ha": 12},
+      {"year": 1981, "Alicante": 237, "Castellon": 169, "Valencia": 301, "total": 707, "gif_ge_500_ha": 15},
+      {"year": 1982, "Alicante": 90, "Castellon": 97, "Valencia": 178, "total": 365, "gif_ge_500_ha": 8},
+      {"year": 1983, "Alicante": 105, "Castellon": 147, "Valencia": 242, "total": 494, "gif_ge_500_ha": 3},
+      {"year": 1984, "Alicante": 100, "Castellon": 156, "Valencia": 214, "total": 470, "gif_ge_500_ha": 10},
+      {"year": 1985, "Alicante": 99, "Castellon": 162, "Valencia": 262, "total": 523, "gif_ge_500_ha": 8},
+      {"year": 1986, "Alicante": 88, "Castellon": 111, "Valencia": 186, "total": 385, "gif_ge_500_ha": 6},
+      {"year": 1987, "Alicante": 137, "Castellon": 83, "Valencia": 186, "total": 406, "gif_ge_500_ha": 2},
+      {"year": 1988, "Alicante": 115, "Castellon": 86, "Valencia": 119, "total": 320, "gif_ge_500_ha": 1},
+      {"year": 1989, "Alicante": 115, "Castellon": 104, "Valencia": 173, "total": 392, "gif_ge_500_ha": 0},
+      {"year": 1990, "Alicante": 222, "Castellon": 190, "Valencia": 214, "total": 626, "gif_ge_500_ha": 7},
+      {"year": 1991, "Alicante": 259, "Castellon": 252, "Valencia": 358, "total": 869, "gif_ge_500_ha": 15},
+      {"year": 1992, "Alicante": 201, "Castellon": 213, "Valencia": 356, "total": 770, "gif_ge_500_ha": 10}
+    ],
+    "gif_ge_500_ha_by_year_and_province": [
+      {"year": 1968, "Alicante": 1, "Castellon": 0, "Valencia": 1, "total": 2},
+      {"year": 1969, "Alicante": 0, "Castellon": 0, "Valencia": 2, "total": 2},
+      {"year": 1970, "Alicante": 4, "Castellon": 0, "Valencia": 5, "total": 9},
+      {"year": 1971, "Alicante": 1, "Castellon": 0, "Valencia": 1, "total": 2},
+      {"year": 1972, "Alicante": 0, "Castellon": 0, "Valencia": 0, "total": 0},
+      {"year": 1973, "Alicante": 0, "Castellon": 0, "Valencia": 1, "total": 1},
+      {"year": 1974, "Alicante": 0, "Castellon": 2, "Valencia": 5, "total": 7},
+      {"year": 1975, "Alicante": 0, "Castellon": 0, "Valencia": 3, "total": 3},
+      {"year": 1976, "Alicante": 1, "Castellon": 1, "Valencia": 0, "total": 2},
+      {"year": 1977, "Alicante": 1, "Castellon": 1, "Valencia": 3, "total": 5},
+      {"year": 1978, "Alicante": 4, "Castellon": 10, "Valencia": 15, "total": 29},
+      {"year": 1979, "Alicante": 5, "Castellon": 17, "Valencia": 0, "total": 22},
+      {"year": 1980, "Alicante": 8, "Castellon": 1, "Valencia": 3, "total": 12},
+      {"year": 1981, "Alicante": 3, "Castellon": 7, "Valencia": 5, "total": 15},
+      {"year": 1982, "Alicante": 0, "Castellon": 4, "Valencia": 4, "total": 8},
+      {"year": 1983, "Alicante": 0, "Castellon": 1, "Valencia": 2, "total": 3},
+      {"year": 1984, "Alicante": 0, "Castellon": 6, "Valencia": 4, "total": 10},
+      {"year": 1985, "Alicante": 0, "Castellon": 4, "Valencia": 4, "total": 8},
+      {"year": 1986, "Alicante": 3, "Castellon": 1, "Valencia": 2, "total": 6},
+      {"year": 1987, "Alicante": 0, "Castellon": 1, "Valencia": 1, "total": 2},
+      {"year": 1988, "Alicante": 0, "Castellon": 0, "Valencia": 1, "total": 1},
+      {"year": 1989, "Alicante": 0, "Castellon": 0, "Valencia": 0, "total": 0},
+      {"year": 1990, "Alicante": 4, "Castellon": 0, "Valencia": 3, "total": 7},
+      {"year": 1991, "Alicante": 4, "Castellon": 2, "Valencia": 9, "total": 15},
+      {"year": 1992, "Alicante": 2, "Castellon": 3, "Valencia": 5, "total": 10}
+    ],
+    "totals": {
+      "Alicante": {"records": 2514, "gif_ge_500_ha": 41},
+      "Castellon": {"records": 2600, "gif_ge_500_ha": 61},
+      "Valencia": {"records": 4061, "gif_ge_500_ha": 79},
+      "Comunitat_Valenciana": {"records": 9175, "gif_ge_500_ha": 181}
+    },
+    "coverage_warnings": [
+      "Alicante has zero public search records in 1972.",
+      "Valencia has zero public search records in 1979.",
+      "Zeros in the early selective period must not be interpreted as zero real fires."
+    ],
+    "field_completeness": {
+      "with_coordinates": {"value": null, "status": "not_measured", "reason": "requires full record export and period-specific semantics audit"},
+      "without_coordinates": {"value": null, "status": "not_measured", "reason": "requires full record export and must distinguish absent, unknown CRS and unvalidated values"},
+      "with_municipality": {"value": null, "status": "not_measured", "reason": "requires distinguishing actual municipality from unknown/indeterminate values"},
+      "with_reported_area": {"value": null, "status": "not_measured", "reason": "requires a period-aware field mapping; non-forest area was added in 1989"},
+      "duplicate_or_problematic_identifiers": {"value": null, "status": "not_measured", "reason": "requires preserving and auditing all source records without deduplication"}
+    }
+  },
+  "priority_large_fire_records": [
+    {"source_report_id": "1978463963", "date": "1978-08-30", "municipality_displayed": "Indeterminado", "province": "Valencia", "reported_area_ha": 13100},
+    {"source_report_id": "1985464582", "date": "1985-07-27", "municipality_displayed": "Tous", "province": "Valencia", "reported_area_ha": 18886},
+    {"source_report_id": "1991460176", "date": "1991-07-28", "municipality_displayed": "Yatova", "province": "Valencia", "reported_area_ha": 17415},
+    {"source_report_id": "1990460094", "date": "1990-07-24", "municipality_displayed": "Gestalgar", "province": "Valencia", "reported_area_ha": 10195},
+    {"source_report_id": "1990030079", "date": "1990-07-25", "municipality_displayed": "Castell de Castells", "province": "Alicante", "reported_area_ha": 6800},
+    {"source_report_id": "1982124545", "date": "1982-10-05", "municipality_displayed": "Indeterminado", "province": "Castellon", "reported_area_ha": 3870},
+    {"source_report_id": "1987121659", "date": "1987-07-17", "municipality_displayed": "Altura", "province": "Castellon", "reported_area_ha": 3560},
+    {"source_report_id": "1984123603", "date": "1984-09-23", "municipality_displayed": "Santa Magdalena de Pulpis", "province": "Castellon", "reported_area_ha": 3500},
+    {"source_report_id": "1992120403", "date": "1992-08-30", "municipality_displayed": "Altura", "province": "Castellon", "reported_area_ha": 3310},
+    {"source_report_id": "1992030123", "date": "1992-08-29", "municipality_displayed": "Tarbena", "province": "Alicante", "reported_area_ha": 2260}
+  ],
+  "historical_geometry_sources": [
+    {
+      "source_id": "gva_icv_annual_perimeters",
+      "authority": "Institut Cartografic Valencia / Generalitat Valenciana",
+      "url": "https://carto.icv.gva.es/arcgis/rest/services/tm_medio_ambiente/prevencion_de_incendios/MapServer",
+      "observed_coverage": [1993, 2024],
+      "covers_target_period": false,
+      "provides": "official annual vector perimeters",
+      "potential_quality": "A outside target period",
+      "finding": "No pre-1993 annual layer is exposed by the reviewed service."
+    },
+    {
+      "source_id": "gva_chera_sot_de_chera_historical_plan",
+      "authority": "Generalitat Valenciana",
+      "url": "https://mediambient.gva.es/auto/prevencion-incendios/Red-espacios-protegidos/Chera-Sot%20de%20Chera/Documentacion%20en%20castellano/Plan%20de%20prevencion/01-Analisis_historico_incendios/Analisis_hist_informe.pdf",
+      "observed_coverage": [1978, 2004],
+      "target_years_with_cartographic_evidence": [1978, 1980, 1986, 1990, 1992],
+      "documented_large_fire_rows": [
+        {"date": "1986-05-18", "municipality": "Sot de Chera", "reported_area_ha": 877},
+        {"date": "1992-08-31", "municipality": "Sot de Chera", "reported_area_ha": 1092.2}
+      ],
+      "provides": "published recurrence/burned-terrain map and approximate areas, not source vectors",
+      "potential_quality": "C from the published map; possible B only if original annual cartography and methodology are recovered",
+      "limitations": ["areas explicitly described as approximate", "map scale insufficient for precise area", "event-level vectors not publicly supplied"]
+    },
+    {
+      "source_id": "gva_serra_mariola_historical_plan",
+      "authority": "Generalitat Valenciana",
+      "url": "https://mediambient.gva.es/auto/prevencion-incendios/Red-espacios-protegidos/Serra%20Mariola/Documentacion%20en%20castellano/Plan%20de%20prevencion/01-Analisis_historico_incendios/Analisis_hist_informe.pdf",
+      "observed_coverage": [1994, 2003],
+      "covers_target_period": false,
+      "provides": "historical analysis and maps outside target period",
+      "potential_quality": "not_assigned_for_1968_1992",
+      "finding": "No official public pre-1993 Mariola/Font Roja perimeter was located in this review."
+    },
+    {
+      "source_id": "miteco_national_civil_protection_plan_maps",
+      "authority": "MITECO",
+      "url": "https://www.miteco.gob.es/content/dam/miteco/es/biodiversidad/temas/incendios-forestales/plan_estatal_tcm30-278888.pdf",
+      "observed_coverage": [1983, 1992],
+      "provides": "aggregated frequency/intensity/lightning maps by 1:200000 military map sheets or grids",
+      "potential_quality": "D/context only",
+      "limitations": ["not event perimeters", "not suitable for assigning a geometry to an individual report"]
+    },
+    {
+      "source_id": "miteco_forest_map_and_change_products",
+      "authority": "MITECO",
+      "provides": "land-cover snapshots and changes that may include burned areas",
+      "potential_quality": "possible C after independent event/date corroboration",
+      "limitations": ["not an event inventory", "does not by itself establish fire identity or exact date"]
+    },
+    {
+      "source_id": "gva_goiif_historical_case_files",
+      "authority": "Generalitat Valenciana",
+      "observed_coverage_note": "unit formalized in 1995 with experimental work in 1991-1992",
+      "provides": "cause-investigation documentation; public pre-1993 vector collection not located",
+      "potential_quality": "D for public inventory; possible C support if individual files contain documented maps"
+    }
+  ],
+  "priority_areas": {
+    "mariola_font_roja": {
+      "public_pre_1993_perimeter_found": false,
+      "finding": "The publicly located Serra de Mariola historical plan starts in 1994.",
+      "next_action": "Request original historical cartography, methodology, scale, CRS and reuse conditions from GVA/ICV and protected-area managers."
+    },
+    "chera_sot_de_chera": {
+      "public_historical_cartographic_evidence_found": true,
+      "years": [1978, 1980, 1986, 1990, 1992],
+      "event_vectors_found": false,
+      "next_action": "Request the annual source cartography and metadata; do not digitize the PDF in CV-3.1."
+    }
+  },
+  "viewer_design": {
+    "timeline_target": [1968, 2026],
+    "periods": [
+      {"years": [1968, 1979], "administrative_source": "EGIF", "default_geometry": null, "coverage_label": "historical early/selective"},
+      {"years": [1980, 1991], "administrative_source": "EGIF", "default_geometry": null, "coverage_label": "historical transition"},
+      {"years": [1992, 1992], "administrative_source": "EGIF", "default_geometry": null, "coverage_label": "historical systematic collection; spatial fields remain unvalidated"},
+      {"years": [1993, 2024], "administrative_source": "ICV associated attributes", "default_geometry": "ICV official vector", "coverage_label": "consolidated cartographic inventory"},
+      {"years": [2025, 2026], "administrative_source": "SIGIF provisional", "default_geometry": "separate SIGIF point and EFFIS provisional satellite polygon", "coverage_label": "provisional snapshot"}
+    ],
+    "rules": [
+      "EGIF historical records remain separate from geometry records.",
+      "An independent historical geometry must preserve source, method, date and quality.",
+      "A municipality, grid or point never authorizes constructing a perimeter.",
+      "The UI must distinguish administrative record counts from available perimeter counts.",
+      "Coverage and cartographic quality must be visible by period."
+    ]
+  },
+  "cv_3_2_recommendation": [
+    "Build a reproducible filtered EGIF XML downloader for 1968-1992 with raw snapshots, checksum and manifest.",
+    "Validate completeness against 9175 total records and every year/province count in this inventory.",
+    "Inventory and map all six historical form schemas before normalization.",
+    "Create historical fire records only; keep geometry nullable and separate.",
+    "Audit identifiers, municipality, reported area, causes, coordinates, CRS, zones, duplicates and inconsistencies without silent correction.",
+    "Cross-check annual totals with definitive EGIF publications.",
+    "Request original historical cartography and reuse conditions for Chera-Sot de Chera and Mariola-Font Roja before creating any perimeter."
+  ]
+}

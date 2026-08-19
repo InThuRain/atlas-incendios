@@ -33,6 +33,36 @@ https://www.miteco.gob.es/es/biodiversidad/temas/incendios-forestales/estadistic
 
 También revisar recursos del Banco de Datos de la Naturaleza y servicios IDE del MITECO.
 
+### Inventario histórico valenciano CV-3.1
+
+La revisión de 1968–1992 identificó **9.175 registros** en el buscador público:
+2.514 en Alicante, 2.600 en Castellón y 4.061 en Valencia; 181 tienen superficie
+declarada igual o superior a 500 ha. Son recuentos del snapshot consultado el
+19 de agosto de 2026, no una afirmación de cobertura histórica uniforme.
+
+La documentación oficial establece una ruptura metodológica importante. Entre
+1968 y 1979 se recogían principalmente incendios de montes con intervención
+pública, especialmente repoblaciones. La recogida de todos los siniestros
+comienza durante los años ochenta y se sistematiza para todas las comunidades y
+provincias en 1992. Los modelos de parte cambian en 1968, 1972, 1980, 1983,
+1989 y 1990.
+
+El buscador permite resumen Excel y parte completo XML. El producto enlazado
+publicado cubre 1983–2015 bajo CC BY 4.0, pero la ontología oficial indica que
+los registros codificados comienzan en 1983 y que las geometrías puntuales solo
+están validadas desde 2005. Por ello ninguna coordenada de 1968–1992 se tratará
+como punto fiable sin una auditoría por modelo de parte, CRS, datum, huso,
+unidades y rango. EGIF no aporta una serie homogénea de perímetros.
+
+Las [condiciones generales MITECO](https://www.datosabiertos.miteco.gob.es/es/aviso-legal.html)
+permiten copia, difusión, modificación, adaptación y combinación, con cita de
+origen, fecha de actualización y metadatos, sin desnaturalizar la información
+ni sugerir respaldo ministerial.
+
+El detalle, los recuentos anuales, las lagunas y las fuentes cartográficas
+revisadas están en `CV_3_1_HISTORICAL_INVENTORY.md` y
+`data/sources/gva_historical_inventory.json`.
+
 ## 2. Generalitat Valenciana / ICV
 
 Fuente muy importante para el piloto.
@@ -221,6 +251,20 @@ Para periodos antiguos pueden utilizarse:
 - hemeroteca como apoyo documental, nunca como única base geométrica si no existe información espacial suficiente.
 
 Las reconstrucciones deben marcarse como calidad C.
+
+CV-3.1 confirmó que el servicio vectorial ICV comienza en 1993. El plan oficial
+de Chera–Sot de Chera publica cartografía de terreno recorrido/recurrencia para
+1978–2004 y contiene evidencia para 1978, 1980, 1986, 1990 y 1992, pero declara
+superficies aproximadas y no ofrece los vectores anuales fuente. El PDF solo es
+base potencial C; la cartografía original podría evaluarse como B si se recupera
+con método, escala, CRS y licencia documentados. No se ha localizado un
+perímetro oficial público pre-1993 para Mariola–Font Roja; el informe de Serra
+de Mariola encontrado empieza en 1994.
+
+Los mapas MITECO 1983–1992 agregados por hoja/cuadrícula 1:200.000 y los mapas
+de cambios del Mapa Forestal sirven como contexto o pistas de investigación,
+no como perímetros de evento. Ninguna fuente histórica se digitalizará o
+clasificará para un incendio concreto sin evidencia suficiente.
 
 ## 6. Capas ambientales complementarias
 
