@@ -34,6 +34,8 @@ Objetivo: tener un piloto local fiable y agradable de usar.
 
 - [x] Descargar todas las capas 1993–2024.
 - [x] Crear dataset único normalizado.
+- [x] Auditar identidad, geometrías equivalentes y validez topológica del snapshot ICV normalizado.
+- [ ] Verificar las condiciones de reutilización/licencia del dataset ICV antes de redistribuir snapshots raw o derivados que conserven la geometría original.
 - [ ] Relacionar con EGIF cuando sea posible.
 - [ ] Probar rendimiento regional.
 - [x] Sustituir el prototipo Mariola–Font Roja por el primer visor estático de

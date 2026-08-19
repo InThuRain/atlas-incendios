@@ -68,6 +68,19 @@ Campos vistos en capas del servicio:
 
 La cartografía valenciana es informativa y puede no contener todos los incendios del periodo. No usar el número de polígonos como sustituto directo de EGIF.
 
+### Metadatos oficiales revisados en CV-1.3b
+
+El registro oficial `spa_icv_ince_incendios` del catálogo ICV, revisado el 27 de julio de 2026, documenta métodos de producción distintos por periodo: toma GPS para 1993–1995, teledetección para 1996–2012 y homogeneización a partir de los ficheros anuales y la estadística de incendios para 2013–2024. También registra la sustitución en 2026 del antiguo campo `numparte` por los códigos autonómico y ministerial.
+
+La ficha no explica por qué una misma secuencia de coordenadas puede aparecer con identificadores distintos ni en años diferentes. Por tanto, no se debe interpretar esa igualdad como republicación, duplicado administrativo o recurrencia real sin otra evidencia.
+
+El registro declara licencia CC BY 4.0 y remite a las [condiciones de uso de la geoinformación ICV](https://icv.gva.es/es/condiciones-de-uso-de-la-geoinformacion-icv), que exigen atribución visible e incluyen condiciones para la redistribución. Antes de publicar snapshots se debe concretar la atribución y cómo cumplir esas condiciones.
+
+Fuentes verificadas:
+
+- [registro del catálogo de datos abiertos GVA](https://dadesobertes.gva.es/dataset/incendios-forestales-de-la-comunitat-valenciana-1993-2024);
+- [metadatos ISO del ICV](https://catalogo.icv.gva.es/geonetwork/srv/api/records/spa_icv_ince_incendios/formatters/xml).
+
 ## 3. Fuentes autonómicas
 
 Para la versión española será necesario localizar las fuentes oficiales de cada comunidad autónoma.
