@@ -69,6 +69,16 @@ Se usa `gva:pif-cv:<NumPIF_CV>` cuando `NumPIF_CV` está presente, mantiene una 
 
 **Consecuencias:** `2024AL0005` se representa como un incendio con dos registros geométricos separados. La regla deberá revisarse al relacionar los datos con EGIF y nunca permite fusionar incendios solo porque compartan geometría.
 
+## 2026-08-19 — GeoJSON particionado y Leaflet para la fase valenciana
+
+Los derivados web de la Comunitat Valenciana se servirán provisionalmente como GeoJSON en EPSG:4326, con atributos de incendio separados y geometrías disponibles en niveles `local`, `regional` y `overview`. La unidad de carga recomendada es provincia × bloque temporal; se conserva también la posibilidad de una colección `overview` única para vistas completas.
+
+Se mantiene Leaflet 1.9.4 con render Canvas para la fase valenciana. No se adopta todavía PMTiles, MapLibre, JSON compacto ni TopoJSON como formato principal.
+
+**Motivo:** CV-1.4 midió 13.739 geometrías. El `overview` GeoJSON completo ocupa 2,49 MB gzip y, en Chrome headless, tarda una mediana de 70 ms en parsearse y 218 ms en crear y dibujar las capas, aunque usa unos 143 MB de heap. Un bloque de 3.716 geometrías baja a 73 ms de render y 54 MB. JSON compacto solo ahorra un 3,1 % comprimido; TopoJSON sin cuantización un 2,8 % y añade decodificación. La cuantización TopoJSON que sí reducía sustancialmente el tamaño invalidó microgeometrías.
+
+**Consecuencias:** la aplicación valenciana debe cargar particiones según periodo/provincia y evitar mantener innecesariamente las 13.739 capas completas en memoria, especialmente en móviles. Esta decisión no se extrapola a España: la escala nacional deberá volver a evaluar teselas vectoriales/PMTiles y renderizadores orientados a teselas con datos nacionales reales.
+
 ## 2026-08-19 — Frontend valenciano estático guiado por manifiesto
 
 El visor de la Comunitat Valenciana descubre los derivados web mediante un único

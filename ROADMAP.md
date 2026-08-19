@@ -37,7 +37,8 @@ Objetivo: tener un piloto local fiable y agradable de usar.
 - [x] Auditar identidad, geometrías equivalentes y validez topológica del snapshot ICV normalizado.
 - [ ] Verificar las condiciones de reutilización/licencia del dataset ICV antes de redistribuir snapshots raw o derivados que conserven la geometría original.
 - [ ] Relacionar con EGIF cuando sea posible.
-- [ ] Probar rendimiento regional.
+- [x] Probar rendimiento regional (CV-1.4: GeoJSON derivado, tres niveles,
+  particionado y benchmark reproducible con Leaflet 1.9.4).
 - [x] Sustituir el prototipo Mariola–Font Roja por el primer visor estático de
   toda la Comunitat Valenciana (CV-1.5: manifiesto, carga progresiva por zoom,
   provincia y bloque temporal, sin consultas ArcGIS en el navegador).

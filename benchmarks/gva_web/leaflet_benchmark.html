@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>CV-1.4 Leaflet benchmark</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <style>
+    html, body, #map { height: 100%; margin: 0; }
+    #result { display: none; }
+  </style>
+</head>
+<body>
+  <div id="map"></div><pre id="result">pending</pre>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script>
+  'use strict';
+  (function () {
+    const resultNode = document.getElementById('result');
+    const params = new URLSearchParams(location.search);
+    const dataset = params.get('dataset');
+    const scenario = params.get('scenario') || 'whole';
+    const study = L.latLngBounds([[38.48, -0.91], [38.93, -0.20]]);
+    function finish(value) {
+      resultNode.textContent = JSON.stringify(value);
+      resultNode.dataset.complete = 'true';
+    }
+    try {
+      if (!dataset) throw new Error('Missing dataset query parameter');
+      const heapStart = performance.memory ? performance.memory.usedJSHeapSize : null;
+      const fetchStart = performance.now();
+      const request = new XMLHttpRequest();
+      request.open('GET', '/' + dataset.replace(/^\/+/, ''), false);
+      request.send();
+      if (request.status < 200 || request.status >= 300) throw new Error('HTTP ' + request.status);
+      const text = request.responseText;
+      const fetchMs = performance.now() - fetchStart;
+      const parseStart = performance.now();
+      const parsed = JSON.parse(text);
+      const parseMs = performance.now() - parseStart;
+      const sourceCount = parsed.features.length;
+      let selected = parsed;
+      if (scenario === 'local') {
+        const bounds = [-0.91, 38.48, -0.20, 38.93];
+        function geometryBounds(coordinates, result) {
+          if (typeof coordinates[0] === 'number') {
+            result[0] = Math.min(result[0], coordinates[0]);
+            result[1] = Math.min(result[1], coordinates[1]);
+            result[2] = Math.max(result[2], coordinates[0]);
+            result[3] = Math.max(result[3], coordinates[1]);
+            return;
+          }
+          coordinates.forEach(value => geometryBounds(value, result));
+        }
+        function intersects(feature) {
+          const featureBounds = [Infinity, Infinity, -Infinity, -Infinity];
+          geometryBounds(feature.geometry.coordinates, featureBounds);
+          return featureBounds[0] <= bounds[2] && featureBounds[2] >= bounds[0] &&
+            featureBounds[1] <= bounds[3] && featureBounds[3] >= bounds[1];
+        }
+        selected = {
+          type: 'FeatureCollection',
+          features: parsed.features.filter(intersects)
+        };
+      }
+      const map = L.map('map', {preferCanvas: true, zoomControl: false, attributionControl: false});
+      const layerStart = performance.now();
+      const layer = L.geoJSON(selected, {style: {weight: 1, fillOpacity: 0.25}}).addTo(map);
+      if (scenario === 'local') map.fitBounds(study);
+      else map.fitBounds(layer.getBounds());
+      const layerMs = performance.now() - layerStart;
+      // Force Leaflet's pending Canvas redraw so headless measurements include
+      // path drawing without depending on background animation-frame scheduling.
+      if (map._renderer && map._renderer._redraw) map._renderer._redraw();
+      const settledMs = performance.now() - layerStart;
+      const heapEnd = performance.memory ? performance.memory.usedJSHeapSize : null;
+      const resource = performance.getEntriesByName(request.responseURL)[0];
+      finish({
+        leaflet_version: L.version,
+        prefer_canvas: true,
+        dataset: dataset,
+        scenario: scenario,
+        source_geometry_count: sourceCount,
+        rendered_geometry_count: selected.features.length,
+        source_bytes: new TextEncoder().encode(text).length,
+        transfer_size_bytes: resource ? resource.transferSize : null,
+        fetch_ms: fetchMs,
+        parse_ms: parseMs,
+        layer_add_ms: layerMs,
+        settled_render_ms: settledMs,
+        heap_delta_bytes: heapStart === null ? null : Math.max(0, heapEnd - heapStart)
+      });
+    } catch (error) {
+      finish({error: String(error && error.stack || error)});
+    }
+  }());
+  </script>
+</body>
+</html>

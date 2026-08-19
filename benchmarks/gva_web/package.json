@@ -1,0 +1,10 @@
+{
+  "name": "atlas-incendios-gva-web-benchmark",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Reproducible CV-1.4 format benchmarks",
+  "dependencies": {
+    "topojson-client": "3.1.0",
+    "topojson-server": "3.0.1"
+  }
+}
