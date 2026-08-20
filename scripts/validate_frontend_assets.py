@@ -66,10 +66,12 @@ def main():
         "metadata_url",
         "metadata_revision_date",
         "license_id",
+        "license_status",
         "license_url",
         "terms_url",
         "attribution",
         "credit",
+        "copyright_holder",
     )
     missing_source_fields = [
         field for field in required_source_fields if not source.get(field)
@@ -80,6 +82,8 @@ def main():
         )
     if source["license_id"] != "CC-BY-4.0":
         raise ValidationError("Unexpected source license")
+    if not source["license_status"].startswith("provider_confirmed_"):
+        raise ValidationError("ICV provider confirmation is not recorded")
     derivation = manifest["derivation"]
     if (
         not derivation.get("is_modified")
@@ -89,15 +93,33 @@ def main():
     ):
         raise ValidationError("Incomplete or inconsistent derivation metadata")
     publication = manifest["publication"]
-    if publication.get("status") not in (
-        "blocked_pending_icv_clarification",
-        "ready",
-    ):
-        raise ValidationError("Unknown publication status")
-    if publication["status"] == "ready" and publication.get(
+    if publication.get("status") != "ready" or publication.get(
         "license_review_required"
     ):
-        raise ValidationError("Publication cannot be ready with a pending review")
+        raise ValidationError("ICV publication status must be ready after clarification")
+    clarification = publication.get("clarification", {})
+    if (
+        clarification.get("received_on") != "2026-08-20"
+        or clarification.get("acceptance_mode") != "tacit"
+        or not clarification.get("public_redistribution_confirmed")
+        or not clarification.get("transformed_derivatives_confirmed")
+        or clarification.get("attribution_to") != "Generalitat"
+    ):
+        raise ValidationError("Incomplete ICV written clarification metadata")
+    expected_attribution = (
+        "Incendios forestales de la Comunitat Valenciana (1993–2024) "
+        "CC BY 4.0, Generalitat. Datos transformados para su visualización "
+        "mediante reproyección, selección de atributos, particionado y "
+        "simplificación geométrica."
+    )
+    if (
+        source.get("credit") != "Generalitat"
+        or source.get("copyright_holder") != "Generalitat"
+        or source.get("attribution") != expected_attribution
+        or clarification.get("provider_proposed_attribution") != expected_attribution
+        or publication.get("third_party_licenses_file") != "THIRD_PARTY_LICENSES.md"
+    ):
+        raise ValidationError("ICV attribution does not match the provider wording")
     geometry_assets = manifest["geometry_assets"]
     static_assets = list(manifest["attributes"].values())
     assets = geometry_assets + static_assets

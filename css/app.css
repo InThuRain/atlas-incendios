@@ -21,7 +21,7 @@ body {
 }
 button, input, select { font: inherit; }
 button, select, input { accent-color: var(--forest); }
-button:focus-visible, select:focus-visible, input:focus-visible, a:focus-visible {
+button:focus-visible, select:focus-visible, input:focus-visible, a:focus-visible, summary:focus-visible {
   outline: 3px solid rgba(31, 89, 68, .25);
   outline-offset: 2px;
 }
@@ -141,7 +141,33 @@ select {
 .result-copy dt { color: var(--muted); }
 .result-copy dd { margin: 0; color: var(--ink); overflow-wrap: anywhere; }
 .reuse-warning { margin-top: 9px; padding: 8px; border-left: 3px solid var(--warning-line); background: var(--warning); color: #594b20; font-size: .7rem; }
-.quality-note { margin-top: 8px; color: var(--muted); font-size: .68rem; }
+.technical-details { margin-top: 9px; border-top: 1px solid var(--line); }
+.technical-details summary {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 1px 2px;
+  color: var(--forest);
+  font-size: .7rem;
+  font-weight: 750;
+  cursor: pointer;
+  list-style: none;
+}
+.technical-details summary::-webkit-details-marker { display: none; }
+.technical-details summary::before {
+  content: "+";
+  display: inline-grid;
+  width: 17px;
+  height: 17px;
+  place-items: center;
+  border: 1px solid #b9cbc2;
+  border-radius: 50%;
+  font-size: .8rem;
+  line-height: 1;
+}
+.technical-details[open] summary::before { content: "−"; }
+.technical-details[open] summary { margin-bottom: 7px; }
+.technical-details dl { padding-left: 2px; }
 .year-pill { display: inline-block; margin: 3px 3px 0 0; padding: 3px 7px; border-radius: 999px; background: #e7efea; color: var(--forest-dark); font-size: .68rem; font-weight: 750; }
 
 .fire-list { max-height: 360px; overflow-y: auto; }

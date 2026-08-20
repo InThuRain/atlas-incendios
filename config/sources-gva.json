@@ -15,7 +15,7 @@
       "sources": ["icv", "sigif", "effis"]
     },
     "public": {
-      "sources": ["effis"]
+      "sources": ["icv", "effis"]
     }
   },
   "sources": {
@@ -27,9 +27,12 @@
       "geometry_quality": "A_official_vector",
       "year_min": 1993,
       "year_max": 2024,
-      "publishable": false,
-      "license_status": "blocked_pending_written_clarification",
-      "attribution": "Incendios forestales de la Comunitat Valenciana (1993–2024) CC BY 4.0 © Institut Cartogràfic Valencià, Generalitat Valenciana",
+      "publishable": true,
+      "license_status": "provider_confirmed_CC_BY_4_0_public_redistribution_and_transformed_derivatives",
+      "license_id": "CC-BY-4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/legalcode",
+      "copyright_holder": "Generalitat",
+      "attribution": "Incendios forestales de la Comunitat Valenciana (1993–2024) CC BY 4.0, Generalitat. Datos transformados para su visualización mediante reproyección, selección de atributos, particionado y simplificación geométrica.",
       "methodology_url": "https://dadesobertes.gva.es/dataset/incendios-forestales-de-la-comunitat-valenciana-1993-2024"
     },
     "sigif": {

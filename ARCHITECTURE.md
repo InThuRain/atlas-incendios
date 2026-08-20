@@ -268,7 +268,9 @@ raw CV-2.2 -> processed CV-2.2 -> web reducido CV-2.3 -> perfil de ejecución
 
 El perfil `development` habilita los assets locales ICV, SIGIF y EFFIS. El
 perfil `public` solo admite fuentes con `publishable=true` y falla si se intenta
-forzar una fuente bloqueada. Componer un perfil no publica ni copia datos.
+forzar una fuente bloqueada. Desde la aclaración escrita del ICV de 20/08/2026,
+el perfil público incluye ICV y EFFIS; SIGIF permanece bloqueado. Componer un
+perfil no publica ni copia datos.
 
 Las entidades siguen separadas también en el navegador: `fire_id` ICV,
 `sigif_record_id` y `geometry_id`/`effis_id`. Los candidatos son relaciones

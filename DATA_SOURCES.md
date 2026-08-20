@@ -139,19 +139,20 @@ El registro declara licencia **Creative Commons Atribución 4.0 Internacional
 (CC BY 4.0)** y no registra limitaciones al acceso público. La página oficial de
 [condiciones de uso de la geoinformación
 ICV](https://icv.gva.es/es/condiciones-de-uso-de-la-geoinformacion-icv) exige
-citar la procedencia en lugar visible. Para este producto se propone conservar
-la siguiente fórmula, basada en el modelo de cita del ICV y en el crédito del
-registro ISO:
+citar la procedencia en lugar visible. Una aclaración escrita del ICV recibida
+el 20 de agosto de 2026 confirmó que, para este dataset, la atribución
+corresponde a **Generalitat**. El atlas empleará la fórmula propuesta
+expresamente por el proveedor:
 
-> Incendios forestales de la Comunitat Valenciana (1993–2024) CC BY 4.0
-> © Institut Cartogràfic Valencià, Generalitat. Servicio de Prevención de
-> Incendios Forestales, DGPIF, Generalitat Valenciana.
+> Incendios forestales de la Comunitat Valenciana (1993–2024) CC BY 4.0,
+> Generalitat. Datos transformados para su visualización mediante reproyección,
+> selección de atributos, particionado y simplificación geométrica.
 
 Los derivados del atlas deben añadir que han sido normalizados, reproyectados,
 particionados y simplificados, enlazar la ficha y las condiciones oficiales,
 conservar la fecha de revisión y no sugerir respaldo de la Generalitat.
 
-### Publicación de derivados: estado CV-1.5b
+### Publicación de derivados: CV-1.5b resuelta
 
 La documentación oficial también establece que la redistribución total,
 parcial o de un producto derivado, comercial o no comercial, requiere la
@@ -161,12 +162,12 @@ GVA](https://portaldadesobertes.gva.es/es/avis-legal) añaden que no debe
 alterarse ni desnaturalizarse la información y que han de conservarse sin
 alteración los metadatos de actualización y reutilización.
 
-No se ha encontrado en la documentación oficial una explicación de cómo
-cumplir la aceptación expresa cuando los GeoJSON se sirven mediante URLs
-públicas directas, ni una confirmación de que la simplificación geométrica
-documentada sea compatible con la condición de no alteración. Por ello,
-**CV-1.5b no autoriza todavía la publicación**: antes se solicitará confirmación
-escrita al ICV o al órgano titular. El detalle y el texto propuesto figuran en
+La aclaración escrita del ICV recibida el 20 de agosto de 2026 confirmó que la
+aceptación de esas condiciones es tácita, que CC BY 4.0 permite la
+redistribución pública y que los datos transformados pueden publicarse siempre
+que se indiquen las modificaciones. Con esa evidencia, los derivados ICV están
+documentalmente habilitados para publicación. Esto no autoriza los datos SIGIF
+ni ejecuta por sí mismo ningún despliegue. El detalle figura en
 `LICENSE_DATA.md` y `CV_1_5B_LICENSE_REPORT.md`.
 
 Fuentes verificadas:
@@ -234,9 +235,11 @@ no se simplifica en esta fase y se etiqueta `B_provisional_satellite`. Los
 candidatos strong/possible forman un asset de interfaz y los weak otro asset que
 solo se solicita con `quality_debug=1`.
 
-La disponibilidad técnica no cambia la autorización: ICV y SIGIF continúan con
-`publishable=false`; EFFIS figura como CC BY 4.0 con atribución y aviso de
-transformación. Ninguno de estos derivados se versiona ni publica todavía.
+La aclaración ICV del 20 de agosto de 2026 permite marcar ICV como
+`publishable=true`, con atribución a Generalitat y aviso de
+transformación. SIGIF continúa con `publishable=false`; EFFIS figura como CC BY
+4.0 con atribución y aviso de transformación. Ninguno de estos derivados se ha
+publicado todavía.
 
 ## 3. Fuentes autonómicas
 

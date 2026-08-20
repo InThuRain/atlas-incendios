@@ -6,17 +6,19 @@ condiciones establecidas por la Generalitat Valenciana.
 
 ## Estado de publicación
 
-**Los datasets web derivados no están publicados.** La revisión CV-1.5b confirmó
-la licencia y la atribución, pero dejó pendientes dos aclaraciones operativas
-necesarias para una distribución pública mediante GitHub Pages:
+**Los datasets web derivados todavía no están publicados.** Una aclaración
+escrita del Institut Cartogràfic Valencià, recibida el 20 de agosto de 2026,
+resolvió los bloqueos documentales de CV-1.5b:
 
-1. cómo obtener la aceptación expresa de las condiciones por cada receptor de
-   una copia o producto derivado;
-2. si la simplificación geométrica multiescala documentada es compatible con la
-   condición general de no alterar ni desnaturalizar la información.
+1. CC BY 4.0 permite la redistribución pública;
+2. la aceptación de las condiciones es tácita;
+3. pueden publicarse datos transformados indicando las modificaciones;
+4. la propiedad y atribución de este dataset corresponde a Generalitat, no al
+   ICV.
 
-Hasta obtener respuesta escrita del ICV o del órgano titular, este archivo no
-debe interpretarse como autorización para añadir `data/web/gva/` a Git.
+Por tanto, los derivados ICV pueden incorporarse a un futuro perfil público con
+la atribución y el aviso de modificación indicados aquí. Este cambio no publica
+archivos automáticamente ni alcanza a SIGIF, que mantiene condiciones propias.
 
 ## Dataset de origen
 
@@ -53,9 +55,9 @@ La documentación oficial consultada establece:
   no existe un acuerdo expreso;
 - responsabilidad exclusiva del reutilizador por el uso de los datos;
 - prohibición de usos ilícitos o contrarios a derechos de terceros;
-- aceptación expresa de las condiciones por el nuevo usuario cuando se
-  reproduce o distribuye el total, una parte o un producto derivado, con o sin
-  finalidad comercial.
+- aceptación de las condiciones por el nuevo usuario cuando se reproduce o
+  distribuye el total, una parte o un producto derivado, con o sin finalidad
+  comercial. El ICV aclaró por escrito que esta aceptación es tácita.
 
 ## Derivados preparados por el atlas
 
@@ -73,22 +75,23 @@ Los límites máximos usados son 1 m y 1 % de error relativo de área para
 `local`, 10 m y 5 % para `regional`, y 50 m y 15 % para `overview`. Si una
 geometría no cumple la salvaguarda individual se conserva con mayor detalle.
 
-## Atribución visible propuesta
+## Atribución visible
 
-Si el ICV confirma la publicación, el visor mostrará permanentemente:
+El visor mostrará permanentemente:
 
-> Datos de origen: “Incendios forestales de la Comunitat Valenciana
-> (1993–2024)” CC BY 4.0 © Institut Cartogràfic Valencià, Generalitat. Servicio
-> de Prevención de Incendios Forestales, DGPIF, Generalitat Valenciana.
-> Derivado modificado por Atlas de Incendios: normalización, reproyección a
-> EPSG:4326, selección de atributos, particionado y simplificación geométrica
-> multiescala. No es un producto oficial del ICV ni implica respaldo de la
-> Generalitat Valenciana. [Ficha oficial](https://dadesobertes.gva.es/dataset/incendios-forestales-de-la-comunitat-valenciana-1993-2024) ·
+> Incendios forestales de la Comunitat Valenciana (1993–2024) CC BY 4.0,
+> Generalitat. Datos transformados para su visualización mediante reproyección,
+> selección de atributos, particionado y simplificación geométrica.
+>
+> No es un producto oficial del ICV ni implica respaldo de la Generalitat.
+> [Ficha oficial](https://dadesobertes.gva.es/dataset/incendios-forestales-de-la-comunitat-valenciana-1993-2024) ·
 > [Condiciones de uso](https://icv.gva.es/es/condiciones-de-uso-de-la-geoinformacion-icv)
 
-Esta redacción amplía prudentemente la fórmula publicada por el ICV. La fórmula
-definitiva debe confirmarse porque el registro atribuye la titularidad y la
-publicación a organismos distintos.
+Esta fórmula fue propuesta expresamente por el ICV en su aclaración escrita de
+20 de agosto de 2026. La atribución a Generalitat y la obligación de indicar
+las modificaciones siguen esa respuesta.
+La identificación del ICV como publicador se conserva en los metadatos de
+procedencia, pero no sustituye el crédito visible confirmado.
 
 ## Metadatos que deben acompañar una publicación futura
 
@@ -107,20 +110,20 @@ El manifiesto distribuido junto a los assets debe conservar como mínimo:
 - carácter informativo, cobertura incompleta y ausencia de respaldo oficial.
 
 Los GeoJSON, su manifiesto, este archivo y la ficha de metodología deberán
-distribuirse como un conjunto. Esto mejora la trazabilidad, pero no resuelve por
-sí solo la aceptación expresa exigida por las condiciones ICV.
+distribuirse como un conjunto. Así se mantienen unidos la atribución, el aviso
+de transformaciones y la trazabilidad requerida.
 
-## Aclaración necesaria
+## Evidencia de la aclaración
 
-La consulta debería dirigirse a `responde_icv@gva.es`, con copia al órgano
-titular en `dgpif@gva.es`, preguntando expresamente:
+El responsable del proyecto recibió por correo una respuesta del Institut
+Cartogràfic Valencià el 20 de agosto de 2026. Este repositorio registra la fecha,
+el organismo y el alcance comunicado, pero no incorpora el mensaje original ni
+datos personales del correo. Conviene conservar el original en el archivo
+documental privado del proyecto.
 
-1. si se permite alojar públicamente en GitHub Pages GeoJSON reproyectados,
-   particionados y simplificados bajo CC BY 4.0;
-2. si una atribución visible y enlaces a estas condiciones satisfacen la
-   aceptación expresa o se exige un mecanismo de consentimiento previo;
-3. si las URLs directas de los assets pueden ser públicas sin un control de
-   aceptación;
-4. si las simplificaciones descritas respetan la condición de no alteración o
-   desnaturalización;
-5. qué fórmula exacta de crédito debe usarse para este dataset concreto.
+La aclaración se refiere al dataset ICV y a sus derivados. No debe extrapolarse
+a estadísticas SIGIF ni a otras fuentes de la Generalitat con condiciones
+específicas.
+
+Las demás fuentes y bibliotecas del perfil público se documentan en
+`THIRD_PARTY_LICENSES.md`, siguiendo la recomendación del ICV.

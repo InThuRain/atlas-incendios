@@ -62,9 +62,9 @@ Objetivo: tener un piloto local fiable y agradable de usar.
 - [x] Descargar todas las capas 1993–2024.
 - [x] Crear dataset único normalizado.
 - [x] Auditar identidad, geometrías equivalentes y validez topológica del snapshot ICV normalizado.
-- [ ] Cerrar con el ICV la redistribución de derivados: CV-1.5b verificó CC BY
-  4.0 y la atribución, pero queda confirmar por escrito la aceptación expresa
-  de cada receptor y la simplificación geométrica antes de publicar.
+- [x] Cerrar con el ICV la redistribución de derivados: aclaración escrita del
+  20/08/2026 confirma CC BY 4.0, redistribución pública, aceptación tácita,
+  transformaciones declaradas y atribución a Generalitat.
 - [ ] Relacionar con EGIF cuando sea posible.
 - [x] Probar rendimiento regional (CV-1.4: GeoJSON derivado, tres niveles,
   particionado y benchmark reproducible con Leaflet 1.9.4).

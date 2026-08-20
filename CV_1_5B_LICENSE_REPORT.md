@@ -1,24 +1,20 @@
 # CV-1.5b — Licencia, atribución y redistribución ICV
 
-Fecha de revisión: 2026-08-19.
+Fecha de revisión inicial: 2026-08-19. Aclaración escrita recibida: 2026-08-20.
 
 ## Conclusión ejecutiva
 
-La licencia concreta está suficientemente documentada: **Creative Commons
-Atribución 4.0 Internacional (CC BY 4.0)**. También están documentadas la
-atribución visible, la conservación de metadatos, el carácter informativo del
-dataset y las condiciones generales de reutilización.
+La licencia concreta es **Creative Commons Atribución 4.0 Internacional
+(CC BY 4.0)**. La aclaración escrita del ICV recibida el 20 de agosto de 2026
+confirma la redistribución pública, la aceptación tácita de las condiciones y
+la publicación de transformaciones si se indican. Para este dataset, la
+propiedad y atribución corresponde a Generalitat, no al ICV. El proveedor
+propuso además una fórmula literal de atribución y aviso de transformación.
 
-Sin embargo, la información encontrada **no es todavía suficiente para publicar
-los derivados mediante GitHub Pages con seguridad documental**. Las condiciones
-ICV exigen aceptación expresa por cada nuevo receptor cuando se reproduce o
-distribuye cualquier parte o producto derivado. Una URL pública de GitHub Pages
-puede descargarse sin pasar por la interfaz. Además, la documentación GVA exige
-no alterar ni desnaturalizar la información y no aclara expresamente cómo aplica
-esa regla a una simplificación geométrica multiescala declarada.
-
-La recomendación es mantener `data/web/gva/` sin publicar y solicitar una
-confirmación escrita al ICV o al órgano titular antes de cambiar ese estado.
+La información es ahora documentalmente suficiente para publicar en GitHub
+Pages los derivados descritos por CV-1.4/CV-1.5, acompañados por atribución,
+aviso de modificaciones, metadatos y ausencia de respaldo oficial. Los assets
+siguen sin publicarse hasta una acción técnica explícita.
 
 ## Fuentes oficiales consultadas
 
@@ -30,6 +26,9 @@ Solo se han usado fuentes del ICV o de la Generalitat Valenciana:
 4. [Condiciones de uso de la geoinformación ICV](https://icv.gva.es/es/condiciones-de-uso-de-la-geoinformacion-icv).
 5. [Información para reutilizadores GVA](https://portaldadesobertes.gva.es/es/informacio-per-a-reutilitzadors).
 6. [Aviso legal y condiciones generales de reutilización GVA](https://portaldadesobertes.gva.es/es/avis-legal).
+7. Respuesta escrita del Institut Cartogràfic Valencià recibida por el
+   responsable del proyecto el 20 de agosto de 2026. El mensaje original no se
+   versiona en el repositorio público.
 
 ## Hechos documentados
 
@@ -74,7 +73,7 @@ define parámetros técnicos admisibles de simplificación. Tampoco contiene una
 excepción específica para reproyección, selección de atributos, particionado o
 generalización geométrica.
 
-## Interpretación razonable
+## Interpretación previa a la respuesta
 
 - Servir los GeoJSON desde GitHub Pages es redistribución aunque el proyecto sea
   gratuito y el usuario solo los consuma desde el mapa.
@@ -89,39 +88,35 @@ generalización geométrica.
   como cartografía oficial sin cambios. En las páginas GVA revisadas no se ha
   localizado una fórmula específica para ese aviso.
 
-Estas son interpretaciones operativas del proyecto, no afirmaciones atribuidas
-al ICV.
+Estas fueron las interpretaciones prudentes adoptadas el 19 de agosto. Las
+dudas sobre consentimiento, transformación y crédito quedaron sustituidas por
+la aclaración escrita del día 20.
 
-## Cuestiones no resueltas
+## Cuestiones resueltas por la aclaración de 20/08/2026
 
-1. ¿Basta una atribución visible y un enlace a las condiciones para considerar
-   que el visitante las acepta expresamente?
-2. ¿Deben bloquearse las URLs hasta que el usuario acepte? Si es así, GitHub
-   Pages puro no puede imponerlo a cada descarga directa.
-3. ¿Admite el ICV la simplificación topológicamente conservadora descrita por
-   CV-1.4 bajo la regla de no alteración/desnaturalización?
-4. ¿Debe usarse la fórmula de producto ICV, la de departamento GVA o ambas?
-5. ¿Exige el ICV una redacción concreta para identificar las modificaciones?
+1. No se necesita una pantalla de consentimiento: la aceptación es tácita.
+2. Las URLs públicas pueden redistribuir derivados bajo CC BY 4.0.
+3. Los datos transformados pueden publicarse si se indican las modificaciones.
+4. La propiedad y atribución corresponde a Generalitat, no al ICV.
+5. El proveedor propuso la fórmula literal reproducida a continuación.
 
-## Propuesta de atribución visible
+## Atribución visible resultante
 
-> Datos de origen: “Incendios forestales de la Comunitat Valenciana
-> (1993–2024)” CC BY 4.0 © Institut Cartogràfic Valencià, Generalitat. Servicio
-> de Prevención de Incendios Forestales, DGPIF, Generalitat Valenciana.
-> Derivado modificado por Atlas de Incendios: normalización, reproyección a
-> EPSG:4326, selección de atributos, particionado y simplificación geométrica
-> multiescala. No es un producto oficial del ICV ni implica respaldo de la
-> Generalitat Valenciana. Ficha oficial · Condiciones de uso.
+> Incendios forestales de la Comunitat Valenciana (1993–2024) CC BY 4.0,
+> Generalitat. Datos transformados para su visualización mediante reproyección,
+> selección de atributos, particionado y simplificación geométrica.
 
-`Ficha oficial` debe enlazar al catálogo del dataset y `Condiciones de uso` a la
-página ICV. Es una propuesta pendiente de confirmación, no una fórmula aprobada
-por la fuente.
+La fórmula anterior es la propuesta expresamente por el ICV. `Ficha oficial`
+debe enlazar al catálogo del dataset y `Condiciones de uso` a la página ICV. El
+ICV se conserva como publicador en la procedencia técnica; la propiedad y el
+crédito visible se asignan a Generalitat.
 
 ## Metadatos y archivos propuestos
 
 - `LICENSE_DATA.md`, accesible desde el visor y distribuido con los assets;
+- `THIRD_PARTY_LICENSES.md`, con ICV, EFFIS, cartografía base y dependencias;
 - `config/datasets-gva.json` con licencia, titular, publicador, crédito, URLs,
-  fecha de revisión, atribución, transformaciones y estado de bloqueo;
+  fecha de revisión, atribución, transformaciones y estado de publicación;
 - `provenance.json` por capa/año con URL, `layer_id`, fecha de recuperación,
   checksum raw y `provenance_id`;
 - manifiesto por asset con nivel, partición, recuento, tamaño y SHA-256;
@@ -133,48 +128,24 @@ La procedencia existente ya cubre la mayor parte de los campos técnicos. Antes
 de publicar debe incorporarse el bloque de licencia y transformaciones al mismo
 paquete descargable y verificarse que nunca quede separado de los GeoJSON.
 
-## Acción necesaria
+## Acción completada
 
-Enviar a `responde_icv@gva.es`, con copia a `dgpif@gva.es`, las cinco preguntas
-de `LICENSE_DATA.md` y conservar la respuesta como evidencia del proyecto. Solo
-una contestación que confirme redistribución estática, acceso directo,
-simplificación y atribución permitirá cambiar el manifiesto a `ready` y añadir
-los assets a Git.
-
-Texto propuesto para la consulta:
-
-> Asunto: Consulta sobre redistribución de derivados del dataset
-> `spa_icv_ince_incendios`
->
-> Estamos preparando un visor público y gratuito en GitHub Pages a partir de
-> “Incendios forestales de la Comunitat Valenciana (1993–2024)”. El navegador
-> descargaría GeoJSON derivados mediante URLs públicas directas. Conservamos
-> identificadores y procedencia, pero normalizamos atributos, transformamos a
-> EPSG:4326, dividimos por provincia/periodo y generamos tres niveles mediante
-> simplificación topológicamente conservadora (1, 10 y 50 m, con salvaguardas de
-> error de área). No publicaremos los snapshots originales.
->
-> Solicitamos confirmación escrita de que esta redistribución es admisible bajo
-> CC BY 4.0; de cómo cumplir la aceptación expresa del punto 7 para visitantes y
-> descargas directas; de que la simplificación descrita no vulnera la condición
-> de no alteración/desnaturalización; y de la fórmula exacta de atribución y del
-> aviso de modificaciones que debemos mostrar.
+La consulta fue respondida por el ICV el 20 de agosto de 2026 y permite cambiar
+el manifiesto a `ready`. El correo original debe conservarse en el archivo
+documental privado del proyecto; este repositorio registra únicamente su fecha,
+organismo y alcance.
 
 ## Lista de comprobación previa a una publicación futura
 
-Después de recibir una respuesta favorable todavía habrá que:
+Antes de publicar todavía habrá que:
 
-1. archivar la respuesta con fecha, remitente y alcance;
-2. ajustar la atribución a la fórmula confirmada;
-3. mostrarla de forma permanente en el visor y enlazar `LICENSE_DATA.md`, la
-   ficha oficial y las condiciones ICV;
-4. incorporar licencia y transformaciones al paquete de provenance accesible
+1. conservar la respuesta original fuera del repositorio público;
+2. mostrar la atribución de forma permanente en el visor y enlazar
+   `LICENSE_DATA.md`, la ficha oficial y las condiciones ICV;
+3. incorporar licencia y transformaciones al paquete de provenance accesible
    junto a cada partición;
-5. cambiar `publication.status` a `ready` y
-   `license_review_required` a `false` en el generador, nunca solo en el JSON
-   generado;
-6. reconstruir y validar checksums, tamaños y recuentos;
-7. revisar que solo entren los 38 assets de producción y no raw, processed ni la
+4. reconstruir y validar checksums, tamaños y recuentos;
+5. revisar que solo entren los 38 assets de producción y no raw, processed ni la
    matriz de benchmark;
-8. efectuar una revisión final del visor ya servido desde el subdirectorio de
+6. efectuar una revisión final del visor ya servido desde el subdirectorio de
    GitHub Pages.

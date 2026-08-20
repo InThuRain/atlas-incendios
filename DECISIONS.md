@@ -155,10 +155,12 @@ independientes. Las relaciones SIGIF–EFFIS siguen siendo candidatos puntuados,
 no fusiones ni confirmaciones. El timeline obtiene sus límites de los
 manifiestos y no contiene un `maxYear` fijado en el componente.
 
-**Motivo:** ICV y SIGIF están técnicamente disponibles en local pero todavía no
-hay base documental suficiente para redistribuir sus derivados. EFFIS tiene
-otra autoridad y metodología. Centralizar el control evita publicar por error
-una fuente bloqueada o presentar varias medidas como una sola.
+**Motivo:** al adoptar esta decisión, ICV y SIGIF estaban técnicamente
+disponibles en local pero todavía no había base documental suficiente para
+redistribuir sus derivados. EFFIS tiene otra autoridad y metodología.
+Centralizar el control evita publicar por error una fuente bloqueada o
+presentar varias medidas como una sola. El estado ICV fue actualizado por la
+decisión de 20/08/2026; SIGIF sigue bloqueado.
 
 **Consecuencias:** añadir un año o fuente exige actualizar datos y catálogo, no
 reescribir el timeline. Cualquier perfil público futuro falla de forma segura
@@ -187,6 +189,23 @@ localizado una serie vectorial oficial homogénea anterior.
 administrativa, disponibilidad espacial y calidad geométrica. Los histogramas
 podrán contar registros EGIF, pero no presentarlos como perímetros ni como una
 serie exhaustiva homogénea.
+
+## 2026-08-20 — Derivados ICV habilitados para publicación pública
+
+Los derivados ICV 1993–2024 pasan a `publishable=true`. El perfil público puede
+incluirlos bajo CC BY 4.0 con atribución a Generalitat y un aviso
+explícito de las transformaciones realizadas. La aceptación de las condiciones
+se considera tácita.
+
+**Motivo:** el Institut Cartogràfic Valencià confirmó por correo el 20 de agosto
+de 2026 que CC BY 4.0 permite la redistribución pública, que la aceptación es
+tácita, que pueden publicarse datos transformados si se indican las
+modificaciones y que la atribución de este dataset corresponde a Generalitat.
+
+**Consecuencias:** queda resuelto el bloqueo documental de CV-1.5b para ICV. El
+perfil público incluye ICV y EFFIS y sigue rechazando SIGIF, cuya licencia es
+independiente y continúa pendiente. Este cambio de estado no publica assets ni
+autoriza a incluir snapshots raw o matrices de benchmark en Git.
 
 ## Plantilla para nuevas decisiones
 

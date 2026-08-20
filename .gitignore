@@ -2,7 +2,7 @@ __pycache__/
 *.py[cod]
 .venv/
 
-# Snapshots descargados: no redistribuir hasta verificar licencia y atribución.
+# Snapshots raw reproducibles: mantener locales; la publicación usa derivados web.
 data/raw/gva/
 
 # Snapshots recientes SIGIF/EFFIS y sus derivados. SIGIF no se redistribuye
@@ -23,13 +23,13 @@ data/processed/gva/report.json
 data/processed/gva/duplicate_geometry_report.json
 data/processed/gva/duplicate_geometry_report.csv
 
-# Derivados web y matrices de benchmark reproducibles. No redistribuir hasta
-# verificar licencia; la matriz CV-1.4 contiene muchas variantes redundantes.
+# Derivados web y matrices de benchmark reproducibles. La matriz CV-1.4 contiene
+# muchas variantes redundantes y no forma parte del subconjunto de producción.
 data/derived/gva/web/
 data/derived/gva/frontend/
 
-# Subconjunto estático candidato para producción. Mantener local hasta cerrar
-# atribución/licencia ICV; se reconstruye con scripts/build_frontend_assets.py.
+# Subconjunto estático candidato para producción. Continúa ignorado hasta una
+# acción explícita de publicación; se reconstruye con los scripts de build.
 data/web/gva/
 
 # Dependencias locales de los benchmarks JavaScript.

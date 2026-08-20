@@ -25,6 +25,35 @@ def read_json(path):
     return json.loads(path.read_text(encoding="utf-8"))
 
 
+def coverage_for_sources(items, requested):
+    requested = set(requested)
+    if {"sigif", "effis"}.issubset(requested):
+        return items
+    filtered = []
+    for item in items:
+        row = {key: item[key] for key in ("year", "acquired_at") if key in item}
+        if "sigif" in requested:
+            row.update(
+                (key, value)
+                for key, value in item.items()
+                if key.startswith("sigif_")
+                or key in {
+                    "coverage_start_requested",
+                    "coverage_end_requested",
+                    "coverage_complete",
+                    "warnings",
+                }
+            )
+        if "effis" in requested:
+            row.update(
+                (key, value)
+                for key, value in item.items()
+                if key.startswith("effis_")
+            )
+        filtered.append(row)
+    return filtered
+
+
 def main():
     args = parse_args()
     catalog = read_json(args.catalog)
@@ -68,7 +97,7 @@ def main():
         "recent": ({
             "snapshot_id": recent["snapshot_id"],
             "acquired_at": recent["acquired_at"],
-            "coverage": recent["coverage"],
+            "coverage": coverage_for_sources(recent["coverage"], requested),
             "assets": recent_assets,
             "candidate_links_are_confirmed": False,
         } if recent else None),

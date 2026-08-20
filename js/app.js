@@ -118,6 +118,12 @@ function pointLayer(feature, latlng) {
 }
 
 function sourceLabel(sourceId) { return state.loader.manifest.sources[sourceId]?.short_label || sourceId; }
+function definitionListHtml(rows) {
+  return `<dl>${rows.map(([label, value]) => `<dt>${escapeHtml(label)}</dt><dd>${value}</dd>`).join('')}</dl>`;
+}
+function technicalDetailsHtml(rows, extraHtml = '') {
+  return `<details class="technical-details"><summary>Más información técnica</summary>${definitionListHtml(rows)}${extraHtml}</details>`;
+}
 function candidateHtml(candidates, sourceId) {
   if (!candidates.length) return '';
   return candidates.map(item => `<div class="candidate-note"><strong>Posible correspondencia ${sourceId === 'effis' ? 'SIGIF' : 'EFFIS'} · ${escapeHtml(item.candidate_strength.replace('_candidate', ''))}</strong><br>Score ${item.score}/100 · diferencia temporal ${item.date_difference_days} días · distancia ${formatNumber(item.distance_to_effis_perimeter_m, 1)} m · ${sourceId === 'effis' ? `ID SIGIF ${escapeHtml(item.sigif_record_id)}` : `ID EFFIS ${escapeHtml(item.effis_id)}`}.<br><small>Enlace candidato, no confirmado.</small></div>`).join('');
@@ -126,13 +132,61 @@ function candidateHtml(candidates, sourceId) {
 function detailsHtml(record, provenance = null) {
   const p = record.feature.properties, candidates = state.loader.candidatesFor(record.feature);
   if (record.sourceId === 'icv') {
-    return `<span class="source-chip">ICV · oficial consolidado</span><dl><dt>Año</dt><dd>${record.year}</dd><dt>Fecha</dt><dd>${formatDate(record.date)}</dd><dt>Extinción</dt><dd>${formatDate(record.endDate)}</dd><dt>Municipio</dt><dd>${escapeHtml(cleanText(record.municipality))}</dd><dt>Provincia</dt><dd>${escapeHtml(cleanText(record.province))}</dd><dt>Paraje</dt><dd>${escapeHtml(cleanText(record.placeName))}</dd><dt>Causa</dt><dd>${escapeHtml(cleanText(record.cause))}</dd><dt>Superficie</dt><dd>${formatNumber(record.areaHa)} ha forestales declaradas</dd><dt>NumPIF_CV</dt><dd>${escapeHtml(cleanText(record.fire.num_pif_cv))}</dd><dt>Fuente</dt><dd>${escapeHtml(state.loader.manifest.sources.icv.label)}</dd><dt>fire_id</dt><dd>${escapeHtml(record.entityId)}</dd><dt>Geometrías asociadas</dt><dd>${record.fire.geometry_ids.length}</dd><dt>geometry_id</dt><dd>${escapeHtml(record.geometryId)}</dd>${provenance ? `<dt>Capa de origen</dt><dd>${provenance.source_year} / layer ${provenance.source_layer_id}</dd>` : ''}</dl>${p.geometry_reused ? `<div class="reuse-warning">${escapeHtml(REUSE_WARNING)}</div>` : ''}<div class="quality-note">Geometría preferente A · perímetro oficial vectorial derivado para web sin reparación.</div>`;
+    const essentialRows = [
+      ['Fecha de inicio', formatDate(record.date)],
+      ['Fecha de extinción', formatDate(record.endDate)],
+      ['Municipio', escapeHtml(cleanText(record.municipality))],
+      ['Provincia', escapeHtml(cleanText(record.province))],
+      ['Paraje', escapeHtml(cleanText(record.placeName))],
+      ['Causa', escapeHtml(cleanText(record.cause))],
+      ['Superficie forestal declarada', `${formatNumber(record.areaHa)} ha`]
+    ];
+    if (!record.date && !record.endDate) essentialRows.unshift(['Año', escapeHtml(record.year)]);
+    const technicalRows = [
+      ['NumPIF_CV', escapeHtml(cleanText(record.fire.num_pif_cv))],
+      ['Fuente', escapeHtml(state.loader.manifest.sources.icv.label)],
+      ['fire_id', escapeHtml(record.entityId)],
+      ['Geometrías asociadas', escapeHtml(record.fire.geometry_ids.length)],
+      ['geometry_id', escapeHtml(record.geometryId)],
+      ...(provenance ? [['Capa de origen', `${escapeHtml(provenance.source_year)} / layer ${escapeHtml(provenance.source_layer_id)}`]] : []),
+      ['Calidad geométrica', 'A · perímetro oficial vectorial derivado para web sin reparación']
+    ];
+    return `<span class="source-chip">ICV · oficial consolidado</span>${definitionListHtml(essentialRows)}${p.geometry_reused ? `<div class="reuse-warning">${escapeHtml(REUSE_WARNING)}</div>` : ''}${technicalDetailsHtml(technicalRows)}`;
   }
   if (record.sourceId === 'sigif') {
-    return `<span class="source-chip">SIGIF · administrativo provisional</span><dl><dt>Fecha observada</dt><dd>${formatDate(record.date)}</dd><dt>Municipio</dt><dd>${escapeHtml(cleanText(record.municipality))}</dd><dt>Provincia</dt><dd>${escapeHtml(cleanText(record.province))}</dd><dt>Paraje</dt><dd>${escapeHtml(cleanText(record.placeName))}</dd><dt>Causa provisional</dt><dd>${escapeHtml(cleanText(record.cause))}</dd><dt>Superficie declarada</dt><dd>${formatNumber(record.areaHa, 4)} ha</dd><dt>Fuente</dt><dd>${escapeHtml(state.loader.manifest.sources.sigif.label)}</dd><dt>ID interno</dt><dd>${escapeHtml(record.entityId)}</dd><dt>Geometría</dt><dd>Punto de inicio; X/Y original EPSG:25830 transformado a EPSG:4326</dd><dt>Adquirido</dt><dd>${escapeHtml(cleanText(p.acquired_at))}</dd></dl>${candidateHtml(candidates, 'sigif')}`;
+    const essentialRows = [
+      ['Fecha observada', formatDate(record.date)],
+      ['Municipio', escapeHtml(cleanText(record.municipality))],
+      ['Provincia', escapeHtml(cleanText(record.province))],
+      ['Paraje', escapeHtml(cleanText(record.placeName))],
+      ['Causa provisional', escapeHtml(cleanText(record.cause))],
+      ['Superficie declarada', `${formatNumber(record.areaHa, 4)} ha`]
+    ];
+    if (!record.date) essentialRows.unshift(['Año', escapeHtml(record.year)]);
+    const technicalRows = [
+      ['Fuente', escapeHtml(state.loader.manifest.sources.sigif.label)],
+      ['ID interno', escapeHtml(record.entityId)],
+      ['Geometría', 'Punto de inicio; X/Y original EPSG:25830 transformado a EPSG:4326'],
+      ['Adquirido', escapeHtml(cleanText(p.acquired_at))]
+    ];
+    return `<span class="source-chip">SIGIF · administrativo provisional</span>${definitionListHtml(essentialRows)}${technicalDetailsHtml(technicalRows, candidateHtml(candidates, 'sigif'))}`;
   }
   const postCutoff = record.year === 2026 && String(record.date) > '2026-06-30';
-  return `<span class="source-chip">EFFIS · satelital provisional</span><dl><dt>Fecha EFFIS</dt><dd>${formatDate(record.date)}</dd><dt>Municipio/commune</dt><dd>${escapeHtml(cleanText(record.municipality))}</dd><dt>Provincia</dt><dd>${escapeHtml(cleanText(record.province))}</dd><dt>Superficie cartografiada</dt><dd>${formatNumber(record.areaHa)} ha</dd><dt>Fuente</dt><dd>${escapeHtml(state.loader.manifest.sources.effis.label)}</dd><dt>ID EFFIS</dt><dd>${escapeHtml(p.effis_id)}</dd><dt>geometry_id</dt><dd>${escapeHtml(record.geometryId)}</dd><dt>Calidad</dt><dd>B · teledetección provisional</dd><dt>Snapshot</dt><dd>${escapeHtml(cleanText(p.acquired_at))}</dd></dl>${postCutoff ? '<div class="candidate-note">No existe registro correspondiente en el snapshot SIGIF disponible, cuya cobertura termina el 30/06/2026. Esto no significa que SIGIF afirme que no hubo incendio.</div>' : ''}${candidateHtml(candidates, 'effis')}`;
+  const essentialRows = [
+    ['Fecha EFFIS', formatDate(record.date)],
+    ['Municipio/commune', escapeHtml(cleanText(record.municipality))],
+    ['Provincia', escapeHtml(cleanText(record.province))],
+    ['Superficie cartografiada', `${formatNumber(record.areaHa)} ha`]
+  ];
+  if (!record.date) essentialRows.unshift(['Año', escapeHtml(record.year)]);
+  const technicalRows = [
+    ['Fuente', escapeHtml(state.loader.manifest.sources.effis.label)],
+    ['ID EFFIS', escapeHtml(p.effis_id)],
+    ['geometry_id', escapeHtml(record.geometryId)],
+    ['Calidad geométrica', 'B · teledetección provisional'],
+    ['Snapshot', escapeHtml(cleanText(p.acquired_at))]
+  ];
+  return `<span class="source-chip">EFFIS · satelital provisional</span>${definitionListHtml(essentialRows)}${postCutoff ? '<div class="candidate-note">No existe registro correspondiente en el snapshot SIGIF disponible, cuya cobertura termina el 30/06/2026. Esto no significa que SIGIF afirme que no hubo incendio.</div>' : ''}${technicalDetailsHtml(technicalRows, candidateHtml(candidates, 'effis'))}`;
 }
 
 async function showDetails(record) {
@@ -214,7 +268,11 @@ function renderCoverage() {
   for (const coverage of state.loader.manifest.recent?.coverage || []) {
     if (coverage.year < from || coverage.year > to) continue;
     const acquired = formatDate(state.loader.manifest.recent.acquired_at);
-    items.push(`<div class="coverage-item"><strong>${coverage.year} · datos provisionales.</strong><br>SIGIF/GVA: datos administrativos ${coverage.coverage_complete ? `del ${formatDate(coverage.sigif_min_date)} al ${formatDate(coverage.sigif_max_date)} (año completo observado)` : `disponibles hasta ${formatDate(coverage.sigif_max_date)}; cobertura incompleta`}. EFFIS: perímetros satelitales según snapshot adquirido el ${acquired}. Las fuentes tienen cobertura y metodología diferentes.</div>`);
+    const descriptions = [];
+    if (state.loader.manifest.sources.sigif) descriptions.push(`SIGIF/GVA: datos administrativos ${coverage.coverage_complete ? `del ${formatDate(coverage.sigif_min_date)} al ${formatDate(coverage.sigif_max_date)} (año completo observado)` : `disponibles hasta ${formatDate(coverage.sigif_max_date)}; cobertura incompleta`}.`);
+    if (state.loader.manifest.sources.effis) descriptions.push(`EFFIS: perímetros satelitales según snapshot adquirido el ${acquired}.`);
+    if (state.loader.manifest.sources.sigif && state.loader.manifest.sources.effis) descriptions.push('Las fuentes tienen cobertura y metodología diferentes.');
+    items.push(`<div class="coverage-item"><strong>${coverage.year} · datos provisionales.</strong><br>${descriptions.join(' ')}</div>`);
   }
   elements.coverage.innerHTML = items.join('') || 'No hay una fuente activa para este periodo en el perfil actual.';
 }

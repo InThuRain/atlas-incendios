@@ -65,10 +65,24 @@ def main():
             fail("Raw original_attributes leaked into web assets")
 
     with tempfile.TemporaryDirectory() as directory:
-        public = subprocess.run([sys.executable, str(ROOT / "scripts/build_frontend_profile.py"), "--profile", "public", "--output", str(Path(directory) / "public.json")], capture_output=True, text=True)
+        public_path = Path(directory) / "public.json"
+        public = subprocess.run([sys.executable, str(ROOT / "scripts/build_frontend_profile.py"), "--profile", "public", "--output", str(public_path)], capture_output=True, text=True)
         blocked = subprocess.run([sys.executable, str(ROOT / "scripts/build_frontend_profile.py"), "--profile", "public", "--include-source", "sigif", "--output", str(Path(directory) / "blocked.json")], capture_output=True, text=True)
         if public.returncode or blocked.returncode == 0:
             fail("Public profile guard failed")
+        public_manifest = load(public_path)
+        if set(public_manifest["sources"]) != {"icv", "effis"} or public_manifest["icv"] is None:
+            fail("Public profile does not contain the publishable ICV and EFFIS sources")
+        icv_source = public_manifest["sources"]["icv"]
+        if (
+            icv_source.get("copyright_holder") != "Generalitat"
+            or not icv_source.get("license_status", "").startswith("provider_confirmed_")
+            or "Datos transformados para su visualización" not in icv_source.get("attribution", "")
+        ):
+            fail("Public profile lost the provider-confirmed ICV attribution")
+        public_coverage = json.dumps(public_manifest["recent"]["coverage"])
+        if "sigif_" in public_coverage or "candidate" in public_coverage or "coverage_complete" in public_coverage:
+            fail("Blocked SIGIF metadata leaked into the public profile")
     total = sum(asset["bytes"] for asset in manifest["assets"])
     gzip_total = sum(asset["gzip_bytes"] for asset in manifest["assets"])
     print(json.dumps({"status": "passed", "assets": 6, "bytes": total, "gzip_bytes": gzip_total,

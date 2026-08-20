@@ -18,10 +18,12 @@
     "metadata_revision_date": "2026-07-27",
     "license_id": "CC-BY-4.0",
     "license": "Creative Commons Atribución 4.0 Internacional (CC BY 4.0)",
+    "license_status": "provider_confirmed_CC_BY_4_0_public_redistribution_and_transformed_derivatives",
     "license_url": "https://creativecommons.org/licenses/by/4.0/legalcode",
     "terms_url": "https://icv.gva.es/es/condiciones-de-uso-de-la-geoinformacion-icv",
-    "attribution": "Incendios forestales de la Comunitat Valenciana (1993-2024) CC BY 4.0 © Institut Cartogràfic Valencià, Generalitat",
-    "credit": "Servicio de Prevención de Incendios Forestales, Dirección General de Prevención de Incendios Forestales, Generalitat Valenciana; Institut Cartogràfic Valencià, Generalitat Valenciana",
+    "copyright_holder": "Generalitat",
+    "attribution": "Incendios forestales de la Comunitat Valenciana (1993–2024) CC BY 4.0, Generalitat. Datos transformados para su visualización mediante reproyección, selección de atributos, particionado y simplificación geométrica.",
+    "credit": "Generalitat",
     "access_constraints": "Sin limitaciones al acceso público",
     "informative_and_non_binding": true,
     "complete_inventory": false
@@ -57,17 +59,25 @@
     "original_raw_modified": false
   },
   "publication": {
-    "status": "blocked_pending_icv_clarification",
+    "status": "ready",
     "assets_committed": false,
-    "license_review_required": true,
-    "checked_on": "2026-08-19",
+    "license_review_required": false,
+    "checked_on": "2026-08-20",
     "data_license_file": "LICENSE_DATA.md",
-    "blocking_questions": [
-      "how_express_acceptance_by_each_recipient_applies_to_public_static_web_distribution",
-      "whether_documented_multiscale_simplification_is_compatible_with_the_no_alteration_or_denaturalisation_condition",
-      "confirmation_of_the_attribution_formula_for_this_jointly_credited_dataset"
-    ],
-    "note": "No publicar los assets hasta obtener aclaración escrita del ICV o del órgano titular sobre aceptación expresa, simplificación y fórmula de atribución."
+    "third_party_licenses_file": "THIRD_PARTY_LICENSES.md",
+    "blocking_questions": [],
+    "clarification": {
+      "received_on": "2026-08-20",
+      "channel": "email",
+      "authority": "Institut Cartogràfic Valencià",
+      "acceptance_mode": "tacit",
+      "public_redistribution_confirmed": true,
+      "transformed_derivatives_confirmed": true,
+      "modification_notice_required": true,
+      "attribution_to": "Generalitat",
+      "provider_proposed_attribution": "Incendios forestales de la Comunitat Valenciana (1993–2024) CC BY 4.0, Generalitat. Datos transformados para su visualización mediante reproyección, selección de atributos, particionado y simplificación geométrica."
+    },
+    "note": "El ICV confirmó por correo la redistribución pública bajo CC BY 4.0, la aceptación tácita y la publicación de transformaciones si se indican. Los assets aún no se han publicado ni añadido a Git."
   },
   "zoom_levels": {
     "overview": {

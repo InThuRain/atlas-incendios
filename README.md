@@ -100,6 +100,10 @@ python3 -m venv .venv
 Los tests de navegador requieren además Google Chrome o Chromium. Los datasets
 locales necesarios para los validadores continúan ignorados por Git.
 
+La licencia y procedencia de los datos se documentan en `LICENSE_DATA.md`; las
+fuentes, cartografía base y bibliotecas de terceros se recogen en
+`THIRD_PARTY_LICENSES.md`.
+
 ### Pipeline histórico EGIF 1968–1992
 
 La descarga y normalización valenciana de CV-3.2 se ejecuta con:
