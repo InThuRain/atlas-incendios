@@ -146,3 +146,26 @@ en `data/derived/gva/frontend/`.
 Resultado final: 18 pruebas Python, 34 escenarios Chrome development y 33
 escenarios Chrome public, todos superados. El guard público continúa rechazando
 SIGIF y candidatos.
+
+## Publicación verificada
+
+UX-2 se publicó desde `main` mediante `.github/workflows/pages.yml`, ejecución
+`32506336949`: build 1 min 30 s y deploy 11 s, ambos correctos. La Release
+`public-data-v3` expone `atlas-public-data-v3.tar.gz` con el tamaño y SHA-256
+fijados en `config/public-data-bundle.json`.
+
+La comprobación posterior abrió realmente
+`https://inthurain.github.io/atlas-incendios/` en instancias limpias de Chrome y
+validó: inicio 1993–2026, 34 barras y clic en 1994, autoencuadre de los 179
+perímetros de Elx, centro/zoom de permalink intactos, ficha/resaltado/popup de la
+geometría seleccionada, las dos geometrías de `2024AL0005`, layout móvil y
+ausencia de SIGIF. El inicio realizó 16 peticiones del loader, recibió 26.191.875
+bytes sin compresión en la instrumentación y declaró 3.135.507 bytes gzip
+estimados; `appElapsedMs` fue 33,1 ms en esa ejecución headless contra GitHub
+Pages. Esta última cifra depende de caché de borde y no sustituye las medianas
+locales controladas de la tabla anterior.
+
+GitHub Actions emitió una advertencia no bloqueante: algunas acciones oficiales
+de Pages aún declaran Node.js 20 y el runner las fuerza a Node.js 24. No afectó
+al build ni al despliegue, pero conviene vigilar futuras versiones de esas
+acciones.

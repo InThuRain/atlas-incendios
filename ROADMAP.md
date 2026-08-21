@@ -101,7 +101,8 @@ Objetivo: tener un piloto local fiable y agradable de usar.
 - [x] UX-2: simplificar la columna lateral, integrar ámbito y provincia en
   Filtros, restaurar las barras anuales, corregir la selección compartida visual
   y su popup, autoencuadrar municipios y evaluar el periodo completo como estado
-  inicial.
+  inicial. Publicada y verificada en GitHub Pages el 21/08/2026 mediante el
+  bundle reproducible `public-data-v3`.
 - [ ] Historia de un territorio dibujado.
 - [ ] Comparador temporal.
 - [ ] Recurrencia continua.

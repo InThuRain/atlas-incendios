@@ -52,6 +52,10 @@ def main():
             args.chrome,
             debug_url(base + "?scenario=municipality-fit&target_municipality=03065&view=alicante"),
         ),
+        "histogram_1994": chrome_snapshot(
+            args.chrome,
+            debug_url(base + "?scenario=histogram-year&target_year=1994"),
+        ),
         "multi_geometry": chrome_snapshot(args.chrome, debug_url(base, viewer_hash(
             lat=38.70, lng=-0.52, z=10, **{
                 "from": 2024, "to": 2024, "src": "icv", "province": "alicante",
@@ -88,6 +92,9 @@ def main():
     require(municipality["municipalityFit"]["status"] == "fit-visible-perimeters", "Elx did not auto-fit")
     require(municipality["municipalityFit"]["perimeterCount"] == 179, "Unexpected Elx perimeter count")
     require(municipality["municipalityFit"]["minimumRenderedPaddingPx"] >= 35, "Elx padding missing")
+    histogram = results["histogram_1994"]["histogram"]
+    require(histogram["years"] == {"from": 1994, "to": 1994}, "Histogram click did not select 1994")
+    require(histogram["histogramBarCount"] == 34 and histogram["histogramSelectedYears"] == [1994], "Histogram did not remain visible after selection")
     multi = results["multi_geometry"]["final"]
     require(multi["selectedVisibleGeometryCount"] == 2, "2024AL0005 geometries missing")
     require(multi["selectedGeometryId"] == "gva:geometry:2024:121:13606", "Wrong 2024AL0005 geometry")
