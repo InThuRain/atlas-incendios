@@ -102,8 +102,12 @@ Objetivo: tener un piloto local fiable y agradable de usar.
 
 ## Fase 7 — Publicación
 
-- [ ] Licencias y atribución.
-- [ ] Página de metodología.
-- [ ] Limitaciones conocidas.
+- [x] Licencias y atribución del perfil público ICV + EFFIS verificadas y
+  accesibles desde el visor.
+- [x] Página/panel de fuentes y metodología accesible en la primera versión.
+- [x] Provisionalidad EFFIS, distinta autoridad de fuentes y limitaciones de
+  recurrencia visibles.
 - [ ] Política de actualización.
-- [ ] Despliegue público.
+- [x] Primera versión pública desplegada y comprobada en
+  <https://inthurain.github.io/atlas-incendios/> mediante GitHub Actions y el
+  perfil `public`; SIGIF, candidatos y datasets internos quedan excluidos.
