@@ -13,7 +13,8 @@ const elements = {
   methodology: $('methodology-content'), pointQuery: $('point-query'), pointHint: $('point-hint'),
   pointHistory: $('point-history'), details: $('details'), fireList: $('fire-list'),
   activePeriod: $('active-period'), debugOutput: $('debug-output'),
-  legendYearOld: $('legend-year-old'), legendYearNew: $('legend-year-new')
+  legendYearOld: $('legend-year-old'), legendYearNew: $('legend-year-new'),
+  legendSigifRow: $('legend-sigif-row'), sourceSeparationHelp: $('source-separation-help')
 };
 
 const state = {
@@ -171,7 +172,7 @@ function detailsHtml(record, provenance = null) {
     ];
     return `<span class="source-chip">SIGIF · administrativo provisional</span>${definitionListHtml(essentialRows)}${technicalDetailsHtml(technicalRows, candidateHtml(candidates, 'sigif'))}`;
   }
-  const postCutoff = record.year === 2026 && String(record.date) > '2026-06-30';
+  const postCutoff = Boolean(state.loader.manifest.sources.sigif) && record.year === 2026 && String(record.date) > '2026-06-30';
   const essentialRows = [
     ['Fecha EFFIS', formatDate(record.date)],
     ['Municipio/commune', escapeHtml(cleanText(record.municipality))],
@@ -304,10 +305,11 @@ function setPointMode(enabled) { state.pointMode = enabled; elements.pointHint.h
 function queryPoint(latlng) {
   setPointMode(false); if (state.pointMarker) state.pointMarker.removeFrom(state.map);
   state.pointMarker = L.circleMarker(latlng, {radius: 6, color: '#172421', weight: 2, fillColor: '#fff', fillOpacity: 1}).addTo(state.map);
+  const sigifProximityM = state.loader.manifest.query.sigif_proximity_m ?? null;
   const point = turf.point([latlng.lng, latlng.lat]), icv = new Map(), effis = [], nearby = [];
   for (const item of state.visibleRecords) {
     try {
-      if (item.record.sourceId === 'sigif') { const distance = turf.distance(point, item.feature, {units: 'kilometers'}) * 1000; if (distance <= state.loader.manifest.query.sigif_proximity_m) nearby.push({...item, distance}); continue; }
+      if (item.record.sourceId === 'sigif') { const distance = turf.distance(point, item.feature, {units: 'kilometers'}) * 1000; if (distance <= sigifProximityM) nearby.push({...item, distance}); continue; }
       if (item.layer.getBounds && !item.layer.getBounds().contains(latlng)) continue;
       if (!turf.booleanPointInPolygon(point, item.feature)) continue;
       if (item.record.sourceId === 'icv') { if (!icv.has(item.record.entityId)) icv.set(item.record.entityId, []); icv.get(item.record.entityId).push(item); }
@@ -316,12 +318,13 @@ function queryPoint(latlng) {
   }
   const reused = [...icv.values()].flat().some(item => item.feature.properties.geometry_reused);
   state.historyResult = {officialIcvFireCount: icv.size, officialIcvPerimeterCount: [...icv.values()].flat().length,
-    effisPerimeterCount: effis.length, nearbySigifCount: nearby.length, sigifProximityM: state.loader.manifest.query.sigif_proximity_m, reused,
+    effisPerimeterCount: effis.length, nearbySigifCount: nearby.length, sigifProximityM, reused,
     fireCount: icv.size, perimeterCount: [...icv.values()].flat().length + effis.length};
   const icvRows = [...icv.values()].map(items => `<button class="fire-row history-result" data-entity="${escapeHtml(items[0].record.entityId)}"><strong>${items[0].record.year} · ${escapeHtml(cleanText(items[0].record.municipality))}</strong><span>${items.length} perímetro(s) ICV contienen el punto</span></button>`).join('');
   const effisRows = effis.map(item => `<button class="fire-row history-result" data-entity="${escapeHtml(item.record.entityId)}"><strong>${item.record.year} · EFFIS ${escapeHtml(item.feature.properties.effis_id)}</strong><span>Perímetro satelital contiene el punto</span></button>`).join('');
   const nearbyRows = nearby.sort((a, b) => a.distance - b.distance).map(item => `<button class="fire-row history-result" data-entity="${escapeHtml(item.record.entityId)}"><strong>${item.record.year} · ${escapeHtml(cleanText(item.record.municipality))}</strong><span>${formatNumber(item.distance, 0)} m del punto consultado</span></button>`).join('');
-  elements.pointHistory.innerHTML = `<strong>Perímetros que contienen este punto</strong><p>Oficiales ICV: ${icv.size} incendios identificados / ${[...icv.values()].flat().length} perímetros.<br>Satelitales EFFIS: ${effis.length} perímetros.</p>${icvRows}${effisRows}<strong>Puntos de inicio SIGIF próximos</strong><p>Radio explícito: ${formatNumber(state.loader.manifest.query.sigif_proximity_m / 1000, 0)} km · ${nearby.length} resultados.</p>${nearbyRows}${reused ? `<div class="reuse-warning">${escapeHtml(REUSE_WARNING)}</div>` : ''}`;
+  const sigifSection = state.loader.manifest.sources.sigif ? `<strong>Puntos de inicio SIGIF próximos</strong><p>Radio explícito: ${formatNumber(sigifProximityM / 1000, 0)} km · ${nearby.length} resultados.</p>${nearbyRows}` : '';
+  elements.pointHistory.innerHTML = `<strong>Perímetros que contienen este punto</strong><p>Oficiales ICV: ${icv.size} incendios identificados / ${[...icv.values()].flat().length} perímetros.<br>Satelitales EFFIS: ${effis.length} perímetros.</p>${icvRows}${effisRows}${sigifSection}${reused ? `<div class="reuse-warning">${escapeHtml(REUSE_WARNING)}</div>` : ''}`;
   elements.pointHistory.querySelectorAll('.history-result').forEach(button => button.addEventListener('click', () => selectEntity(button.dataset.entity, null, {fit: true})));
   return state.historyResult;
 }
@@ -336,7 +339,11 @@ function renderSourceControls() {
 }
 
 function renderMethodology() {
-  elements.methodology.innerHTML = Object.values(state.loader.manifest.sources).map(source => `<p><strong>${escapeHtml(source.short_label)}:</strong> ${escapeHtml(source.source_status.replaceAll('_', ' '))}. <a href="${escapeHtml(source.methodology_url)}" target="_blank" rel="noopener">Fuente y metodología</a>.<br><small>${escapeHtml(source.attribution)}</small></p>`).join('') + '<p>Un registro SIGIF y un perímetro EFFIS pueden corresponder al mismo episodio, pero solo se enlazan como candidatos mientras no exista confirmación suficiente. Sus superficies nunca se suman entre sí.</p>';
+  const hasCandidates = state.loader.manifest.sources.sigif && state.loader.manifest.sources.effis;
+  const candidateNotice = hasCandidates ? '<p>Un registro SIGIF y un perímetro EFFIS pueden corresponder al mismo episodio, pero solo se enlazan como candidatos mientras no exista confirmación suficiente. Sus superficies nunca se suman entre sí.</p>' : '';
+  elements.methodology.innerHTML = Object.values(state.loader.manifest.sources).map(source => `<p><strong>${escapeHtml(source.short_label)}:</strong> ${escapeHtml(source.source_status.replaceAll('_', ' '))}. <a href="${escapeHtml(source.methodology_url)}" target="_blank" rel="noopener">Fuente y metodología</a>.<br><small>${escapeHtml(source.attribution)}</small></p>`).join('') + candidateNotice;
+  elements.legendSigifRow.hidden = !state.loader.manifest.sources.sigif;
+  elements.sourceSeparationHelp.hidden = !hasCandidates;
 }
 
 function bindEvents() {
@@ -373,7 +380,7 @@ function debugSnapshot() {
     visibleGifCount: [...new Map(state.visibleRecords.filter(item => ['icv', 'sigif'].includes(item.record.sourceId)).map(item => [item.record.entityId, item.record])).values()].filter(item => item.isGif).length,
     selectedEntityId: state.selectedEntityId, selectedFireId: state.selectedEntityId, selectedGeometryId: state.selectedGeometryId,
     selectedVisibleGeometryCount: selected.length, selectedCandidateStrengths: selected.flatMap(item => state.loader.candidatesFor(item.feature).map(candidate => candidate.candidate_strength)),
-    coverageText: elements.coverage.textContent, detailsText: elements.details.textContent,
+    coverageText: elements.coverage.textContent, detailsText: elements.details.textContent, methodologyText: elements.methodology.textContent,
     history: state.historyResult, lastLoad: state.lastLoad, lastRender: state.lastRender, loader: state.loader.debugSnapshot(),
     appElapsedMs: performance.now() - APP_STARTED_AT, heapUsedBytes: performance.memory ? performance.memory.usedJSHeapSize : null,
     viewport: {width: innerWidth, height: innerHeight}, mobileLayout: matchMedia('(max-width: 800px)').matches};

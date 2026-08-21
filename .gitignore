@@ -27,6 +27,7 @@ data/processed/gva/duplicate_geometry_report.csv
 # muchas variantes redundantes y no forma parte del subconjunto de producción.
 data/derived/gva/web/
 data/derived/gva/frontend/
+data/derived/gva/publication/
 
 # Subconjunto estático candidato para producción. Continúa ignorado hasta una
 # acción explícita de publicación; se reconstruye con los scripts de build.

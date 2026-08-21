@@ -29,9 +29,10 @@ python3 scripts/build_frontend_profile.py --profile public
 python3 scripts/validate_recent_frontend_assets.py
 ```
 
-`development` referencia ICV + SIGIF + EFFIS locales. `public` contiene solo
-EFFIS. Forzar `--profile public --include-source sigif` o `icv` termina con
-código distinto de cero. El build no publica archivos.
+`development` referencia ICV + SIGIF + EFFIS locales. Tras la confirmación
+escrita del ICV de 20/08/2026, `public` contiene ICV + EFFIS. Forzar
+`--profile public --include-source sigif` termina con código distinto de cero.
+El build no publica archivos por sí mismo.
 
 ## Assets recientes
 
@@ -112,7 +113,8 @@ Las cifras son medianas de tres ejecuciones. `run_smoke.py` pasó 18 escenarios 
 2025, 2026, provincias, piloto, zoom, filtros de fuente, Ibi, Nules, Tírig,
 consulta puntual EFFIS, `2024AL0005`, geometría reutilizada y móvil. Los
 validadores ICV y reciente pasaron. `run_profile_smoke.py` arrancó el perfil
-público con dos peticiones y solo 16 EFFIS 2026, y comprobó el rechazo de ICV.
+público con dos peticiones y 16 EFFIS 2026, mantuvo ICV disponible para
+1993–2024 y comprobó el rechazo de SIGIF.
 La suite `unittest` pasó sus cuatro pruebas en el entorno reproducible creado
 desde `requirements-dev.txt`, con pyproj 3.5.0 y Shapely 2.0.7.
 

@@ -1,0 +1,82 @@
+name: Deploy public Atlas to GitHub Pages
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    if: github.event_name == 'workflow_dispatch' || github.event.release.tag_name == 'public-data-v1'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+
+      - name: Install development dependencies
+        run: python -m pip install -r requirements-dev.txt
+
+      - name: Download and verify public data bundle
+        run: python scripts/download_public_data_bundle.py
+
+      - name: Build guarded public profile
+        run: python scripts/build_frontend_profile.py --profile public --output data/web/gva/manifest.json
+
+      - name: Validate source assets and publication guard
+        run: |
+          python scripts/validate_frontend_assets.py
+          python scripts/validate_recent_frontend_assets.py --public-only
+          python - <<'PY'
+          import json
+          manifest = json.load(open('data/web/gva/manifest.json', encoding='utf-8'))
+          assert manifest['publication_guard']['all_included_sources_publishable'] is True
+          assert set(manifest['sources']) == {'icv', 'effis'}
+          serialized = json.dumps(manifest).lower()
+          assert 'sigif' not in serialized and 'candidate' not in serialized
+          PY
+
+      - name: Run Python tests
+        run: python -m unittest discover -s tests -v
+
+      - name: Run public browser smoke tests
+        run: python benchmarks/gva_frontend/run_profile_smoke.py
+
+      - name: Assemble and validate Pages site
+        run: |
+          python scripts/build_frontend_profile.py --profile public --output data/web/gva/manifest.json
+          python scripts/build_public_site.py --output data/derived/gva/publication/site
+          python scripts/validate_public_site.py --site data/derived/gva/publication/site
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: data/derived/gva/publication/site
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

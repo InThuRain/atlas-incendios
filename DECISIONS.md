@@ -207,6 +207,24 @@ perfil público incluye ICV y EFFIS y sigue rechazando SIGIF, cuya licencia es
 independiente y continúa pendiente. Este cambio de estado no publica assets ni
 autoriza a incluir snapshots raw o matrices de benchmark en Git.
 
+## 2026-08-21 — GitHub Pages desde artifact y bundle público de Release
+
+El visor público se despliega mediante GitHub Actions y el mecanismo oficial de
+artifacts de GitHub Pages. Los datos permitidos se suministran a CI mediante un
+bundle inmutable de GitHub Release cuya lista, tamaño y SHA-256 están fijados en
+`config/public-data-bundle.json`; no se añaden los aproximadamente 73 MB de
+assets generados al historial ordinario de `main`.
+
+**Motivo:** raw, processed y web son salidas locales ignoradas, por lo que CI no
+puede reconstruir los derivados desde cero sin depender accidentalmente del
+equipo de desarrollo. El bundle permite verificar exactamente ICV + EFFIS,
+mantener fuera SIGIF y candidatos y conservar un despliegue reproducible.
+
+**Consecuencias:** el workflow descarga y verifica el bundle, vuelve a ejecutar
+el guard `publishable`, los validadores y pruebas, y solo entonces crea el
+artifact autocontenido de Pages. Actualizar los datos exige versionar y revisar
+explícitamente un nuevo bundle; un push ordinario no publica datasets locales.
+
 ## Plantilla para nuevas decisiones
 
 ```markdown

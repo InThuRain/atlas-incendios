@@ -1,0 +1,232 @@
+{
+  "schema_version": 1,
+  "repository": "InThuRain/atlas-incendios",
+  "release": {
+    "tag": "public-data-v1",
+    "asset_name": "atlas-public-data-v1.tar.gz"
+  },
+  "archive": {
+    "bytes": 11604029,
+    "sha256": "017030a3a7482d69ff7be23a179635543710e4441139aa7d9725c38ed2e4e1bb"
+  },
+  "contents": {
+    "file_count": 41,
+    "uncompressed_bytes": 72959022,
+    "icv_data_assets": 38,
+    "effis_data_assets": 2,
+    "files": [
+      {
+        "path": "data/web/gva/fires.json",
+        "bytes": 5848959,
+        "sha256": "6fb2f9a2b0bc780903a0a68b6ab5636eabc23def6e5fc97bf8058658718e48c9"
+      },
+      {
+        "path": "data/web/gva/geometry/local/alicante/1993-1999.geojson",
+        "bytes": 1191577,
+        "sha256": "b34cdc77113d80e2951869cc72dde869fd3351d0ea0aaacb023d0945081ce64a"
+      },
+      {
+        "path": "data/web/gva/geometry/local/alicante/2000-2009.geojson",
+        "bytes": 2172018,
+        "sha256": "4a95097deacc19413e89acfd4c066fce45686fd672b7c59d7454d3c80ad0d750"
+      },
+      {
+        "path": "data/web/gva/geometry/local/alicante/2010-2019.geojson",
+        "bytes": 1725806,
+        "sha256": "3404c8de0e9254cadfc9962e58fefbdefcadd7e33ca6736c8eb7cff4b9d41fe4"
+      },
+      {
+        "path": "data/web/gva/geometry/local/alicante/2020-2024.geojson",
+        "bytes": 1248615,
+        "sha256": "944983b1ba3c95f1e47d9a0c927cfcbd52ebd500a1d3b253477f835507128c5a"
+      },
+      {
+        "path": "data/web/gva/geometry/local/castellon/1993-1999.geojson",
+        "bytes": 1789985,
+        "sha256": "022a36a3a4f17b093f772ee7b93e0c2027c5d8f8895556ca949897dea25d9172"
+      },
+      {
+        "path": "data/web/gva/geometry/local/castellon/2000-2009.geojson",
+        "bytes": 2407350,
+        "sha256": "1d5f610746f8d7b1b91dd868b1768855071cab3d01150ed0b28a29193903fb95"
+      },
+      {
+        "path": "data/web/gva/geometry/local/castellon/2010-2019.geojson",
+        "bytes": 1503401,
+        "sha256": "4117f179a8f2540d5333de841a8043590c6e7b13b2213be4e27514dc2510d4e9"
+      },
+      {
+        "path": "data/web/gva/geometry/local/castellon/2020-2024.geojson",
+        "bytes": 1189326,
+        "sha256": "41741cc9933ea6bb67d76bb1c4117e58b09004f871e364a89b69c264188d7c46"
+      },
+      {
+        "path": "data/web/gva/geometry/local/valencia/1993-1999.geojson",
+        "bytes": 2383584,
+        "sha256": "68400b656cb3a799f894fa6de91a1900997184d2a44c5b5fd10ff0924c4463fa"
+      },
+      {
+        "path": "data/web/gva/geometry/local/valencia/2000-2009.geojson",
+        "bytes": 5511521,
+        "sha256": "1c4da5a6dfa0e45b241a5b980fb70866dca75b0672e626191818e7b8f3fb8394"
+      },
+      {
+        "path": "data/web/gva/geometry/local/valencia/2010-2019.geojson",
+        "bytes": 5349960,
+        "sha256": "e0f8192af5a586d9776f4d7904cababc8b0c56ce2a97660165c5d0126b706281"
+      },
+      {
+        "path": "data/web/gva/geometry/local/valencia/2020-2024.geojson",
+        "bytes": 1670526,
+        "sha256": "0a2b8538e06d39adc1e088f4e32818c46f0ad8c30a5cdc60cac16449a185953d"
+      },
+      {
+        "path": "data/web/gva/geometry/overview/alicante/1993-1999.geojson",
+        "bytes": 720014,
+        "sha256": "669f0c33ee686c5644fa7ccd999a97d3231ff8c85983442022694686115391ba"
+      },
+      {
+        "path": "data/web/gva/geometry/overview/alicante/2000-2009.geojson",
+        "bytes": 1860327,
+        "sha256": "fb704de65794aba539d039810ef749ad347e52c07c536057efcf05ea60f6fb4f"
+      },
+      {
+        "path": "data/web/gva/geometry/overview/alicante/2010-2019.geojson",
+        "bytes": 1303162,
+        "sha256": "39a56964d69f703d80cc9558a2b3de0026cbbb06871efe90ff0c90bd73d26599"
+      },
+      {
+        "path": "data/web/gva/geometry/overview/alicante/2020-2024.geojson",
+        "bytes": 481155,
+        "sha256": "bcb392ef2cf65ca454f498cd76b4e257ccaabcde1ec27a78a206eaa33ee0a600"
+      },
+      {
+        "path": "data/web/gva/geometry/overview/castellon/1993-1999.geojson",
+        "bytes": 765894,
+        "sha256": "8dd5b60a557577f39ec45438abbf383fb3ba98f2f28622431af6bd37e37a68a3"
+      },
+      {
+        "path": "data/web/gva/geometry/overview/castellon/2000-2009.geojson",
+        "bytes": 1559226,
+        "sha256": "2a4fa89bb2a54bc8c5834e60f09922157d96f91cd9664ad8fe23f1ceaced46c3"
+      },
+      {
+        "path": "data/web/gva/geometry/overview/castellon/2010-2019.geojson",
+        "bytes": 900542,
+        "sha256": "ded35c291843225b008cb6ee1449990c9a821cd63b4eee8d32856a324dbfea7f"
+      },
+      {
+        "path": "data/web/gva/geometry/overview/castellon/2020-2024.geojson",
+        "bytes": 433770,
+        "sha256": "dc093ae44994a2d486b4d3ebadbcb4316ed803cc8a80032a642987f4ddb43782"
+      },
+      {
+        "path": "data/web/gva/geometry/overview/valencia/1993-1999.geojson",
+        "bytes": 1118710,
+        "sha256": "b5d234c81ebf8348a842f74e81ee27b7fe1723a3f5f5b88405fbba030ef63245"
+      },
+      {
+        "path": "data/web/gva/geometry/overview/valencia/2000-2009.geojson",
+        "bytes": 5190158,
+        "sha256": "154eed05b08827dbde7d3cce471bdf1b17d738d63e0adef441a2532d0fbf31d0"
+      },
+      {
+        "path": "data/web/gva/geometry/overview/valencia/2010-2019.geojson",
+        "bytes": 2665089,
+        "sha256": "f35322f6dd0d9b6c27bc0a243663a82852a8b5d69ecb84baabb7d8b28d949326"
+      },
+      {
+        "path": "data/web/gva/geometry/overview/valencia/2020-2024.geojson",
+        "bytes": 1256333,
+        "sha256": "8c8d1911b9a9660181bcf7372f1150074c10c497940afc4760539bcf32fc5079"
+      },
+      {
+        "path": "data/web/gva/geometry/regional/alicante/1993-1999.geojson",
+        "bytes": 761565,
+        "sha256": "cbadd283ab7a15727e94aa809119066d72c6f455837627ce5fcf75b6d4a783ca"
+      },
+      {
+        "path": "data/web/gva/geometry/regional/alicante/2000-2009.geojson",
+        "bytes": 1951282,
+        "sha256": "738bf57d264ddb7ab5dde6e9fbd12f93acea424779e105683f575e32a089fd9f"
+      },
+      {
+        "path": "data/web/gva/geometry/regional/alicante/2010-2019.geojson",
+        "bytes": 1199015,
+        "sha256": "27736fe307d88cc4942cba15a6662447d2f7ecfab484ae0919d720d38661aec7"
+      },
+      {
+        "path": "data/web/gva/geometry/regional/alicante/2020-2024.geojson",
+        "bytes": 622585,
+        "sha256": "38cd64df3b7b0c3a7548cfdf6296ae942cc7e0ae26fcb5f9577fd95f667c5480"
+      },
+      {
+        "path": "data/web/gva/geometry/regional/castellon/1993-1999.geojson",
+        "bytes": 965034,
+        "sha256": "5ba822e5db09b347ffcb1814e2a995dc8a01353e04887bc6f4ef6216d799c857"
+      },
+      {
+        "path": "data/web/gva/geometry/regional/castellon/2000-2009.geojson",
+        "bytes": 1892644,
+        "sha256": "14a9a0108e8e7b6a1ad4527d65493b19f6129f416661590c5794939dcf9a1062"
+      },
+      {
+        "path": "data/web/gva/geometry/regional/castellon/2010-2019.geojson",
+        "bytes": 966851,
+        "sha256": "034b83595fab3d61e8efff6a85573874924c6f057dd3239d0c1414399146b332"
+      },
+      {
+        "path": "data/web/gva/geometry/regional/castellon/2020-2024.geojson",
+        "bytes": 623021,
+        "sha256": "9736fdbae59d8744650779d8ffa81de5d1a903b2c9f8cfe8e233f4979888ebc0"
+      },
+      {
+        "path": "data/web/gva/geometry/regional/valencia/1993-1999.geojson",
+        "bytes": 1349884,
+        "sha256": "0a58792303a42e58f917b81b688f400e2d232b8912b544a69dbae4127353d8d3"
+      },
+      {
+        "path": "data/web/gva/geometry/regional/valencia/2000-2009.geojson",
+        "bytes": 5257995,
+        "sha256": "95985b2e7a7c99abae181877e5cd0e603bccea7be87ee8d6ac5804ea13d65a03"
+      },
+      {
+        "path": "data/web/gva/geometry/regional/valencia/2010-2019.geojson",
+        "bytes": 3583402,
+        "sha256": "5f31056e63253a4081e7e955ee4395c3ad0c48cc5a1a4615cbc16d4cb7961194"
+      },
+      {
+        "path": "data/web/gva/geometry/regional/valencia/2020-2024.geojson",
+        "bytes": 1266000,
+        "sha256": "45f5c2f0a9c720d64b133e397c73f9961bcfbe8b7e51d6b53ccde2a070ec9eb0"
+      },
+      {
+        "path": "data/web/gva/provenance.json",
+        "bytes": 17333,
+        "sha256": "19404326b4bec8bd4044953cd33a6959e1c7ed1b80d9abde07c40422ac999c16"
+      },
+      {
+        "path": "data/web/gva/recent/assets-manifest.json",
+        "bytes": 2086,
+        "sha256": "27dc9f3f1b5bc8cfd2c1089b6dd5f55701c7054b7abab390d24840449d750281"
+      },
+      {
+        "path": "data/web/gva/recent/effis/2025.geojson",
+        "bytes": 36694,
+        "sha256": "07a2a0b749435be13b9244a634f5338ad9a2895ea7a0fa22b6206e6ccb53f06b"
+      },
+      {
+        "path": "data/web/gva/recent/effis/2026.geojson",
+        "bytes": 216623,
+        "sha256": "9e3d48156039dd3bfe7d5b65b420604924bb5569a425779d297696600f4059bc"
+      }
+    ]
+  },
+  "excluded": [
+    "SIGIF",
+    "SIGIF-EFFIS link candidates",
+    "raw",
+    "processed",
+    "benchmarks"
+  ]
+}

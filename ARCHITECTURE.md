@@ -278,6 +278,22 @@ puntuadas con estado `candidate`; nunca sustituyen esas identidades. Los
 puntos SIGIF y los polígonos EFFIS se cargan por año. Los atributos y perímetros
 ICV continúan con carga diferida por provincia, bloque temporal y zoom.
 
+## Publicación estática en GitHub Pages
+
+El sitio público se construye en GitHub Actions, pero los datos web permitidos
+no se regeneran allí desde raw/processed: esas entradas son locales, están
+ignoradas y no serían reproducibles en CI. En su lugar, un bundle inmutable de
+Release contiene únicamente los 38 assets ICV, los 2 EFFIS y un manifiesto
+reciente saneado. `config/public-data-bundle.json` fija lista, tamaños y
+checksums; CI descarga, verifica y extrae el bundle antes de componer el perfil.
+
+El pipeline vuelve a aplicar el guard de `config/sources-gva.json`, ejecuta los
+validadores, monta un directorio estático autocontenido y lo entrega como
+artifact de Pages. SIGIF, candidatos, raw, processed y matrices de benchmark no
+forman parte ni del bundle ni del artifact. Las rutas relativas mantienen el
+funcionamiento bajo `/atlas-incendios/` sin una configuración específica de
+servidor.
+
 ## Timeline con cobertura heterogénea
 
 La futura extensión 1968–2026 debe representar la madurez de los datos además

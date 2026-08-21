@@ -1,5 +1,7 @@
 # Atlas Histórico de Incendios Forestales
 
+Visor público: <https://inthurain.github.io/atlas-incendios/>
+
 ## Objetivo
 
 Construir un atlas interactivo de incendios forestales que permita explorar la historia del fuego en el territorio español, comenzando por el área piloto de Serra de Mariola – Carrascar de la Font Roja y ampliando progresivamente a Comunitat Valenciana y España.
@@ -47,8 +49,10 @@ Turf.js. El navegador no consulta servicios ArcGIS en tiempo real.
 Funcionalidades ya planteadas/probadas:
 
 - mapa interactivo;
-- histórico ICV 1993–2024 y colecciones recientes SIGIF/EFFIS 2025–2026
-  estrictamente separadas;
+- perfil público con perímetros ICV/Generalitat 1993–2024 y perímetros
+  satelitales provisionales EFFIS 2025–2026, estrictamente separados;
+- perfil local de desarrollo que añade los registros administrativos
+  provisionales SIGIF 2025–2026 y candidatos SIGIF–EFFIS sin fusionarlos;
 - filtro por intervalo de años;
 - filtro por superficie mínima;
 - filtro por causa;
@@ -103,6 +107,56 @@ locales necesarios para los validadores continúan ignorados por Git.
 La licencia y procedencia de los datos se documentan en `LICENSE_DATA.md`; las
 fuentes, cartografía base y bibliotecas de terceros se recogen en
 `THIRD_PARTY_LICENSES.md`.
+
+### Ejecutar el visor local
+
+El visor usa módulos JavaScript y `fetch`, por lo que no debe abrirse mediante
+`file://`. Con los datasets locales generados:
+
+```bash
+.venv/bin/python scripts/build_frontend_profile.py --profile development
+.venv/bin/python -m http.server 8000
+```
+
+Después se abre <http://localhost:8000/>. Este perfil puede usar ICV, SIGIF y
+EFFIS locales; ningún dataset ignorado se incorpora por ello a Git.
+
+### Reproducir el perfil público
+
+El perfil público se rige exclusivamente por `config/sources-gva.json`: incluye
+ICV y EFFIS y rechaza SIGIF porque continúa con `publishable=false`. El bundle
+de datos permitido se publica como asset de la Release `public-data-v1`; su
+tamaño, SHA-256 y lista exacta de 41 entradas están fijados en
+`config/public-data-bundle.json`.
+
+```bash
+.venv/bin/python scripts/download_public_data_bundle.py
+.venv/bin/python scripts/build_frontend_profile.py --profile public \
+  --output data/web/gva/manifest.json
+.venv/bin/python scripts/validate_frontend_assets.py
+.venv/bin/python scripts/validate_recent_frontend_assets.py --public-only
+.venv/bin/python scripts/build_public_site.py \
+  --output data/derived/gva/publication/site
+.venv/bin/python scripts/validate_public_site.py \
+  --site data/derived/gva/publication/site
+```
+
+El resultado es un directorio estático autocontenido compatible con el subpath
+`/atlas-incendios/`. Contiene 40 assets de datos: 38 ICV y 2 EFFIS. No contiene
+snapshots raw, datos processed, benchmarks, SIGIF ni candidatos SIGIF–EFFIS.
+
+### Despliegue
+
+`.github/workflows/pages.yml` descarga y verifica el bundle de la Release,
+compone únicamente el perfil `public`, ejecuta validadores, tests Python y
+pruebas de navegador, construye un único artifact y lo despliega con GitHub
+Pages. El workflow usa permisos mínimos de lectura de contenidos, escritura de
+Pages e identidad OIDC; no necesita secretos del proyecto.
+
+Los aproximadamente 73 MB sin comprimir de datos web no forman parte del
+historial de `main`. Para actualizar datos públicos se debe generar un nuevo
+bundle reproducible, revisar su manifiesto y publicar explícitamente una nueva
+Release/versionar su referencia antes de desplegarlo.
 
 ### Pipeline histórico EGIF 1968–1992
 

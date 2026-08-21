@@ -52,7 +52,7 @@
       <section class="panel" aria-labelledby="sources-title">
         <h2 id="sources-title">Fuentes visibles</h2>
         <div id="source-filters" class="source-filters"></div>
-        <p class="help">Las fuentes permanecen separadas aunque exista una correspondencia candidata.</p>
+        <p id="source-separation-help" class="help">Las fuentes permanecen separadas aunque exista una correspondencia candidata.</p>
       </section>
 
       <section id="coverage-panel" class="panel coverage-panel" aria-labelledby="coverage-title">
@@ -105,7 +105,7 @@
         <h2 id="history-title">Historia de un lugar</h2>
         <button id="point-query" type="button" class="primary full-width">Consultar un punto del mapa</button>
         <p id="point-hint" class="notice" hidden>Selecciona un punto. Mientras este modo esté activo no se abrirán fichas de perímetros.</p>
-        <div id="point-history" class="result-copy">Se consultarán por separado perímetros ICV, perímetros EFFIS y puntos SIGIF próximos.</div>
+        <div id="point-history" class="result-copy">Se consultarán por separado los tipos de geometría disponibles.</div>
       </section>
 
       <section id="details-panel" class="panel" aria-labelledby="details-title">
@@ -123,7 +123,7 @@
         <div id="methodology-content" class="result-copy"></div>
         <p class="notice">Este atlas es un proyecto independiente y no es un producto oficial del ICV, la Generalitat Valenciana, EFFIS ni Copernicus.</p>
       </section>
-      <footer class="data-note"><p>No se interpreta la igualdad geométrica ni una correspondencia candidata como recurrencia o identidad confirmada.</p><p>Periodo activo: <span id="active-period">—</span></p></footer>
+      <footer class="data-note"><p>No se interpreta la igualdad geométrica ni una correspondencia candidata como recurrencia o identidad confirmada.</p><p><a href="LICENSE_DATA.md">Licencia y procedencia de los datos</a> · <a href="THIRD_PARTY_LICENSES.md">Fuentes y licencias de terceros</a></p><p>Periodo activo: <span id="active-period">—</span></p></footer>
     </aside>
 
     <section id="map-region" aria-label="Mapa de incendios">
@@ -131,7 +131,7 @@
       <div class="map-legend" aria-label="Leyenda de fuentes">
         <div class="temporal-legend"><span class="temporal-gradient"></span><span id="legend-year-old">1993</span> más antiguo · más reciente <span id="legend-year-new">2026</span></div>
         <span class="legend-symbol legend-icv"></span> Perímetro ICV · oficial consolidado<br>
-        <span class="legend-symbol legend-sigif"></span> Punto SIGIF · administrativo provisional<br>
+        <span id="legend-sigif-row"><span class="legend-symbol legend-sigif"></span> Punto SIGIF · administrativo provisional<br></span>
         <span class="legend-symbol legend-effis"></span> Perímetro EFFIS · satelital provisional
       </div>
     </section>

@@ -85,7 +85,7 @@ def main():
             "max": maximum,
             "default": min(catalog["timeline"]["default_year"], maximum),
         },
-        "query": catalog["query"],
+        "query": catalog["query"] if "sigif" in requested else {},
         "sources": active,
         "territories": (icv or read_json(args.icv_manifest))["territories"],
         "zoom_levels": (icv or read_json(args.icv_manifest))["zoom_levels"],
@@ -99,7 +99,8 @@ def main():
             "acquired_at": recent["acquired_at"],
             "coverage": coverage_for_sources(recent["coverage"], requested),
             "assets": recent_assets,
-            "candidate_links_are_confirmed": False,
+            **({"candidate_links_are_confirmed": False}
+               if {"sigif", "effis"}.issubset(requested) else {}),
         } if recent else None),
         "publication_guard": {
             "all_included_sources_publishable": not blocked,
