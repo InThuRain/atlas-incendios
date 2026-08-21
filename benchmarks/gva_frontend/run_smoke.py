@@ -8,6 +8,7 @@ import os
 import re
 import statistics
 import subprocess
+import sys
 import threading
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
@@ -52,33 +53,39 @@ def find_reused_case(root):
     raise RuntimeError("No reused geometry found in production assets")
 
 
-def chrome_snapshot(chrome, url, window_size="1440,900"):
-    process = subprocess.run(
-        [
-            chrome,
-            "--headless",
-            "--no-sandbox",
-            "--disable-gpu",
-            "--enable-precise-memory-info",
-            "--virtual-time-budget=120000",
-            "--window-size=" + window_size,
-            "--dump-dom",
-            url,
-        ],
-        check=True,
-        stdout=subprocess.PIPE,
-        stderr=subprocess.PIPE,
-        encoding="utf-8",
-        timeout=150,
-    )
-    match = re.search(
-        r'<pre id="debug-output"[^>]*>(.*?)</pre>', process.stdout, re.DOTALL
-    )
-    if not match:
-        raise RuntimeError("Chrome output does not contain #debug-output")
-    result = html.unescape(match.group(1)).strip()
+def chrome_snapshot(chrome, url, window_size="1440,900", attempts=3):
+    result = ""
+    for attempt in range(attempts):
+        process = subprocess.run(
+            [
+                chrome,
+                "--headless",
+                "--no-sandbox",
+                "--disable-gpu",
+                "--enable-precise-memory-info",
+                "--virtual-time-budget=120000",
+                "--window-size=" + window_size,
+                "--dump-dom",
+                url,
+            ],
+            check=True,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            encoding="utf-8",
+            timeout=150,
+        )
+        match = re.search(
+            r'<pre id="debug-output"[^>]*>(.*?)</pre>', process.stdout, re.DOTALL
+        )
+        if not match:
+            raise RuntimeError("Chrome output does not contain #debug-output")
+        result = html.unescape(match.group(1)).strip()
+        if result:
+            break
+        if attempt + 1 < attempts:
+            print("Chrome returned before the debug scenario completed; retrying", file=sys.stderr)
     if not result:
-        raise RuntimeError("Frontend debug scenario did not complete")
+        raise RuntimeError("Frontend debug scenario did not complete after {} attempts".format(attempts))
     payload = json.loads(result)
     if "error" in payload:
         raise RuntimeError(payload["error"])

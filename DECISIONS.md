@@ -224,6 +224,9 @@ mantener fuera SIGIF y candidatos y conservar un despliegue reproducible.
 el guard `publishable`, los validadores y pruebas, y solo entonces crea el
 artifact autocontenido de Pages. Actualizar los datos exige versionar y revisar
 explícitamente un nuevo bundle; un push ordinario no publica datasets locales.
+La Release y el despliegue son pasos separados: Pages se lanza mediante
+`workflow_dispatch` desde `main`, porque la protección del entorno rechaza jobs
+de despliegue cuyo origen sea directamente un tag.
 
 ## 2026-08-21 — Estado compartible en hash y filtros canónicos
 

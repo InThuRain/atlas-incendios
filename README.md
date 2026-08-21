@@ -174,6 +174,10 @@ pruebas de navegador, construye un único artifact y lo despliega con GitHub
 Pages. El workflow usa permisos mínimos de lectura de contenidos, escritura de
 Pages e identidad OIDC; no necesita secretos del proyecto.
 
+El despliegue se lanza manualmente con `workflow_dispatch` desde `main` después
+de publicar la Release del bundle. Así se respeta la protección del entorno
+`github-pages`, que no admite un despliegue originado directamente desde un tag.
+
 Los aproximadamente 73 MB sin comprimir de datos web no forman parte del
 historial de `main`. Para actualizar datos públicos se debe generar un nuevo
 bundle reproducible, revisar su manifiesto y publicar explícitamente una nueva
