@@ -16,7 +16,7 @@ concurrency:
 
 jobs:
   build:
-    if: github.event_name == 'workflow_dispatch' || github.event.release.tag_name == 'public-data-v1'
+    if: github.event_name == 'workflow_dispatch' || startsWith(github.event.release.tag_name, 'public-data-v')
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository

@@ -4,7 +4,10 @@ Visor público: <https://inthurain.github.io/atlas-incendios/>
 
 ## Objetivo
 
-Construir un atlas interactivo de incendios forestales que permita explorar la historia del fuego en el territorio español, comenzando por el área piloto de Serra de Mariola – Carrascar de la Font Roja y ampliando progresivamente a Comunitat Valenciana y España.
+Construir un atlas interactivo de incendios forestales que permita explorar la
+historia del fuego en España. El País Valencià es el primer territorio
+implementado; el proyecto nació como piloto en Serra de Mariola – Carrascar de
+la Font Roja.
 
 El proyecto debe combinar dos tipos de información que no son equivalentes:
 
@@ -13,7 +16,7 @@ El proyecto debe combinar dos tipos de información que no son equivalentes:
 
 La ausencia de perímetro no implica que el incendio no existiera.
 
-## Área piloto
+## Origen del proyecto
 
 Zona inicial ampliada alrededor de:
 
@@ -30,7 +33,9 @@ Zona inicial ampliada alrededor de:
 - Onil
 - sierras y valles próximos
 
-El área piloto sirve para validar:
+Esta área conserva valor como caso de prueba técnico e histórico, pero ya no es
+un acceso territorial principal: el visor actual cubre todo el País Valencià.
+El trabajo inicial permitió validar:
 
 - carga y visualización de perímetros;
 - filtros temporales y por superficie;
@@ -56,6 +61,8 @@ Funcionalidades ya planteadas/probadas:
 - filtro por intervalo de años;
 - filtro por superficie mínima;
 - filtro por causa;
+- municipios y causas canónicos, conservando sus valores de origen;
+- enlaces compartibles que restauran mapa, periodo, fuentes y filtros;
 - identificación de GIF >= 500 ha;
 - histograma anual;
 - listado de incendios visibles;
@@ -121,11 +128,25 @@ El visor usa módulos JavaScript y `fetch`, por lo que no debe abrirse mediante
 Después se abre <http://localhost:8000/>. Este perfil puede usar ICV, SIGIF y
 EFFIS locales; ningún dataset ignorado se incorpora por ello a Git.
 
+Si se regeneran los derivados web desde processed, la capa canónica de filtros
+se aplica después de los builders de ICV y recientes:
+
+```bash
+.venv/bin/python scripts/build_frontend_assets.py
+.venv/bin/python scripts/build_recent_frontend_assets.py
+.venv/bin/python scripts/filter_vocabularies.py
+.venv/bin/python scripts/build_frontend_profile.py --profile development
+```
+
+El último comando de transformación usa el catálogo municipal oficial ICV del
+snapshot CV-2.2, conserva los textos originales y deja sin resolver cualquier
+correspondencia no demostrable.
+
 ### Reproducir el perfil público
 
 El perfil público se rige exclusivamente por `config/sources-gva.json`: incluye
 ICV y EFFIS y rechaza SIGIF porque continúa con `publishable=false`. El bundle
-de datos permitido se publica como asset de la Release `public-data-v1`; su
+de datos permitido se publica como asset de la Release `public-data-v2`; su
 tamaño, SHA-256 y lista exacta de 41 entradas están fijados en
 `config/public-data-bundle.json`.
 

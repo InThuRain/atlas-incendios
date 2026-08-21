@@ -92,6 +92,12 @@ Objetivo: tener un piloto local fiable y agradable de usar.
 
 ## Fase 6 — Funciones avanzadas
 
+- [x] UX-1 / DATA-UX-1: normalizar municipios y causas para filtros, añadir
+  permalink versionado y retirar Mariola–Font Roja de la navegación territorial
+  principal sin eliminar su acceso técnico.
+- [x] Auditar los 244 registros municipales inicialmente no resueltos y cerrar
+  UX-1 con un bundle público reproducible, guard de publicación y permalinks
+  verificados en sesión nueva.
 - [ ] Historia de un territorio dibujado.
 - [ ] Comparador temporal.
 - [ ] Recurrencia continua.

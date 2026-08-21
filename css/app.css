@@ -84,6 +84,10 @@ h1 { margin: 0; font-size: 1.42rem; line-height: 1.12; letter-spacing: -.025em; 
 .primary.active { background: var(--ember); }
 .full-width { width: 100%; }
 .text-button { padding: 3px 0; color: var(--forest); background: transparent; font-size: .73rem; }
+.share-row { display: flex; align-items: center; gap: 9px; margin-top: 8px; }
+.share-button::before { content: "↗"; margin-right: 5px; }
+.share-feedback { color: var(--forest); font-size: .68rem; }
+.share-fallback { width: 100%; margin-top: 6px; padding: 6px 8px; border: 1px solid #cdd7d1; border-radius: 7px; color: var(--ink); background: white; font-size: .68rem; }
 
 .status {
   margin-top: 10px;

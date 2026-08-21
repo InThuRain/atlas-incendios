@@ -60,7 +60,7 @@ def main():
     if not args.public_only:
         sigif_2025 = load(asset_path(assets["sigif_points:2025"]["url"]))["features"]
         candidates = load(asset_path(assets["link_candidates_visible"]["url"]))
-        ibi_sigif = [item for item in sigif_2025 if item["properties"]["municipality"] == "Ibi" and item["properties"]["place_name"] == "Sant Pasqual"]
+        ibi_sigif = [item for item in sigif_2025 if item["properties"]["municipality_raw"] == "Ibi" and item["properties"]["place_name"] == "Sant Pasqual"]
         ibi_links = [item for item in candidates if item["effis_id"] == "275862"]
         if len(ibi_sigif) != 1 or len(ibi_links) != 1:
             fail("Ibi acceptance records missing")
@@ -83,6 +83,10 @@ def main():
     for collection in collections:
         if any("original_attributes" in item["properties"] for item in collection):
             fail("Raw original_attributes leaked into web assets")
+        for item in collection:
+            properties = item["properties"]
+            if not {"municipality_raw", "municipality_id", "municipality_name", "cause_raw", "cause_code", "cause_label"}.issubset(properties):
+                fail("Canonical filter fields missing from web assets")
 
     with tempfile.TemporaryDirectory() as directory:
         public_path = Path(directory) / "public.json"

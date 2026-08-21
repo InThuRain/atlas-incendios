@@ -38,7 +38,8 @@
       "attribute_selection",
       "province_and_temporal_partitioning",
       "topology_preserving_multiscale_simplification",
-      "adaptive_coordinate_rounding"
+      "adaptive_coordinate_rounding",
+      "canonical_municipality_and_cause_filter_fields"
     ],
     "geometry_levels": {
       "local": {
@@ -184,9 +185,9 @@
     "fires": {
       "name": "fires",
       "url": "data/web/gva/fires.json",
-      "bytes": 5848959,
-      "gzip_bytes": 492721,
-      "sha256": "6fb2f9a2b0bc780903a0a68b6ab5636eabc23def6e5fc97bf8058658718e48c9"
+      "bytes": 7657862,
+      "gzip_bytes": 572844,
+      "sha256": "0ab80347d78f46764ad8152f08a06872667160bf3631b44830cf168eb0ce8b1e"
     },
     "provenance": {
       "name": "provenance",
@@ -778,8 +779,8 @@
     "geometry_file_count": 36,
     "static_file_count": 2,
     "total_file_count": 38,
-    "raw_bytes": 72703619,
-    "gzip_bytes": 11525847,
+    "raw_bytes": 74512522,
+    "gzip_bytes": 11605970,
     "benchmark_matrix_included": false,
     "formats": [
       "GeoJSON",

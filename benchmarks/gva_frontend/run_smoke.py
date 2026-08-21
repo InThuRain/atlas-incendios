@@ -90,6 +90,16 @@ def require(condition, message):
         raise AssertionError(message)
 
 
+def viewer_hash(**overrides):
+    values = {
+        "v": 1, "lat": 39.35, "lng": -0.55, "z": 8,
+        "from": 2026, "to": 2026, "src": "icv,sigif,effis",
+        "province": "all", "min_area": 0, "gif": 0,
+    }
+    values.update(overrides)
+    return urlencode(values)
+
+
 def validate(name, payload):
     final = payload["final"]
     require(final["level"] in ("overview", "regional", "local"), name + ": level")
@@ -148,6 +158,18 @@ def main():
             "select_fire": reused["fire_id"],
             "point_geometry": reused["geometry_id"],
         },
+        "permalink_1994_elx_cause_selection": {
+            "__hash": viewer_hash(lat=38.27, lng=-0.70, z=8, **{
+                "from": 1994, "to": 1994, "src": "icv", "province": "alicante",
+                "municipality": "03065", "cause": "intentional",
+                "entity": "gva:pif-cv:1994AL0039", "geometry": "gva:geometry:1994:2:1422",
+            })
+        },
+        "permalink_2026_effis": {"__hash": viewer_hash(src="effis")},
+        "permalink_gif": {"__hash": viewer_hash(**{"from": 2024, "to": 2024, "src": "icv", "gif": 1})},
+        "permalink_minimum_area": {"__hash": viewer_hash(**{"from": 2024, "to": 2024, "src": "icv", "min_area": 100})},
+        "permalink_invalid_ignored": {"__hash": "v=1&lat=999&z=99&from=1900&to=2999&src=not-a-source&province=moon&unknown=value"},
+        "share_view": {"scenario": "share"},
     }
     server_root = root.parent
     handler = lambda *items, **kwargs: QuietHandler(
@@ -162,12 +184,15 @@ def main():
     results = {}
     try:
         for name, query in scenarios.items():
-            parameters = {"debug": 1, **query}
-            payload = chrome_snapshot(
-                args.chrome, base_url + "?" + urlencode(parameters)
-            )
+            fragment = query.get("__hash", "")
+            parameters = {"debug": 1, **{key: value for key, value in query.items() if key != "__hash"}}
+            payload = chrome_snapshot(args.chrome, base_url + "?" + urlencode(parameters) + ("#" + fragment if fragment else ""))
             validate(name, payload)
             results[name] = payload
+        generated = results["permalink_1994_elx_cause_selection"]["final"]
+        reloaded = chrome_snapshot(args.chrome, base_url + "?debug=1" + generated["permalinkHash"])
+        validate("permalink_new_session_reload", reloaded)
+        results["permalink_new_session_reload"] = reloaded
         mobile = chrome_snapshot(
             args.chrome, base_url + "?" + urlencode({"debug": 1}), "390,844"
         )
@@ -184,6 +209,8 @@ def main():
     require(initial["years"] == {"from": 2026, "to": 2026}, "Initial year")
     require(initial["visibleSigifRecordCount"] == 143, "SIGIF 2026 records")
     require(initial["visibleEffisPerimeterCount"] == 16, "EFFIS 2026 perimeters")
+    require(initial["sigifLegendVisible"] and initial["sourceSeparationHelpVisible"], "Development SIGIF legend/help")
+    require(initial["shareButtonVisible"], "Development share button")
     require("cobertura incompleta" in initial["coverageText"], "2026 incomplete coverage visible")
 
     for province in ("castellon", "valencia", "alicante"):
@@ -194,6 +221,7 @@ def main():
     pilot = results["mariola_font_roja"]["final"]
     require(pilot["level"] == "local", "Pilot must use local geometry")
     require(pilot["activeProvinces"] == ["alicante"], "Pilot province")
+    require(not pilot["mariolaPrimaryAccess"], "Mariola must not be a primary UI access")
 
     full = results["full_period"]["final"]
     require(full["activeAssetCount"] == 16, "Full period uses 12 ICV + 4 recent assets")
@@ -241,6 +269,23 @@ def main():
     reused_result = results["reused_geometry_point"]["point"]
     require(reused_result["history"]["fireCount"] >= 1, "Point history fire count")
     require(reused_result["history"]["reused"], "Point history reuse warning")
+
+    permalink = results["permalink_1994_elx_cause_selection"]["final"]
+    require(permalink["years"] == {"from": 1994, "to": 1994}, "Permalink year restore")
+    require(permalink["municipalityFilter"] == "03065", "Permalink municipality ID restore")
+    require(permalink["causeFilter"] == "intentional", "Permalink cause restore")
+    require(permalink["selectedEntityId"] == "gva:pif-cv:1994AL0039" and permalink["hashRestored"], "Permalink selection restore")
+    require(sum(item["label"] == "Elx" for item in permalink["availableMunicipalities"]) == 1, "Elx canonical option")
+    require(results["permalink_2026_effis"]["final"]["activeSources"] == ["effis"], "EFFIS permalink source restore")
+    require(results["permalink_gif"]["final"]["gifOnly"], "GIF permalink restore")
+    require(results["permalink_minimum_area"]["final"]["minimumArea"] == 100, "Minimum area permalink restore")
+    reloaded = results["permalink_new_session_reload"]["final"]
+    for key in ("years", "activeSources", "provinceFilter", "municipalityFilter", "causeFilter", "minimumArea", "gifOnly", "selectedEntityId", "selectedGeometryId", "zoom"):
+        require(reloaded[key] == permalink[key], "New-session permalink mismatch: " + key)
+    require(abs(reloaded["center"]["lat"] - permalink["center"]["lat"]) < 0.00002 and abs(reloaded["center"]["lng"] - permalink["center"]["lng"]) < 0.00002, "New-session center mismatch")
+    invalid = results["permalink_invalid_ignored"]["final"]
+    require(invalid["years"] == {"from": 2026, "to": 2026} and invalid["activeSources"] == ["icv", "sigif", "effis"], "Invalid hash values ignored")
+    require(bool(results["share_view"]["share"]["feedback"]), "Share action gives feedback")
 
     mobile = results["mobile_initial"]["final"]
     require(mobile["mobileLayout"], "Mobile media query")

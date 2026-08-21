@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="Atlas de incendios forestales de la Comunitat Valenciana: histórico consolidado y datos recientes provisionales.">
-  <title>Atlas de incendios · Comunitat Valenciana</title>
+  <meta name="description" content="Atlas de incendios forestales del País Valencià: histórico consolidado y datos recientes provisionales.">
+  <title>Atlas de incendios · País Valencià</title>
   <link rel="preconnect" href="https://unpkg.com">
   <link rel="preconnect" href="https://tile.openstreetmap.org">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
@@ -16,7 +16,7 @@
       <header class="brand">
         <p id="coverage-eyebrow" class="eyebrow">Cobertura definida por los manifiestos</p>
         <h1>Atlas histórico de incendios</h1>
-        <p class="intro">Explora los incendios identificados y sus perímetros disponibles en toda la Comunitat Valenciana.</p>
+        <p class="intro">Explora los incendios identificados y sus perímetros disponibles en todo el País Valencià.</p>
       </header>
 
       <section class="panel territory-panel" aria-labelledby="territory-title">
@@ -25,13 +25,17 @@
           <span id="level-badge" class="badge">overview</span>
         </div>
         <div class="territory-buttons">
-          <button type="button" data-territory="comunitat_valenciana" class="territory-button wide">Comunitat Valenciana</button>
+          <button type="button" data-territory="comunitat_valenciana" class="territory-button wide">País Valencià</button>
           <button type="button" data-territory="castellon" class="territory-button">Castellón</button>
           <button type="button" data-territory="valencia" class="territory-button">Valencia</button>
           <button type="button" data-territory="alicante" class="territory-button">Alicante</button>
-          <button type="button" data-territory="mariola_font_roja" class="territory-button wide secondary">Mariola–Font Roja</button>
         </div>
         <div id="status" class="status" role="status" aria-live="polite">Preparando el visor…</div>
+        <div class="share-row">
+          <button id="share-view" type="button" class="text-button share-button">Compartir vista</button>
+          <span id="share-feedback" class="share-feedback" role="status" aria-live="polite"></span>
+        </div>
+        <input id="share-fallback" class="share-fallback" type="text" aria-label="Enlace para compartir" readonly hidden>
       </section>
 
       <section class="panel" aria-labelledby="time-title">
@@ -52,7 +56,7 @@
       <section class="panel" aria-labelledby="sources-title">
         <h2 id="sources-title">Fuentes visibles</h2>
         <div id="source-filters" class="source-filters"></div>
-        <p id="source-separation-help" class="help">Las fuentes permanecen separadas aunque exista una correspondencia candidata.</p>
+        <p id="source-separation-help" class="help" hidden>Las fuentes permanecen separadas aunque exista una correspondencia candidata.</p>
       </section>
 
       <section id="coverage-panel" class="panel coverage-panel" aria-labelledby="coverage-title">
@@ -131,7 +135,7 @@
       <div class="map-legend" aria-label="Leyenda de fuentes">
         <div class="temporal-legend"><span class="temporal-gradient"></span><span id="legend-year-old">1993</span> más antiguo · más reciente <span id="legend-year-new">2026</span></div>
         <span class="legend-symbol legend-icv"></span> Perímetro ICV · oficial consolidado<br>
-        <span id="legend-sigif-row"><span class="legend-symbol legend-sigif"></span> Punto SIGIF · administrativo provisional<br></span>
+        <span id="legend-sigif-row" hidden></span>
         <span class="legend-symbol legend-effis"></span> Perímetro EFFIS · satelital provisional
       </div>
     </section>

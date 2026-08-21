@@ -225,6 +225,27 @@ el guard `publishable`, los validadores y pruebas, y solo entonces crea el
 artifact autocontenido de Pages. Actualizar los datos exige versionar y revisar
 explícitamente un nuevo bundle; un push ordinario no publica datasets locales.
 
+## 2026-08-21 — Estado compartible en hash y filtros canónicos
+
+El estado del visor se comparte mediante un fragmento de URL versionado y los
+filtros de municipio y causa operan sobre identificadores canónicos generados
+en el pipeline, no sobre textos libres en `app.js`.
+
+**Motivo:** un fragmento funciona bajo GitHub Pages sin backend, permite
+actualizar la URL con `replaceState` y mantiene compatible cualquier URL
+anterior sin hash. Los identificadores municipales oficiales y un vocabulario
+de causas explícito evitan opciones duplicadas sin borrar el texto fuente ni
+inventar equivalencias.
+
+**Consecuencias:** la restauración ignora parámetros inválidos; una selección
+se recupera solo si su entidad está disponible en los bloques de la vista. Los
+municipios se resuelven por identificador, componente exacto inequívoco del
+catálogo oficial o equivalencia histórica documentada; una semejanza textual no
+basta. Los casos no demostrados conservan una clave local basada en el valor raw
+y quedan registrados para revisión. Los contadores en opciones se posponen
+porque «N» no tendría una semántica única al combinar incendios ICV, registros
+SIGIF y perímetros EFFIS.
+
 ## Plantilla para nuevas decisiones
 
 ```markdown

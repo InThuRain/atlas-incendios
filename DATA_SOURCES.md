@@ -238,8 +238,36 @@ solo se solicita con `quality_debug=1`.
 La aclaración ICV del 20 de agosto de 2026 permite marcar ICV como
 `publishable=true`, con atribución a Generalitat y aviso de
 transformación. SIGIF continúa con `publishable=false`; EFFIS figura como CC BY
-4.0 con atribución y aviso de transformación. Ninguno de estos derivados se ha
-publicado todavía.
+4.0 con atribución y aviso de transformación. El perfil público distribuye
+únicamente los derivados ICV y EFFIS permitidos.
+
+### Catálogo municipal y vocabularios de interfaz (DATA-UX-1)
+
+La normalización municipal usa la capa oficial de términos municipales del
+ICV empleada ya como límite espacial en CV-2.2. El snapshot contiene 542
+municipios y conserva `cod_ine_mun`, denominación principal y variantes
+castellanas, valencianas, bilingües y anteriores. La fuente es el servicio
+oficial [0105 Delimitaciones, capa de municipios](https://carto.icv.gva.es/arcgis/rest/services/0105_delimitaciones/0105_Delimitaciones/MapServer/0).
+
+Solo se asigna un código cuando existe un código de fuente validado, un
+componente exacto de una denominación oficial bilingüe que converge en un único
+municipio de la provincia o una equivalencia histórica documentada. La
+auditoría final incorporó dos cambios de denominación acreditados en el BOE:
+[Herbés → Herbers (BOE-A-2020-12459)](https://www.boe.es/diario_boe/txt.php?id=BOE-A-2020-12459)
+y [Villanueva de Castellón → Castelló (BOE-A-2020-12460)](https://www.boe.es/diario_boe/txt.php?id=BOE-A-2020-12460).
+La capitalización y el orden de una denominación bilingüe pueden normalizarse;
+los nombres no encontrados o con un candidato meramente textual no se fuerzan.
+Los valores originales permanecen en `municipality_raw`. De los 244 registros
+inicialmente no resueltos, 223 quedan asociados con evidencia y 21 permanecen
+sin municipio oficial asignado; el detalle reproducible está en
+`DATA_UX_1_REPORT.md`.
+
+Para causas, ICV aporta el texto `g_caus_txt` sin dominio codificado en las
+capas inventariadas; SIGIF publica una columna textual `Causa`; el snapshot
+EFFIS RDA usado por el atlas no contiene causa. El mapeo explícito y sus
+separaciones semánticas están en `config/ui-vocabularies.json`. En particular,
+«En investigación» no equivale a «Desconocida», y «Negligencia» no se funde con
+la categoría histórica más amplia «Negligencias y causas accidentales».
 
 ## 3. Fuentes autonómicas
 

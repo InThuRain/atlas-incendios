@@ -28,6 +28,7 @@ data/processed/gva/duplicate_geometry_report.csv
 data/derived/gva/web/
 data/derived/gva/frontend/
 data/derived/gva/publication/
+data/derived/gva/data-ux-1/
 
 # Subconjunto estático candidato para producción. Continúa ignorado hasta una
 # acción explícita de publicación; se reconstruye con los scripts de build.

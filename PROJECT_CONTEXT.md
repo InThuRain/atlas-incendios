@@ -110,12 +110,12 @@ Mostrar en la ficha:
 - fecha de adquisición;
 - observaciones y limitaciones.
 
-## Área piloto como banco de pruebas
+## Origen y ámbito territorial
 
-Mariola–Font Roja debe seguir siendo el banco de pruebas para nuevas funciones antes de llevarlas a España entera.
+El proyecto nació como piloto en Mariola–Font Roja, pero ese origen no define
+ya la jerarquía funcional del visor. El primer territorio implementado es todo
+el País Valencià y el objetivo conceptual sigue siendo España.
 
-Orden deseable:
-
-1. piloto local robusto;
-2. Comunitat Valenciana;
-3. España.
+Mariola se conserva como caso técnico reproducible y como parte de la historia
+del proyecto, no como acceso territorial principal ni como requisito para
+probar primero cada nueva función.

@@ -14,8 +14,8 @@ from build_frontend_profile import coverage_for_sources
 
 
 ROOT = Path(__file__).resolve().parents[1]
-RELEASE_TAG = "public-data-v1"
-ASSET_NAME = "atlas-public-data-v1.tar.gz"
+RELEASE_TAG = "public-data-v2"
+ASSET_NAME = "atlas-public-data-v2.tar.gz"
 
 
 def load(path):
@@ -87,7 +87,7 @@ def main():
 
     public_recent = {
         "schema_version": 1,
-        "phase": "public-profile-v1",
+        "phase": "public-profile-v2",
         "snapshot_id": recent["snapshot_id"],
         "acquired_at": recent["acquired_at"],
         "coverage": coverage_for_sources(recent["coverage"], ["effis"]),
@@ -95,6 +95,7 @@ def main():
         "transformations": [
             "EFFIS geometries retained in EPSG:4326 without simplification",
             "browser attributes reduced; source snapshots and original attributes are not distributed",
+            "municipality and cause filter fields canonicalized from documented vocabularies; raw values retained",
         ],
     }
     serialized = json.dumps(public_recent, ensure_ascii=False, sort_keys=True).lower()

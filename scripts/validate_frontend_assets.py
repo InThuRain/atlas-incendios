@@ -162,6 +162,22 @@ def main():
     known = fire_by_id.get("gva:pif-cv:2024AL0005")
     if not known or len(known["geometry_ids"]) != 2:
         raise ValidationError("2024AL0005 does not retain two geometry IDs")
+    filter_fields = {"municipality_raw", "municipality_id", "municipality_name", "cause_raw", "cause_code", "cause_label"}
+    if any(not filter_fields.issubset(fire) for fire in fires):
+        raise ValidationError("Canonical municipality/cause filter fields missing")
+    elx_raw = {"ELX/ELCHE", "Elche / Elx", "Elche/Elx", "Elx", "Elx/Elche"}
+    elx = [fire for fire in fires if fire.get("municipality_raw") in elx_raw]
+    if len(elx) != 178 or any(fire.get("municipality_id") != "03065" or fire.get("municipality_name") != "Elx" for fire in elx):
+        raise ValidationError("Elx aliases are not canonically grouped under 03065")
+    herbes = [fire for fire in fires if fire.get("municipality_raw") == "Herbés"]
+    if len(herbes) != 9 or any(fire.get("municipality_id") != "12068" for fire in herbes):
+        raise ValidationError("Documented Herbés historical alias was not resolved")
+    unresolved = [fire for fire in fires if str(fire.get("municipality_raw") or "").strip() and fire.get("municipality_id") is None]
+    if len(unresolved) != 21 or any(fire.get("municipality_raw") == "CASTIELFABID" and fire.get("municipality_id") for fire in fires):
+        raise ValidationError("Unexpected municipality unresolved set")
+    expected_causes = {"intentional", "lightning", "negligence", "negligence_and_accidental", "rekindle", "other", "unknown", "under_investigation"}
+    if {fire.get("cause_code") for fire in fires if str(fire.get("cause_raw") or "").strip()} != expected_causes:
+        raise ValidationError("Canonical cause vocabulary is incomplete")
 
     level_results = {}
     reference_ids = None

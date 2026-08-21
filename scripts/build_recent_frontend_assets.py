@@ -72,6 +72,7 @@ def sigif_feature(row):
             "year": row["source_year"],
             "date": row.get("observed_date"),
             "municipality": row.get("municipality"),
+            "municipality_source_id": (row.get("derived_admin_at_point") or {}).get("municipality_ine_code"),
             "province": (row.get("derived_admin_at_point") or {}).get("province"),
             "province_key": canonical_province((row.get("derived_admin_at_point") or {}).get("province")),
             "county": row.get("comarca"),

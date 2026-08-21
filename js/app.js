@@ -1,4 +1,5 @@
 import {DatasetLoader} from './data-loader.js';
+import {parseViewerHash, permalinkFor, serializeViewerHash} from './url-state.js';
 
 const MANIFEST_URL = 'data/web/gva/manifest.json';
 const REUSE_WARNING = 'Este perímetro es geométricamente idéntico a otros registros del conjunto de datos. Esto no implica por sí solo que se trate del mismo incendio ni confirma recurrencia.';
@@ -14,7 +15,8 @@ const elements = {
   pointHistory: $('point-history'), details: $('details'), fireList: $('fire-list'),
   activePeriod: $('active-period'), debugOutput: $('debug-output'),
   legendYearOld: $('legend-year-old'), legendYearNew: $('legend-year-new'),
-  legendSigifRow: $('legend-sigif-row'), sourceSeparationHelp: $('source-separation-help')
+  legendSigifRow: $('legend-sigif-row'), sourceSeparationHelp: $('source-separation-help'),
+  shareView: $('share-view'), shareFeedback: $('share-feedback'), shareFallback: $('share-fallback')
 };
 
 const state = {
@@ -22,7 +24,8 @@ const state = {
   selectedEntityId: null, selectedGeometryId: null, pointMode: false, pointMarker: null,
   historyResult: null, activeLevel: null, activeProvinces: [], activeAssets: [],
   activeTerritory: 'comunitat_valenciana', refreshSequence: 0, refreshPromise: Promise.resolve(),
-  refreshTimer: null, lastRender: null, lastLoad: null, qualityDebug: false
+  refreshTimer: null, lastRender: null, lastLoad: null, qualityDebug: false,
+  initialHashState: null, urlStateReady: false, hashRestored: false
 };
 
 function escapeHtml(value) { return String(value ?? '').replace(/[&<>"']/g, char => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'}[char])); }
@@ -36,6 +39,33 @@ function leafletBounds(bounds) { return L.latLngBounds([[bounds[1], bounds[0]], 
 function setStatus(message, mode = 'normal') { elements.status.textContent = message; elements.status.className = `status${mode === 'normal' ? '' : ` ${mode}`}`; }
 function selectedYears() { return {from: Number(elements.yearFrom.value), to: Number(elements.yearTo.value)}; }
 function activeSources() { return new Set([...elements.sourceFilters.querySelectorAll('input:checked')].map(input => input.value)); }
+function municipalityFilterId(record) { return record.municipalityId || (record.municipality ? `raw:${canonicalProvince(record.province)}:${normalize(record.municipality).replace(/[^a-z0-9]+/g, '-')}` : ''); }
+
+function currentViewerState() {
+  const center = state.map?.getCenter();
+  return {center: center ? {lat: center.lat, lng: center.lng} : null, zoom: state.map?.getZoom(), ...selectedYears(),
+    sources: [...activeSources()], province: elements.province.value, municipality: elements.municipality.value,
+    minimumArea: Number(elements.minimumArea.value || 0), gifOnly: elements.gifOnly.checked, cause: elements.cause.value,
+    entity: state.selectedEntityId, geometry: state.selectedGeometryId};
+}
+
+function syncPermalink() {
+  if (!state.urlStateReady || !state.map) return;
+  history.replaceState(null, '', `${location.pathname}${location.search}${serializeViewerHash(currentViewerState())}`);
+}
+
+async function shareCurrentView() {
+  syncPermalink();
+  const url = permalinkFor(location, location.hash);
+  let copied = false;
+  try { await navigator.clipboard.writeText(url); copied = true; } catch (error) {
+    const temporary = document.createElement('textarea'); temporary.value = url; temporary.setAttribute('readonly', ''); temporary.style.position = 'fixed'; temporary.style.opacity = '0';
+    document.body.appendChild(temporary); temporary.select(); try { copied = document.execCommand('copy'); } catch (fallbackError) { copied = false; } temporary.remove();
+  }
+  elements.shareFeedback.textContent = copied ? 'Enlace copiado' : 'Copia el enlace mostrado';
+  elements.shareFallback.hidden = copied; elements.shareFallback.value = copied ? '' : url;
+  clearTimeout(shareCurrentView.timer); shareCurrentView.timer = setTimeout(() => { elements.shareFeedback.textContent = ''; }, 3000);
+}
 
 function syncYearControls(changed = null) {
   let from = Number(elements.yearFrom.value), to = Number(elements.yearTo.value);
@@ -58,29 +88,38 @@ function recordFor(feature) {
     const fire = state.loader.fireById.get(p.fire_id);
     if (!fire) return null;
     return {sourceId: 'icv', entityId: fire.fire_id, geometryId: p.geometry_id, year: fire.year,
-      municipality: fire.municipality, province: fire.province, placeName: fire.place_name, cause: fire.cause,
+      municipality: fire.municipality_name || fire.municipality_raw || fire.municipality, municipalityId: fire.municipality_id,
+      municipalityRaw: fire.municipality_raw || fire.municipality, province: fire.province, placeName: fire.place_name,
+      cause: fire.cause_label || fire.cause_raw || fire.cause, causeCode: fire.cause_code, causeRaw: fire.cause_raw || fire.cause,
       date: fire.start_date, endDate: fire.end_date, areaHa: Number(fire.reported_forest_area_ha || 0),
       fire, feature, isGif: Number(fire.reported_forest_area_ha || 0) >= 500};
   }
   if (p.source_id === 'sigif') return {sourceId: 'sigif', entityId: p.sigif_record_id, geometryId: p.sigif_record_id,
-    year: p.year, municipality: p.municipality, province: p.province, placeName: p.place_name, cause: p.cause,
+    year: p.year, municipality: p.municipality_name || p.municipality_raw || p.municipality, municipalityId: p.municipality_id,
+    municipalityRaw: p.municipality_raw || p.municipality, province: p.province, placeName: p.place_name,
+    cause: p.cause_label || p.cause_raw || p.cause, causeCode: p.cause_code, causeRaw: p.cause_raw || p.cause,
     date: p.date, areaHa: Number(p.reported_area_ha || 0), feature, isGif: Boolean(p.is_gif)};
   return {sourceId: 'effis', entityId: p.geometry_id, geometryId: p.geometry_id, year: p.year,
-    municipality: p.municipality, province: p.province, placeName: null, cause: null, date: p.date,
+    municipality: p.municipality_name || p.municipality_raw || p.municipality, municipalityId: p.municipality_id,
+    municipalityRaw: p.municipality_raw || p.municipality, province: p.province, placeName: null,
+    cause: p.cause_label || p.cause_raw || null, causeCode: p.cause_code, causeRaw: p.cause_raw, date: p.date,
     endDate: p.final_date, areaHa: Number(p.mapped_area_ha || 0), feature, isGif: false};
 }
 
-function replaceSelectOptions(select, values, label) {
+function replaceSelectOptions(select, values, label, requested = null) {
   const previous = select.value; select.replaceChildren();
   const all = document.createElement('option'); all.value = ''; all.textContent = label; select.appendChild(all);
-  for (const value of values) { const option = document.createElement('option'); option.value = value; option.textContent = value; select.appendChild(option); }
-  if (values.includes(previous)) select.value = previous;
+  for (const item of values) { const option = document.createElement('option'); option.value = item.value; option.textContent = item.label; select.appendChild(option); }
+  const available = new Set(values.map(item => item.value));
+  if (available.has(previous)) select.value = previous; else if (requested && available.has(requested)) select.value = requested;
 }
 
 function updateAttributeSelectors() {
   const records = state.loadedFeatures.map(recordFor).filter(Boolean);
-  replaceSelectOptions(elements.municipality, [...new Set(records.map(item => cleanText(item.municipality, '')).filter(Boolean))].sort((a, b) => a.localeCompare(b, 'es')), 'Todos');
-  replaceSelectOptions(elements.cause, [...new Set(records.map(item => cleanText(item.cause, '')).filter(Boolean))].sort((a, b) => a.localeCompare(b, 'es')), 'Todas');
+  const municipalities = new Map(); for (const record of records) { const value = municipalityFilterId(record); if (value && record.municipality) municipalities.set(value, record.municipality); }
+  const causes = new Map(); for (const record of records) if (record.causeCode && record.cause) causes.set(record.causeCode, record.cause);
+  replaceSelectOptions(elements.municipality, [...municipalities].map(([value, label]) => ({value, label})).sort((a, b) => a.label.localeCompare(b.label, 'es')), 'Todos', state.initialHashState?.municipality);
+  replaceSelectOptions(elements.cause, [...causes].map(([value, label]) => ({value, label})).sort((a, b) => a.label.localeCompare(b.label, 'es')), 'Todas', state.initialHashState?.cause);
 }
 
 function passesFilters(record) {
@@ -89,8 +128,8 @@ function passesFilters(record) {
   if (record.year < from || record.year > to || record.areaHa < Number(elements.minimumArea.value || 0)) return false;
   if (!state.activeProvinces.includes(canonicalProvince(record.province))) return false;
   if (elements.gifOnly.checked && (!['icv', 'sigif'].includes(record.sourceId) || !record.isGif)) return false;
-  if (elements.cause.value && cleanText(record.cause) !== elements.cause.value) return false;
-  if (elements.municipality.value && cleanText(record.municipality) !== elements.municipality.value) return false;
+  if (elements.cause.value && record.causeCode !== elements.cause.value) return false;
+  if (elements.municipality.value && municipalityFilterId(record) !== elements.municipality.value) return false;
   return true;
 }
 
@@ -149,6 +188,8 @@ function detailsHtml(record, provenance = null) {
       ['fire_id', escapeHtml(record.entityId)],
       ['Geometrías asociadas', escapeHtml(record.fire.geometry_ids.length)],
       ['geometry_id', escapeHtml(record.geometryId)],
+      ...(record.municipalityRaw && record.municipalityRaw !== record.municipality ? [['Municipio en origen', escapeHtml(record.municipalityRaw)]] : []),
+      ...(record.causeRaw && record.causeRaw !== record.cause ? [['Causa en origen', escapeHtml(record.causeRaw)]] : []),
       ...(provenance ? [['Capa de origen', `${escapeHtml(provenance.source_year)} / layer ${escapeHtml(provenance.source_layer_id)}`]] : []),
       ['Calidad geométrica', 'A · perímetro oficial vectorial derivado para web sin reparación']
     ];
@@ -210,6 +251,7 @@ function selectEntity(entityId, geometryId = null, {fit = false, latlng = null} 
     if (bounds.isValid()) state.map.fitBounds(bounds, {padding: [30, 30], maxZoom: 14});
   }
   if (latlng) L.popup({maxWidth: 380}).setLatLng(latlng).setContent(detailsHtml(selected.record)).openOn(state.map);
+  syncPermalink();
   return true;
 }
 
@@ -288,10 +330,12 @@ async function refreshData(reason = 'state') {
     const loaded = await promise; if (sequence !== state.refreshSequence) return;
     state.loadedFeatures = loaded.features; state.activeLevel = level; state.activeProvinces = provinces; state.activeAssets = loaded.assets;
     updateAttributeSelectors(); renderGeometry(reason); renderCoverage();
+    if (state.initialHashState?.entity && !state.hashRestored) state.hashRestored = selectEntity(state.initialHashState.entity, state.initialHashState.geometry);
     state.lastLoad = {reason, level, provinces, assetCount: loaded.assets.length, loadedGeometryCount: loaded.features.length,
       downloadedNow: state.loader.metrics.requests - before, rawBytes: loaded.rawBytes, estimatedGzipBytes: loaded.estimatedGzipBytes, loadMs: loaded.loadMs};
     setStatus(`${level} · ${loaded.assets.length} assets · ${formatNumber(loaded.features.length, 0)} geometrías/puntos · ${formatBytes(loaded.estimatedGzipBytes)} gzip estimados`);
     console.info('[atlas:load]', state.lastLoad, state.loader.debugSnapshot());
+    syncPermalink();
   } catch (error) { if (sequence !== state.refreshSequence) return; console.error(error); setStatus(`No se pudieron cargar los datos: ${error.message}`, 'error'); }
 }
 
@@ -342,6 +386,7 @@ function renderMethodology() {
   const hasCandidates = state.loader.manifest.sources.sigif && state.loader.manifest.sources.effis;
   const candidateNotice = hasCandidates ? '<p>Un registro SIGIF y un perímetro EFFIS pueden corresponder al mismo episodio, pero solo se enlazan como candidatos mientras no exista confirmación suficiente. Sus superficies nunca se suman entre sí.</p>' : '';
   elements.methodology.innerHTML = Object.values(state.loader.manifest.sources).map(source => `<p><strong>${escapeHtml(source.short_label)}:</strong> ${escapeHtml(source.source_status.replaceAll('_', ' '))}. <a href="${escapeHtml(source.methodology_url)}" target="_blank" rel="noopener">Fuente y metodología</a>.<br><small>${escapeHtml(source.attribution)}</small></p>`).join('') + candidateNotice;
+  elements.legendSigifRow.innerHTML = state.loader.manifest.sources.sigif ? '<span class="legend-symbol legend-sigif"></span> Punto SIGIF · administrativo provisional<br>' : '';
   elements.legendSigifRow.hidden = !state.loader.manifest.sources.sigif;
   elements.sourceSeparationHelp.hidden = !hasCandidates;
 }
@@ -352,8 +397,9 @@ function bindEvents() {
   elements.yearFrom.addEventListener('change', () => refreshData('timeline')); elements.yearTo.addEventListener('change', () => refreshData('timeline'));
   elements.fullPeriod.addEventListener('click', () => setYearRange(state.loader.manifest.years.min, state.loader.manifest.years.max));
   elements.province.addEventListener('change', () => refreshData('province-filter'));
-  for (const input of [elements.municipality, elements.minimumArea, elements.cause, elements.gifOnly]) input.addEventListener('change', () => renderGeometry('attribute-filter'));
+  for (const input of [elements.municipality, elements.minimumArea, elements.cause, elements.gifOnly]) input.addEventListener('change', () => { renderGeometry('attribute-filter'); syncPermalink(); });
   elements.pointQuery.addEventListener('click', () => setPointMode(!state.pointMode));
+  elements.shareView.addEventListener('click', shareCurrentView);
   state.map.on('click', event => { if (state.pointMode) queryPoint(event.latlng); }); state.map.on('moveend', () => scheduleRefresh('map-view'));
 }
 
@@ -369,11 +415,23 @@ function applyUrlOptions(params) {
   state.qualityDebug = params.get('quality_debug') === '1'; syncYearControls();
 }
 
+function applyHashState(hashState) {
+  if (!hashState) return;
+  if (hashState.from !== undefined) { elements.yearFrom.value = String(hashState.from); elements.yearTo.value = String(hashState.to); }
+  if (hashState.province) elements.province.value = hashState.province;
+  if (hashState.minimumArea !== undefined && [...elements.minimumArea.options].some(option => Number(option.value) === hashState.minimumArea)) elements.minimumArea.value = String(hashState.minimumArea);
+  if (hashState.gifOnly !== undefined) elements.gifOnly.checked = hashState.gifOnly;
+  if (hashState.sources) elements.sourceFilters.querySelectorAll('input').forEach(input => { input.checked = hashState.sources.includes(input.value); });
+  syncYearControls();
+}
+
 function debugSnapshot() {
   const counts = {icv: new Set(), sigif: new Set(), effis: new Set()}; for (const item of state.visibleRecords) counts[item.record.sourceId].add(item.record.entityId);
   const selected = state.visibleRecords.filter(item => item.record.entityId === state.selectedEntityId);
   return {ready: document.body.dataset.ready === 'true', profile: state.loader.manifest.profile, territory: state.activeTerritory,
-    zoom: state.map?.getZoom(), level: state.activeLevel, years: selectedYears(), activeSources: [...activeSources()], provinceFilter: elements.province.value,
+    zoom: state.map?.getZoom(), center: state.map ? {lat: state.map.getCenter().lat, lng: state.map.getCenter().lng} : null,
+    level: state.activeLevel, years: selectedYears(), activeSources: [...activeSources()], provinceFilter: elements.province.value,
+    municipalityFilter: elements.municipality.value, causeFilter: elements.cause.value, minimumArea: Number(elements.minimumArea.value || 0), gifOnly: elements.gifOnly.checked,
     activeProvinces: state.activeProvinces, activeAssetCount: state.activeAssets.length, activeAssetUrls: state.activeAssets.map(asset => asset.url),
     loadedGeometryCount: state.loadedFeatures.length, visiblePerimeterCount: state.visibleRecords.filter(item => item.record.sourceId !== 'sigif').length,
     visibleFireCount: counts.icv.size, visibleIcvFireCount: counts.icv.size, visibleSigifRecordCount: counts.sigif.size, visibleEffisPerimeterCount: counts.effis.size,
@@ -381,8 +439,14 @@ function debugSnapshot() {
     selectedEntityId: state.selectedEntityId, selectedFireId: state.selectedEntityId, selectedGeometryId: state.selectedGeometryId,
     selectedVisibleGeometryCount: selected.length, selectedCandidateStrengths: selected.flatMap(item => state.loader.candidatesFor(item.feature).map(candidate => candidate.candidate_strength)),
     coverageText: elements.coverage.textContent, detailsText: elements.details.textContent, methodologyText: elements.methodology.textContent,
+    sourceControlIds: [...elements.sourceFilters.querySelectorAll('input')].map(input => input.value),
+    sigifLegendVisible: !elements.legendSigifRow.hidden, sourceSeparationHelpVisible: !elements.sourceSeparationHelp.hidden,
+    shareButtonVisible: !elements.shareView.hidden,
     history: state.historyResult, lastLoad: state.lastLoad, lastRender: state.lastRender, loader: state.loader.debugSnapshot(),
     appElapsedMs: performance.now() - APP_STARTED_AT, heapUsedBytes: performance.memory ? performance.memory.usedJSHeapSize : null,
+    permalinkHash: location.hash, hashRestored: state.hashRestored, mariolaPrimaryAccess: Boolean(document.querySelector('[data-territory="mariola_font_roja"]')),
+    availableMunicipalities: [...elements.municipality.options].map(option => ({value: option.value, label: option.textContent})),
+    availableCauses: [...elements.cause.options].map(option => ({value: option.value, label: option.textContent})),
     viewport: {width: innerWidth, height: innerHeight}, mobileLayout: matchMedia('(max-width: 800px)').matches};
 }
 
@@ -393,6 +457,7 @@ async function runDebugScenario(params) {
   if (params.get('select_entity') || params.get('select_fire')) { selectEntity(params.get('select_entity') || params.get('select_fire')); result.selection = debugSnapshot(); }
   if (params.get('point')) { const [lng, lat] = params.get('point').split(',').map(Number); queryPoint(L.latLng(lat, lng)); result.point = debugSnapshot(); }
   if (params.get('point_geometry')) { const feature = state.loadedFeatures.find(item => item.properties.geometry_id === params.get('point_geometry')); if (feature) { const point = turf.pointOnFeature(feature); queryPoint(L.latLng(point.geometry.coordinates[1], point.geometry.coordinates[0])); result.point = debugSnapshot(); } }
+  if (params.get('scenario') === 'share') { await shareCurrentView(); result.share = {feedback: elements.shareFeedback.textContent, fallbackVisible: !elements.shareFallback.hidden}; }
   result.final = debugSnapshot(); elements.debugOutput.textContent = JSON.stringify(result); elements.debugOutput.dataset.complete = 'true';
 }
 
@@ -405,15 +470,18 @@ async function initialize() {
     elements.fullPeriod.textContent = `${years.min}–${years.max}`; elements.coverageEyebrow.textContent = `${years.min}–${years.max} · histórico y reciente provisional`;
     elements.legendYearOld.textContent = String(years.min); elements.legendYearNew.textContent = String(years.max);
     renderSourceControls(); renderMethodology(); const params = new URLSearchParams(location.search); applyUrlOptions(params);
+    state.initialHashState = parseViewerHash(location.hash, {years, sourceIds: Object.keys(manifest.sources), provinceIds: ['all', 'castellon', 'valencia', 'alicante']});
+    applyHashState(state.initialHashState);
     state.map = L.map('map', {preferCanvas: true, zoomControl: true});
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {maxZoom: 19, attribution: '&copy; OpenStreetMap contributors'}).addTo(state.map);
     for (const source of Object.values(manifest.sources)) state.map.attributionControl.addAttribution(`<a href="${escapeHtml(source.methodology_url)}" target="_blank" rel="noopener">${escapeHtml(source.short_label)}</a>`);
     bindEvents(); const initial = manifest.territories[params.get('view')] ? params.get('view') : 'comunitat_valenciana';
-    if (!params.has('province') && ['castellon', 'valencia', 'alicante'].includes(initial)) elements.province.value = initial;
-    if (!params.has('province') && initial === 'mariola_font_roja') elements.province.value = 'alicante';
-    fitTerritory(initial, {updateFilter: false});
-    if (params.has('zoom')) state.map.setZoom(Number(params.get('zoom')), {animate: false}); clearTimeout(state.refreshTimer); await refreshData('initial');
-    document.body.dataset.ready = 'true'; window.__atlasDebug = {state, loader: state.loader, snapshot: debugSnapshot, refresh: refreshData, setYearRange, fitTerritory, queryPoint, selectEntity};
+    if (!state.initialHashState?.province && !params.has('province') && ['castellon', 'valencia', 'alicante'].includes(initial)) elements.province.value = initial;
+    if (!state.initialHashState?.province && !params.has('province') && initial === 'mariola_font_roja') elements.province.value = 'alicante';
+    if (state.initialHashState?.center) state.map.setView([state.initialHashState.center.lat, state.initialHashState.center.lng], state.initialHashState.zoom ?? 8, {animate: false});
+    else { fitTerritory(initial, {updateFilter: false}); if (params.has('zoom')) state.map.setZoom(Number(params.get('zoom')), {animate: false}); }
+    clearTimeout(state.refreshTimer); await refreshData('initial');
+    state.urlStateReady = true; syncPermalink(); document.body.dataset.ready = 'true'; window.__atlasDebug = {state, loader: state.loader, snapshot: debugSnapshot, refresh: refreshData, setYearRange, fitTerritory, queryPoint, selectEntity, shareCurrentView};
     if (params.get('debug') === '1') await runDebugScenario(params);
   } catch (error) { console.error(error); setStatus(`No se pudo iniciar el visor: ${error.message}`, 'error'); elements.debugOutput.textContent = JSON.stringify({error: error.message}); elements.debugOutput.dataset.complete = 'true'; }
 }

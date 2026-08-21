@@ -9,7 +9,7 @@ from http.server import ThreadingHTTPServer
 from pathlib import Path
 from urllib.parse import urlencode
 
-from run_smoke import QuietHandler, chrome_snapshot, require, validate
+from run_smoke import QuietHandler, chrome_snapshot, require, validate, viewer_hash
 
 
 EXPECTED_ICV_ATTRIBUTION = (
@@ -49,6 +49,13 @@ def main():
         "tirig_2026": {"view": "castellon", "from": 2026, "to": 2026,
                        "select_entity": "effis:rda:612812:70214e1f449570a9"},
         "icv_only_2025": {"from": 2025, "to": 2025, "sources": "icv"},
+        "permalink_1994_elx": {"__hash": viewer_hash(lat=38.27, lng=-0.70, z=8, **{
+            "from": 1994, "to": 1994, "src": "icv", "province": "alicante",
+            "municipality": "03065", "cause": "intentional"})},
+        "permalink_2026_effis": {"__hash": viewer_hash(src="effis")},
+        "permalink_gif": {"__hash": viewer_hash(**{"from": 2024, "to": 2024, "src": "icv", "gif": 1})},
+        "permalink_minimum_area": {"__hash": viewer_hash(**{"from": 2024, "to": 2024, "src": "icv", "min_area": 100})},
+        "permalink_invalid": {"__hash": "v=1&lat=999&z=99&from=1900&to=2999&src=sigif&province=moon&unknown=value"},
     }
     results = {}
     try:
@@ -64,9 +71,15 @@ def main():
         require("sigif" not in serialized and "candidate" not in serialized, "No blocked source references")
 
         for name, query in scenarios.items():
-            payload = chrome_snapshot("/usr/bin/google-chrome", base + "?" + urlencode({"debug": 1, **query}))
+            fragment = query.get("__hash", "")
+            parameters = {"debug": 1, **{key: value for key, value in query.items() if key != "__hash"}}
+            payload = chrome_snapshot("/usr/bin/google-chrome", base + "?" + urlencode(parameters) + ("#" + fragment if fragment else ""))
             validate(name, payload)
             results[name] = payload
+        generated = results["permalink_1994_elx"]["final"]
+        reloaded = chrome_snapshot("/usr/bin/google-chrome", base + "?debug=1" + generated["permalinkHash"])
+        validate("permalink_new_session_reload", reloaded)
+        results["permalink_new_session_reload"] = reloaded
         mobile = chrome_snapshot("/usr/bin/google-chrome", base + "?debug=1", "390,844")
         validate("mobile_initial", mobile)
         results["mobile_initial"] = mobile
@@ -74,6 +87,9 @@ def main():
         initial = results["initial_2026"]["final"]
         require(initial["profile"] == "public", "Public profile marker")
         require(initial["activeSources"] == ["icv", "effis"], "Public source controls")
+        require(initial["sourceControlIds"] == ["icv", "effis"], "No public SIGIF control")
+        require(not initial["sigifLegendVisible"] and not initial["sourceSeparationHelpVisible"], "No public SIGIF legend/help")
+        require(initial["shareButtonVisible"], "Public share button")
         require(initial["visibleSigifRecordCount"] == 0, "SIGIF excluded")
         require(initial["visibleEffisPerimeterCount"] == 16, "EFFIS 2026")
         require(initial["visibleIcvFireCount"] == 0, "No ICV outside its period")
@@ -104,6 +120,7 @@ def main():
         for province in ("castellon", "valencia", "alicante"):
             require(results[province + "_2024"]["final"]["activeProvinces"] == [province], province + " filter")
         require(results["mariola_2024"]["final"]["level"] == "local", "Mariola local level")
+        require(not results["mariola_2024"]["final"]["mariolaPrimaryAccess"], "No primary Mariola control")
         levels = results["zoom_transition"]["levels"]
         require([item["level"] for item in levels] == ["overview", "regional", "local"], "Zoom levels")
         require(len({item["visiblePerimeterCount"] for item in levels}) == 1, "Zoom keeps geometry count")
@@ -115,6 +132,16 @@ def main():
             require("SIGIF" not in selection["detailsText"], case + " no hidden source claim")
         require(results["icv_only_2025"]["final"]["loadedGeometryCount"] == 0, "No source fallback")
         require(results["mobile_initial"]["final"]["mobileLayout"], "Mobile responsive layout")
+        permalink = results["permalink_1994_elx"]["final"]
+        require(permalink["municipalityFilter"] == "03065" and permalink["causeFilter"] == "intentional", "Canonical public filters restored")
+        require(sum(item["label"] == "Elx" for item in permalink["availableMunicipalities"]) == 1, "One Elx option")
+        require(results["permalink_2026_effis"]["final"]["activeSources"] == ["effis"], "Public EFFIS permalink")
+        require(results["permalink_gif"]["final"]["gifOnly"], "Public GIF permalink")
+        require(results["permalink_minimum_area"]["final"]["minimumArea"] == 100, "Public minimum area permalink")
+        reloaded = results["permalink_new_session_reload"]["final"]
+        for key in ("years", "activeSources", "provinceFilter", "municipalityFilter", "causeFilter", "minimumArea", "gifOnly", "zoom"):
+            require(reloaded[key] == permalink[key], "Public new-session permalink mismatch: " + key)
+        require(results["permalink_invalid"]["final"]["activeSources"] == ["icv", "effis"], "Invalid/blocked public source ignored")
         require(initial["loader"]["candidateCount"] == 0, "No candidates loaded")
         require(not any("sigif" in url.lower() or "candidate" in url.lower()
                         for url in initial["loader"]["cachedUrls"]), "No forbidden URLs")

@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "municipalities": {
+    "catalog_source": "ICV official municipality layer",
+    "catalog_path": "data/raw/recent/gva/snapshots/20260819T174426Z/boundary/icv_municipalities.geojson",
+    "source_url": "https://carto.icv.gva.es/arcgis/rest/services/0105_delimitaciones/0105_Delimitaciones/MapServer/0",
+    "identifier_field": "cod_ine_mun",
+    "display_field": "nom_mun",
+    "alias_fields": [
+      "nom_mun",
+      "nom_mun_cas",
+      "nom_mun_cas_a",
+      "nom_mun_val",
+      "nom_mun_val_a",
+      "noms_mun",
+      "ant_deno"
+    ],
+    "documented_historical_aliases": [
+      {
+        "municipality_raw": "Herbés",
+        "province": "castellon",
+        "municipality_id": "12068",
+        "evidence_url": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2020-12459",
+        "evidence": "Decreto 111/2020: cambio de denominación de Herbés a Herbers"
+      },
+      {
+        "municipality_raw": "Villanueva de Castellón",
+        "province": "valencia",
+        "municipality_id": "46257",
+        "evidence_url": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2020-12460",
+        "evidence": "Decreto 112/2020: cambio de denominación de Villanueva de Castellón a Castelló"
+      }
+    ],
+    "review_candidates": [
+      {"municipality_raw": "CASTIELFABID", "province": "valencia", "municipality_id": "46092", "basis": "textual_only_not_used_for_resolution"},
+      {"municipality_raw": "FONTANARS DELS AFORINS", "province": "valencia", "municipality_id": "46124", "basis": "textual_only_not_used_for_resolution"},
+      {"municipality_raw": "Fontanars dels Aforins", "province": "valencia", "municipality_id": "46124", "basis": "textual_only_not_used_for_resolution"},
+      {"municipality_raw": "L'Alqueria de Asnar", "province": "alicante", "municipality_id": "03017", "basis": "textual_only_not_used_for_resolution"},
+      {"municipality_raw": "La Mata", "province": "castellon", "municipality_id": "12075", "basis": "abbreviated_name_only_not_used_for_resolution"},
+      {"municipality_raw": "La Vall de Laguart", "province": "alicante", "municipality_id": "03137", "basis": "textual_only_not_used_for_resolution"},
+      {"municipality_raw": "POLINYÀ DEL XÚQUER", "province": "valencia", "municipality_id": "46197", "basis": "textual_only_not_used_for_resolution"},
+      {"municipality_raw": "Polinyà del Xúquer", "province": "valencia", "municipality_id": "46197", "basis": "textual_only_not_used_for_resolution"},
+      {"municipality_raw": "RIBA-ROJA DEL TÚRIA", "province": "valencia", "municipality_id": "46214", "basis": "textual_only_not_used_for_resolution"},
+      {"municipality_raw": "SAN MATEU", "province": "castellon", "municipality_id": "12100", "basis": "textual_only_not_used_for_resolution"},
+      {"municipality_raw": "SOT CHERA", "province": "valencia", "municipality_id": "46234", "basis": "textual_only_not_used_for_resolution"}
+    ],
+    "matching_policy": "Validated source municipality code when present; otherwise a unique normalized official alias within the reported province. For bilingual source labels, exact official components may converge on one municipality. Historical aliases require an explicit official documentary reference. Ambiguous and unmatched values remain unresolved."
+  },
+  "causes": {
+    "source_fields": {
+      "icv": "g_caus_txt (Grupo Causa Texto; text field without coded domain in the inventoried ArcGIS layers)",
+      "sigif": "Causa (public provisional-statistics text column)",
+      "effis": "No cause attribute in the EFFIS RDA snapshot used by the viewer"
+    },
+    "categories": {
+      "intentional": "Intencionado",
+      "lightning": "Rayo",
+      "negligence": "Negligencia",
+      "negligence_and_accidental": "Negligencias y causas accidentales",
+      "rekindle": "Incendio reproducido",
+      "other": "Otras causas",
+      "unknown": "Desconocida",
+      "under_investigation": "En investigación"
+    },
+    "raw_mapping": {
+      "Causa desconocida": "unknown",
+      "Desconocida": "unknown",
+      "En Investigación": "under_investigation",
+      "En investigación": "under_investigation",
+      "Incendio reproducido": "rekindle",
+      "Intencionada": "intentional",
+      "Intencionado": "intentional",
+      "Negligencia": "negligence",
+      "Negligencias y Causas accidentales": "negligence_and_accidental",
+      "Otras": "other",
+      "Otras Causas": "other",
+      "Otras causas": "other",
+      "Rayo": "lightning",
+      "intencionado": "intentional"
+    },
+    "non_equivalence_notes": [
+      "Negligencia is not merged with Negligencias y Causas accidentales because the latter explicitly includes accidental causes.",
+      "Desconocida is not merged with En investigación because the source labels describe different administrative states.",
+      "EFFIS RDA perimeters receive null cause fields; no cause is inferred from another source."
+    ]
+  }
+}

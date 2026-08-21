@@ -2,23 +2,23 @@
   "schema_version": 1,
   "repository": "InThuRain/atlas-incendios",
   "release": {
-    "tag": "public-data-v1",
-    "asset_name": "atlas-public-data-v1.tar.gz"
+    "tag": "public-data-v2",
+    "asset_name": "atlas-public-data-v2.tar.gz"
   },
   "archive": {
-    "bytes": 11604029,
-    "sha256": "017030a3a7482d69ff7be23a179635543710e4441139aa7d9725c38ed2e4e1bb"
+    "bytes": 11681915,
+    "sha256": "0e8ccf5edb1e04d369c3aa6b78bab47cb2ff13a9d09bc12a089ed4f2a572e4b2"
   },
   "contents": {
     "file_count": 41,
-    "uncompressed_bytes": 72959022,
+    "uncompressed_bytes": 74770947,
     "icv_data_assets": 38,
     "effis_data_assets": 2,
     "files": [
       {
         "path": "data/web/gva/fires.json",
-        "bytes": 5848959,
-        "sha256": "6fb2f9a2b0bc780903a0a68b6ab5636eabc23def6e5fc97bf8058658718e48c9"
+        "bytes": 7657862,
+        "sha256": "0ab80347d78f46764ad8152f08a06872667160bf3631b44830cf168eb0ce8b1e"
       },
       {
         "path": "data/web/gva/geometry/local/alicante/1993-1999.geojson",
@@ -207,18 +207,18 @@
       },
       {
         "path": "data/web/gva/recent/assets-manifest.json",
-        "bytes": 2086,
-        "sha256": "27dc9f3f1b5bc8cfd2c1089b6dd5f55701c7054b7abab390d24840449d750281"
+        "bytes": 2194,
+        "sha256": "b9ec11bc39beeaa69b8a74fed6240061b67365ba70ff9b11c12b38512b16cd84"
       },
       {
         "path": "data/web/gva/recent/effis/2025.geojson",
-        "bytes": 36694,
-        "sha256": "07a2a0b749435be13b9244a634f5338ad9a2895ea7a0fa22b6206e6ccb53f06b"
+        "bytes": 37756,
+        "sha256": "afd7c30131d1c9829867b31633b4e5a0135df613722a1e72204c54af15a699c5"
       },
       {
         "path": "data/web/gva/recent/effis/2026.geojson",
-        "bytes": 216623,
-        "sha256": "9e3d48156039dd3bfe7d5b65b420604924bb5569a425779d297696600f4059bc"
+        "bytes": 218475,
+        "sha256": "cd0e1f6f06220b673a5293787c5a9206b117a79d34295e1b934f58c87a3e7619"
       }
     ]
   },

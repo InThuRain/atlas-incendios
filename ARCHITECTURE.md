@@ -214,6 +214,20 @@ El prototipo actual puede continuar en JavaScript vanilla.
 
 Antes de migrar a React/Vue/Svelte, demostrar que la complejidad lo justifica.
 
+El estado compartible se serializa en un fragmento de URL versionado. El módulo
+`js/url-state.js` es independiente del territorio: recibe años, fuentes y
+provincias válidas desde el manifiesto y no codifica reglas GVA. El hash se
+actualiza con `history.replaceState`, de modo que GitHub Pages no necesita
+routing de servidor ni se llena el historial al mover el mapa.
+
+Los filtros no operan sobre etiquetas libres. Los derivados web separan
+`municipality_raw`/`municipality_id`/`municipality_name` y
+`cause_raw`/`cause_code`/`cause_label`. El código municipal procede del catálogo
+oficial y las equivalencias de causa están declaradas en
+`config/ui-vocabularies.json`; los valores no demostrados permanecen sin
+resolver. Este patrón deberá admitir catálogos territoriales distintos al
+generalizar el atlas a España.
+
 Componentes funcionales deseables:
 
 ```text
