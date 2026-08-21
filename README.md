@@ -62,9 +62,13 @@ Funcionalidades ya planteadas/probadas:
 - filtro por superficie mínima;
 - filtro por causa;
 - municipios y causas canónicos, conservando sus valores de origen;
-- enlaces compartibles que restauran mapa, periodo, fuentes y filtros;
+- enlaces compartibles que restauran mapa, periodo, fuentes, filtros, entidad,
+  geometría destacada, ficha y popup del perímetro exacto;
+- autoencuadre por perímetros visibles al elegir manualmente un municipio, sin
+  sustituir el centro y zoom de un enlace compartido;
 - identificación de GIF >= 500 ha;
-- histograma anual;
+- inicio en el periodo completo definido por el manifiesto e histograma anual
+  persistente y seleccionable;
 - listado de incendios visibles;
 - consulta de recurrencia en un punto mediante intersección con polígonos;
 - distinción conceptual entre inventario estadístico y geometría.
@@ -146,7 +150,7 @@ correspondencia no demostrable.
 
 El perfil público se rige exclusivamente por `config/sources-gva.json`: incluye
 ICV y EFFIS y rechaza SIGIF porque continúa con `publishable=false`. El bundle
-de datos permitido se publica como asset de la Release `public-data-v2`; su
+de datos permitido se publica como asset de la Release `public-data-v3`; su
 tamaño, SHA-256 y lista exacta de 41 entradas están fijados en
 `config/public-data-bundle.json`.
 

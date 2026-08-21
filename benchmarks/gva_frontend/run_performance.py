@@ -5,6 +5,8 @@ import argparse
 import json
 import os
 import statistics
+import subprocess
+import sys
 import threading
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
@@ -27,6 +29,8 @@ def parse_args():
     parser = argparse.ArgumentParser()
     parser.add_argument("--chrome", default="/usr/bin/google-chrome")
     parser.add_argument("--repetitions", type=int, default=3)
+    parser.add_argument("--timeout", type=int, default=180)
+    parser.add_argument("--profile", choices=("development", "public"), default="development")
     parser.add_argument(
         "--output",
         type=Path,
@@ -35,8 +39,8 @@ def parse_args():
     return parser.parse_args()
 
 
-def run_chrome(chrome, url, window_size):
-    payload = run_page(chrome, url, window_size)
+def run_chrome(chrome, url, window_size, timeout):
+    payload = run_page(chrome, url, window_size, timeout=timeout)
     if "error" in payload:
         raise RuntimeError(payload["error"])
     return payload["final"]
@@ -60,11 +64,21 @@ def metric_summary(runs, path):
 def main():
     args = parse_args()
     root = repository_root()
+    runtime = root / "data/web/gva/manifest.json"
+    development = runtime.read_bytes()
+    if args.profile == "public":
+        subprocess.run(
+            [sys.executable, str(root / "scripts/build_frontend_profile.py"),
+             "--profile", "public", "--output", str(runtime)],
+            check=True, stdout=subprocess.PIPE, text=True,
+        )
+    manifest = json.loads(runtime.read_text(encoding="utf-8"))
+    years = manifest["years"]
     scenarios = {
-        "desktop_initial_2026": ({}, "1440,900"),
-        "desktop_consolidated_2024": ({"from": 2024, "to": 2024}, "1440,900"),
-        "desktop_full_1993_2026": ({"from": 1993, "to": 2026}, "1440,900"),
-        "mobile_initial_2026": ({}, "390,844"),
+        "desktop_latest_year": ({"from": years["max"], "to": years["max"]}, "1440,900"),
+        "desktop_initial_full_period": ({}, "1440,900"),
+        "mobile_latest_year": ({"from": years["max"], "to": years["max"]}, "390,844"),
+        "mobile_initial_full_period": ({}, "390,844"),
     }
     handler = lambda *items, **kwargs: QuietHandler(
         *items, directory=str(root.parent), **kwargs
@@ -80,8 +94,13 @@ def main():
         for name, (query, window_size) in scenarios.items():
             runs = []
             url = base_url + "?" + urlencode({"debug": 1, **query})
-            for _ in range(args.repetitions):
-                runs.append(run_chrome(args.chrome, url, window_size))
+            for repetition in range(1, args.repetitions + 1):
+                print(f"{name}: repetition {repetition}/{args.repetitions}", flush=True)
+                try:
+                    runs.append(run_chrome(args.chrome, url, window_size, args.timeout))
+                except TimeoutError:
+                    print(f"{name}: transient timeout; retrying once", flush=True)
+                    runs.append(run_chrome(args.chrome, url, window_size, args.timeout))
             results[name] = {
                 "repetitions": args.repetitions,
                 "window_size": window_size,
@@ -105,10 +124,14 @@ def main():
     finally:
         server.shutdown()
         server.server_close()
+        if args.profile == "public":
+            runtime.write_bytes(development)
 
     payload = {
         "schema_version": 1,
         "status": "complete",
+        "profile": args.profile,
+        "period": {"min": years["min"], "max": years["max"], "comparison_year": years["max"]},
         "environment": {
             "chrome": args.chrome,
             "leaflet": "1.9.4",

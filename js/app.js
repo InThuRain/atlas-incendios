@@ -10,6 +10,7 @@ const elements = {
   yearFromValue: $('year-from-value'), yearToValue: $('year-to-value'), fullPeriod: $('full-period'),
   province: $('province-filter'), municipality: $('municipality-filter'), minimumArea: $('minimum-area'),
   cause: $('cause-filter'), gifOnly: $('gif-only'), metrics: $('metrics'), histogram: $('histogram'),
+  histogramYearMin: $('histogram-year-min'), histogramYearMax: $('histogram-year-max'), histogramSelection: $('histogram-selection'),
   sourceFilters: $('source-filters'), coverage: $('coverage-detail'), coverageEyebrow: $('coverage-eyebrow'),
   methodology: $('methodology-content'), pointQuery: $('point-query'), pointHint: $('point-hint'),
   pointHistory: $('point-history'), details: $('details'), fireList: $('fire-list'),
@@ -22,10 +23,12 @@ const elements = {
 const state = {
   loader: null, map: null, geometryLayer: null, loadedFeatures: [], visibleRecords: [],
   selectedEntityId: null, selectedGeometryId: null, pointMode: false, pointMarker: null,
+  selectionPopup: null, selectionPopupGeometryId: null, lastMunicipalityFit: null,
   historyResult: null, activeLevel: null, activeProvinces: [], activeAssets: [],
   activeTerritory: 'comunitat_valenciana', refreshSequence: 0, refreshPromise: Promise.resolve(),
   refreshTimer: null, lastRender: null, lastLoad: null, qualityDebug: false,
-  initialHashState: null, urlStateReady: false, hashRestored: false
+  initialHashState: null, initialFilterOptionsApplied: false, urlStateReady: false, hashRestored: false,
+  timelineFeatures: new Map(), timelineComplete: false
 };
 
 function escapeHtml(value) { return String(value ?? '').replace(/[&<>"']/g, char => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'}[char])); }
@@ -40,6 +43,7 @@ function setStatus(message, mode = 'normal') { elements.status.textContent = mes
 function selectedYears() { return {from: Number(elements.yearFrom.value), to: Number(elements.yearTo.value)}; }
 function activeSources() { return new Set([...elements.sourceFilters.querySelectorAll('input:checked')].map(input => input.value)); }
 function municipalityFilterId(record) { return record.municipalityId || (record.municipality ? `raw:${canonicalProvince(record.province)}:${normalize(record.municipality).replace(/[^a-z0-9]+/g, '-')}` : ''); }
+function featureKey(feature) { const p = feature.properties; return `${p.source_id}:${p.geometry_id || p.sigif_record_id || p.entity_id}`; }
 
 function currentViewerState() {
   const center = state.map?.getCenter();
@@ -116,21 +120,29 @@ function replaceSelectOptions(select, values, label, requested = null) {
 
 function updateAttributeSelectors() {
   const records = state.loadedFeatures.map(recordFor).filter(Boolean);
-  const municipalities = new Map(); for (const record of records) { const value = municipalityFilterId(record); if (value && record.municipality) municipalities.set(value, record.municipality); }
+  const municipalityRecords = records.filter(record => state.activeProvinces.includes(canonicalProvince(record.province)));
+  const municipalities = new Map(); for (const record of municipalityRecords) { const value = municipalityFilterId(record); if (value && record.municipality) municipalities.set(value, record.municipality); }
   const causes = new Map(); for (const record of records) if (record.causeCode && record.cause) causes.set(record.causeCode, record.cause);
-  replaceSelectOptions(elements.municipality, [...municipalities].map(([value, label]) => ({value, label})).sort((a, b) => a.label.localeCompare(b.label, 'es')), 'Todos', state.initialHashState?.municipality);
-  replaceSelectOptions(elements.cause, [...causes].map(([value, label]) => ({value, label})).sort((a, b) => a.label.localeCompare(b.label, 'es')), 'Todas', state.initialHashState?.cause);
+  const requestedMunicipality = state.initialFilterOptionsApplied ? null : state.initialHashState?.municipality;
+  const requestedCause = state.initialFilterOptionsApplied ? null : state.initialHashState?.cause;
+  replaceSelectOptions(elements.municipality, [...municipalities].map(([value, label]) => ({value, label})).sort((a, b) => a.label.localeCompare(b.label, 'es')), 'Todos', requestedMunicipality);
+  replaceSelectOptions(elements.cause, [...causes].map(([value, label]) => ({value, label})).sort((a, b) => a.label.localeCompare(b.label, 'es')), 'Todas', requestedCause);
+  state.initialFilterOptionsApplied = true;
 }
 
-function passesFilters(record) {
+function passesNonTemporalFilters(record) {
   if (!record || !activeSources().has(record.sourceId)) return false;
-  const {from, to} = selectedYears();
-  if (record.year < from || record.year > to || record.areaHa < Number(elements.minimumArea.value || 0)) return false;
+  if (record.areaHa < Number(elements.minimumArea.value || 0)) return false;
   if (!state.activeProvinces.includes(canonicalProvince(record.province))) return false;
   if (elements.gifOnly.checked && (!['icv', 'sigif'].includes(record.sourceId) || !record.isGif)) return false;
   if (elements.cause.value && record.causeCode !== elements.cause.value) return false;
   if (elements.municipality.value && municipalityFilterId(record) !== elements.municipality.value) return false;
   return true;
+}
+
+function passesFilters(record) {
+  const {from, to} = selectedYears();
+  return passesNonTemporalFilters(record) && record.year >= from && record.year <= to;
 }
 
 function yearColor(year) {
@@ -142,8 +154,15 @@ function yearColor(year) {
   return `rgb(${values.join(',')})`;
 }
 
+function featureIsSelected(feature) {
+  if (!state.selectedEntityId) return false;
+  const record = recordFor(feature);
+  return Boolean(record && record.entityId === state.selectedEntityId &&
+    (!state.selectedGeometryId || record.geometryId === state.selectedGeometryId));
+}
+
 function featureStyle(feature) {
-  const p = feature.properties, selected = (p.entity_id || p.fire_id) === state.selectedEntityId;
+  const p = feature.properties, selected = featureIsSelected(feature);
   const temporalColor = yearColor(p.year);
   if (p.source_id === 'sigif') return {radius: selected ? 8 : 6, color: selected ? '#151a18' : '#8c3d20', weight: 2.5,
     fillColor: temporalColor, fillOpacity: .95};
@@ -152,7 +171,7 @@ function featureStyle(feature) {
 }
 
 function pointLayer(feature, latlng) {
-  const selected = feature.properties.entity_id === state.selectedEntityId;
+  const selected = featureIsSelected(feature);
   return L.circleMarker(latlng, {radius: selected ? 8 : 6, color: selected ? '#151a18' : '#8c3d20', weight: 2.5,
     fillColor: yearColor(feature.properties.year), fillOpacity: .95});
 }
@@ -232,16 +251,42 @@ function detailsHtml(record, provenance = null) {
 }
 
 async function showDetails(record) {
+  elements.details.dataset.entity = record.entityId;
+  elements.details.dataset.geometry = record.geometryId;
   elements.details.innerHTML = detailsHtml(record);
   if (record.sourceId !== 'icv') return;
   const provenance = await state.loader.provenanceFor(record.feature.properties.provenance_id);
   if (state.selectedGeometryId === record.geometryId) elements.details.innerHTML = detailsHtml(record, provenance);
 }
 
-function selectEntity(entityId, geometryId = null, {fit = false, latlng = null} = {}) {
+function representativeLatLng(item) {
+  if (item.layer.getLatLng) return item.layer.getLatLng();
+  try {
+    const point = turf.pointOnFeature(item.feature);
+    return L.latLng(point.geometry.coordinates[1], point.geometry.coordinates[0]);
+  } catch (error) {
+    const bounds = item.layer.getBounds?.();
+    return bounds?.isValid() ? bounds.getCenter() : null;
+  }
+}
+
+function openSelectionPopup(item, latlng = null, {preserveView = false} = {}) {
+  const anchor = latlng || representativeLatLng(item);
+  if (!anchor) return false;
+  const popup = L.popup({maxWidth: 380, autoPan: !preserveView})
+    .setLatLng(anchor)
+    .setContent(detailsHtml(item.record));
+  state.selectionPopup = popup;
+  state.selectionPopupGeometryId = item.record.geometryId;
+  popup.openOn(state.map);
+  return true;
+}
+
+function selectEntity(entityId, geometryId = null, {fit = false, latlng = null, openPopup = true, preserveView = false} = {}) {
   const records = state.visibleRecords.filter(item => item.record.entityId === entityId);
   if (!records.length) return false;
-  const selected = records.find(item => item.record.geometryId === geometryId) || records[0];
+  const selected = geometryId ? records.find(item => item.record.geometryId === geometryId) : records[0];
+  if (!selected) return false;
   state.selectedEntityId = entityId; state.selectedGeometryId = selected.record.geometryId;
   state.geometryLayer.eachLayer(layer => { if (!layer.feature) return; if (layer.setStyle) layer.setStyle(featureStyle(layer.feature)); });
   showDetails(selected.record);
@@ -250,8 +295,39 @@ function selectEntity(entityId, geometryId = null, {fit = false, latlng = null} 
     for (const item of records) item.layer.getBounds ? bounds.extend(item.layer.getBounds()) : bounds.extend(item.layer.getLatLng());
     if (bounds.isValid()) state.map.fitBounds(bounds, {padding: [30, 30], maxZoom: 14});
   }
-  if (latlng) L.popup({maxWidth: 380}).setLatLng(latlng).setContent(detailsHtml(selected.record)).openOn(state.map);
+  if (openPopup) openSelectionPopup(selected, latlng, {preserveView});
   syncPermalink();
+  return true;
+}
+
+function boundsArray(bounds) {
+  return bounds?.isValid() ? [bounds.getWest(), bounds.getSouth(), bounds.getEast(), bounds.getNorth()] : null;
+}
+
+function fitSelectedMunicipality() {
+  const municipalityId = elements.municipality.value;
+  if (!municipalityId) { state.lastMunicipalityFit = {status: 'not-requested'}; return false; }
+  const perimeters = state.visibleRecords.filter(item => item.record.sourceId !== 'sigif' && item.layer.getBounds?.()?.isValid());
+  const bounds = L.latLngBounds([]);
+  for (const item of perimeters) bounds.extend(item.layer.getBounds());
+  const target = bounds.isValid() ? bounds : null;
+  if (!target?.isValid()) {
+    state.lastMunicipalityFit = {status: 'no-visible-perimeters', municipalityId, perimeterCount: 0, fallbackAvailable: false};
+    setStatus('No hay perímetros visibles para este municipio con los filtros actuales; se mantiene el encuadre.', 'normal');
+    return false;
+  }
+  const padding = [42, 42], maxZoom = 13;
+  state.map.fitBounds(target, {padding, maxZoom, animate: false});
+  const mapBounds = state.map.getBounds();
+  const northWest = state.map.latLngToContainerPoint(target.getNorthWest());
+  const southEast = state.map.latLngToContainerPoint(target.getSouthEast());
+  const size = state.map.getSize();
+  state.lastMunicipalityFit = {
+    status: 'fit-visible-perimeters',
+    municipalityId, perimeterCount: perimeters.length, bounds: boundsArray(target), mapBounds: boundsArray(mapBounds),
+    padding, minimumRenderedPaddingPx: Math.min(northWest.x, northWest.y, size.x - southEast.x, size.y - southEast.y),
+    zoom: state.map.getZoom(), maxZoom
+  };
   return true;
 }
 
@@ -266,18 +342,29 @@ function renderMetrics(records) {
   elements.metrics.innerHTML = cards.map(([source, value, label]) => `<div class="metric ${source}"><strong>${formatNumber(value, label.startsWith('ha ') ? 2 : 0)}</strong><span>${label}</span></div>`).join('');
 }
 
-function renderHistogram(records) {
-  const {from, to} = selectedYears(), counts = new Map();
-  for (let year = from; year <= to; year += 1) counts.set(year, {icv: new Set(), sigif: new Set(), effis: new Set()});
-  for (const item of records) counts.get(item.record.year)?.[item.record.sourceId].add(item.record.entityId);
+function renderHistogram() {
+  const years = state.loader.manifest.years, {from, to} = selectedYears(), counts = new Map();
+  for (let year = years.min; year <= years.max; year += 1) counts.set(year, {icv: new Set(), sigif: new Set(), effis: new Set()});
+  for (const feature of state.timelineFeatures.values()) {
+    const record = recordFor(feature);
+    if (passesNonTemporalFilters(record)) counts.get(record.year)?.[record.sourceId].add(record.entityId);
+  }
   const maximum = Math.max(1, ...[...counts.values()].map(item => item.icv.size + item.sigif.size + item.effis.size));
   elements.histogram.replaceChildren();
   for (const [year, item] of counts) {
     const total = item.icv.size + item.sigif.size + item.effis.size, bar = document.createElement('button');
-    bar.type = 'button'; bar.style.height = `${Math.max(total ? 5 : 1, total / maximum * 100)}%`; if (!total) bar.className = 'empty';
-    bar.title = `${year}: ICV ${item.icv.size}, SIGIF ${item.sigif.size}, EFFIS ${item.effis.size}`;
+    const icvStop = total ? item.icv.size / total * 100 : 0, sigifStop = total ? (item.icv.size + item.sigif.size) / total * 100 : 0;
+    bar.type = 'button'; bar.dataset.year = String(year); bar.style.height = `${Math.max(total ? 6 : 2, total / maximum * 100)}%`;
+    if (total) bar.style.background = `linear-gradient(to top, #27624b 0 ${icvStop}%, #a94d28 ${icvStop}% ${sigifStop}%, #6a4fa3 ${sigifStop}% 100%)`;
+    else bar.classList.add(state.timelineComplete ? 'empty' : 'unknown');
+    if (year >= from && year <= to) bar.classList.add('in-range');
+    if (from === to && year === from) bar.classList.add('single-year');
+    bar.title = total || state.timelineComplete ? `${year}: ICV ${item.icv.size}, SIGIF ${item.sigif.size}, EFFIS ${item.effis.size}` : `${year}: recuento aún no cargado`;
+    bar.setAttribute('aria-label', bar.title); bar.setAttribute('aria-pressed', String(from === to && year === from));
     bar.addEventListener('click', () => setYearRange(year, year)); elements.histogram.appendChild(bar);
   }
+  elements.histogramYearMin.textContent = String(years.min); elements.histogramYearMax.textContent = String(years.max);
+  elements.histogramSelection.textContent = from === to ? `Seleccionado: ${from}` : `Activo: ${from}–${to}`;
 }
 
 function renderList(records) {
@@ -299,7 +386,7 @@ function renderGeometry(reason = 'filter') {
   }).addTo(state.map);
   if (state.geometryLayer) state.geometryLayer.removeFrom(state.map);
   state.geometryLayer = layer; state.visibleRecords = records;
-  renderMetrics(records); renderHistogram(records); renderList(records);
+  renderMetrics(records); renderHistogram(); renderList(records);
   state.lastRender = {reason, geometryCount: records.length, renderMs: performance.now() - started};
   console.info('[atlas:render]', state.lastRender);
 }
@@ -329,8 +416,14 @@ async function refreshData(reason = 'state') {
   try {
     const loaded = await promise; if (sequence !== state.refreshSequence) return;
     state.loadedFeatures = loaded.features; state.activeLevel = level; state.activeProvinces = provinces; state.activeAssets = loaded.assets;
+    const completeTimeline = from === state.loader.manifest.years.min && to === state.loader.manifest.years.max;
+    if (completeTimeline) state.timelineFeatures.clear();
+    for (const feature of loaded.features) state.timelineFeatures.set(featureKey(feature), feature);
+    if (completeTimeline) state.timelineComplete = true;
     updateAttributeSelectors(); renderGeometry(reason); renderCoverage();
-    if (state.initialHashState?.entity && !state.hashRestored) state.hashRestored = selectEntity(state.initialHashState.entity, state.initialHashState.geometry);
+    if (state.initialHashState?.entity && !state.hashRestored) state.hashRestored = selectEntity(
+      state.initialHashState.entity, state.initialHashState.geometry, {preserveView: true}
+    );
     state.lastLoad = {reason, level, provinces, assetCount: loaded.assets.length, loadedGeometryCount: loaded.features.length,
       downloadedNow: state.loader.metrics.requests - before, rawBytes: loaded.rawBytes, estimatedGzipBytes: loaded.estimatedGzipBytes, loadMs: loaded.loadMs};
     setStatus(`${level} · ${loaded.assets.length} assets · ${formatNumber(loaded.features.length, 0)} geometrías/puntos · ${formatBytes(loaded.estimatedGzipBytes)} gzip estimados`);
@@ -344,6 +437,7 @@ function setYearRange(from, to) { elements.yearFrom.value = String(from); elemen
 function fitTerritory(id, {updateFilter = true} = {}) { const territory = state.loader.manifest.territories[id]; if (!territory) return; state.activeTerritory = id;
   if (updateFilter) elements.province.value = id === 'comunitat_valenciana' ? 'all' : territory.provinces[0];
   state.map.fitBounds(leafletBounds(territory.bounds), {animate: false, padding: [18, 18]}); if (territory.preferred_zoom && state.map.getZoom() < territory.preferred_zoom) state.map.setZoom(territory.preferred_zoom, {animate: false}); }
+function territoryForScope(scope) { return scope === 'all' ? 'comunitat_valenciana' : scope; }
 function setPointMode(enabled) { state.pointMode = enabled; elements.pointHint.hidden = !enabled; elements.pointQuery.classList.toggle('active', enabled); elements.pointQuery.textContent = enabled ? 'Cancelar consulta' : 'Consultar un punto del mapa'; state.map.getContainer().style.cursor = enabled ? 'crosshair' : ''; if (enabled) state.map.closePopup(); }
 
 function queryPoint(latlng) {
@@ -392,19 +486,21 @@ function renderMethodology() {
 }
 
 function bindEvents() {
-  document.querySelectorAll('[data-territory]').forEach(button => button.addEventListener('click', () => fitTerritory(button.dataset.territory)));
   elements.yearFrom.addEventListener('input', () => syncYearControls('from')); elements.yearTo.addEventListener('input', () => syncYearControls('to'));
   elements.yearFrom.addEventListener('change', () => refreshData('timeline')); elements.yearTo.addEventListener('change', () => refreshData('timeline'));
   elements.fullPeriod.addEventListener('click', () => setYearRange(state.loader.manifest.years.min, state.loader.manifest.years.max));
-  elements.province.addEventListener('change', () => refreshData('province-filter'));
-  for (const input of [elements.municipality, elements.minimumArea, elements.cause, elements.gifOnly]) input.addEventListener('change', () => { renderGeometry('attribute-filter'); syncPermalink(); });
+  elements.province.addEventListener('change', () => { elements.municipality.value = ''; fitTerritory(territoryForScope(elements.province.value), {updateFilter: false}); scheduleRefresh('scope-filter', 0); });
+  elements.municipality.addEventListener('change', () => { renderGeometry('municipality-filter'); fitSelectedMunicipality(); syncPermalink(); });
+  for (const input of [elements.minimumArea, elements.cause, elements.gifOnly]) input.addEventListener('change', () => { renderGeometry('attribute-filter'); syncPermalink(); });
   elements.pointQuery.addEventListener('click', () => setPointMode(!state.pointMode));
   elements.shareView.addEventListener('click', shareCurrentView);
   state.map.on('click', event => { if (state.pointMode) queryPoint(event.latlng); }); state.map.on('moveend', () => scheduleRefresh('map-view'));
 }
 
 function applyUrlOptions(params) {
-  const years = state.loader.manifest.years, from = Math.max(years.min, Math.min(years.max, Number(params.get('from') || years.default))), to = Math.max(years.min, Math.min(years.max, Number(params.get('to') || years.default)));
+  const years = state.loader.manifest.years, hasLegacyPeriod = params.has('from') || params.has('to');
+  const defaultFrom = hasLegacyPeriod ? years.default : years.min, defaultTo = hasLegacyPeriod ? years.default : years.max;
+  const from = Math.max(years.min, Math.min(years.max, Number(params.get('from') || defaultFrom))), to = Math.max(years.min, Math.min(years.max, Number(params.get('to') || defaultTo)));
   elements.yearFrom.value = String(Math.min(from, to)); elements.yearTo.value = String(Math.max(from, to));
   if (['all', 'castellon', 'valencia', 'alicante'].includes(params.get('province'))) elements.province.value = params.get('province');
   if (params.has('min_area')) elements.minimumArea.value = params.get('min_area'); elements.gifOnly.checked = params.get('gif') === '1';
@@ -425,9 +521,16 @@ function applyHashState(hashState) {
   syncYearControls();
 }
 
+function layerMatchesSelectedStyle(item) {
+  if (!item || !featureIsSelected(item.feature)) return false;
+  const expected = featureStyle(item.feature), actual = item.layer.options || {};
+  return ['color', 'weight', 'fillColor', 'fillOpacity', 'dashArray'].every(key => expected[key] === undefined || actual[key] === expected[key]);
+}
+
 function debugSnapshot() {
   const counts = {icv: new Set(), sigif: new Set(), effis: new Set()}; for (const item of state.visibleRecords) counts[item.record.sourceId].add(item.record.entityId);
   const selected = state.visibleRecords.filter(item => item.record.entityId === state.selectedEntityId);
+  const selectedGeometry = selected.find(item => item.record.geometryId === state.selectedGeometryId);
   return {ready: document.body.dataset.ready === 'true', profile: state.loader.manifest.profile, territory: state.activeTerritory,
     zoom: state.map?.getZoom(), center: state.map ? {lat: state.map.getCenter().lat, lng: state.map.getCenter().lng} : null,
     level: state.activeLevel, years: selectedYears(), activeSources: [...activeSources()], provinceFilter: elements.province.value,
@@ -438,13 +541,21 @@ function debugSnapshot() {
     visibleGifCount: [...new Map(state.visibleRecords.filter(item => ['icv', 'sigif'].includes(item.record.sourceId)).map(item => [item.record.entityId, item.record])).values()].filter(item => item.isGif).length,
     selectedEntityId: state.selectedEntityId, selectedFireId: state.selectedEntityId, selectedGeometryId: state.selectedGeometryId,
     selectedVisibleGeometryCount: selected.length, selectedCandidateStrengths: selected.flatMap(item => state.loader.candidatesFor(item.feature).map(candidate => candidate.candidate_strength)),
+    selectedGeometryHighlighted: layerMatchesSelectedStyle(selectedGeometry),
+    detailsSelectionVisible: elements.details.dataset.entity === state.selectedEntityId && elements.details.dataset.geometry === state.selectedGeometryId && Boolean(elements.details.querySelector('.source-chip')),
+    selectionPopupVisible: Boolean(state.selectionPopup && state.map.hasLayer(state.selectionPopup)),
+    selectionPopupDomVisible: Boolean(document.querySelector('.leaflet-popup-pane .leaflet-popup')),
+    selectionPopupGeometryId: state.selectionPopupGeometryId,
+    municipalityFit: state.lastMunicipalityFit,
     coverageText: elements.coverage.textContent, detailsText: elements.details.textContent, methodologyText: elements.methodology.textContent,
     sourceControlIds: [...elements.sourceFilters.querySelectorAll('input')].map(input => input.value),
     sigifLegendVisible: !elements.legendSigifRow.hidden, sourceSeparationHelpVisible: !elements.sourceSeparationHelp.hidden,
-    shareButtonVisible: !elements.shareView.hidden,
+    shareButtonVisible: !elements.shareView.hidden, shareIconVisible: Boolean(elements.shareView.querySelector('svg')),
     history: state.historyResult, lastLoad: state.lastLoad, lastRender: state.lastRender, loader: state.loader.debugSnapshot(),
     appElapsedMs: performance.now() - APP_STARTED_AT, heapUsedBytes: performance.memory ? performance.memory.usedJSHeapSize : null,
     permalinkHash: location.hash, hashRestored: state.hashRestored, mariolaPrimaryAccess: Boolean(document.querySelector('[data-territory="mariola_font_roja"]')),
+    territoryPanelPresent: Boolean(document.querySelector('.territory-panel')), scopeOptions: [...elements.province.options].map(option => ({value: option.value, label: option.textContent})),
+    histogramBarCount: elements.histogram.children.length, histogramSelectedYears: [...elements.histogram.querySelectorAll('.single-year')].map(button => Number(button.dataset.year)), timelineComplete: state.timelineComplete,
     availableMunicipalities: [...elements.municipality.options].map(option => ({value: option.value, label: option.textContent})),
     availableCauses: [...elements.cause.options].map(option => ({value: option.value, label: option.textContent})),
     viewport: {width: innerWidth, height: innerHeight}, mobileLayout: matchMedia('(max-width: 800px)').matches};
@@ -454,7 +565,18 @@ async function runDebugScenario(params) {
   const result = {};
   if (params.get('scenario') === 'zoom-transition') { result.levels = []; for (const zoom of [8, 9, 11]) { state.map.setZoom(zoom, {animate: false}); clearTimeout(state.refreshTimer); await refreshData(`debug-${zoom}`); result.levels.push(debugSnapshot()); } }
   if (params.get('scenario') === 'year-transition') { result.years = []; for (const year of [2024, 2025, 2026]) { elements.yearFrom.value = String(year); elements.yearTo.value = String(year); syncYearControls(); clearTimeout(state.refreshTimer); await refreshData(`debug-year-${year}`); result.years.push(debugSnapshot()); } }
+  if (params.get('scenario') === 'scope-change') { elements.province.value = params.get('target_scope'); elements.province.dispatchEvent(new Event('change')); await new Promise(resolve => setTimeout(resolve, 20)); await state.refreshPromise; result.scope = debugSnapshot(); }
+  if (params.get('scenario') === 'municipality-fit') {
+    const municipalityId = params.get('target_municipality');
+    if (![...elements.municipality.options].some(option => option.value === municipalityId)) throw new Error(`No existe el municipio ${municipalityId} en el selector`);
+    result.beforeMunicipalityFit = debugSnapshot(); elements.municipality.value = municipalityId; elements.municipality.dispatchEvent(new Event('change'));
+    result.afterMunicipalityFit = debugSnapshot();
+    await new Promise(resolve => setTimeout(resolve, 180)); await state.refreshPromise;
+    result.afterMunicipalityRefresh = debugSnapshot();
+  }
+  if (params.get('scenario') === 'histogram-year') { const year = Number(params.get('target_year')); const bar = elements.histogram.querySelector(`[data-year="${year}"]`); if (!bar) throw new Error(`No existe barra para ${year}`); bar.click(); clearTimeout(state.refreshTimer); await state.refreshPromise; result.histogram = debugSnapshot(); }
   if (params.get('select_entity') || params.get('select_fire')) { selectEntity(params.get('select_entity') || params.get('select_fire')); result.selection = debugSnapshot(); }
+  if (params.get('click_geometry')) { const item = state.visibleRecords.find(candidate => candidate.record.geometryId === params.get('click_geometry')); if (!item) throw new Error(`No se encontró ${params.get('click_geometry')}`); const latlng = item.layer.getBounds ? item.layer.getBounds().getCenter() : item.layer.getLatLng(); item.layer.fire('click', {latlng}); result.clickedSelection = debugSnapshot(); }
   if (params.get('point')) { const [lng, lat] = params.get('point').split(',').map(Number); queryPoint(L.latLng(lat, lng)); result.point = debugSnapshot(); }
   if (params.get('point_geometry')) { const feature = state.loadedFeatures.find(item => item.properties.geometry_id === params.get('point_geometry')); if (feature) { const point = turf.pointOnFeature(feature); queryPoint(L.latLng(point.geometry.coordinates[1], point.geometry.coordinates[0])); result.point = debugSnapshot(); } }
   if (params.get('scenario') === 'share') { await shareCurrentView(); result.share = {feedback: elements.shareFeedback.textContent, fallbackVisible: !elements.shareFallback.hidden}; }

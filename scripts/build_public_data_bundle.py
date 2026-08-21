@@ -14,8 +14,8 @@ from build_frontend_profile import coverage_for_sources
 
 
 ROOT = Path(__file__).resolve().parents[1]
-RELEASE_TAG = "public-data-v2"
-ASSET_NAME = "atlas-public-data-v2.tar.gz"
+RELEASE_TAG = "public-data-v3"
+ASSET_NAME = "atlas-public-data-v3.tar.gz"
 
 
 def load(path):

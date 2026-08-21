@@ -98,6 +98,10 @@ Objetivo: tener un piloto local fiable y agradable de usar.
 - [x] Auditar los 244 registros municipales inicialmente no resueltos y cerrar
   UX-1 con un bundle público reproducible, guard de publicación y permalinks
   verificados en sesión nueva.
+- [x] UX-2: simplificar la columna lateral, integrar ámbito y provincia en
+  Filtros, restaurar las barras anuales, corregir la selección compartida visual
+  y su popup, autoencuadrar municipios y evaluar el periodo completo como estado
+  inicial.
 - [ ] Historia de un territorio dibujado.
 - [ ] Comparador temporal.
 - [ ] Recurrencia continua.

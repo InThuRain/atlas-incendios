@@ -199,6 +199,9 @@ def run_page(chrome, url, window_size, timeout=150, screenshot_path=None):
                 "document.querySelector('#debug-output').textContent"
             )
             if screenshot_path:
+                # Let Leaflet Canvas and asynchronously loaded raster tiles
+                # finish their final composite before capturing visual QA.
+                time.sleep(1)
                 screenshot = client.command(
                     "Page.captureScreenshot",
                     {"format": "png", "fromSurface": True},

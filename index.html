@@ -4,6 +4,10 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="description" content="Atlas de incendios forestales del País Valencià: histórico consolidado y datos recientes provisionales.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Atlas histórico de incendios · País Valencià">
+  <meta property="og:description" content="Explora los incendios identificados y sus perímetros disponibles en el País Valencià.">
+  <!-- Identidad futura: añadir aquí favicon.svg y og:image cuando exista un diseño aprobado. -->
   <title>Atlas de incendios · País Valencià</title>
   <link rel="preconnect" href="https://unpkg.com">
   <link rel="preconnect" href="https://tile.openstreetmap.org">
@@ -15,28 +19,22 @@
     <aside id="sidebar" aria-label="Controles y resultados">
       <header class="brand">
         <p id="coverage-eyebrow" class="eyebrow">Cobertura definida por los manifiestos</p>
-        <h1>Atlas histórico de incendios</h1>
+        <!-- Punto de extensión para situar el futuro logo del Atlas junto al título. -->
+        <div class="brand-title-row"><h1>Atlas histórico de incendios</h1></div>
         <p class="intro">Explora los incendios identificados y sus perímetros disponibles en todo el País Valencià.</p>
-      </header>
-
-      <section class="panel territory-panel" aria-labelledby="territory-title">
-        <div class="section-heading">
-          <h2 id="territory-title">Ir a</h2>
+        <div class="viewer-status-row">
+          <div id="status" class="status" role="status" aria-live="polite">Preparando el visor…</div>
           <span id="level-badge" class="badge">overview</span>
         </div>
-        <div class="territory-buttons">
-          <button type="button" data-territory="comunitat_valenciana" class="territory-button wide">País Valencià</button>
-          <button type="button" data-territory="castellon" class="territory-button">Castellón</button>
-          <button type="button" data-territory="valencia" class="territory-button">Valencia</button>
-          <button type="button" data-territory="alicante" class="territory-button">Alicante</button>
-        </div>
-        <div id="status" class="status" role="status" aria-live="polite">Preparando el visor…</div>
         <div class="share-row">
-          <button id="share-view" type="button" class="text-button share-button">Compartir vista</button>
+          <button id="share-view" type="button" class="share-button">
+            <svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true" focusable="false"><path d="M8.5 12.5 15.5 5.5M11 5.5h4.5V10M15.5 13.5v4a1.5 1.5 0 0 1-1.5 1.5H6a1.5 1.5 0 0 1-1.5-1.5v-8A1.5 1.5 0 0 1 6 8h4"/></svg>
+            <span>Compartir vista</span>
+          </button>
           <span id="share-feedback" class="share-feedback" role="status" aria-live="polite"></span>
         </div>
         <input id="share-fallback" class="share-fallback" type="text" aria-label="Enlace para compartir" readonly hidden>
-      </section>
+      </header>
 
       <section class="panel" aria-labelledby="time-title">
         <div class="section-heading">
@@ -53,29 +51,18 @@
         </div>
       </section>
 
-      <section class="panel" aria-labelledby="sources-title">
-        <h2 id="sources-title">Fuentes visibles</h2>
-        <div id="source-filters" class="source-filters"></div>
-        <p id="source-separation-help" class="help" hidden>Las fuentes permanecen separadas aunque exista una correspondencia candidata.</p>
-      </section>
-
-      <section id="coverage-panel" class="panel coverage-panel" aria-labelledby="coverage-title">
-        <h2 id="coverage-title">Cobertura y provisionalidad</h2>
-        <div id="coverage-detail" class="result-copy">Leyendo cobertura de los manifiestos…</div>
-      </section>
-
       <section class="panel" aria-labelledby="filters-title">
         <h2 id="filters-title">Filtros</h2>
         <div class="form-grid">
-          <label>Provincia
+          <label class="wide-field">Ámbito
             <select id="province-filter">
-              <option value="all">Visibles en el mapa</option>
-              <option value="castellon">Castellón</option>
-              <option value="valencia">Valencia</option>
-              <option value="alicante">Alicante</option>
+              <option value="all">Todo el País Valencià</option>
+              <option value="castellon">Castelló</option>
+              <option value="valencia">València</option>
+              <option value="alicante">Alacant</option>
             </select>
           </label>
-          <label>Municipio
+          <label class="wide-field">Municipio
             <select id="municipality-filter"><option value="">Todos</option></select>
           </label>
           <label>Superficie mínima
@@ -94,16 +81,28 @@
         <label class="check-row"><input id="gif-only" type="checkbox"> Mostrar solo GIF ≥ 500 ha</label>
       </section>
 
-      <section id="metrics" class="metrics" aria-label="Resumen separado por fuente"></section>
-
       <section class="panel" aria-labelledby="histogram-title">
         <div class="section-heading">
           <h2 id="histogram-title">Elementos por año y fuente</h2>
           <span class="microcopy">sin fusionar fuentes</span>
         </div>
         <div id="histogram" class="histogram" aria-label="Histograma de elementos por año"></div>
+        <div class="histogram-scale" aria-hidden="true"><span id="histogram-year-min">—</span><span id="histogram-selection">—</span><span id="histogram-year-max">—</span></div>
         <p class="help">Pulsa una barra para seleccionar únicamente ese año.</p>
       </section>
+
+      <section class="panel" aria-labelledby="sources-title">
+        <h2 id="sources-title">Fuentes visibles</h2>
+        <div id="source-filters" class="source-filters"></div>
+        <p id="source-separation-help" class="help" hidden>Las fuentes permanecen separadas aunque exista una correspondencia candidata.</p>
+      </section>
+
+      <section id="coverage-panel" class="panel coverage-panel" aria-labelledby="coverage-title">
+        <h2 id="coverage-title">Cobertura y provisionalidad</h2>
+        <div id="coverage-detail" class="result-copy">Leyendo cobertura de los manifiestos…</div>
+      </section>
+
+      <section id="metrics" class="metrics" aria-label="Resumen separado por fuente"></section>
 
       <section class="panel" aria-labelledby="history-title">
         <h2 id="history-title">Historia de un lugar</h2>

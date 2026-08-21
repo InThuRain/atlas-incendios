@@ -249,6 +249,25 @@ y quedan registrados para revisión. Los contadores en opciones se posponen
 porque «N» no tendría una semántica única al combinar incendios ICV, registros
 SIGIF y perímetros EFFIS.
 
+## 2026-08-21 — Inicio en el periodo completo con cautela de memoria
+
+Una URL sin estado abre el intervalo completo definido por `years.min` y
+`years.max` del manifiesto. Los permalinks y parámetros legacy explícitos
+conservan su intervalo. Esta decisión sustituye el inicio en el último año
+adoptado durante CV-1.5, pero no cambia la carga por zoom ni el particionado.
+
+**Motivo:** UX-2 midió el perfil público 1993–2026 con tres repeticiones. La
+mediana hasta completar la aplicación fue 608 ms en escritorio y 570 ms en
+móvil emulado; el render fue 312 y 302 ms respectivamente, sin bloqueos. El
+coste estimado de transferencia es 3,0 MiB gzip y el heap medido queda en torno
+a 167–178 MiB, frente a 5,6–5,8 MiB al abrir solo 2026.
+
+**Consecuencias:** se prioriza la lectura histórica completa y se mantiene
+Leaflet + Canvas. El consumo de memoria es una cautela explícita: la emulación
+no sustituye una prueba en móviles físicos de gama baja. Si aparecen cierres o
+latencia seria, se evaluará un resumen anual independiente o carga diferida,
+sin introducir PMTiles ni cambiar de renderizador dentro de UX-2.
+
 ## Plantilla para nuevas decisiones
 
 ```markdown

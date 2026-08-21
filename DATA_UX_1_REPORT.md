@@ -88,6 +88,14 @@ fuente: `ELX/ELCHE` (3), `Elche / Elx` (1), `Elche/Elx` (135), `Elx` (19) y
 `Elx/Elche` (23). El selector ofrece una sola opción `Elx` y filtra por
 `municipality_id=03065`.
 
+Estos 181 elementos no son 181 perímetros: corresponden a 178 incendios ICV
+con 178 geometrías, dos registros administrativos puntuales SIGIF y un
+perímetro EFFIS. El autoencuadre municipal de UX-2 utiliza únicamente las
+geometrías poligonales visibles, por lo que en el periodo y fuentes completos
+encuadra 179 perímetros (178 ICV + 1 EFFIS) y excluye correctamente los dos
+puntos SIGIF. Las cifras describen entidades distintas y no deben forzarse a
+coincidir.
+
 ## Causas
 
 Se encontraron 14 textos raw distintos. Todos tienen mapeo explícito; EFFIS no
@@ -132,7 +140,7 @@ datasets y atribuciones no cambian.
 El perfil `development` muestra ICV, SIGIF y EFFIS. El perfil `public` obtiene
 solo ICV y EFFIS del manifiesto; el control, leyenda y explicación de
 correspondencias SIGIF permanecen ocultos. El bundle público reproducible
-`public-data-v2` contiene los derivados canónicos y mantiene fuera SIGIF,
+`public-data-v3` contiene los derivados canónicos y mantiene fuera SIGIF,
 candidatos, EGIF, raw, processed y benchmarks.
 
 Los contadores en selectores se posponen: al combinar fuentes, `N` podría

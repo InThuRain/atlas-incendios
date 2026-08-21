@@ -123,6 +123,7 @@ def main():
         "castellon": {"view": "castellon"},
         "valencia": {"view": "valencia"},
         "alicante": {"view": "alicante"},
+        "scope_change_alicante": {"scenario": "scope-change", "target_scope": "alicante"},
         "mariola_font_roja": {"view": "mariola_font_roja"},
         "full_period": {"from": 1993, "to": 2026},
         "single_year": {"from": 2024, "to": 2024},
@@ -133,6 +134,10 @@ def main():
             "province": "valencia",
         },
         "year_transition": {"scenario": "year-transition"},
+        "histogram_year_1994": {"scenario": "histogram-year", "target_year": 1994},
+        "municipality_fit_elx": {"view": "alicante", "scenario": "municipality-fit", "target_municipality": "03065"},
+        "municipality_fit_single": {"view": "alicante", "from": 1994, "to": 1994, "scenario": "municipality-fit", "target_municipality": "03002"},
+        "municipality_fit_empty": {"view": "alicante", "from": 1994, "to": 1994, "min_area": 1000, "scenario": "municipality-fit", "target_municipality": "03065"},
         "fire_2024al0005": {
             "view": "alicante",
             "from": 2024,
@@ -177,6 +182,14 @@ def main():
         "permalink_minimum_area": {"__hash": viewer_hash(**{"from": 2024, "to": 2024, "src": "icv", "min_area": 100})},
         "permalink_invalid_ignored": {"__hash": "v=1&lat=999&z=99&from=1900&to=2999&src=not-a-source&province=moon&unknown=value"},
         "share_view": {"scenario": "share"},
+        "share_selected_geometry": {
+            "view": "alicante", "from": 1994, "to": 1994, "scenario": "share",
+            "click_geometry": "gva:geometry:1994:2:1422",
+        },
+        "share_selected_multi_geometry": {
+            "view": "alicante", "from": 2024, "to": 2024, "scenario": "share",
+            "click_geometry": "gva:geometry:2024:121:13606",
+        },
     }
     server_root = root.parent
     handler = lambda *items, **kwargs: QuietHandler(
@@ -200,6 +213,14 @@ def main():
         reloaded = chrome_snapshot(args.chrome, base_url + "?debug=1" + generated["permalinkHash"])
         validate("permalink_new_session_reload", reloaded)
         results["permalink_new_session_reload"] = reloaded
+        shared = results["share_selected_geometry"]["final"]
+        shared_reloaded = chrome_snapshot(args.chrome, base_url + "?debug=1" + shared["permalinkHash"])
+        validate("shared_selection_new_session", shared_reloaded)
+        results["shared_selection_new_session"] = shared_reloaded
+        shared_multi = results["share_selected_multi_geometry"]["final"]
+        shared_multi_reloaded = chrome_snapshot(args.chrome, base_url + "?debug=1" + shared_multi["permalinkHash"])
+        validate("shared_multi_selection_new_session", shared_multi_reloaded)
+        results["shared_multi_selection_new_session"] = shared_multi_reloaded
         mobile = chrome_snapshot(
             args.chrome, base_url + "?" + urlencode({"debug": 1}), "390,844"
         )
@@ -211,19 +232,27 @@ def main():
 
     initial = results["initial_cv"]["final"]
     require(initial["level"] == "overview", "Initial view must use overview")
-    require(initial["activeAssetCount"] == 2, "Initial view must request SIGIF + EFFIS 2026")
-    require(initial["loader"]["requests"] == 4, "Initial requests: manifest, candidates and two data assets")
-    require(initial["years"] == {"from": 2026, "to": 2026}, "Initial year")
-    require(initial["visibleSigifRecordCount"] == 143, "SIGIF 2026 records")
-    require(initial["visibleEffisPerimeterCount"] == 16, "EFFIS 2026 perimeters")
+    require(initial["activeAssetCount"] == 16, "Initial view must request the complete manifested period")
+    require(initial["loader"]["requests"] == 19, "Initial requests: manifest, ICV attributes, candidates and 16 data assets")
+    require(initial["years"] == {"from": 1993, "to": 2026}, "Initial full period")
+    require(initial["visibleSigifRecordCount"] == 424, "All SIGIF records")
+    require(initial["visibleEffisPerimeterCount"] == 25, "All EFFIS perimeters")
+    require(initial["visibleIcvFireCount"] == 13738, "All ICV fires")
     require(initial["sigifLegendVisible"] and initial["sourceSeparationHelpVisible"], "Development SIGIF legend/help")
-    require(initial["shareButtonVisible"], "Development share button")
+    require(initial["shareButtonVisible"] and initial["shareIconVisible"], "Development share button and SVG icon")
+    require(not initial["territoryPanelPresent"], "The former territory panel must be absent")
+    require(initial["scopeOptions"] == [{"value": "all", "label": "Todo el País Valencià"}, {"value": "castellon", "label": "Castelló"}, {"value": "valencia", "label": "València"}, {"value": "alicante", "label": "Alacant"}], "Canonical scope options")
+    require(initial["histogramBarCount"] == 34 and initial["timelineComplete"], "Complete 1993-2026 histogram")
     require("cobertura incompleta" in initial["coverageText"], "2026 incomplete coverage visible")
 
     for province in ("castellon", "valencia", "alicante"):
         final = results[province]["final"]
         require(final["activeProvinces"] == [province], province + ": province")
-        require(final["activeAssetCount"] == 2, province + ": two recent statewide assets")
+        require(final["activeAssetCount"] == 8, province + ": four ICV blocks and four recent assets")
+    scope = results["scope_change_alicante"]["scope"]
+    require(scope["provinceFilter"] == "alicante" and scope["activeProvinces"] == ["alicante"], "Integrated scope control filters Alicante")
+    require(any(item["value"] == "03065" for item in scope["availableMunicipalities"]), "Alicante scope contains Elx")
+    require(all(not item["value"] or item["value"].startswith("03") or item["value"].startswith("raw:alicante:") for item in scope["availableMunicipalities"]), "Municipality selector is limited to Alicante")
 
     pilot = results["mariola_font_roja"]["final"]
     require(pilot["level"] == "local", "Pilot must use local geometry")
@@ -234,6 +263,10 @@ def main():
     require(full["activeAssetCount"] == 16, "Full period uses 12 ICV + 4 recent assets")
     require(full["visiblePerimeterCount"] == 13764, "Full ICV + EFFIS perimeter count")
     require(full["visibleFireCount"] == 13738, "Full fire count")
+
+    histogram = results["histogram_year_1994"]["histogram"]
+    require(histogram["years"] == {"from": 1994, "to": 1994}, "Histogram click selects one year")
+    require(histogram["histogramBarCount"] == 34 and histogram["histogramSelectedYears"] == [1994], "Histogram remains visible after selection")
 
     gif = results["gif_only"]["final"]
     require(gif["visibleFireCount"] > 0, "GIF filter should have results")
@@ -277,11 +310,25 @@ def main():
     require(reused_result["history"]["fireCount"] >= 1, "Point history fire count")
     require(reused_result["history"]["reused"], "Point history reuse warning")
 
+    elx_fit = results["municipality_fit_elx"]["afterMunicipalityFit"]
+    require(elx_fit["municipalityFit"]["status"] == "fit-visible-perimeters" and elx_fit["municipalityFit"]["perimeterCount"] > 1, "Elx fits its visible perimeters")
+    require(elx_fit["municipalityFit"]["minimumRenderedPaddingPx"] >= 35, "Elx fit keeps visual padding")
+    require(elx_fit["center"] != results["municipality_fit_elx"]["beforeMunicipalityFit"]["center"], "Elx changes the map framing")
+    require(results["municipality_fit_elx"]["afterMunicipalityRefresh"]["center"] == elx_fit["center"], "Progressive detail refresh does not refit Elx")
+    single_fit = results["municipality_fit_single"]["afterMunicipalityFit"]["municipalityFit"]
+    require(single_fit["perimeterCount"] == 1 and single_fit["zoom"] <= single_fit["maxZoom"] == 13, "Single-perimeter municipality avoids extreme zoom")
+    empty_before = results["municipality_fit_empty"]["beforeMunicipalityFit"]
+    empty_after = results["municipality_fit_empty"]["afterMunicipalityFit"]
+    require(empty_after["municipalityFit"]["status"] == "no-visible-perimeters" and empty_after["center"] == empty_before["center"] and empty_after["zoom"] == empty_before["zoom"], "Municipality without visible perimeters keeps the view")
+
     permalink = results["permalink_1994_elx_cause_selection"]["final"]
     require(permalink["years"] == {"from": 1994, "to": 1994}, "Permalink year restore")
     require(permalink["municipalityFilter"] == "03065", "Permalink municipality ID restore")
     require(permalink["causeFilter"] == "intentional", "Permalink cause restore")
     require(permalink["selectedEntityId"] == "gva:pif-cv:1994AL0039" and permalink["hashRestored"], "Permalink selection restore")
+    require(permalink["selectedGeometryId"] == "gva:geometry:1994:2:1422" and permalink["selectedGeometryHighlighted"] and permalink["detailsSelectionVisible"], "Permalink restores highlighted geometry and details")
+    require(permalink["selectionPopupVisible"] and permalink["selectionPopupDomVisible"] and permalink["selectionPopupGeometryId"] == permalink["selectedGeometryId"], "Permalink restores the exact geometry popup in the map DOM")
+    require(abs(permalink["center"]["lat"] - 38.27) < 0.00002 and abs(permalink["center"]["lng"] + 0.70) < 0.00002 and permalink["zoom"] == 8, "Municipality permalink preserves shared center and zoom")
     require(sum(item["label"] == "Elx" for item in permalink["availableMunicipalities"]) == 1, "Elx canonical option")
     require(results["permalink_2026_effis"]["final"]["activeSources"] == ["effis"], "EFFIS permalink source restore")
     require(results["permalink_gif"]["final"]["gifOnly"], "GIF permalink restore")
@@ -290,13 +337,25 @@ def main():
     for key in ("years", "activeSources", "provinceFilter", "municipalityFilter", "causeFilter", "minimumArea", "gifOnly", "selectedEntityId", "selectedGeometryId", "zoom"):
         require(reloaded[key] == permalink[key], "New-session permalink mismatch: " + key)
     require(abs(reloaded["center"]["lat"] - permalink["center"]["lat"]) < 0.00002 and abs(reloaded["center"]["lng"] - permalink["center"]["lng"]) < 0.00002, "New-session center mismatch")
+    shared = results["share_selected_geometry"]["clickedSelection"]
+    shared_reloaded = results["shared_selection_new_session"]["final"]
+    require(shared["selectedGeometryHighlighted"] and shared["detailsSelectionVisible"], "Clicked geometry is highlighted before sharing")
+    for key in ("years", "activeSources", "provinceFilter", "selectedEntityId", "selectedGeometryId", "zoom"):
+        require(shared_reloaded[key] == shared[key], "Shared-selection mismatch: " + key)
+    require(shared_reloaded["selectedGeometryHighlighted"] and shared_reloaded["detailsSelectionVisible"] and shared_reloaded["selectionPopupVisible"] and shared_reloaded["selectionPopupDomVisible"], "Shared geometry, details and popup restored visually")
+    require(shared_reloaded["selectionPopupGeometryId"] == shared["selectedGeometryId"], "Shared popup belongs to the selected geometry")
+    multi = results["share_selected_multi_geometry"]["clickedSelection"]
+    multi_reloaded = results["shared_multi_selection_new_session"]["final"]
+    require(multi["selectedVisibleGeometryCount"] == 2, "Acceptance fire exposes two geometries")
+    require(multi_reloaded["selectedGeometryId"] == "gva:geometry:2024:121:13606" and multi_reloaded["selectionPopupGeometryId"] == "gva:geometry:2024:121:13606", "Multi-geometry permalink opens the exact requested geometry")
+    require(multi_reloaded["selectedGeometryHighlighted"] and multi_reloaded["detailsSelectionVisible"] and multi_reloaded["selectionPopupVisible"] and multi_reloaded["selectionPopupDomVisible"], "Multi-geometry permalink restores popup, highlight and details")
     invalid = results["permalink_invalid_ignored"]["final"]
-    require(invalid["years"] == {"from": 2026, "to": 2026} and invalid["activeSources"] == ["icv", "sigif", "effis"], "Invalid hash values ignored")
+    require(invalid["years"] == {"from": 1993, "to": 2026} and invalid["activeSources"] == ["icv", "sigif", "effis"], "Invalid hash values ignored with full-period fallback")
     require(bool(results["share_view"]["share"]["feedback"]), "Share action gives feedback")
 
     mobile = results["mobile_initial"]["final"]
     require(mobile["mobileLayout"], "Mobile media query")
-    require(mobile["activeAssetCount"] == 2, "Mobile progressive recent load")
+    require(mobile["activeAssetCount"] == 16 and mobile["years"] == {"from": 1993, "to": 2026}, "Mobile full-period initial load")
 
     summary = {
         "schema_version": 1,

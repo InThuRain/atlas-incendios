@@ -220,6 +220,21 @@ provincias válidas desde el manifiesto y no codifica reglas GVA. El hash se
 actualiza con `history.replaceState`, de modo que GitHub Pages no necesita
 routing de servidor ni se llena el historial al mover el mapa.
 
+Sin estado explícito, el timeline toma `min` y `max` del manifiesto y muestra el
+periodo completo. El histograma mantiene ese eje íntegro aunque el intervalo
+activo sea un solo año. La selección compartida se valida en dos niveles:
+identidad (`entity`) y representación concreta (`geometry`); restaurar los
+parámetros sin aplicar el estilo destacado, la ficha y el popup de la geometría
+exacta no se considera éxito. El popup usa un punto interior representativo y
+no desplaza el centro restaurado por el permalink.
+
+El cambio manual de municipio encuadra los perímetros que han superado el resto
+de filtros, con padding y zoom máximo. Este autoencuadre no se ejecuta al
+restaurar un hash ni se repite al cambiar otros filtros. Si no existen
+perímetros, el catálogo actual no ofrece límites municipales: se conserva la
+vista, sin inventar centroides. Un futuro fallback requerirá incorporar al
+manifiesto un límite oficial con procedencia documentada.
+
 Los filtros no operan sobre etiquetas libres. Los derivados web separan
 `municipality_raw`/`municipality_id`/`municipality_name` y
 `cause_raw`/`cause_code`/`cause_label`. El código municipal procede del catálogo
@@ -227,6 +242,11 @@ oficial y las equivalencias de causa están declaradas en
 `config/ui-vocabularies.json`; los valores no demostrados permanecen sin
 resolver. Este patrón deberá admitir catálogos territoriales distintos al
 generalizar el atlas a España.
+
+La cabecera admite una futura identidad gráfica sin solicitar assets todavía.
+`index.html` contiene metadatos Open Graph textuales y puntos de extensión
+documentados para logo, `favicon.svg` y `og:image`; no se enlazará ningún recurso
+hasta disponer de un diseño aprobado, evitando placeholders y respuestas 404.
 
 Componentes funcionales deseables:
 

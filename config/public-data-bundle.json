@@ -2,8 +2,8 @@
   "schema_version": 1,
   "repository": "InThuRain/atlas-incendios",
   "release": {
-    "tag": "public-data-v2",
-    "asset_name": "atlas-public-data-v2.tar.gz"
+    "tag": "public-data-v3",
+    "asset_name": "atlas-public-data-v3.tar.gz"
   },
   "archive": {
     "bytes": 11681915,
