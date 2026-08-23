@@ -131,6 +131,38 @@ obtener de MITECO/ADCIF o del organismo cartográfico competente la clave oficia
 del sistema; el municipio solo podrá utilizarse como contraste independiente,
 nunca para elegir una celda.
 
+### Investigación de la clave cartográfica CV-3.6
+
+CV-3.6 ha documentado el marco geodésico adoptado para la nueva cartografía
+militar de 1968 (Hayford, datum europeo Potsdam y UTM), la existencia de
+ediciones 1:200.000 durante la transición desde cuadrícula Lambert y un patrón
+específico del ICONA para rotular con letra y número las celdas de 10 km. No se
+ha localizado el patrón ni una tabla a coordenadas.
+
+CV-3.6b corrige la comparación inicial con el índice temático del IGME: el
+índice original de la serie militar 5L 1:250.000 sitúa `7-4` y `8-4` en el este
+peninsular, de modo compatible con los valores XML valencianos `0704` y `0804`.
+La compatibilidad no demuestra la migración histórica ni resuelve las
+subcuadrículas `A01`–`O12`.
+
+La misma subfase documenta una capa operativa ArcView importada como
+`Hc250LL`, con geometría, `HOJA`, `CUAD`, `COD250` e `ID1`, utilizada en 2010
+para enlazar registros DGB 1995–2004. La malla fue realizada por investigadores
+del Instituto de Economía, Geografía y Demografía del CSIC y suministrada por
+el CCHS-CSIC; llegó sin fichero de coordenadas y no se ha localizado el activo
+ni el `.csf` creado en el proyecto. La malla actual de MITECO/BDN conserva un
+campo `COD_INB` ED50 H30 y documenta una migración desde una malla antigua
+ED50, pero no contiene `HOJA`/`CUAD` ni demuestra ser sucesora de `Hc250LL`.
+
+Los 8.565 pares siguen en `B_PROBABLE`, ninguno alcanza `A_CONFIRMED` y no se
+ha generado geometría.
+
+La evidencia, discrepancia y documentos concretos pendientes se recogen en
+`CV_3_6_EGIF_CARTOGRAPHIC_KEY_RESEARCH.md`. Las consultas no enviadas para
+MITECO/ADCIF y CEGET/IGN-CNIG están en `CV_3_6_RESEARCH_CONTACT_PACKET.md`.
+La búsqueda del activo y la corrección de numeración se detallan en
+`CV_3_6B_HISTORICAL_GRID_ASSET_SEARCH.md`.
+
 ## 2. Generalitat Valenciana / ICV
 
 Fuente muy importante para el piloto.

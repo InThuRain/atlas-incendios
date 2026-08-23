@@ -43,9 +43,18 @@ Objetivo: tener un piloto local fiable y agradable de usar.
   8.565 partes conservan pares hoja/cuadrícula nominales de 10 × 10 km, pero
   ninguno es representable todavía al faltar la clave cartográfica histórica,
   datum, husos y reglas de borde; no se han creado geometrías.
-- [ ] CV-3.6: solicitar a MITECO/ADCIF y al Centro Geográfico del Ejército/IGN
-  la clave oficial del sistema hoja/cuadrícula IGE 1:200.000 y validar solo
-  después posibles celdas diagnósticas, sin convertirlas en perímetros.
+- [x] CV-3.6: investigar documentalmente la clave hoja/cuadrícula histórica.
+  Se confirma la base UTM/ED50 de la serie militar y la existencia de un patrón
+  ICONA, pero el patrón y la migración de códigos no están disponibles. CV-3.6b
+  identifica la capa operativa `Hc250LL` y corrige la lectura de numeración: los
+  valores `0704`/`0804` son compatibles con la serie 5L 1:250.000. No se ha
+  localizado el activo, su CRS ni la clave `A01`–`O12`; se preparan consultas,
+  sin enviarlas, y no se crean geometrías.
+- [ ] Enviar, tras revisión humana, las consultas de CV-3.6 a MITECO/ADCIF y al
+  Banco de Datos de la Naturaleza, Centro Geográfico del Ejército e IGN-CNIG
+  para localizar `Hc250LL` o su sucesora, el `.csf`, el patrón ICONA, una tabla
+  `HOJA+CUAD`/`COD250` a límites o `COD_INB` y el historial de recodificación;
+  revisar la evidencia antes de cualquier promoción a `A_CONFIRMED`.
 - [ ] Completar la transcripción y contraste controlado de los anuarios
   definitivos 1968–1991; el OCR de CV-3.2 solo localiza tablas candidatas.
 - [ ] Auditar identidad de episodios multiparte, empezando por Marines–Altura
