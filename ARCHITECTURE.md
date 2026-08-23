@@ -312,9 +312,8 @@ El perfil `development` habilita los assets locales EGIF, ICV, SIGIF y EFFIS. El
 perfil `public` solo admite fuentes con `publishable=true` y falla si se intenta
 forzar una fuente bloqueada. Desde la aclaración escrita del ICV de 20/08/2026,
 el perfil público preparado por CV-3.3 incluye EGIF, ICV y EFFIS; SIGIF
-permanece bloqueado. Componer un perfil no publica ni copia datos. La web
-desplegada sigue usando el bundle anterior hasta que se apruebe y genere uno
-nuevo.
+permanece bloqueado. Componer un perfil no publica ni copia datos. CV-3.4
+publicó ese perfil mediante el bundle inmutable `public-data-v4`.
 
 Las entidades siguen separadas también en el navegador: `fire_id` ICV,
 `sigif_record_id` y `geometry_id`/`effis_id`. Los candidatos son relaciones
@@ -326,12 +325,12 @@ ICV continúan con carga diferida por provincia, bloque temporal y zoom.
 
 El sitio público se construye en GitHub Actions, pero los datos web permitidos
 no se regeneran allí desde raw/processed: esas entradas son locales, están
-ignoradas y no serían reproducibles en CI. En su lugar, un bundle inmutable de
-Release contiene únicamente los 38 assets ICV, los 2 EFFIS y un manifiesto
-reciente saneado. `config/public-data-bundle.json` fija lista, tamaños y
-checksums; CI descarga, verifica y extrae el bundle antes de componer el perfil.
-CV-3.3 exige una futura revisión del bundle que añada exactamente el único
-asset EGIF validado; no se modifica ni publica ese bundle durante la fase local.
+ignoradas y no serían reproducibles en CI. En su lugar, el bundle inmutable
+`public-data-v4` contiene únicamente los 38 assets ICV, los 2 EFFIS, el asset
+EGIF compacto y los dos manifiestos fuente saneados/necesarios. En total son 41
+assets de datos y 43 entradas. `config/public-data-bundle.json` fija lista,
+tamaños y checksums; CI descarga, verifica y extrae el bundle antes de componer
+el perfil.
 
 El pipeline vuelve a aplicar el guard de `config/sources-gva.json`, ejecuta los
 validadores, monta un directorio estático autocontenido y lo entrega como

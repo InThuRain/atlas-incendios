@@ -54,8 +54,9 @@ Turf.js. El navegador no consulta servicios ArcGIS en tiempo real.
 Funcionalidades ya planteadas/probadas:
 
 - mapa interactivo;
-- perfil público con perímetros ICV/Generalitat 1993–2024 y perímetros
-  satelitales provisionales EFFIS 2025–2026, estrictamente separados;
+- perfil público 1968–2026 con partes administrativos EGIF/MITECO 1968–1992
+  sin geometría, perímetros ICV/Generalitat 1993–2024 y perímetros satelitales
+  provisionales EFFIS 2025–2026, estrictamente separados;
 - perfil local de desarrollo que añade los registros administrativos
   provisionales SIGIF 2025–2026 y candidatos SIGIF–EFFIS sin fusionarlos;
 - filtro por intervalo de años;
@@ -133,12 +134,13 @@ Después se abre <http://localhost:8000/>. Este perfil puede usar ICV, SIGIF y
 EFFIS locales; ningún dataset ignorado se incorpora por ello a Git.
 
 Si se regeneran los derivados web desde processed, la capa canónica de filtros
-se aplica después de los builders de ICV y recientes:
+se aplica después de los builders de ICV, recientes y EGIF:
 
 ```bash
 .venv/bin/python scripts/build_frontend_assets.py
 .venv/bin/python scripts/build_recent_frontend_assets.py
 .venv/bin/python scripts/filter_vocabularies.py
+.venv/bin/python scripts/build_egif_frontend_assets.py
 .venv/bin/python scripts/build_frontend_profile.py --profile development
 ```
 
@@ -149,9 +151,9 @@ correspondencia no demostrable.
 ### Reproducir el perfil público
 
 El perfil público se rige exclusivamente por `config/sources-gva.json`: incluye
-ICV y EFFIS y rechaza SIGIF porque continúa con `publishable=false`. El bundle
-de datos permitido se publica como asset de la Release `public-data-v3`; su
-tamaño, SHA-256 y lista exacta de 41 entradas están fijados en
+EGIF, ICV y EFFIS y rechaza SIGIF porque continúa con `publishable=false`. El
+bundle de datos permitido se publica como asset de la Release
+`public-data-v4`; su tamaño, SHA-256 y lista exacta de 43 entradas están fijados en
 `config/public-data-bundle.json`.
 
 ```bash
@@ -167,8 +169,14 @@ tamaño, SHA-256 y lista exacta de 41 entradas están fijados en
 ```
 
 El resultado es un directorio estático autocontenido compatible con el subpath
-`/atlas-incendios/`. Contiene 40 assets de datos: 38 ICV y 2 EFFIS. No contiene
-snapshots raw, datos processed, benchmarks, SIGIF ni candidatos SIGIF–EFFIS.
+`/atlas-incendios/`. Contiene 41 assets de datos: 38 ICV, 2 EFFIS y 1 EGIF,
+además del manifiesto de ejecución. No contiene snapshots raw, datos processed,
+XML/OCR EGIF, benchmarks, `original_attributes`, SIGIF ni candidatos
+SIGIF–EFFIS.
+
+Los años 1968–1992 muestran partes EGIF, no episodios físicos deduplicados. No
+tienen geometrías individuales fiables y su cobertura histórica es selectiva o
+transicional según el periodo; no forman una serie homogénea completa.
 
 ### Despliegue
 
@@ -182,10 +190,16 @@ El despliegue se lanza manualmente con `workflow_dispatch` desde `main` después
 de publicar la Release del bundle. Así se respeta la protección del entorno
 `github-pages`, que no admite un despliegue originado directamente desde un tag.
 
-Los aproximadamente 73 MB sin comprimir de datos web no forman parte del
+Los aproximadamente 77 MB sin comprimir de datos web no forman parte del
 historial de `main`. Para actualizar datos públicos se debe generar un nuevo
 bundle reproducible, revisar su manifiesto y publicar explícitamente una nueva
 Release/versionar su referencia antes de desplegarlo.
+
+La publicación real puede verificarse con:
+
+```bash
+.venv/bin/python benchmarks/gva_frontend/verify_deployed.py
+```
 
 ### Pipeline histórico EGIF 1968–1992
 

@@ -288,6 +288,24 @@ web desplegada no cambia hasta aprobar y versionar un nuevo bundle. La categorí
 canónica `accidental` se conserva aparte para códigos EGIF 3xx; no se fuerza
 bajo la etiqueta combinada usada por ICV.
 
+## 2026-08-23 — Publicación histórica mediante bundle inmutable v4
+
+El perfil público 1968–2026 se publica con `public-data-v4`: 38 assets ICV, 2
+EFFIS, 1 EGIF compacto y 2 manifiestos, 43 entradas en total. El bundle es
+determinista, se verificó mediante dos construcciones con el mismo SHA-256 y no
+reemplaza ni modifica `public-data-v3`.
+
+**Motivo:** GitHub Actions no dispone de los raw/processed locales ignorados y
+no debe reconstruir datos históricos desde fuentes remotas durante un deploy.
+El bundle de Release permite fijar exactamente las entradas legales y aplicar
+el guard fail-closed antes de construir Pages.
+
+**Consecuencias:** el sitio público incluye partes EGIF/MITECO 1968–1992 sin
+geometría, ICV/Generalitat 1993–2024 y EFFIS 2025–2026. SIGIF, candidatos,
+raw, processed, XML/OCR, benchmarks y `original_attributes` quedan fuera. Cada
+actualización futura requiere un bundle nuevo y una activación manual del
+workflow; un push ordinario no publica datos.
+
 ## Plantilla para nuevas decisiones
 
 ```markdown

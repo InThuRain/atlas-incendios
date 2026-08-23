@@ -36,6 +36,9 @@ Objetivo: tener un piloto local fiable y agradable de usar.
   mostrando régimen de cobertura y sin contar partes como episodios físicos
   únicos. Implementación y perfil público candidato validados localmente el
   23/08/2026; el bundle y despliegue se realizan separadamente en CV-3.4.
+- [x] CV-3.4: publicar el perfil histórico 1968–2026 mediante el bundle
+  inmutable `public-data-v4`, con EGIF + ICV + EFFIS y verificación real de
+  GitHub Pages el 23/08/2026; SIGIF y candidatos permanecen excluidos.
 - [ ] Completar la transcripción y contraste controlado de los anuarios
   definitivos 1968–1991; el OCR de CV-3.2 solo localiza tablas candidatas.
 - [ ] Auditar identidad de episodios multiparte, empezando por Marines–Altura
@@ -120,6 +123,7 @@ Objetivo: tener un piloto local fiable y agradable de usar.
 - [x] Provisionalidad EFFIS, distinta autoridad de fuentes y limitaciones de
   recurrencia visibles.
 - [ ] Política de actualización.
-- [x] Primera versión pública desplegada y comprobada en
+- [x] Versión pública 1968–2026 desplegada y comprobada en
   <https://inthurain.github.io/atlas-incendios/> mediante GitHub Actions y el
-  perfil `public`; SIGIF, candidatos y datasets internos quedan excluidos.
+  perfil `public` y `public-data-v4`; SIGIF, candidatos y datasets internos
+  quedan excluidos.

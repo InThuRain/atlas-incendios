@@ -178,15 +178,15 @@ se infiere relación por municipio o cuadrícula.
 
 - `development`: EGIF + ICV + SIGIF + EFFIS; el guard global es falso porque
   SIGIF continúa `publishable=false`.
-- `public` candidato: EGIF + ICV + EFFIS; SIGIF y candidatos quedan excluidos;
+- `public`: EGIF + ICV + EFFIS; SIGIF y candidatos quedan excluidos;
   `publication_guard.all_included_sources_publishable=true`.
 
 La atribución visible EGIF es: «Origen de los datos: Ministerio para la
 Transición Ecológica y el Reto Demográfico.» El perfil no sugiere respaldo de
-MITECO. El sitio público local candidato contiene 41 assets de datos y su
-validador pasa. No se ha creado un nuevo Release, no se ha modificado el bundle
-`public-data-v3`, no se ha ejecutado el workflow y no se ha publicado nada.
-Hasta aprobar un bundle nuevo, la web real sigue en el perfil anterior.
+MITECO. CV-3.4 publicó los 41 assets de datos mediante la Release inmutable
+`public-data-v4`: 38 ICV, 2 EFFIS y 1 EGIF. El bundle conserva además dos
+manifiestos, para un total de 43 entradas, y excluye SIGIF, candidatos, raw,
+processed, XML/OCR, benchmarks y `original_attributes`.
 
 ## Rendimiento
 
@@ -224,18 +224,31 @@ una prueba en un móvil físico de gama baja.
 - Build public local: 41 assets; `scripts/validate_public_site.py`: pasa.
 - Móvil emulado: timeline, filtros, mapa vacío histórico y perfil completo:
   pasan.
+- Producción real: el workflow
+  [32653115731](https://github.com/InThuRain/atlas-incendios/actions/runs/32653115731)
+  y la comprobación Chrome posterior pasan; el perfil desplegado contiene
+  EGIF + ICV + EFFIS, 59 barras anuales y ninguna referencia descargable a
+  SIGIF o candidatos.
 
-## Pendientes y recomendación CV-3.4
+## Cierre y publicación CV-3.4
 
 1. CV-3.3 fue revisada y aprobada el 23/08/2026; la terminología distingue
    partes con municipio resuelto de municipios únicos y conserva separadas
    «Negligencia», «Accidental» y «Negligencias y causas accidentales».
-2. En CV-3.4, crear un nuevo bundle público inmutable que añada únicamente el
-   asset EGIF validado, actualizar `config/public-data-bundle.json`, ejecutar el
-   workflow manual y comprobar la URL real. El workflow queda fail-closed con
-   el bundle antiguo porque la entrada EGIF todavía no existe allí.
-3. Mantener como investigación independiente la identidad multiparte
+2. El bundle `public-data-v4` se construyó dos veces con resultado idéntico:
+   11.811.217 B, 77.124.502 B sin comprimir y SHA-256
+   `87e3265ea7a573260a733a2fa989e50d5e5b763acdc15207a0401793ec8f7b3c`.
+3. La URL <https://inthurain.github.io/atlas-incendios/> se verificó desde una
+   sesión Chrome limpia después del deploy: inicio 1968–2026, años históricos,
+   transición 1992→1993, filtros EGIF, permalink/popup ICV, Compartir vista,
+   2024AL0005, EFFIS y móvil pasan.
+4. En producción, el cargador realizó 17 peticiones de datos, recibió
+   28.546.668 B descomprimidos y estimó 3.258.970 B gzip. El heap observado fue
+   198.419.933 B en escritorio y 182.488.031 B en móvil emulado. La medición
+   local repetida, menos afectada por caché/CDN, dio medianas de 703,7 ms y
+   179,0 MiB en escritorio, y 724,4 ms y 170,4 MiB en móvil.
+5. Mantener como investigación independiente la identidad multiparte
    Marines–Altura, los seis pares duplicados y los perímetros históricos; no
    resolverlos como parte de la publicación web.
-4. Valorar una prueba en móvil físico de gama baja antes o después del futuro
+6. Valorar una prueba en móvil físico de gama baja antes o después del
    despliegue, sin cambiar Leaflet mientras no aparezca un problema real.

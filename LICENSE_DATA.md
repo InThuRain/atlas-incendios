@@ -25,14 +25,14 @@ La adquisición del snapshot fuente fue el 19 de agosto de 2026. Sus parámetros
 checksums y limitaciones se conservan en
 `data/sources/egif_gva_1968_1992_manifest.json` y
 `CV_3_2_EGIF_AUDIT.md`. Estas condiciones permiten marcar el derivado EGIF
-como `publishable=true`; su incorporación a la web pública requiere todavía
-aprobación y un nuevo bundle reproducible.
+como `publishable=true`; el derivado web fue incorporado mediante el bundle
+reproducible `public-data-v4` el 23 de agosto de 2026.
 
 ## Estado de publicación
 
-El perfil público desplegado contiene actualmente derivados ICV y EFFIS. El
-derivado EGIF preparado en CV-3.3 todavía no está publicado y SIGIF continúa
-excluido. Una aclaración escrita del Institut Cartogràfic Valencià, recibida el
+El perfil público desplegado contiene actualmente derivados EGIF, ICV y EFFIS;
+SIGIF continúa excluido. Una aclaración escrita del Institut Cartogràfic
+Valencià, recibida el
 20 de agosto de 2026, resolvió los bloqueos documentales de CV-1.5b:
 
 1. CC BY 4.0 permite la redistribución pública;

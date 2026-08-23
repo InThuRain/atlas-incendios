@@ -253,8 +253,8 @@ solo se solicita con `quality_debug=1`.
 La aclaración ICV del 20 de agosto de 2026 permite marcar ICV como
 `publishable=true`, con atribución a Generalitat y aviso de
 transformación. SIGIF continúa con `publishable=false`; EFFIS figura como CC BY
-4.0 con atribución y aviso de transformación. El perfil público distribuye
-únicamente los derivados ICV y EFFIS permitidos.
+4.0 con atribución y aviso de transformación. Desde CV-3.4, el perfil público
+distribuye únicamente los derivados permitidos EGIF, ICV y EFFIS.
 
 ### Catálogo municipal y vocabularios de interfaz (DATA-UX-1)
 
