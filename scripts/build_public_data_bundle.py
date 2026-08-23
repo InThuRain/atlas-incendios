@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Create the public-safe ICV + EFFIS release bundle used by Pages CI."""
+"""Create the public-safe EGIF + ICV + EFFIS release bundle used by Pages CI."""
 
 import argparse
 import gzip
@@ -14,8 +14,8 @@ from build_frontend_profile import coverage_for_sources
 
 
 ROOT = Path(__file__).resolve().parents[1]
-RELEASE_TAG = "public-data-v3"
-ASSET_NAME = "atlas-public-data-v3.tar.gz"
+RELEASE_TAG = "public-data-v4"
+ASSET_NAME = "atlas-public-data-v4.tar.gz"
 
 
 def load(path):
@@ -58,6 +58,8 @@ def parse_args():
     parser.add_argument("--asset-dir", type=Path, default=ROOT / "data/web/gva")
     parser.add_argument("--icv-manifest", type=Path, default=ROOT / "config/datasets-gva.json")
     parser.add_argument("--recent-manifest", type=Path, default=ROOT / "data/web/gva/recent/assets-manifest.json")
+    parser.add_argument("--egif-manifest", type=Path, default=ROOT / "data/web/gva/egif/assets-manifest.json")
+    parser.add_argument("--source-catalog", type=Path, default=ROOT / "config/sources-gva.json")
     parser.add_argument("--output", type=Path, default=ROOT / "data/derived/gva/publication" / ASSET_NAME)
     parser.add_argument("--bundle-manifest", type=Path, default=ROOT / "config/public-data-bundle.json")
     return parser.parse_args()
@@ -67,17 +69,27 @@ def main():
     args = parse_args()
     icv = load(args.icv_manifest)
     recent = load(args.recent_manifest)
+    egif = load(args.egif_manifest)
+    catalog = load(args.source_catalog)
     if icv["publication"]["status"] != "ready":
         raise SystemExit("ICV publication metadata is not ready")
+    public_sources = catalog["profiles"]["public"]["sources"]
+    if set(public_sources) != {"egif", "icv", "effis"}:
+        raise SystemExit("Unexpected public source profile")
+    if any(not catalog["sources"][source]["publishable"] for source in public_sources):
+        raise SystemExit("Public profile contains a non-publishable source")
+    if catalog["sources"]["sigif"]["publishable"]:
+        raise SystemExit("SIGIF must remain non-publishable")
 
     icv_assets = list(icv["geometry_assets"]) + list(icv["attributes"].values())
     effis_assets = [item for item in recent["assets"] if item["kind"] == "effis_perimeters"]
-    if len(icv_assets) != 38 or len(effis_assets) != 2:
+    egif_assets = [egif["asset"]]
+    if len(icv_assets) != 38 or len(effis_assets) != 2 or egif_assets[0].get("record_count") != 9175:
         raise SystemExit("Unexpected public asset count")
 
     selected = []
     records = []
-    for asset in icv_assets + effis_assets:
+    for asset in icv_assets + effis_assets + egif_assets:
         relative = Path(asset["url"])
         path = ROOT / relative
         if not path.is_file() or path.stat().st_size != asset["bytes"] or sha256(path) != asset["sha256"]:
@@ -101,6 +113,9 @@ def main():
     serialized = json.dumps(public_recent, ensure_ascii=False, sort_keys=True).lower()
     if "sigif" in serialized or "candidate" in serialized:
         raise SystemExit("Forbidden recent-source metadata in public bundle")
+    egif_serialized = json.dumps(egif, ensure_ascii=False, sort_keys=True).lower()
+    if "original_attributes" in egif_serialized or egif["metrics"]["geometries"] != 0:
+        raise SystemExit("EGIF public manifest contains forbidden attributes or geometry")
 
     with tempfile.TemporaryDirectory(dir=str(args.output.parent if args.output.parent.exists() else ROOT)) as directory:
         temporary_manifest = Path(directory) / "assets-manifest.json"
@@ -108,6 +123,9 @@ def main():
         relative_manifest = Path("data/web/gva/recent/assets-manifest.json")
         selected.append((temporary_manifest, relative_manifest))
         records.append({"path": relative_manifest.as_posix(), "bytes": temporary_manifest.stat().st_size, "sha256": sha256(temporary_manifest)})
+        relative_egif_manifest = Path("data/web/gva/egif/assets-manifest.json")
+        selected.append((args.egif_manifest, relative_egif_manifest))
+        records.append({"path": relative_egif_manifest.as_posix(), "bytes": args.egif_manifest.stat().st_size, "sha256": sha256(args.egif_manifest)})
         deterministic_archive(args.output, selected)
 
     manifest = {
@@ -117,12 +135,15 @@ def main():
         "archive": {"bytes": args.output.stat().st_size, "sha256": sha256(args.output)},
         "contents": {
             "file_count": len(records),
+            "data_asset_count": len(icv_assets) + len(effis_assets) + len(egif_assets),
+            "manifest_file_count": 2,
             "uncompressed_bytes": sum(item["bytes"] for item in records),
             "icv_data_assets": len(icv_assets),
             "effis_data_assets": len(effis_assets),
+            "egif_data_assets": len(egif_assets),
             "files": sorted(records, key=lambda item: item["path"]),
         },
-        "excluded": ["SIGIF", "SIGIF-EFFIS link candidates", "raw", "processed", "benchmarks"],
+        "excluded": ["SIGIF", "SIGIF-EFFIS link candidates", "raw", "processed", "EGIF XML", "OCR/annual reports", "benchmarks", "original_attributes"],
     }
     atomic_json(args.bundle_manifest, manifest)
     print(json.dumps({"bundle": str(args.output), **manifest["archive"], **manifest["contents"]}, indent=2))

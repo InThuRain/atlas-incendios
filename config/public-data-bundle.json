@@ -2,19 +2,32 @@
   "schema_version": 1,
   "repository": "InThuRain/atlas-incendios",
   "release": {
-    "tag": "public-data-v3",
-    "asset_name": "atlas-public-data-v3.tar.gz"
+    "tag": "public-data-v4",
+    "asset_name": "atlas-public-data-v4.tar.gz"
   },
   "archive": {
-    "bytes": 11681915,
-    "sha256": "0e8ccf5edb1e04d369c3aa6b78bab47cb2ff13a9d09bc12a089ed4f2a572e4b2"
+    "bytes": 11811217,
+    "sha256": "87e3265ea7a573260a733a2fa989e50d5e5b763acdc15207a0401793ec8f7b3c"
   },
   "contents": {
-    "file_count": 41,
-    "uncompressed_bytes": 74770947,
+    "file_count": 43,
+    "data_asset_count": 41,
+    "manifest_file_count": 2,
+    "uncompressed_bytes": 77124502,
     "icv_data_assets": 38,
     "effis_data_assets": 2,
+    "egif_data_assets": 1,
     "files": [
+      {
+        "path": "data/web/gva/egif/assets-manifest.json",
+        "bytes": 7849,
+        "sha256": "7b021630f52e73f62050cdcf5ccd4670c96ae73e90694651518f911dd70c6fa8"
+      },
+      {
+        "path": "data/web/gva/egif/records-1968-1992.json",
+        "bytes": 2345706,
+        "sha256": "2f65d1e73e677bcd1b478186c36da0d7e5211af26b068b2f278af1058ebad3e6"
+      },
       {
         "path": "data/web/gva/fires.json",
         "bytes": 7657862,
@@ -227,6 +240,9 @@
     "SIGIF-EFFIS link candidates",
     "raw",
     "processed",
-    "benchmarks"
+    "EGIF XML",
+    "OCR/annual reports",
+    "benchmarks",
+    "original_attributes"
   ]
 }
