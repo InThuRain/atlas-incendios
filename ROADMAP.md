@@ -39,6 +39,13 @@ Objetivo: tener un piloto local fiable y agradable de usar.
 - [x] CV-3.4: publicar el perfil histórico 1968–2026 mediante el bundle
   inmutable `public-data-v4`, con EGIF + ICV + EFFIS y verificación real de
   GitHub Pages el 23/08/2026; SIGIF y candidatos permanecen excluidos.
+- [x] CV-3.5: auditar los campos espaciales EGIF 1968–1992 y documentar que
+  8.565 partes conservan pares hoja/cuadrícula nominales de 10 × 10 km, pero
+  ninguno es representable todavía al faltar la clave cartográfica histórica,
+  datum, husos y reglas de borde; no se han creado geometrías.
+- [ ] CV-3.6: solicitar a MITECO/ADCIF y al Centro Geográfico del Ejército/IGN
+  la clave oficial del sistema hoja/cuadrícula IGE 1:200.000 y validar solo
+  después posibles celdas diagnósticas, sin convertirlas en perímetros.
 - [ ] Completar la transcripción y contraste controlado de los anuarios
   definitivos 1968–1991; el OCR de CV-3.2 solo localiza tablas candidatas.
 - [ ] Auditar identidad de episodios multiparte, empezando por Marines–Altura

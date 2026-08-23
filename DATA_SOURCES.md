@@ -109,6 +109,28 @@ categoría propia y no las fusiona con una etiqueta ICV. La tabla completa y los
 recuentos quedan en `CV_3_3_HISTORICAL_WEB_INTEGRATION.md` y en el manifiesto
 reproducible `data/web/gva/egif/assets-manifest.json` (salida ignorada).
 
+### Referencias espaciales históricas CV-3.5
+
+La cifra de CV-3.2 de 8.565 partes con dato espacial corresponde exactamente a
+8.565 pares simultáneos `hoja` + `cuadricula`; no hay casos con un solo
+componente. Los otros 610 partes carecen de ambos. Se observan seis hojas, 166
+códigos de cuadrícula y 270 pares únicos.
+
+La documentación oficial de MITECO identifica el sistema inicial EGIF como una
+cuadrícula nominal UTM de 10 × 10 km referida a hojas 1:200.000 del Instituto
+Geográfico del Ejército. Sin embargo, no se ha localizado la tabla histórica de
+conversión, datum, husos, orientación/origen de la cuadrícula ni reglas de borde.
+Por ello los 8.565 pares quedan como `B_PROBABLE`, ninguno alcanza
+`A_CONFIRMED` y no se ha creado ninguna geometría. `geometry=null` se mantiene
+para los 9.175 partes.
+
+El inventario completo, la evidencia y la clasificación reproducible están en
+`CV_3_5_EGIF_SPATIAL_REFERENCE_AUDIT.md` y
+`data/sources/egif_spatial_reference_audit.json`. Una futura cartografía exige
+obtener de MITECO/ADCIF o del organismo cartográfico competente la clave oficial
+del sistema; el municipio solo podrá utilizarse como contraste independiente,
+nunca para elegir una celda.
+
 ## 2. Generalitat Valenciana / ICV
 
 Fuente muy importante para el piloto.

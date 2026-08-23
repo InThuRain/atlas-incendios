@@ -251,6 +251,21 @@ Leaflet. Un parte seleccionado abre ficha lateral, pero no popup ni
 autoencuadre. La consulta puntual ignora esos registros y explica por qué no
 pueden evaluarse espacialmente.
 
+Las referencias históricas EGIF `hoja` + `cuadricula` pertenecen a un canal
+conceptual adicional y no alteran este contrato:
+
+```text
+administrative record (EGIF) ──0..1──> spatial reference
+                                  ≠ fire geometry / perimeter
+```
+
+Solo una referencia con semántica, clave de conversión, datum, huso y límites
+documentados (`A_CONFIRMED`) podrá producir en el futuro una
+`spatial_reference_geometry`. CV-3.5 no encontró ninguna: 8.565 pares son
+`B_PROBABLE` y 610 partes no tienen pareja. Una celda eventual se almacenará una
+sola vez y los partes se relacionarán con ella, sin repetir geometría ni usarla
+en recurrencia puntual, superficie quemada o Historia de un lugar.
+
 La cabecera admite una futura identidad gráfica sin solicitar assets todavía.
 `index.html` contiene metadatos Open Graph textuales y puntos de extensión
 documentados para logo, `favicon.svg` y `og:image`; no se enlazará ningún recurso

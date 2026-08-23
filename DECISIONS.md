@@ -306,6 +306,28 @@ raw, processed, XML/OCR, benchmarks y `original_attributes` quedan fuera. Cada
 actualización futura requiere un bundle nuevo y una activación manual del
 workflow; un push ordinario no publica datos.
 
+## 2026-08-23 — Referencia espacial EGIF separada y promoción cerrada por evidencia
+
+Los campos históricos `hoja` + `cuadricula` se modelarán, si llegan a poder
+decodificarse, como una referencia espacial documental distinta de la geometría
+del incendio. Solo el estado `A_CONFIRMED` —semántica, clave de conversión,
+datum, huso y límites reproducibles documentados— podrá generar una
+`spatial_reference_geometry`. Los estados B/C/D conservan únicamente los
+valores originales y `geometry=null`.
+
+**Motivo:** MITECO documenta para el sistema inicial EGIF celdas UTM nominales
+de 10 × 10 km referidas a hojas IGE 1:200.000, pero CV-3.5 no ha localizado la
+tabla histórica de conversión ni los parámetros geodésicos y reglas de borde.
+Los 8.565 pares observados son formalmente consistentes y quedan como
+`B_PROBABLE`; ninguno es A.
+
+**Consecuencias:** no se generan centroides, celdas ni validaciones espaciales
+por ajuste a municipios. Una futura implementación almacenará celdas únicas y
+relaciones parte→celda, con simbología inequívoca, y no las usará como
+perímetros, superficie quemada, recurrencia exacta o contención puntual. CV-3.6
+debe obtener primero la clave oficial de MITECO/ADCIF o del organismo
+cartográfico competente.
+
 ## Plantilla para nuevas decisiones
 
 ```markdown
