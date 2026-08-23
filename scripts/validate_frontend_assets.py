@@ -126,6 +126,7 @@ def main():
     expected_paths = {local_path(args.asset_dir, asset["url"]).resolve() for asset in assets}
     runtime_manifest = args.asset_dir / "manifest.json"
     recent_manifest = args.asset_dir / "recent/assets-manifest.json"
+    egif_manifest = args.asset_dir / "egif/assets-manifest.json"
     if runtime_manifest.exists() or recent_manifest.exists():
         if not runtime_manifest.exists() or not recent_manifest.exists():
             raise ValidationError("CV-2.3 runtime/recent manifests must exist together")
@@ -135,6 +136,10 @@ def main():
             local_path(args.asset_dir, asset["url"]).resolve()
             for asset in recent_payload["assets"]
         )
+    if egif_manifest.exists():
+        expected_paths.add(egif_manifest.resolve())
+        egif_payload = load_json(egif_manifest)
+        expected_paths.add(local_path(args.asset_dir, egif_payload["asset"]["url"]).resolve())
     actual_paths = {
         path.resolve() for path in args.asset_dir.rglob("*") if path.is_file()
     }

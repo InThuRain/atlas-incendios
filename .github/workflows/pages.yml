@@ -40,11 +40,13 @@ jobs:
         run: |
           python scripts/validate_frontend_assets.py
           python scripts/validate_recent_frontend_assets.py --public-only
+          python scripts/validate_egif_frontend_assets.py
           python - <<'PY'
           import json
           manifest = json.load(open('data/web/gva/manifest.json', encoding='utf-8'))
+          catalog = json.load(open('config/sources-gva.json', encoding='utf-8'))
           assert manifest['publication_guard']['all_included_sources_publishable'] is True
-          assert set(manifest['sources']) == {'icv', 'effis'}
+          assert set(manifest['sources']) == set(catalog['profiles']['public']['sources'])
           serialized = json.dumps(manifest).lower()
           assert 'sigif' not in serialized and 'candidate' not in serialized
           PY

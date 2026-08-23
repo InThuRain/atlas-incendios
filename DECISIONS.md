@@ -268,6 +268,26 @@ no sustituye una prueba en móviles físicos de gama baja. Si aparecen cierres o
 latencia seria, se evaluará un resumen anual independiente o carga diferida,
 sin introducir PMTiles ni cambiar de renderizador dentro de UX-2.
 
+## 2026-08-23 — EGIF web como registros compactos sin capa cartográfica
+
+Los 9.175 partes EGIF 1968–1992 se sirven en un único JSON compacto con una
+lista de campos y filas posicionales. El cargador los expone como registros
+administrativos separados de las features Leaflet; todos conservan
+`geometry=null`, `identity_status=source_record_only` y
+`episode_identity_status=unresolved`.
+
+**Motivo:** el JSON de objetos legible medía 5.659.045 bytes. La misma
+información en filas con esquema explícito mide 2.345.706 bytes y 123.463 bytes
+gzip, sin introducir un formato, librería o servidor nuevos. Mantener el canal
+separado impide inventar una representación espacial y permite usar timeline,
+filtros, métricas y ficha.
+
+**Consecuencias:** EGIF puede marcarse `publishable=true` bajo las condiciones
+MITECO ya auditadas y entrar en los perfiles `development` y `public`, pero la
+web desplegada no cambia hasta aprobar y versionar un nuevo bundle. La categoría
+canónica `accidental` se conserva aparte para códigos EGIF 3xx; no se fuerza
+bajo la etiqueta combinada usada por ICV.
+
 ## Plantilla para nuevas decisiones
 
 ```markdown

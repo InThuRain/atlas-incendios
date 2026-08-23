@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "source": "egif",
+  "years": {
+    "min": 1968,
+    "max": 1992
+  },
+  "municipalities": {
+    "catalog_path": "data/raw/recent/gva/snapshots/20260819T174426Z/boundary/icv_municipalities.geojson",
+    "id_field": "cod_ine_mun",
+    "name_field": "nom_mun",
+    "policy": "Accept only municipality_codine values already resolved by the EGIF official linked-data dictionary and present in the canonical official municipality catalogue; do not use textual similarity."
+  },
+  "causes": {
+    "dictionary_path": "data/raw/egif/gva/1968_1992/dictionaries/causes.sparql.json",
+    "vocabulary_path": "config/ui-vocabularies.json",
+    "mapping_basis": "Exact EGIF source codes and their official public dictionary labels; 2xx are negligence subcauses and 3xx are accidental subcauses.",
+    "source_code_mapping": {
+      "100": "lightning",
+      "210": "negligence",
+      "220": "negligence",
+      "230": "negligence",
+      "240": "negligence",
+      "250": "negligence",
+      "260": "negligence",
+      "290": "negligence",
+      "310": "accidental",
+      "320": "accidental",
+      "330": "accidental",
+      "340": "accidental",
+      "400": "intentional",
+      "500": "unknown",
+      "600": "rekindle"
+    }
+  },
+  "coverage_regimes": [
+    {
+      "id": "selective",
+      "year_min": 1968,
+      "year_max": 1979,
+      "label": "cobertura selectiva",
+      "description": "Serie histórica selectiva: la ausencia de un parte no demuestra ausencia de incendio."
+    },
+    {
+      "id": "transitional",
+      "year_min": 1980,
+      "year_max": 1991,
+      "label": "periodo de transición y ampliación de cobertura",
+      "description": "La recogida se amplía, pero la serie todavía no debe tratarse como homogénea ni completa."
+    },
+    {
+      "id": "systematic_or_near_systematic",
+      "year_min": 1992,
+      "year_max": 1992,
+      "label": "sistema más sistemático o casi sistemático",
+      "description": "Cobertura más sistemática o casi sistemática; no se afirma cobertura completa."
+    }
+  ]
+}

@@ -50,13 +50,15 @@
     "source_fields": {
       "icv": "g_caus_txt (Grupo Causa Texto; text field without coded domain in the inventoried ArcGIS layers)",
       "sigif": "Causa (public provisional-statistics text column)",
-      "effis": "No cause attribute in the EFFIS RDA snapshot used by the viewer"
+      "effis": "No cause attribute in the EFFIS RDA snapshot used by the viewer",
+      "egif": "idcausa resolved through the official public EGIF linked-data cause dictionary"
     },
     "categories": {
       "intentional": "Intencionado",
       "lightning": "Rayo",
       "negligence": "Negligencia",
       "negligence_and_accidental": "Negligencias y causas accidentales",
+      "accidental": "Accidental",
       "rekindle": "Incendio reproducido",
       "other": "Otras causas",
       "unknown": "Desconocida",
@@ -81,7 +83,8 @@
     "non_equivalence_notes": [
       "Negligencia is not merged with Negligencias y Causas accidentales because the latter explicitly includes accidental causes.",
       "Desconocida is not merged with En investigación because the source labels describe different administrative states.",
-      "EFFIS RDA perimeters receive null cause fields; no cause is inferred from another source."
+      "EFFIS RDA perimeters receive null cause fields; no cause is inferred from another source.",
+      "EGIF 3xx source codes remain a distinct Accidental category; they are not merged into either Negligencia or the combined ICV label Negligencias y causas accidentales."
     ]
   }
 }

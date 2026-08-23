@@ -5,6 +5,9 @@ export class DatasetLoader {
     this.manifest = null;
     this.fires = [];
     this.fireById = new Map();
+    this.egifRecords = [];
+    this.egifRecordById = new Map();
+    this.egifFieldIndex = new Map();
     this.jsonCache = new Map();
     this.provenanceById = new Map();
     this.candidatesBySigif = new Map();
@@ -57,6 +60,22 @@ export class DatasetLoader {
     this.fireById = new Map(this.fires.map(fire => [fire.fire_id, fire]));
   }
 
+  async ensureEgifRecords() {
+    if (!this.manifest.egif || this.egifRecords.length) return;
+    const asset = this.manifest.egif.asset;
+    const payload = await this.fetchJson(asset.url, {kind: asset.kind, estimatedGzipBytes: asset.gzip_bytes});
+    if (!Array.isArray(payload.records) || payload.records.length !== asset.record_count) throw new Error(`Recuento EGIF inesperado en ${asset.url}`);
+    if (!Array.isArray(payload.fields) || payload.fields.join('|') !== asset.fields.join('|')) throw new Error('Esquema EGIF inesperado');
+    this.egifFieldIndex = new Map(payload.fields.map((field, index) => [field, index]));
+    if (payload.records.some(record => this.egifValue(record, 'geometry') !== null)) throw new Error('EGIF contiene una geometría inesperada');
+    this.egifRecords = payload.records;
+    this.egifRecordById = new Map(this.egifRecords.map(record => [this.egifValue(record, 'fire_id'), record]));
+  }
+
+  egifValue(record, field) {
+    return Array.isArray(record) ? record[this.egifFieldIndex.get(field)] : record[field];
+  }
+
   icvAssets(level, provinces, fromYear, toYear) {
     if (!this.manifest.icv) return [];
     const blocks = new Set(this.manifest.icv.temporal_blocks
@@ -97,7 +116,13 @@ export class DatasetLoader {
     const started = performance.now();
     const assets = [];
     const jobs = [];
-    if (sources.has('icv') && fromYear <= 2024 && this.manifest.icv) {
+    let administrativeRecords = [];
+    if (sources.has('egif') && this.manifest.egif) {
+      await this.ensureEgifRecords();
+      assets.push(this.manifest.egif.asset);
+      administrativeRecords = this.egifRecords;
+    }
+    if (sources.has('icv') && this.manifest.icv && fromYear <= this.manifest.sources.icv.year_max && toYear >= this.manifest.sources.icv.year_min) {
       await this.ensureIcvFires();
       for (const asset of this.icvAssets(level, provinces, fromYear, toYear)) {
         assets.push(asset); jobs.push(this.loadAsset({...asset, kind: 'icv_geometry'}, 'icv'));
@@ -110,7 +135,7 @@ export class DatasetLoader {
       }
     }
     if (toYear >= 2025 && sources.has('sigif') && sources.has('effis')) await this.ensureCandidates(qualityDebug);
-    return {level, assets, features: (await Promise.all(jobs)).flat(), loadMs: performance.now() - started,
+    return {level, assets, features: (await Promise.all(jobs)).flat(), administrativeRecords, loadMs: performance.now() - started,
       rawBytes: assets.reduce((sum, asset) => sum + asset.bytes, 0),
       estimatedGzipBytes: assets.reduce((sum, asset) => sum + asset.gzip_bytes, 0)};
   }
@@ -132,6 +157,7 @@ export class DatasetLoader {
   }
 
   debugSnapshot() {
-    return {...this.metrics, cachedUrls: [...this.jsonCache.keys()], candidateCount: [...this.candidatesBySigif.values()].flat().length};
+    return {...this.metrics, cachedUrls: [...this.jsonCache.keys()], candidateCount: [...this.candidatesBySigif.values()].flat().length,
+      egifAdministrativeRecordCount: this.egifRecords.length};
   }
 }

@@ -6,6 +6,23 @@ los textos legales enlazados ni concede derechos adicionales.
 
 ## Perfil público de datos
 
+### EGIF / MITECO 1968–1992
+
+- **Fuente:** Estadística General de Incendios Forestales, Ministerio para la
+  Transición Ecológica y el Reto Demográfico.
+- **Condiciones generales de reutilización:**
+  <https://www.datosabiertos.miteco.gob.es/es/aviso-legal.html>
+- **Fuente estadística oficial:**
+  <https://www.miteco.gob.es/es/biodiversidad/temas/incendios-forestales/estadisticas-datos.html>
+- **Atribución:** `Origen de los datos: Ministerio para la Transición Ecológica
+  y el Reto Demográfico.`
+
+El atlas podrá publicar, previa aprobación específica del bundle, un derivado ligero
+de partes administrativos 1968–1992. Se han seleccionado y canonizado
+atributos; no se han creado geometrías, fusionado partes ni inferido episodios.
+La fecha de adquisición y los metadatos de transformación acompañan al asset.
+El atlas no implica participación, patrocinio ni respaldo de MITECO.
+
 ### Incendios forestales de la Comunitat Valenciana 1993–2024
 
 - **Fuente/publicador técnico:** Institut Cartogràfic Valencià / Generalitat.

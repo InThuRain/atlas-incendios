@@ -13,10 +13,11 @@ ROOT = Path(__file__).resolve().parents[1]
 def parse_args():
     parser = argparse.ArgumentParser()
     parser.add_argument("--profile", choices=("development", "public"), default="development")
-    parser.add_argument("--include-source", action="append", choices=("icv", "sigif", "effis"))
+    parser.add_argument("--include-source", action="append", choices=("egif", "icv", "sigif", "effis"))
     parser.add_argument("--catalog", type=Path, default=ROOT / "config/sources-gva.json")
     parser.add_argument("--icv-manifest", type=Path, default=ROOT / "config/datasets-gva.json")
     parser.add_argument("--recent-manifest", type=Path, default=ROOT / "data/web/gva/recent/assets-manifest.json")
+    parser.add_argument("--egif-manifest", type=Path, default=ROOT / "data/web/gva/egif/assets-manifest.json")
     parser.add_argument("--output", type=Path)
     return parser.parse_args()
 
@@ -64,6 +65,7 @@ def main():
 
     icv = read_json(args.icv_manifest) if "icv" in requested else None
     recent = read_json(args.recent_manifest) if set(requested) & {"sigif", "effis"} else None
+    egif = read_json(args.egif_manifest) if "egif" in requested else None
     active = {source: catalog["sources"][source] for source in requested}
     maximum = max(item["year_max"] for item in active.values())
     minimum = min(item["year_min"] for item in active.values())
@@ -78,7 +80,7 @@ def main():
                 continue
             recent_assets.append(asset)
     runtime = {
-        "schema_version": 2,
+        "schema_version": 3,
         "profile": args.profile,
         "years": {
             "min": catalog["timeline"]["min_year"] if args.profile == "development" else minimum,
@@ -94,6 +96,19 @@ def main():
             "temporal_blocks": icv["temporal_blocks"],
             "geometry_assets": icv["geometry_assets"],
         } if icv else None),
+        "egif": ({
+            "entity_type": egif["entity_type"],
+            "episode_identity_status": egif["episode_identity_status"],
+            "geometry_availability": egif["geometry_availability"],
+            "asset": egif["asset"],
+            "metrics": egif["metrics"],
+            "annual_counts": egif["annual_counts"],
+            "coverage_regimes": egif["coverage_regimes"],
+            "cause_mapping": egif["cause_mapping"],
+            "municipality_mapping": egif["municipality_mapping"],
+            "provenance": egif["provenance"],
+            "validation": egif["validation"],
+        } if egif else None),
         "recent": ({
             "snapshot_id": recent["snapshot_id"],
             "acquired_at": recent["acquired_at"],

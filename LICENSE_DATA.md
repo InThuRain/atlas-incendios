@@ -4,11 +4,36 @@ Este archivo se refiere a los datos valencianos utilizados por el Atlas de
 Incendios. No concede una licencia sobre el código del proyecto ni sustituye las
 condiciones establecidas por la Generalitat Valenciana.
 
+## EGIF / MITECO 1968–1992
+
+El derivado histórico contiene partes administrativos de la Estadística
+General de Incendios Forestales, no perímetros ni episodios físicos
+deduplicados. Las condiciones generales de reutilización de MITECO permiten
+reproducción, distribución, modificación, adaptación, extracción y combinación
+si se conserva el sentido de la información, la fecha y los metadatos, se cita
+el origen y no se sugiere respaldo ministerial.
+
+La atribución que debe acompañar al derivado es:
+
+> Origen de los datos: Ministerio para la Transición Ecológica y el Reto
+> Demográfico.
+
+El asset web aplica selección de atributos, nombres municipales canónicos
+validados por CODINE y una correspondencia explícita de códigos de causa. No
+crea geometrías, no fusiona partes y no incluye los atributos XML completos.
+La adquisición del snapshot fuente fue el 19 de agosto de 2026. Sus parámetros,
+checksums y limitaciones se conservan en
+`data/sources/egif_gva_1968_1992_manifest.json` y
+`CV_3_2_EGIF_AUDIT.md`. Estas condiciones permiten marcar el derivado EGIF
+como `publishable=true`; su incorporación a la web pública requiere todavía
+aprobación y un nuevo bundle reproducible.
+
 ## Estado de publicación
 
-**Los datasets web derivados todavía no están publicados.** Una aclaración
-escrita del Institut Cartogràfic Valencià, recibida el 20 de agosto de 2026,
-resolvió los bloqueos documentales de CV-1.5b:
+El perfil público desplegado contiene actualmente derivados ICV y EFFIS. El
+derivado EGIF preparado en CV-3.3 todavía no está publicado y SIGIF continúa
+excluido. Una aclaración escrita del Institut Cartogràfic Valencià, recibida el
+20 de agosto de 2026, resolvió los bloqueos documentales de CV-1.5b:
 
 1. CC BY 4.0 permite la redistribución pública;
 2. la aceptación de las condiciones es tácita;
@@ -16,7 +41,7 @@ resolvió los bloqueos documentales de CV-1.5b:
 4. la propiedad y atribución de este dataset corresponde a Generalitat, no al
    ICV.
 
-Por tanto, los derivados ICV pueden incorporarse a un futuro perfil público con
+Por tanto, los derivados ICV pueden incorporarse al perfil público con
 la atribución y el aviso de modificación indicados aquí. Este cambio no publica
 archivos automáticamente ni alcanza a SIGIF, que mantiene condiciones propias.
 

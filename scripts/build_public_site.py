@@ -30,16 +30,16 @@ def main():
     runtime_path = args.asset_dir / "manifest.json"
     runtime = json.loads(runtime_path.read_text(encoding="utf-8"))
     serialized = runtime_path.read_text(encoding="utf-8").lower()
-    if runtime["profile"] != "public" or set(runtime["sources"]) != {"icv", "effis"}:
-        raise SystemExit("Runtime manifest is not the public ICV + EFFIS profile")
+    if runtime["profile"] != "public" or set(runtime["sources"]) != {"egif", "icv", "effis"}:
+        raise SystemExit("Runtime manifest is not the public EGIF + ICV + EFFIS profile")
     if not runtime["publication_guard"]["all_included_sources_publishable"]:
         raise SystemExit("Public publication guard failed")
     if "sigif" in serialized or "candidate" in serialized:
         raise SystemExit("Forbidden source or candidate reference in public runtime manifest")
 
-    assets = list(runtime["icv"]["geometry_assets"]) + list(runtime["icv"]["attributes"].values()) + list(runtime["recent"]["assets"])
-    if len(assets) != 40:
-        raise SystemExit("Expected exactly 40 public data assets")
+    assets = [runtime["egif"]["asset"]] + list(runtime["icv"]["geometry_assets"]) + list(runtime["icv"]["attributes"].values()) + list(runtime["recent"]["assets"])
+    if len(assets) != 41:
+        raise SystemExit("Expected exactly 41 public data assets")
 
     args.output.parent.mkdir(parents=True, exist_ok=True)
     with tempfile.TemporaryDirectory(dir=str(args.output.parent), prefix="public-site-") as directory:

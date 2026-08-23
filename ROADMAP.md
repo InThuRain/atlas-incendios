@@ -31,10 +31,11 @@ Objetivo: tener un piloto local fiable y agradable de usar.
 - [x] CV-3.2: cuantificar municipio, superficie, coordenadas, CRS, duplicados e
   identificadores problemáticos por provincia/año; contrastar completamente el
   anuario definitivo de 1992 y generar un índice OCR de los 25 anuarios.
-- [ ] CV-3.3: generar derivados web ligeros de los partes EGIF históricos e
+- [x] CV-3.3: generar derivados web ligeros de los partes EGIF históricos e
   integrarlos en timeline, métricas y listados como registros sin geometría,
   mostrando régimen de cobertura y sin contar partes como episodios físicos
-  únicos.
+  únicos. Implementación y perfil público candidato validados localmente el
+  23/08/2026; el bundle y despliegue se realizan separadamente en CV-3.4.
 - [ ] Completar la transcripción y contraste controlado de los anuarios
   definitivos 1968–1991; el OCR de CV-3.2 solo localiza tablas candidatas.
 - [ ] Auditar identidad de episodios multiparte, empezando por Marines–Altura

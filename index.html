@@ -21,7 +21,7 @@
         <p id="coverage-eyebrow" class="eyebrow">Cobertura definida por los manifiestos</p>
         <!-- Punto de extensión para situar el futuro logo del Atlas junto al título. -->
         <div class="brand-title-row"><h1>Atlas histórico de incendios</h1></div>
-        <p class="intro">Explora los incendios identificados y sus perímetros disponibles en todo el País Valencià.</p>
+        <p class="intro">Explora partes históricos, incendios identificados y perímetros disponibles en todo el País Valencià, conservando sus distintas fuentes y niveles de precisión.</p>
         <div class="viewer-status-row">
           <div id="status" class="status" role="status" aria-live="polite">Preparando el visor…</div>
           <span id="level-badge" class="badge">overview</span>
@@ -124,7 +124,7 @@
       <section class="panel methodology" aria-labelledby="methodology-title">
         <h2 id="methodology-title">Fuentes y metodología</h2>
         <div id="methodology-content" class="result-copy"></div>
-        <p class="notice">Este atlas es un proyecto independiente y no es un producto oficial del ICV, la Generalitat Valenciana, EFFIS ni Copernicus.</p>
+        <p class="notice">Este atlas es un proyecto independiente y no es un producto oficial ni implica respaldo de MITECO, el ICV, la Generalitat Valenciana, EFFIS o Copernicus.</p>
       </section>
       <footer class="data-note"><p>No se interpreta la igualdad geométrica ni una correspondencia candidata como recurrencia o identidad confirmada.</p><p><a href="LICENSE_DATA.md">Licencia y procedencia de los datos</a> · <a href="THIRD_PARTY_LICENSES.md">Fuentes y licencias de terceros</a></p><p>Periodo activo: <span id="active-period">—</span></p></footer>
     </aside>
@@ -133,6 +133,7 @@
       <div id="map"></div>
       <div class="map-legend" aria-label="Leyenda de fuentes">
         <div class="temporal-legend"><span class="temporal-gradient"></span><span id="legend-year-old">1993</span> más antiguo · más reciente <span id="legend-year-new">2026</span></div>
+        <span id="legend-egif-row"><span class="legend-symbol legend-egif"></span> Parte EGIF · sin geometría individual<br></span>
         <span class="legend-symbol legend-icv"></span> Perímetro ICV · oficial consolidado<br>
         <span id="legend-sigif-row" hidden></span>
         <span class="legend-symbol legend-effis"></span> Perímetro EFFIS · satelital provisional

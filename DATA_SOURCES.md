@@ -94,6 +94,21 @@ El detalle, contraste 1992, anomalías y límites están en
 `CV_3_2_EGIF_AUDIT.md`. Los snapshots raw y normalizados continúan ignorados y
 no se han publicado.
 
+### Derivado web CV-3.3
+
+CV-3.3 reduce los 9.175 partes normalizados a un JSON web sin
+`original_attributes` y conserva `geometry=null` en todos los registros. El
+derivado mantiene identidad del parte, año, provincia, municipio canónico solo
+cuando CODINE ya estaba resuelto documentalmente, superficies, GIF forestal,
+causa codificada, régimen de cobertura y disponibilidad de hoja/cuadrícula.
+
+Los códigos EGIF se traducen de forma explícita: `100` rayo; `2xx`
+negligencias; `3xx` causas accidentales; `400` intencionado; `500` desconocida;
+`600` reproducido. La interfaz mantiene las causas accidentales históricas como
+categoría propia y no las fusiona con una etiqueta ICV. La tabla completa y los
+recuentos quedan en `CV_3_3_HISTORICAL_WEB_INTEGRATION.md` y en el manifiesto
+reproducible `data/web/gva/egif/assets-manifest.json` (salida ignorada).
+
 ## 2. Generalitat Valenciana / ICV
 
 Fuente muy importante para el piloto.

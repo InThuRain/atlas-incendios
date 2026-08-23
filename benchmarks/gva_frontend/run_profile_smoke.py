@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Exercise the public ICV + EFFIS profile under the Pages subpath."""
+"""Exercise the public EGIF + ICV + EFFIS profile under the Pages subpath."""
 
 import json
 import subprocess
@@ -30,12 +30,24 @@ def main():
     base = f"http://127.0.0.1:{server.server_port}/{root.name}/index.html"
     scenarios = {
         "initial_full_period": {},
+        "year_1968": {"from": 1968, "to": 1968, "sources": "egif"},
+        "year_1975": {"from": 1975, "to": 1975, "sources": "egif"},
+        "year_1986": {"from": 1986, "to": 1986, "sources": "egif"},
+        "year_1992": {"from": 1992, "to": 1992, "sources": "egif"},
         "year_1993": {"from": 1993, "to": 1993},
         "year_1994": {"from": 1994, "to": 1994},
         "year_2024": {"from": 2024, "to": 2024},
         "year_2025": {"from": 2025, "to": 2025},
         "year_2026": {"from": 2026, "to": 2026},
-        "full_period": {"from": 1993, "to": 2026},
+        "full_period": {"from": 1968, "to": 2026},
+        "historical_transition": {"scenario": "historical-transition"},
+        "egif_only": {"from": 1968, "to": 1992, "sources": "egif"},
+        "egif_alicante": {"from": 1968, "to": 1992, "sources": "egif", "view": "alicante"},
+        "egif_1992_gif": {"from": 1992, "to": 1992, "sources": "egif", "gif": 1},
+        "egif_cause": {"__hash": viewer_hash(**{"from": 1968, "to": 1992, "src": "egif", "cause": "accidental"})},
+        "egif_municipality": {"__hash": viewer_hash(lat=38.82, lng=-0.11, z=9, **{"from": 1986, "to": 1986, "src": "egif", "province": "alicante", "municipality": "03102", "entity": "egif-record:1986030531"})},
+        "egif_municipality_fit": {"view": "alicante", "from": 1986, "to": 1986, "sources": "egif", "scenario": "municipality-fit", "target_municipality": "03102"},
+        "egif_point_history": {"from": 1986, "to": 1986, "sources": "egif", "point": "-0.11,38.82"},
         "castellon_2024": {"view": "castellon", "from": 2024, "to": 2024},
         "valencia_2024": {"view": "valencia", "from": 2024, "to": 2024},
         "alicante_2024": {"view": "alicante", "from": 2024, "to": 2024},
@@ -80,7 +92,7 @@ def main():
         )
         manifest = json.loads(runtime.read_text(encoding="utf-8"))
         serialized = runtime.read_text(encoding="utf-8").lower()
-        require(set(manifest["sources"]) == {"icv", "effis"}, "Public source set")
+        require(set(manifest["sources"]) == {"egif", "icv", "effis"}, "Public source set")
         require(manifest["publication_guard"]["all_included_sources_publishable"], "Publication guard")
         require("sigif" not in serialized and "candidate" not in serialized, "No blocked source references")
 
@@ -108,22 +120,43 @@ def main():
 
         initial = results["initial_full_period"]["final"]
         require(initial["profile"] == "public", "Public profile marker")
-        require(initial["activeSources"] == ["icv", "effis"], "Public source controls")
-        require(initial["sourceControlIds"] == ["icv", "effis"], "No public SIGIF control")
+        require(initial["activeSources"] == ["egif", "icv", "effis"], "Public source controls")
+        require(initial["sourceControlIds"] == ["egif", "icv", "effis"], "Public includes EGIF and excludes SIGIF")
         require(not initial["sigifLegendVisible"] and not initial["sourceSeparationHelpVisible"], "No public SIGIF legend/help")
         require(initial["shareButtonVisible"] and initial["shareIconVisible"], "Public share button and SVG icon")
         require(initial["visibleSigifRecordCount"] == 0, "SIGIF excluded")
+        require(initial["visibleEgifRecordCount"] == 9175, "EGIF 1968-1992 reports")
         require(initial["visibleEffisPerimeterCount"] == 25, "EFFIS 2025-2026")
         require(initial["visibleIcvFireCount"] == 13738, "ICV full period")
-        require(initial["activeAssetCount"] == 14, "Twelve ICV and two EFFIS assets at start")
-        require(initial["loader"]["requests"] == 16, "Initial manifest, ICV attributes and fourteen geometry assets")
-        require(initial["years"] == {"from": 1993, "to": 2026}, "Public initial full period")
+        require(initial["activeAssetCount"] == 15, "EGIF, twelve ICV and two EFFIS assets at start")
+        require(initial["loader"]["requests"] == 17, "Initial manifest, EGIF, ICV attributes and fourteen geometry assets")
+        require(initial["years"] == {"from": 1968, "to": 2026}, "Public initial full period")
         require(not initial["territoryPanelPresent"], "No former territory panel")
         require(initial["scopeOptions"] == [{"value": "all", "label": "Todo el País Valencià"}, {"value": "castellon", "label": "Castelló"}, {"value": "valencia", "label": "València"}, {"value": "alicante", "label": "Alacant"}], "Public scope options")
-        require(initial["histogramBarCount"] == 34 and initial["timelineComplete"], "Public complete histogram")
+        require(initial["histogramBarCount"] == 59 and initial["timelineComplete"], "Public complete histogram")
         require("SIGIF" not in initial["coverageText"], "Public coverage hides SIGIF")
         require(EXPECTED_ICV_ATTRIBUTION in initial["methodologyText"], "Exact ICV attribution")
         require("Copernicus EMS / EFFIS" in initial["methodologyText"], "EFFIS attribution")
+        require("Origen de los datos: Ministerio para la Transición Ecológica y el Reto Demográfico." in initial["methodologyText"], "EGIF attribution")
+
+        historical_expected = {"1968": 113, "1975": 256, "1986": 385, "1992": 770}
+        for year, expected in historical_expected.items():
+            final = results["year_" + year]["final"]
+            require(final["visibleEgifRecordCount"] == expected and final["loadedGeometryCount"] == 0 and final["visiblePerimeterCount"] == 0, year + " has EGIF reports and zero geometry")
+            require("No existen perímetros individuales fiables" in final["statusText"], year + " explains the empty map")
+        transition = results["historical_transition"]["years"]
+        require([item["years"]["from"] for item in transition] == [1968, 1975, 1986, 1992, 1993], "Public historical transition")
+        require(transition[-2]["visibleEgifRecordCount"] == 770 and transition[-1]["visibleEgifRecordCount"] == 0 and transition[-1]["visibleIcvFireCount"] > 0, "Public 1992 to 1993 source boundary")
+        require(results["egif_only"]["final"]["visibleEgifRecordCount"] == 9175, "Public EGIF only")
+        require(results["egif_alicante"]["final"]["visibleEgifRecordCount"] == 2514, "Public historical Alicante")
+        require(results["egif_1992_gif"]["final"]["visibleEgifRecordCount"] == 9, "Public 1992 forest GIF")
+        require(results["egif_cause"]["final"]["visibleEgifRecordCount"] == 256, "Public EGIF cause mapping")
+        historical_municipality = results["egif_municipality"]["final"]
+        require(historical_municipality["municipalityFilter"] == "03102" and historical_municipality["visibleEgifRecordCount"] > 0 and historical_municipality["selectedGeometryId"] is None, "Public historical municipality without invented geometry")
+        require(historical_municipality["detailsSelectionVisible"] and not historical_municipality["selectionPopupVisible"], "Public EGIF report details without popup")
+        historical_fit = results["egif_municipality_fit"]
+        require(historical_fit["afterMunicipalityFit"]["municipalityFit"]["status"] == "historical-records-without-geometry" and historical_fit["afterMunicipalityFit"]["center"] == historical_fit["beforeMunicipalityFit"]["center"], "Public historical municipality keeps map view without invented location")
+        require("no tienen geometría individual fiable" in results["egif_point_history"]["point"]["pointHistoryText"], "Public point history excludes EGIF")
 
         for year in ("1993", "1994", "2024"):
             final = results["year_" + year]["final"]
@@ -139,13 +172,13 @@ def main():
         require(years[2]["visibleIcvFireCount"] == 0 and years[2]["visibleEffisPerimeterCount"] == 16, "2026 EFFIS")
 
         full = results["full_period"]["final"]
-        require(full["activeAssetCount"] == 14, "Full period uses 12 ICV + 2 EFFIS assets")
+        require(full["activeAssetCount"] == 15, "Full period uses EGIF + 12 ICV + 2 EFFIS assets")
         require(full["visiblePerimeterCount"] == 13764, "Full public perimeter count")
         require(full["visibleFireCount"] == 13738, "Full ICV fire count")
 
         histogram = results["histogram_year_1994"]["histogram"]
         require(histogram["years"] == {"from": 1994, "to": 1994}, "Public histogram click")
-        require(histogram["histogramBarCount"] == 34 and histogram["histogramSelectedYears"] == [1994], "Public histogram remains visible")
+        require(histogram["histogramBarCount"] == 59 and histogram["histogramSelectedYears"] == [1994], "Public histogram remains visible")
 
         for province in ("castellon", "valencia", "alicante"):
             require(results[province + "_2024"]["final"]["activeProvinces"] == [province], province + " filter")
@@ -166,7 +199,7 @@ def main():
             require("SIGIF" not in selection["detailsText"], case + " no hidden source claim")
         require(results["icv_only_2025"]["final"]["loadedGeometryCount"] == 0, "No source fallback")
         require(results["mobile_initial"]["final"]["mobileLayout"], "Mobile responsive layout")
-        require(results["mobile_initial"]["final"]["years"] == {"from": 1993, "to": 2026} and results["mobile_initial"]["final"]["activeAssetCount"] == 14, "Mobile public full-period initial load")
+        require(results["mobile_initial"]["final"]["years"] == {"from": 1968, "to": 2026} and results["mobile_initial"]["final"]["activeAssetCount"] == 15 and results["mobile_initial"]["final"]["visibleEgifRecordCount"] == 9175, "Mobile public full-period initial load")
         elx_fit = results["municipality_fit_elx"]["afterMunicipalityFit"]
         require(elx_fit["municipalityFit"]["status"] == "fit-visible-perimeters" and elx_fit["municipalityFit"]["perimeterCount"] > 1, "Public Elx municipality fit")
         require(elx_fit["municipalityFit"]["minimumRenderedPaddingPx"] >= 35, "Public Elx fit padding")
@@ -203,7 +236,7 @@ def main():
         require(multi["selectedVisibleGeometryCount"] == 2, "Public acceptance fire has two geometries")
         require(multi_reloaded["selectedGeometryId"] == "gva:geometry:2024:121:13606" and multi_reloaded["selectionPopupGeometryId"] == "gva:geometry:2024:121:13606", "Public multi-geometry permalink opens exact geometry")
         require(multi_reloaded["selectedGeometryHighlighted"] and multi_reloaded["detailsSelectionVisible"] and multi_reloaded["selectionPopupVisible"] and multi_reloaded["selectionPopupDomVisible"], "Public multi-geometry selection fully restored")
-        require(results["permalink_invalid"]["final"]["activeSources"] == ["icv", "effis"], "Invalid/blocked public source ignored")
+        require(results["permalink_invalid"]["final"]["activeSources"] == ["egif", "icv", "effis"], "Invalid/blocked public source ignored")
         require(initial["loader"]["candidateCount"] == 0, "No candidates loaded")
         require(not any("sigif" in url.lower() or "candidate" in url.lower()
                         for url in initial["loader"]["cachedUrls"]), "No forbidden URLs")

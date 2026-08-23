@@ -2,7 +2,7 @@
   "schema_version": 1,
   "territory": "comunitat_valenciana",
   "timeline": {
-    "min_year": 1993,
+    "min_year": 1968,
     "default_year": 2026
   },
   "query": {
@@ -12,13 +12,26 @@
   },
   "profiles": {
     "development": {
-      "sources": ["icv", "sigif", "effis"]
+      "sources": ["egif", "icv", "sigif", "effis"]
     },
     "public": {
-      "sources": ["icv", "effis"]
+      "sources": ["egif", "icv", "effis"]
     }
   },
   "sources": {
+    "egif": {
+      "label": "Estadística General de Incendios Forestales / MITECO",
+      "short_label": "EGIF/MITECO",
+      "entity_type": "historical_administrative_record",
+      "source_status": "historical_administrative_without_geometry",
+      "geometry_quality": "none",
+      "year_min": 1968,
+      "year_max": 1992,
+      "publishable": true,
+      "license_status": "MITECO_general_reuse_terms_allow_redistribution_and_transformed_derivatives_with_attribution_metadata_and_no_endorsement",
+      "attribution": "Origen de los datos: Ministerio para la Transición Ecológica y el Reto Demográfico.",
+      "methodology_url": "https://www.miteco.gob.es/es/biodiversidad/temas/incendios-forestales/estadisticas-datos.html"
+    },
     "icv": {
       "label": "Institut Cartogràfic Valencià / Generalitat Valenciana",
       "short_label": "ICV",

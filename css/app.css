@@ -129,6 +129,7 @@ select {
 .metric strong { display: block; color: var(--forest-dark); font-size: 1.02rem; line-height: 1.15; }
 .metric span { display: block; margin-top: 3px; color: var(--muted); font-size: .64rem; line-height: 1.25; }
 .metric.icv { border-top: 3px solid #27624b; }
+.metric.egif { border-top: 3px solid #b47734; }
 .metric.sigif { border-top: 3px solid #a94d28; }
 .metric.effis { border-top: 3px dashed #6a4fa3; }
 
@@ -139,6 +140,9 @@ select {
 .histogram button:hover, .histogram button:focus-visible { opacity: 1; filter: saturate(1.2); }
 .histogram button.in-range { opacity: .9; box-shadow: inset 0 0 0 1px rgba(20, 61, 48, .42); }
 .histogram button.single-year { opacity: 1; box-shadow: 0 0 0 2px var(--ember); }
+.histogram button.source-boundary { border-left: 2px solid rgba(23, 36, 33, .72); }
+.histogram button.coverage-boundary { box-shadow: inset 1px 0 rgba(180, 119, 52, .65); }
+.histogram button.single-year.source-boundary { box-shadow: 0 0 0 2px var(--ember); }
 .histogram .empty { background: #d7ded9; }
 .histogram .unknown { height: 3px !important; background: repeating-linear-gradient(90deg, #ccd5d0 0 2px, #eef2ef 2px 4px); }
 .histogram-scale { display: grid; grid-template-columns: 1fr auto 1fr; gap: 8px; margin-top: 4px; color: var(--muted); font-size: .61rem; }
@@ -151,6 +155,7 @@ select {
 .result-copy dt { color: var(--muted); }
 .result-copy dd { margin: 0; color: var(--ink); overflow-wrap: anywhere; }
 .reuse-warning { margin-top: 9px; padding: 8px; border-left: 3px solid var(--warning-line); background: var(--warning); color: #594b20; font-size: .7rem; }
+.historical-no-geometry { margin-top: 9px; padding: 8px; border-left: 3px solid #b47734; background: #fbf3e9; color: #61421e; font-size: .7rem; }
 .technical-details { margin-top: 9px; border-top: 1px solid var(--line); }
 .technical-details summary {
   display: flex;
@@ -210,6 +215,7 @@ select {
 .temporal-gradient { width: 72px; height: 8px; border-radius: 999px; background: linear-gradient(90deg, rgb(44, 123, 182), rgb(240, 82, 46)); }
 .map-legend .legend-symbol { display: inline-block; width: 16px; height: 10px; margin: 0 5px 0 0; vertical-align: middle; }
 .legend-icv { border: 2px solid #44534e; background: rgba(68, 83, 78, .2); }
+.legend-egif { height: 8px !important; border-top: 2px solid #b47734; border-bottom: 2px solid #b47734; background: transparent; }
 .legend-sigif { width: 10px !important; height: 10px !important; margin-left: 3px !important; border: 2px solid #fff; border-radius: 50%; outline: 2px solid #44534e; background: #9baaa4; }
 .legend-effis { border: 2px dashed #44534e; background: rgba(68, 83, 78, .14); }
 .candidate-note { margin-top: 9px; padding: 8px; border-left: 3px solid #7e68aa; background: #f5f1fb; color: #43345f; font-size: .7rem; }

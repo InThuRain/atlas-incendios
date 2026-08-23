@@ -95,8 +95,8 @@ def main():
         if public.returncode or blocked.returncode == 0:
             fail("Public profile guard failed")
         public_manifest = load(public_path)
-        if set(public_manifest["sources"]) != {"icv", "effis"} or public_manifest["icv"] is None:
-            fail("Public profile does not contain the publishable ICV and EFFIS sources")
+        if set(public_manifest["sources"]) != {"egif", "icv", "effis"} or public_manifest["icv"] is None or public_manifest["egif"] is None:
+            fail("Public profile does not contain the publishable EGIF, ICV and EFFIS sources")
         icv_source = public_manifest["sources"]["icv"]
         if (
             icv_source.get("copyright_holder") != "Generalitat"

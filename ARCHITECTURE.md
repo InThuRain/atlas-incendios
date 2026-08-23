@@ -243,6 +243,14 @@ oficial y las equivalencias de causa están declaradas en
 resolver. Este patrón deberá admitir catálogos territoriales distintos al
 generalizar el atlas a España.
 
+CV-3.3 añade registros administrativos sin geometría a un canal separado de
+las features cartográficas. `DatasetLoader` entrega `features` y
+`administrativeRecords`; solo las primeras llegan a `L.geoJSON`. De este modo
+EGIF participa en timeline, filtros, métricas y listado sin fabricar una capa
+Leaflet. Un parte seleccionado abre ficha lateral, pero no popup ni
+autoencuadre. La consulta puntual ignora esos registros y explica por qué no
+pueden evaluarse espacialmente.
+
 La cabecera admite una futura identidad gráfica sin solicitar assets todavía.
 `index.html` contiene metadatos Open Graph textuales y puntos de extensión
 documentados para logo, `favicon.svg` y `og:image`; no se enlazará ningún recurso
@@ -300,11 +308,13 @@ El recorrido de datos recientes es:
 raw CV-2.2 -> processed CV-2.2 -> web reducido CV-2.3 -> perfil de ejecución
 ```
 
-El perfil `development` habilita los assets locales ICV, SIGIF y EFFIS. El
+El perfil `development` habilita los assets locales EGIF, ICV, SIGIF y EFFIS. El
 perfil `public` solo admite fuentes con `publishable=true` y falla si se intenta
 forzar una fuente bloqueada. Desde la aclaración escrita del ICV de 20/08/2026,
-el perfil público incluye ICV y EFFIS; SIGIF permanece bloqueado. Componer un
-perfil no publica ni copia datos.
+el perfil público preparado por CV-3.3 incluye EGIF, ICV y EFFIS; SIGIF
+permanece bloqueado. Componer un perfil no publica ni copia datos. La web
+desplegada sigue usando el bundle anterior hasta que se apruebe y genere uno
+nuevo.
 
 Las entidades siguen separadas también en el navegador: `fire_id` ICV,
 `sigif_record_id` y `geometry_id`/`effis_id`. Los candidatos son relaciones
@@ -320,6 +330,8 @@ ignoradas y no serían reproducibles en CI. En su lugar, un bundle inmutable de
 Release contiene únicamente los 38 assets ICV, los 2 EFFIS y un manifiesto
 reciente saneado. `config/public-data-bundle.json` fija lista, tamaños y
 checksums; CI descarga, verifica y extrae el bundle antes de componer el perfil.
+CV-3.3 exige una futura revisión del bundle que añada exactamente el único
+asset EGIF validado; no se modifica ni publica ese bundle durante la fase local.
 
 El pipeline vuelve a aplicar el guard de `config/sources-gva.json`, ejecuta los
 validadores, monta un directorio estático autocontenido y lo entrega como
@@ -330,7 +342,7 @@ servidor.
 
 ## Timeline con cobertura heterogénea
 
-La futura extensión 1968–2026 debe representar la madurez de los datos además
+La extensión 1968–2026 representa la madurez de los datos además
 del año. El frontend contará por separado registros administrativos y
 perímetros disponibles y mostrará bandas visibles: histórico temprano EGIF
 1968–1979, transición 1980–1991, EGIF sistematizado desde 1992, cartografía ICV
