@@ -163,6 +163,31 @@ MITECO/ADCIF y CEGET/IGN-CNIG están en `CV_3_6_RESEARCH_CONTACT_PACKET.md`.
 La búsqueda del activo y la corrección de numeración se detallan en
 `CV_3_6B_HISTORICAL_GRID_ASSET_SEARCH.md`.
 
+### Inventario de perímetros históricos CV-4.1
+
+CV-4.1 localiza un primer vector de teledetección reutilizable: **ESFire30
+Causes**, UAH/CSIC, CC BY 4.0. La intersección diagnóstica de sus capas
+1985–1992 con el límite oficial localiza 710 polígonos en el País Valencià. Son
+áreas quemadas Landsat independientes, no perímetros EGIF ni enlaces
+administrativos confirmados. El README declara EPSG:25830 pero los `.prj`
+declaran ED50 / UTM 30N (EPSG:23030); el conflicto debe resolverse antes de
+crear derivados.
+
+También se documenta la existencia de una cartografía vectorial oficial anual
+de la Conselleria desde 1978 en la provincia de Valencia; para Alicante y
+Castellón la serie citada comienza en 1993. El activo 1978–1992 no está
+disponible y su licencia no se deduce de la del artículo que lo describe.
+
+Los trabajos NOAA-AVHRR y Landsat aportan metodología y mapas para incendios
+valencianos, especialmente en 1991, pero no se han localizado sus ficheros
+digitales ni licencias. El plan Chera–Sot contiene mapas de 1978–1992 con
+precisión histórica aproximada, insuficientes para digitalización responsable.
+
+El inventario, las 14 fuentes, el diagnóstico ESFire30 y la matriz de los 180
+partes GIF están en `CV_4_1_PRE1993_PERIMETER_SOURCE_INVENTORY.md` y
+`data/sources/gva_pre1993_perimeter_sources.json`. No se ha creado geometría ni
+modificado el visor.
+
 ## 2. Generalitat Valenciana / ICV
 
 Fuente muy importante para el piloto.

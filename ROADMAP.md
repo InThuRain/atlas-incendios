@@ -61,6 +61,14 @@ Objetivo: tener un piloto local fiable y agradable de usar.
   1992 y los seis pares de atributos idénticos, sin fusionar por proximidad.
 - [ ] Identificar cuáles tienen perímetro histórico recuperable.
 - [ ] Buscar planes de prevención y cartografía histórica.
+- [x] CV-4.1: inventariar fuentes de perímetros anteriores a 1993. Se localizan
+  710 polígonos Landsat ESFire30 para 1985–1992 y se documenta un archivo
+  oficial valenciano desde 1978 aún no disponible; no se crean geometrías ni
+  enlaces EGIF confirmados.
+- [ ] CV-4.2: adquirir y auditar ESFire30 tras aclarar su discrepancia de CRS,
+  solicitar la serie oficial Valencia 1978–1992 y recuperar los activos
+  NOAA/Landsat; mantener toda relación con EGIF como candidata hasta disponer
+  de evidencia independiente suficiente.
 - [ ] Solicitar a Generalitat/ICV y parques la cartografía histórica fuente de
   Chera–Sot de Chera y Mariola–Font Roja, incluida metodología, escala, CRS y
   condiciones de reutilización.

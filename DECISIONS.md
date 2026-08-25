@@ -328,6 +328,25 @@ perímetros, superficie quemada, recurrencia exacta o contención puntual. CV-3.
 debe obtener primero la clave oficial de MITECO/ADCIF o del organismo
 cartográfico competente.
 
+## 2026-08-25 — Perímetros históricos candidatos separados de los partes EGIF
+
+Los vectores y mapas históricos anteriores a 1993 se inventarían como
+`historical_geometry_candidate` independientes. Una coincidencia de año,
+cuadrícula, municipio o superficie con EGIF genera como máximo un candidato;
+no modifica `episode_identity_status`, no fusiona partes y no convierte la
+geometría en oficial.
+
+**Motivo:** CV-4.1 localiza 710 polígonos Landsat ESFire30 de 1985–1992, pero
+carecen de fecha, municipio e identificador EGIF. Entre los 180 partes GIF, 40
+tienen algún polígono del mismo año y cuadrícula y ninguno coincide a ±10 ha.
+Además, el producto presenta una discrepancia abierta entre el CRS del README y
+el `.prj`.
+
+**Consecuencias:** ESFire30 mantiene calidad de teledetección B y procedencia
+propia; el archivo oficial valenciano citado no alcanza A hasta recuperar y
+auditar el activo. No se publicará ni integrará una capa pre-1993 antes de
+resolver calidad, licencia e identidad por evidencia independiente.
+
 ## Plantilla para nuevas decisiones
 
 ```markdown

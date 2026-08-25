@@ -1,0 +1,4520 @@
+{
+  "schema_version": "cv-4.1-1",
+  "research_cutoff": "2026-08-25",
+  "scope": {
+    "territory": [
+      "Alicante",
+      "Castellón",
+      "Valencia"
+    ],
+    "priority_period": [
+      1968,
+      1992
+    ],
+    "geometry_created": 0,
+    "frontend_modified": false,
+    "public_bundle_modified": false
+  },
+  "classification_policy": {
+    "A_OFFICIAL_VECTOR": "Perímetro vectorial oficial disponible.",
+    "B_DOCUMENTED_REMOTE_SENSING": "Perímetro de teledetección con método y procedencia documentados.",
+    "C_DOCUMENTED_CARTOGRAPHIC_RECONSTRUCTION": "Cartografía suficiente para reconstrucción documentada futura.",
+    "D_MAP_ONLY_UNCERTAIN": "Representación gráfica sin base suficiente para digitalizar responsablemente.",
+    "E_REFERENCE_ONLY": "El activo está documentado, pero no se ha localizado.",
+    "F_UNUSABLE": "No proporciona perímetros individuales utilizables para esta fase."
+  },
+  "sources": [
+    {
+      "territory": "España peninsular; intersección diagnóstica con el País Valencià",
+      "years": [
+        1985,
+        1992
+      ],
+      "resource_type": "dataset_vector",
+      "format": "SHP anual dentro de ZIP",
+      "scale": null,
+      "crs": "El .prj declara ED50 / UTM zona 30N (EPSG:23030)",
+      "georeferenced": null,
+      "method": "Perímetros anuales ESFire30 derivados de Landsat; asignación posterior de causa por enlace o modelo, no identidad administrativa.",
+      "original_source": null,
+      "license": "CC BY 4.0",
+      "asset_available": true,
+      "digital_asset_available": null,
+      "redistribution": "Permitida con atribución conforme a CC BY 4.0.",
+      "derivative_allowed": true,
+      "precision_known": null,
+      "possible_egif_link": "candidate_only",
+      "next_action": "Solicitar a los autores aclaración del CRS y usar fecha/municipio o archivo maestro si existe antes de enlazar a EGIF.",
+      "id": "esfire30_causes",
+      "title": "ESFire30 Causes: Spatial dataset of wildfire ignition causes in Spain (1985–2021)",
+      "authority": "Universidad de Alcalá / CSIC",
+      "authors": [
+        "Ángela García Lázaro",
+        "Emilio Chuvieco",
+        "Adrián Jiménez-Ruano"
+      ],
+      "date": "2026",
+      "url": "https://zenodo.org/records/18449006",
+      "method_url": "https://doi.org/10.3390/fire9040138",
+      "quality": "B_DOCUMENTED_REMOTE_SENSING",
+      "nominal_resolution": "30 m según el artículo metodológico",
+      "cautions": [
+        "El README dice EPSG:25830, en conflicto con el .prj ED50/UTM30.",
+        "El README escribe 30 km donde el artículo documenta 30 m; requiere aclaración editorial.",
+        "No contiene fecha, municipio ni identificador EGIF; no confirma enlaces de episodios."
+      ]
+    },
+    {
+      "territory": "Provincia de Valencia desde 1978; Alicante y Castellón desde 1993",
+      "years": [
+        1978,
+        1992
+      ],
+      "resource_type": "referenced_official_vector_archive",
+      "format": "vector anual, formato original no localizado",
+      "scale": null,
+      "crs": null,
+      "georeferenced": null,
+      "method": "Perímetros elaborados anualmente por la administración; precisión inicial menor y mejora posterior con GPS/teledetección.",
+      "original_source": null,
+      "license": "No determinada para el activo subyacente",
+      "asset_available": false,
+      "digital_asset_available": null,
+      "redistribution": "Requiere confirmación del custodio; la licencia del artículo no licencia el archivo vectorial.",
+      "derivative_allowed": null,
+      "precision_known": null,
+      "possible_egif_link": "candidate_only",
+      "next_action": "Solicitar a Generalitat el archivo 1978–1992 de Valencia, metadatos, CRS, escala y condiciones de reutilización.",
+      "id": "gva_annual_perimeter_archive_1978_valencia",
+      "title": "Cartografía anual de perímetros de incendios de la Conselleria",
+      "authority": "Generalitat Valenciana / Conselleria competente en medio ambiente",
+      "date": "1978–actualidad (alcance documentado para Valencia)",
+      "url": "https://secforestales.org/publicaciones/index.php/cuadernos_secf/article/download/17385/17214/0",
+      "quality": "E_REFERENCE_ONLY"
+    },
+    {
+      "territory": "Comunitat Valenciana",
+      "years": null,
+      "resource_type": "official_request_route",
+      "format": "certificado; puede incorporar plano/georreferenciación",
+      "scale": null,
+      "crs": null,
+      "georeferenced": null,
+      "method": "Consulta oficial por parcela, municipio y año; no acredita por sí sola cobertura pre-1993.",
+      "original_source": null,
+      "license": "No determinada para redistribución masiva",
+      "asset_available": false,
+      "digital_asset_available": null,
+      "redistribution": "Debe aclararse para cada entrega.",
+      "derivative_allowed": null,
+      "precision_known": null,
+      "possible_egif_link": "candidate_only",
+      "next_action": "Consultar al registro si conserva expedientes y cartografía individual 1968–1992 y si existe acceso masivo para investigación.",
+      "id": "gva_burned_forest_register",
+      "title": "Certificado del Registro de Terrenos Forestales Incendiados",
+      "authority": "Generalitat Valenciana",
+      "date": "trámite vigente consultado en 2026",
+      "url": "https://sede.gva.es/es/detall-tramit?id_proc=3261",
+      "quality": "E_REFERENCE_ONLY"
+    },
+    {
+      "territory": "Parque Natural de Chera–Sot de Chera",
+      "years": [
+        1978,
+        2004
+      ],
+      "resource_type": "map_pdf",
+      "format": "PDF con mapas temáticos",
+      "scale": "No documentada de forma suficiente para digitalización",
+      "crs": null,
+      "georeferenced": null,
+      "method": "Síntesis cartográfica del plan; el propio documento advierte que superficies antiguas son aproximadas.",
+      "original_source": null,
+      "license": "Consulta pública; reutilización del mapa/derivado no aclarada",
+      "asset_available": true,
+      "digital_asset_available": null,
+      "redistribution": "No asumida.",
+      "derivative_allowed": null,
+      "precision_known": null,
+      "possible_egif_link": "candidate_only",
+      "next_action": "Solicitar la cartografía fuente y su ficha técnica, no digitalizar el PDF actual.",
+      "id": "gva_chera_sot_prevention_plan",
+      "title": "Plan de prevención de incendios de Chera–Sot de Chera: análisis histórico",
+      "authority": "Generalitat Valenciana",
+      "date": "2006 (documento del plan)",
+      "url": "https://mediambient.gva.es/auto/prevencion-incendios/Red-espacios-protegidos/Chera-Sot%20de%20Chera/Documentacion%20en%20castellano/Plan%20de%20prevencion/01-Analisis_historico_incendios/Analisis_hist_informe.pdf",
+      "quality": "D_MAP_ONLY_UNCERTAIN",
+      "digitalization": {
+        "georeferenced": false,
+        "control_points_visible": true,
+        "base_identifiable": "parcialmente",
+        "perimeter_clear": "variable",
+        "expected_error": "desconocido y potencialmente alto"
+      }
+    },
+    {
+      "territory": "España mediterránea; incluye Valencia",
+      "years": [
+        1991,
+        1991
+      ],
+      "resource_type": "technical_article_maps",
+      "format": "PDF; mapas/figuras, activos digitales no localizados",
+      "scale": null,
+      "crs": null,
+      "georeferenced": null,
+      "method": "NOAA-AVHRR, píxel nominal 1,1 km, validación con cartografía DGCN y trabajo de campo; el perímetro de Buñol tuvo apoyo GPS más completo.",
+      "original_source": null,
+      "license": "Reutilización del artículo y de los activos digitales no determinada",
+      "asset_available": true,
+      "digital_asset_available": false,
+      "redistribution": "No determinada.",
+      "derivative_allowed": null,
+      "precision_known": null,
+      "possible_egif_link": "candidate_only",
+      "next_action": "Solicitar capas/ráster originales y metadatos de los incendios valencianos de 1991.",
+      "id": "martin_chuvieco_1995_noaa",
+      "title": "Cartografía de grandes incendios forestales en la España mediterránea a partir de imágenes NOAA-AVHRR",
+      "authority": "MITECO, revista Ecología",
+      "authors": [
+        "M. Pilar Martín",
+        "Emilio Chuvieco"
+      ],
+      "date": "1995",
+      "url": "https://www.miteco.gob.es/content/dam/miteco/es/parques-nacionales-oapn/publicaciones/ecologia_09_02_tcm30-100709.pdf",
+      "quality": "B_DOCUMENTED_REMOTE_SENSING"
+    },
+    {
+      "territory": "Península Ibérica",
+      "years": [
+        1991,
+        1995
+      ],
+      "resource_type": "technical_article_maps",
+      "format": "PDF; mapa digital descrito, activo no localizado",
+      "scale": null,
+      "crs": null,
+      "georeferenced": null,
+      "method": "NOAA-AVHRR; 1,1 km en nadir y degradación hacia bordes; contraste limitado por escasez de perímetros fiables.",
+      "original_source": null,
+      "license": "Reutilización del activo no determinada",
+      "asset_available": true,
+      "digital_asset_available": false,
+      "redistribution": "No determinada.",
+      "derivative_allowed": null,
+      "precision_known": null,
+      "possible_egif_link": "candidate_only",
+      "next_action": "Pedir el mapa digital, tabla de escenas/incendios y licencia.",
+      "id": "martin_chuvieco_1998_noaa",
+      "title": "Cartografía de grandes incendios forestales en la Península Ibérica a partir de NOAA-AVHRR",
+      "authority": "Universidad de Alcalá / CSIC",
+      "authors": [
+        "M. Pilar Martín",
+        "Emilio Chuvieco"
+      ],
+      "date": "1998",
+      "url": "https://digital.csic.es/bitstream/10261/6426/1/Martin_Isabel_Serie_Geografica.pdf",
+      "quality": "B_DOCUMENTED_REMOTE_SENSING"
+    },
+    {
+      "territory": "Península Ibérica",
+      "years": null,
+      "resource_type": "doctoral_thesis_and_referenced_assets",
+      "format": "tesis; ficheros digitales no recibidos",
+      "scale": null,
+      "crs": null,
+      "georeferenced": null,
+      "method": "Teledetección NOAA-AVHRR y validación de campo; existencia de cartografía confirmada por comunicación directa de la autora.",
+      "original_source": null,
+      "license": "Licencia de los ficheros aún no determinada",
+      "asset_available": false,
+      "digital_asset_available": null,
+      "redistribution": "No autorizada todavía.",
+      "derivative_allowed": null,
+      "precision_known": null,
+      "possible_egif_link": "candidate_only",
+      "next_action": "Solicitar inventario, formatos, metadatos, procedencia de validación y autorización de reutilización.",
+      "id": "martin_thesis_noaa",
+      "title": "Cartografía e inventario de incendios forestales en la Península Ibérica a partir de imágenes NOAA-AVHRR",
+      "authority": "Universidad de Alcalá / CSIC",
+      "authors": [
+        "M. Pilar Martín"
+      ],
+      "date": "1998/1999",
+      "url": "https://ebuah.uah.es/dspace/handle/10017/43674",
+      "quality": "E_REFERENCE_ONLY"
+    },
+    {
+      "territory": "Hoya de Buñol, Valencia",
+      "years": [
+        1991,
+        1991
+      ],
+      "resource_type": "technical_article_maps",
+      "format": "PDF; resultados raster/vectoriales no localizados",
+      "scale": null,
+      "crs": null,
+      "georeferenced": null,
+      "method": "Landsat TM de 30 m antes/después; registro UTM con RMSE de 0,8 píxeles y parcelas de campo; comparación con perímetro de la Unidad Forestal de Valencia.",
+      "original_source": null,
+      "license": "Reutilización del artículo/activos no determinada",
+      "asset_available": true,
+      "digital_asset_available": false,
+      "redistribution": "No determinada.",
+      "derivative_allowed": null,
+      "precision_known": null,
+      "possible_egif_link": "candidate_only",
+      "next_action": "Solicitar los resultados digitales y el perímetro oficial de contraste para Yátova y Chiva 1991.",
+      "id": "viedma_chuvieco_1993_hoya_bunol",
+      "title": "Evaluación de daños causados por incendios forestales mediante imágenes Landsat-TM",
+      "authority": "Universidad de Alcalá",
+      "authors": [
+        "O. Viedma",
+        "Emilio Chuvieco"
+      ],
+      "date": "1993",
+      "url": "https://infomadera.net/uploads/articulos/archivo_2154_11506.pdf",
+      "quality": "B_DOCUMENTED_REMOTE_SENSING"
+    },
+    {
+      "territory": "Provincia de Valencia",
+      "years": null,
+      "resource_type": "scientific_article_maps",
+      "format": "artículo; activos digitales no localizados",
+      "scale": null,
+      "crs": null,
+      "georeferenced": null,
+      "method": "Cartografía de áreas quemadas y regeneración mediante Landsat 5 TM.",
+      "original_source": null,
+      "license": "Copyright editorial; licencia de datos no localizada",
+      "asset_available": true,
+      "digital_asset_available": false,
+      "redistribution": "No determinada.",
+      "derivative_allowed": null,
+      "precision_known": null,
+      "possible_egif_link": "candidate_only",
+      "next_action": "Obtener texto completo autorizado, identificar incendios/años y preguntar por archivos digitales.",
+      "id": "lopez_caselles_1991_landsat",
+      "title": "Mapping burns and natural reforestation using Thematic Mapper data",
+      "authority": "Universitat de València",
+      "authors": [
+        "M. J. López García",
+        "V. Caselles"
+      ],
+      "date": "1991",
+      "url": "https://doi.org/10.1080/10106049109354290",
+      "quality": "B_DOCUMENTED_REMOTE_SENSING"
+    },
+    {
+      "territory": "Comunitat Valenciana",
+      "years": [
+        1991,
+        1992
+      ],
+      "resource_type": "referenced_administrative_archive",
+      "format": "informes/croquis potenciales; colección no localizada públicamente",
+      "scale": null,
+      "crs": null,
+      "georeferenced": null,
+      "method": "Investigación administrativa de incendios; la página acredita antecedentes, no inventaría cartografía conservada.",
+      "original_source": null,
+      "license": "No determinada",
+      "asset_available": false,
+      "digital_asset_available": null,
+      "redistribution": "No determinada.",
+      "derivative_allowed": null,
+      "precision_known": null,
+      "possible_egif_link": "candidate_only",
+      "next_action": "Preguntar por expedientes 1991–1992 con croquis o perímetros, acceso y reutilización.",
+      "id": "gva_goiif_archive",
+      "title": "Archivo de investigación de causas del GOIIF y grupos precursores",
+      "authority": "Generalitat Valenciana",
+      "date": "antecedentes operativos desde 1991–1992",
+      "url": "https://mediambient.gva.es/es/web/prevencion-de-incendios/investigacion-de-incendios-forestales",
+      "quality": "E_REFERENCE_ONLY"
+    },
+    {
+      "territory": "Comunitat Valenciana",
+      "years": [
+        1976,
+        1978
+      ],
+      "resource_type": "reference_orthophoto",
+      "format": "TIFF/ECW/WMS georreferenciado",
+      "scale": null,
+      "crs": "ETRS89 / UTM zona 30N",
+      "georeferenced": null,
+      "method": "Base ortofotográfica, no inventario de incendios ni perímetros individuales.",
+      "original_source": null,
+      "license": "CC BY 4.0",
+      "asset_available": true,
+      "digital_asset_available": null,
+      "redistribution": "Permitida con atribución, pero no convierte manchas visibles en perímetros documentados.",
+      "derivative_allowed": true,
+      "precision_known": null,
+      "possible_egif_link": "candidate_only",
+      "next_action": "Usar solo como base/control en una reconstrucción C respaldada por otra fuente de evento.",
+      "id": "icv_1977_orthophoto",
+      "title": "Ortofoto de 1977 (Interministerial) de la Comunitat Valenciana",
+      "authority": "Institut Cartogràfic Valencià / Generalitat",
+      "date": "vuelo 1976–1978; ortofoto publicada posteriormente",
+      "url": "https://datos.gob.es/es/catalogo/a10002983-ortofoto-de-1977-interministerial-de-la-comunitat-valenciana-pancromatica-y-de-25-cm-de-resoluc",
+      "quality": "F_UNUSABLE"
+    },
+    {
+      "territory": "global",
+      "years": [
+        1982,
+        2018
+      ],
+      "resource_type": "coarse_burned_area_raster",
+      "format": "NetCDF raster 0,05° / grid agregado 0,25°",
+      "scale": null,
+      "crs": null,
+      "georeferenced": null,
+      "method": "Área quemada mensual de baja resolución; no perímetros individuales de episodios.",
+      "original_source": null,
+      "license": "Licencia del producto ESA/CEDA",
+      "asset_available": true,
+      "digital_asset_available": null,
+      "redistribution": "Sujeta a sus condiciones; no es adecuado al objetivo CV-4.1.",
+      "derivative_allowed": null,
+      "precision_known": null,
+      "possible_egif_link": "candidate_only",
+      "next_action": "No usar para reconstruir perímetros individuales.",
+      "id": "esa_fireccilt11",
+      "title": "FireCCI51/FireCCILT11 burned area products",
+      "authority": "ESA Climate Change Initiative",
+      "date": "producto histórico",
+      "url": "https://catalogue.ceda.ac.uk/uuid/4b7a36e1564a4c5784e8d667c810d27f",
+      "quality": "F_UNUSABLE"
+    },
+    {
+      "territory": "Comunitat Valenciana",
+      "years": [
+        1993,
+        2019
+      ],
+      "resource_type": "out_of_period_perimeter_portal",
+      "format": "visor/dataset de perímetros",
+      "scale": null,
+      "crs": null,
+      "georeferenced": null,
+      "method": "Producto posterior a 1992; útil como referencia metodológica, no como fuente pre-1993 localizada.",
+      "original_source": null,
+      "license": "Consultar portal",
+      "asset_available": true,
+      "digital_asset_available": null,
+      "redistribution": "No evaluada porque queda fuera del periodo.",
+      "derivative_allowed": null,
+      "precision_known": null,
+      "possible_egif_link": "candidate_only",
+      "next_action": "Preguntar solo si conservan antecedentes o escenas previas a 1993.",
+      "id": "ceam_postfire",
+      "title": "PostFire — visor de incendios forestales",
+      "authority": "Fundación CEAM",
+      "date": "cobertura publicada desde 1993",
+      "url": "https://postfire.es/",
+      "quality": "F_UNUSABLE"
+    },
+    {
+      "territory": "España",
+      "years": [
+        1968,
+        1992
+      ],
+      "resource_type": "statistics_and_grid_maps",
+      "format": "PDF/tablas/mapas agregados",
+      "scale": null,
+      "crs": null,
+      "georeferenced": null,
+      "method": "Estadística y referencias de cuadrícula; no perímetros individuales.",
+      "original_source": null,
+      "license": "Condiciones generales de reutilización MITECO",
+      "asset_available": true,
+      "digital_asset_available": null,
+      "redistribution": "Permitida con las condiciones MITECO, sin desnaturalizar.",
+      "derivative_allowed": true,
+      "precision_known": null,
+      "possible_egif_link": "candidate_only",
+      "next_action": "Conservar para contraste documental, nunca como perímetro.",
+      "id": "miteco_egif_annual_maps",
+      "title": "Anuarios y mapas agregados de la Estadística General de Incendios Forestales",
+      "authority": "MITECO / antiguos ICONA y DGB",
+      "date": "1968–1992",
+      "url": "https://www.miteco.gob.es/es/biodiversidad/temas/incendios-forestales/estadisticas-datos.html",
+      "quality": "F_UNUSABLE"
+    }
+  ],
+  "source_summary": {
+    "relevant_sources": 14,
+    "by_quality": {
+      "A_OFFICIAL_VECTOR": 0,
+      "B_DOCUMENTED_REMOTE_SENSING": 5,
+      "C_DOCUMENTED_CARTOGRAPHIC_RECONSTRUCTION": 0,
+      "D_MAP_ONLY_UNCERTAIN": 1,
+      "E_REFERENCE_ONLY": 4,
+      "F_UNUSABLE": 4
+    },
+    "accessible_vector_datasets": 1,
+    "referenced_unavailable_official_vector_archives": 1,
+    "map_or_remote_sensing_documents": 5
+  },
+  "esfire30_diagnostic": {
+    "snapshot": {
+      "url": "https://zenodo.org/records/18449006/files/ESFire30_Causes.zip",
+      "bytes": 93127811,
+      "sha256": "150a3cc95e9681e0d35204063abb00437f9cbeca7205e6208518054b3fd36cc8",
+      "downloaded_to_repository": false
+    },
+    "years_inspected": [
+      1985,
+      1992
+    ],
+    "selection_rule": "Intersección geométrica real con la unión de límites municipales oficiales ICV; provincia asignada por mayor área de intersección.",
+    "boundary": {
+      "path_local_ignored": "data/raw/recent/gva/snapshots/20260819T174426Z/boundary/icv_municipalities.geojson",
+      "source": "ICV/Generalitat, capa oficial de municipios",
+      "crs": "EPSG:4326 en el snapshot",
+      "features": 542
+    },
+    "shapefile_crs": {
+      "name": "ED50 / UTM zone 30N",
+      "epsg": 23030,
+      "prj": "PROJCS[\"ED_1950_UTM_Zone_30N\",GEOGCS[\"GCS_European_1950\",DATUM[\"D_European_1950\",SPHEROID[\"International_1924\",6378388.0,297.0]],PRIMEM[\"Greenwich\",0.0],UNIT[\"Degree\",0.0174532925199433]],PROJECTION[\"Transverse_Mercator\"],PARAMETER[\"False_Easting\",500000.0],PARAMETER[\"False_Northing\",0.0],PARAMETER[\"Central_Meridian\",-3.0],PARAMETER[\"Scale_Factor\",0.9996],PARAMETER[\"Latitude_Of_Origin\",0.0],UNIT[\"Meter\",1.0]]"
+    },
+    "metadata_crs_conflict": "README: EPSG:25830; .prj: ED50 / UTM 30N (EPSG:23030). Se utilizó el .prj para la inspección y el conflicto queda abierto.",
+    "selected_polygons": 710,
+    "by_year": {
+      "1985": 127,
+      "1986": 63,
+      "1987": 19,
+      "1988": 25,
+      "1989": 23,
+      "1990": 100,
+      "1991": 171,
+      "1992": 182
+    },
+    "by_primary_province": {
+      "Alicante": 195,
+      "Castellón": 206,
+      "Valencia": 309
+    },
+    "by_year_and_primary_province": {
+      "1985": {
+        "Alicante": 13,
+        "Castellón": 52,
+        "Valencia": 62
+      },
+      "1986": {
+        "Alicante": 16,
+        "Castellón": 18,
+        "Valencia": 29
+      },
+      "1987": {
+        "Alicante": 3,
+        "Castellón": 7,
+        "Valencia": 9
+      },
+      "1988": {
+        "Alicante": 9,
+        "Castellón": 5,
+        "Valencia": 11
+      },
+      "1989": {
+        "Alicante": 13,
+        "Castellón": 4,
+        "Valencia": 6
+      },
+      "1990": {
+        "Alicante": 52,
+        "Castellón": 21,
+        "Valencia": 27
+      },
+      "1991": {
+        "Alicante": 46,
+        "Castellón": 38,
+        "Valencia": 87
+      },
+      "1992": {
+        "Alicante": 43,
+        "Castellón": 61,
+        "Valencia": 78
+      }
+    },
+    "cross_province_polygons": 29,
+    "source_area_ha_sum_unclipped": 127083.78,
+    "geometry_complexity": {
+      "unique_geometry_wkb_hashes": 710,
+      "vertices": 84894,
+      "minimal_geojson_estimate_bytes": 3310903,
+      "minimal_geojson_estimate_gzip_bytes": 1135689,
+      "note": "Estimación diagnóstica con geometría original y solo id/año/área; no es un asset generado ni publicable en esta fase."
+    },
+    "geometry_exported": false
+  },
+  "egif_gif_matrix": [
+    {
+      "source_record_id": "1968031268",
+      "year": 1968,
+      "province": "Alicante",
+      "municipality": null,
+      "detection_date": "1968-08-13T12:00:00",
+      "reported_forest_area_ha": 735.0,
+      "reported_total_area_ha": 735.0,
+      "egif_sheet_grid": null,
+      "link_status": "unlinked",
+      "documentary_candidates": [],
+      "esfire30_same_year_grid_candidates": []
+    },
+    {
+      "source_record_id": "1968462010",
+      "year": 1968,
+      "province": "Valencia",
+      "municipality": null,
+      "detection_date": "1968-10-03T12:00:00",
+      "reported_forest_area_ha": 1259.0,
+      "reported_total_area_ha": 1259.0,
+      "egif_sheet_grid": null,
+      "link_status": "unlinked",
+      "documentary_candidates": [],
+      "esfire30_same_year_grid_candidates": []
+    },
+    {
+      "source_record_id": "1969460717",
+      "year": 1969,
+      "province": "Valencia",
+      "municipality": null,
+      "detection_date": "1969-08-05T14:00:00",
+      "reported_forest_area_ha": 500.0,
+      "reported_total_area_ha": 500.0,
+      "egif_sheet_grid": null,
+      "link_status": "unlinked",
+      "documentary_candidates": [],
+      "esfire30_same_year_grid_candidates": []
+    },
+    {
+      "source_record_id": "1969461235",
+      "year": 1969,
+      "province": "Valencia",
+      "municipality": null,
+      "detection_date": "1969-08-16T15:00:00",
+      "reported_forest_area_ha": 602.0,
+      "reported_total_area_ha": 602.0,
+      "egif_sheet_grid": null,
+      "link_status": "unlinked",
+      "documentary_candidates": [],
+      "esfire30_same_year_grid_candidates": []
+    },
+    {
+      "source_record_id": "1970032141",
+      "year": 1970,
+      "province": "Alicante",
+      "municipality": null,
+      "detection_date": "1970-09-07T21:00:00",
+      "reported_forest_area_ha": 705.0,
+      "reported_total_area_ha": 705.0,
+      "egif_sheet_grid": null,
+      "link_status": "unlinked",
+      "documentary_candidates": [],
+      "esfire30_same_year_grid_candidates": []
+    },
+    {
+      "source_record_id": "1970032983",
+      "year": 1970,
+      "province": "Alicante",
+      "municipality": null,
+      "detection_date": "1970-08-18T21:00:00",
+      "reported_forest_area_ha": 1400.0,
+      "reported_total_area_ha": 1400.0,
+      "egif_sheet_grid": null,
+      "link_status": "unlinked",
+      "documentary_candidates": [],
+      "esfire30_same_year_grid_candidates": []
+    },
+    {
+      "source_record_id": "1970032984",
+      "year": 1970,
+      "province": "Alicante",
+      "municipality": null,
+      "detection_date": "1970-08-19T18:00:00",
+      "reported_forest_area_ha": 678.0,
+      "reported_total_area_ha": 678.0,
+      "egif_sheet_grid": null,
+      "link_status": "unlinked",
+      "documentary_candidates": [],
+      "esfire30_same_year_grid_candidates": []
+    },
+    {
+      "source_record_id": "1970032985",
+      "year": 1970,
+      "province": "Alicante",
+      "municipality": null,
+      "detection_date": "1970-08-20T00:05:00",
+      "reported_forest_area_ha": 837.0,
+      "reported_total_area_ha": 837.0,
+      "egif_sheet_grid": null,
+      "link_status": "unlinked",
+      "documentary_candidates": [],
+      "esfire30_same_year_grid_candidates": []
+    },
+    {
+      "source_record_id": "1970461008",
+      "year": 1970,
+      "province": "Valencia",
+      "municipality": null,
+      "detection_date": "1970-07-14T17:00:00",
+      "reported_forest_area_ha": 2643.0,
+      "reported_total_area_ha": 2643.0,
+      "egif_sheet_grid": null,
+      "link_status": "unlinked",
+      "documentary_candidates": [],
+      "esfire30_same_year_grid_candidates": []
+    },
+    {
+      "source_record_id": "1970461802",
+      "year": 1970,
+      "province": "Valencia",
+      "municipality": null,
+      "detection_date": "1970-08-17T00:05:00",
+      "reported_forest_area_ha": 2507.0,
+      "reported_total_area_ha": 2507.0,
+      "egif_sheet_grid": null,
+      "link_status": "unlinked",
+      "documentary_candidates": [],
+      "esfire30_same_year_grid_candidates": []
+    },
+    {
+      "source_record_id": "1970461803",
+      "year": 1970,
+      "province": "Valencia",
+      "municipality": null,
+      "detection_date": "1970-08-16T11:00:00",
+      "reported_forest_area_ha": 627.0,
+      "reported_total_area_ha": 627.0,
+      "egif_sheet_grid": null,
+      "link_status": "unlinked",
+      "documentary_candidates": [],
+      "esfire30_same_year_grid_candidates": []
+    },
+    {
+      "source_record_id": "1970461856",
+      "year": 1970,
+      "province": "Valencia",
+      "municipality": null,
+      "detection_date": "1970-08-16T13:00:00",
+      "reported_forest_area_ha": 1835.0,
+      "reported_total_area_ha": 1835.0,
+      "egif_sheet_grid": null,
+      "link_status": "unlinked",
+      "documentary_candidates": [],
+      "esfire30_same_year_grid_candidates": []
+    },
+    {
+      "source_record_id": "1970461857",
+      "year": 1970,
+      "province": "Valencia",
+      "municipality": null,
+      "detection_date": "1970-08-19T16:00:00",
+      "reported_forest_area_ha": 1441.0,
+      "reported_total_area_ha": 1441.0,
+      "egif_sheet_grid": null,
+      "link_status": "unlinked",
+      "documentary_candidates": [],
+      "esfire30_same_year_grid_candidates": []
+    },
+    {
+      "source_record_id": "1971031185",
+      "year": 1971,
+      "province": "Alicante",
+      "municipality": null,
+      "detection_date": "1971-08-14T23:00:00",
+      "reported_forest_area_ha": 2030.0,
+      "reported_total_area_ha": 2030.0,
+      "egif_sheet_grid": null,
+      "link_status": "unlinked",
+      "documentary_candidates": [],
+      "esfire30_same_year_grid_candidates": []
+    },
+    {
+      "source_record_id": "1971460828",
+      "year": 1971,
+      "province": "Valencia",
+      "municipality": null,
+      "detection_date": "1971-06-20T10:00:00",
+      "reported_forest_area_ha": 635.0,
+      "reported_total_area_ha": 635.0,
+      "egif_sheet_grid": null,
+      "link_status": "unlinked",
+      "documentary_candidates": [],
+      "esfire30_same_year_grid_candidates": []
+    },
+    {
+      "source_record_id": "1973463485",
+      "year": 1973,
+      "province": "Valencia",
+      "municipality": null,
+      "detection_date": "1973-10-14T20:00:00",
+      "reported_forest_area_ha": 2907.0,
+      "reported_total_area_ha": 2907.0,
+      "egif_sheet_grid": null,
+      "link_status": "unlinked",
+      "documentary_candidates": [],
+      "esfire30_same_year_grid_candidates": []
+    },
+    {
+      "source_record_id": "1974123176",
+      "year": 1974,
+      "province": "Castellon",
+      "municipality": null,
+      "detection_date": "1974-10-20T18:00:00",
+      "reported_forest_area_ha": 735.0,
+      "reported_total_area_ha": 735.0,
+      "egif_sheet_grid": "0803H07",
+      "link_status": "unlinked",
+      "documentary_candidates": [],
+      "esfire30_same_year_grid_candidates": []
+    },
+    {
+      "source_record_id": "1974123650",
+      "year": 1974,
+      "province": "Castellon",
+      "municipality": null,
+      "detection_date": "1974-11-27T23:00:00",
+      "reported_forest_area_ha": 500.0,
+      "reported_total_area_ha": 500.0,
+      "egif_sheet_grid": "0803M03",
+      "link_status": "unlinked",
+      "documentary_candidates": [],
+      "esfire30_same_year_grid_candidates": []
+    },
+    {
+      "source_record_id": "1974460870",
+      "year": 1974,
+      "province": "Valencia",
+      "municipality": null,
+      "detection_date": "1974-07-25T04:00:00",
+      "reported_forest_area_ha": 500.0,
+      "reported_total_area_ha": 500.0,
+      "egif_sheet_grid": null,
+      "link_status": "unlinked",
+      "documentary_candidates": [],
+      "esfire30_same_year_grid_candidates": []
+    },
+    {
+      "source_record_id": "1974461275",
+      "year": 1974,
+      "province": "Valencia",
+      "municipality": null,
+      "detection_date": "1974-08-07T18:00:00",
+      "reported_forest_area_ha": 1080.0,
+      "reported_total_area_ha": 1080.0,
+      "egif_sheet_grid": "0804J02",
+      "link_status": "unlinked",
+      "documentary_candidates": [],
+      "esfire30_same_year_grid_candidates": []
+    },
+    {
+      "source_record_id": "1974461288",
+      "year": 1974,
+      "province": "Valencia",
+      "municipality": null,
+      "detection_date": "1974-08-12T14:00:00",
+      "reported_forest_area_ha": 896.0,
+      "reported_total_area_ha": 896.0,
+      "egif_sheet_grid": null,
+      "link_status": "unlinked",
+      "documentary_candidates": [],
+      "esfire30_same_year_grid_candidates": []
+    },
+    {
+      "source_record_id": "1974462654",
+      "year": 1974,
+      "province": "Valencia",
+      "municipality": null,
+      "detection_date": "1974-09-23T19:00:00",
+      "reported_forest_area_ha": 2855.0,
+      "reported_total_area_ha": 2855.0,
+      "egif_sheet_grid": "0804K02",
+      "link_status": "unlinked",
+      "documentary_candidates": [],
+      "esfire30_same_year_grid_candidates": []
+    },
+    {
+      "source_record_id": "1974462656",
+      "year": 1974,
+      "province": "Valencia",
+      "municipality": null,
+      "detection_date": "1974-09-25T12:00:00",
+      "reported_forest_area_ha": 1462.0,
+      "reported_total_area_ha": 1462.0,
+      "egif_sheet_grid": null,
+      "link_status": "unlinked",
+      "documentary_candidates": [],
+      "esfire30_same_year_grid_candidates": []
+    },
+    {
+      "source_record_id": "1975460897",
+      "year": 1975,
+      "province": "Valencia",
+      "municipality": null,
+      "detection_date": "1975-07-17T18:00:00",
+      "reported_forest_area_ha": 800.0,
+      "reported_total_area_ha": 800.0,
+      "egif_sheet_grid": "0804L02",
+      "link_status": "unlinked",
+      "documentary_candidates": [],
+      "esfire30_same_year_grid_candidates": []
+    },
+    {
+      "source_record_id": "1975460953",
+      "year": 1975,
+      "province": "Valencia",
+      "municipality": null,
+      "detection_date": "1975-07-18T13:00:00",
+      "reported_forest_area_ha": 3729.0,
+      "reported_total_area_ha": 3729.0,
+      "egif_sheet_grid": "0704I08",
+      "link_status": "unlinked",
+      "documentary_candidates": [],
+      "esfire30_same_year_grid_candidates": []
+    },
+    {
+      "source_record_id": "1975462585",
+      "year": 1975,
+      "province": "Valencia",
+      "municipality": null,
+      "detection_date": "1975-09-13T15:00:00",
+      "reported_forest_area_ha": 500.0,
+      "reported_total_area_ha": 500.0,
+      "egif_sheet_grid": "0804K04",
+      "link_status": "unlinked",
+      "documentary_candidates": [],
+      "esfire30_same_year_grid_candidates": []
+    },
+    {
+      "source_record_id": "1976032371",
+      "year": 1976,
+      "province": "Alicante",
+      "municipality": null,
+      "detection_date": "1976-08-08T02:00:00",
+      "reported_forest_area_ha": 1090.0,
+      "reported_total_area_ha": 1090.0,
+      "egif_sheet_grid": "0804O05",
+      "link_status": "unlinked",
+      "documentary_candidates": [],
+      "esfire30_same_year_grid_candidates": []
+    },
+    {
+      "source_record_id": "1976124596",
+      "year": 1976,
+      "province": "Castellon",
+      "municipality": null,
+      "detection_date": "1976-12-02T21:00:00",
+      "reported_forest_area_ha": 672.0,
+      "reported_total_area_ha": 672.0,
+      "egif_sheet_grid": "0804C01",
+      "link_status": "unlinked",
+      "documentary_candidates": [],
+      "esfire30_same_year_grid_candidates": []
+    },
+    {
+      "source_record_id": "1977030360",
+      "year": 1977,
+      "province": "Alicante",
+      "municipality": null,
+      "detection_date": "1977-04-02T16:00:00",
+      "reported_forest_area_ha": 500.0,
+      "reported_total_area_ha": 500.0,
+      "egif_sheet_grid": "0804N04",
+      "link_status": "unlinked",
+      "documentary_candidates": [],
+      "esfire30_same_year_grid_candidates": []
+    },
+    {
+      "source_record_id": "1977120500",
+      "year": 1977,
+      "province": "Castellon",
+      "municipality": null,
+      "detection_date": "1977-04-10T00:05:00",
+      "reported_forest_area_ha": 2637.0,
+      "reported_total_area_ha": 2637.0,
+      "egif_sheet_grid": "0804A01",
+      "link_status": "unlinked",
+      "documentary_candidates": [],
+      "esfire30_same_year_grid_candidates": []
+    },
+    {
+      "source_record_id": "1977460438",
+      "year": 1977,
+      "province": "Valencia",
+      "municipality": null,
+      "detection_date": "1977-04-10T20:00:00",
+      "reported_forest_area_ha": 1450.0,
+      "reported_total_area_ha": 1450.0,
+      "egif_sheet_grid": "0704J11",
+      "link_status": "unlinked",
+      "documentary_candidates": [],
+      "esfire30_same_year_grid_candidates": []
+    },
+    {
+      "source_record_id": "1977460571",
+      "year": 1977,
+      "province": "Valencia",
+      "municipality": null,
+      "detection_date": "1977-06-26T18:00:00",
+      "reported_forest_area_ha": 503.5,
+      "reported_total_area_ha": 503.5,
+      "egif_sheet_grid": "0804L04",
+      "link_status": "unlinked",
+      "documentary_candidates": [],
+      "esfire30_same_year_grid_candidates": []
+    },
+    {
+      "source_record_id": "1977460975",
+      "year": 1977,
+      "province": "Valencia",
+      "municipality": null,
+      "detection_date": "1977-08-17T17:00:00",
+      "reported_forest_area_ha": 560.0,
+      "reported_total_area_ha": 560.0,
+      "egif_sheet_grid": "0804J02",
+      "link_status": "unlinked",
+      "documentary_candidates": [],
+      "esfire30_same_year_grid_candidates": []
+    },
+    {
+      "source_record_id": "1978031351",
+      "year": 1978,
+      "province": "Alicante",
+      "municipality": null,
+      "detection_date": "1978-08-20T10:00:00",
+      "reported_forest_area_ha": 505.0,
+      "reported_total_area_ha": 505.0,
+      "egif_sheet_grid": "0804O04",
+      "link_status": "unlinked",
+      "documentary_candidates": [],
+      "esfire30_same_year_grid_candidates": []
+    },
+    {
+      "source_record_id": "1978031398",
+      "year": 1978,
+      "province": "Alicante",
+      "municipality": null,
+      "detection_date": "1978-08-13T18:00:00",
+      "reported_forest_area_ha": 2365.0,
+      "reported_total_area_ha": 2365.0,
+      "egif_sheet_grid": "0804O05",
+      "link_status": "unlinked",
+      "documentary_candidates": [],
+      "esfire30_same_year_grid_candidates": []
+    },
+    {
+      "source_record_id": "1978033100",
+      "year": 1978,
+      "province": "Alicante",
+      "municipality": null,
+      "detection_date": "1978-09-16T20:00:00",
+      "reported_forest_area_ha": 1625.0,
+      "reported_total_area_ha": 1625.0,
+      "egif_sheet_grid": "0804N03",
+      "link_status": "unlinked",
+      "documentary_candidates": [],
+      "esfire30_same_year_grid_candidates": []
+    },
+    {
+      "source_record_id": "1978033792",
+      "year": 1978,
+      "province": "Alicante",
+      "municipality": null,
+      "detection_date": "1978-09-17T23:00:00",
+      "reported_forest_area_ha": 783.0,
+      "reported_total_area_ha": 783.0,
+      "egif_sheet_grid": "0804M04",
+      "link_status": "unlinked",
+      "documentary_candidates": [],
+      "esfire30_same_year_grid_candidates": []
+    },
+    {
+      "source_record_id": "1978120520",
+      "year": 1978,
+      "province": "Castellon",
+      "municipality": null,
+      "detection_date": "1978-05-07T01:00:00",
+      "reported_forest_area_ha": 1007.0,
+      "reported_total_area_ha": 1007.0,
+      "egif_sheet_grid": "0803K05",
+      "link_status": "unlinked",
+      "documentary_candidates": [],
+      "esfire30_same_year_grid_candidates": []
+    },
+    {
+      "source_record_id": "1978122024",
+      "year": 1978,
+      "province": "Castellon",
+      "municipality": null,
+      "detection_date": "1978-08-01T04:00:00",
+      "reported_forest_area_ha": 680.0,
+      "reported_total_area_ha": 680.0,
+      "egif_sheet_grid": "0803J05",
+      "link_status": "unlinked",
+      "documentary_candidates": [],
+      "esfire30_same_year_grid_candidates": []
+    },
+    {
+      "source_record_id": "1978122041",
+      "year": 1978,
+      "province": "Castellon",
+      "municipality": null,
+      "detection_date": "1978-08-13T23:00:00",
+      "reported_forest_area_ha": 800.0,
+      "reported_total_area_ha": 800.0,
+      "egif_sheet_grid": "0803M02",
+      "link_status": "unlinked",
+      "documentary_candidates": [],
+      "esfire30_same_year_grid_candidates": []
+    },
+    {
+      "source_record_id": "1978122568",
+      "year": 1978,
+      "province": "Castellon",
+      "municipality": null,
+      "detection_date": "1978-08-24T19:00:00",
+      "reported_forest_area_ha": 750.0,
+      "reported_total_area_ha": 750.0,
+      "egif_sheet_grid": "0804A02",
+      "link_status": "unlinked",
+      "documentary_candidates": [],
+      "esfire30_same_year_grid_candidates": []
+    },
+    {
+      "source_record_id": "1978126187",
+      "year": 1978,
+      "province": "Castellon",
+      "municipality": null,
+      "detection_date": "1978-07-05T14:00:00",
+      "reported_forest_area_ha": 1589.0,
+      "reported_total_area_ha": 1589.0,
+      "egif_sheet_grid": "0803M05",
+      "link_status": "unlinked",
+      "documentary_candidates": [],
+      "esfire30_same_year_grid_candidates": []
+    },
+    {
+      "source_record_id": "1978126188",
+      "year": 1978,
+      "province": "Castellon",
+      "municipality": null,
+      "detection_date": "1978-08-08T06:00:00",
+      "reported_forest_area_ha": 2852.0,
+      "reported_total_area_ha": 2852.0,
+      "egif_sheet_grid": "0803K05",
+      "link_status": "unlinked",
+      "documentary_candidates": [],
+      "esfire30_same_year_grid_candidates": []
+    },
+    {
+      "source_record_id": "1978126205",
+      "year": 1978,
+      "province": "Castellon",
+      "municipality": null,
+      "detection_date": "1978-09-20T02:00:00",
+      "reported_forest_area_ha": 700.0,
+      "reported_total_area_ha": 700.0,
+      "egif_sheet_grid": "0804B03",
+      "link_status": "unlinked",
+      "documentary_candidates": [],
+      "esfire30_same_year_grid_candidates": []
+    },
+    {
+      "source_record_id": "1978126208",
+      "year": 1978,
+      "province": "Castellon",
+      "municipality": null,
+      "detection_date": "1978-10-03T21:00:00",
+      "reported_forest_area_ha": 520.0,
+      "reported_total_area_ha": 520.0,
+      "egif_sheet_grid": "0704B10",
+      "link_status": "unlinked",
+      "documentary_candidates": [],
+      "esfire30_same_year_grid_candidates": []
+    },
+    {
+      "source_record_id": "1978126221",
+      "year": 1978,
+      "province": "Castellon",
+      "municipality": null,
+      "detection_date": "1978-10-02T02:00:00",
+      "reported_forest_area_ha": 555.0,
+      "reported_total_area_ha": 555.0,
+      "egif_sheet_grid": "0804A01",
+      "link_status": "unlinked",
+      "documentary_candidates": [],
+      "esfire30_same_year_grid_candidates": []
+    },
+    {
+      "source_record_id": "1978126950",
+      "year": 1978,
+      "province": "Castellon",
+      "municipality": null,
+      "detection_date": "1978-11-26T22:00:00",
+      "reported_forest_area_ha": 500.0,
+      "reported_total_area_ha": 500.0,
+      "egif_sheet_grid": "0803M02",
+      "link_status": "unlinked",
+      "documentary_candidates": [],
+      "esfire30_same_year_grid_candidates": []
+    },
+    {
+      "source_record_id": "1978460571",
+      "year": 1978,
+      "province": "Valencia",
+      "municipality": null,
+      "detection_date": "1978-06-15T09:00:00",
+      "reported_forest_area_ha": 803.0,
+      "reported_total_area_ha": 803.0,
+      "egif_sheet_grid": "0804J03",
+      "link_status": "unlinked",
+      "documentary_candidates": [
+        {
+          "source_id": "gva_annual_perimeter_archive_1978_valencia",
+          "status": "unlinked_scope_candidate",
+          "reason": "El parte cae en el alcance provincia/año documentado; se desconoce si existe una feature individual."
+        }
+      ],
+      "esfire30_same_year_grid_candidates": []
+    },
+    {
+      "source_record_id": "1978462533",
+      "year": 1978,
+      "province": "Valencia",
+      "municipality": null,
+      "detection_date": "1978-08-07T14:00:00",
+      "reported_forest_area_ha": 1200.0,
+      "reported_total_area_ha": 1200.0,
+      "egif_sheet_grid": "0804D01",
+      "link_status": "unlinked",
+      "documentary_candidates": [
+        {
+          "source_id": "gva_annual_perimeter_archive_1978_valencia",
+          "status": "unlinked_scope_candidate",
+          "reason": "El parte cae en el alcance provincia/año documentado; se desconoce si existe una feature individual."
+        }
+      ],
+      "esfire30_same_year_grid_candidates": []
+    },
+    {
+      "source_record_id": "1978463085",
+      "year": 1978,
+      "province": "Valencia",
+      "municipality": null,
+      "detection_date": "1978-08-25T18:00:00",
+      "reported_forest_area_ha": 560.0,
+      "reported_total_area_ha": 560.0,
+      "egif_sheet_grid": "0704M10",
+      "link_status": "unlinked",
+      "documentary_candidates": [
+        {
+          "source_id": "gva_annual_perimeter_archive_1978_valencia",
+          "status": "unlinked_scope_candidate",
+          "reason": "El parte cae en el alcance provincia/año documentado; se desconoce si existe una feature individual."
+        }
+      ],
+      "esfire30_same_year_grid_candidates": []
+    },
+    {
+      "source_record_id": "1978463369",
+      "year": 1978,
+      "province": "Valencia",
+      "municipality": null,
+      "detection_date": "1978-09-01T19:00:00",
+      "reported_forest_area_ha": 2430.0,
+      "reported_total_area_ha": 2430.0,
+      "egif_sheet_grid": "0704C08",
+      "link_status": "unlinked",
+      "documentary_candidates": [
+        {
+          "source_id": "gva_annual_perimeter_archive_1978_valencia",
+          "status": "unlinked_scope_candidate",
+          "reason": "El parte cae en el alcance provincia/año documentado; se desconoce si existe una feature individual."
+        }
+      ],
+      "esfire30_same_year_grid_candidates": []
+    },
+    {
+      "source_record_id": "1978463370",
+      "year": 1978,
+      "province": "Valencia",
+      "municipality": null,
+      "detection_date": "1978-09-01T13:00:00",
+      "reported_forest_area_ha": 610.0,
+      "reported_total_area_ha": 610.0,
+      "egif_sheet_grid": "0804C02",
+      "link_status": "unlinked",
+      "documentary_candidates": [
+        {
+          "source_id": "gva_annual_perimeter_archive_1978_valencia",
+          "status": "unlinked_scope_candidate",
+          "reason": "El parte cae en el alcance provincia/año documentado; se desconoce si existe una feature individual."
+        }
+      ],
+      "esfire30_same_year_grid_candidates": []
+    },
+    {
+      "source_record_id": "1978463377",
+      "year": 1978,
+      "province": "Valencia",
+      "municipality": null,
+      "detection_date": "1978-09-03T13:00:00",
+      "reported_forest_area_ha": 550.0,
+      "reported_total_area_ha": 550.0,
+      "egif_sheet_grid": "0704N10",
+      "link_status": "unlinked",
+      "documentary_candidates": [
+        {
+          "source_id": "gva_annual_perimeter_archive_1978_valencia",
+          "status": "unlinked_scope_candidate",
+          "reason": "El parte cae en el alcance provincia/año documentado; se desconoce si existe una feature individual."
+        }
+      ],
+      "esfire30_same_year_grid_candidates": []
+    },
+    {
+      "source_record_id": "1978463963",
+      "year": 1978,
+      "province": "Valencia",
+      "municipality": null,
+      "detection_date": "1978-08-30T23:00:00",
+      "reported_forest_area_ha": 13100.0,
+      "reported_total_area_ha": 13100.0,
+      "egif_sheet_grid": "0704I09",
+      "link_status": "unlinked",
+      "documentary_candidates": [
+        {
+          "source_id": "gva_annual_perimeter_archive_1978_valencia",
+          "status": "unlinked_scope_candidate",
+          "reason": "El parte cae en el alcance provincia/año documentado; se desconoce si existe una feature individual."
+        }
+      ],
+      "esfire30_same_year_grid_candidates": []
+    },
+    {
+      "source_record_id": "1978463991",
+      "year": 1978,
+      "province": "Valencia",
+      "municipality": null,
+      "detection_date": "1978-09-18T11:00:00",
+      "reported_forest_area_ha": 6400.0,
+      "reported_total_area_ha": 6400.0,
+      "egif_sheet_grid": "0704H08",
+      "link_status": "unlinked",
+      "documentary_candidates": [
+        {
+          "source_id": "gva_annual_perimeter_archive_1978_valencia",
+          "status": "unlinked_scope_candidate",
+          "reason": "El parte cae en el alcance provincia/año documentado; se desconoce si existe una feature individual."
+        }
+      ],
+      "esfire30_same_year_grid_candidates": []
+    },
+    {
+      "source_record_id": "1978464791",
+      "year": 1978,
+      "province": "Valencia",
+      "municipality": null,
+      "detection_date": "1978-09-07T11:00:00",
+      "reported_forest_area_ha": 640.0,
+      "reported_total_area_ha": 640.0,
+      "egif_sheet_grid": "0704C10",
+      "link_status": "unlinked",
+      "documentary_candidates": [
+        {
+          "source_id": "gva_annual_perimeter_archive_1978_valencia",
+          "status": "unlinked_scope_candidate",
+          "reason": "El parte cae en el alcance provincia/año documentado; se desconoce si existe una feature individual."
+        }
+      ],
+      "esfire30_same_year_grid_candidates": []
+    },
+    {
+      "source_record_id": "1978464792",
+      "year": 1978,
+      "province": "Valencia",
+      "municipality": null,
+      "detection_date": "1978-09-21T13:00:00",
+      "reported_forest_area_ha": 832.0,
+      "reported_total_area_ha": 832.0,
+      "egif_sheet_grid": "0704E09",
+      "link_status": "unlinked",
+      "documentary_candidates": [
+        {
+          "source_id": "gva_annual_perimeter_archive_1978_valencia",
+          "status": "unlinked_scope_candidate",
+          "reason": "El parte cae en el alcance provincia/año documentado; se desconoce si existe una feature individual."
+        }
+      ],
+      "esfire30_same_year_grid_candidates": []
+    },
+    {
+      "source_record_id": "1978464797",
+      "year": 1978,
+      "province": "Valencia",
+      "municipality": null,
+      "detection_date": "1978-09-18T12:00:00",
+      "reported_forest_area_ha": 1363.5,
+      "reported_total_area_ha": 1363.5,
+      "egif_sheet_grid": "0704F08",
+      "link_status": "unlinked",
+      "documentary_candidates": [
+        {
+          "source_id": "gva_annual_perimeter_archive_1978_valencia",
+          "status": "unlinked_scope_candidate",
+          "reason": "El parte cae en el alcance provincia/año documentado; se desconoce si existe una feature individual."
+        }
+      ],
+      "esfire30_same_year_grid_candidates": []
+    },
+    {
+      "source_record_id": "1978465442",
+      "year": 1978,
+      "province": "Valencia",
+      "municipality": null,
+      "detection_date": "1978-10-04T18:00:00",
+      "reported_forest_area_ha": 804.0,
+      "reported_total_area_ha": 804.0,
+      "egif_sheet_grid": "0704E09",
+      "link_status": "unlinked",
+      "documentary_candidates": [
+        {
+          "source_id": "gva_annual_perimeter_archive_1978_valencia",
+          "status": "unlinked_scope_candidate",
+          "reason": "El parte cae en el alcance provincia/año documentado; se desconoce si existe una feature individual."
+        }
+      ],
+      "esfire30_same_year_grid_candidates": []
+    },
+    {
+      "source_record_id": "1978465451",
+      "year": 1978,
+      "province": "Valencia",
+      "municipality": null,
+      "detection_date": "1978-10-18T14:00:00",
+      "reported_forest_area_ha": 4900.0,
+      "reported_total_area_ha": 4900.0,
+      "egif_sheet_grid": "0704G09",
+      "link_status": "unlinked",
+      "documentary_candidates": [
+        {
+          "source_id": "gva_annual_perimeter_archive_1978_valencia",
+          "status": "unlinked_scope_candidate",
+          "reason": "El parte cae en el alcance provincia/año documentado; se desconoce si existe una feature individual."
+        }
+      ],
+      "esfire30_same_year_grid_candidates": []
+    },
+    {
+      "source_record_id": "1978467453",
+      "year": 1978,
+      "province": "Valencia",
+      "municipality": null,
+      "detection_date": "1978-12-13T11:00:00",
+      "reported_forest_area_ha": 715.0,
+      "reported_total_area_ha": 715.0,
+      "egif_sheet_grid": "0704K09",
+      "link_status": "unlinked",
+      "documentary_candidates": [
+        {
+          "source_id": "gva_annual_perimeter_archive_1978_valencia",
+          "status": "unlinked_scope_candidate",
+          "reason": "El parte cae en el alcance provincia/año documentado; se desconoce si existe una feature individual."
+        }
+      ],
+      "esfire30_same_year_grid_candidates": []
+    },
+    {
+      "source_record_id": "1978467454",
+      "year": 1978,
+      "province": "Valencia",
+      "municipality": null,
+      "detection_date": "1978-12-13T09:00:00",
+      "reported_forest_area_ha": 1110.0,
+      "reported_total_area_ha": 1110.0,
+      "egif_sheet_grid": "0804K03",
+      "link_status": "unlinked",
+      "documentary_candidates": [
+        {
+          "source_id": "gva_annual_perimeter_archive_1978_valencia",
+          "status": "unlinked_scope_candidate",
+          "reason": "El parte cae en el alcance provincia/año documentado; se desconoce si existe una feature individual."
+        }
+      ],
+      "esfire30_same_year_grid_candidates": []
+    },
+    {
+      "source_record_id": "1979030716",
+      "year": 1979,
+      "province": "Alicante",
+      "municipality": null,
+      "detection_date": "1979-05-14T16:00:00",
+      "reported_forest_area_ha": 500.0,
+      "reported_total_area_ha": 500.0,
+      "egif_sheet_grid": "0804M04",
+      "link_status": "unlinked",
+      "documentary_candidates": [],
+      "esfire30_same_year_grid_candidates": []
+    },
+    {
+      "source_record_id": "1979031778",
+      "year": 1979,
+      "province": "Alicante",
+      "municipality": null,
+      "detection_date": "1979-07-31T11:00:00",
+      "reported_forest_area_ha": 810.0,
+      "reported_total_area_ha": 810.0,
+      "egif_sheet_grid": "0804N06",
+      "link_status": "unlinked",
+      "documentary_candidates": [],
+      "esfire30_same_year_grid_candidates": []
+    },
+    {
+      "source_record_id": "1979032001",
+      "year": 1979,
+      "province": "Alicante",
+      "municipality": null,
+      "detection_date": "1979-08-07T12:00:00",
+      "reported_forest_area_ha": 510.0,
+      "reported_total_area_ha": 510.0,
+      "egif_sheet_grid": "0804N05",
+      "link_status": "unlinked",
+      "documentary_candidates": [],
+      "esfire30_same_year_grid_candidates": []
+    },
+    {
+      "source_record_id": "1979032014",
+      "year": 1979,
+      "province": "Alicante",
+      "municipality": null,
+      "detection_date": "1979-08-15T18:00:00",
+      "reported_forest_area_ha": 1440.0,
+      "reported_total_area_ha": 1440.0,
+      "egif_sheet_grid": "0804N05",
+      "link_status": "unlinked",
+      "documentary_candidates": [],
+      "esfire30_same_year_grid_candidates": []
+    },
+    {
+      "source_record_id": "1979032231",
+      "year": 1979,
+      "province": "Alicante",
+      "municipality": null,
+      "detection_date": "1979-08-16T05:00:00",
+      "reported_forest_area_ha": 517.0,
+      "reported_total_area_ha": 517.0,
+      "egif_sheet_grid": "0804M04",
+      "link_status": "unlinked",
+      "documentary_candidates": [],
+      "esfire30_same_year_grid_candidates": []
+    },
+    {
+      "source_record_id": "1979120135",
+      "year": 1979,
+      "province": "Castellon",
+      "municipality": null,
+      "detection_date": "1979-02-24T19:00:00",
+      "reported_forest_area_ha": 600.0,
+      "reported_total_area_ha": 600.0,
+      "egif_sheet_grid": "0804A01",
+      "link_status": "unlinked",
+      "documentary_candidates": [],
+      "esfire30_same_year_grid_candidates": []
+    },
+    {
+      "source_record_id": "1979120787",
+      "year": 1979,
+      "province": "Castellon",
+      "municipality": null,
+      "detection_date": "1979-04-23T12:00:00",
+      "reported_forest_area_ha": 869.0,
+      "reported_total_area_ha": 869.0,
+      "egif_sheet_grid": "0803N05",
+      "link_status": "unlinked",
+      "documentary_candidates": [],
+      "esfire30_same_year_grid_candidates": []
+    },
+    {
+      "source_record_id": "1979120933",
+      "year": 1979,
+      "province": "Castellon",
+      "municipality": null,
+      "detection_date": "1979-04-06T16:00:00",
+      "reported_forest_area_ha": 1053.0,
+      "reported_total_area_ha": 1053.0,
+      "egif_sheet_grid": "0804A03",
+      "link_status": "unlinked",
+      "documentary_candidates": [],
+      "esfire30_same_year_grid_candidates": []
+    },
+    {
+      "source_record_id": "1979121011",
+      "year": 1979,
+      "province": "Castellon",
+      "municipality": null,
+      "detection_date": "1979-03-27T13:00:00",
+      "reported_forest_area_ha": 2846.0,
+      "reported_total_area_ha": 2846.0,
+      "egif_sheet_grid": "0703O11",
+      "link_status": "unlinked",
+      "documentary_candidates": [],
+      "esfire30_same_year_grid_candidates": []
+    },
+    {
+      "source_record_id": "1979122653",
+      "year": 1979,
+      "province": "Castellon",
+      "municipality": null,
+      "detection_date": "1979-07-08T10:00:00",
+      "reported_forest_area_ha": 500.0,
+      "reported_total_area_ha": 500.0,
+      "egif_sheet_grid": "0804B03",
+      "link_status": "unlinked",
+      "documentary_candidates": [],
+      "esfire30_same_year_grid_candidates": []
+    },
+    {
+      "source_record_id": "1979122655",
+      "year": 1979,
+      "province": "Castellon",
+      "municipality": null,
+      "detection_date": "1979-07-08T13:00:00",
+      "reported_forest_area_ha": 1200.0,
+      "reported_total_area_ha": 1200.0,
+      "egif_sheet_grid": "0803N02",
+      "link_status": "unlinked",
+      "documentary_candidates": [],
+      "esfire30_same_year_grid_candidates": []
+    },
+    {
+      "source_record_id": "1979122659",
+      "year": 1979,
+      "province": "Castellon",
+      "municipality": null,
+      "detection_date": "1979-07-11T22:00:00",
+      "reported_forest_area_ha": 700.0,
+      "reported_total_area_ha": 700.0,
+      "egif_sheet_grid": "0803M03",
+      "link_status": "unlinked",
+      "documentary_candidates": [],
+      "esfire30_same_year_grid_candidates": []
+    },
+    {
+      "source_record_id": "1979122660",
+      "year": 1979,
+      "province": "Castellon",
+      "municipality": null,
+      "detection_date": "1979-07-11T22:00:00",
+      "reported_forest_area_ha": 600.0,
+      "reported_total_area_ha": 600.0,
+      "egif_sheet_grid": "0803M03",
+      "link_status": "unlinked",
+      "documentary_candidates": [],
+      "esfire30_same_year_grid_candidates": []
+    },
+    {
+      "source_record_id": "1979123531",
+      "year": 1979,
+      "province": "Castellon",
+      "municipality": null,
+      "detection_date": "1979-08-10T03:00:00",
+      "reported_forest_area_ha": 1917.0,
+      "reported_total_area_ha": 1917.0,
+      "egif_sheet_grid": "0803J05",
+      "link_status": "unlinked",
+      "documentary_candidates": [],
+      "esfire30_same_year_grid_candidates": []
+    },
+    {
+      "source_record_id": "1979123546",
+      "year": 1979,
+      "province": "Castellon",
+      "municipality": null,
+      "detection_date": "1979-08-16T08:00:00",
+      "reported_forest_area_ha": 1050.0,
+      "reported_total_area_ha": 1050.0,
+      "egif_sheet_grid": "0803O05",
+      "link_status": "unlinked",
+      "documentary_candidates": [],
+      "esfire30_same_year_grid_candidates": []
+    },
+    {
+      "source_record_id": "1979123550",
+      "year": 1979,
+      "province": "Castellon",
+      "municipality": null,
+      "detection_date": "1979-08-19T21:00:00",
+      "reported_forest_area_ha": 1425.0,
+      "reported_total_area_ha": 1425.0,
+      "egif_sheet_grid": "0804B03",
+      "link_status": "unlinked",
+      "documentary_candidates": [],
+      "esfire30_same_year_grid_candidates": []
+    },
+    {
+      "source_record_id": "1979123556",
+      "year": 1979,
+      "province": "Castellon",
+      "municipality": null,
+      "detection_date": "1979-08-20T06:00:00",
+      "reported_forest_area_ha": 579.0,
+      "reported_total_area_ha": 579.0,
+      "egif_sheet_grid": "0803K05",
+      "link_status": "unlinked",
+      "documentary_candidates": [],
+      "esfire30_same_year_grid_candidates": []
+    },
+    {
+      "source_record_id": "1979124104",
+      "year": 1979,
+      "province": "Castellon",
+      "municipality": null,
+      "detection_date": "1979-08-18T12:00:00",
+      "reported_forest_area_ha": 2236.0,
+      "reported_total_area_ha": 2236.0,
+      "egif_sheet_grid": "0803M05",
+      "link_status": "unlinked",
+      "documentary_candidates": [],
+      "esfire30_same_year_grid_candidates": []
+    },
+    {
+      "source_record_id": "1979124105",
+      "year": 1979,
+      "province": "Castellon",
+      "municipality": null,
+      "detection_date": "1979-08-18T17:00:00",
+      "reported_forest_area_ha": 1477.0,
+      "reported_total_area_ha": 1477.0,
+      "egif_sheet_grid": "0803K05",
+      "link_status": "unlinked",
+      "documentary_candidates": [],
+      "esfire30_same_year_grid_candidates": []
+    },
+    {
+      "source_record_id": "1979124108",
+      "year": 1979,
+      "province": "Castellon",
+      "municipality": null,
+      "detection_date": "1979-08-18T22:00:00",
+      "reported_forest_area_ha": 1598.0,
+      "reported_total_area_ha": 1598.0,
+      "egif_sheet_grid": "0803L05",
+      "link_status": "unlinked",
+      "documentary_candidates": [],
+      "esfire30_same_year_grid_candidates": []
+    },
+    {
+      "source_record_id": "1979124109",
+      "year": 1979,
+      "province": "Castellon",
+      "municipality": null,
+      "detection_date": "1979-08-19T03:00:00",
+      "reported_forest_area_ha": 1320.2,
+      "reported_total_area_ha": 1320.2,
+      "egif_sheet_grid": "0803J05",
+      "link_status": "unlinked",
+      "documentary_candidates": [],
+      "esfire30_same_year_grid_candidates": []
+    },
+    {
+      "source_record_id": "1979125784",
+      "year": 1979,
+      "province": "Castellon",
+      "municipality": null,
+      "detection_date": "1979-11-18T21:00:00",
+      "reported_forest_area_ha": 700.0,
+      "reported_total_area_ha": 700.0,
+      "egif_sheet_grid": "0804C01",
+      "link_status": "unlinked",
+      "documentary_candidates": [],
+      "esfire30_same_year_grid_candidates": []
+    },
+    {
+      "source_record_id": "1980031781",
+      "year": 1980,
+      "province": "Alicante",
+      "municipality": null,
+      "detection_date": "1980-08-07T22:00:00",
+      "reported_forest_area_ha": 600.0,
+      "reported_total_area_ha": 600.0,
+      "egif_sheet_grid": "0804N04",
+      "link_status": "unlinked",
+      "documentary_candidates": [],
+      "esfire30_same_year_grid_candidates": []
+    },
+    {
+      "source_record_id": "1980031782",
+      "year": 1980,
+      "province": "Alicante",
+      "municipality": null,
+      "detection_date": "1980-08-07T23:00:00",
+      "reported_forest_area_ha": 600.0,
+      "reported_total_area_ha": 600.0,
+      "egif_sheet_grid": "0804N04",
+      "link_status": "unlinked",
+      "documentary_candidates": [],
+      "esfire30_same_year_grid_candidates": []
+    },
+    {
+      "source_record_id": "1980031783",
+      "year": 1980,
+      "province": "Alicante",
+      "municipality": null,
+      "detection_date": "1980-08-07T13:00:00",
+      "reported_forest_area_ha": 635.0,
+      "reported_total_area_ha": 635.0,
+      "egif_sheet_grid": "0804O05",
+      "link_status": "unlinked",
+      "documentary_candidates": [],
+      "esfire30_same_year_grid_candidates": []
+    },
+    {
+      "source_record_id": "1980031796",
+      "year": 1980,
+      "province": "Alicante",
+      "municipality": null,
+      "detection_date": "1980-08-15T18:00:00",
+      "reported_forest_area_ha": 1495.0,
+      "reported_total_area_ha": 1495.0,
+      "egif_sheet_grid": "0804N01",
+      "link_status": "unlinked",
+      "documentary_candidates": [],
+      "esfire30_same_year_grid_candidates": []
+    },
+    {
+      "source_record_id": "1980031802",
+      "year": 1980,
+      "province": "Alicante",
+      "municipality": null,
+      "detection_date": "1980-08-18T20:00:00",
+      "reported_forest_area_ha": 1137.0,
+      "reported_total_area_ha": 1137.0,
+      "egif_sheet_grid": "0804O04",
+      "link_status": "unlinked",
+      "documentary_candidates": [],
+      "esfire30_same_year_grid_candidates": []
+    },
+    {
+      "source_record_id": "1980031804",
+      "year": 1980,
+      "province": "Alicante",
+      "municipality": null,
+      "detection_date": "1980-08-19T11:00:00",
+      "reported_forest_area_ha": 1000.0,
+      "reported_total_area_ha": 1000.0,
+      "egif_sheet_grid": "0804O05",
+      "link_status": "unlinked",
+      "documentary_candidates": [],
+      "esfire30_same_year_grid_candidates": []
+    },
+    {
+      "source_record_id": "1980034964",
+      "year": 1980,
+      "province": "Alicante",
+      "municipality": null,
+      "detection_date": "1980-10-08T02:00:00",
+      "reported_forest_area_ha": 2545.0,
+      "reported_total_area_ha": 2545.0,
+      "egif_sheet_grid": "0805A02",
+      "link_status": "unlinked",
+      "documentary_candidates": [],
+      "esfire30_same_year_grid_candidates": []
+    },
+    {
+      "source_record_id": "1980034969",
+      "year": 1980,
+      "province": "Alicante",
+      "municipality": null,
+      "detection_date": "1980-10-12T12:00:00",
+      "reported_forest_area_ha": 950.0,
+      "reported_total_area_ha": 950.0,
+      "egif_sheet_grid": "0804N01",
+      "link_status": "unlinked",
+      "documentary_candidates": [],
+      "esfire30_same_year_grid_candidates": []
+    },
+    {
+      "source_record_id": "1980122217",
+      "year": 1980,
+      "province": "Castellon",
+      "municipality": null,
+      "detection_date": "1980-08-22T17:00:00",
+      "reported_forest_area_ha": 2200.0,
+      "reported_total_area_ha": 2200.0,
+      "egif_sheet_grid": "0803N02",
+      "link_status": "unlinked",
+      "documentary_candidates": [],
+      "esfire30_same_year_grid_candidates": []
+    },
+    {
+      "source_record_id": "1980461623",
+      "year": 1980,
+      "province": "Valencia",
+      "municipality": null,
+      "detection_date": "1980-08-14T14:00:00",
+      "reported_forest_area_ha": 678.0,
+      "reported_total_area_ha": 678.0,
+      "egif_sheet_grid": "0704D06",
+      "link_status": "unlinked",
+      "documentary_candidates": [
+        {
+          "source_id": "gva_annual_perimeter_archive_1978_valencia",
+          "status": "unlinked_scope_candidate",
+          "reason": "El parte cae en el alcance provincia/año documentado; se desconoce si existe una feature individual."
+        }
+      ],
+      "esfire30_same_year_grid_candidates": []
+    },
+    {
+      "source_record_id": "1980461627",
+      "year": 1980,
+      "province": "Valencia",
+      "municipality": null,
+      "detection_date": "1980-08-15T14:00:00",
+      "reported_forest_area_ha": 6079.0,
+      "reported_total_area_ha": 6079.0,
+      "egif_sheet_grid": "0704F07",
+      "link_status": "unlinked",
+      "documentary_candidates": [
+        {
+          "source_id": "gva_annual_perimeter_archive_1978_valencia",
+          "status": "unlinked_scope_candidate",
+          "reason": "El parte cae en el alcance provincia/año documentado; se desconoce si existe una feature individual."
+        }
+      ],
+      "esfire30_same_year_grid_candidates": []
+    },
+    {
+      "source_record_id": "1980465401",
+      "year": 1980,
+      "province": "Valencia",
+      "municipality": null,
+      "detection_date": "1980-10-20T11:00:00",
+      "reported_forest_area_ha": 707.0,
+      "reported_total_area_ha": 707.0,
+      "egif_sheet_grid": "0804J03",
+      "link_status": "unlinked",
+      "documentary_candidates": [
+        {
+          "source_id": "gva_annual_perimeter_archive_1978_valencia",
+          "status": "unlinked_scope_candidate",
+          "reason": "El parte cae en el alcance provincia/año documentado; se desconoce si existe una feature individual."
+        }
+      ],
+      "esfire30_same_year_grid_candidates": []
+    },
+    {
+      "source_record_id": "1981030011",
+      "year": 1981,
+      "province": "Alicante",
+      "municipality": null,
+      "detection_date": "1981-02-03T12:00:00",
+      "reported_forest_area_ha": 600.0,
+      "reported_total_area_ha": 600.0,
+      "egif_sheet_grid": "0805A02",
+      "link_status": "unlinked",
+      "documentary_candidates": [],
+      "esfire30_same_year_grid_candidates": []
+    },
+    {
+      "source_record_id": "1981033924",
+      "year": 1981,
+      "province": "Alicante",
+      "municipality": null,
+      "detection_date": "1981-10-01T21:00:00",
+      "reported_forest_area_ha": 800.0,
+      "reported_total_area_ha": 800.0,
+      "egif_sheet_grid": "0805A03",
+      "link_status": "unlinked",
+      "documentary_candidates": [],
+      "esfire30_same_year_grid_candidates": []
+    },
+    {
+      "source_record_id": "1981033926",
+      "year": 1981,
+      "province": "Alicante",
+      "municipality": null,
+      "detection_date": "1981-10-02T01:00:00",
+      "reported_forest_area_ha": 720.0,
+      "reported_total_area_ha": 720.0,
+      "egif_sheet_grid": "0804N03",
+      "link_status": "unlinked",
+      "documentary_candidates": [],
+      "esfire30_same_year_grid_candidates": []
+    },
+    {
+      "source_record_id": "1981120097",
+      "year": 1981,
+      "province": "Castellon",
+      "municipality": null,
+      "detection_date": "1981-02-05T05:00:00",
+      "reported_forest_area_ha": 1719.0,
+      "reported_total_area_ha": 1719.0,
+      "egif_sheet_grid": "0803O05",
+      "link_status": "unlinked",
+      "documentary_candidates": [],
+      "esfire30_same_year_grid_candidates": []
+    },
+    {
+      "source_record_id": "1981120317",
+      "year": 1981,
+      "province": "Castellon",
+      "municipality": null,
+      "detection_date": "1981-12-18T15:00:00",
+      "reported_forest_area_ha": 2933.0,
+      "reported_total_area_ha": 2933.0,
+      "egif_sheet_grid": "0804B02",
+      "link_status": "unlinked",
+      "documentary_candidates": [],
+      "esfire30_same_year_grid_candidates": []
+    },
+    {
+      "source_record_id": "1981120326",
+      "year": 1981,
+      "province": "Castellon",
+      "municipality": null,
+      "detection_date": "1981-12-18T16:00:00",
+      "reported_forest_area_ha": 1100.0,
+      "reported_total_area_ha": 1100.0,
+      "egif_sheet_grid": "0803K05",
+      "link_status": "unlinked",
+      "documentary_candidates": [],
+      "esfire30_same_year_grid_candidates": []
+    },
+    {
+      "source_record_id": "1981120586",
+      "year": 1981,
+      "province": "Castellon",
+      "municipality": null,
+      "detection_date": "1981-03-25T13:00:00",
+      "reported_forest_area_ha": 1380.0,
+      "reported_total_area_ha": 1380.0,
+      "egif_sheet_grid": "0803H05",
+      "link_status": "unlinked",
+      "documentary_candidates": [],
+      "esfire30_same_year_grid_candidates": []
+    },
+    {
+      "source_record_id": "1981121379",
+      "year": 1981,
+      "province": "Castellon",
+      "municipality": null,
+      "detection_date": "1981-01-18T19:00:00",
+      "reported_forest_area_ha": 600.0,
+      "reported_total_area_ha": 600.0,
+      "egif_sheet_grid": "0804B03",
+      "link_status": "unlinked",
+      "documentary_candidates": [],
+      "esfire30_same_year_grid_candidates": []
+    },
+    {
+      "source_record_id": "1981121409",
+      "year": 1981,
+      "province": "Castellon",
+      "municipality": null,
+      "detection_date": "1981-03-12T18:00:00",
+      "reported_forest_area_ha": 500.0,
+      "reported_total_area_ha": 500.0,
+      "egif_sheet_grid": "0704A10",
+      "link_status": "unlinked",
+      "documentary_candidates": [],
+      "esfire30_same_year_grid_candidates": []
+    },
+    {
+      "source_record_id": "1981124301",
+      "year": 1981,
+      "province": "Castellon",
+      "municipality": null,
+      "detection_date": "1981-08-07T08:00:00",
+      "reported_forest_area_ha": 1200.0,
+      "reported_total_area_ha": 1200.0,
+      "egif_sheet_grid": "0703O10",
+      "link_status": "unlinked",
+      "documentary_candidates": [],
+      "esfire30_same_year_grid_candidates": []
+    },
+    {
+      "source_record_id": "1981463657",
+      "year": 1981,
+      "province": "Valencia",
+      "municipality": null,
+      "detection_date": "1981-07-17T12:00:00",
+      "reported_forest_area_ha": 2309.0,
+      "reported_total_area_ha": 2309.0,
+      "egif_sheet_grid": "0704K10",
+      "link_status": "unlinked",
+      "documentary_candidates": [
+        {
+          "source_id": "gva_annual_perimeter_archive_1978_valencia",
+          "status": "unlinked_scope_candidate",
+          "reason": "El parte cae en el alcance provincia/año documentado; se desconoce si existe una feature individual."
+        }
+      ],
+      "esfire30_same_year_grid_candidates": []
+    },
+    {
+      "source_record_id": "1981463699",
+      "year": 1981,
+      "province": "Valencia",
+      "municipality": null,
+      "detection_date": "1981-08-15T17:00:00",
+      "reported_forest_area_ha": 1374.0,
+      "reported_total_area_ha": 1374.0,
+      "egif_sheet_grid": "0704M10",
+      "link_status": "unlinked",
+      "documentary_candidates": [
+        {
+          "source_id": "gva_annual_perimeter_archive_1978_valencia",
+          "status": "unlinked_scope_candidate",
+          "reason": "El parte cae en el alcance provincia/año documentado; se desconoce si existe una feature individual."
+        }
+      ],
+      "esfire30_same_year_grid_candidates": []
+    },
+    {
+      "source_record_id": "1981466476",
+      "year": 1981,
+      "province": "Valencia",
+      "municipality": null,
+      "detection_date": "1981-08-16T13:00:00",
+      "reported_forest_area_ha": 700.0,
+      "reported_total_area_ha": 700.0,
+      "egif_sheet_grid": "0704L11",
+      "link_status": "unlinked",
+      "documentary_candidates": [
+        {
+          "source_id": "gva_annual_perimeter_archive_1978_valencia",
+          "status": "unlinked_scope_candidate",
+          "reason": "El parte cae en el alcance provincia/año documentado; se desconoce si existe una feature individual."
+        }
+      ],
+      "esfire30_same_year_grid_candidates": []
+    },
+    {
+      "source_record_id": "1981466477",
+      "year": 1981,
+      "province": "Valencia",
+      "municipality": null,
+      "detection_date": "1981-08-16T18:00:00",
+      "reported_forest_area_ha": 719.0,
+      "reported_total_area_ha": 719.0,
+      "egif_sheet_grid": "0804K02",
+      "link_status": "unlinked",
+      "documentary_candidates": [
+        {
+          "source_id": "gva_annual_perimeter_archive_1978_valencia",
+          "status": "unlinked_scope_candidate",
+          "reason": "El parte cae en el alcance provincia/año documentado; se desconoce si existe una feature individual."
+        }
+      ],
+      "esfire30_same_year_grid_candidates": []
+    },
+    {
+      "source_record_id": "1981466559",
+      "year": 1981,
+      "province": "Valencia",
+      "municipality": null,
+      "detection_date": "1981-10-13T20:00:00",
+      "reported_forest_area_ha": 595.0,
+      "reported_total_area_ha": 595.0,
+      "egif_sheet_grid": "0704F08",
+      "link_status": "unlinked",
+      "documentary_candidates": [
+        {
+          "source_id": "gva_annual_perimeter_archive_1978_valencia",
+          "status": "unlinked_scope_candidate",
+          "reason": "El parte cae en el alcance provincia/año documentado; se desconoce si existe una feature individual."
+        }
+      ],
+      "esfire30_same_year_grid_candidates": []
+    },
+    {
+      "source_record_id": "1982124545",
+      "year": 1982,
+      "province": "Castellon",
+      "municipality": null,
+      "detection_date": "1982-10-05T20:00:00",
+      "reported_forest_area_ha": 3870.0,
+      "reported_total_area_ha": 3870.0,
+      "egif_sheet_grid": "0803M02",
+      "link_status": "unlinked",
+      "documentary_candidates": [],
+      "esfire30_same_year_grid_candidates": []
+    },
+    {
+      "source_record_id": "1982124546",
+      "year": 1982,
+      "province": "Castellon",
+      "municipality": null,
+      "detection_date": "1982-10-06T11:00:00",
+      "reported_forest_area_ha": 765.0,
+      "reported_total_area_ha": 765.0,
+      "egif_sheet_grid": "0803L02",
+      "link_status": "unlinked",
+      "documentary_candidates": [],
+      "esfire30_same_year_grid_candidates": []
+    },
+    {
+      "source_record_id": "1982124547",
+      "year": 1982,
+      "province": "Castellon",
+      "municipality": null,
+      "detection_date": "1982-10-07T08:00:00",
+      "reported_forest_area_ha": 631.0,
+      "reported_total_area_ha": 631.0,
+      "egif_sheet_grid": "0803M04",
+      "link_status": "unlinked",
+      "documentary_candidates": [],
+      "esfire30_same_year_grid_candidates": []
+    },
+    {
+      "source_record_id": "1982124548",
+      "year": 1982,
+      "province": "Castellon",
+      "municipality": null,
+      "detection_date": "1982-10-07T15:00:00",
+      "reported_forest_area_ha": 1080.0,
+      "reported_total_area_ha": 1080.0,
+      "egif_sheet_grid": "0803L03",
+      "link_status": "unlinked",
+      "documentary_candidates": [],
+      "esfire30_same_year_grid_candidates": []
+    },
+    {
+      "source_record_id": "1982460237",
+      "year": 1982,
+      "province": "Valencia",
+      "municipality": null,
+      "detection_date": "1982-01-09T16:00:00",
+      "reported_forest_area_ha": 950.0,
+      "reported_total_area_ha": 950.0,
+      "egif_sheet_grid": "0804M03",
+      "link_status": "unlinked",
+      "documentary_candidates": [
+        {
+          "source_id": "gva_annual_perimeter_archive_1978_valencia",
+          "status": "unlinked_scope_candidate",
+          "reason": "El parte cae en el alcance provincia/año documentado; se desconoce si existe una feature individual."
+        }
+      ],
+      "esfire30_same_year_grid_candidates": []
+    },
+    {
+      "source_record_id": "1982460267",
+      "year": 1982,
+      "province": "Valencia",
+      "municipality": null,
+      "detection_date": "1982-01-10T14:00:00",
+      "reported_forest_area_ha": 863.0,
+      "reported_total_area_ha": 863.0,
+      "egif_sheet_grid": "0704C11",
+      "link_status": "unlinked",
+      "documentary_candidates": [
+        {
+          "source_id": "gva_annual_perimeter_archive_1978_valencia",
+          "status": "unlinked_scope_candidate",
+          "reason": "El parte cae en el alcance provincia/año documentado; se desconoce si existe una feature individual."
+        }
+      ],
+      "esfire30_same_year_grid_candidates": []
+    },
+    {
+      "source_record_id": "1982460772",
+      "year": 1982,
+      "province": "Valencia",
+      "municipality": null,
+      "detection_date": "1982-04-27T15:00:00",
+      "reported_forest_area_ha": 550.0,
+      "reported_total_area_ha": 550.0,
+      "egif_sheet_grid": "0704F07",
+      "link_status": "unlinked",
+      "documentary_candidates": [
+        {
+          "source_id": "gva_annual_perimeter_archive_1978_valencia",
+          "status": "unlinked_scope_candidate",
+          "reason": "El parte cae en el alcance provincia/año documentado; se desconoce si existe una feature individual."
+        }
+      ],
+      "esfire30_same_year_grid_candidates": []
+    },
+    {
+      "source_record_id": "1982462411",
+      "year": 1982,
+      "province": "Valencia",
+      "municipality": null,
+      "detection_date": "1982-07-30T12:00:00",
+      "reported_forest_area_ha": 900.0,
+      "reported_total_area_ha": 900.0,
+      "egif_sheet_grid": "0804L02",
+      "link_status": "unlinked",
+      "documentary_candidates": [
+        {
+          "source_id": "gva_annual_perimeter_archive_1978_valencia",
+          "status": "unlinked_scope_candidate",
+          "reason": "El parte cae en el alcance provincia/año documentado; se desconoce si existe una feature individual."
+        }
+      ],
+      "esfire30_same_year_grid_candidates": []
+    },
+    {
+      "source_record_id": "1983120998",
+      "year": 1983,
+      "province": "Castellon",
+      "municipality": "Peníscola/Peñíscola",
+      "detection_date": "1983-06-01T15:00:00",
+      "reported_forest_area_ha": 2000.3,
+      "reported_total_area_ha": 2000.3,
+      "egif_sheet_grid": "0803K08",
+      "link_status": "unlinked",
+      "documentary_candidates": [],
+      "esfire30_same_year_grid_candidates": []
+    },
+    {
+      "source_record_id": "1983462388",
+      "year": 1983,
+      "province": "Valencia",
+      "municipality": "Yátova",
+      "detection_date": "1983-07-31T23:00:00",
+      "reported_forest_area_ha": 4097.0,
+      "reported_total_area_ha": 4097.0,
+      "egif_sheet_grid": "0704H09",
+      "link_status": "unlinked",
+      "documentary_candidates": [
+        {
+          "source_id": "gva_annual_perimeter_archive_1978_valencia",
+          "status": "unlinked_scope_candidate",
+          "reason": "El parte cae en el alcance provincia/año documentado; se desconoce si existe una feature individual."
+        }
+      ],
+      "esfire30_same_year_grid_candidates": []
+    },
+    {
+      "source_record_id": "1983462413",
+      "year": 1983,
+      "province": "Valencia",
+      "municipality": "Ontinyent",
+      "detection_date": "1983-09-10T13:00:00",
+      "reported_forest_area_ha": 1040.0,
+      "reported_total_area_ha": 1040.0,
+      "egif_sheet_grid": "0704M11",
+      "link_status": "unlinked",
+      "documentary_candidates": [
+        {
+          "source_id": "gva_annual_perimeter_archive_1978_valencia",
+          "status": "unlinked_scope_candidate",
+          "reason": "El parte cae en el alcance provincia/año documentado; se desconoce si existe una feature individual."
+        }
+      ],
+      "esfire30_same_year_grid_candidates": []
+    },
+    {
+      "source_record_id": "1984120256",
+      "year": 1984,
+      "province": "Castellon",
+      "municipality": "Llucena/Lucena del Cid",
+      "detection_date": "1984-02-07T21:00:00",
+      "reported_forest_area_ha": 550.0,
+      "reported_total_area_ha": 550.0,
+      "egif_sheet_grid": "0803M02",
+      "link_status": "unlinked",
+      "documentary_candidates": [],
+      "esfire30_same_year_grid_candidates": []
+    },
+    {
+      "source_record_id": "1984120257",
+      "year": 1984,
+      "province": "Castellon",
+      "municipality": "Benafer",
+      "detection_date": "1984-02-07T16:00:00",
+      "reported_forest_area_ha": 1302.5,
+      "reported_total_area_ha": 1302.5,
+      "egif_sheet_grid": "0704A11",
+      "link_status": "unlinked",
+      "documentary_candidates": [],
+      "esfire30_same_year_grid_candidates": []
+    },
+    {
+      "source_record_id": "1984120259",
+      "year": 1984,
+      "province": "Castellon",
+      "municipality": "Vilafranca/Villafranca del Cid",
+      "detection_date": "1984-02-08T11:00:00",
+      "reported_forest_area_ha": 1210.0,
+      "reported_total_area_ha": 1210.0,
+      "egif_sheet_grid": "0803K02",
+      "link_status": "unlinked",
+      "documentary_candidates": [],
+      "esfire30_same_year_grid_candidates": []
+    },
+    {
+      "source_record_id": "1984121986",
+      "year": 1984,
+      "province": "Castellon",
+      "municipality": "Alcora, l'",
+      "detection_date": "1984-08-02T22:00:00",
+      "reported_forest_area_ha": 1000.0,
+      "reported_total_area_ha": 1000.0,
+      "egif_sheet_grid": "0803N03",
+      "link_status": "unlinked",
+      "documentary_candidates": [],
+      "esfire30_same_year_grid_candidates": []
+    },
+    {
+      "source_record_id": "1984123603",
+      "year": 1984,
+      "province": "Castellon",
+      "municipality": "Santa Magdalena de Pulpis",
+      "detection_date": "1984-09-23T23:00:00",
+      "reported_forest_area_ha": 3500.0,
+      "reported_total_area_ha": 3500.0,
+      "egif_sheet_grid": "0803K08",
+      "link_status": "unlinked",
+      "documentary_candidates": [],
+      "esfire30_same_year_grid_candidates": []
+    },
+    {
+      "source_record_id": "1984123609",
+      "year": 1984,
+      "province": "Castellon",
+      "municipality": "Alcudia de Veo",
+      "detection_date": "1984-10-02T18:00:00",
+      "reported_forest_area_ha": 1829.0,
+      "reported_total_area_ha": 1829.0,
+      "egif_sheet_grid": "0804A02",
+      "link_status": "unlinked",
+      "documentary_candidates": [],
+      "esfire30_same_year_grid_candidates": []
+    },
+    {
+      "source_record_id": "1984461246",
+      "year": 1984,
+      "province": "Valencia",
+      "municipality": "Buñol",
+      "detection_date": "1984-04-21T12:00:00",
+      "reported_forest_area_ha": 545.0,
+      "reported_total_area_ha": 545.0,
+      "egif_sheet_grid": "0704G08",
+      "link_status": "unlinked",
+      "documentary_candidates": [
+        {
+          "source_id": "gva_annual_perimeter_archive_1978_valencia",
+          "status": "unlinked_scope_candidate",
+          "reason": "El parte cae en el alcance provincia/año documentado; se desconoce si existe una feature individual."
+        }
+      ],
+      "esfire30_same_year_grid_candidates": []
+    },
+    {
+      "source_record_id": "1984461921",
+      "year": 1984,
+      "province": "Valencia",
+      "municipality": "Requena",
+      "detection_date": "1984-07-19T23:00:00",
+      "reported_forest_area_ha": 1100.0,
+      "reported_total_area_ha": 1100.0,
+      "egif_sheet_grid": "0704I06",
+      "link_status": "unlinked",
+      "documentary_candidates": [
+        {
+          "source_id": "gva_annual_perimeter_archive_1978_valencia",
+          "status": "unlinked_scope_candidate",
+          "reason": "El parte cae en el alcance provincia/año documentado; se desconoce si existe una feature individual."
+        }
+      ],
+      "esfire30_same_year_grid_candidates": []
+    },
+    {
+      "source_record_id": "1984462124",
+      "year": 1984,
+      "province": "Valencia",
+      "municipality": "Guadassuar",
+      "detection_date": "1984-07-24T19:00:00",
+      "reported_forest_area_ha": 1100.0,
+      "reported_total_area_ha": 1100.0,
+      "egif_sheet_grid": "0704J11",
+      "link_status": "unlinked",
+      "documentary_candidates": [
+        {
+          "source_id": "gva_annual_perimeter_archive_1978_valencia",
+          "status": "unlinked_scope_candidate",
+          "reason": "El parte cae en el alcance provincia/año documentado; se desconoce si existe una feature individual."
+        }
+      ],
+      "esfire30_same_year_grid_candidates": []
+    },
+    {
+      "source_record_id": "1984462674",
+      "year": 1984,
+      "province": "Valencia",
+      "municipality": "Enguera",
+      "detection_date": "1984-08-14T14:00:00",
+      "reported_forest_area_ha": 2000.0,
+      "reported_total_area_ha": 2000.0,
+      "egif_sheet_grid": "0704L09",
+      "link_status": "unlinked",
+      "documentary_candidates": [
+        {
+          "source_id": "gva_annual_perimeter_archive_1978_valencia",
+          "status": "unlinked_scope_candidate",
+          "reason": "El parte cae en el alcance provincia/año documentado; se desconoce si existe una feature individual."
+        }
+      ],
+      "esfire30_same_year_grid_candidates": []
+    },
+    {
+      "source_record_id": "1985121270",
+      "year": 1985,
+      "province": "Castellon",
+      "municipality": "Eslida",
+      "detection_date": "1985-07-09T12:00:00",
+      "reported_forest_area_ha": 2300.0,
+      "reported_total_area_ha": 2300.0,
+      "egif_sheet_grid": "0804B03",
+      "link_status": "possible_candidate",
+      "documentary_candidates": [],
+      "esfire30_same_year_grid_candidates": [
+        {
+          "candidate_id": "esfire30:1985:384",
+          "area_ha": 88.74,
+          "absolute_area_difference_ha": 2211.26,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        },
+        {
+          "candidate_id": "esfire30:1985:385",
+          "area_ha": 12.15,
+          "absolute_area_difference_ha": 2287.85,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        }
+      ]
+    },
+    {
+      "source_record_id": "1985121272",
+      "year": 1985,
+      "province": "Castellon",
+      "municipality": "Cirat",
+      "detection_date": "1985-07-13T13:00:00",
+      "reported_forest_area_ha": 2250.0,
+      "reported_total_area_ha": 2250.0,
+      "egif_sheet_grid": "0803O02",
+      "link_status": "possible_candidate",
+      "documentary_candidates": [],
+      "esfire30_same_year_grid_candidates": [
+        {
+          "candidate_id": "esfire30:1985:394",
+          "area_ha": 81.63,
+          "absolute_area_difference_ha": 2168.37,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        },
+        {
+          "candidate_id": "esfire30:1985:392",
+          "area_ha": 42.84,
+          "absolute_area_difference_ha": 2207.16,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        },
+        {
+          "candidate_id": "esfire30:1985:395",
+          "area_ha": 20.16,
+          "absolute_area_difference_ha": 2229.84,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        }
+      ]
+    },
+    {
+      "source_record_id": "1985122195",
+      "year": 1985,
+      "province": "Castellon",
+      "municipality": "Cabanes",
+      "detection_date": "1985-08-06T01:00:00",
+      "reported_forest_area_ha": 2095.0,
+      "reported_total_area_ha": 2095.0,
+      "egif_sheet_grid": "0803N05",
+      "link_status": "possible_candidate",
+      "documentary_candidates": [],
+      "esfire30_same_year_grid_candidates": [
+        {
+          "candidate_id": "esfire30:1985:396",
+          "area_ha": 1898.28,
+          "absolute_area_difference_ha": 196.72,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        }
+      ]
+    },
+    {
+      "source_record_id": "1985122197",
+      "year": 1985,
+      "province": "Castellon",
+      "municipality": "Coves de Vinromà, les",
+      "detection_date": "1985-08-07T03:00:00",
+      "reported_forest_area_ha": 500.0,
+      "reported_total_area_ha": 500.0,
+      "egif_sheet_grid": "0803L06",
+      "link_status": "possible_candidate",
+      "documentary_candidates": [],
+      "esfire30_same_year_grid_candidates": [
+        {
+          "candidate_id": "esfire30:1985:7329",
+          "area_ha": 11.61,
+          "absolute_area_difference_ha": 488.39,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        }
+      ]
+    },
+    {
+      "source_record_id": "1985464505",
+      "year": 1985,
+      "province": "Valencia",
+      "municipality": "Siete Aguas",
+      "detection_date": "1985-04-15T16:00:00",
+      "reported_forest_area_ha": 932.0,
+      "reported_total_area_ha": 932.0,
+      "egif_sheet_grid": "0704G08",
+      "link_status": "possible_candidate",
+      "documentary_candidates": [
+        {
+          "source_id": "gva_annual_perimeter_archive_1978_valencia",
+          "status": "unlinked_scope_candidate",
+          "reason": "El parte cae en el alcance provincia/año documentado; se desconoce si existe una feature individual."
+        }
+      ],
+      "esfire30_same_year_grid_candidates": [
+        {
+          "candidate_id": "esfire30:1985:7041",
+          "area_ha": 8.19,
+          "absolute_area_difference_ha": 923.81,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        },
+        {
+          "candidate_id": "esfire30:1985:7040",
+          "area_ha": 6.39,
+          "absolute_area_difference_ha": 925.61,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        },
+        {
+          "candidate_id": "esfire30:1985:7039",
+          "area_ha": 6.12,
+          "absolute_area_difference_ha": 925.88,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        }
+      ]
+    },
+    {
+      "source_record_id": "1985464582",
+      "year": 1985,
+      "province": "Valencia",
+      "municipality": "Tous",
+      "detection_date": "1985-07-27T13:00:00",
+      "reported_forest_area_ha": 18886.0,
+      "reported_total_area_ha": 18886.0,
+      "egif_sheet_grid": "0704I10",
+      "link_status": "unlinked",
+      "documentary_candidates": [
+        {
+          "source_id": "gva_annual_perimeter_archive_1978_valencia",
+          "status": "unlinked_scope_candidate",
+          "reason": "El parte cae en el alcance provincia/año documentado; se desconoce si existe una feature individual."
+        }
+      ],
+      "esfire30_same_year_grid_candidates": []
+    },
+    {
+      "source_record_id": "1985464589",
+      "year": 1985,
+      "province": "Valencia",
+      "municipality": "Carcaixent",
+      "detection_date": "1985-07-28T16:00:00",
+      "reported_forest_area_ha": 500.0,
+      "reported_total_area_ha": 500.0,
+      "egif_sheet_grid": "0804J02",
+      "link_status": "possible_candidate",
+      "documentary_candidates": [
+        {
+          "source_id": "gva_annual_perimeter_archive_1978_valencia",
+          "status": "unlinked_scope_candidate",
+          "reason": "El parte cae en el alcance provincia/año documentado; se desconoce si existe una feature individual."
+        }
+      ],
+      "esfire30_same_year_grid_candidates": [
+        {
+          "candidate_id": "esfire30:1985:6814",
+          "area_ha": 454.23,
+          "absolute_area_difference_ha": 45.77,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        },
+        {
+          "candidate_id": "esfire30:1985:6815",
+          "area_ha": 6.12,
+          "absolute_area_difference_ha": 493.88,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        }
+      ]
+    },
+    {
+      "source_record_id": "1985464593",
+      "year": 1985,
+      "province": "Valencia",
+      "municipality": "Enguera",
+      "detection_date": "1985-07-29T13:00:00",
+      "reported_forest_area_ha": 5100.0,
+      "reported_total_area_ha": 5100.0,
+      "egif_sheet_grid": "0704L11",
+      "link_status": "possible_candidate",
+      "documentary_candidates": [
+        {
+          "source_id": "gva_annual_perimeter_archive_1978_valencia",
+          "status": "unlinked_scope_candidate",
+          "reason": "El parte cae en el alcance provincia/año documentado; se desconoce si existe una feature individual."
+        }
+      ],
+      "esfire30_same_year_grid_candidates": [
+        {
+          "candidate_id": "esfire30:1985:6805",
+          "area_ha": 9.0,
+          "absolute_area_difference_ha": 5091.0,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        }
+      ]
+    },
+    {
+      "source_record_id": "1986034222",
+      "year": 1986,
+      "province": "Alicante",
+      "municipality": "Vall de Laguar, la",
+      "detection_date": "1986-07-06T11:00:00",
+      "reported_forest_area_ha": 500.0,
+      "reported_total_area_ha": 500.0,
+      "egif_sheet_grid": "0804N04",
+      "link_status": "possible_candidate",
+      "documentary_candidates": [],
+      "esfire30_same_year_grid_candidates": [
+        {
+          "candidate_id": "esfire30:1986:334",
+          "area_ha": 373.95,
+          "absolute_area_difference_ha": 126.05,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        },
+        {
+          "candidate_id": "esfire30:1986:335",
+          "area_ha": 22.59,
+          "absolute_area_difference_ha": 477.41,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        },
+        {
+          "candidate_id": "esfire30:1986:337",
+          "area_ha": 20.7,
+          "absolute_area_difference_ha": 479.3,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        },
+        {
+          "candidate_id": "esfire30:1986:336",
+          "area_ha": 8.55,
+          "absolute_area_difference_ha": 491.45,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        }
+      ]
+    },
+    {
+      "source_record_id": "1986034261",
+      "year": 1986,
+      "province": "Alicante",
+      "municipality": "Xaló",
+      "detection_date": "1986-08-21T03:00:00",
+      "reported_forest_area_ha": 850.0,
+      "reported_total_area_ha": 850.0,
+      "egif_sheet_grid": "0804O05",
+      "link_status": "possible_candidate",
+      "documentary_candidates": [],
+      "esfire30_same_year_grid_candidates": [
+        {
+          "candidate_id": "esfire30:1986:332",
+          "area_ha": 40.68,
+          "absolute_area_difference_ha": 809.32,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        },
+        {
+          "candidate_id": "esfire30:1986:333",
+          "area_ha": 8.64,
+          "absolute_area_difference_ha": 841.36,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        }
+      ]
+    },
+    {
+      "source_record_id": "1986034263",
+      "year": 1986,
+      "province": "Alicante",
+      "municipality": "Vall d'Ebo, la",
+      "detection_date": "1986-08-22T01:00:00",
+      "reported_forest_area_ha": 851.0,
+      "reported_total_area_ha": 851.0,
+      "egif_sheet_grid": "0804N04",
+      "link_status": "possible_candidate",
+      "documentary_candidates": [],
+      "esfire30_same_year_grid_candidates": [
+        {
+          "candidate_id": "esfire30:1986:334",
+          "area_ha": 373.95,
+          "absolute_area_difference_ha": 477.05,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        },
+        {
+          "candidate_id": "esfire30:1986:335",
+          "area_ha": 22.59,
+          "absolute_area_difference_ha": 828.41,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        },
+        {
+          "candidate_id": "esfire30:1986:337",
+          "area_ha": 20.7,
+          "absolute_area_difference_ha": 830.3,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        },
+        {
+          "candidate_id": "esfire30:1986:336",
+          "area_ha": 8.55,
+          "absolute_area_difference_ha": 842.45,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        }
+      ]
+    },
+    {
+      "source_record_id": "1986121431",
+      "year": 1986,
+      "province": "Castellon",
+      "municipality": "Argelita",
+      "detection_date": "1986-07-09T18:00:00",
+      "reported_forest_area_ha": 500.0,
+      "reported_total_area_ha": 500.0,
+      "egif_sheet_grid": "0803N02",
+      "link_status": "unlinked",
+      "documentary_candidates": [],
+      "esfire30_same_year_grid_candidates": []
+    },
+    {
+      "source_record_id": "1986461220",
+      "year": 1986,
+      "province": "Valencia",
+      "municipality": "Sot de Chera",
+      "detection_date": "1986-05-18T10:00:00",
+      "reported_forest_area_ha": 877.0,
+      "reported_total_area_ha": 877.0,
+      "egif_sheet_grid": "0704E09",
+      "link_status": "strong_candidate",
+      "documentary_candidates": [
+        {
+          "source_id": "gva_chera_sot_prevention_plan",
+          "status": "strong_candidate",
+          "reason": "Misma fecha (18/05/1986), municipio Sot de Chera y superficie aproximada del plan; el mapa no permite enlace confirmado."
+        },
+        {
+          "source_id": "gva_annual_perimeter_archive_1978_valencia",
+          "status": "unlinked_scope_candidate",
+          "reason": "El parte cae en el alcance provincia/año documentado; se desconoce si existe una feature individual."
+        }
+      ],
+      "esfire30_same_year_grid_candidates": [
+        {
+          "candidate_id": "esfire30:1986:412",
+          "area_ha": 821.07,
+          "absolute_area_difference_ha": 55.93,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        },
+        {
+          "candidate_id": "esfire30:1986:414",
+          "area_ha": 103.41,
+          "absolute_area_difference_ha": 773.59,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        },
+        {
+          "candidate_id": "esfire30:1986:415",
+          "area_ha": 65.7,
+          "absolute_area_difference_ha": 811.3,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        }
+      ]
+    },
+    {
+      "source_record_id": "1986462657",
+      "year": 1986,
+      "province": "Valencia",
+      "municipality": "Otos",
+      "detection_date": "1986-07-22T23:59:00",
+      "reported_forest_area_ha": 538.5,
+      "reported_total_area_ha": 538.5,
+      "egif_sheet_grid": "0804M01",
+      "link_status": "unlinked",
+      "documentary_candidates": [
+        {
+          "source_id": "gva_annual_perimeter_archive_1978_valencia",
+          "status": "unlinked_scope_candidate",
+          "reason": "El parte cae en el alcance provincia/año documentado; se desconoce si existe una feature individual."
+        }
+      ],
+      "esfire30_same_year_grid_candidates": []
+    },
+    {
+      "source_record_id": "1987121659",
+      "year": 1987,
+      "province": "Castellon",
+      "municipality": "Altura",
+      "detection_date": "1987-07-17T16:00:00",
+      "reported_forest_area_ha": 3560.0,
+      "reported_total_area_ha": 3560.0,
+      "egif_sheet_grid": "0704C11",
+      "link_status": "possible_candidate",
+      "documentary_candidates": [],
+      "esfire30_same_year_grid_candidates": [
+        {
+          "candidate_id": "esfire30:1987:1351",
+          "area_ha": 4069.53,
+          "absolute_area_difference_ha": 509.53,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        }
+      ]
+    },
+    {
+      "source_record_id": "1987464345",
+      "year": 1987,
+      "province": "Valencia",
+      "municipality": "Marines",
+      "detection_date": "1987-07-17T15:00:00",
+      "reported_forest_area_ha": 775.0,
+      "reported_total_area_ha": 775.0,
+      "egif_sheet_grid": "0704C11",
+      "link_status": "possible_candidate",
+      "documentary_candidates": [
+        {
+          "source_id": "gva_annual_perimeter_archive_1978_valencia",
+          "status": "unlinked_scope_candidate",
+          "reason": "El parte cae en el alcance provincia/año documentado; se desconoce si existe una feature individual."
+        }
+      ],
+      "esfire30_same_year_grid_candidates": [
+        {
+          "candidate_id": "esfire30:1987:1351",
+          "area_ha": 4069.53,
+          "absolute_area_difference_ha": 3294.53,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        }
+      ]
+    },
+    {
+      "source_record_id": "1988462240",
+      "year": 1988,
+      "province": "Valencia",
+      "municipality": "Llombai",
+      "detection_date": "1988-08-03T18:30:00",
+      "reported_forest_area_ha": 538.0,
+      "reported_total_area_ha": 538.0,
+      "egif_sheet_grid": "0804H01",
+      "link_status": "possible_candidate",
+      "documentary_candidates": [
+        {
+          "source_id": "gva_annual_perimeter_archive_1978_valencia",
+          "status": "unlinked_scope_candidate",
+          "reason": "El parte cae en el alcance provincia/año documentado; se desconoce si existe una feature individual."
+        }
+      ],
+      "esfire30_same_year_grid_candidates": [
+        {
+          "candidate_id": "esfire30:1988:2763",
+          "area_ha": 599.4,
+          "absolute_area_difference_ha": 61.4,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        },
+        {
+          "candidate_id": "esfire30:1988:2762",
+          "area_ha": 12.15,
+          "absolute_area_difference_ha": 525.85,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        }
+      ]
+    },
+    {
+      "source_record_id": "1990030076",
+      "year": 1990,
+      "province": "Alicante",
+      "municipality": "Vall de Gallinera",
+      "detection_date": "1990-07-24T14:30:00",
+      "reported_forest_area_ha": 900.0,
+      "reported_total_area_ha": 950.0,
+      "egif_sheet_grid": "0804M04",
+      "link_status": "possible_candidate",
+      "documentary_candidates": [],
+      "esfire30_same_year_grid_candidates": [
+        {
+          "candidate_id": "esfire30:1990:85",
+          "area_ha": 925.29,
+          "absolute_area_difference_ha": 24.71,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        },
+        {
+          "candidate_id": "esfire30:1990:2139",
+          "area_ha": 359.37,
+          "absolute_area_difference_ha": 590.63,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        },
+        {
+          "candidate_id": "esfire30:1990:2137",
+          "area_ha": 29.16,
+          "absolute_area_difference_ha": 920.84,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        },
+        {
+          "candidate_id": "esfire30:1990:2153",
+          "area_ha": 23.49,
+          "absolute_area_difference_ha": 926.51,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        },
+        {
+          "candidate_id": "esfire30:1990:2151",
+          "area_ha": 12.33,
+          "absolute_area_difference_ha": 937.67,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        },
+        {
+          "candidate_id": "esfire30:1990:2138",
+          "area_ha": 8.91,
+          "absolute_area_difference_ha": 941.09,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        }
+      ]
+    },
+    {
+      "source_record_id": "1990030077",
+      "year": 1990,
+      "province": "Alicante",
+      "municipality": "Beniarrés",
+      "detection_date": "1990-07-25T18:00:00",
+      "reported_forest_area_ha": 884.0,
+      "reported_total_area_ha": 1184.0,
+      "egif_sheet_grid": "0804M03",
+      "link_status": "possible_candidate",
+      "documentary_candidates": [],
+      "esfire30_same_year_grid_candidates": [
+        {
+          "candidate_id": "esfire30:1990:2152",
+          "area_ha": 1871.37,
+          "absolute_area_difference_ha": 687.37,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        },
+        {
+          "candidate_id": "esfire30:1990:2140",
+          "area_ha": 167.58,
+          "absolute_area_difference_ha": 1016.42,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        },
+        {
+          "candidate_id": "esfire30:1990:2155",
+          "area_ha": 8.01,
+          "absolute_area_difference_ha": 1175.99,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        },
+        {
+          "candidate_id": "esfire30:1990:2154",
+          "area_ha": 5.49,
+          "absolute_area_difference_ha": 1178.51,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        }
+      ]
+    },
+    {
+      "source_record_id": "1990030078",
+      "year": 1990,
+      "province": "Alicante",
+      "municipality": "Vall de Gallinera",
+      "detection_date": "1990-07-24T12:30:00",
+      "reported_forest_area_ha": 1100.0,
+      "reported_total_area_ha": 1100.0,
+      "egif_sheet_grid": "0804M04",
+      "link_status": "possible_candidate",
+      "documentary_candidates": [],
+      "esfire30_same_year_grid_candidates": [
+        {
+          "candidate_id": "esfire30:1990:85",
+          "area_ha": 925.29,
+          "absolute_area_difference_ha": 174.71,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        },
+        {
+          "candidate_id": "esfire30:1990:2139",
+          "area_ha": 359.37,
+          "absolute_area_difference_ha": 740.63,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        },
+        {
+          "candidate_id": "esfire30:1990:2137",
+          "area_ha": 29.16,
+          "absolute_area_difference_ha": 1070.84,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        },
+        {
+          "candidate_id": "esfire30:1990:2153",
+          "area_ha": 23.49,
+          "absolute_area_difference_ha": 1076.51,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        },
+        {
+          "candidate_id": "esfire30:1990:2151",
+          "area_ha": 12.33,
+          "absolute_area_difference_ha": 1087.67,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        },
+        {
+          "candidate_id": "esfire30:1990:2138",
+          "area_ha": 8.91,
+          "absolute_area_difference_ha": 1091.09,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        }
+      ]
+    },
+    {
+      "source_record_id": "1990030079",
+      "year": 1990,
+      "province": "Alicante",
+      "municipality": "Castell de Castells",
+      "detection_date": "1990-07-25T19:00:00",
+      "reported_forest_area_ha": 6800.0,
+      "reported_total_area_ha": 6800.0,
+      "egif_sheet_grid": "0804N04",
+      "link_status": "possible_candidate",
+      "documentary_candidates": [],
+      "esfire30_same_year_grid_candidates": [
+        {
+          "candidate_id": "esfire30:1990:2118",
+          "area_ha": 2818.71,
+          "absolute_area_difference_ha": 3981.29,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        },
+        {
+          "candidate_id": "esfire30:1990:2131",
+          "area_ha": 99.09,
+          "absolute_area_difference_ha": 6700.91,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        },
+        {
+          "candidate_id": "esfire30:1990:2124",
+          "area_ha": 73.53,
+          "absolute_area_difference_ha": 6726.47,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        },
+        {
+          "candidate_id": "esfire30:1990:2127",
+          "area_ha": 23.94,
+          "absolute_area_difference_ha": 6776.06,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        },
+        {
+          "candidate_id": "esfire30:1990:2121",
+          "area_ha": 20.34,
+          "absolute_area_difference_ha": 6779.66,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        },
+        {
+          "candidate_id": "esfire30:1990:2129",
+          "area_ha": 14.76,
+          "absolute_area_difference_ha": 6785.24,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        },
+        {
+          "candidate_id": "esfire30:1990:2119",
+          "area_ha": 12.87,
+          "absolute_area_difference_ha": 6787.13,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        },
+        {
+          "candidate_id": "esfire30:1990:2130",
+          "area_ha": 12.78,
+          "absolute_area_difference_ha": 6787.22,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        },
+        {
+          "candidate_id": "esfire30:1990:2120",
+          "area_ha": 12.69,
+          "absolute_area_difference_ha": 6787.31,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        },
+        {
+          "candidate_id": "esfire30:1990:2134",
+          "area_ha": 11.07,
+          "absolute_area_difference_ha": 6788.93,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        },
+        {
+          "candidate_id": "esfire30:1990:83",
+          "area_ha": 9.09,
+          "absolute_area_difference_ha": 6790.91,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        },
+        {
+          "candidate_id": "esfire30:1990:2136",
+          "area_ha": 7.56,
+          "absolute_area_difference_ha": 6792.44,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        },
+        {
+          "candidate_id": "esfire30:1990:2126",
+          "area_ha": 7.2,
+          "absolute_area_difference_ha": 6792.8,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        },
+        {
+          "candidate_id": "esfire30:1990:2125",
+          "area_ha": 6.57,
+          "absolute_area_difference_ha": 6793.43,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        },
+        {
+          "candidate_id": "esfire30:1990:2135",
+          "area_ha": 6.57,
+          "absolute_area_difference_ha": 6793.43,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        },
+        {
+          "candidate_id": "esfire30:1990:2133",
+          "area_ha": 5.13,
+          "absolute_area_difference_ha": 6794.87,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        },
+        {
+          "candidate_id": "esfire30:1990:2132",
+          "area_ha": 5.04,
+          "absolute_area_difference_ha": 6794.96,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        }
+      ]
+    },
+    {
+      "source_record_id": "1990460094",
+      "year": 1990,
+      "province": "Valencia",
+      "municipality": "Gestalgar",
+      "detection_date": "1990-07-24T17:00:00",
+      "reported_forest_area_ha": 9990.0,
+      "reported_total_area_ha": 10195.0,
+      "egif_sheet_grid": "0704E09",
+      "link_status": "possible_candidate",
+      "documentary_candidates": [
+        {
+          "source_id": "gva_annual_perimeter_archive_1978_valencia",
+          "status": "unlinked_scope_candidate",
+          "reason": "El parte cae en el alcance provincia/año documentado; se desconoce si existe una feature individual."
+        }
+      ],
+      "esfire30_same_year_grid_candidates": [
+        {
+          "candidate_id": "esfire30:1990:96",
+          "area_ha": 7412.4,
+          "absolute_area_difference_ha": 2782.6,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        },
+        {
+          "candidate_id": "esfire30:1990:101",
+          "area_ha": 27.99,
+          "absolute_area_difference_ha": 10167.01,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        },
+        {
+          "candidate_id": "esfire30:1990:99",
+          "area_ha": 12.96,
+          "absolute_area_difference_ha": 10182.04,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        },
+        {
+          "candidate_id": "esfire30:1990:103",
+          "area_ha": 12.42,
+          "absolute_area_difference_ha": 10182.58,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        },
+        {
+          "candidate_id": "esfire30:1990:100",
+          "area_ha": 7.56,
+          "absolute_area_difference_ha": 10187.44,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        },
+        {
+          "candidate_id": "esfire30:1990:102",
+          "area_ha": 6.3,
+          "absolute_area_difference_ha": 10188.7,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        }
+      ]
+    },
+    {
+      "source_record_id": "1990460096",
+      "year": 1990,
+      "province": "Valencia",
+      "municipality": "Salem",
+      "detection_date": "1990-07-25T19:30:00",
+      "reported_forest_area_ha": 1040.0,
+      "reported_total_area_ha": 1040.0,
+      "egif_sheet_grid": "0804M02",
+      "link_status": "unlinked",
+      "documentary_candidates": [
+        {
+          "source_id": "gva_annual_perimeter_archive_1978_valencia",
+          "status": "unlinked_scope_candidate",
+          "reason": "El parte cae en el alcance provincia/año documentado; se desconoce si existe una feature individual."
+        }
+      ],
+      "esfire30_same_year_grid_candidates": []
+    },
+    {
+      "source_record_id": "1990460124",
+      "year": 1990,
+      "province": "Valencia",
+      "municipality": "Millares",
+      "detection_date": "1990-08-05T15:00:00",
+      "reported_forest_area_ha": 2600.0,
+      "reported_total_area_ha": 2600.0,
+      "egif_sheet_grid": "0704I09",
+      "link_status": "possible_candidate",
+      "documentary_candidates": [
+        {
+          "source_id": "gva_annual_perimeter_archive_1978_valencia",
+          "status": "unlinked_scope_candidate",
+          "reason": "El parte cae en el alcance provincia/año documentado; se desconoce si existe una feature individual."
+        }
+      ],
+      "esfire30_same_year_grid_candidates": [
+        {
+          "candidate_id": "esfire30:1990:93",
+          "area_ha": 1873.17,
+          "absolute_area_difference_ha": 726.83,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        }
+      ]
+    },
+    {
+      "source_record_id": "1991030121",
+      "year": 1991,
+      "province": "Alicante",
+      "municipality": "Lorcha/Orxa, l'",
+      "detection_date": "1991-07-30T22:00:00",
+      "reported_forest_area_ha": 1055.0,
+      "reported_total_area_ha": 1055.0,
+      "egif_sheet_grid": "0804M03",
+      "link_status": "possible_candidate",
+      "documentary_candidates": [],
+      "esfire30_same_year_grid_candidates": [
+        {
+          "candidate_id": "esfire30:1991:1940",
+          "area_ha": 1338.84,
+          "absolute_area_difference_ha": 283.84,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        },
+        {
+          "candidate_id": "esfire30:1991:1942",
+          "area_ha": 49.14,
+          "absolute_area_difference_ha": 1005.86,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        },
+        {
+          "candidate_id": "esfire30:1991:1945",
+          "area_ha": 46.17,
+          "absolute_area_difference_ha": 1008.83,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        },
+        {
+          "candidate_id": "esfire30:1991:1902",
+          "area_ha": 23.31,
+          "absolute_area_difference_ha": 1031.69,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        },
+        {
+          "candidate_id": "esfire30:1991:1905",
+          "area_ha": 12.06,
+          "absolute_area_difference_ha": 1042.94,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        },
+        {
+          "candidate_id": "esfire30:1991:1906",
+          "area_ha": 7.56,
+          "absolute_area_difference_ha": 1047.44,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        },
+        {
+          "candidate_id": "esfire30:1991:102",
+          "area_ha": 5.4,
+          "absolute_area_difference_ha": 1049.6,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        }
+      ]
+    },
+    {
+      "source_record_id": "1991030161",
+      "year": 1991,
+      "province": "Alicante",
+      "municipality": "Alcalalí",
+      "detection_date": "1991-08-18T23:30:00",
+      "reported_forest_area_ha": 1200.0,
+      "reported_total_area_ha": 1200.0,
+      "egif_sheet_grid": "0804N05",
+      "link_status": "possible_candidate",
+      "documentary_candidates": [],
+      "esfire30_same_year_grid_candidates": [
+        {
+          "candidate_id": "esfire30:1991:87",
+          "area_ha": 161.64,
+          "absolute_area_difference_ha": 1038.36,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        },
+        {
+          "candidate_id": "esfire30:1991:96",
+          "area_ha": 62.19,
+          "absolute_area_difference_ha": 1137.81,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        },
+        {
+          "candidate_id": "esfire30:1991:86",
+          "area_ha": 15.48,
+          "absolute_area_difference_ha": 1184.52,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        },
+        {
+          "candidate_id": "esfire30:1991:84",
+          "area_ha": 9.45,
+          "absolute_area_difference_ha": 1190.55,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        },
+        {
+          "candidate_id": "esfire30:1991:85",
+          "area_ha": 6.66,
+          "absolute_area_difference_ha": 1193.34,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        }
+      ]
+    },
+    {
+      "source_record_id": "1991030162",
+      "year": 1991,
+      "province": "Alicante",
+      "municipality": "Callosa d'en Sarrià",
+      "detection_date": "1991-08-19T00:01:00",
+      "reported_forest_area_ha": 500.0,
+      "reported_total_area_ha": 500.0,
+      "egif_sheet_grid": "0805A04",
+      "link_status": "unlinked",
+      "documentary_candidates": [],
+      "esfire30_same_year_grid_candidates": []
+    },
+    {
+      "source_record_id": "1991030167",
+      "year": 1991,
+      "province": "Alicante",
+      "municipality": "Bolulla",
+      "detection_date": "1991-08-26T22:30:00",
+      "reported_forest_area_ha": 686.0,
+      "reported_total_area_ha": 748.0,
+      "egif_sheet_grid": "0804O05",
+      "link_status": "possible_candidate",
+      "documentary_candidates": [],
+      "esfire30_same_year_grid_candidates": [
+        {
+          "candidate_id": "esfire30:1991:83",
+          "area_ha": 546.93,
+          "absolute_area_difference_ha": 201.07,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        },
+        {
+          "candidate_id": "esfire30:1991:79",
+          "area_ha": 231.39,
+          "absolute_area_difference_ha": 516.61,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        },
+        {
+          "candidate_id": "esfire30:1991:72",
+          "area_ha": 34.65,
+          "absolute_area_difference_ha": 713.35,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        },
+        {
+          "candidate_id": "esfire30:1991:76",
+          "area_ha": 8.46,
+          "absolute_area_difference_ha": 739.54,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        },
+        {
+          "candidate_id": "esfire30:1991:1896",
+          "area_ha": 6.3,
+          "absolute_area_difference_ha": 741.7,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        },
+        {
+          "candidate_id": "esfire30:1991:75",
+          "area_ha": 5.4,
+          "absolute_area_difference_ha": 742.6,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        }
+      ]
+    },
+    {
+      "source_record_id": "1991120135",
+      "year": 1991,
+      "province": "Castellon",
+      "municipality": "Coves de Vinromà, les",
+      "detection_date": "1991-08-08T21:30:00",
+      "reported_forest_area_ha": 600.0,
+      "reported_total_area_ha": 1800.0,
+      "egif_sheet_grid": "0803K06",
+      "link_status": "unlinked",
+      "documentary_candidates": [],
+      "esfire30_same_year_grid_candidates": []
+    },
+    {
+      "source_record_id": "1991120137",
+      "year": 1991,
+      "province": "Castellon",
+      "municipality": "Cabanes",
+      "detection_date": "1991-08-08T22:00:00",
+      "reported_forest_area_ha": 500.0,
+      "reported_total_area_ha": 600.0,
+      "egif_sheet_grid": "0803M06",
+      "link_status": "possible_candidate",
+      "documentary_candidates": [],
+      "esfire30_same_year_grid_candidates": [
+        {
+          "candidate_id": "esfire30:1991:277",
+          "area_ha": 711.99,
+          "absolute_area_difference_ha": 111.99,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        },
+        {
+          "candidate_id": "esfire30:1991:280",
+          "area_ha": 29.97,
+          "absolute_area_difference_ha": 570.03,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        },
+        {
+          "candidate_id": "esfire30:1991:278",
+          "area_ha": 21.51,
+          "absolute_area_difference_ha": 578.49,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        },
+        {
+          "candidate_id": "esfire30:1991:281",
+          "area_ha": 16.83,
+          "absolute_area_difference_ha": 583.17,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        },
+        {
+          "candidate_id": "esfire30:1991:279",
+          "area_ha": 6.48,
+          "absolute_area_difference_ha": 593.52,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        }
+      ]
+    },
+    {
+      "source_record_id": "1991460131",
+      "year": 1991,
+      "province": "Valencia",
+      "municipality": "Llutxent",
+      "detection_date": "1991-07-13T19:00:00",
+      "reported_forest_area_ha": 3070.0,
+      "reported_total_area_ha": 3070.0,
+      "egif_sheet_grid": "0804L03",
+      "link_status": "possible_candidate",
+      "documentary_candidates": [
+        {
+          "source_id": "martin_chuvieco_1995_noaa",
+          "status": "possible_candidate",
+          "reason": "El mapa nombra Llutxent, pero el artículo no publica NumeroParte/fecha inequívocos."
+        },
+        {
+          "source_id": "gva_annual_perimeter_archive_1978_valencia",
+          "status": "unlinked_scope_candidate",
+          "reason": "El parte cae en el alcance provincia/año documentado; se desconoce si existe una feature individual."
+        }
+      ],
+      "esfire30_same_year_grid_candidates": [
+        {
+          "candidate_id": "esfire30:1991:1955",
+          "area_ha": 3625.65,
+          "absolute_area_difference_ha": 555.65,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        },
+        {
+          "candidate_id": "esfire30:1991:1957",
+          "area_ha": 212.49,
+          "absolute_area_difference_ha": 2857.51,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        },
+        {
+          "candidate_id": "esfire30:1991:1949",
+          "area_ha": 40.5,
+          "absolute_area_difference_ha": 3029.5,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        },
+        {
+          "candidate_id": "esfire30:1991:1948",
+          "area_ha": 13.23,
+          "absolute_area_difference_ha": 3056.77,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        },
+        {
+          "candidate_id": "esfire30:1991:1946",
+          "area_ha": 11.61,
+          "absolute_area_difference_ha": 3058.39,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        },
+        {
+          "candidate_id": "esfire30:1991:1947",
+          "area_ha": 10.17,
+          "absolute_area_difference_ha": 3059.83,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        }
+      ]
+    },
+    {
+      "source_record_id": "1991460141",
+      "year": 1991,
+      "province": "Valencia",
+      "municipality": "Ròtova",
+      "detection_date": "1991-07-15T16:15:00",
+      "reported_forest_area_ha": 571.0,
+      "reported_total_area_ha": 571.0,
+      "egif_sheet_grid": "0804L03",
+      "link_status": "possible_candidate",
+      "documentary_candidates": [
+        {
+          "source_id": "gva_annual_perimeter_archive_1978_valencia",
+          "status": "unlinked_scope_candidate",
+          "reason": "El parte cae en el alcance provincia/año documentado; se desconoce si existe una feature individual."
+        }
+      ],
+      "esfire30_same_year_grid_candidates": [
+        {
+          "candidate_id": "esfire30:1991:1955",
+          "area_ha": 3625.65,
+          "absolute_area_difference_ha": 3054.65,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        },
+        {
+          "candidate_id": "esfire30:1991:1957",
+          "area_ha": 212.49,
+          "absolute_area_difference_ha": 358.51,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        },
+        {
+          "candidate_id": "esfire30:1991:1949",
+          "area_ha": 40.5,
+          "absolute_area_difference_ha": 530.5,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        },
+        {
+          "candidate_id": "esfire30:1991:1948",
+          "area_ha": 13.23,
+          "absolute_area_difference_ha": 557.77,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        },
+        {
+          "candidate_id": "esfire30:1991:1946",
+          "area_ha": 11.61,
+          "absolute_area_difference_ha": 559.39,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        },
+        {
+          "candidate_id": "esfire30:1991:1947",
+          "area_ha": 10.17,
+          "absolute_area_difference_ha": 560.83,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        }
+      ]
+    },
+    {
+      "source_record_id": "1991460176",
+      "year": 1991,
+      "province": "Valencia",
+      "municipality": "Yátova",
+      "detection_date": "1991-07-28T19:15:00",
+      "reported_forest_area_ha": 15400.0,
+      "reported_total_area_ha": 17415.0,
+      "egif_sheet_grid": "0704G09",
+      "link_status": "strong_candidate",
+      "documentary_candidates": [
+        {
+          "source_id": "viedma_chuvieco_1993_hoya_bunol",
+          "status": "strong_candidate",
+          "reason": "Yátova, 28/07/1991 y escala compatible con el incendio cartografiado; faltan IDs en el activo."
+        },
+        {
+          "source_id": "martin_chuvieco_1995_noaa",
+          "status": "strong_candidate",
+          "reason": "El artículo identifica Yátova en la campaña 1991; no aporta NumeroParte."
+        },
+        {
+          "source_id": "gva_annual_perimeter_archive_1978_valencia",
+          "status": "unlinked_scope_candidate",
+          "reason": "El parte cae en el alcance provincia/año documentado; se desconoce si existe una feature individual."
+        }
+      ],
+      "esfire30_same_year_grid_candidates": [
+        {
+          "candidate_id": "esfire30:1991:214",
+          "area_ha": 13379.04,
+          "absolute_area_difference_ha": 4035.96,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        },
+        {
+          "candidate_id": "esfire30:1991:213",
+          "area_ha": 17.28,
+          "absolute_area_difference_ha": 17397.72,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        },
+        {
+          "candidate_id": "esfire30:1991:215",
+          "area_ha": 10.62,
+          "absolute_area_difference_ha": 17404.38,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        },
+        {
+          "candidate_id": "esfire30:1991:212",
+          "area_ha": 5.94,
+          "absolute_area_difference_ha": 17409.06,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        },
+        {
+          "candidate_id": "esfire30:1991:218",
+          "area_ha": 5.04,
+          "absolute_area_difference_ha": 17409.96,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        }
+      ]
+    },
+    {
+      "source_record_id": "1991460181",
+      "year": 1991,
+      "province": "Valencia",
+      "municipality": "Tavernes de la Valldigna",
+      "detection_date": "1991-07-30T10:10:00",
+      "reported_forest_area_ha": 1077.0,
+      "reported_total_area_ha": 1077.0,
+      "egif_sheet_grid": "0804K03",
+      "link_status": "possible_candidate",
+      "documentary_candidates": [
+        {
+          "source_id": "martin_chuvieco_1995_noaa",
+          "status": "possible_candidate",
+          "reason": "El mapa nombra Tavernes, pero no publica NumeroParte."
+        },
+        {
+          "source_id": "gva_annual_perimeter_archive_1978_valencia",
+          "status": "unlinked_scope_candidate",
+          "reason": "El parte cae en el alcance provincia/año documentado; se desconoce si existe una feature individual."
+        }
+      ],
+      "esfire30_same_year_grid_candidates": [
+        {
+          "candidate_id": "esfire30:1991:183",
+          "area_ha": 236.07,
+          "absolute_area_difference_ha": 840.93,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        },
+        {
+          "candidate_id": "esfire30:1991:184",
+          "area_ha": 5.22,
+          "absolute_area_difference_ha": 1071.78,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        }
+      ]
+    },
+    {
+      "source_record_id": "1991460184",
+      "year": 1991,
+      "province": "Valencia",
+      "municipality": "Vilallonga/Villalonga",
+      "detection_date": "1991-07-30T14:35:00",
+      "reported_forest_area_ha": 900.0,
+      "reported_total_area_ha": 900.0,
+      "egif_sheet_grid": "0804M04",
+      "link_status": "possible_candidate",
+      "documentary_candidates": [
+        {
+          "source_id": "martin_chuvieco_1995_noaa",
+          "status": "possible_candidate",
+          "reason": "El mapa nombra Villalonga, pero no publica NumeroParte."
+        },
+        {
+          "source_id": "gva_annual_perimeter_archive_1978_valencia",
+          "status": "unlinked_scope_candidate",
+          "reason": "El parte cae en el alcance provincia/año documentado; se desconoce si existe una feature individual."
+        }
+      ],
+      "esfire30_same_year_grid_candidates": [
+        {
+          "candidate_id": "esfire30:1991:1907",
+          "area_ha": 85.77,
+          "absolute_area_difference_ha": 814.23,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        },
+        {
+          "candidate_id": "esfire30:1991:1901",
+          "area_ha": 68.04,
+          "absolute_area_difference_ha": 831.96,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        },
+        {
+          "candidate_id": "esfire30:1991:1908",
+          "area_ha": 36.18,
+          "absolute_area_difference_ha": 863.82,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        },
+        {
+          "candidate_id": "esfire30:1991:1911",
+          "area_ha": 24.66,
+          "absolute_area_difference_ha": 875.34,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        },
+        {
+          "candidate_id": "esfire30:1991:1943",
+          "area_ha": 24.12,
+          "absolute_area_difference_ha": 875.88,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        },
+        {
+          "candidate_id": "esfire30:1991:1900",
+          "area_ha": 19.26,
+          "absolute_area_difference_ha": 880.74,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        },
+        {
+          "candidate_id": "esfire30:1991:1903",
+          "area_ha": 19.17,
+          "absolute_area_difference_ha": 880.83,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        },
+        {
+          "candidate_id": "esfire30:1991:1904",
+          "area_ha": 15.3,
+          "absolute_area_difference_ha": 884.7,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        },
+        {
+          "candidate_id": "esfire30:1991:1909",
+          "area_ha": 12.24,
+          "absolute_area_difference_ha": 887.76,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        },
+        {
+          "candidate_id": "esfire30:1991:1899",
+          "area_ha": 8.73,
+          "absolute_area_difference_ha": 891.27,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        },
+        {
+          "candidate_id": "esfire30:1991:1941",
+          "area_ha": 7.74,
+          "absolute_area_difference_ha": 892.26,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        }
+      ]
+    },
+    {
+      "source_record_id": "1991460188",
+      "year": 1991,
+      "province": "Valencia",
+      "municipality": "Chiva",
+      "detection_date": "1991-07-31T02:30:00",
+      "reported_forest_area_ha": 3550.0,
+      "reported_total_area_ha": 3654.0,
+      "egif_sheet_grid": "0704F09",
+      "link_status": "strong_candidate",
+      "documentary_candidates": [
+        {
+          "source_id": "viedma_chuvieco_1993_hoya_bunol",
+          "status": "strong_candidate",
+          "reason": "Chiva, 31/07/1991 y escala compatible; falta identificador fuente común."
+        },
+        {
+          "source_id": "martin_chuvieco_1995_noaa",
+          "status": "strong_candidate",
+          "reason": "El artículo identifica Chiva en 1991; no aporta NumeroParte."
+        },
+        {
+          "source_id": "gva_annual_perimeter_archive_1978_valencia",
+          "status": "unlinked_scope_candidate",
+          "reason": "El parte cae en el alcance provincia/año documentado; se desconoce si existe una feature individual."
+        }
+      ],
+      "esfire30_same_year_grid_candidates": [
+        {
+          "candidate_id": "esfire30:1991:219",
+          "area_ha": 3201.93,
+          "absolute_area_difference_ha": 452.07,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        }
+      ]
+    },
+    {
+      "source_record_id": "1991460205",
+      "year": 1991,
+      "province": "Valencia",
+      "municipality": "Ayora",
+      "detection_date": "1991-08-07T10:10:00",
+      "reported_forest_area_ha": 4950.0,
+      "reported_total_area_ha": 5250.0,
+      "egif_sheet_grid": "0704K07",
+      "link_status": "unlinked",
+      "documentary_candidates": [
+        {
+          "source_id": "gva_annual_perimeter_archive_1978_valencia",
+          "status": "unlinked_scope_candidate",
+          "reason": "El parte cae en el alcance provincia/año documentado; se desconoce si existe una feature individual."
+        }
+      ],
+      "esfire30_same_year_grid_candidates": []
+    },
+    {
+      "source_record_id": "1991460209",
+      "year": 1991,
+      "province": "Valencia",
+      "municipality": "Yesa, La",
+      "detection_date": "1991-08-08T21:00:00",
+      "reported_forest_area_ha": 930.0,
+      "reported_total_area_ha": 930.0,
+      "egif_sheet_grid": "0704A08",
+      "link_status": "possible_candidate",
+      "documentary_candidates": [
+        {
+          "source_id": "gva_annual_perimeter_archive_1978_valencia",
+          "status": "unlinked_scope_candidate",
+          "reason": "El parte cae en el alcance provincia/año documentado; se desconoce si existe una feature individual."
+        }
+      ],
+      "esfire30_same_year_grid_candidates": [
+        {
+          "candidate_id": "esfire30:1991:267",
+          "area_ha": 500.67,
+          "absolute_area_difference_ha": 429.33,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        },
+        {
+          "candidate_id": "esfire30:1991:270",
+          "area_ha": 112.05,
+          "absolute_area_difference_ha": 817.95,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        },
+        {
+          "candidate_id": "esfire30:1991:268",
+          "area_ha": 62.82,
+          "absolute_area_difference_ha": 867.18,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        },
+        {
+          "candidate_id": "esfire30:1991:269",
+          "area_ha": 5.58,
+          "absolute_area_difference_ha": 924.42,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        },
+        {
+          "candidate_id": "esfire30:1991:271",
+          "area_ha": 5.49,
+          "absolute_area_difference_ha": 924.51,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        }
+      ]
+    },
+    {
+      "source_record_id": "1991460306",
+      "year": 1991,
+      "province": "Valencia",
+      "municipality": "Enguera",
+      "detection_date": "1991-09-28T20:45:00",
+      "reported_forest_area_ha": 2301.0,
+      "reported_total_area_ha": 2303.0,
+      "egif_sheet_grid": "0704L10",
+      "link_status": "possible_candidate",
+      "documentary_candidates": [
+        {
+          "source_id": "gva_annual_perimeter_archive_1978_valencia",
+          "status": "unlinked_scope_candidate",
+          "reason": "El parte cae en el alcance provincia/año documentado; se desconoce si existe una feature individual."
+        }
+      ],
+      "esfire30_same_year_grid_candidates": [
+        {
+          "candidate_id": "esfire30:1991:179",
+          "area_ha": 2398.86,
+          "absolute_area_difference_ha": 95.86,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        },
+        {
+          "candidate_id": "esfire30:1991:178",
+          "area_ha": 27.99,
+          "absolute_area_difference_ha": 2275.01,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        },
+        {
+          "candidate_id": "esfire30:1991:188",
+          "area_ha": 16.38,
+          "absolute_area_difference_ha": 2286.62,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        },
+        {
+          "candidate_id": "esfire30:1991:186",
+          "area_ha": 11.43,
+          "absolute_area_difference_ha": 2291.57,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        },
+        {
+          "candidate_id": "esfire30:1991:187",
+          "area_ha": 5.85,
+          "absolute_area_difference_ha": 2297.15,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        }
+      ]
+    },
+    {
+      "source_record_id": "1992030123",
+      "year": 1992,
+      "province": "Alicante",
+      "municipality": "Tàrbena",
+      "detection_date": "1992-08-29T01:30:00",
+      "reported_forest_area_ha": 1760.0,
+      "reported_total_area_ha": 2260.0,
+      "egif_sheet_grid": "0804O05",
+      "link_status": "possible_candidate",
+      "documentary_candidates": [],
+      "esfire30_same_year_grid_candidates": [
+        {
+          "candidate_id": "esfire30:1992:59",
+          "area_ha": 238.59,
+          "absolute_area_difference_ha": 2021.41,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        },
+        {
+          "candidate_id": "esfire30:1992:60",
+          "area_ha": 25.02,
+          "absolute_area_difference_ha": 2234.98,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        },
+        {
+          "candidate_id": "esfire30:1992:61",
+          "area_ha": 5.85,
+          "absolute_area_difference_ha": 2254.15,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        },
+        {
+          "candidate_id": "esfire30:1992:58",
+          "area_ha": 5.58,
+          "absolute_area_difference_ha": 2254.42,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        }
+      ]
+    },
+    {
+      "source_record_id": "1992120403",
+      "year": 1992,
+      "province": "Castellon",
+      "municipality": "Altura",
+      "detection_date": "1992-08-30T19:15:00",
+      "reported_forest_area_ha": 3310.0,
+      "reported_total_area_ha": 3310.0,
+      "egif_sheet_grid": "0804B01",
+      "link_status": "possible_candidate",
+      "documentary_candidates": [
+        {
+          "source_id": "gva_goiif_archive",
+          "status": "possible_candidate",
+          "reason": "Parte de Altura compatible con el episodio interprovincial documentado; no se ha localizado croquis/perímetro."
+        }
+      ],
+      "esfire30_same_year_grid_candidates": [
+        {
+          "candidate_id": "esfire30:1992:1699",
+          "area_ha": 60.57,
+          "absolute_area_difference_ha": 3249.43,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        }
+      ]
+    },
+    {
+      "source_record_id": "1992120405",
+      "year": 1992,
+      "province": "Castellon",
+      "municipality": "Azuébar",
+      "detection_date": "1992-08-31T14:18:00",
+      "reported_forest_area_ha": 1042.0,
+      "reported_total_area_ha": 1226.0,
+      "egif_sheet_grid": "0804B02",
+      "link_status": "possible_candidate",
+      "documentary_candidates": [],
+      "esfire30_same_year_grid_candidates": [
+        {
+          "candidate_id": "esfire30:1992:220",
+          "area_ha": 672.48,
+          "absolute_area_difference_ha": 553.52,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        },
+        {
+          "candidate_id": "esfire30:1992:218",
+          "area_ha": 201.6,
+          "absolute_area_difference_ha": 1024.4,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        },
+        {
+          "candidate_id": "esfire30:1992:221",
+          "area_ha": 26.91,
+          "absolute_area_difference_ha": 1199.09,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        },
+        {
+          "candidate_id": "esfire30:1992:219",
+          "area_ha": 15.21,
+          "absolute_area_difference_ha": 1210.79,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        }
+      ]
+    },
+    {
+      "source_record_id": "1992120454",
+      "year": 1992,
+      "province": "Castellon",
+      "municipality": "Castelló de la Plana",
+      "detection_date": "1992-12-08T12:00:00",
+      "reported_forest_area_ha": 1634.0,
+      "reported_total_area_ha": 1700.0,
+      "egif_sheet_grid": "0804A05",
+      "link_status": "unlinked",
+      "documentary_candidates": [],
+      "esfire30_same_year_grid_candidates": []
+    },
+    {
+      "source_record_id": "1992460250",
+      "year": 1992,
+      "province": "Valencia",
+      "municipality": "Marines",
+      "detection_date": "1992-08-30T19:05:00",
+      "reported_forest_area_ha": 4249.0,
+      "reported_total_area_ha": 4249.0,
+      "egif_sheet_grid": "0704C11",
+      "link_status": "possible_candidate",
+      "documentary_candidates": [
+        {
+          "source_id": "gva_annual_perimeter_archive_1978_valencia",
+          "status": "possible_candidate",
+          "reason": "Marines está dentro del periodo/territorio del archivo, pero el activo no está disponible."
+        },
+        {
+          "source_id": "gva_annual_perimeter_archive_1978_valencia",
+          "status": "unlinked_scope_candidate",
+          "reason": "El parte cae en el alcance provincia/año documentado; se desconoce si existe una feature individual."
+        }
+      ],
+      "esfire30_same_year_grid_candidates": [
+        {
+          "candidate_id": "esfire30:1992:204",
+          "area_ha": 139.32,
+          "absolute_area_difference_ha": 4109.68,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        },
+        {
+          "candidate_id": "esfire30:1992:207",
+          "area_ha": 97.65,
+          "absolute_area_difference_ha": 4151.35,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        },
+        {
+          "candidate_id": "esfire30:1992:200",
+          "area_ha": 56.16,
+          "absolute_area_difference_ha": 4192.84,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        },
+        {
+          "candidate_id": "esfire30:1992:216",
+          "area_ha": 34.92,
+          "absolute_area_difference_ha": 4214.08,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        },
+        {
+          "candidate_id": "esfire30:1992:206",
+          "area_ha": 23.67,
+          "absolute_area_difference_ha": 4225.33,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        },
+        {
+          "candidate_id": "esfire30:1992:203",
+          "area_ha": 23.4,
+          "absolute_area_difference_ha": 4225.6,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        },
+        {
+          "candidate_id": "esfire30:1992:209",
+          "area_ha": 18.36,
+          "absolute_area_difference_ha": 4230.64,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        },
+        {
+          "candidate_id": "esfire30:1992:213",
+          "area_ha": 16.38,
+          "absolute_area_difference_ha": 4232.62,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        },
+        {
+          "candidate_id": "esfire30:1992:208",
+          "area_ha": 14.49,
+          "absolute_area_difference_ha": 4234.51,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        },
+        {
+          "candidate_id": "esfire30:1992:201",
+          "area_ha": 11.7,
+          "absolute_area_difference_ha": 4237.3,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        },
+        {
+          "candidate_id": "esfire30:1992:197",
+          "area_ha": 8.37,
+          "absolute_area_difference_ha": 4240.63,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        },
+        {
+          "candidate_id": "esfire30:1992:211",
+          "area_ha": 7.92,
+          "absolute_area_difference_ha": 4241.08,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        },
+        {
+          "candidate_id": "esfire30:1992:212",
+          "area_ha": 7.2,
+          "absolute_area_difference_ha": 4241.8,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        },
+        {
+          "candidate_id": "esfire30:1992:214",
+          "area_ha": 6.93,
+          "absolute_area_difference_ha": 4242.07,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        },
+        {
+          "candidate_id": "esfire30:1992:217",
+          "area_ha": 6.66,
+          "absolute_area_difference_ha": 4242.34,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        },
+        {
+          "candidate_id": "esfire30:1992:215",
+          "area_ha": 6.12,
+          "absolute_area_difference_ha": 4242.88,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        }
+      ]
+    },
+    {
+      "source_record_id": "1992460251",
+      "year": 1992,
+      "province": "Valencia",
+      "municipality": "Sot de Chera",
+      "detection_date": "1992-08-31T15:00:00",
+      "reported_forest_area_ha": 1072.6,
+      "reported_total_area_ha": 1092.6,
+      "egif_sheet_grid": "0704E08",
+      "link_status": "strong_candidate",
+      "documentary_candidates": [
+        {
+          "source_id": "gva_chera_sot_prevention_plan",
+          "status": "strong_candidate",
+          "reason": "Misma fecha (31/08/1992), municipio y superficie aproximada ~1.092 ha; falta cartografía fuente."
+        },
+        {
+          "source_id": "gva_annual_perimeter_archive_1978_valencia",
+          "status": "unlinked_scope_candidate",
+          "reason": "El parte cae en el alcance provincia/año documentado; se desconoce si existe una feature individual."
+        }
+      ],
+      "esfire30_same_year_grid_candidates": [
+        {
+          "candidate_id": "esfire30:1992:180",
+          "area_ha": 6.66,
+          "absolute_area_difference_ha": 1085.94,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        }
+      ]
+    },
+    {
+      "source_record_id": "1992460254",
+      "year": 1992,
+      "province": "Valencia",
+      "municipality": "Corbera",
+      "detection_date": "1992-08-31T18:30:00",
+      "reported_forest_area_ha": 500.0,
+      "reported_total_area_ha": 500.0,
+      "egif_sheet_grid": "0804J02",
+      "link_status": "possible_candidate",
+      "documentary_candidates": [
+        {
+          "source_id": "gva_annual_perimeter_archive_1978_valencia",
+          "status": "unlinked_scope_candidate",
+          "reason": "El parte cae en el alcance provincia/año documentado; se desconoce si existe una feature individual."
+        }
+      ],
+      "esfire30_same_year_grid_candidates": [
+        {
+          "candidate_id": "esfire30:1992:175",
+          "area_ha": 421.47,
+          "absolute_area_difference_ha": 78.53,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        }
+      ]
+    },
+    {
+      "source_record_id": "1992460255",
+      "year": 1992,
+      "province": "Valencia",
+      "municipality": "Calles",
+      "detection_date": "1992-08-31T19:30:00",
+      "reported_forest_area_ha": 3302.0,
+      "reported_total_area_ha": 3302.0,
+      "egif_sheet_grid": "0704D08",
+      "link_status": "possible_candidate",
+      "documentary_candidates": [
+        {
+          "source_id": "gva_annual_perimeter_archive_1978_valencia",
+          "status": "unlinked_scope_candidate",
+          "reason": "El parte cae en el alcance provincia/año documentado; se desconoce si existe una feature individual."
+        }
+      ],
+      "esfire30_same_year_grid_candidates": [
+        {
+          "candidate_id": "esfire30:1992:194",
+          "area_ha": 177.3,
+          "absolute_area_difference_ha": 3124.7,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        },
+        {
+          "candidate_id": "esfire30:1992:193",
+          "area_ha": 16.38,
+          "absolute_area_difference_ha": 3285.62,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        }
+      ]
+    },
+    {
+      "source_record_id": "1992469001",
+      "year": 1992,
+      "province": "Valencia",
+      "municipality": null,
+      "detection_date": "1992-08-30T19:15:00",
+      "reported_forest_area_ha": 1740.0,
+      "reported_total_area_ha": 1740.0,
+      "egif_sheet_grid": "0804B01",
+      "link_status": "possible_candidate",
+      "documentary_candidates": [
+        {
+          "source_id": "gva_annual_perimeter_archive_1978_valencia",
+          "status": "possible_candidate",
+          "reason": "Parte valenciano compatible con Marines–Altura; identidad multiparte continúa sin resolver."
+        },
+        {
+          "source_id": "gva_annual_perimeter_archive_1978_valencia",
+          "status": "unlinked_scope_candidate",
+          "reason": "El parte cae en el alcance provincia/año documentado; se desconoce si existe una feature individual."
+        }
+      ],
+      "esfire30_same_year_grid_candidates": [
+        {
+          "candidate_id": "esfire30:1992:1699",
+          "area_ha": 60.57,
+          "absolute_area_difference_ha": 1679.43,
+          "status": "possible_candidate",
+          "basis": "mismo año y mismo Id_cuad; no prueba identidad ni igualdad de perímetro"
+        }
+      ]
+    }
+  ],
+  "egif_gif_summary": {
+    "parts": 180,
+    "by_province": {
+      "Alicante": 40,
+      "Castellon": 61,
+      "Valencia": 79
+    },
+    "by_decade": {
+      "1968-1969": 4,
+      "1970s": 80,
+      "1980s": 65,
+      "1990s": 31
+    },
+    "by_link_status": {
+      "strong_candidate": 4,
+      "possible_candidate": 36,
+      "unlinked": 140
+    },
+    "with_esfire30_same_year_grid_candidate": 40,
+    "with_esfire30_area_difference_le_10_ha": 0,
+    "confirmed_links": 0,
+    "official_valencia_archive_scope_parts_1978_1992": 58
+  },
+  "license_finding": "Solo ESFire30 y la ortofoto ICV declaran CC BY 4.0 de forma suficiente para redistribuir sus propios activos/derivados con atribución; la licencia no se transfiere a documentos o archivos fuente de terceros.",
+  "next_phase": "CV-4.2 debe adquirir y auditar primero ESFire30 y solicitar el archivo oficial valenciano 1978–1992, los activos NOAA/Landsat y sus licencias; cualquier enlace EGIF permanece candidato."
+}
