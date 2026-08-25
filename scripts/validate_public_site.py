@@ -8,6 +8,8 @@ from pathlib import Path
 
 
 EXPECTED_ICV_ATTRIBUTION = "Incendios forestales de la Comunitat Valenciana (1993–2024) CC BY 4.0, Generalitat. Datos transformados para su visualización mediante reproyección, selección de atributos, particionado y simplificación geométrica."
+EXPECTED_CLOUDFLARE_BEACON = "https://static.cloudflareinsights.com/beacon.min.js"
+EXPECTED_CLOUDFLARE_TOKEN = "6fa57a47de124ffe8b2bfb8b61ad3baf"
 
 
 def sha256(path):
@@ -45,6 +47,8 @@ def main():
     if actual_data != expected_data:
         raise SystemExit("Unexpected public data file set")
     index = (args.site / "index.html").read_text(encoding="utf-8")
+    if EXPECTED_CLOUDFLARE_BEACON not in index or EXPECTED_CLOUDFLARE_TOKEN not in index:
+        raise SystemExit("Missing or incorrect Cloudflare Web Analytics beacon")
     for link in ("LICENSE_DATA.md", "THIRD_PARTY_LICENSES.md"):
         if link not in index or not (args.site / link).is_file():
             raise SystemExit("Missing visible license link: {}".format(link))
