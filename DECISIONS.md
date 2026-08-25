@@ -347,6 +347,27 @@ propia; el archivo oficial valenciano citado no alcanza A hasta recuperar y
 auditar el activo. No se publicará ni integrará una capa pre-1993 antes de
 resolver calidad, licencia e identidad por evidencia independiente.
 
+## 2026-08-25 — ESFire30 pre-1993 como geometría B independiente en EPSG:23030
+
+ESFire30 v1 podrá entrar en una fase posterior como fuente
+`B_DOCUMENTED_REMOTE_SENSING`, separada de los partes EGIF y de los perímetros
+oficiales. Su CRS fuente se fija en ED50 / UTM 30N (EPSG:23030); todo derivado
+conservará el original y registrará la transformación con rejilla IGN.
+
+**Motivo:** los 37 `.prj` declaran EPSG:23030 y, sobre 450 pares diagnósticos
+del mismo año con ICV, esta hipótesis vence a EPSG:25830 en 448 IoU y 411
+distancias de centroide. Las 710 geometrías valencianas 1985–1992 son válidas y
+la metodología Landsat y la licencia CC BY 4.0 están documentadas. Sin embargo,
+el producto no incluye fecha, municipio ni ID estable y sus causas ya usan EGIF
+por cuadrícula/modelado.
+
+**Consecuencias:** no se tratará un polígono como incendio físico único ni como
+geometría EGIF confirmada. Los IDs internos quedan anclados al snapshot v1 y a
+checksum geométrico; las relaciones EGIF son solo candidatas. La futura
+publicación deberá atribuir Zenodo/DOI, declarar reproyección, selección y
+simplificación, y diferenciar visualmente teledetección histórica de perímetro
+oficial. CV-4.2 no modifica el frontend ni el perfil público.
+
 ## Plantilla para nuevas decisiones
 
 ```markdown

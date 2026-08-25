@@ -63,6 +63,30 @@ SIGIF no forma parte del perfil público. Sus snapshots, registros y derivados
 continúan con `publishable=false` hasta recibir una aclaración específica de sus
 condiciones. La confirmación ICV no se extrapola a SIGIF.
 
+## Candidato histórico no publicado
+
+### ESFire30 Causes v1
+
+- **Autores:** Clara Ochoa, Emilio Chuvieco, Marcos Rodrigues y Magí Franquesa.
+- **DOI:** <https://doi.org/10.5281/zenodo.18449006>.
+- **Licencia:** Creative Commons Atribución 4.0 Internacional (CC BY 4.0).
+- **Cobertura real del snapshot:** España peninsular, 1985–2021.
+- **CRS del SHP auditado:** ED50 / UTM 30N (EPSG:23030).
+- **Estado:** candidato `B_DOCUMENTED_REMOTE_SENSING`; no forma parte todavía
+  del perfil público.
+
+Texto propuesto para un futuro derivado:
+
+> ESFire30 Causes, Ochoa, Chuvieco, Rodrigues y Franquesa (2026), versión v1,
+> CC BY 4.0, DOI 10.5281/zenodo.18449006. Datos transformados para el Atlas
+> mediante selección territorial, reproyección a EPSG:4326, selección de
+> atributos y, cuando proceda, simplificación geométrica.
+
+CC BY 4.0 permite redistribución y transformación con atribución e indicación
+de cambios. La licencia del vector no relicencia las escenas Landsat originales;
+el Atlas no redistribuirá dichas imágenes. La auditoría y las condiciones
+técnicas están en `CV_4_2_ESFIRE30_AUDIT.md`.
+
 ## Cartografía base
 
 El visor utiliza teselas de OpenStreetMap y muestra la atribución

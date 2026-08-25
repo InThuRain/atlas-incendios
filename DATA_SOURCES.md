@@ -188,6 +188,33 @@ partes GIF están en `CV_4_1_PRE1993_PERIMETER_SOURCE_INVENTORY.md` y
 `data/sources/gva_pre1993_perimeter_sources.json`. No se ha creado geometría ni
 modificado el visor.
 
+### Auditoría ESFire30 CV-4.2
+
+CV-4.2 adquiere y verifica el snapshot exacto **ESFire30 Causes v1**, DOI
+`10.5281/zenodo.18449006`, CC BY 4.0. El archivo contiene 119.498 polígonos
+anuales 1985–2021; el periodo real del ZIP no alcanza 2023 aunque el artículo
+asociado describa ese alcance para el producto base.
+
+La contradicción del CRS queda resuelta: los 37 `.prj` y un contraste pareado
+con 450 candidatos ICV demuestran que las coordenadas almacenadas están en
+**ED50 / UTM 30N (EPSG:23030)**. La referencia EPSG:25830 del README se registra
+como error de metadatos. La transformación diagnóstica usa la rejilla oficial
+IGN `es_ign_SPED2ETV2.tif`, fijada por checksum.
+
+Se reconcilian **710 polígonos** 1985–1992 que intersectan el País Valencià:
+195 Alicante, 206 Castellón y 309 Valencia. Los 710 son válidos OGC y únicos
+por checksum; suman 84.894 vértices. Se consideran candidatos
+`B_DOCUMENTED_REMOTE_SENSING`, no perímetros oficiales ni episodios físicos
+confirmados. ESFire30 carece de fecha, municipio e ID estable de evento, y sus
+causas ya incorporan EGIF mediante cuadrícula/modelado.
+
+El cruce diagnóstico con los 180 partes EGIF GIF produce 3 candidatos fuertes,
+34 posibles, 3 débiles, 140 sin candidato y **0 confirmados**. La licencia
+permite derivados transformados con atribución e indicación de cambios, pero
+ningún asset se incorpora todavía al perfil público. Resultados, condiciones y
+limitaciones: `CV_4_2_ESFIRE30_AUDIT.md` y
+`data/sources/esfire30_audit.json`.
+
 ## 2. Generalitat Valenciana / ICV
 
 Fuente muy importante para el piloto.

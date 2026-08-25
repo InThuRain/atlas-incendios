@@ -65,10 +65,16 @@ Objetivo: tener un piloto local fiable y agradable de usar.
   710 polígonos Landsat ESFire30 para 1985–1992 y se documenta un archivo
   oficial valenciano desde 1978 aún no disponible; no se crean geometrías ni
   enlaces EGIF confirmados.
-- [ ] CV-4.2: adquirir y auditar ESFire30 tras aclarar su discrepancia de CRS,
-  solicitar la serie oficial Valencia 1978–1992 y recuperar los activos
-  NOAA/Landsat; mantener toda relación con EGIF como candidata hasta disponer
-  de evidencia independiente suficiente.
+- [x] CV-4.2: adquirir y auditar ESFire30 v1. Se resuelve EPSG:23030 frente al
+  EPSG:25830 erróneo del README mediante `.prj` y 450 controles ICV; los 710
+  polígonos valencianos 1985–1992 son topológicamente utilizables y candidatos
+  B de teledetección bajo CC BY 4.0. EGIF permanece separado: 3 enlaces fuertes,
+  34 posibles, 3 débiles y 0 confirmados. No se integra ni publica geometría.
+- [ ] CV-4.3: preparar integración local reversible de ESFire30 1985–1992 como
+  fuente B independiente, medir simplificación/error para incendios pequeños,
+  crear manifest y simbología específica, y mantener los enlaces EGIF como
+  candidatos no confirmados. Obtener antes, si es posible, confirmación escrita
+  del CRS y semántica del proveedor.
 - [ ] Solicitar a Generalitat/ICV y parques la cartografía histórica fuente de
   Chera–Sot de Chera y Mariola–Font Roja, incluida metodología, escala, CRS y
   condiciones de reutilización.

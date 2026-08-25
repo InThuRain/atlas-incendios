@@ -15,6 +15,8 @@ data/processed/recent/gva/
 # Mantener locales hasta revisar el resultado de CV-3.2 y su publicación.
 data/raw/egif/gva/
 data/processed/egif/gva/
+data/raw/esfire30/
+data/processed/esfire30/
 
 # Salidas reproducibles con atributos y geometría ICV original.
 data/processed/gva/*.jsonl

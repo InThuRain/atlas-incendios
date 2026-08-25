@@ -4,6 +4,26 @@ Este archivo se refiere a los datos valencianos utilizados por el Atlas de
 Incendios. No concede una licencia sobre el código del proyecto ni sustituye las
 condiciones establecidas por la Generalitat Valenciana.
 
+## ESFire30 Causes v1 — candidato no publicado
+
+ESFire30 Causes v1, DOI `10.5281/zenodo.18449006`, está publicado bajo CC BY
+4.0. Esa licencia permite redistribuir y transformar sus polígonos Landsat con
+atribución e indicación de los cambios. El derivado valenciano candidato
+seleccionaría 1985–1992, reproyectaría desde EPSG:23030 a EPSG:4326, reduciría
+atributos y podría simplificar geometría bajo salvaguardas documentadas.
+
+La fórmula propuesta es:
+
+> ESFire30 Causes, Ochoa, Chuvieco, Rodrigues y Franquesa (2026), versión v1,
+> CC BY 4.0, DOI 10.5281/zenodo.18449006. Datos transformados para el Atlas
+> mediante selección territorial, reproyección a EPSG:4326, selección de
+> atributos y, cuando proceda, simplificación geométrica.
+
+La licencia se refiere al dataset vectorial y no concede una licencia nueva
+sobre las escenas Landsat de origen. CV-4.2 no publica ni integra el derivado;
+solo determina que legal y técnicamente puede prepararse como fuente B separada
+si conserva las condiciones de `CV_4_2_ESFIRE30_AUDIT.md`.
+
 ## EGIF / MITECO 1968–1992
 
 El derivado histórico contiene partes administrativos de la Estadística
