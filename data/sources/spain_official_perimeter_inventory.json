@@ -1,0 +1,154 @@
+{
+  "schema_version": 1,
+  "phase": "ES-1",
+  "as_of": "2026-08-26",
+  "classification": {
+    "A_READY": "Official vector, accessible and with a sufficiently explicit reuse route for a dedicated audit.",
+    "B_AVAILABLE_NEEDS_WORK": "Official geographic data exist, but layer contents, download, schema or reuse conditions still need resolution.",
+    "C_CARTOGRAPHY_ONLY": "Official maps or documents were found, but no directly reusable vector perimeter dataset.",
+    "D_NOT_FOUND": "No official perimeter vector was found in the official catalogs checked during ES-1; this is not proof of non-existence."
+  },
+  "territories": [
+    {
+      "code": "01", "name": "Andalucía", "status": "A_READY",
+      "dataset": "REDIAM WMS/WFS Perímetros de incendios forestales en Andalucía",
+      "period": "2008-2025", "format": ["WMS", "WFS"], "official_vector": true,
+      "owner": "Junta de Andalucía / REDIAM", "update": "annual",
+      "access": "https://www.juntadeandalucia.es/medioambiente/portal/landing-page-servicio-ogc/-/asset_publisher/1qlWV3LW9vV6/content/rediam.-wms-wfs-per%C3%ADmetros-de-incendios-forestales-en-andaluc%C3%ADa.-2008-2025/20151",
+      "license_status": "metadata-specific restrictions must be captured before redistribution",
+      "next_action": "Inventory WFS schema, identifiers, >10 ha scope and exact metadata reuse statement."
+    },
+    {
+      "code": "02", "name": "Aragón", "status": "D_NOT_FOUND",
+      "dataset": null, "official_vector": false,
+      "evidence": "The 2025-2028 geographic information plan schedules production of vector fire perimeters and start points, but ES-1 did not locate a published asset.",
+      "access": "https://idearagon.aragon.es/portal/info_pigar_detalle.jsp?ID_PIGAR=2.23.4.7",
+      "next_action": "Ask IDEARAGON/forest-fire service for availability and planned publication date."
+    },
+    {
+      "code": "03", "name": "Principado de Asturias", "status": "D_NOT_FOUND",
+      "dataset": null, "official_vector": false,
+      "access": "https://ideas.asturias.es/",
+      "next_action": "Query the regional forest service and IDEAS catalog directly."
+    },
+    {
+      "code": "04", "name": "Illes Balears", "status": "D_NOT_FOUND",
+      "dataset": null, "official_vector": false,
+      "evidence": "The official IDEIB catalog exposes fire-risk cartography, not an individual historical perimeter vector in the ES-1 search.",
+      "access": "https://ideib.caib.es/geoserveis/rest/services/public/GOIB_RiscIncendi_IB/MapServer",
+      "next_action": "Ask the forest service/IDEIB whether operational perimeters are archived."
+    },
+    {
+      "code": "05", "name": "Canarias", "status": "D_NOT_FOUND",
+      "dataset": null, "official_vector": false,
+      "evidence": "SITCAN exposes risk products and a post-fire orthophoto, but ES-1 did not find a regional individual-perimeter series.",
+      "access": "https://opendata.sitcan.es/",
+      "next_action": "Search each cabildo and request regional/cabildo operational perimeter archives."
+    },
+    {
+      "code": "06", "name": "Cantabria", "status": "D_NOT_FOUND",
+      "dataset": null, "official_vector": false,
+      "access": "https://mapas.cantabria.es/",
+      "next_action": "Query the regional spatial catalog and forest service directly."
+    },
+    {
+      "code": "07", "name": "Castilla y León", "status": "B_AVAILABLE_NEEDS_WORK",
+      "dataset": "Incendios CyL WMS", "format": ["WMS"], "official_vector": "unknown",
+      "owner": "Junta de Castilla y León / IDECyL",
+      "access": "https://idecyl.jcyl.es/geonetwork/srv/search?keyword=Servicio+de+acceso+a+mapas",
+      "license_status": "not audited for the specific layers",
+      "next_action": "Inspect capabilities/layers to separate annual risk and start-point maps from actual fire perimeters; locate WFS/download if any."
+    },
+    {
+      "code": "08", "name": "Castilla-La Mancha", "status": "C_CARTOGRAPHY_ONLY",
+      "dataset": "Official fire information and prevention-plan cartography", "format": ["HTML", "PDF"], "official_vector": false,
+      "access": "https://datosabiertos.castillalamancha.es/dataset/informaci%C3%B3n-de-incendios-forestales-en-castilla-la-mancha",
+      "next_action": "Ask INFOCAM whether event perimeter vectors are public or requestable."
+    },
+    {
+      "code": "09", "name": "Cataluña/Catalunya", "status": "A_READY",
+      "dataset": "Base cartogràfica d'incendis forestals", "period": "1986-2021", "format": ["SHP", "KMZ"], "official_vector": true,
+      "owner": "Generalitat de Catalunya", "update": "dataset metadata says annual",
+      "access": "https://analisi.transparenciacatalunya.cat/Medi-Rural-Pesca/Base-cartogr-fica-d-incendis-forestals/dw2p-tke8",
+      "license_status": "Catalan open-data terms; confirm attribution on the exact distribution before ingestion",
+      "next_action": "Audit period-dependent methodology, identifiers, satellite-recovered historical perimeters and current downloadable asset."
+    },
+    {
+      "code": "10", "name": "Comunitat Valenciana", "status": "A_READY",
+      "dataset": "Incendios forestales de la Comunitat Valenciana (1993-2024)", "period": "1993-2024", "format": ["ArcGIS Feature Service"], "official_vector": true,
+      "owner": "Generalitat", "update": "annual snapshot/layers",
+      "access": "https://carto.icv.gva.es/arcgis/rest/services/Prevencion_de_incendios2/MapServer",
+      "license_status": "CC BY 4.0 confirmed in writing by provider; transformations and Generalitat attribution required",
+      "next_action": "Keep the already audited pilot pipeline as the reference autonomous implementation."
+    },
+    {
+      "code": "11", "name": "Extremadura", "status": "D_NOT_FOUND",
+      "dataset": null, "official_vector": false,
+      "access": "http://www.ideextremadura.com/",
+      "next_action": "Query INFOEX and the regional SDI for operational perimeter archives."
+    },
+    {
+      "code": "12", "name": "Galicia", "status": "D_NOT_FOUND",
+      "dataset": null, "official_vector": false,
+      "evidence": "The official geoportal provides broad downloads and fire-prevention strip maps, but no individual fire-perimeter series was located in ES-1.",
+      "access": "https://mapas.xunta.gal/es",
+      "next_action": "Direct request to Dirección Xeral de Defensa do Monte; this is high priority because of national fire volume."
+    },
+    {
+      "code": "13", "name": "Comunidad de Madrid", "status": "D_NOT_FOUND",
+      "dataset": null, "official_vector": false,
+      "evidence": "An official fire-statistics dataset was found, not perimeter vectors.",
+      "access": "https://datos.comunidad.madrid/dataset/101019",
+      "next_action": "Ask the regional emergency/forest service for GIS perimeter archives."
+    },
+    {
+      "code": "14", "name": "Región de Murcia", "status": "D_NOT_FOUND",
+      "dataset": null, "official_vector": false,
+      "access": "https://geoportal.imida.es/",
+      "next_action": "Query IMIDA/CARM and the forest service directly."
+    },
+    {
+      "code": "15", "name": "Comunidad Foral de Navarra", "status": "A_READY",
+      "dataset": "Histórico de incendios forestales", "period": "1985-2023", "format": ["WMS", "WFS"], "official_vector": true,
+      "owner": "Gobierno de Navarra / IDENA",
+      "layers": ["FOREST_Pol_HcoIncendio", "FOREST_Pol_HcoIncendioA"],
+      "access": "https://idena.navarra.es/descargas/wms_wfs_idena.pdf",
+      "license_status": "IDENA catalog uses CC BY 4.0; verify each layer metadata during ingestion",
+      "next_action": "Audit the two schemas (1985-2018 and 2019-2023), identifiers and overlap with ESFire30."
+    },
+    {
+      "code": "16", "name": "País Vasco/Euskadi", "status": "D_NOT_FOUND",
+      "dataset": null, "official_vector": false,
+      "evidence": "Official statistics and risk products were found, not a reusable individual-perimeter vector series.",
+      "access": "https://opendata.euskadi.eus/catalogo/contenidos/estadistica/incendios_forestales/es_dapa/index.shtml",
+      "next_action": "Query GeoEuskadi and the three provincial councils."
+    },
+    {
+      "code": "17", "name": "La Rioja", "status": "C_CARTOGRAPHY_ONLY",
+      "dataset": "PLATERCAR fire-risk cartography", "format": ["PDF"], "official_vector": false,
+      "access": "https://www.iderioja.larioja.org/vfile.php?r=/sig/ficheros_web/tematicos/6010/platercar2011_f+12+riesgos+naturales+en+la+rioja+-+incendios+forestales.pdf",
+      "next_action": "Ask IDERioja/forest service for incident-perimeter vectors; risk mapping is not a substitute."
+    },
+    {
+      "code": "18", "name": "Ceuta", "status": "D_NOT_FOUND",
+      "dataset": null, "official_vector": false,
+      "access": "https://datos.gob.es/es/catalogo",
+      "next_action": "Direct contact with the autonomous-city emergency/environment service."
+    },
+    {
+      "code": "19", "name": "Melilla", "status": "D_NOT_FOUND",
+      "dataset": null, "official_vector": false,
+      "access": "https://datos.gob.es/es/catalogo",
+      "next_action": "Direct contact with the autonomous-city emergency/environment service."
+    }
+  ],
+  "summary": {
+    "territories": 19,
+    "A_READY": 4,
+    "B_AVAILABLE_NEEDS_WORK": 1,
+    "C_CARTOGRAPHY_ONLY": 2,
+    "D_NOT_FOUND": 12,
+    "recommended_next_after_gva": ["Comunidad Foral de Navarra", "Cataluña/Catalunya", "Andalucía"],
+    "warning": "Discovery status is a dated ES-1 catalog result, not proof that an administration lacks internal perimeter data."
+  }
+}

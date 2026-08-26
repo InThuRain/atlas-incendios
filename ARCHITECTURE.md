@@ -370,3 +370,30 @@ perímetros disponibles y mostrará bandas visibles: histórico temprano EGIF
 consolidada 1993–2024 y fuentes provisionales separadas 2025–2026. Que un año
 sea seleccionable no implica que tenga geometría ni la misma completitud que
 los demás.
+
+## Escala nacional y territorio (ES-1)
+
+El País Valencià es el primer territorio implementado y un piloto de
+compatibilidad, no una frontera del modelo. Las fuentes se organizan en tres
+niveles independientes: nacionales (EGIF, ESFire30), autonómicas oficiales y
+complementarias (EFFIS, teledetección o reconstrucciones documentadas). Una
+geometría autonómica preferente no borra el registro o la geometría nacional.
+
+La jerarquía territorial genérica usa códigos INE y límites/bounds IGN-CNIG:
+
+```text
+España -> comunidad/ciudad autónoma -> provincia -> municipio
+```
+
+Las geometrías mantienen una relación muchos-a-muchos con territorios. Se
+almacena una sola geometría fuente y no se recorta para asignarla a CCAA o
+provincia; 1.342 polígonos ESFire30 cruzan CCAA y 2.364 cruzan provincias. Los
+índices territoriales y las teselas de representación deben conservar el mismo
+`geometry_id`.
+
+ES-1 mide que un GeoJSON overview nacional ESFire30 mínimo (119.498 features)
+ocupa 71,44 MB raw / 22,92 MB gzip y añade aproximadamente 459 MiB de heap en
+Leaflet. Leaflet + Canvas y GeoJSON siguen siendo válidos para el piloto,
+territorios y periodos acotados; la vista nacional deberá comparar en un
+prototipo aislado teselas vectoriales/PMTiles antes de elegir entrega y
+renderer. No se ha migrado el frontend.

@@ -410,6 +410,26 @@ sin presentarlos como cartografía oficial ni enlaces EGIF confirmados. SIGIF,
 candidatos, raw, processed, diagnósticos y benchmarks quedan fuera. Cada
 actualización requiere otro bundle inmutable y una verificación real posterior.
 
+## 2026-08-26 — País Valencià como piloto y geometrías nacionales multiterritoriales
+
+El modelo nacional organizará fuentes nacionales, autonómicas y
+complementarias sin sustitución destructiva. País Valencià pasa a ser el
+primer territorio implementado y la prueba de compatibilidad. Los territorios
+se identificarán con catálogos INE versionados y límites IGN/CNIG; cada
+geometría fuente se almacenará una vez y se relacionará muchos-a-muchos con
+CCAA, provincias y municipios.
+
+**Motivo:** ES-1 cuenta 1.342 polígonos ESFire30 multiautonómicos y 2.364
+multiprovinciales. Recortar o duplicar por territorio alteraría procedencia e
+identidad. Además, el overview nacional en un único GeoJSON añade ~459 MiB de
+heap para 119.498 features, mientras un año de 12.586 features añade ~58 MiB.
+
+**Consecuencias:** Leaflet + GeoJSON se conserva para el piloto y selecciones
+contenidas. Antes de una vista nacional se realizará un prototipo aislado de
+teselas vectoriales/PMTiles; ES-1 no decide todavía renderer ni modifica el
+frontend. Manifests, IDs legacy y guard de publicación deberán generalizarse
+sin romper los permalinks valencianos.
+
 ## Plantilla para nuevas decisiones
 
 ```markdown

@@ -32,6 +32,9 @@ data/derived/gva/frontend/
 data/derived/gva/publication/
 data/derived/gva/data-ux-1/
 
+# Benchmarks diagnósticos nacionales de ES-1; no son assets de producción.
+data/derived/spain/es1/
+
 # Subconjunto estático candidato para producción. Continúa ignorado hasta una
 # acción explícita de publicación; se reconstruye con los scripts de build.
 data/web/gva/

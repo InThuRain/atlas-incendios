@@ -113,6 +113,9 @@ Objetivo: tener un piloto local fiable y agradable de usar.
 
 ## Fase 4 — Modelo nacional
 
+- [x] ES-1: auditar viabilidad nacional sin modificar el piloto; contar
+  646.887 partes EGIF expuestos para 1968–2023, medir los 119.498 polígonos
+  ESFire30, inventariar fuentes oficiales de 19 territorios y proponer ES-v1.
 - [ ] Obtener EGIF en formato procesable.
 - [ ] Diseñar identificador estable `fire_id`.
 - [ ] Crear tabla nacional `fires`.
@@ -122,6 +125,9 @@ Objetivo: tener un piloto local fiable y agradable de usar.
 
 ## Fase 5 — Rendimiento nacional
 
+- [x] ES-1: benchmark diagnóstico Leaflet + GeoJSON nacional, territorial,
+  anual y móvil; el overview monolítico añade ~459 MiB de heap y justifica
+  probar teselas en ES-3 sin migrar todavía el visor.
 - [ ] Probar simplificación de geometrías.
 - [ ] Probar PMTiles/vector tiles.
 - [ ] Definir reglas por nivel de zoom.

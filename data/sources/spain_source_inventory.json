@@ -1,0 +1,173 @@
+{
+  "schema_version": 1,
+  "phase": "ES-1",
+  "as_of": "2026-08-26",
+  "scope": "Spain national feasibility; inventory and measurements only",
+  "sources": [
+    {
+      "id": "egif",
+      "level": "national",
+      "provider": "Ministerio para la Transición Ecológica y el Reto Demográfico",
+      "entity_type": "administrative_record",
+      "geometry_role": "none unless an independent geometry is available",
+      "period_observed": [1968, 2023],
+      "records_observed": 646887,
+      "access": {
+        "search": "https://servicio.mapa.gob.es/incendios/Search/Publico",
+        "bulk_format": "XML export in blocks of at most 50000 PIF records",
+        "measurement": "count-only public queries by year; no national XML downloaded"
+      },
+      "annual_counts": {
+        "1968": 2038, "1969": 1442, "1970": 3155, "1971": 1665,
+        "1972": 2093, "1973": 3724, "1974": 3920, "1975": 4128,
+        "1976": 4356, "1977": 2064, "1978": 8193, "1979": 6189,
+        "1980": 7075, "1981": 10688, "1982": 6308, "1983": 4736,
+        "1984": 7073, "1985": 12235, "1986": 7514, "1987": 8816,
+        "1988": 9440, "1989": 20250, "1990": 12914, "1991": 13529,
+        "1992": 15956, "1993": 14253, "1994": 19249, "1995": 25557,
+        "1996": 16586, "1997": 22320, "1998": 22003, "1999": 17943,
+        "2000": 23574, "2001": 19099, "2002": 19929, "2003": 18616,
+        "2004": 21396, "2005": 25492, "2006": 16334, "2007": 10936,
+        "2008": 11655, "2009": 15643, "2010": 11721, "2011": 16414,
+        "2012": 15997, "2013": 10797, "2014": 9806, "2015": 11810,
+        "2016": 8749, "2017": 13691, "2018": 7064, "2019": 10826,
+        "2020": 8064, "2021": 8206, "2022": 8433, "2023": 5223,
+        "2024": 0, "2025": 0
+      },
+      "validation": {
+        "annual_sum": 646887,
+        "interval_count": 646887,
+        "status": "complete_count_inventory",
+        "retrieved_at": "2026-08-26T09:09:16Z"
+      },
+      "coverage_warning": "The search currently exposes records through 2023. Zero rows for 2024-2025 do not prove that no fires occurred and are not a publication-status statement.",
+      "license": {
+        "status": "publishable_with_attribution",
+        "terms": "MITECO general reuse conditions",
+        "attribution": "Origen de los datos: Ministerio para la Transición Ecológica y el Reto Demográfico.",
+        "url": "https://www.datosabiertos.miteco.gob.es/es/aviso-legal.html"
+      },
+      "update_model": "controlled snapshot after definitive records become available"
+    },
+    {
+      "id": "esfire30",
+      "level": "national",
+      "provider": "Clara Ochoa, Emilio Chuvieco, Marcos Rodrigues and Magí Franquesa",
+      "entity_type": "remote_sensing_burned_area_geometry",
+      "period_observed": [1985, 2021],
+      "records_observed": 119498,
+      "coverage": "mainland Spain; nominally burned areas over 5 ha",
+      "method": "Landsat, nominal 30 m, documented remote sensing product",
+      "source_crs": "EPSG:23030",
+      "snapshot": {
+        "version": "v1",
+        "doi": "10.5281/zenodo.18449006",
+        "url": "https://zenodo.org/records/18449006",
+        "zip_bytes": 93127811,
+        "zip_sha256": "150a3cc95e9681e0d35204063abb00437f9cbeca7205e6208518054b3fd36cc8"
+      },
+      "measured_geometry": {
+        "vertices_original": 6196709,
+        "polygon": 119249,
+        "multipolygon": 249,
+        "crosses_autonomous_communities": 1342,
+        "crosses_provinces": 2364,
+        "primary_autonomous_community_counts": {
+          "01": 7676,
+          "02": 1751,
+          "03": 13664,
+          "06": 6019,
+          "07": 29324,
+          "08": 4639,
+          "09": 3091,
+          "10": 2189,
+          "11": 8157,
+          "12": 38358,
+          "13": 859,
+          "14": 180,
+          "15": 1273,
+          "16": 1751,
+          "17": 567
+        },
+        "territory_relation_method": "positive-area intersection with official IGN/CNIG boundaries; largest overlap is primary only for diagnostic counts; no clipping",
+        "partition_count_ccaa_x_five_blocks": 75,
+        "partition_count_province_x_five_blocks": 235,
+        "lod_geojson": {
+          "local": {"tolerance_m": 0, "raw_bytes": 264381316, "gzip_bytes": 99228058},
+          "regional": {"tolerance_m": 30, "raw_bytes": 143473008, "gzip_bytes": 52027892},
+          "overview": {"tolerance_m": 100, "raw_bytes": 71439607, "gzip_bytes": 22916765}
+        }
+      },
+      "license": {
+        "status": "publishable",
+        "spdx": "CC-BY-4.0",
+        "changes_must_be_indicated": true
+      },
+      "update_model": "versioned Zenodo snapshot"
+    },
+    {
+      "id": "effis",
+      "level": "complementary",
+      "provider": "Copernicus Emergency Management Service / European Commission Joint Research Centre",
+      "entity_type": "provisional_satellite_burned_area_geometry",
+      "role": "recent provisional layer, not an administrative fire inventory",
+      "period_relevant": "current and recent years; snapshot-dependent",
+      "method": "Rapid Damage Assessment using MODIS 250 m and, since 2018, Sentinel-2 20 m; dates need not be ignition/extinction dates",
+      "access": "territorial snapshot intersected with an official boundary",
+      "methodology_url": "https://forest-fire.emergency.copernicus.eu/about-effis/technical-background/rapid-damage-assessment",
+      "license": {
+        "status": "publishable",
+        "spdx": "CC-BY-4.0",
+        "changes_must_be_indicated": true,
+        "url": "https://forest-fire.emergency.copernicus.eu/about-effis/data-license"
+      },
+      "update_model": "dated periodic snapshots; never silently replace prior provenance"
+    },
+    {
+      "id": "ine_territorial_codes",
+      "level": "reference",
+      "provider": "Instituto Nacional de Estadística",
+      "entity_type": "territorial_dictionary",
+      "role": "canonical autonomous-community, province and municipality codes and names",
+      "current_url": "https://www.ine.es/daco/daco42/codmun/codmun_anual.htm",
+      "history_requirement": "preserve annual dictionaries and documented changes; do not force historical municipalities into current ones"
+    },
+    {
+      "id": "ign_administrative_units",
+      "level": "reference",
+      "provider": "Instituto Geográfico Nacional / Centro Nacional de Información Geográfica",
+      "entity_type": "official_administrative_boundary",
+      "role": "territory relations and bounds, not fire geometry",
+      "ogc_api": "https://api-features.ign.es/collections/administrativeunit",
+      "catalog": "https://datos.gob.es/es/catalogo/e0dat0002-divisiones-administrativas-de-espana1",
+      "license": {
+        "status": "publishable_with_attribution",
+        "spdx": "CC-BY-4.0"
+      },
+      "update_model": "versioned official boundary snapshot"
+    }
+  ],
+  "national_estimates": {
+    "egif_1968_2023": {
+      "basis": "linear per-record extrapolation from the audited Valencian 1968-1992 pipeline; planning estimate, not a downloaded national snapshot",
+      "raw_xml_uncompressed_gib_approx": 3.5,
+      "raw_zip_mib_approx": 151,
+      "normalized_jsonl_gib_approx": 3.8,
+      "minimal_web_json_mib_approx": 158,
+      "minimal_web_gzip_mib_approx": 8.5
+    },
+    "esfire30": {
+      "source_zip_mib": 88.81,
+      "overview_geojson_mib": 68.13,
+      "overview_gzip_mib": 21.86,
+      "local_geojson_mib": 252.13,
+      "local_gzip_mib": 94.63
+    }
+  },
+  "non_equivalence": [
+    "EGIF record is not automatically a unique physical fire episode.",
+    "ESFire30 polygon is not automatically an EGIF record or an official autonomous perimeter.",
+    "EFFIS polygon is a provisional satellite detection and not a complete administrative inventory.",
+    "Independent sources coexist; source replacement only changes preferred display geometry, never provenance history."
+  ]
+}
