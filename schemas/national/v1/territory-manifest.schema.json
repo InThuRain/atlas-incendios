@@ -1,0 +1,9 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://atlas-incendios.example/schemas/national/v1/territory-manifest.schema.json",
+  "title": "Territory manifest v1",
+  "allOf": [
+    {"$ref": "manifest-contracts.schema.json#/$defs/manifest"},
+    {"properties": {"manifest_type": {"const": "territory"}}}
+  ]
+}

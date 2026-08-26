@@ -24,6 +24,12 @@ data/processed/esfire30/
 data/raw/ccinif/
 data/derived/spain/es1_5/
 
+# Fuentes territoriales nacionales de ES-2. Los libros INE y cartografías
+# IGN/CNIG se descargan reproduciblemente; el snapshot canónico ligero y su
+# manifiesto sí se versionan en data/territories y data/sources.
+data/raw/territories/spain/
+data/derived/spain/es2/
+
 # Salidas reproducibles con atributos y geometría ICV original.
 data/processed/gva/*.jsonl
 data/processed/gva/manifest.json

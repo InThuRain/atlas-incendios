@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://atlas-incendios.example/schemas/national/v1/manifest-contracts.schema.json",
+  "title": "National manifest contracts v1",
+  "$ref": "#/$defs/manifest",
+  "$defs": {
+    "partition": {
+      "type": "object",
+      "required": ["partition_id", "source_id", "territory_ids", "period", "lod", "geometry_semantics", "feature_count", "byte_size", "sha256", "url", "publication_profiles"],
+      "properties": {
+        "partition_id": {"type": "string"},
+        "source_id": {"type": "string"},
+        "territory_ids": {"type": "array", "items": {"type": "string"}},
+        "shared_geometry_ids": {"type": "array", "items": {"type": "string"}},
+        "period": {"type": "object", "required": ["start", "end"]},
+        "lod": {"enum": ["none", "overview", "regional", "local", "original"]},
+        "geometry_semantics": {"type": "string"},
+        "feature_count": {"type": "integer", "minimum": 0},
+        "byte_size": {"type": "integer", "minimum": 0},
+        "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "url": {"type": "string"},
+        "publication_profiles": {"type": "array", "items": {"type": "string"}}
+      },
+      "additionalProperties": true
+    },
+    "manifest": {
+      "type": "object",
+      "required": ["schema_version", "manifest_type", "generated_at", "partitions"],
+      "properties": {
+        "schema_version": {"const": 1},
+        "manifest_type": {"enum": ["source", "territory", "asset", "runtime"]},
+        "generated_at": {"type": "string"},
+        "partitions": {"type": "array", "items": {"$ref": "#/$defs/partition"}}
+      },
+      "additionalProperties": true
+    }
+  }
+}

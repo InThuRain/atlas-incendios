@@ -1,0 +1,21 @@
+{
+  "fixture_id": "es2-navarra",
+  "territories": [
+    {"territory_id": "ES:CCAA:15", "territory_type": "autonomous_community", "official_code": "15", "official_name": "Navarra, Comunidad Foral de", "parent_id": "ES", "aliases": [], "valid_from": "2026-01-01", "valid_to": null, "predecessor_ids": [], "successor_ids": [], "provenance": {"source_id": "ine_rel_2026_01_01", "source_record_id": "15", "retrieved_at": "2026-08-26T12:00:00Z", "transformations": []}},
+    {"territory_id": "ES:PROV:31", "territory_type": "province", "official_code": "31", "official_name": "Navarra", "parent_id": "ES:CCAA:15", "aliases": [], "valid_from": "2026-01-01", "valid_to": null, "predecessor_ids": [], "successor_ids": [], "provenance": {"source_id": "ine_rel_2026_01_01", "source_record_id": "31", "retrieved_at": "2026-08-26T12:00:00Z", "transformations": []}}
+  ],
+  "source_records": [
+    {"record_id": "navarra:record:fixture-001", "source_record_id": "fixture-001", "legacy_ids": [], "source_id": "navarra_official", "entity_type": "official_fire_record", "episode_id": null, "episode_identity_status": "unresolved", "temporal_validity": {"start": "2019", "end": "2019", "coverage_status": "complete", "completeness_status": "final"}, "declared_territory_ids": ["ES:CCAA:15", "ES:PROV:31"], "geometry_ids": ["navarra:geometry:fixture-001"], "geometry_id": "navarra:geometry:fixture-001", "spatial_reference_id": null, "provenance": {"source_id": "navarra_official", "source_record_id": "fixture-001", "retrieved_at": "2026-08-26T00:00:00Z", "transformations": ["contract_fixture_only"]}}
+  ],
+  "fire_geometries": [
+    {"geometry_id": "navarra:geometry:fixture-001", "legacy_ids": [], "source_id": "navarra_official", "source_record_ids": ["navarra:record:fixture-001"], "geometry_semantics": "official_fire_perimeter", "quality": "A_official", "geometry": {"type": "Polygon", "coordinates": []}, "territory_relation_ids": ["tr:navarra:fixture-001"], "provenance": {"source_id": "navarra_official", "source_record_id": "fixture-001", "retrieved_at": "2026-08-26T00:00:00Z", "transformations": ["fixture_geometry_without_coordinates"]}}
+  ],
+  "historical_spatial_references": [],
+  "territory_relations": [
+    {"territory_relation_id": "tr:navarra:fixture-001", "subject_id": "navarra:geometry:fixture-001", "territory_id": "ES:CCAA:15", "relation_type": "spatial_intersection", "mapping_status": "confirmed", "qa_status": "autonomous_community_match", "provenance": {"source_id": "navarra_official", "source_record_id": "fixture-001", "retrieved_at": "2026-08-26T00:00:00Z", "transformations": ["contract_fixture_only"]}}
+  ],
+  "candidate_links": [
+    {"candidate_link_id": "candidate:navarra-egif:fixture-001", "subject_id": "navarra:record:fixture-001", "object_id": "egif-record:fixture-001", "link_type": "same_episode_candidate", "status": "candidate", "score": null, "evidence": [{"kind": "same_year"}], "provenance": {"source_id": "navarra_official", "source_record_id": "fixture-001", "retrieved_at": "2026-08-26T00:00:00Z", "transformations": ["no_identity_confirmation"]}}
+  ],
+  "expected": {"official_autonomous_source_coexists_with_egif_and_esfire30": true, "publishable_during_es2": false}
+}

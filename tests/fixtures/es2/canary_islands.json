@@ -1,0 +1,20 @@
+{
+  "fixture_id": "es2-canary-islands",
+  "territories": [
+    {"territory_id": "ES:CCAA:05", "territory_type": "autonomous_community", "official_code": "05", "official_name": "Canarias", "parent_id": "ES", "aliases": [], "valid_from": "2026-01-01", "valid_to": null, "predecessor_ids": [], "successor_ids": [], "provenance": {"source_id": "ine_rel_2026_01_01", "source_record_id": "05", "retrieved_at": "2026-08-26T12:00:00Z", "transformations": []}},
+    {"territory_id": "ES:PROV:35", "territory_type": "province", "official_code": "35", "official_name": "Palmas, Las", "parent_id": "ES:CCAA:05", "aliases": [], "valid_from": "2026-01-01", "valid_to": null, "predecessor_ids": [], "successor_ids": [], "provenance": {"source_id": "ine_rel_2026_01_01", "source_record_id": "35", "retrieved_at": "2026-08-26T12:00:00Z", "transformations": []}},
+    {"territory_id": "ES:PROV:38", "territory_type": "province", "official_code": "38", "official_name": "Santa Cruz de Tenerife", "parent_id": "ES:CCAA:05", "aliases": [], "valid_from": "2026-01-01", "valid_to": null, "predecessor_ids": [], "successor_ids": [], "provenance": {"source_id": "ine_rel_2026_01_01", "source_record_id": "38", "retrieved_at": "2026-08-26T12:00:00Z", "transformations": []}}
+  ],
+  "source_records": [
+    {"record_id": "egif-record:canarias-fixture", "source_record_id": "canarias-fixture", "legacy_ids": [], "source_id": "egif", "entity_type": "administrative_record", "episode_id": null, "episode_identity_status": "unresolved", "temporal_validity": {"start": "1975", "end": "1975", "coverage_status": "selective", "completeness_status": "final"}, "declared_territory_ids": ["ES:CCAA:05", "ES:PROV:38"], "geometry_ids": [], "geometry_id": null, "spatial_reference_id": "ccinif:grid:canarias:ambiguous-A01", "provenance": {"source_id": "egif", "source_record_id": "canarias-fixture", "retrieved_at": "2026-08-26T00:00:00Z", "transformations": ["geometry_remains_null", "missing_sheet_not_filled"]}}
+  ],
+  "fire_geometries": [],
+  "historical_spatial_references": [
+    {"spatial_reference_id": "ccinif:grid:canarias:ambiguous-A01", "source_id": "ccinif_grid", "spatial_semantics": "historical_location_reference", "reference_system": "CCINIF grid", "sheet_id": null, "grid_id": "A01", "nominal_resolution_m": 10000, "interpretation_status": "ambiguous", "geometry_parts": [{"part_id": "candidate-part-1"}, {"part_id": "candidate-part-2"}], "geometry_status": "not_fire_geometry", "provenance": {"source_id": "ccinif_grid", "source_record_id": "A01", "retrieved_at": "2026-08-26T00:00:00Z", "transformations": ["fixture_omits_coordinates", "no_sheet_in_source_record"]}}
+  ],
+  "territory_relations": [
+    {"territory_relation_id": "tr:canarias:declared", "subject_id": "egif-record:canarias-fixture", "territory_id": "ES:PROV:38", "relation_type": "source_declared", "mapping_status": "confirmed", "qa_status": "not_checkable", "provenance": {"source_id": "egif", "source_record_id": "canarias-fixture", "retrieved_at": "2026-08-26T00:00:00Z", "transformations": []}}
+  ],
+  "candidate_links": [],
+  "expected": {"esfire30_available": false, "grid_reference_status": "ambiguous", "sheet_code_is_invented": false, "geometry_parts": 2}
+}

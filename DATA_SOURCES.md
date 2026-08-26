@@ -456,6 +456,32 @@ Para cada una, documentar:
 
 No construir aún una capa nacional mezclando fuentes sin conservar su procedencia.
 
+### Catálogo territorial nacional de referencia (ES-2)
+
+El snapshot nominal `ine-rel-2026-01-01` procede de la relación oficial de
+municipios, provincias, comunidades y ciudades autónomas del INE referida al
+1 de enero de 2026. Contiene 8.132 municipios, 50 provincias y 19 territorios
+autonómicos: 17 comunidades y 2 ciudades autónomas. Los códigos estadísticos
+51/52 se conservan como equivalentes al nivel provincial para Ceuta y Melilla,
+pero no convierten esas ciudades autónomas en provincias. El código INE de cinco cifras es la identidad municipal;
+el nombre y sus aliases no lo sustituyen.
+
+Los límites/bounds nacionales futuros procederán de Límites y Unidades
+Administrativas Actuales de IGN/CNIG. La ficha auditada el 26/08/2026 declara
+ETRS89 para península, Baleares, Ceuta y Melilla y REGCAN95 para Canarias,
+coordenadas geográficas compatibles con WGS84 y licencia compatible CC BY 4.0.
+ES-2 no incluye esas geometrías: registra producto, versión, CRS, licencia y
+checksum de la ficha para una adquisición posterior controlada.
+
+Fuentes oficiales:
+
+- INE: <https://www.ine.es/daco/daco42/codmun/diccionario26.xlsx>
+- relación CCAA/provincias: <https://www.ine.es/daco/daco42/codmun/cod_ccaa_provincia.htm>
+- IGN/CNIG: <https://centrodedescargas.cnig.es/CentroDescargas/limites-municipales-provinciales-autonomicos>
+
+El raw queda en `data/raw/territories/spain/` ignorado. El snapshot canónico y
+su manifiesto se regeneran con `scripts/territories/build_spain_snapshot.py`.
+
 ## 4. Teledetección
 
 Posibles fuentes complementarias:

@@ -1,0 +1,152 @@
+{
+  "schema_version": 1,
+  "catalog_id": "atlas-sources-es-v1",
+  "country": "ES",
+  "profiles": {
+    "pilot_development": ["egif", "esfire30", "gva_icv", "gva_sigif", "effis"],
+    "pilot_public": ["egif", "esfire30", "gva_icv", "effis"],
+    "national_design": ["egif", "ccinif_grid", "esfire30", "gva_icv", "gva_sigif", "effis", "navarra_official"]
+  },
+  "sources": {
+    "egif": {
+      "source_id": "egif",
+      "name": "Estadística General de Incendios Forestales",
+      "owner": "Ministerio para la Transición Ecológica y el Reto Demográfico",
+      "scope": {"country": "ES", "territory_ids": ["ES"]},
+      "temporal_coverage": [{"start": "1968", "end": null, "coverage_status": "heterogeneous_by_period", "completeness_status": "unknown"}],
+      "geometry_semantics": ["none"],
+      "quality": "administrative_source_record_without_inherent_geometry",
+      "license": {
+        "status": "confirmed",
+        "license_id": "MITECO-general-reuse-terms",
+        "url": "https://www.miteco.gob.es/es/ministerio/servicios/reutilizacion-informacion-publica/condiciones-generales.html",
+        "attribution": "Origen de los datos: Ministerio para la Transición Ecológica y el Reto Demográfico.",
+        "transformation_notice_required": true
+      },
+      "publishable": true,
+      "publication_status": "published_pilot",
+      "update_policy": "periodic_snapshot",
+      "provenance": {"url": "https://www.miteco.gob.es/es/biodiversidad/temas/incendios-forestales/estadisticas-datos.html", "documented_at": "2026-08-26"}
+    },
+    "ccinif_grid": {
+      "source_id": "ccinif_grid",
+      "name": "Malla histórica de localización EGIF HOJA/CUADRÍCULA",
+      "owner": "CCINIF / MITECO",
+      "scope": {"country": "ES", "territory_ids": ["ES"]},
+      "temporal_coverage": [{"start": "1968", "end": null, "coverage_status": "reference_system_used_historically", "completeness_status": "unknown"}],
+      "geometry_semantics": ["historical_location_reference"],
+      "quality": "official_received_historical_reference",
+      "license": {
+        "status": "pending_permission",
+        "license_id": null,
+        "url": null,
+        "attribution": null,
+        "transformation_notice_required": true
+      },
+      "publishable": false,
+      "publication_status": "blocked",
+      "update_policy": "received_historical_reference",
+      "provenance": {"url": null, "documented_at": "2026-08-26", "manifest": "data/sources/ccinif_historical_grid_manifest.json"}
+    },
+    "esfire30": {
+      "source_id": "esfire30",
+      "name": "ESFire30 Causes",
+      "owner": "Ochoa, Chuvieco, Rodrigues y Franquesa",
+      "scope": {"country": "ES", "territory_ids": ["ES"]},
+      "temporal_coverage": [{"start": "1985", "end": "2021", "coverage_status": "dataset_defined", "completeness_status": "final"}],
+      "geometry_semantics": ["documented_remote_sensing_perimeter"],
+      "quality": "B_documented_remote_sensing",
+      "license": {
+        "status": "confirmed",
+        "license_id": "CC-BY-4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/legalcode",
+        "attribution": "ESFire30 Causes, Ochoa, Chuvieco, Rodrigues y Franquesa (2026), versión v1, CC BY 4.0, DOI 10.5281/zenodo.18449006.",
+        "transformation_notice_required": true
+      },
+      "publishable": true,
+      "publication_status": "published_pilot",
+      "update_policy": "immutable_snapshot",
+      "provenance": {"url": "https://doi.org/10.5281/zenodo.18449006", "documented_at": "2026-08-26"}
+    },
+    "gva_icv": {
+      "source_id": "gva_icv",
+      "name": "Incendios forestales de la Comunitat Valenciana (1993–2024)",
+      "owner": "Generalitat",
+      "scope": {"country": "ES", "territory_ids": ["ES:CCAA:10"]},
+      "temporal_coverage": [{"start": "1993", "end": "2024", "coverage_status": "dataset_defined", "completeness_status": "final"}],
+      "geometry_semantics": ["official_fire_perimeter"],
+      "quality": "A_official",
+      "license": {
+        "status": "confirmed",
+        "license_id": "CC-BY-4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/legalcode",
+        "attribution": "Incendios forestales de la Comunitat Valenciana (1993–2024) CC BY 4.0, Generalitat. Datos transformados para su visualización mediante reproyección, selección de atributos, particionado y simplificación geométrica.",
+        "transformation_notice_required": true
+      },
+      "publishable": true,
+      "publication_status": "published_pilot",
+      "update_policy": "annual_release",
+      "provenance": {"url": "https://dadesobertes.gva.es/dataset/incendios-forestales-de-la-comunitat-valenciana-1993-2024", "documented_at": "2026-08-26", "legacy_source_id": "icv"}
+    },
+    "gva_sigif": {
+      "source_id": "gva_sigif",
+      "name": "Estadísticas provisionales SIGIF / Generalitat Valenciana",
+      "owner": "Generalitat Valenciana",
+      "scope": {"country": "ES", "territory_ids": ["ES:CCAA:10"]},
+      "temporal_coverage": [{"start": "2025", "end": null, "coverage_status": "snapshot_limited", "completeness_status": "provisional"}],
+      "geometry_semantics": ["administrative_point"],
+      "quality": "provisional_administrative",
+      "license": {
+        "status": "pending_permission",
+        "license_id": null,
+        "url": null,
+        "attribution": "Estadísticas provisionales de incendios forestales, SIGIF / Generalitat Valenciana",
+        "transformation_notice_required": true
+      },
+      "publishable": false,
+      "publication_status": "blocked",
+      "update_policy": "live_provisional",
+      "provenance": {"url": "https://prevencionincendiosgva.es/Incendios/EstadisticasProvisionales", "documented_at": "2026-08-26", "legacy_source_id": "sigif"}
+    },
+    "effis": {
+      "source_id": "effis",
+      "name": "European Forest Fire Information System",
+      "owner": "European Union, Copernicus EMS / EFFIS",
+      "scope": {"country": "ES", "territory_ids": ["ES"]},
+      "temporal_coverage": [{"start": null, "end": null, "coverage_status": "snapshot_and_methodology_dependent", "completeness_status": "provisional"}],
+      "geometry_semantics": ["provisional_remote_sensing_perimeter"],
+      "quality": "B_provisional",
+      "license": {
+        "status": "confirmed",
+        "license_id": "CC-BY-4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/legalcode",
+        "attribution": "European Union, Copernicus EMS / EFFIS (CC BY 4.0).",
+        "transformation_notice_required": true
+      },
+      "publishable": true,
+      "publication_status": "published_pilot",
+      "update_policy": "periodic_snapshot",
+      "provenance": {"url": "https://effis.jrc.ec.europa.eu/about-effis/technical-background/rapid-damage-assessment", "documented_at": "2026-08-26"}
+    },
+    "navarra_official": {
+      "source_id": "navarra_official",
+      "name": "Histórico de incendios forestales de Navarra",
+      "owner": "Gobierno de Navarra / IDENA",
+      "scope": {"country": "ES", "territory_ids": ["ES:CCAA:15", "ES:PROV:31"]},
+      "temporal_coverage": [{"start": "1985", "end": "2023", "coverage_status": "two_published_layers", "completeness_status": "final"}],
+      "geometry_semantics": ["official_fire_perimeter"],
+      "quality": "A_official_source_pending_ingestion_audit",
+      "license": {
+        "status": "pending_source_audit",
+        "license_id": "CC-BY-4.0-catalog",
+        "url": "https://idena.navarra.es/descargas/wms_wfs_idena.pdf",
+        "attribution": "Gobierno de Navarra / IDENA (atribución exacta pendiente de auditoría de capa).",
+        "transformation_notice_required": true
+      },
+      "publishable": false,
+      "publication_status": "design_only",
+      "update_policy": "periodic_snapshot",
+      "provenance": {"url": "https://idena.navarra.es/descargas/wms_wfs_idena.pdf", "documented_at": "2026-08-26", "layers": ["FOREST_Pol_HcoIncendio", "FOREST_Pol_HcoIncendioA"]}
+    }
+  }
+}

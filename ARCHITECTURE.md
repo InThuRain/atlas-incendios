@@ -385,7 +385,8 @@ geometría autonómica preferente no borra el registro o la geometría nacional.
 La jerarquía territorial genérica usa códigos INE y límites/bounds IGN-CNIG:
 
 ```text
-España -> comunidad/ciudad autónoma -> provincia -> municipio
+España -> comunidad autónoma -> provincia -> municipio
+España -> ciudad autónoma -> municipio
 ```
 
 Las geometrías mantienen una relación muchos-a-muchos con territorios. Se
@@ -423,3 +424,31 @@ de referencia con simbología inequívoca. Prohíbe tratarla como perímetro,
 superficie quemada, centro del incendio, recurrencia o prueba de identidad de
 episodio. El perfil de publicación debe excluirla mientras
 `publishable=false_pending_permission`.
+
+## Contratos canónicos nacionales (ES-2)
+
+La transición nacional se construye en paralelo al piloto. Los contratos v1 de
+`schemas/national/v1/` separan `source_record`, `fire_geometry`,
+`historical_spatial_reference`, `territory`, `territory_relation`,
+`candidate_link`, `source` y `publication_asset`. Ninguno de esos canales se
+deduce o fusiona automáticamente con otro.
+
+El territorio usa `territory_type + parent_id`, sin profundidad fija, e IDs por
+códigos oficiales (`ES`, `ES:CCAA:10`, `ES:PROV:46`, `ES:MUN:46001`). Ceuta y
+Melilla son ciudades autónomas; `51/52` se preservan solo como códigos
+estadísticos equivalentes al nivel provincial. Nombres, aliases y vigencia son atributos. Las
+geometrías se almacenan una vez y sus relaciones territoriales N:M distinguen
+lo declarado por la fuente de una intersección espacial. Una referencia CCINIF
+puede tener varios fragmentos, pero conserva
+`geometry_status=not_fire_geometry` y el parte EGIF mantiene `geometry=null`.
+
+`config/sources-spain.json` generaliza licencia, publicación, semántica,
+cobertura y actualización sin sustituir todavía `sources-gva.json`. El guard
+nacional exige licencia, atribución, provenance y permiso tanto en la fuente
+como en cada asset; SIGIF y CCINIF fallan de forma cerrada. La compatibilidad
+de IDs, permalink `v=1` y `public-data-v5` queda declarada y probada en
+`config/compatibility-gva-v1.json`.
+
+Los registros nacionales se particionarán por fuente × CCAA × periodo. Una
+geometría transfronteriza no se duplica: los manifests territoriales referencian
+su `geometry_id` compartido. ES-2 no decide formato de tesela ni renderer.

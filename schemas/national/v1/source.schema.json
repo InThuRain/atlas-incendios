@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://atlas-incendios.example/schemas/national/v1/source.schema.json",
+  "title": "Source contract v1",
+  "type": "object",
+  "required": ["source_id", "name", "owner", "scope", "temporal_coverage", "geometry_semantics", "quality", "license", "publishable", "publication_status", "update_policy", "provenance"],
+  "properties": {
+    "source_id": {"type": "string", "pattern": "^[a-z0-9][a-z0-9._-]*$"},
+    "name": {"type": "string", "minLength": 1},
+    "owner": {"type": "string", "minLength": 1},
+    "scope": {
+      "type": "object",
+      "required": ["country", "territory_ids"],
+      "properties": {
+        "country": {"const": "ES"},
+        "territory_ids": {"type": "array", "items": {"type": "string"}, "uniqueItems": true}
+      },
+      "additionalProperties": false
+    },
+    "temporal_coverage": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["start", "end", "coverage_status", "completeness_status"],
+        "properties": {
+          "start": {"type": ["string", "null"]},
+          "end": {"type": ["string", "null"]},
+          "coverage_status": {"type": "string"},
+          "completeness_status": {"enum": ["final", "provisional", "incomplete", "unknown"]}
+        }
+      }
+    },
+    "geometry_semantics": {
+      "type": "array",
+      "items": {
+        "enum": ["none", "official_fire_perimeter", "documented_remote_sensing_perimeter", "provisional_remote_sensing_perimeter", "historical_location_reference", "administrative_point", "documented_cartographic_reconstruction"]
+      },
+      "uniqueItems": true
+    },
+    "quality": {"type": "string"},
+    "license": {
+      "type": "object",
+      "required": ["status", "license_id", "url", "attribution", "transformation_notice_required"],
+      "properties": {
+        "status": {"enum": ["confirmed", "pending_permission", "pending_source_audit", "blocked"]},
+        "license_id": {"type": ["string", "null"]},
+        "url": {"type": ["string", "null"]},
+        "attribution": {"type": ["string", "null"]},
+        "transformation_notice_required": {"type": "boolean"}
+      },
+      "additionalProperties": true
+    },
+    "publishable": {"type": "boolean"},
+    "publication_status": {"enum": ["published_pilot", "eligible", "blocked", "design_only"]},
+    "update_policy": {"enum": ["immutable_snapshot", "periodic_snapshot", "annual_release", "live_provisional", "received_historical_reference"]},
+    "provenance": {"type": "object", "required": ["url", "documented_at"], "properties": {"url": {"type": ["string", "null"]}, "documented_at": {"type": "string"}}, "additionalProperties": true}
+  },
+  "additionalProperties": true
+}

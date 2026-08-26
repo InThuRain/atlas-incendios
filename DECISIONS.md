@@ -451,6 +451,29 @@ CCINIF no confirme licencia, transformaciones y atribución; las condiciones
 generales de MITECO no se presumen suficientes para la cartografía militar
 incorporada.
 
+## 2026-08-26 — Contratos nacionales paralelos y territorio identificado por código
+
+La arquitectura ES-v1 separa registros fuente, geometrías de incendio,
+referencias espaciales históricas, territorios, relaciones territoriales y
+candidatos de identidad. Los territorios se identifican por códigos oficiales
+INE mediante `territory_type + parent_id`, sin imponer una profundidad fija;
+nombres y aliases no son identidad. Ceuta y Melilla son ciudades autónomas y
+sus códigos 51/52 solo son equivalentes estadísticos al nivel provincial. Las
+geometrías se almacenan una vez y se relacionan N:M con territorios.
+
+**Motivo:** los fixtures País Valencià, Navarra y Canarias exigen representar a
+la vez IDs ya publicados, fuentes autonómicas independientes, geometrías
+transfronterizas, referencias CCINIF multiparte y códigos históricos
+incompletos. Colapsarlos en una tabla introduciría identidades y semánticas no
+demostradas.
+
+**Consecuencias:** los contratos nacionales se añaden en paralelo y no migran
+`public-data-v5`, los manifests GVA ni permalink `v=1`. El catálogo nacional y
+cada asset pasan por un guard fail-closed que exige permiso, licencia,
+atribución y procedencia; SIGIF, CCINIF y Navarra de diseño siguen bloqueados.
+El snapshot territorial 01/01/2026 contiene códigos/nombres INE pero no límites
+históricos ni geometrías IGN/CNIG.
+
 ## Plantilla para nuevas decisiones
 
 ```markdown

@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://atlas-incendios.example/schemas/national/v1/publication-asset.schema.json",
+  "title": "Publication asset contract v1",
+  "type": "object",
+  "required": ["asset_id", "source_id", "profile", "publishable", "license_status", "attribution", "provenance", "url", "sha256", "byte_size"],
+  "properties": {
+    "asset_id": {"type": "string"},
+    "source_id": {"type": "string"},
+    "profile": {"type": "string"},
+    "publishable": {"type": "boolean"},
+    "license_status": {"enum": ["confirmed", "pending_permission", "pending_source_audit", "blocked"]},
+    "attribution": {"type": ["string", "null"]},
+    "provenance": {"type": "object"},
+    "url": {"type": "string"},
+    "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "byte_size": {"type": "integer", "minimum": 0}
+  },
+  "additionalProperties": true
+}

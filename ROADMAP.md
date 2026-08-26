@@ -120,6 +120,15 @@ Objetivo: tener un piloto local fiable y agradable de usar.
   enlaza 626.957 partes a 5.183 celdas oficiales distintas; los 270 pares
   valencianos quedan confirmados. Las celdas son referencias documentales,
   nunca perímetros, y permanecen fuera de publicación.
+- [x] ES-2: definir contratos nacionales v1 para registros, geometrías,
+  referencias históricas, territorios, relaciones, candidatos, fuentes y
+  assets; versionar el snapshot nominal INE de 01/01/2026 (8.132 municipios),
+  generalizar el guard fail-closed y validar País Valencià, Navarra y Canarias
+  sin modificar el visor público.
+- [ ] ES-3: prototipo nacional aislado de ESFire30 con geometrías únicas,
+  relaciones territoriales y benchmark GeoJSON particionado frente a
+  PMTiles/vector tiles; no publicar ni migrar el piloto antes de decidir con
+  medidas.
 - [ ] Obtener de CCINIF permiso escrito y atribución para redistribuir una
   selección GeoJSON/derivada de la malla; mantener
   `publishable=false_pending_permission` hasta entonces.

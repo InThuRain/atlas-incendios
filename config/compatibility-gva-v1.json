@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "purpose": "Non-destructive adapter from published Valencian pilot identifiers/manifests to national contracts",
+  "legacy_catalog": "config/sources-gva.json",
+  "national_catalog": "config/sources-spain.json",
+  "source_id_map": {
+    "egif": "egif",
+    "esfire30": "esfire30",
+    "icv": "gva_icv",
+    "sigif": "gva_sigif",
+    "effis": "effis"
+  },
+  "published_id_policies": [
+    {"source_id": "gva_icv", "record_pattern": "^gva:pif-cv:", "geometry_pattern": "^gva:geometry:", "action": "preserve_as_primary"},
+    {"source_id": "egif", "record_pattern": "^egif-record:", "action": "preserve_as_primary"},
+    {"source_id": "esfire30", "record_pattern": "^esfire30:record:sha256:", "geometry_pattern": "^esfire30:geometry:sha256:", "action": "preserve_as_primary"},
+    {"source_id": "effis", "geometry_pattern": "^effis:rda:", "action": "preserve_as_primary"}
+  ],
+  "permalink": {
+    "current_version": 1,
+    "identity_parameters": ["entity", "geometry"],
+    "action": "resolve_legacy_ids_without_rewriting_hash"
+  },
+  "immutable_interfaces": [
+    "config/sources-gva.json",
+    "config/datasets-gva.json",
+    "config/public-data-bundle.json",
+    "public-data-v5",
+    "permalink-v1"
+  ],
+  "pilot_reconciliation": {
+    "icv_records": 13738,
+    "icv_geometries": 13739,
+    "egif_records_1968_1992": 9175,
+    "esfire30_geometries_1985_1992": 710
+  }
+}
