@@ -326,10 +326,9 @@ raw CV-2.2 -> processed CV-2.2 -> web reducido CV-2.3 -> perfil de ejecución
 El perfil `development` habilita los assets locales EGIF, ESFire30, ICV, SIGIF y EFFIS. El
 perfil `public` solo admite fuentes con `publishable=true` y falla si se intenta
 forzar una fuente bloqueada. Desde la aclaración escrita del ICV de 20/08/2026,
-el perfil público candidato de CV-4.3 incluye EGIF, ESFire30, ICV y EFFIS;
-SIGIF permanece bloqueado. Componer un perfil no publica ni copia datos.
-CV-3.4 publicó EGIF + ICV + EFFIS mediante `public-data-v4`; ESFire30 no llegará
-a Pages hasta que una fase posterior cree y valide otro bundle inmutable.
+el perfil público incluye EGIF, ESFire30, ICV y EFFIS; SIGIF permanece
+bloqueado. Componer un perfil no publica ni copia datos. CV-4.4 publica esa
+combinación mediante `public-data-v5` sin modificar `public-data-v4`.
 
 Las entidades siguen separadas también en el navegador: `fire_id` ICV,
 `sigif_record_id` y `geometry_id`/`effis_id`. Los candidatos son relaciones
@@ -349,9 +348,9 @@ por contenido; el índice del SHP solo es procedencia. EGIF conserva
 El sitio público se construye en GitHub Actions, pero los datos web permitidos
 no se regeneran allí desde raw/processed: esas entradas son locales, están
 ignoradas y no serían reproducibles en CI. En su lugar, el bundle inmutable
-`public-data-v4` contiene únicamente los 38 assets ICV, los 2 EFFIS, el asset
-EGIF compacto y los dos manifiestos fuente saneados/necesarios. En total son 41
-assets de datos y 43 entradas. `config/public-data-bundle.json` fija lista,
+`public-data-v5` contiene únicamente los 38 assets ICV, los 3 ESFire30, los 2
+EFFIS, el asset EGIF compacto y tres manifiestos fuente saneados/necesarios. En
+total son 44 assets de datos y 47 entradas. `config/public-data-bundle.json` fija lista,
 tamaños y checksums; CI descarga, verifica y extrae el bundle antes de componer
 el perfil.
 

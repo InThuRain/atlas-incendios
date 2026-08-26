@@ -31,6 +31,7 @@ def parse_args():
     parser.add_argument("--repetitions", type=int, default=3)
     parser.add_argument("--timeout", type=int, default=180)
     parser.add_argument("--profile", choices=("development", "public"), default="development")
+    parser.add_argument("--url", help="Use an already deployed viewer instead of starting the local server")
     parser.add_argument(
         "--output",
         type=Path,
@@ -98,18 +99,24 @@ def main():
         "mobile_full_without_esfire30": ({"sources": without_esfire30_sources}, "390,844"),
         "desktop_historical_egif_only": ({"from": 1985, "to": 1992, "sources": "egif"}, "1440,900"),
         "desktop_historical_with_esfire30": ({"from": 1985, "to": 1992, "sources": "egif,esfire30"}, "1440,900"),
+        "desktop_1986": ({"from": 1986, "to": 1986, "sources": "egif,esfire30"}, "1440,900"),
         "mobile_historical_egif_only": ({"from": 1985, "to": 1992, "sources": "egif"}, "390,844"),
         "mobile_historical_with_esfire30": ({"from": 1985, "to": 1992, "sources": "egif,esfire30"}, "390,844"),
+        "mobile_1986": ({"from": 1986, "to": 1986, "sources": "egif,esfire30"}, "390,844"),
     }
-    handler = lambda *items, **kwargs: QuietHandler(
-        *items, directory=str(root.parent), **kwargs
-    )
-    server = ThreadingHTTPServer(("127.0.0.1", 0), handler)
-    thread = threading.Thread(target=server.serve_forever, daemon=True)
-    thread.start()
-    base_url = "http://127.0.0.1:{}/{}/index.html".format(
-        server.server_port, root.name
-    )
+    server = None
+    if args.url:
+        base_url = args.url.rstrip("/") + "/"
+    else:
+        handler = lambda *items, **kwargs: QuietHandler(
+            *items, directory=str(root.parent), **kwargs
+        )
+        server = ThreadingHTTPServer(("127.0.0.1", 0), handler)
+        thread = threading.Thread(target=server.serve_forever, daemon=True)
+        thread.start()
+        base_url = "http://127.0.0.1:{}/{}/index.html".format(
+            server.server_port, root.name
+        )
     results = {}
     try:
         for name, (query, window_size) in scenarios.items():
@@ -149,8 +156,9 @@ def main():
                 "runs": runs,
             }
     finally:
-        server.shutdown()
-        server.server_close()
+        if server:
+            server.shutdown()
+            server.server_close()
         if args.profile == "public":
             runtime.write_bytes(development)
 
@@ -163,6 +171,7 @@ def main():
             "chrome": args.chrome,
             "leaflet": "1.9.4",
             "server_compression": False,
+            "url": args.url or base_url,
             "tiles_excluded_from_loader_metrics": True,
         },
         "results": results,

@@ -75,10 +75,10 @@ Objetivo: tener un piloto local fiable y agradable de usar.
   EPSG:23030 fail-closed, tres LOD, relaciones territoriales derivadas,
   simbología y métricas separadas. Development y public candidato pasan tests
   y benchmarks; no se ha creado bundle ni publicado.
-- [ ] CV-4.4: tras revisión local, crear y verificar un bundle inmutable nuevo
-  con EGIF + ESFire30 + ICV + EFFIS, desplegarlo mediante el workflow existente
-  y comprobar la web real. Mantener SIGIF y candidatos fuera; incorporar la
-  respuesta técnica de autores ESFire30 si llega antes del empaquetado.
+- [x] CV-4.4: publicar EGIF + ESFire30 + ICV + EFFIS mediante el bundle
+  inmutable `public-data-v5`, reproducido dos veces con el mismo SHA-256 y
+  verificado en GitHub Pages el 26/08/2026. SIGIF, candidatos, raw, processed,
+  diagnósticos y benchmarks permanecen fuera.
 - [ ] Solicitar a Generalitat/ICV y parques la cartografía histórica fuente de
   Chera–Sot de Chera y Mariola–Font Roja, incluida metodología, escala, CRS y
   condiciones de reutilización.

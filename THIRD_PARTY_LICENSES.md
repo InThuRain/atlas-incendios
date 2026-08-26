@@ -63,7 +63,7 @@ SIGIF no forma parte del perfil público. Sus snapshots, registros y derivados
 continúan con `publishable=false` hasta recibir una aclaración específica de sus
 condiciones. La confirmación ICV no se extrapola a SIGIF.
 
-## Fuente histórica integrada localmente y pendiente de publicación
+## Fuente histórica publicada
 
 ### ESFire30 Causes v1
 
@@ -72,11 +72,11 @@ condiciones. La confirmación ICV no se extrapola a SIGIF.
 - **Licencia:** Creative Commons Atribución 4.0 Internacional (CC BY 4.0).
 - **Cobertura real del snapshot:** España peninsular, 1985–2021.
 - **CRS del SHP auditado:** ED50 / UTM 30N (EPSG:23030).
-- **Estado:** integrado localmente como `B_DOCUMENTED_REMOTE_SENSING` y
-  `publishable=true`; forma parte del perfil público candidato, pero no del
-  bundle ni del sitio actualmente desplegado.
+- **Estado:** publicado el 26/08/2026 como
+  `B_DOCUMENTED_REMOTE_SENSING` y `publishable=true` mediante el bundle
+  inmutable `public-data-v5`.
 
-Texto propuesto para un futuro derivado:
+Texto de atribución del derivado:
 
 > ESFire30 Causes, Ochoa, Chuvieco, Rodrigues y Franquesa (2026), versión v1,
 > CC BY 4.0, DOI 10.5281/zenodo.18449006. Datos transformados para el Atlas

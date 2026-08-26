@@ -1,7 +1,7 @@
 # CV-4.3 — Integración web local de ESFire30 1985–1992
 
-Fecha de cierre técnico local: 25/08/2026. **No publicado y sin bundle público
-nuevo.**
+Fecha de cierre técnico local: 25/08/2026. Publicación CV-4.4 verificada el
+26/08/2026 mediante `public-data-v5`.
 
 ## 1. Resultado
 
@@ -11,9 +11,8 @@ calidad `B_DOCUMENTED_REMOTE_SENSING`.
 
 La integración no convierte esos polígonos en incendios administrativos, no
 los asigna a partes EGIF y no modifica `geometry=null` en los 9.175 registros
-EGIF. El perfil público candidato queda formado por EGIF + ESFire30 + ICV +
-EFFIS y continúa excluyendo SIGIF; el sitio desplegado y `public-data-v4`
-permanecen intactos.
+EGIF. El perfil público queda formado por EGIF + ESFire30 + ICV + EFFIS y
+continúa excluyendo SIGIF. CV-4.4 lo publica sin modificar `public-data-v4`.
 
 ## 2. Pipeline e identidad
 
@@ -192,11 +191,13 @@ EGIF GIF. No se genera asset web de relaciones ni se enlaza `entity_id`.
 perfil development candidato contiene EGIF + ESFire30 + ICV + SIGIF + EFFIS;
 el public candidato contiene EGIF + ESFire30 + ICV + EFFIS y rechaza SIGIF.
 
-El guard local pasó con `all_included_sources_publishable=true`. Un sitio
-candidato autocontenido se montó y validó con 44 assets de datos y 83.979.085
-bytes incluyendo el manifest. No se creó `public-data-v5`, no se modificó
-`config/public-data-bundle.json`, no se activó el workflow y GitHub Pages sigue
-sirviendo `public-data-v4` sin ESFire30.
+El guard local y CI pasan con
+`all_included_sources_publishable=true`. `public-data-v5` contiene 44 assets de
+datos y 3 manifiestos (47 entradas), 83.955.908 bytes sin comprimir y
+13.399.633 bytes en `tar.gz`; SHA-256
+`622030c9d0d6b52b94a4796d75aaa7bf125df132c7034935531b0a64c8c98e4c`.
+Dos construcciones independientes fueron idénticas. La Release y Pages se
+publicaron sin sustituir `public-data-v4`.
 
 ## 12. Rendimiento
 
@@ -215,8 +216,8 @@ completo varía por GC y no permite interpretar la diferencia negativa como un
 ahorro; el ensayo histórico aislado pasa de 15,6 a 32,8 MiB al añadir la capa.
 
 El arranque mediano sigue por debajo de un segundo y no hubo bloqueos en móvil
-emulado. Por ello ESFire30 queda activo por defecto en ambos perfiles
-candidatos. Sigue pendiente comprobar un dispositivo físico de gama baja.
+emulado. Por ello ESFire30 queda activo por defecto en ambos perfiles. Sigue
+pendiente comprobar un dispositivo físico de gama baja.
 
 ## 13. Validación ejecutada
 
@@ -258,17 +259,25 @@ El borrador completo sigue en `CV_4_2_CONTACT_PACKET.md`. Conviene solicitar:
 La consulta mejora metadatos futuros, pero no es una condición de licencia para
 el derivado candidato ya auditado.
 
-## 16. Decisiones pendientes y recomendación CV-4.4
+## 16. Cierre de publicación CV-4.4
 
-No hay bloqueo técnico para preparar la publicación. CV-4.4 debería ser una
-fase exclusivamente de empaquetado y despliegue:
+El workflow `Deploy public Atlas to GitHub Pages` (run `32942537769`) terminó
+correctamente y la URL pública se verificó en sesiones limpias de escritorio y
+móvil. Se comprobaron 1984–1993, 2024–2026, Sot de Chera, Marines–Altura,
+permalink ESFire30, popup, ficha, histograma e Historia de un lugar. SIGIF y
+todos los candidatos continúan ausentes.
 
-1. revisar visualmente la capa local;
-2. decidir si se espera o no la confirmación técnica de los autores;
-3. generar un bundle inmutable `public-data-v5` que añada los tres assets y su
-   manifest, sin modificar `public-data-v4`;
-4. verificar dos construcciones idénticas y fijar SHA-256;
-5. ejecutar guard, suite, sitio candidato y pruebas reales tras desplegar;
-6. actualizar documentación de publicación solo después de comprobar la URL.
+Medianas finales comparables:
 
-No debe incluir SIGIF, candidatos EGIF–ESFire30, raw, processed ni benchmarks.
+| Entorno/escenario | App | Carga | Render | Heap |
+|---|---:|---:|---:|---:|
+| local completo 1968–2026 · escritorio | 812,6 ms | 268,9 ms | 354,8 ms | 203,8 MiB |
+| producción completo · escritorio | 960,4 ms | 397,0 ms | 350,4 ms | 195,0 MiB |
+| local completo · móvil | 799,7 ms | 258,0 ms | 352,6 ms | 175,2 MiB |
+| producción completo · móvil | 911,2 ms | 340,6 ms | 348,6 ms | 179,9 MiB |
+| producción 1986 · escritorio | 251,8 ms | 141,8 ms | 41,8 ms | 25,1 MiB |
+| producción 1985–1992 · escritorio | 262,4 ms | 127,1 ms | 67,4 ms | 32,8 MiB |
+
+La publicación añade frente a v4 una petición overview, 1.868.045 bytes raw,
+416.398 bytes gzip estimados y 710 perímetros históricos. No añade nuevas
+fuentes administrativas ni modifica identidades.

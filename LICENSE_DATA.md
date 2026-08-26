@@ -4,15 +4,15 @@ Este archivo se refiere a los datos valencianos utilizados por el Atlas de
 Incendios. No concede una licencia sobre el código del proyecto ni sustituye las
 condiciones establecidas por la Generalitat Valenciana.
 
-## ESFire30 Causes v1 — integrado localmente, no publicado
+## ESFire30 Causes v1 — derivado publicado
 
 ESFire30 Causes v1, DOI `10.5281/zenodo.18449006`, está publicado bajo CC BY
 4.0. Esa licencia permite redistribuir y transformar sus polígonos Landsat con
-atribución e indicación de los cambios. El derivado valenciano candidato
-seleccionaría 1985–1992, reproyectaría desde EPSG:23030 a EPSG:4326, reduciría
-atributos y podría simplificar geometría bajo salvaguardas documentadas.
+atribución e indicación de los cambios. El derivado valenciano publicado
+selecciona 1985–1992, reproyecta desde EPSG:23030 a EPSG:4326, reduce atributos
+y simplifica geometría según el nivel de detalle bajo salvaguardas documentadas.
 
-La fórmula propuesta es:
+La fórmula utilizada es:
 
 > ESFire30 Causes, Ochoa, Chuvieco, Rodrigues y Franquesa (2026), versión v1,
 > CC BY 4.0, DOI 10.5281/zenodo.18449006. Datos transformados para el Atlas
@@ -20,10 +20,9 @@ La fórmula propuesta es:
 > atributos y, cuando proceda, simplificación geométrica.
 
 La licencia se refiere al dataset vectorial y no concede una licencia nueva
-sobre las escenas Landsat de origen. CV-4.3 ha preparado e integrado localmente
-el derivado como fuente B separada y `publishable=true`, conservando las
-condiciones de `CV_4_2_ESFIRE30_AUDIT.md`; todavía no existe un bundle público
-que lo contenga y no se ha desplegado.
+sobre las escenas Landsat de origen. CV-4.4 publica el derivado como fuente B
+separada mediante `public-data-v5`, conservando las condiciones de
+`CV_4_2_ESFIRE30_AUDIT.md`; no redistribuye las escenas Landsat originales.
 
 ## EGIF / MITECO 1968–1992
 
@@ -46,13 +45,13 @@ La adquisición del snapshot fuente fue el 19 de agosto de 2026. Sus parámetros
 checksums y limitaciones se conservan en
 `data/sources/egif_gva_1968_1992_manifest.json` y
 `CV_3_2_EGIF_AUDIT.md`. Estas condiciones permiten marcar el derivado EGIF
-como `publishable=true`; el derivado web fue incorporado mediante el bundle
-reproducible `public-data-v4` el 23 de agosto de 2026.
+como `publishable=true`; el derivado web fue incorporado mediante
+`public-data-v4` el 23 de agosto de 2026 y continúa en `public-data-v5`.
 
 ## Estado de publicación
 
-El perfil público desplegado contiene actualmente derivados EGIF, ICV y EFFIS;
-el perfil público candidato añade ESFire30 y continúa excluyendo SIGIF. Una
+El perfil público desplegado contiene derivados EGIF, ESFire30, ICV y EFFIS y
+continúa excluyendo SIGIF. Una
 aclaración escrita del Institut Cartogràfic
 Valencià, recibida el
 20 de agosto de 2026, resolvió los bloqueos documentales de CV-1.5b:

@@ -393,6 +393,23 @@ derivado, pero el sitio desplegado no cambia hasta crear y aprobar un bundle
 inmutable posterior. La transformación EPSG:23030→EPSG:4326 falla si cambia la
 rejilla IGN, los `.prj` o la operación PROJ auditada.
 
+## 2026-08-26 — Publicación ESFire30 mediante bundle inmutable v5
+
+El perfil público 1968–2026 se publica con `public-data-v5`: 38 assets ICV, 3
+ESFire30, 2 EFFIS, 1 EGIF y 3 manifiestos, 47 entradas en total. El bundle se
+construye determinísticamente, se verificó dos veces con el mismo SHA-256 y no
+modifica `public-data-v4`.
+
+**Motivo:** CI no dispone de los raw ignorados y ESFire30 debe mantener tanto
+su procedencia/atribución CC BY 4.0 como su separación de EGIF. Un asset de
+Release permite fijar el conjunto redistribuible y aplicar el guard fail-closed
+antes de cada despliegue.
+
+**Consecuencias:** Pages incluye perímetros históricos Landsat B 1985–1992,
+sin presentarlos como cartografía oficial ni enlaces EGIF confirmados. SIGIF,
+candidatos, raw, processed, diagnósticos y benchmarks quedan fuera. Cada
+actualización requiere otro bundle inmutable y una verificación real posterior.
+
 ## Plantilla para nuevas decisiones
 
 ```markdown

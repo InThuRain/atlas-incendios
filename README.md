@@ -55,8 +55,9 @@ Funcionalidades ya planteadas/probadas:
 
 - mapa interactivo;
 - perfil público 1968–2026 con partes administrativos EGIF/MITECO 1968–1992
-  sin geometría, perímetros ICV/Generalitat 1993–2024 y perímetros satelitales
-  provisionales EFFIS 2025–2026, estrictamente separados;
+  sin geometría, perímetros históricos Landsat ESFire30 1985–1992,
+  perímetros ICV/Generalitat 1993–2024 y perímetros satelitales provisionales
+  EFFIS 2025–2026, estrictamente separados;
 - perfil local de desarrollo que añade los registros administrativos
   provisionales SIGIF 2025–2026 y candidatos SIGIF–EFFIS sin fusionarlos;
 - filtro por intervalo de años;
@@ -151,9 +152,10 @@ correspondencia no demostrable.
 ### Reproducir el perfil público
 
 El perfil público se rige exclusivamente por `config/sources-gva.json`: incluye
-EGIF, ICV y EFFIS y rechaza SIGIF porque continúa con `publishable=false`. El
+EGIF, ESFire30, ICV y EFFIS y rechaza SIGIF porque continúa con
+`publishable=false`. El
 bundle de datos permitido se publica como asset de la Release
-`public-data-v4`; su tamaño, SHA-256 y lista exacta de 43 entradas están fijados en
+`public-data-v5`; su tamaño, SHA-256 y lista exacta de 47 entradas están fijados en
 `config/public-data-bundle.json`.
 
 ```bash
@@ -162,6 +164,8 @@ bundle de datos permitido se publica como asset de la Release
   --output data/web/gva/manifest.json
 .venv/bin/python scripts/validate_frontend_assets.py
 .venv/bin/python scripts/validate_recent_frontend_assets.py --public-only
+.venv/bin/python scripts/validate_egif_frontend_assets.py
+.venv/bin/python scripts/validate_esfire30_frontend_assets.py
 .venv/bin/python scripts/build_public_site.py \
   --output data/derived/gva/publication/site
 .venv/bin/python scripts/validate_public_site.py \
@@ -169,10 +173,10 @@ bundle de datos permitido se publica como asset de la Release
 ```
 
 El resultado es un directorio estático autocontenido compatible con el subpath
-`/atlas-incendios/`. Contiene 41 assets de datos: 38 ICV, 2 EFFIS y 1 EGIF,
-además del manifiesto de ejecución. No contiene snapshots raw, datos processed,
-XML/OCR EGIF, benchmarks, `original_attributes`, SIGIF ni candidatos
-SIGIF–EFFIS.
+`/atlas-incendios/`. Contiene 44 assets de datos: 38 ICV, 3 ESFire30, 2 EFFIS
+y 1 EGIF, además del manifiesto de ejecución. No contiene snapshots raw, datos
+processed, diagnósticos, XML/OCR EGIF, benchmarks, `original_attributes`,
+SIGIF ni candidatos SIGIF–EFFIS/EGIF–ESFire30.
 
 Los años 1968–1992 muestran partes EGIF, no episodios físicos deduplicados. No
 tienen geometrías individuales fiables y su cobertura histórica es selectiva o
@@ -190,7 +194,7 @@ El despliegue se lanza manualmente con `workflow_dispatch` desde `main` después
 de publicar la Release del bundle. Así se respeta la protección del entorno
 `github-pages`, que no admite un despliegue originado directamente desde un tag.
 
-Los aproximadamente 77 MB sin comprimir de datos web no forman parte del
+Los 83.955.908 bytes sin comprimir de datos web no forman parte del
 historial de `main`. Para actualizar datos públicos se debe generar un nuevo
 bundle reproducible, revisar su manifiesto y publicar explícitamente una nueva
 Release/versionar su referencia antes de desplegarlo.

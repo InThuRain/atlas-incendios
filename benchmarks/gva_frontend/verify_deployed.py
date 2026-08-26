@@ -32,6 +32,11 @@ def main():
         "1986_egif": viewer_hash(lat=39.35, lng=-0.55, z=8, **{
             "from": 1986, "to": 1986, "src": "egif",
         }),
+        "1986_esfire30": viewer_hash(lat=39.35, lng=-0.55, z=8, **{
+            "from": 1986, "to": 1986, "src": "esfire30",
+            "entity": "esfire30:record:sha256:e8f9fb21948ca9b950c4d8bc61e2cbe555c235cfdf58cbe55b266da926fd887c",
+            "geometry": "esfire30:geometry:sha256:455700a9f4f007088776840643a7cb4595ed6ba7c68ce48ed41320d38b935985",
+        }),
         "1994_elx": viewer_hash(lat=38.27, lng=-0.70, z=8, **{
             "from": 1994, "to": 1994, "src": "icv", "province": "alicante",
             "municipality": "03065", "cause": "intentional",
@@ -54,6 +59,9 @@ def main():
         "historical_transition": chrome_snapshot(
             args.chrome, debug_url(base + "?scenario=historical-transition")
         ),
+        "year_1984": chrome_snapshot(args.chrome, debug_url(base + "?from=1984&to=1984&sources=egif%2Cesfire30")),
+        "year_1985": chrome_snapshot(args.chrome, debug_url(base + "?from=1985&to=1985&sources=egif%2Cesfire30")),
+        "year_1991": chrome_snapshot(args.chrome, debug_url(base + "?from=1991&to=1991&sources=egif%2Cesfire30")),
         "egif_only": chrome_snapshot(
             args.chrome, debug_url(base, viewer_hash(**{
                 "from": 1968, "to": 1992, "src": "egif",
@@ -87,6 +95,15 @@ def main():
         "egif_point_history": chrome_snapshot(
             args.chrome, debug_url(base + "?from=1986&to=1986&sources=egif&point=-0.11%2C38.82")
         ),
+        "esfire30_point_history": chrome_snapshot(
+            args.chrome, debug_url(base + "?view=valencia&from=1986&to=1986&sources=esfire30&point_geometry=esfire30%3Ageometry%3Asha256%3A455700a9f4f007088776840643a7cb4595ed6ba7c68ce48ed41320d38b935985")
+        ),
+        "sot_1986": chrome_snapshot(
+            args.chrome, debug_url(base + "?from=1986&to=1986&sources=esfire30&select_entity=esfire30%3Arecord%3Asha256%3Ae8f9fb21948ca9b950c4d8bc61e2cbe555c235cfdf58cbe55b266da926fd887c")
+        ),
+        "marines_altura_1992": chrome_snapshot(
+            args.chrome, debug_url(base + "?from=1992&to=1992&sources=esfire30&select_entity=esfire30%3Arecord%3Asha256%3Ab535436d08ed029420d3ef14c3a91951c0bed7dfa562a8c5e3df12d67d7cc46c")
+        ),
         "municipality_fit_elx": chrome_snapshot(
             args.chrome,
             debug_url(base + "?scenario=municipality-fit&target_municipality=03065&view=alicante"),
@@ -117,27 +134,36 @@ def main():
 
     initial = results["initial"]["final"]
     require(initial["profile"] == "public", "Deployed profile is not public")
-    require(initial["sourceControlIds"] == ["egif", "icv", "effis"], "Unexpected source controls")
-    require(initial["activeSources"] == ["egif", "icv", "effis"], "Unexpected initial sources")
+    require(initial["sourceControlIds"] == ["egif", "esfire30", "icv", "effis"], "Unexpected source controls")
+    require(initial["activeSources"] == ["egif", "esfire30", "icv", "effis"], "Unexpected initial sources")
     require(initial["years"] == {"from": 1968, "to": 2026}, "Initial full period missing")
     require(initial["histogramBarCount"] == 59 and initial["timelineComplete"], "Complete histogram missing")
-    require(initial["loader"]["requests"] == 17, "Unexpected initial request count")
+    require(initial["loader"]["requests"] == 18, "Unexpected initial request count")
     require(initial["visibleEgifRecordCount"] == 9175, "EGIF history missing")
     require(initial["visibleIcvFireCount"] == 13738, "ICV history missing")
+    require(initial["visibleEsfire30PerimeterCount"] == 710, "ESFire30 history missing")
     require(initial["visibleEffisPerimeterCount"] == 25, "EFFIS 2025-2026 missing")
     require(not initial["sigifLegendVisible"], "SIGIF leaked into public legend")
     require(initial["loader"]["candidateCount"] == 0, "Link candidates leaked into public data")
     require(not any("sigif" in url.lower() or "candidate" in url.lower() for url in initial["loader"]["cachedUrls"]), "Forbidden public asset URL")
     require("Origen de los datos: Ministerio para la Transición Ecológica y el Reto Demográfico." in initial["methodologyText"], "EGIF attribution missing")
+    require("10.5281/zenodo.18449006" in initial["methodologyText"] and "Landsat" in initial["coverageText"] and "30 m" in initial["coverageText"], "ESFire30 attribution or method missing")
     require(not initial["mariolaPrimaryAccess"], "Mariola is still a primary access")
 
     historical = results["historical_transition"]["years"]
     require([item["years"]["from"] for item in historical] == [1968, 1975, 1986, 1992, 1993], "Historical transition order")
-    for item in historical[:4]:
+    for item in historical[:2]:
         require(item["visibleEgifRecordCount"] > 0 and item["loadedGeometryCount"] == 0, "Historical year invented geometry")
         require("No existen perímetros individuales fiables" in item["statusText"], "Historical empty-map explanation missing")
+    require(historical[2]["visibleEgifRecordCount"] == 385 and historical[2]["visibleEsfire30PerimeterCount"] == 63, "1986 EGIF/ESFire30 separation failed")
+    require(historical[3]["visibleEgifRecordCount"] == 770 and historical[3]["visibleEsfire30PerimeterCount"] == 182, "1992 EGIF/ESFire30 separation failed")
     require(historical[-1]["visibleIcvFireCount"] > 0 and historical[-1]["visibleEgifRecordCount"] == 0, "1992 to 1993 transition failed")
     require(results["1986_egif"]["final"]["visibleEgifRecordCount"] == 385, "1986 EGIF count")
+    require(results["year_1984"]["final"]["visibleEgifRecordCount"] > 0 and results["year_1984"]["final"]["visibleEsfire30PerimeterCount"] == 0, "1984 must predate ESFire30")
+    require(results["year_1985"]["final"]["visibleEsfire30PerimeterCount"] == 127, "1985 ESFire30 start count")
+    require(results["year_1991"]["final"]["visibleEsfire30PerimeterCount"] == 171, "1991 ESFire30 count")
+    esfire_permalink = results["1986_esfire30"]["final"]
+    require(esfire_permalink["selectedGeometryHighlighted"] and esfire_permalink["selectionPopupVisible"] and esfire_permalink["selectionPopupGeometryId"] == esfire_permalink["selectedGeometryId"], "ESFire30 permalink geometry/popup failed")
     require(results["egif_only"]["final"]["visibleEgifRecordCount"] == 9175, "EGIF-only count")
     require(results["egif_alicante"]["final"]["visibleEgifRecordCount"] == 2514, "Historical Alicante count")
     require(results["egif_1992_gif"]["final"]["visibleEgifRecordCount"] == 9, "Historical GIF filter")
@@ -149,6 +175,12 @@ def main():
     require(historical_fit["afterMunicipalityFit"]["municipalityFit"]["status"] == "historical-records-without-geometry", "Historical municipality status failed")
     require(historical_fit["afterMunicipalityFit"]["center"] == historical_fit["beforeMunicipalityFit"]["center"], "Historical municipality invented a map position")
     require("no tienen geometría individual fiable" in results["egif_point_history"]["point"]["pointHistoryText"], "Point history did not exclude EGIF")
+    esfire_history = results["esfire30_point_history"]["point"]
+    require(esfire_history["history"]["historicalRemoteSensingPerimeterCount"] >= 1 and "Teledetección histórica ESFire30" in esfire_history["pointHistoryText"], "ESFire30 point history was not kept separate")
+    sot = results["sot_1986"]["selection"]
+    require(set(sot["selectedMunicipalityIds"]) == {"46234", "46133"} and "Sot de Chera" in sot["detailsText"] and sot["selectedAdministrativeLinkStatus"] == "unlinked", "Sot de Chera control failed")
+    marines = results["marines_altura_1992"]["selection"]
+    require(set(marines["selectedProvinceIds"]) == {"castellon", "valencia"} and set(marines["selectedMunicipalityIds"]) == {"46161", "12012", "46902"} and marines["selectedAdministrativeLinkStatus"] == "unlinked", "Marines-Altura control failed")
 
     elx = results["1994_elx"]["final"]
     require(elx["municipalityFilter"] == "03065", "Elx municipality was not restored")

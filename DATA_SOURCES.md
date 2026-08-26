@@ -232,9 +232,9 @@ fuertes, 34 posibles y 3 débiles de CV-4.2 no se sirven al navegador.
 
 La licencia CC BY 4.0 permite marcar ESFire30 `publishable=true` con atribución
 y aviso de selección, reproyección, reducción de atributos y simplificación.
-El perfil público **candidato** incluye EGIF + ESFire30 + ICV + EFFIS y rechaza
-SIGIF; la web desplegada continúa en `public-data-v4` sin ESFire30 hasta una
-fase de publicación independiente. Véase
+El perfil público incluye EGIF + ESFire30 + ICV + EFFIS y rechaza SIGIF.
+CV-4.4 publica los tres LOD ESFire30 mediante `public-data-v5` el 26/08/2026;
+no publica candidatos EGIF–ESFire30 ni datos fuente/diagnósticos. Véase
 `CV_4_3_ESFIRE30_WEB_INTEGRATION.md`.
 
 ## 2. Generalitat Valenciana / ICV
