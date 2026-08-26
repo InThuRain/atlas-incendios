@@ -215,6 +215,28 @@ ningún asset se incorpora todavía al perfil público. Resultados, condiciones 
 limitaciones: `CV_4_2_ESFIRE30_AUDIT.md` y
 `data/sources/esfire30_audit.json`.
 
+### Integración web local ESFire30 CV-4.3
+
+CV-4.3 genera reproduciblemente un normalizado ignorado y tres GeoJSON web
+1985–1992, todos con 710 perímetros. La transformación parte de EPSG:23030 y usa
+exclusivamente la rejilla IGN auditada; el pipeline falla si cambian snapshot,
+`.prj`, rejilla u operación PROJ. Los niveles local/regional/overview aplican
+0/20/30 m de tolerancia, conservan todas las geometrías válidas y no colapsan
+incendios pequeños.
+
+Cada polígono mantiene una identidad derivada del contenido y checksum de la
+geometría original, separada del índice del SHP. Las 1.110 relaciones con 268
+municipios y las relaciones provinciales son intersecciones espaciales
+derivadas, no atributos administrativos ni enlaces EGIF. Los 3 candidatos
+fuertes, 34 posibles y 3 débiles de CV-4.2 no se sirven al navegador.
+
+La licencia CC BY 4.0 permite marcar ESFire30 `publishable=true` con atribución
+y aviso de selección, reproyección, reducción de atributos y simplificación.
+El perfil público **candidato** incluye EGIF + ESFire30 + ICV + EFFIS y rechaza
+SIGIF; la web desplegada continúa en `public-data-v4` sin ESFire30 hasta una
+fase de publicación independiente. Véase
+`CV_4_3_ESFIRE30_WEB_INTEGRATION.md`.
+
 ## 2. Generalitat Valenciana / ICV
 
 Fuente muy importante para el piloto.

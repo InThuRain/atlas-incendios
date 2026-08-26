@@ -36,9 +36,15 @@ de ambas hipótesis con 450 candidatos ICV del mismo año favorece EPSG:23030 en
 6. dónde puede consultarse el artículo o documentación del producto geométrico
    ESFire30 citado como *under review*;
 7. si prevén publicar una versión corregida o un changelog?
+8. qué regla recomiendan para reconocer la misma feature entre futuras
+   versiones, dado que v1 no publica un identificador estable?
 
 No solicitamos autorización adicional sobre CC BY 4.0, sino precisión técnica
 para describir responsablemente el producto y sus transformaciones.
+
+CV-4.3 ha demostrado localmente una integración reversible de 710 polígonos,
+con IDs por contenido, sin enlaces EGIF y sin publicación. La respuesta se
+usaría para mejorar la trazabilidad entre versiones, no para confirmar matches.
 
 ## B. Generalitat Valenciana — archivo anual 1978–1992
 

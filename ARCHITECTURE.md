@@ -323,18 +323,26 @@ El recorrido de datos recientes es:
 raw CV-2.2 -> processed CV-2.2 -> web reducido CV-2.3 -> perfil de ejecución
 ```
 
-El perfil `development` habilita los assets locales EGIF, ICV, SIGIF y EFFIS. El
+El perfil `development` habilita los assets locales EGIF, ESFire30, ICV, SIGIF y EFFIS. El
 perfil `public` solo admite fuentes con `publishable=true` y falla si se intenta
 forzar una fuente bloqueada. Desde la aclaración escrita del ICV de 20/08/2026,
-el perfil público preparado por CV-3.3 incluye EGIF, ICV y EFFIS; SIGIF
-permanece bloqueado. Componer un perfil no publica ni copia datos. CV-3.4
-publicó ese perfil mediante el bundle inmutable `public-data-v4`.
+el perfil público candidato de CV-4.3 incluye EGIF, ESFire30, ICV y EFFIS;
+SIGIF permanece bloqueado. Componer un perfil no publica ni copia datos.
+CV-3.4 publicó EGIF + ICV + EFFIS mediante `public-data-v4`; ESFire30 no llegará
+a Pages hasta que una fase posterior cree y valide otro bundle inmutable.
 
 Las entidades siguen separadas también en el navegador: `fire_id` ICV,
 `sigif_record_id` y `geometry_id`/`effis_id`. Los candidatos son relaciones
 puntuadas con estado `candidate`; nunca sustituyen esas identidades. Los
 puntos SIGIF y los polígonos EFFIS se cargan por año. Los atributos y perímetros
 ICV continúan con carga diferida por provincia, bloque temporal y zoom.
+
+ESFire30 sigue el canal `raw -> normalized -> web` con una colección autonómica
+por LOD. Los polígonos fronterizos no se recortan ni se repiten: cada feature
+contiene relaciones muchos-a-muchos a provincias y municipios oficiales, que
+los filtros interpretan como intersecciones derivadas. `entity_id` se calcula
+por contenido; el índice del SHP solo es procedencia. EGIF conserva
+`geometry=null` y no recibe esos polígonos como geometría preferente.
 
 ## Publicación estática en GitHub Pages
 

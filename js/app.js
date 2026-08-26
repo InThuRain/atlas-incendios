@@ -16,7 +16,7 @@ const elements = {
   pointHistory: $('point-history'), details: $('details'), fireList: $('fire-list'),
   activePeriod: $('active-period'), debugOutput: $('debug-output'),
   legendYearOld: $('legend-year-old'), legendYearNew: $('legend-year-new'),
-  legendSigifRow: $('legend-sigif-row'), sourceSeparationHelp: $('source-separation-help'),
+  legendSigifRow: $('legend-sigif-row'), legendEsfire30Row: $('legend-esfire30-row'), sourceSeparationHelp: $('source-separation-help'),
   shareView: $('share-view'), shareFeedback: $('share-feedback'), shareFallback: $('share-fallback')
 };
 
@@ -45,6 +45,8 @@ function setStatus(message, mode = 'normal') { elements.status.textContent = mes
 function selectedYears() { return {from: Number(elements.yearFrom.value), to: Number(elements.yearTo.value)}; }
 function activeSources() { return new Set([...elements.sourceFilters.querySelectorAll('input:checked')].map(input => input.value)); }
 function municipalityFilterId(record) { return record.municipalityId || (record.municipality ? `raw:${canonicalProvince(record.province)}:${normalize(record.municipality).replace(/[^a-z0-9]+/g, '-')}` : ''); }
+function municipalityFilterIds(record) { return record.municipalityIds?.length ? record.municipalityIds : [municipalityFilterId(record)].filter(Boolean); }
+function provinceFilterIds(record) { return record.provinceIds?.length ? record.provinceIds : [canonicalProvince(record.province)].filter(Boolean); }
 function featureKey(feature) { const p = feature.properties; return `${p.source_id}:${p.geometry_id || p.sigif_record_id || p.entity_id}`; }
 
 function currentViewerState() {
@@ -105,6 +107,12 @@ function recordFor(feature) {
     municipalityRaw: p.municipality_raw || p.municipality, province: p.province, placeName: p.place_name,
     cause: p.cause_label || p.cause_raw || p.cause, causeCode: p.cause_code, causeRaw: p.cause_raw || p.cause,
     date: p.date, areaHa: Number(p.reported_area_ha || 0), feature, isGif: Boolean(p.is_gif)};
+  if (p.source_id === 'esfire30') return {sourceId: 'esfire30', entityId: p.entity_id, geometryId: p.geometry_id,
+    year: p.year, municipality: null, municipalityId: null, municipalityRaw: null,
+    municipalityIds: p.municipality_ids || [], municipalityNames: p.municipality_names || [], municipalityProvinceIds: p.municipality_province_ids || [],
+    province: p.primary_province, provinceIds: p.province_ids || [], placeName: null,
+    cause: null, causeCode: null, causeRaw: null, date: null,
+    areaHa: Number(p.mapped_area_ha || 0), feature, isGif: false, isMappedLarge: Number(p.mapped_area_ha || 0) >= 500};
   return {sourceId: 'effis', entityId: p.geometry_id, geometryId: p.geometry_id, year: p.year,
     municipality: p.municipality_name || p.municipality_raw || p.municipality, municipalityId: p.municipality_id,
     municipalityRaw: p.municipality_raw || p.municipality, province: p.province, placeName: null,
@@ -136,8 +144,14 @@ function updateAttributeSelectors() {
   const {from, to} = selectedYears();
   const records = state.loadedFeatures.map(recordFor).filter(Boolean).concat(state.loadedAdministrativeRecords.map(recordForAdministrative))
     .filter(record => record.year >= from && record.year <= to && activeSources().has(record.sourceId));
-  const municipalityRecords = records.filter(record => state.activeProvinces.includes(canonicalProvince(record.province)));
-  const municipalities = new Map(); for (const record of municipalityRecords) { const value = municipalityFilterId(record); if (value && record.municipality) municipalities.set(value, record.municipality); }
+  const municipalityRecords = records.filter(record => provinceFilterIds(record).some(province => state.activeProvinces.includes(province)));
+  const municipalities = new Map();
+  for (const record of municipalityRecords) {
+    if (record.sourceId === 'esfire30') record.municipalityIds.forEach((value, index) => {
+      if (state.activeProvinces.includes(record.municipalityProvinceIds[index])) municipalities.set(value, record.municipalityNames[index] || value);
+    });
+    else { const value = municipalityFilterId(record); if (value && record.municipality) municipalities.set(value, record.municipality); }
+  }
   const causes = new Map(); for (const record of records) if (record.causeCode && record.cause) causes.set(record.causeCode, record.cause);
   const requestedMunicipality = state.initialFilterOptionsApplied ? null : state.initialHashState?.municipality;
   const requestedCause = state.initialFilterOptionsApplied ? null : state.initialHashState?.cause;
@@ -149,10 +163,10 @@ function updateAttributeSelectors() {
 function passesNonTemporalFilters(record) {
   if (!record || !activeSources().has(record.sourceId)) return false;
   if (record.areaHa < Number(elements.minimumArea.value || 0)) return false;
-  if (!state.activeProvinces.includes(canonicalProvince(record.province))) return false;
+  if (!provinceFilterIds(record).some(province => state.activeProvinces.includes(province))) return false;
   if (elements.gifOnly.checked && (!['egif', 'icv', 'sigif'].includes(record.sourceId) || !record.isGif)) return false;
   if (elements.cause.value && record.causeCode !== elements.cause.value) return false;
-  if (elements.municipality.value && municipalityFilterId(record) !== elements.municipality.value) return false;
+  if (elements.municipality.value && !municipalityFilterIds(record).includes(elements.municipality.value)) return false;
   return true;
 }
 
@@ -183,6 +197,7 @@ function featureStyle(feature) {
   if (p.source_id === 'sigif') return {radius: selected ? 8 : 6, color: selected ? '#151a18' : '#8c3d20', weight: 2.5,
     fillColor: temporalColor, fillOpacity: .95};
   if (p.source_id === 'effis') return {color: selected ? '#211a2f' : temporalColor, fillColor: temporalColor, weight: selected ? 4 : 2, dashArray: '7 5', fillOpacity: selected ? .42 : .2};
+  if (p.source_id === 'esfire30') return {color: selected ? '#151a18' : '#875b20', fillColor: temporalColor, weight: selected ? 4 : 2, dashArray: '2 5', fillOpacity: selected ? .46 : .2};
   return {color: selected ? '#151a18' : temporalColor, fillColor: temporalColor, weight: selected ? 3 : 1.2, fillOpacity: selected ? .5 : .28};
 }
 
@@ -227,6 +242,31 @@ function detailsHtml(record, provenance = null) {
       ['Identidad de episodio', 'No resuelta; el parte no equivale necesariamente a un incendio físico único']
     ];
     return `<span class="source-chip">EGIF · parte administrativo histórico</span>${definitionListHtml(essentialRows)}<div class="historical-no-geometry">Este parte no dispone de una geometría individual fiable para representarlo en el mapa.</div>${technicalDetailsHtml(technicalRows)}`;
+  }
+  if (record.sourceId === 'esfire30') {
+    const intersectedMunicipalities = record.municipalityNames.length
+      ? record.municipalityNames.join(', ') : 'Ninguno con intersección de área positiva';
+    const essentialRows = [
+      ['Año de la detección', escapeHtml(record.year)],
+      ['Superficie cartografiada ESFire30', `${formatNumber(record.areaHa)} ha`]
+    ];
+    const technicalRows = [
+      ['Fuente', escapeHtml(state.loader.manifest.sources.esfire30.label)],
+      ['Metodología', 'Área quemada detectada con Landsat a 30 m; umbral de inclusión del dataset: 5 ha'],
+      ['Calidad geométrica', 'B · teledetección histórica documentada'],
+      ['geometry_id', escapeHtml(record.geometryId)],
+      ['ID estable del registro fuente', escapeHtml(record.entityId)],
+      ['ID versionado del registro fuente', escapeHtml(p.source_record_id)],
+      ['Checksum de geometría original', escapeHtml(p.geometry_checksum_sha256)],
+      ['Versión fuente', escapeHtml(p.source_version)],
+      ['Índice fuente', `${escapeHtml(p.source_index)} (solo procedencia; no forma parte de la identidad estable)`],
+      ['Provincias intersectadas', escapeHtml(record.provinceIds.join(', ') || '—')],
+      ['Provincia principal derivada', `${escapeHtml(cleanText(record.province))} (mayor área de intersección; no es un atributo fuente)`],
+      ['Municipios intersectados', `${escapeHtml(intersectedMunicipalities)} (relación espacial derivada; no es municipio fuente)`],
+      ['Identidad del episodio', 'No resuelta; un polígono no se presenta como incendio administrativo confirmado'],
+      ['Relación EGIF', 'Sin enlace confirmado ni candidato expuesto en la interfaz normal']
+    ];
+    return `<span class="source-chip">ESFire30 · teledetección histórica</span>${definitionListHtml(essentialRows)}<div class="candidate-note">Este perímetro representa un área quemada detectada mediante Landsat. No es un perímetro oficial, no sustituye al parte EGIF y no confirma por sí solo un episodio administrativo.</div>${technicalDetailsHtml(technicalRows)}`;
   }
   if (record.sourceId === 'icv') {
     const essentialRows = [
@@ -373,13 +413,14 @@ function fitSelectedMunicipality() {
 }
 
 function renderMetrics(records) {
-  const grouped = {egif: new Map(), icv: new Map(), sigif: new Map(), effis: new Map()};
+  const grouped = {egif: new Map(), esfire30: new Map(), icv: new Map(), sigif: new Map(), effis: new Map()};
   for (const item of records) grouped[item.record.sourceId].set(item.record.entityId, item.record);
-  const egif = [...grouped.egif.values()], icv = [...grouped.icv.values()], sigif = [...grouped.sigif.values()], effis = [...grouped.effis.values()];
+  const egif = [...grouped.egif.values()], esfire30 = [...grouped.esfire30.values()], icv = [...grouped.icv.values()], sigif = [...grouped.sigif.values()], effis = [...grouped.effis.values()];
   const {from, to} = selectedYears();
   const relevant = sourceId => { const source = state.loader.manifest.sources[sourceId]; return source && activeSources().has(sourceId) && source.year_min <= to && source.year_max >= from; };
   const cards = [];
   if (relevant('egif')) cards.push(['egif', egif.length, 'partes EGIF documentados'], ['egif', egif.reduce((s, x) => s + x.areaHa, 0), 'ha forestales declaradas EGIF'], ['egif', egif.filter(x => x.isGif).length, 'partes GIF EGIF ≥ 500 ha forestales'], ['egif', egif.filter(x => x.hasMunicipality).length, 'partes EGIF con municipio resuelto'], ['egif', egif.filter(x => x.hasGridReference).length, 'partes con hoja/cuadrícula'], ['egif', 0, 'geometrías individuales EGIF']);
+  if (relevant('esfire30')) cards.push(['esfire30', esfire30.length, 'perímetros ESFire30'], ['esfire30', esfire30.reduce((s, x) => s + x.areaHa, 0), 'ha cartografiadas ESFire30'], ['esfire30', esfire30.filter(x => x.isMappedLarge).length, 'perímetros ESFire30 ≥ 500 ha cartografiadas']);
   if (relevant('icv')) cards.push(['icv', icv.length, 'incendios ICV'], ['icv', records.filter(item => item.record.sourceId === 'icv').length, 'perímetros ICV'], ['icv', icv.reduce((s, x) => s + x.areaHa, 0), 'ha declaradas ICV'], ['icv', icv.filter(x => x.isGif).length, 'GIF ICV ≥ 500 ha']);
   if (relevant('sigif')) cards.push(['sigif', sigif.length, 'registros SIGIF'], ['sigif', sigif.reduce((s, x) => s + x.areaHa, 0), 'ha declaradas SIGIF'], ['sigif', sigif.filter(x => x.isGif).length, 'GIF administrativos SIGIF']);
   if (relevant('effis')) cards.push(['effis', effis.length, 'perímetros EFFIS'], ['effis', effis.reduce((s, x) => s + x.areaHa, 0), 'ha cartografiadas EFFIS']);
@@ -388,7 +429,7 @@ function renderMetrics(records) {
 
 function renderHistogram() {
   const years = state.loader.manifest.years, {from, to} = selectedYears(), counts = new Map();
-  for (let year = years.min; year <= years.max; year += 1) counts.set(year, {egif: new Set(), icv: new Set(), sigif: new Set(), effis: new Set()});
+  for (let year = years.min; year <= years.max; year += 1) counts.set(year, {egif: new Set(), esfire30: new Set(), icv: new Set(), sigif: new Set(), effis: new Set()});
   for (const feature of state.timelineFeatures.values()) {
     const record = recordFor(feature);
     if (passesNonTemporalFilters(record)) counts.get(record.year)?.[record.sourceId].add(record.entityId);
@@ -397,24 +438,24 @@ function renderHistogram() {
     const record = recordForAdministrative(raw);
     if (passesNonTemporalFilters(record)) counts.get(record.year)?.egif.add(record.entityId);
   }
-  const totalFor = item => item.egif.size + item.icv.size + item.sigif.size + item.effis.size;
-  const maximum = Math.max(1, ...[...counts.values()].map(totalFor));
+  const heightFor = item => Math.max(item.egif.size, item.esfire30.size, item.icv.size, item.sigif.size, item.effis.size);
+  const maximum = Math.max(1, ...[...counts.values()].map(heightFor));
   elements.histogram.replaceChildren();
   for (const [year, item] of counts) {
-    const total = totalFor(item), bar = document.createElement('button');
-    bar.type = 'button'; bar.dataset.year = String(year); bar.style.height = `${Math.max(total ? 6 : 2, total / maximum * 100)}%`;
-    if (total) {
-      const segments = [['egif', '#b47734'], ['icv', '#27624b'], ['sigif', '#a94d28'], ['effis', '#6a4fa3']];
-      let offset = 0; const stops = [];
-      for (const [source, color] of segments) { const next = offset + item[source].size / total * 100; if (next > offset) stops.push(`${color} ${offset}% ${next}%`); offset = next; }
-      bar.style.background = `linear-gradient(to top, ${stops.join(',')})`;
+    const height = heightFor(item), bar = document.createElement('button');
+    bar.type = 'button'; bar.dataset.year = String(year); bar.style.height = `${Math.max(height ? 6 : 2, height / maximum * 100)}%`;
+    if (height) {
+      const active = [['egif', '#b47734'], ['esfire30', '#caa24e'], ['icv', '#27624b'], ['sigif', '#a94d28'], ['effis', '#6a4fa3']].filter(([source]) => item[source].size);
+      const stops = active.flatMap(([, color], index) => [`${color} ${index / active.length * 100}%`, `${color} ${(index + 1) / active.length * 100}%`]);
+      bar.style.background = `linear-gradient(to right, ${stops.join(',')})`;
     }
     else bar.classList.add(state.timelineComplete ? 'empty' : 'unknown');
     if (year === 1993 || year === 2025) bar.classList.add('source-boundary');
+    if (year === 1985) bar.classList.add('remote-sensing-boundary');
     if (year === 1980 || year === 1992) bar.classList.add('coverage-boundary');
     if (year >= from && year <= to) bar.classList.add('in-range');
     if (from === to && year === from) bar.classList.add('single-year');
-    bar.title = total || state.timelineComplete ? `${year}: partes EGIF ${item.egif.size}; incendios ICV ${item.icv.size}; registros SIGIF ${item.sigif.size}; perímetros EFFIS ${item.effis.size}. Series no directamente comparables.` : `${year}: recuento aún no cargado`;
+    bar.title = height || state.timelineComplete ? `${year}: partes EGIF ${item.egif.size}; perímetros históricos ESFire30 ${item.esfire30.size}; incendios ICV ${item.icv.size}; registros SIGIF ${item.sigif.size}; perímetros EFFIS ${item.effis.size}. La altura usa el máximo por fuente; las series no se suman ni son directamente comparables.` : `${year}: recuento aún no cargado`;
     bar.setAttribute('aria-label', bar.title); bar.setAttribute('aria-pressed', String(from === to && year === from));
     bar.addEventListener('click', () => setYearRange(year, year)); elements.histogram.appendChild(bar);
   }
@@ -428,7 +469,9 @@ function renderList(records) {
   elements.fireList.replaceChildren();
   if (!values.length) { elements.fireList.textContent = 'No hay elementos visibles con estos filtros.'; return; }
   for (const record of values) { const button = document.createElement('button'); button.type = 'button'; button.className = 'fire-row';
-    button.innerHTML = `<strong>${record.year} · ${escapeHtml(sourceLabel(record.sourceId))} · ${escapeHtml(cleanText(record.municipality))} · ${formatNumber(record.areaHa)} ha</strong><span>${escapeHtml(cleanText(record.placeName))} · ${escapeHtml(cleanText(record.cause))}</span>`;
+    const location = record.sourceId === 'esfire30' ? `${record.municipalityIds.length} municipio(s) intersectado(s)` : cleanText(record.municipality);
+    const description = record.sourceId === 'esfire30' ? 'Área quemada Landsat · sin enlace EGIF confirmado' : `${cleanText(record.placeName)} · ${cleanText(record.cause)}`;
+    button.innerHTML = `<strong>${record.year} · ${escapeHtml(sourceLabel(record.sourceId))} · ${escapeHtml(location)} · ${formatNumber(record.areaHa)} ha</strong><span>${escapeHtml(description)}</span>`;
     button.addEventListener('click', () => selectEntity(record.entityId, null, {fit: true})); elements.fireList.appendChild(button); }
 }
 
@@ -454,6 +497,10 @@ function renderCoverage() {
   if (from <= 1992 && to >= 1968 && state.loader.manifest.sources.egif && activeSources().has('egif')) {
     const regimes = state.loader.manifest.egif.coverage_regimes.filter(regime => regime.year_min <= to && regime.year_max >= from);
     items.push(`<div class="coverage-item historical"><strong>EGIF 1968–1992 · partes administrativos sin geometría individual.</strong><br>${regimes.map(regime => `${regime.year_min === regime.year_max ? regime.year_min : `${regime.year_min}–${regime.year_max}`}: ${escapeHtml(regime.label)}.`).join(' ')} No se afirma cobertura completa ni una serie homogénea.</div>`);
+  }
+  const esfire30Source = state.loader.manifest.sources.esfire30;
+  if (esfire30Source && from <= esfire30Source.year_max && to >= esfire30Source.year_min && activeSources().has('esfire30')) {
+    items.push(`<div class="coverage-item remote-sensing"><strong>ESFire30 ${esfire30Source.year_min}–${esfire30Source.year_max} · perímetros históricos de teledetección Landsat.</strong><br>Son áreas quemadas detectadas a 30 m y no perímetros oficiales ni enlaces confirmados con los partes EGIF. Umbral metodológico del dataset: 5 ha.</div>`);
   }
   if (from <= 2024 && to >= 1993 && state.loader.manifest.sources.icv && activeSources().has('icv')) items.push('<div class="coverage-item"><strong>ICV 1993–2024:</strong> histórico oficial consolidado de perímetros cartografiados; no es un inventario estadístico completo.</div>');
   for (const coverage of state.loader.manifest.recent?.coverage || []) {
@@ -509,28 +556,30 @@ function queryPoint(latlng) {
   setPointMode(false); if (state.pointMarker) state.pointMarker.removeFrom(state.map);
   state.pointMarker = L.circleMarker(latlng, {radius: 6, color: '#172421', weight: 2, fillColor: '#fff', fillOpacity: 1}).addTo(state.map);
   const sigifProximityM = state.loader.manifest.query.sigif_proximity_m ?? null;
-  const point = turf.point([latlng.lng, latlng.lat]), icv = new Map(), effis = [], nearby = [];
+  const point = turf.point([latlng.lng, latlng.lat]), icv = new Map(), esfire30 = [], effis = [], nearby = [];
   for (const item of state.visibleRecords) {
     try {
       if (item.record.sourceId === 'sigif') { const distance = turf.distance(point, item.feature, {units: 'kilometers'}) * 1000; if (distance <= sigifProximityM) nearby.push({...item, distance}); continue; }
       if (item.layer.getBounds && !item.layer.getBounds().contains(latlng)) continue;
       if (!turf.booleanPointInPolygon(point, item.feature)) continue;
       if (item.record.sourceId === 'icv') { if (!icv.has(item.record.entityId)) icv.set(item.record.entityId, []); icv.get(item.record.entityId).push(item); }
-      else effis.push(item);
+      else if (item.record.sourceId === 'esfire30') esfire30.push(item);
+      else if (item.record.sourceId === 'effis') effis.push(item);
     } catch (error) { console.warn('[atlas:point-query]', item.record.geometryId, error); }
   }
   const reused = [...icv.values()].flat().some(item => item.feature.properties.geometry_reused);
   state.historyResult = {officialIcvFireCount: icv.size, officialIcvPerimeterCount: [...icv.values()].flat().length,
-    effisPerimeterCount: effis.length, nearbySigifCount: nearby.length, sigifProximityM, reused,
-    fireCount: icv.size, perimeterCount: [...icv.values()].flat().length + effis.length};
+    historicalRemoteSensingPerimeterCount: esfire30.length, effisPerimeterCount: effis.length, nearbySigifCount: nearby.length, sigifProximityM, reused,
+    fireCount: icv.size, perimeterCount: [...icv.values()].flat().length + esfire30.length + effis.length};
   const icvRows = [...icv.values()].map(items => `<button class="fire-row history-result" data-entity="${escapeHtml(items[0].record.entityId)}"><strong>${items[0].record.year} · ${escapeHtml(cleanText(items[0].record.municipality))}</strong><span>${items.length} perímetro(s) ICV contienen el punto</span></button>`).join('');
   const effisRows = effis.map(item => `<button class="fire-row history-result" data-entity="${escapeHtml(item.record.entityId)}"><strong>${item.record.year} · EFFIS ${escapeHtml(item.feature.properties.effis_id)}</strong><span>Perímetro satelital contiene el punto</span></button>`).join('');
+  const esfire30Rows = esfire30.map(item => `<button class="fire-row history-result" data-entity="${escapeHtml(item.record.entityId)}" data-geometry="${escapeHtml(item.record.geometryId)}"><strong>${item.record.year} · ESFire30</strong><span>Perímetro histórico de teledetección contiene el punto; no es perímetro oficial ni confirma un parte EGIF</span></button>`).join('');
   const nearbyRows = nearby.sort((a, b) => a.distance - b.distance).map(item => `<button class="fire-row history-result" data-entity="${escapeHtml(item.record.entityId)}"><strong>${item.record.year} · ${escapeHtml(cleanText(item.record.municipality))}</strong><span>${formatNumber(item.distance, 0)} m del punto consultado</span></button>`).join('');
   const sigifSection = state.loader.manifest.sources.sigif && activeSources().has('sigif') ? `<strong>Puntos de inicio SIGIF próximos</strong><p>Radio explícito: ${formatNumber(sigifProximityM / 1000, 0)} km · ${nearby.length} resultados.</p>${nearbyRows}` : '';
   const egifNotice = state.loader.manifest.sources.egif && activeSources().has('egif') && selectedYears().from <= 1992
     ? '<div class="historical-no-geometry">Los partes EGIF 1968–1992 no tienen geometría individual fiable y, por tanto, no pueden evaluarse mediante esta consulta puntual. No se infiere relación espacial a partir del municipio o la cuadrícula.</div>' : '';
-  elements.pointHistory.innerHTML = `<strong>Perímetros que contienen este punto</strong><p>Oficiales ICV: ${icv.size} incendios identificados / ${[...icv.values()].flat().length} perímetros.<br>Satelitales EFFIS: ${effis.length} perímetros.</p>${icvRows}${effisRows}${sigifSection}${egifNotice}${reused ? `<div class="reuse-warning">${escapeHtml(REUSE_WARNING)}</div>` : ''}`;
-  elements.pointHistory.querySelectorAll('.history-result').forEach(button => button.addEventListener('click', () => selectEntity(button.dataset.entity, null, {fit: true})));
+  elements.pointHistory.innerHTML = `<strong>Perímetros que contienen este punto</strong><p>Oficiales ICV: ${icv.size} incendios identificados / ${[...icv.values()].flat().length} perímetros.<br>Teledetección histórica ESFire30: ${esfire30.length} perímetros.<br>Satelitales provisionales EFFIS: ${effis.length} perímetros.</p>${icvRows}${esfire30Rows}${effisRows}${sigifSection}${egifNotice}${reused ? `<div class="reuse-warning">${escapeHtml(REUSE_WARNING)}</div>` : ''}`;
+  elements.pointHistory.querySelectorAll('.history-result').forEach(button => button.addEventListener('click', () => selectEntity(button.dataset.entity, button.dataset.geometry || null, {fit: true})));
   return state.historyResult;
 }
 
@@ -553,6 +602,7 @@ function renderMethodology() {
   elements.legendSigifRow.innerHTML = state.loader.manifest.sources.sigif ? '<span class="legend-symbol legend-sigif"></span> Punto SIGIF · administrativo provisional<br>' : '';
   elements.legendSigifRow.hidden = !state.loader.manifest.sources.sigif;
   const egifLegend = $('legend-egif-row'); if (egifLegend) egifLegend.hidden = !state.loader.manifest.sources.egif;
+  if (elements.legendEsfire30Row) elements.legendEsfire30Row.hidden = !state.loader.manifest.sources.esfire30;
   elements.sourceSeparationHelp.hidden = !hasCandidates;
 }
 
@@ -599,10 +649,11 @@ function layerMatchesSelectedStyle(item) {
 }
 
 function debugSnapshot() {
-  const counts = {egif: new Set(), icv: new Set(), sigif: new Set(), effis: new Set()};
+  const counts = {egif: new Set(), esfire30: new Set(), icv: new Set(), sigif: new Set(), effis: new Set()};
   for (const item of state.visibleRecords.concat(state.visibleAdministrativeRecords)) counts[item.record.sourceId].add(item.record.entityId);
   const selected = state.visibleRecords.concat(state.visibleAdministrativeRecords).filter(item => item.record.entityId === state.selectedEntityId);
   const selectedGeometry = selected.find(item => item.record.geometryId === state.selectedGeometryId);
+  const selectedRecord = selectedGeometry?.record || selected[0]?.record || null;
   return {ready: document.body.dataset.ready === 'true', profile: state.loader.manifest.profile, territory: state.activeTerritory,
     zoom: state.map?.getZoom(), center: state.map ? {lat: state.map.getCenter().lat, lng: state.map.getCenter().lng} : null,
     level: state.activeLevel, years: selectedYears(), activeSources: [...activeSources()], provinceFilter: elements.province.value,
@@ -610,12 +661,17 @@ function debugSnapshot() {
     activeProvinces: state.activeProvinces, activeAssetCount: state.activeAssets.length, activeAssetUrls: state.activeAssets.map(asset => asset.url),
     loadedGeometryCount: state.loadedFeatures.length, loadedAdministrativeRecordCount: state.loadedAdministrativeRecords.length,
     visiblePerimeterCount: state.visibleRecords.filter(item => item.record.sourceId !== 'sigif').length,
-    visibleFireCount: counts.icv.size, visibleEgifRecordCount: counts.egif.size, visibleIcvFireCount: counts.icv.size, visibleSigifRecordCount: counts.sigif.size, visibleEffisPerimeterCount: counts.effis.size,
+    visibleFireCount: counts.icv.size, visibleEgifRecordCount: counts.egif.size, visibleEsfire30PerimeterCount: counts.esfire30.size, visibleIcvFireCount: counts.icv.size, visibleSigifRecordCount: counts.sigif.size, visibleEffisPerimeterCount: counts.effis.size,
+    visibleEsfire30MappedAreaHa: [...counts.esfire30].reduce((sum, id) => sum + (state.visibleRecords.find(item => item.record.entityId === id)?.record.areaHa || 0), 0),
     visibleEgifGifCount: state.visibleAdministrativeRecords.filter(item => item.record.isGif).length,
     visibleEgifMunicipalityResolvedCount: state.visibleAdministrativeRecords.filter(item => item.record.hasMunicipality).length,
     visibleEgifGridReferenceCount: state.visibleAdministrativeRecords.filter(item => item.record.hasGridReference).length,
     visibleGifCount: [...new Map(state.visibleRecords.concat(state.visibleAdministrativeRecords).filter(item => ['egif', 'icv', 'sigif'].includes(item.record.sourceId)).map(item => [item.record.entityId, item.record])).values()].filter(item => item.isGif).length,
     selectedEntityId: state.selectedEntityId, selectedFireId: state.selectedEntityId, selectedGeometryId: state.selectedGeometryId,
+    selectedSourceId: selectedRecord?.sourceId || null, selectedAreaHa: selectedRecord?.areaHa ?? null,
+    selectedProvinceIds: selectedRecord?.provinceIds || [], selectedMunicipalityIds: selectedRecord?.municipalityIds || [],
+    selectedMunicipalityNames: selectedRecord?.municipalityNames || [], selectedIsMappedLarge: selectedRecord?.isMappedLarge || false,
+    selectedAdministrativeLinkStatus: selectedRecord?.feature?.properties?.administrative_link_status || null,
     selectedVisibleGeometryCount: selected.filter(item => item.layer).length, selectedCandidateStrengths: selected.flatMap(item => item.feature ? state.loader.candidatesFor(item.feature).map(candidate => candidate.candidate_strength) : []),
     selectedGeometryHighlighted: layerMatchesSelectedStyle(selectedGeometry),
     detailsSelectionVisible: elements.details.dataset.entity === state.selectedEntityId && (!state.selectedGeometryId || elements.details.dataset.geometry === state.selectedGeometryId) && Boolean(elements.details.querySelector('.source-chip')),

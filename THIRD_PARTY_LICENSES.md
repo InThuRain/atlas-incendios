@@ -63,7 +63,7 @@ SIGIF no forma parte del perfil público. Sus snapshots, registros y derivados
 continúan con `publishable=false` hasta recibir una aclaración específica de sus
 condiciones. La confirmación ICV no se extrapola a SIGIF.
 
-## Candidato histórico no publicado
+## Fuente histórica integrada localmente y pendiente de publicación
 
 ### ESFire30 Causes v1
 
@@ -72,8 +72,9 @@ condiciones. La confirmación ICV no se extrapola a SIGIF.
 - **Licencia:** Creative Commons Atribución 4.0 Internacional (CC BY 4.0).
 - **Cobertura real del snapshot:** España peninsular, 1985–2021.
 - **CRS del SHP auditado:** ED50 / UTM 30N (EPSG:23030).
-- **Estado:** candidato `B_DOCUMENTED_REMOTE_SENSING`; no forma parte todavía
-  del perfil público.
+- **Estado:** integrado localmente como `B_DOCUMENTED_REMOTE_SENSING` y
+  `publishable=true`; forma parte del perfil público candidato, pero no del
+  bundle ni del sitio actualmente desplegado.
 
 Texto propuesto para un futuro derivado:
 

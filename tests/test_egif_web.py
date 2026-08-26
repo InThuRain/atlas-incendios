@@ -64,6 +64,7 @@ class EgifWebTests(unittest.TestCase):
         self.assertEqual(1968, catalog["timeline"]["min_year"])
         self.assertIn("egif", catalog["profiles"]["public"]["sources"])
         self.assertTrue(catalog["sources"]["egif"]["publishable"])
+        self.assertIn("esfire30", catalog["profiles"]["public"]["sources"])
         self.assertNotIn("sigif", catalog["profiles"]["public"]["sources"])
         self.assertFalse(catalog["sources"]["sigif"]["publishable"])
 

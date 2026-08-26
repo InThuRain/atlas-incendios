@@ -100,7 +100,7 @@ def require(condition, message):
 def viewer_hash(**overrides):
     values = {
         "v": 1, "lat": 39.35, "lng": -0.55, "z": 8,
-        "from": 2026, "to": 2026, "src": "egif,icv,sigif,effis",
+        "from": 2026, "to": 2026, "src": "egif,esfire30,icv,sigif,effis",
         "province": "all", "min_area": 0, "gif": 0,
     }
     values.update(overrides)
@@ -136,6 +136,14 @@ def main():
         "egif_municipality_1986": {"__hash": viewer_hash(lat=38.82, lng=-0.11, z=9, **{"from": 1986, "to": 1986, "src": "egif", "province": "alicante", "municipality": "03102", "entity": "egif-record:1986030531"})},
         "egif_municipality_fit": {"view": "alicante", "from": 1986, "to": 1986, "sources": "egif", "scenario": "municipality-fit", "target_municipality": "03102"},
         "egif_point_history_exclusion": {"from": 1986, "to": 1986, "sources": "egif", "point": "-0.11,38.82"},
+        "esfire30_1986": {"from": 1986, "to": 1986, "sources": "esfire30",
+            "select_entity": "esfire30:record:sha256:2b91335354d7b4c072abfa2c0e66098c6186a91b28944c3000f423824a8244d9"},
+        "esfire30_point_history": {"view": "alicante", "from": 1986, "to": 1986, "sources": "esfire30",
+            "point_geometry": "esfire30:geometry:sha256:bd246734027beabd839649cd4affdd957577770016380b81ca8bb4207f1198dc"},
+        "esfire30_permalink": {"__hash": viewer_hash(lat=38.6, lng=-0.35, z=8, **{
+            "from": 1986, "to": 1986, "src": "esfire30", "province": "alicante",
+            "entity": "esfire30:record:sha256:2b91335354d7b4c072abfa2c0e66098c6186a91b28944c3000f423824a8244d9",
+            "geometry": "esfire30:geometry:sha256:bd246734027beabd839649cd4affdd957577770016380b81ca8bb4207f1198dc"})},
         "single_year": {"from": 2024, "to": 2024},
         "gif_only": {"from": 2024, "to": 2024, "gif": 1},
         "zoom_transition": {
@@ -242,13 +250,14 @@ def main():
 
     initial = results["initial_cv"]["final"]
     require(initial["level"] == "overview", "Initial view must use overview")
-    require(initial["activeAssetCount"] == 17, "Initial view must request EGIF plus the complete geometry period")
-    require(initial["loader"]["requests"] == 20, "Initial requests add one compact EGIF asset")
+    require(initial["activeAssetCount"] == 18, "Initial view must request EGIF, ESFire30 and the complete geometry period")
+    require(initial["loader"]["requests"] == 21, "Initial requests add compact EGIF and ESFire30 assets")
     require(initial["years"] == {"from": 1968, "to": 2026}, "Initial full period")
     require(initial["visibleEgifRecordCount"] == 9175, "All EGIF administrative reports")
     require(initial["visibleSigifRecordCount"] == 424, "All SIGIF records")
     require(initial["visibleEffisPerimeterCount"] == 25, "All EFFIS perimeters")
     require(initial["visibleIcvFireCount"] == 13738, "All ICV fires")
+    require(initial["visibleEsfire30PerimeterCount"] == 710, "All independent ESFire30 perimeters")
     require(initial["sigifLegendVisible"] and initial["sourceSeparationHelpVisible"], "Development SIGIF legend/help")
     require(initial["shareButtonVisible"] and initial["shareIconVisible"], "Development share button and SVG icon")
     require(not initial["territoryPanelPresent"], "The former territory panel must be absent")
@@ -259,7 +268,7 @@ def main():
     for province in ("castellon", "valencia", "alicante"):
         final = results[province]["final"]
         require(final["activeProvinces"] == [province], province + ": province")
-        require(final["activeAssetCount"] == 9, province + ": EGIF, four ICV blocks and four recent assets")
+        require(final["activeAssetCount"] == 10, province + ": EGIF, ESFire30, four ICV blocks and four recent assets")
     scope = results["scope_change_alicante"]["scope"]
     require(scope["provinceFilter"] == "alicante" and scope["activeProvinces"] == ["alicante"], "Integrated scope control filters Alicante")
     require(any(item["value"] == "03065" for item in scope["availableMunicipalities"]), "Alicante scope contains Elx")
@@ -271,9 +280,9 @@ def main():
     require(not pilot["mariolaPrimaryAccess"], "Mariola must not be a primary UI access")
 
     full = results["full_period"]["final"]
-    require(full["activeAssetCount"] == 17, "Full period uses EGIF + 12 ICV + 4 recent assets")
+    require(full["activeAssetCount"] == 18, "Full period uses EGIF + ESFire30 + 12 ICV + 4 recent assets")
     require(full["visibleEgifRecordCount"] == 9175, "Full period retains all EGIF reports")
-    require(full["visiblePerimeterCount"] == 13764, "Full ICV + EFFIS perimeter count")
+    require(full["visiblePerimeterCount"] == 14474, "Full ICV + ESFire30 + EFFIS perimeter count")
     require(full["visibleFireCount"] == 13738, "Full fire count")
 
     histogram = results["histogram_year_1994"]["histogram"]
@@ -282,9 +291,11 @@ def main():
 
     historical = results["historical_transition"]["years"]
     require([item["years"]["from"] for item in historical] == [1968, 1975, 1986, 1992, 1993], "Historical transition order")
-    for item in historical[:4]:
+    for item in historical[:2]:
         require(item["visibleEgifRecordCount"] > 0 and item["loadedGeometryCount"] == 0 and item["visiblePerimeterCount"] == 0, "Historical years contain reports but no invented geometry")
         require("partes EGIF documentados" in item["statusText"] and "No existen perímetros individuales fiables" in item["statusText"], "Historical empty-map explanation")
+    require(historical[2]["visibleEgifRecordCount"] == 385 and historical[2]["visibleEsfire30PerimeterCount"] == 63, "1986 keeps EGIF parts and ESFire30 perimeters separate")
+    require(historical[3]["visibleEgifRecordCount"] == 770 and historical[3]["visibleEsfire30PerimeterCount"] == 182, "1992 keeps EGIF parts and ESFire30 perimeters separate")
     require(historical[-1]["visibleEgifRecordCount"] == 0 and historical[-1]["visibleIcvFireCount"] > 0, "1992 to 1993 source transition")
     require(results["egif_1968"]["final"]["visibleEgifRecordCount"] == 113, "1968 EGIF count")
     require(results["egif_1975"]["final"]["visibleEgifRecordCount"] == 256, "1975 EGIF count")
@@ -300,6 +311,13 @@ def main():
     require(historical_fit["afterMunicipalityFit"]["center"] == historical_fit["beforeMunicipalityFit"]["center"] and "no existe geometría individual fiable" in historical_fit["afterMunicipalityFit"]["statusText"], "Historical municipality keeps the map view and explains missing geometry")
     history_exclusion = results["egif_point_history_exclusion"]["point"]
     require(history_exclusion["history"]["perimeterCount"] == 0 and "no tienen geometría individual fiable" in history_exclusion["pointHistoryText"], "Point history explicitly excludes geometry-free EGIF")
+    esfire = results["esfire30_1986"]["selection"]
+    require(esfire["visibleEsfire30PerimeterCount"] == 63 and esfire["selectedGeometryHighlighted"], "ESFire30 1986 count and selection")
+    require("teledetección histórica" in esfire["detailsText"] and "Sin enlace confirmado" in esfire["detailsText"], "ESFire30 caveats in details")
+    esfire_history = results["esfire30_point_history"]["point"]
+    require(esfire_history["history"]["historicalRemoteSensingPerimeterCount"] >= 1 and "Teledetección histórica ESFire30" in esfire_history["pointHistoryText"], "ESFire30 has its own point-history category")
+    esfire_permalink = results["esfire30_permalink"]["final"]
+    require(esfire_permalink["selectedGeometryHighlighted"] and esfire_permalink["selectionPopupVisible"] and esfire_permalink["selectionPopupGeometryId"] == esfire_permalink["selectedGeometryId"], "ESFire30 permalink restores exact polygon")
 
     gif = results["gif_only"]["final"]
     require(gif["visibleFireCount"] > 0, "GIF filter should have results")
@@ -383,12 +401,12 @@ def main():
     require(multi_reloaded["selectedGeometryId"] == "gva:geometry:2024:121:13606" and multi_reloaded["selectionPopupGeometryId"] == "gva:geometry:2024:121:13606", "Multi-geometry permalink opens the exact requested geometry")
     require(multi_reloaded["selectedGeometryHighlighted"] and multi_reloaded["detailsSelectionVisible"] and multi_reloaded["selectionPopupVisible"] and multi_reloaded["selectionPopupDomVisible"], "Multi-geometry permalink restores popup, highlight and details")
     invalid = results["permalink_invalid_ignored"]["final"]
-    require(invalid["years"] == {"from": 1968, "to": 2026} and invalid["activeSources"] == ["egif", "icv", "sigif", "effis"], "Invalid hash values ignored with full-period fallback")
+    require(invalid["years"] == {"from": 1968, "to": 2026} and invalid["activeSources"] == ["egif", "esfire30", "icv", "sigif", "effis"], "Invalid hash values ignored with full-period fallback")
     require(bool(results["share_view"]["share"]["feedback"]), "Share action gives feedback")
 
     mobile = results["mobile_initial"]["final"]
     require(mobile["mobileLayout"], "Mobile media query")
-    require(mobile["activeAssetCount"] == 17 and mobile["years"] == {"from": 1968, "to": 2026} and mobile["visibleEgifRecordCount"] == 9175, "Mobile full-period initial load")
+    require(mobile["activeAssetCount"] == 18 and mobile["years"] == {"from": 1968, "to": 2026} and mobile["visibleEgifRecordCount"] == 9175 and mobile["visibleEsfire30PerimeterCount"] == 710, "Mobile full-period initial load")
 
     summary = {
         "schema_version": 1,

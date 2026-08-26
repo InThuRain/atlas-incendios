@@ -70,11 +70,15 @@ Objetivo: tener un piloto local fiable y agradable de usar.
   polígonos valencianos 1985–1992 son topológicamente utilizables y candidatos
   B de teledetección bajo CC BY 4.0. EGIF permanece separado: 3 enlaces fuertes,
   34 posibles, 3 débiles y 0 confirmados. No se integra ni publica geometría.
-- [ ] CV-4.3: preparar integración local reversible de ESFire30 1985–1992 como
-  fuente B independiente, medir simplificación/error para incendios pequeños,
-  crear manifest y simbología específica, y mantener los enlaces EGIF como
-  candidatos no confirmados. Obtener antes, si es posible, confirmación escrita
-  del CRS y semántica del proveedor.
+- [x] CV-4.3: integrar localmente ESFire30 1985–1992 como 710 perímetros B
+  independientes, con identidad estable por contenido, transformación
+  EPSG:23030 fail-closed, tres LOD, relaciones territoriales derivadas,
+  simbología y métricas separadas. Development y public candidato pasan tests
+  y benchmarks; no se ha creado bundle ni publicado.
+- [ ] CV-4.4: tras revisión local, crear y verificar un bundle inmutable nuevo
+  con EGIF + ESFire30 + ICV + EFFIS, desplegarlo mediante el workflow existente
+  y comprobar la web real. Mantener SIGIF y candidatos fuera; incorporar la
+  respuesta técnica de autores ESFire30 si llega antes del empaquetado.
 - [ ] Solicitar a Generalitat/ICV y parques la cartografía histórica fuente de
   Chera–Sot de Chera y Mariola–Font Roja, incluida metodología, escala, CRS y
   condiciones de reutilización.

@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "source": "esfire30",
+  "source_version": "v1",
+  "doi": "10.5281/zenodo.18449006",
+  "years": {
+    "min": 1985,
+    "max": 1992
+  },
+  "source_crs": "EPSG:23030",
+  "web_crs": "EPSG:4326",
+  "grid": {
+    "path": "data/raw/esfire30/proj-grids/es_ign_SPED2ETV2.tif",
+    "sha256": "61896f5d74bdc7c1d5850839ae743b08e19f9a627e8febb4ac93353ded835961"
+  },
+  "identity": {
+    "source_record_id": "esfire30:<source_version>:record:sha256:<source_feature_fingerprint_sha256>",
+    "geometry_id": "esfire30:geometry:sha256:<original_geometry_checksum_sha256>",
+    "source_feature_fingerprint": "SHA-256 over canonical original attributes plus original geometry checksum; independent of SHP record order",
+    "source_index_role": "provenance_only"
+  },
+  "lod": {
+    "local": {
+      "tolerance_m": 0,
+      "reason": "Conserva los 84.894 vértices Landsat originales"
+    },
+    "regional": {
+      "tolerance_m": 20,
+      "reason": "Reducción moderada con error relativo máximo observado inferior al 4 %"
+    },
+    "overview": {
+      "tolerance_m": 30,
+      "reason": "Reducción aproximada del 46 %; ningún polígono colapsa"
+    }
+  },
+  "municipality_relation": {
+    "catalog_path": "data/raw/recent/gva/snapshots/20260819T174426Z/boundary/icv_municipalities.geojson",
+    "policy": "Relación espacial derivada por intersección de área positiva; puede haber varios municipios; no es municipio fuente ni enlace EGIF"
+  },
+  "province_relation": {
+    "policy": "Los filtros usan todas las provincias intersectadas; primary_province es solo la de mayor área de intersección y no recorta la geometría"
+  }
+}

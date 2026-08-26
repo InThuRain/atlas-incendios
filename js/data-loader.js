@@ -89,6 +89,11 @@ export class DatasetLoader {
       asset.kind === kind && asset.year >= fromYear && asset.year <= toYear);
   }
 
+  esfire30Assets(level, fromYear, toYear) {
+    if (!this.manifest.esfire30 || toYear < this.manifest.esfire30.years.min || fromYear > this.manifest.esfire30.years.max) return [];
+    return this.manifest.esfire30.assets.filter(asset => asset.level === level);
+  }
+
   async loadAsset(asset, sourceId) {
     const payload = await this.fetchJson(asset.url, {kind: asset.kind || `${sourceId}_geometry`, estimatedGzipBytes: asset.gzip_bytes});
     if (!Array.isArray(payload.features) || payload.features.length !== asset.feature_count) throw new Error(`Recuento inesperado en ${asset.url}`);
@@ -126,6 +131,11 @@ export class DatasetLoader {
       await this.ensureIcvFires();
       for (const asset of this.icvAssets(level, provinces, fromYear, toYear)) {
         assets.push(asset); jobs.push(this.loadAsset({...asset, kind: 'icv_geometry'}, 'icv'));
+      }
+    }
+    if (sources.has('esfire30')) {
+      for (const asset of this.esfire30Assets(level, fromYear, toYear)) {
+        assets.push(asset); jobs.push(this.loadAsset(asset, 'esfire30'));
       }
     }
     for (const [source, kind] of [['sigif', 'sigif_points'], ['effis', 'effis_perimeters']]) {

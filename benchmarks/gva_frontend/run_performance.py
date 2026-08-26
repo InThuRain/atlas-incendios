@@ -86,13 +86,20 @@ def main():
     manifest = json.loads(runtime.read_text(encoding="utf-8"))
     years = manifest["years"]
     baseline_sources = ",".join(source for source in manifest["sources"] if source != "egif")
+    without_esfire30_sources = ",".join(source for source in manifest["sources"] if source != "esfire30")
     scenarios = {
         "desktop_latest_year": ({"from": years["max"], "to": years["max"]}, "1440,900"),
         "desktop_baseline_1993_2026": ({"from": 1993, "to": years["max"], "sources": baseline_sources}, "1440,900"),
         "desktop_initial_full_period": ({}, "1440,900"),
+        "desktop_full_without_esfire30": ({"sources": without_esfire30_sources}, "1440,900"),
         "mobile_latest_year": ({"from": years["max"], "to": years["max"]}, "390,844"),
         "mobile_baseline_1993_2026": ({"from": 1993, "to": years["max"], "sources": baseline_sources}, "390,844"),
         "mobile_initial_full_period": ({}, "390,844"),
+        "mobile_full_without_esfire30": ({"sources": without_esfire30_sources}, "390,844"),
+        "desktop_historical_egif_only": ({"from": 1985, "to": 1992, "sources": "egif"}, "1440,900"),
+        "desktop_historical_with_esfire30": ({"from": 1985, "to": 1992, "sources": "egif,esfire30"}, "1440,900"),
+        "mobile_historical_egif_only": ({"from": 1985, "to": 1992, "sources": "egif"}, "390,844"),
+        "mobile_historical_with_esfire30": ({"from": 1985, "to": 1992, "sources": "egif,esfire30"}, "390,844"),
     }
     handler = lambda *items, **kwargs: QuietHandler(
         *items, directory=str(root.parent), **kwargs
@@ -120,6 +127,7 @@ def main():
                 "window_size": window_size,
                 "visible_fire_count": runs[0]["visibleFireCount"],
                 "visible_egif_record_count": runs[0]["visibleEgifRecordCount"],
+                "visible_esfire30_perimeter_count": runs[0]["visibleEsfire30PerimeterCount"],
                 "visible_perimeter_count": runs[0]["visiblePerimeterCount"],
                 "visible_sigif_record_count": runs[0]["visibleSigifRecordCount"],
                 "visible_effis_perimeter_count": runs[0]["visibleEffisPerimeterCount"],
@@ -135,6 +143,8 @@ def main():
                     "estimated_gzip_bytes": metric_summary(runs, ("loader", "estimatedGzipBytes")),
                     "egif_fetch_ms": event_metric_summary(runs, "egif_administrative_records", "fetchMs"),
                     "egif_parse_ms": event_metric_summary(runs, "egif_administrative_records", "parseMs"),
+                    "esfire30_fetch_ms": event_metric_summary(runs, "esfire30_perimeters", "fetchMs"),
+                    "esfire30_parse_ms": event_metric_summary(runs, "esfire30_perimeters", "parseMs"),
                 },
                 "runs": runs,
             }

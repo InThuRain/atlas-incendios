@@ -368,6 +368,31 @@ publicación deberá atribuir Zenodo/DOI, declarar reproyección, selección y
 simplificación, y diferenciar visualmente teledetección histórica de perímetro
 oficial. CV-4.2 no modifica el frontend ni el perfil público.
 
+## 2026-08-25 — ESFire30 web como perímetro histórico independiente y multiterritorial
+
+Los 710 polígonos ESFire30 1985–1992 se integran como entidades
+`historical_remote_sensing_perimeter` de calidad B, sin convertirlos en
+incendios administrativos ni geometrías EGIF. Su identidad estable se deriva
+del contenido fuente y del checksum de geometría, nunca del orden del SHP.
+
+Los derivados web usan tres LOD (0/20/30 m) y una única colección autonómica
+por nivel. Los filtros territoriales se resuelven mediante relaciones de
+intersección positivas muchos-a-muchos; no se recorta ni duplica un polígono
+fronterizo y la provincia principal es solo un atributo derivado.
+
+**Motivo:** ESFire30 no publica ID estable de episodio, fecha ni municipio y 29
+polígonos cruzan provincias. Un ID por índice, una asignación territorial única
+o una unión con EGIF introducirían identidades no demostradas. Las tolerancias
+medidas reducen hasta 46,204 % de vértices sin colapsos y mantienen el coste
+overview en 416.398 bytes gzip.
+
+**Consecuencias:** el histograma usa el máximo por fuente en vez de sumar series
+incompatibles; métricas e Historia de un lugar separan ESFire30 de EGIF/ICV/
+EFFIS. El perfil public candidato incluye ESFire30 porque CC BY 4.0 permite el
+derivado, pero el sitio desplegado no cambia hasta crear y aprobar un bundle
+inmutable posterior. La transformación EPSG:23030→EPSG:4326 falla si cambia la
+rejilla IGN, los `.prj` o la operación PROJ auditada.
+
 ## Plantilla para nuevas decisiones
 
 ```markdown
