@@ -259,12 +259,15 @@ administrative record (EGIF) ──0..1──> spatial reference
                                   ≠ fire geometry / perimeter
 ```
 
-Solo una referencia con semántica, clave de conversión, datum, huso y límites
-documentados (`A_CONFIRMED`) podrá producir en el futuro una
-`spatial_reference_geometry`. CV-3.5 no encontró ninguna: 8.565 pares son
-`B_PROBABLE` y 610 partes no tienen pareja. Una celda eventual se almacenará una
-sola vez y los partes se relacionarán con ella, sin repetir geometría ni usarla
-en recurrencia puntual, superficie quemada o Historia de un lugar.
+Solo una referencia con semántica, clave y límites documentados
+(`A_CONFIRMED`) podrá producir en el futuro una
+`spatial_reference_geometry`. CV-3.5 no encontró ninguna, pero ES-1.5 recibió
+de CCINIF la malla histórica oficial y confirmó por igualdad exacta 626.957
+relaciones nacionales, incluidas las 8.565 valencianas. Esto promueve el enlace
+documental, no `geometry`: los partes continúan sin geometría de incendio. Una
+celda se almacena una sola vez y los partes se relacionan con ella, sin repetir
+geometría ni usarla en recurrencia puntual, superficie quemada o Historia de
+un lugar. Su publicación sigue bloqueada por licencia.
 
 La cabecera admite una futura identidad gráfica sin solicitar assets todavía.
 `index.html` contiene metadatos Open Graph textuales y puntos de extensión
@@ -397,3 +400,26 @@ Leaflet. Leaflet + Canvas y GeoJSON siguen siendo válidos para el piloto,
 territorios y periodos acotados; la vista nacional deberá comparar en un
 prototipo aislado teselas vectoriales/PMTiles antes de elegir entrega y
 renderer. No se ha migrado el frontend.
+
+## Referencias espaciales históricas nacionales (ES-1.5)
+
+La arquitectura nacional incorpora un tercer canal espacial independiente de
+geometrías de incendio y territorios administrativos:
+
+```text
+source record (EGIF) ──0..1──> historical_grid_cell
+historical_grid_cell  ──1..N──> geometry_part
+historical_grid_cell                   != fire_geometry
+```
+
+`historical_grid_cell` es una entidad nacional reutilizable identificada por
+la fuente y `HOJA+CUAD`. Conserva todos los fragmentos costeros/insulares y sus
+atributos originales. Las relaciones territoriales son comprobaciones
+muchos-a-muchos independientes; municipio o provincia no eligen ni corrigen
+la celda.
+
+El contrato de uso permite contar partes que citan una celda y mostrar el área
+de referencia con simbología inequívoca. Prohíbe tratarla como perímetro,
+superficie quemada, centro del incendio, recurrencia o prueba de identidad de
+episodio. El perfil de publicación debe excluirla mientras
+`publishable=false_pending_permission`.

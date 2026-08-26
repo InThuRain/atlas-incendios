@@ -1,0 +1,2846 @@
+{
+  "schema_version": 1,
+  "dataset_id": "ccinif_historical_grid",
+  "audit": "ES-1.5",
+  "generated_at": "2026-08-26T20:04:43Z",
+  "source": "historical_10km_grid_reference",
+  "provider": "CCINIF / MITECO",
+  "received_on": "2026-08-26",
+  "license_status": "false_pending_permission",
+  "publishable": false,
+  "raw_assets": {
+    "HOJAS.kmz": {
+      "format": "KMZ containing OGC KML 2.2",
+      "member": "doc.kml",
+      "size_bytes": 720069,
+      "sha256": "205454dbc043c0873afb0f4ef2e85fe9e877b133e8f5b9240e8f23125d5c79ce",
+      "git_status": "ignored_not_redistributed"
+    },
+    "CUADRICULAS.kmz": {
+      "format": "KMZ containing OGC KML 2.2",
+      "member": "doc.kml",
+      "size_bytes": 1461962,
+      "sha256": "dd1a3193c0362e2ee5b027ca401cbe85b4d27a52af791157a117d819be6a66a3",
+      "git_status": "ignored_not_redistributed"
+    }
+  },
+  "structure": {
+    "sheet_polygon_parts": 702,
+    "logical_sheets": 43,
+    "grid_polygon_parts": 6220,
+    "keyed_grid_geometry_parts": 6063,
+    "keyed_logical_cells": 5286,
+    "unkeyed_geometry_parts": 157,
+    "cells_with_multiple_parts": 118,
+    "maximum_parts_per_cell": 46
+  },
+  "kml_inventory": {
+    "sheets": {
+      "kind": "historical_sheet_reference",
+      "path": "data/raw/ccinif/historical_grid/received_2026-08-26/HOJAS.kmz",
+      "size_bytes": 720069,
+      "sha256": "205454dbc043c0873afb0f4ef2e85fe9e877b133e8f5b9240e8f23125d5c79ce",
+      "members": [
+        {
+          "name": "doc.kml",
+          "size_bytes": 2319964,
+          "compressed_size_bytes": 719957,
+          "crc32": "af6395ee"
+        }
+      ],
+      "placemarks": 1404,
+      "folder_counts": {
+        "HOJAS/Feature Labels (HOJA)": 702,
+        "HOJAS/Features": 702
+      },
+      "geometry_counts": {
+        "MultiGeometry": 0,
+        "Point": 702,
+        "Polygon": 702
+      },
+      "empty_placemarks": 0,
+      "polygon_parts": 702,
+      "point_labels": 702,
+      "vertices": 48396,
+      "holes": 86,
+      "bbox_wgs84": [
+        -9.324240275,
+        36.005511743,
+        4.328947122,
+        43.799449383
+      ],
+      "invalid_geometry_reasons": {
+        "Interior is disconnected[-8.83558371638641 42.6230508346509]": 1,
+        "Interior is disconnected[-7.86631240862268 43.7454571447893]": 1
+      },
+      "fields": {
+        "AREA": {
+          "populated_features": 702,
+          "unique_values": 32,
+          "examples": [
+            "0",
+            "10491676440,172",
+            "12113220865,918",
+            "12373013570,633",
+            "13044269600,141",
+            "14000000000",
+            "14006399939,055",
+            "14144436491,344"
+          ]
+        },
+        "C10": {
+          "populated_features": 702,
+          "unique_values": 25,
+          "examples": [
+            "01",
+            "02",
+            "04",
+            "07",
+            "11",
+            "12",
+            "17",
+            "21"
+          ]
+        },
+        "C100": {
+          "populated_features": 702,
+          "unique_values": 39,
+          "examples": [
+            "BC",
+            "CD",
+            "CF",
+            "CH",
+            "DH",
+            "EE",
+            "MH",
+            "NH"
+          ]
+        },
+        "C29": {
+          "populated_features": 702,
+          "unique_values": 9,
+          "examples": [
+            "",
+            "MH",
+            "NH",
+            "PB",
+            "PC",
+            "PE",
+            "PH",
+            "PJ"
+          ]
+        },
+        "C30": {
+          "populated_features": 702,
+          "unique_values": 26,
+          "examples": [
+            "",
+            "TG",
+            "TH",
+            "TK",
+            "TL",
+            "TN",
+            "TP",
+            "UG"
+          ]
+        },
+        "C31": {
+          "populated_features": 702,
+          "unique_values": 7,
+          "examples": [
+            "",
+            "BC",
+            "CD",
+            "CF",
+            "CH",
+            "DH",
+            "EE"
+          ]
+        },
+        "COD250": {
+          "populated_features": 702,
+          "unique_values": 42,
+          "examples": [
+            "0",
+            "1020602",
+            "1040801",
+            "110610",
+            "1130307",
+            "120901",
+            "210703",
+            "220101"
+          ]
+        },
+        "CUAD": {
+          "populated_features": 702,
+          "unique_values": 17,
+          "examples": [
+            "",
+            "A01",
+            "A03",
+            "A05",
+            "A06",
+            "A07",
+            "A08",
+            "A09"
+          ]
+        },
+        "CUTM10": {
+          "populated_features": 702,
+          "unique_values": 43,
+          "examples": [
+            "29SPB81",
+            "29SPC57",
+            "29SPE72",
+            "29TMH87",
+            "29TNH11",
+            "29TNH41",
+            "29TPH52",
+            "29TPJ04"
+          ]
+        },
+        "FID": {
+          "populated_features": 702,
+          "unique_values": 43,
+          "examples": [
+            "0",
+            "1",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15"
+          ]
+        },
+        "HECTARES": {
+          "populated_features": 702,
+          "unique_values": 24,
+          "examples": [
+            "0",
+            "10,121",
+            "10,396",
+            "10000",
+            "10022,758",
+            "10048,699",
+            "1078,401",
+            "1592,81"
+          ]
+        },
+        "HOJA": {
+          "populated_features": 702,
+          "unique_values": 43,
+          "examples": [
+            "0101",
+            "0102",
+            "0201",
+            "0202",
+            "0301",
+            "0302",
+            "0303",
+            "0304"
+          ]
+        },
+        "HUSO": {
+          "populated_features": 702,
+          "unique_values": 3,
+          "examples": [
+            "29",
+            "30",
+            "31"
+          ]
+        },
+        "ID": {
+          "populated_features": 702,
+          "unique_values": 42,
+          "examples": [
+            "",
+            "1020895 4438235",
+            "1081723 4453572",
+            "121735 4854188",
+            "132688 4281918",
+            "151203 4122307",
+            "163252 4731457",
+            "167081 4426767"
+          ]
+        },
+        "PERIMETER": {
+          "populated_features": 702,
+          "unique_values": 31,
+          "examples": [
+            "0",
+            "153387,266",
+            "315767,97",
+            "333121,47",
+            "341564,06",
+            "371893,961",
+            "392201,356",
+            "396269,828"
+          ]
+        },
+        "X_COORD": {
+          "populated_features": 702,
+          "unique_values": 31,
+          "examples": [
+            "0",
+            "1020894,8125",
+            "1081722,52331",
+            "121735,34766",
+            "132688,15234",
+            "151203,29688",
+            "163251,89844",
+            "167081"
+          ]
+        },
+        "Y_COORD": {
+          "populated_features": 702,
+          "unique_values": 30,
+          "examples": [
+            "0",
+            "4122306,5",
+            "4125000",
+            "4135000",
+            "4275000",
+            "4280317",
+            "4281917,5",
+            "4338671,25"
+          ]
+        },
+        "ZONA": {
+          "populated_features": 702,
+          "unique_values": 2,
+          "examples": [
+            "S",
+            "T"
+          ]
+        }
+      },
+      "keyed_logical_cells": 41,
+      "keyed_geometry_parts": 700,
+      "unkeyed_geometry_parts": 2,
+      "unkeyed_local_labels": 2,
+      "parts_per_key_distribution": {
+        "1": 33,
+        "2": 3,
+        "4": 2,
+        "159": 1,
+        "230": 1,
+        "264": 1
+      },
+      "cells_with_multiple_parts": 8,
+      "maximum_parts_per_cell": 264,
+      "inconsistent_part_attributes": {}
+    },
+    "grids": {
+      "kind": "historical_10km_grid_reference",
+      "path": "data/raw/ccinif/historical_grid/received_2026-08-26/CUADRICULAS.kmz",
+      "size_bytes": 1461962,
+      "sha256": "dd1a3193c0362e2ee5b027ca401cbe85b4d27a52af791157a117d819be6a66a3",
+      "members": [
+        {
+          "name": "doc.kml",
+          "size_bytes": 7679105,
+          "compressed_size_bytes": 1461850,
+          "crc32": "42f0ddc5"
+        }
+      ],
+      "placemarks": 12440,
+      "folder_counts": {
+        "CUADRICULAS/CUADRICULAS": 6063,
+        "CUADRICULAS/CUADRICULAS/CUADcanarias/Feature Labels (CUAD)": 157,
+        "CUADRICULAS/CUADRICULAS/CUADcanarias/Features": 157,
+        "CUADRICULAS/ETIQUETAS CUADRICULAS": 6063
+      },
+      "geometry_counts": {
+        "MultiGeometry": 0,
+        "Point": 6220,
+        "Polygon": 6220
+      },
+      "empty_placemarks": 0,
+      "polygon_parts": 6220,
+      "point_labels": 6220,
+      "vertices": 75903,
+      "holes": 1,
+      "bbox_wgs84": [
+        -18.247820299,
+        27.62622392,
+        4.328947122,
+        43.786336066
+      ],
+      "invalid_geometry_reasons": {},
+      "fields": {
+        "AREA": {
+          "populated_features": 6063,
+          "unique_values": 2694,
+          "examples": [
+            "0",
+            "0,578",
+            "0,906",
+            "100000000",
+            "100015078,125",
+            "100016343,125",
+            "100016413,375",
+            "100018018,625"
+          ]
+        },
+        "C10": {
+          "populated_features": 6063,
+          "unique_values": 101,
+          "examples": [
+            "",
+            "00",
+            "01",
+            "02",
+            "03",
+            "04",
+            "05",
+            "06"
+          ]
+        },
+        "C100": {
+          "populated_features": 6063,
+          "unique_values": 97,
+          "examples": [
+            "",
+            "BC",
+            "BD",
+            "BE",
+            "BF",
+            "BG",
+            "BH",
+            "CC"
+          ]
+        },
+        "C29": {
+          "populated_features": 6063,
+          "unique_values": 22,
+          "examples": [
+            "",
+            "MH",
+            "NG",
+            "NH",
+            "NJ",
+            "PB",
+            "PC",
+            "PD"
+          ]
+        },
+        "C30": {
+          "populated_features": 6063,
+          "unique_values": 54,
+          "examples": [
+            "",
+            "TE",
+            "TF",
+            "TG",
+            "TH",
+            "TJ",
+            "TK",
+            "TL"
+          ]
+        },
+        "C31": {
+          "populated_features": 6063,
+          "unique_values": 23,
+          "examples": [
+            "",
+            "BC",
+            "BD",
+            "BE",
+            "BF",
+            "BG",
+            "BH",
+            "CC"
+          ]
+        },
+        "COD250": {
+          "populated_features": 6063,
+          "unique_values": 5285,
+          "examples": [
+            "1020103",
+            "1020104",
+            "1020105",
+            "1020106",
+            "1020107",
+            "1020108",
+            "1020109",
+            "1020110"
+          ]
+        },
+        "CUAD": {
+          "populated_features": 6063,
+          "unique_values": 264,
+          "examples": [
+            "A01",
+            "A02",
+            "A03",
+            "A04",
+            "A05",
+            "A06",
+            "A07",
+            "A08"
+          ]
+        },
+        "CUTM10": {
+          "populated_features": 6063,
+          "unique_values": 5286,
+          "examples": [
+            "",
+            "29SPB32",
+            "29SPB33",
+            "29SPB34",
+            "29SPB35",
+            "29SPB36",
+            "29SPB37",
+            "29SPB38"
+          ]
+        },
+        "FID": {
+          "populated_features": 6063,
+          "unique_values": 6063,
+          "examples": [
+            "0",
+            "1",
+            "10",
+            "100",
+            "1000",
+            "1001",
+            "1002",
+            "1003"
+          ]
+        },
+        "HECTARES": {
+          "populated_features": 6063,
+          "unique_values": 2265,
+          "examples": [
+            "0",
+            "0,003",
+            "0,004",
+            "0,005",
+            "0,006",
+            "0,007",
+            "0,008",
+            "0,009"
+          ]
+        },
+        "HOJA": {
+          "populated_features": 6063,
+          "unique_values": 43,
+          "examples": [
+            "0101",
+            "0102",
+            "0201",
+            "0202",
+            "0301",
+            "0302",
+            "0303",
+            "0304"
+          ]
+        },
+        "HUSO": {
+          "populated_features": 6063,
+          "unique_values": 3,
+          "examples": [
+            "29",
+            "30",
+            "31"
+          ]
+        },
+        "ID": {
+          "populated_features": 6063,
+          "unique_values": 5991,
+          "examples": [
+            "",
+            "-10002 4783948",
+            "-1065 4755944",
+            "-11153 4773989",
+            "-11434 4767740",
+            "-3818 4783579",
+            "-4469 4773828",
+            "-8600 4789073"
+          ]
+        },
+        "PERIMETER": {
+          "populated_features": 6063,
+          "unique_values": 2682,
+          "examples": [
+            "0",
+            "100,39",
+            "100,894",
+            "1004,706",
+            "101,067",
+            "101,215",
+            "101,714",
+            "101,801"
+          ]
+        },
+        "X_COORD": {
+          "populated_features": 6063,
+          "unique_values": 2571,
+          "examples": [
+            "-10002,44531",
+            "-1064,74715",
+            "-11152,76709",
+            "-11434,45459",
+            "-3817,89886",
+            "-4469,09448",
+            "-8599,84863",
+            "-978,20913"
+          ]
+        },
+        "Y_COORD": {
+          "populated_features": 6063,
+          "unique_values": 2410,
+          "examples": [
+            "0",
+            "3993880,5",
+            "3994752",
+            "3996606",
+            "3996979",
+            "3998066",
+            "4005000",
+            "4008141,5"
+          ]
+        },
+        "ZONA": {
+          "populated_features": 6063,
+          "unique_values": 3,
+          "examples": [
+            "",
+            "S",
+            "T"
+          ]
+        }
+      },
+      "keyed_logical_cells": 5286,
+      "keyed_geometry_parts": 6063,
+      "unkeyed_geometry_parts": 157,
+      "unkeyed_local_labels": 109,
+      "parts_per_key_distribution": {
+        "1": 5168,
+        "2": 47,
+        "3": 21,
+        "4": 9,
+        "5": 4,
+        "6": 2,
+        "7": 3,
+        "8": 3,
+        "9": 2,
+        "11": 6,
+        "12": 2,
+        "13": 1,
+        "14": 3,
+        "18": 1,
+        "19": 1,
+        "22": 1,
+        "26": 1,
+        "27": 1,
+        "28": 2,
+        "32": 1,
+        "33": 3,
+        "37": 1,
+        "39": 1,
+        "41": 1,
+        "46": 1
+      },
+      "cells_with_multiple_parts": 118,
+      "maximum_parts_per_cell": 46,
+      "inconsistent_part_attributes": {
+        "CUTM10": 8,
+        "X_COORD": 68,
+        "Y_COORD": 68,
+        "ZONA": 2
+      }
+    }
+  },
+  "egif_crosswalk": {
+    "records": 646887,
+    "records_with_complete_reference": 631935,
+    "unique_complete_references": 5426,
+    "exact_matches": 626957,
+    "unique_exact_matches": 5183,
+    "classification": {
+      "A_CONFIRMED": 626957,
+      "B_PROBABLE": 0,
+      "C_AMBIGUOUS": 3465,
+      "D_UNUSABLE": 1515,
+      "NO_REFERENCE": 14950
+    },
+    "by_year": {
+      "1968": {
+        "records": 2038,
+        "NO_REFERENCE": 2037,
+        "with_sheet_and_grid": 1,
+        "D_UNUSABLE": 1
+      },
+      "1969": {
+        "records": 1442,
+        "NO_REFERENCE": 1442
+      },
+      "1970": {
+        "records": 3155,
+        "NO_REFERENCE": 3155
+      },
+      "1971": {
+        "records": 1665,
+        "NO_REFERENCE": 1665
+      },
+      "1972": {
+        "records": 2093,
+        "NO_REFERENCE": 2093
+      },
+      "1973": {
+        "records": 3724,
+        "NO_REFERENCE": 3724
+      },
+      "1974": {
+        "records": 3920,
+        "with_sheet_and_grid": 3702,
+        "A_CONFIRMED": 3655,
+        "NO_REFERENCE": 216,
+        "C_AMBIGUOUS": 48,
+        "D_UNUSABLE": 1
+      },
+      "1975": {
+        "records": 4128,
+        "with_sheet_and_grid": 4018,
+        "A_CONFIRMED": 3968,
+        "NO_REFERENCE": 110,
+        "C_AMBIGUOUS": 50
+      },
+      "1976": {
+        "records": 4356,
+        "with_sheet_and_grid": 4285,
+        "A_CONFIRMED": 4278,
+        "NO_REFERENCE": 71,
+        "C_AMBIGUOUS": 7
+      },
+      "1977": {
+        "records": 2064,
+        "with_sheet_and_grid": 2026,
+        "A_CONFIRMED": 2020,
+        "NO_REFERENCE": 38,
+        "C_AMBIGUOUS": 6
+      },
+      "1978": {
+        "records": 8193,
+        "with_sheet_and_grid": 8101,
+        "A_CONFIRMED": 8046,
+        "NO_REFERENCE": 92,
+        "C_AMBIGUOUS": 55
+      },
+      "1979": {
+        "records": 6189,
+        "with_sheet_and_grid": 6094,
+        "A_CONFIRMED": 6082,
+        "NO_REFERENCE": 95,
+        "C_AMBIGUOUS": 12
+      },
+      "1980": {
+        "records": 7075,
+        "with_sheet_and_grid": 7007,
+        "A_CONFIRMED": 6986,
+        "NO_REFERENCE": 68,
+        "C_AMBIGUOUS": 21
+      },
+      "1981": {
+        "records": 10688,
+        "with_sheet_and_grid": 10586,
+        "A_CONFIRMED": 10522,
+        "NO_REFERENCE": 102,
+        "C_AMBIGUOUS": 64
+      },
+      "1982": {
+        "records": 6308,
+        "with_sheet_and_grid": 6267,
+        "A_CONFIRMED": 6234,
+        "NO_REFERENCE": 41,
+        "C_AMBIGUOUS": 33
+      },
+      "1983": {
+        "records": 4736,
+        "with_sheet_and_grid": 4736,
+        "A_CONFIRMED": 4637,
+        "C_AMBIGUOUS": 99
+      },
+      "1984": {
+        "records": 7073,
+        "with_sheet_and_grid": 7073,
+        "A_CONFIRMED": 7002,
+        "C_AMBIGUOUS": 71
+      },
+      "1985": {
+        "records": 12235,
+        "with_sheet_and_grid": 12235,
+        "A_CONFIRMED": 12185,
+        "C_AMBIGUOUS": 50
+      },
+      "1986": {
+        "records": 7514,
+        "with_sheet_and_grid": 7514,
+        "A_CONFIRMED": 7441,
+        "C_AMBIGUOUS": 73
+      },
+      "1987": {
+        "records": 8816,
+        "with_sheet_and_grid": 8816,
+        "A_CONFIRMED": 8758,
+        "C_AMBIGUOUS": 58
+      },
+      "1988": {
+        "records": 9440,
+        "with_sheet_and_grid": 9440,
+        "A_CONFIRMED": 9354,
+        "C_AMBIGUOUS": 86
+      },
+      "1989": {
+        "records": 20250,
+        "with_sheet_and_grid": 20250,
+        "A_CONFIRMED": 20207,
+        "C_AMBIGUOUS": 43
+      },
+      "1990": {
+        "records": 12914,
+        "with_sheet_and_grid": 12914,
+        "A_CONFIRMED": 12883,
+        "C_AMBIGUOUS": 31
+      },
+      "1991": {
+        "records": 13529,
+        "with_sheet_and_grid": 13529,
+        "A_CONFIRMED": 13449,
+        "C_AMBIGUOUS": 79,
+        "D_UNUSABLE": 1
+      },
+      "1992": {
+        "records": 15956,
+        "with_sheet_and_grid": 15956,
+        "A_CONFIRMED": 15891,
+        "C_AMBIGUOUS": 65
+      },
+      "1993": {
+        "records": 14253,
+        "with_sheet_and_grid": 14253,
+        "A_CONFIRMED": 14196,
+        "C_AMBIGUOUS": 56,
+        "D_UNUSABLE": 1
+      },
+      "1994": {
+        "records": 19249,
+        "with_sheet_and_grid": 19248,
+        "A_CONFIRMED": 19152,
+        "D_UNUSABLE": 2,
+        "C_AMBIGUOUS": 94,
+        "NO_REFERENCE": 1
+      },
+      "1995": {
+        "records": 25557,
+        "with_sheet_and_grid": 25557,
+        "A_CONFIRMED": 25498,
+        "C_AMBIGUOUS": 56,
+        "D_UNUSABLE": 3
+      },
+      "1996": {
+        "records": 16586,
+        "with_sheet_and_grid": 16586,
+        "A_CONFIRMED": 16570,
+        "C_AMBIGUOUS": 13,
+        "D_UNUSABLE": 3
+      },
+      "1997": {
+        "records": 22320,
+        "with_sheet_and_grid": 22320,
+        "A_CONFIRMED": 22265,
+        "C_AMBIGUOUS": 55
+      },
+      "1998": {
+        "records": 22003,
+        "with_sheet_and_grid": 22003,
+        "A_CONFIRMED": 21923,
+        "with_xy": 1713,
+        "C_AMBIGUOUS": 80
+      },
+      "1999": {
+        "records": 17943,
+        "with_sheet_and_grid": 17943,
+        "A_CONFIRMED": 17882,
+        "with_xy": 9982,
+        "C_AMBIGUOUS": 61
+      },
+      "2000": {
+        "records": 23574,
+        "with_sheet_and_grid": 23574,
+        "A_CONFIRMED": 23491,
+        "with_xy": 15541,
+        "C_AMBIGUOUS": 83
+      },
+      "2001": {
+        "records": 19099,
+        "with_sheet_and_grid": 19099,
+        "A_CONFIRMED": 19030,
+        "with_xy": 13171,
+        "C_AMBIGUOUS": 69
+      },
+      "2002": {
+        "records": 19929,
+        "with_sheet_and_grid": 19929,
+        "A_CONFIRMED": 19873,
+        "with_xy": 14050,
+        "C_AMBIGUOUS": 56
+      },
+      "2003": {
+        "records": 18616,
+        "with_sheet_and_grid": 18616,
+        "A_CONFIRMED": 18542,
+        "with_xy": 12589,
+        "C_AMBIGUOUS": 74
+      },
+      "2004": {
+        "records": 21396,
+        "with_sheet_and_grid": 21396,
+        "A_CONFIRMED": 21256,
+        "with_xy": 15883,
+        "C_AMBIGUOUS": 137,
+        "D_UNUSABLE": 3
+      },
+      "2005": {
+        "records": 25492,
+        "with_sheet_and_grid": 25492,
+        "A_CONFIRMED": 25347,
+        "with_xy": 20140,
+        "C_AMBIGUOUS": 145
+      },
+      "2006": {
+        "records": 16334,
+        "with_sheet_and_grid": 16334,
+        "A_CONFIRMED": 16190,
+        "with_xy": 11988,
+        "D_UNUSABLE": 21,
+        "C_AMBIGUOUS": 123
+      },
+      "2007": {
+        "records": 10936,
+        "with_sheet_and_grid": 10936,
+        "A_CONFIRMED": 10783,
+        "with_xy": 9354,
+        "D_UNUSABLE": 14,
+        "C_AMBIGUOUS": 139
+      },
+      "2008": {
+        "records": 11655,
+        "with_sheet_and_grid": 11655,
+        "A_CONFIRMED": 11507,
+        "with_xy": 9684,
+        "D_UNUSABLE": 15,
+        "C_AMBIGUOUS": 133
+      },
+      "2009": {
+        "records": 15643,
+        "with_sheet_and_grid": 15643,
+        "A_CONFIRMED": 15326,
+        "with_xy": 13853,
+        "D_UNUSABLE": 210,
+        "C_AMBIGUOUS": 107
+      },
+      "2010": {
+        "records": 11721,
+        "with_sheet_and_grid": 11721,
+        "A_CONFIRMED": 10996,
+        "with_xy": 10480,
+        "D_UNUSABLE": 614,
+        "C_AMBIGUOUS": 111
+      },
+      "2011": {
+        "records": 16414,
+        "with_sheet_and_grid": 16414,
+        "A_CONFIRMED": 15932,
+        "with_xy": 15490,
+        "D_UNUSABLE": 393,
+        "C_AMBIGUOUS": 89
+      },
+      "2012": {
+        "records": 15997,
+        "with_sheet_and_grid": 15997,
+        "A_CONFIRMED": 15748,
+        "with_xy": 15925,
+        "D_UNUSABLE": 114,
+        "C_AMBIGUOUS": 135
+      },
+      "2013": {
+        "records": 10797,
+        "with_sheet_and_grid": 10797,
+        "A_CONFIRMED": 10628,
+        "with_xy": 10756,
+        "D_UNUSABLE": 67,
+        "C_AMBIGUOUS": 102
+      },
+      "2014": {
+        "records": 9806,
+        "with_sheet_and_grid": 9806,
+        "A_CONFIRMED": 9736,
+        "with_xy": 9793,
+        "D_UNUSABLE": 10,
+        "C_AMBIGUOUS": 60
+      },
+      "2015": {
+        "records": 11810,
+        "with_sheet_and_grid": 11810,
+        "A_CONFIRMED": 11708,
+        "with_xy": 11799,
+        "D_UNUSABLE": 13,
+        "C_AMBIGUOUS": 89
+      },
+      "2016": {
+        "records": 8749,
+        "with_sheet_and_grid": 8749,
+        "A_CONFIRMED": 8650,
+        "with_xy": 8749,
+        "D_UNUSABLE": 15,
+        "C_AMBIGUOUS": 84
+      },
+      "2017": {
+        "records": 13691,
+        "with_sheet_and_grid": 13691,
+        "A_CONFIRMED": 13614,
+        "with_xy": 13691,
+        "D_UNUSABLE": 2,
+        "C_AMBIGUOUS": 75
+      },
+      "2018": {
+        "records": 7064,
+        "with_sheet_and_grid": 7064,
+        "A_CONFIRMED": 7012,
+        "with_xy": 7064,
+        "C_AMBIGUOUS": 51,
+        "D_UNUSABLE": 1
+      },
+      "2019": {
+        "records": 10826,
+        "with_sheet_and_grid": 10826,
+        "A_CONFIRMED": 10753,
+        "with_xy": 10826,
+        "D_UNUSABLE": 3,
+        "C_AMBIGUOUS": 70
+      },
+      "2020": {
+        "records": 8064,
+        "with_sheet_and_grid": 8064,
+        "A_CONFIRMED": 7996,
+        "with_xy": 8064,
+        "D_UNUSABLE": 3,
+        "C_AMBIGUOUS": 65
+      },
+      "2021": {
+        "records": 8206,
+        "with_sheet_and_grid": 8206,
+        "A_CONFIRMED": 8151,
+        "with_xy": 8206,
+        "C_AMBIGUOUS": 55
+      },
+      "2022": {
+        "records": 8433,
+        "with_sheet_and_grid": 8433,
+        "A_CONFIRMED": 8381,
+        "with_xy": 8433,
+        "D_UNUSABLE": 5,
+        "C_AMBIGUOUS": 47
+      },
+      "2023": {
+        "records": 5223,
+        "with_sheet_and_grid": 5223,
+        "A_CONFIRMED": 5223,
+        "with_xy": 5223
+      }
+    },
+    "by_province": {
+      "1": {
+        "records": 1756,
+        "with_sheet_and_grid": 1756,
+        "A_CONFIRMED": 1749,
+        "D_UNUSABLE": 7
+      },
+      "10": {
+        "records": 24366,
+        "NO_REFERENCE": 222,
+        "with_sheet_and_grid": 24144,
+        "A_CONFIRMED": 24136,
+        "D_UNUSABLE": 8
+      },
+      "11": {
+        "records": 5267,
+        "NO_REFERENCE": 94,
+        "with_sheet_and_grid": 5173,
+        "A_CONFIRMED": 5162,
+        "D_UNUSABLE": 11
+      },
+      "12": {
+        "records": 5773,
+        "NO_REFERENCE": 163,
+        "with_sheet_and_grid": 5610,
+        "A_CONFIRMED": 5609,
+        "D_UNUSABLE": 1
+      },
+      "13": {
+        "records": 4558,
+        "NO_REFERENCE": 136,
+        "with_sheet_and_grid": 4422,
+        "A_CONFIRMED": 4422
+      },
+      "14": {
+        "records": 4619,
+        "NO_REFERENCE": 83,
+        "with_sheet_and_grid": 4536,
+        "A_CONFIRMED": 4534,
+        "D_UNUSABLE": 2
+      },
+      "15": {
+        "records": 61519,
+        "NO_REFERENCE": 1150,
+        "with_sheet_and_grid": 60369,
+        "A_CONFIRMED": 59740,
+        "D_UNUSABLE": 629
+      },
+      "16": {
+        "records": 6830,
+        "NO_REFERENCE": 162,
+        "with_sheet_and_grid": 6668,
+        "A_CONFIRMED": 6668
+      },
+      "17": {
+        "records": 6753,
+        "NO_REFERENCE": 450,
+        "with_sheet_and_grid": 6303,
+        "A_CONFIRMED": 6303
+      },
+      "18": {
+        "records": 4947,
+        "NO_REFERENCE": 88,
+        "with_sheet_and_grid": 4859,
+        "A_CONFIRMED": 4858,
+        "D_UNUSABLE": 1
+      },
+      "19": {
+        "records": 5889,
+        "NO_REFERENCE": 69,
+        "with_sheet_and_grid": 5820,
+        "A_CONFIRMED": 5820
+      },
+      "2": {
+        "records": 3871,
+        "NO_REFERENCE": 59,
+        "with_sheet_and_grid": 3812,
+        "A_CONFIRMED": 3812
+      },
+      "20": {
+        "records": 2870,
+        "NO_REFERENCE": 171,
+        "with_sheet_and_grid": 2699,
+        "A_CONFIRMED": 2699
+      },
+      "21": {
+        "records": 8784,
+        "NO_REFERENCE": 152,
+        "with_sheet_and_grid": 8632,
+        "A_CONFIRMED": 8627,
+        "D_UNUSABLE": 5
+      },
+      "22": {
+        "records": 4576,
+        "NO_REFERENCE": 98,
+        "with_sheet_and_grid": 4478,
+        "A_CONFIRMED": 4478
+      },
+      "23": {
+        "records": 6001,
+        "NO_REFERENCE": 215,
+        "with_sheet_and_grid": 5786,
+        "A_CONFIRMED": 5786
+      },
+      "24": {
+        "records": 23939,
+        "NO_REFERENCE": 587,
+        "with_sheet_and_grid": 23352,
+        "A_CONFIRMED": 23336,
+        "D_UNUSABLE": 16
+      },
+      "25": {
+        "records": 5021,
+        "NO_REFERENCE": 164,
+        "with_sheet_and_grid": 4857,
+        "A_CONFIRMED": 4852,
+        "D_UNUSABLE": 5
+      },
+      "26": {
+        "records": 3996,
+        "NO_REFERENCE": 103,
+        "with_sheet_and_grid": 3893,
+        "A_CONFIRMED": 3889,
+        "D_UNUSABLE": 4
+      },
+      "27": {
+        "records": 39139,
+        "NO_REFERENCE": 592,
+        "with_sheet_and_grid": 38547,
+        "A_CONFIRMED": 38526,
+        "D_UNUSABLE": 21
+      },
+      "28": {
+        "records": 11451,
+        "NO_REFERENCE": 461,
+        "with_sheet_and_grid": 10990,
+        "A_CONFIRMED": 10990
+      },
+      "29": {
+        "records": 7496,
+        "NO_REFERENCE": 299,
+        "with_sheet_and_grid": 7197,
+        "A_CONFIRMED": 7193,
+        "D_UNUSABLE": 4
+      },
+      "3": {
+        "records": 6084,
+        "NO_REFERENCE": 176,
+        "with_sheet_and_grid": 5908,
+        "A_CONFIRMED": 5907,
+        "D_UNUSABLE": 1
+      },
+      "30": {
+        "records": 4642,
+        "NO_REFERENCE": 32,
+        "with_sheet_and_grid": 4610,
+        "A_CONFIRMED": 4608,
+        "D_UNUSABLE": 2
+      },
+      "31": {
+        "records": 9572,
+        "with_sheet_and_grid": 9572,
+        "A_CONFIRMED": 9567,
+        "D_UNUSABLE": 5
+      },
+      "32": {
+        "records": 81943,
+        "NO_REFERENCE": 985,
+        "with_sheet_and_grid": 80958,
+        "A_CONFIRMED": 80832,
+        "D_UNUSABLE": 126
+      },
+      "33": {
+        "records": 54898,
+        "NO_REFERENCE": 580,
+        "with_sheet_and_grid": 54316,
+        "A_CONFIRMED": 54304,
+        "C_AMBIGUOUS": 2,
+        "D_UNUSABLE": 12
+      },
+      "34": {
+        "records": 4804,
+        "NO_REFERENCE": 171,
+        "with_sheet_and_grid": 4633,
+        "A_CONFIRMED": 4629,
+        "D_UNUSABLE": 4
+      },
+      "35": {
+        "records": 1355,
+        "NO_REFERENCE": 17,
+        "with_sheet_and_grid": 1338,
+        "C_AMBIGUOUS": 1338
+      },
+      "36": {
+        "records": 81712,
+        "NO_REFERENCE": 2671,
+        "with_sheet_and_grid": 79041,
+        "A_CONFIRMED": 78494,
+        "D_UNUSABLE": 547
+      },
+      "37": {
+        "records": 8777,
+        "NO_REFERENCE": 70,
+        "with_sheet_and_grid": 8707,
+        "A_CONFIRMED": 8704,
+        "D_UNUSABLE": 3
+      },
+      "38": {
+        "records": 2415,
+        "NO_REFERENCE": 265,
+        "with_sheet_and_grid": 2150,
+        "C_AMBIGUOUS": 2125,
+        "D_UNUSABLE": 25
+      },
+      "39": {
+        "records": 21320,
+        "NO_REFERENCE": 762,
+        "with_sheet_and_grid": 20558,
+        "A_CONFIRMED": 20557,
+        "D_UNUSABLE": 1
+      },
+      "4": {
+        "records": 3379,
+        "NO_REFERENCE": 36,
+        "with_sheet_and_grid": 3343,
+        "A_CONFIRMED": 3338,
+        "D_UNUSABLE": 5
+      },
+      "40": {
+        "records": 2965,
+        "NO_REFERENCE": 28,
+        "with_sheet_and_grid": 2937,
+        "A_CONFIRMED": 2936,
+        "D_UNUSABLE": 1
+      },
+      "41": {
+        "records": 5019,
+        "NO_REFERENCE": 88,
+        "with_sheet_and_grid": 4931,
+        "A_CONFIRMED": 4930,
+        "D_UNUSABLE": 1
+      },
+      "42": {
+        "records": 2910,
+        "NO_REFERENCE": 103,
+        "with_sheet_and_grid": 2807,
+        "A_CONFIRMED": 2807
+      },
+      "43": {
+        "records": 6322,
+        "NO_REFERENCE": 319,
+        "with_sheet_and_grid": 6003,
+        "A_CONFIRMED": 5994,
+        "D_UNUSABLE": 9
+      },
+      "44": {
+        "records": 4469,
+        "NO_REFERENCE": 110,
+        "with_sheet_and_grid": 4359,
+        "A_CONFIRMED": 4358,
+        "D_UNUSABLE": 1
+      },
+      "45": {
+        "records": 7587,
+        "NO_REFERENCE": 52,
+        "with_sheet_and_grid": 7535,
+        "A_CONFIRMED": 7534,
+        "D_UNUSABLE": 1
+      },
+      "46": {
+        "records": 10251,
+        "NO_REFERENCE": 271,
+        "with_sheet_and_grid": 9980,
+        "A_CONFIRMED": 9979,
+        "D_UNUSABLE": 1
+      },
+      "47": {
+        "records": 4014,
+        "NO_REFERENCE": 210,
+        "with_sheet_and_grid": 3804,
+        "D_UNUSABLE": 1,
+        "A_CONFIRMED": 3803
+      },
+      "48": {
+        "records": 2573,
+        "NO_REFERENCE": 3,
+        "with_sheet_and_grid": 2570,
+        "A_CONFIRMED": 2570
+      },
+      "49": {
+        "records": 16902,
+        "NO_REFERENCE": 217,
+        "with_sheet_and_grid": 16685,
+        "A_CONFIRMED": 16684,
+        "D_UNUSABLE": 1
+      },
+      "5": {
+        "records": 8896,
+        "NO_REFERENCE": 295,
+        "with_sheet_and_grid": 8601,
+        "A_CONFIRMED": 8601
+      },
+      "50": {
+        "records": 6149,
+        "NO_REFERENCE": 76,
+        "with_sheet_and_grid": 6073,
+        "A_CONFIRMED": 6065,
+        "D_UNUSABLE": 8
+      },
+      "51": {
+        "records": 22,
+        "with_sheet_and_grid": 22,
+        "D_UNUSABLE": 22
+      },
+      "6": {
+        "records": 11099,
+        "NO_REFERENCE": 95,
+        "with_sheet_and_grid": 11004,
+        "A_CONFIRMED": 10998,
+        "D_UNUSABLE": 6
+      },
+      "7": {
+        "records": 5933,
+        "NO_REFERENCE": 214,
+        "with_sheet_and_grid": 5719,
+        "A_CONFIRMED": 5719
+      },
+      "8": {
+        "records": 13223,
+        "NO_REFERENCE": 1096,
+        "with_sheet_and_grid": 12127,
+        "A_CONFIRMED": 12112,
+        "D_UNUSABLE": 15
+      },
+      "9": {
+        "records": 8231,
+        "NO_REFERENCE": 490,
+        "with_sheet_and_grid": 7741,
+        "A_CONFIRMED": 7738,
+        "D_UNUSABLE": 3
+      }
+    },
+    "by_community": {
+      "1": {
+        "name": "EUSKADI",
+        "records": 7199,
+        "NO_REFERENCE": 174,
+        "with_sheet_and_grid": 7025,
+        "A_CONFIRMED": 7018,
+        "D_UNUSABLE": 7
+      },
+      "2": {
+        "name": "CATALUÑA",
+        "records": 31319,
+        "NO_REFERENCE": 2029,
+        "with_sheet_and_grid": 29290,
+        "A_CONFIRMED": 29261,
+        "D_UNUSABLE": 29
+      },
+      "3": {
+        "name": "GALICIA",
+        "records": 264313,
+        "NO_REFERENCE": 5398,
+        "with_sheet_and_grid": 258915,
+        "A_CONFIRMED": 257592,
+        "D_UNUSABLE": 1323
+      },
+      "4": {
+        "name": "ANDALUCIA",
+        "records": 45512,
+        "NO_REFERENCE": 1055,
+        "with_sheet_and_grid": 44457,
+        "A_CONFIRMED": 44428,
+        "D_UNUSABLE": 29
+      },
+      "5": {
+        "name": "ASTURIAS",
+        "records": 54898,
+        "NO_REFERENCE": 580,
+        "with_sheet_and_grid": 54316,
+        "A_CONFIRMED": 54304,
+        "C_AMBIGUOUS": 2,
+        "D_UNUSABLE": 12
+      },
+      "6": {
+        "name": "CANTABRIA",
+        "records": 21320,
+        "NO_REFERENCE": 762,
+        "with_sheet_and_grid": 20558,
+        "A_CONFIRMED": 20557,
+        "D_UNUSABLE": 1
+      },
+      "7": {
+        "name": "LA RIOJA",
+        "records": 3996,
+        "NO_REFERENCE": 103,
+        "with_sheet_and_grid": 3893,
+        "A_CONFIRMED": 3889,
+        "D_UNUSABLE": 4
+      },
+      "8": {
+        "name": "MURCIA",
+        "records": 4642,
+        "NO_REFERENCE": 32,
+        "with_sheet_and_grid": 4610,
+        "A_CONFIRMED": 4608,
+        "D_UNUSABLE": 2
+      },
+      "9": {
+        "name": "C. VALENCIANA",
+        "records": 22108,
+        "NO_REFERENCE": 610,
+        "with_sheet_and_grid": 21498,
+        "A_CONFIRMED": 21495,
+        "D_UNUSABLE": 3
+      },
+      "10": {
+        "name": "ARAGON",
+        "records": 15194,
+        "NO_REFERENCE": 284,
+        "with_sheet_and_grid": 14910,
+        "A_CONFIRMED": 14901,
+        "D_UNUSABLE": 9
+      },
+      "11": {
+        "name": "CASTILLA-MANCHA",
+        "records": 28735,
+        "NO_REFERENCE": 478,
+        "with_sheet_and_grid": 28257,
+        "A_CONFIRMED": 28256,
+        "D_UNUSABLE": 1
+      },
+      "12": {
+        "name": "CANARIAS",
+        "records": 3770,
+        "NO_REFERENCE": 282,
+        "with_sheet_and_grid": 3488,
+        "C_AMBIGUOUS": 3463,
+        "D_UNUSABLE": 25
+      },
+      "13": {
+        "name": "NAVARRA",
+        "records": 9572,
+        "with_sheet_and_grid": 9572,
+        "A_CONFIRMED": 9567,
+        "D_UNUSABLE": 5
+      },
+      "14": {
+        "name": "EXTREMADURA",
+        "records": 35465,
+        "NO_REFERENCE": 317,
+        "with_sheet_and_grid": 35148,
+        "A_CONFIRMED": 35134,
+        "D_UNUSABLE": 14
+      },
+      "15": {
+        "name": "ILLES BALEARS",
+        "records": 5933,
+        "NO_REFERENCE": 214,
+        "with_sheet_and_grid": 5719,
+        "A_CONFIRMED": 5719
+      },
+      "16": {
+        "name": "MADRID",
+        "records": 11451,
+        "NO_REFERENCE": 461,
+        "with_sheet_and_grid": 10990,
+        "A_CONFIRMED": 10990
+      },
+      "17": {
+        "name": "CASTILLA Y LEON",
+        "records": 81438,
+        "NO_REFERENCE": 2171,
+        "with_sheet_and_grid": 79267,
+        "D_UNUSABLE": 29,
+        "A_CONFIRMED": 79238
+      },
+      "18": {
+        "name": "CEUTA",
+        "records": 22,
+        "with_sheet_and_grid": 22,
+        "D_UNUSABLE": 22
+      }
+    }
+  },
+  "gva_control": {
+    "records": 9175,
+    "NO_REFERENCE": 610,
+    "without_complete_pair": 610,
+    "A_CONFIRMED": 8565,
+    "with_sheet_and_grid": 8565,
+    "unique_complete_references": 270,
+    "unique_exact_matches": 270,
+    "municipality_validation": {
+      "compatible": 5244,
+      "incompatible": 10,
+      "not_tested": 1
+    }
+  },
+  "control_records": {
+    "1990030079": {
+      "label": "Castell de Castells",
+      "pair": "0804:N04",
+      "observed_pair": "0804:N04",
+      "pair_matches_expected": true,
+      "present_in_ccinif": true,
+      "classification": "A_CONFIRMED",
+      "geometry_parts": 1
+    },
+    "1992120403": {
+      "label": "Altura",
+      "pair": "0804:B01",
+      "observed_pair": "0804:B01",
+      "pair_matches_expected": true,
+      "present_in_ccinif": true,
+      "classification": "A_CONFIRMED",
+      "geometry_parts": 1
+    },
+    "1992460250": {
+      "label": "Marines",
+      "pair": "0704:C11",
+      "observed_pair": "0704:C11",
+      "pair_matches_expected": true,
+      "present_in_ccinif": true,
+      "classification": "A_CONFIRMED",
+      "geometry_parts": 1
+    },
+    "1992469001": {
+      "label": "Marines–Altura, municipio no identificado",
+      "pair": "0804:B01",
+      "observed_pair": "0804:B01",
+      "pair_matches_expected": true,
+      "present_in_ccinif": true,
+      "classification": "A_CONFIRMED",
+      "geometry_parts": 1
+    }
+  },
+  "administrative_validation": {
+    "record_counts": {
+      "province_compatible": 626452,
+      "community_compatible": 626779,
+      "province_incompatible": 505,
+      "community_incompatible": 178
+    },
+    "distinct_pair_territory_combinations": {
+      "community_compatible": 5620,
+      "community_incompatible": 78,
+      "province_compatible": 6094,
+      "province_incompatible": 149
+    },
+    "incompatible_examples": {
+      "province_incompatible": [
+        {
+          "record_id": "1978157363",
+          "year": 1978,
+          "pair": "0201:N03",
+          "province": "15"
+        },
+        {
+          "record_id": "1978225610",
+          "year": 1978,
+          "pair": "0802:B11",
+          "province": "22"
+        },
+        {
+          "record_id": "1979153568",
+          "year": 1979,
+          "pair": "0201:N04",
+          "province": "15"
+        },
+        {
+          "record_id": "1979155403",
+          "year": 1979,
+          "pair": "0201:N05",
+          "province": "15"
+        },
+        {
+          "record_id": "1981158854",
+          "year": 1981,
+          "pair": "0201:N05",
+          "province": "15"
+        },
+        {
+          "record_id": "1981198655",
+          "year": 1981,
+          "pair": "0603:C09",
+          "province": "19"
+        },
+        {
+          "record_id": "1982151202",
+          "year": 1982,
+          "pair": "0201:N03",
+          "province": "15"
+        },
+        {
+          "record_id": "1992469001",
+          "year": 1992,
+          "pair": "0804:B01",
+          "province": "46"
+        },
+        {
+          "record_id": "1994469000",
+          "year": 1994,
+          "pair": "0804:B01",
+          "province": "46"
+        },
+        {
+          "record_id": "2004340068",
+          "year": 2004,
+          "pair": "0402:G04",
+          "province": "34"
+        },
+        {
+          "record_id": "2004410061",
+          "year": 2004,
+          "pair": "0406:L01",
+          "province": "41"
+        },
+        {
+          "record_id": "2005040065",
+          "year": 2005,
+          "pair": "0605:E04",
+          "province": "04"
+        },
+        {
+          "record_id": "2005060326",
+          "year": 2005,
+          "pair": "0404:G04",
+          "province": "06"
+        },
+        {
+          "record_id": "2005120146",
+          "year": 2005,
+          "pair": "0704:B01",
+          "province": "12"
+        },
+        {
+          "record_id": "2005140064",
+          "year": 2005,
+          "pair": "0505:A01",
+          "province": "14"
+        },
+        {
+          "record_id": "2005271093",
+          "year": 2005,
+          "pair": "0201:N01",
+          "province": "27"
+        },
+        {
+          "record_id": "2005331353",
+          "year": 2005,
+          "pair": "0302:H04",
+          "province": "33"
+        },
+        {
+          "record_id": "2005338066",
+          "year": 2005,
+          "pair": "0401:K10",
+          "province": "33"
+        },
+        {
+          "record_id": "2005338069",
+          "year": 2005,
+          "pair": "0401:K10",
+          "province": "33"
+        },
+        {
+          "record_id": "2005338125",
+          "year": 2005,
+          "pair": "0302:H04",
+          "province": "33"
+        },
+        {
+          "record_id": "2005339016",
+          "year": 2005,
+          "pair": "0401:K10",
+          "province": "33"
+        },
+        {
+          "record_id": "2005339150",
+          "year": 2005,
+          "pair": "0401:K10",
+          "province": "33"
+        },
+        {
+          "record_id": "2005450245",
+          "year": 2005,
+          "pair": "0404:G05",
+          "province": "45"
+        },
+        {
+          "record_id": "2005470051",
+          "year": 2005,
+          "pair": "0501:K10",
+          "province": "47"
+        },
+        {
+          "record_id": "2006010022",
+          "year": 2006,
+          "pair": "0601:O01",
+          "province": "01"
+        }
+      ],
+      "community_incompatible": [
+        {
+          "record_id": "1978225610",
+          "year": 1978,
+          "pair": "0802:B11",
+          "community": "10"
+        },
+        {
+          "record_id": "1981198655",
+          "year": 1981,
+          "pair": "0603:C09",
+          "community": "11"
+        },
+        {
+          "record_id": "2005120146",
+          "year": 2005,
+          "pair": "0704:B01",
+          "community": "9"
+        },
+        {
+          "record_id": "2005140064",
+          "year": 2005,
+          "pair": "0505:A01",
+          "community": "4"
+        },
+        {
+          "record_id": "2005331353",
+          "year": 2005,
+          "pair": "0302:H04",
+          "community": "5"
+        },
+        {
+          "record_id": "2005338066",
+          "year": 2005,
+          "pair": "0401:K10",
+          "community": "5"
+        },
+        {
+          "record_id": "2005338069",
+          "year": 2005,
+          "pair": "0401:K10",
+          "community": "5"
+        },
+        {
+          "record_id": "2005338125",
+          "year": 2005,
+          "pair": "0302:H04",
+          "community": "5"
+        },
+        {
+          "record_id": "2005339016",
+          "year": 2005,
+          "pair": "0401:K10",
+          "community": "5"
+        },
+        {
+          "record_id": "2005339150",
+          "year": 2005,
+          "pair": "0401:K10",
+          "community": "5"
+        },
+        {
+          "record_id": "2005450245",
+          "year": 2005,
+          "pair": "0404:G05",
+          "community": "11"
+        },
+        {
+          "record_id": "2006010022",
+          "year": 2006,
+          "pair": "0601:O01",
+          "community": "1"
+        },
+        {
+          "record_id": "2006160373",
+          "year": 2006,
+          "pair": "0603:B11",
+          "community": "11"
+        },
+        {
+          "record_id": "2006320097",
+          "year": 2006,
+          "pair": "0302:D11",
+          "community": "3"
+        },
+        {
+          "record_id": "2006320112",
+          "year": 2006,
+          "pair": "0302:D11",
+          "community": "3"
+        },
+        {
+          "record_id": "2006320115",
+          "year": 2006,
+          "pair": "0302:D11",
+          "community": "3"
+        },
+        {
+          "record_id": "2006320133",
+          "year": 2006,
+          "pair": "0302:D11",
+          "community": "3"
+        },
+        {
+          "record_id": "2006320284",
+          "year": 2006,
+          "pair": "0302:D11",
+          "community": "3"
+        },
+        {
+          "record_id": "2006320399",
+          "year": 2006,
+          "pair": "0302:D11",
+          "community": "3"
+        },
+        {
+          "record_id": "2006320483",
+          "year": 2006,
+          "pair": "0302:D11",
+          "community": "3"
+        },
+        {
+          "record_id": "2006320709",
+          "year": 2006,
+          "pair": "0302:D11",
+          "community": "3"
+        },
+        {
+          "record_id": "2006320857",
+          "year": 2006,
+          "pair": "0302:D11",
+          "community": "3"
+        },
+        {
+          "record_id": "2006320958",
+          "year": 2006,
+          "pair": "0302:D11",
+          "community": "3"
+        },
+        {
+          "record_id": "2006321304",
+          "year": 2006,
+          "pair": "0302:D11",
+          "community": "3"
+        },
+        {
+          "record_id": "2006321575",
+          "year": 2006,
+          "pair": "0302:D11",
+          "community": "3"
+        }
+      ],
+      "gva_municipality_incompatible": [
+        {
+          "record_id": "1983121002",
+          "year": 1983,
+          "pair": "0803:N02",
+          "municipality_id": "12113"
+        },
+        {
+          "record_id": "1983121010",
+          "year": 1983,
+          "pair": "0803:H03",
+          "municipality_id": "12045"
+        },
+        {
+          "record_id": "1983121011",
+          "year": 1983,
+          "pair": "0803:M05",
+          "municipality_id": "12128"
+        },
+        {
+          "record_id": "1983121020",
+          "year": 1983,
+          "pair": "0803:N02",
+          "municipality_id": "12113"
+        },
+        {
+          "record_id": "1984123185",
+          "year": 1984,
+          "pair": "0804:B02",
+          "municipality_id": "12104"
+        },
+        {
+          "record_id": "1991120070",
+          "year": 1991,
+          "pair": "0803:I07",
+          "municipality_id": "12070"
+        },
+        {
+          "record_id": "1991120124",
+          "year": 1991,
+          "pair": "0803:M05",
+          "municipality_id": "12128"
+        },
+        {
+          "record_id": "1991120149",
+          "year": 1991,
+          "pair": "0803:I07",
+          "municipality_id": "12070"
+        },
+        {
+          "record_id": "1991120219",
+          "year": 1991,
+          "pair": "0804:B02",
+          "municipality_id": "12104"
+        },
+        {
+          "record_id": "1991120220",
+          "year": 1991,
+          "pair": "0803:I07",
+          "municipality_id": "12070"
+        }
+      ]
+    },
+    "interpretation": "independent compatibility check; incompatibility is retained as an anomaly and never used to alter source values"
+  },
+  "temporal_coverage": {
+    "first_year_with_complete_sheet_grid": 1968,
+    "last_year_with_complete_sheet_grid": 2023,
+    "first_year_with_exact_ccinif_match": 1974,
+    "last_year_with_exact_ccinif_match": 2023,
+    "first_year_with_xy": 1998,
+    "last_year_with_xy": 2023,
+    "by_year": [
+      {
+        "year": 1968,
+        "records": 2038,
+        "complete_sheet_grid": 1,
+        "complete_sheet_grid_percent": 0.049,
+        "exact_match": 0,
+        "xy": 0
+      },
+      {
+        "year": 1969,
+        "records": 1442,
+        "complete_sheet_grid": 0,
+        "complete_sheet_grid_percent": 0.0,
+        "exact_match": 0,
+        "xy": 0
+      },
+      {
+        "year": 1970,
+        "records": 3155,
+        "complete_sheet_grid": 0,
+        "complete_sheet_grid_percent": 0.0,
+        "exact_match": 0,
+        "xy": 0
+      },
+      {
+        "year": 1971,
+        "records": 1665,
+        "complete_sheet_grid": 0,
+        "complete_sheet_grid_percent": 0.0,
+        "exact_match": 0,
+        "xy": 0
+      },
+      {
+        "year": 1972,
+        "records": 2093,
+        "complete_sheet_grid": 0,
+        "complete_sheet_grid_percent": 0.0,
+        "exact_match": 0,
+        "xy": 0
+      },
+      {
+        "year": 1973,
+        "records": 3724,
+        "complete_sheet_grid": 0,
+        "complete_sheet_grid_percent": 0.0,
+        "exact_match": 0,
+        "xy": 0
+      },
+      {
+        "year": 1974,
+        "records": 3920,
+        "complete_sheet_grid": 3702,
+        "complete_sheet_grid_percent": 94.439,
+        "exact_match": 3655,
+        "xy": 0
+      },
+      {
+        "year": 1975,
+        "records": 4128,
+        "complete_sheet_grid": 4018,
+        "complete_sheet_grid_percent": 97.335,
+        "exact_match": 3968,
+        "xy": 0
+      },
+      {
+        "year": 1976,
+        "records": 4356,
+        "complete_sheet_grid": 4285,
+        "complete_sheet_grid_percent": 98.37,
+        "exact_match": 4278,
+        "xy": 0
+      },
+      {
+        "year": 1977,
+        "records": 2064,
+        "complete_sheet_grid": 2026,
+        "complete_sheet_grid_percent": 98.159,
+        "exact_match": 2020,
+        "xy": 0
+      },
+      {
+        "year": 1978,
+        "records": 8193,
+        "complete_sheet_grid": 8101,
+        "complete_sheet_grid_percent": 98.877,
+        "exact_match": 8046,
+        "xy": 0
+      },
+      {
+        "year": 1979,
+        "records": 6189,
+        "complete_sheet_grid": 6094,
+        "complete_sheet_grid_percent": 98.465,
+        "exact_match": 6082,
+        "xy": 0
+      },
+      {
+        "year": 1980,
+        "records": 7075,
+        "complete_sheet_grid": 7007,
+        "complete_sheet_grid_percent": 99.039,
+        "exact_match": 6986,
+        "xy": 0
+      },
+      {
+        "year": 1981,
+        "records": 10688,
+        "complete_sheet_grid": 10586,
+        "complete_sheet_grid_percent": 99.046,
+        "exact_match": 10522,
+        "xy": 0
+      },
+      {
+        "year": 1982,
+        "records": 6308,
+        "complete_sheet_grid": 6267,
+        "complete_sheet_grid_percent": 99.35,
+        "exact_match": 6234,
+        "xy": 0
+      },
+      {
+        "year": 1983,
+        "records": 4736,
+        "complete_sheet_grid": 4736,
+        "complete_sheet_grid_percent": 100.0,
+        "exact_match": 4637,
+        "xy": 0
+      },
+      {
+        "year": 1984,
+        "records": 7073,
+        "complete_sheet_grid": 7073,
+        "complete_sheet_grid_percent": 100.0,
+        "exact_match": 7002,
+        "xy": 0
+      },
+      {
+        "year": 1985,
+        "records": 12235,
+        "complete_sheet_grid": 12235,
+        "complete_sheet_grid_percent": 100.0,
+        "exact_match": 12185,
+        "xy": 0
+      },
+      {
+        "year": 1986,
+        "records": 7514,
+        "complete_sheet_grid": 7514,
+        "complete_sheet_grid_percent": 100.0,
+        "exact_match": 7441,
+        "xy": 0
+      },
+      {
+        "year": 1987,
+        "records": 8816,
+        "complete_sheet_grid": 8816,
+        "complete_sheet_grid_percent": 100.0,
+        "exact_match": 8758,
+        "xy": 0
+      },
+      {
+        "year": 1988,
+        "records": 9440,
+        "complete_sheet_grid": 9440,
+        "complete_sheet_grid_percent": 100.0,
+        "exact_match": 9354,
+        "xy": 0
+      },
+      {
+        "year": 1989,
+        "records": 20250,
+        "complete_sheet_grid": 20250,
+        "complete_sheet_grid_percent": 100.0,
+        "exact_match": 20207,
+        "xy": 0
+      },
+      {
+        "year": 1990,
+        "records": 12914,
+        "complete_sheet_grid": 12914,
+        "complete_sheet_grid_percent": 100.0,
+        "exact_match": 12883,
+        "xy": 0
+      },
+      {
+        "year": 1991,
+        "records": 13529,
+        "complete_sheet_grid": 13529,
+        "complete_sheet_grid_percent": 100.0,
+        "exact_match": 13449,
+        "xy": 0
+      },
+      {
+        "year": 1992,
+        "records": 15956,
+        "complete_sheet_grid": 15956,
+        "complete_sheet_grid_percent": 100.0,
+        "exact_match": 15891,
+        "xy": 0
+      },
+      {
+        "year": 1993,
+        "records": 14253,
+        "complete_sheet_grid": 14253,
+        "complete_sheet_grid_percent": 100.0,
+        "exact_match": 14196,
+        "xy": 0
+      },
+      {
+        "year": 1994,
+        "records": 19249,
+        "complete_sheet_grid": 19248,
+        "complete_sheet_grid_percent": 99.995,
+        "exact_match": 19152,
+        "xy": 0
+      },
+      {
+        "year": 1995,
+        "records": 25557,
+        "complete_sheet_grid": 25557,
+        "complete_sheet_grid_percent": 100.0,
+        "exact_match": 25498,
+        "xy": 0
+      },
+      {
+        "year": 1996,
+        "records": 16586,
+        "complete_sheet_grid": 16586,
+        "complete_sheet_grid_percent": 100.0,
+        "exact_match": 16570,
+        "xy": 0
+      },
+      {
+        "year": 1997,
+        "records": 22320,
+        "complete_sheet_grid": 22320,
+        "complete_sheet_grid_percent": 100.0,
+        "exact_match": 22265,
+        "xy": 0
+      },
+      {
+        "year": 1998,
+        "records": 22003,
+        "complete_sheet_grid": 22003,
+        "complete_sheet_grid_percent": 100.0,
+        "exact_match": 21923,
+        "xy": 1713
+      },
+      {
+        "year": 1999,
+        "records": 17943,
+        "complete_sheet_grid": 17943,
+        "complete_sheet_grid_percent": 100.0,
+        "exact_match": 17882,
+        "xy": 9982
+      },
+      {
+        "year": 2000,
+        "records": 23574,
+        "complete_sheet_grid": 23574,
+        "complete_sheet_grid_percent": 100.0,
+        "exact_match": 23491,
+        "xy": 15541
+      },
+      {
+        "year": 2001,
+        "records": 19099,
+        "complete_sheet_grid": 19099,
+        "complete_sheet_grid_percent": 100.0,
+        "exact_match": 19030,
+        "xy": 13171
+      },
+      {
+        "year": 2002,
+        "records": 19929,
+        "complete_sheet_grid": 19929,
+        "complete_sheet_grid_percent": 100.0,
+        "exact_match": 19873,
+        "xy": 14050
+      },
+      {
+        "year": 2003,
+        "records": 18616,
+        "complete_sheet_grid": 18616,
+        "complete_sheet_grid_percent": 100.0,
+        "exact_match": 18542,
+        "xy": 12589
+      },
+      {
+        "year": 2004,
+        "records": 21396,
+        "complete_sheet_grid": 21396,
+        "complete_sheet_grid_percent": 100.0,
+        "exact_match": 21256,
+        "xy": 15883
+      },
+      {
+        "year": 2005,
+        "records": 25492,
+        "complete_sheet_grid": 25492,
+        "complete_sheet_grid_percent": 100.0,
+        "exact_match": 25347,
+        "xy": 20140
+      },
+      {
+        "year": 2006,
+        "records": 16334,
+        "complete_sheet_grid": 16334,
+        "complete_sheet_grid_percent": 100.0,
+        "exact_match": 16190,
+        "xy": 11988
+      },
+      {
+        "year": 2007,
+        "records": 10936,
+        "complete_sheet_grid": 10936,
+        "complete_sheet_grid_percent": 100.0,
+        "exact_match": 10783,
+        "xy": 9354
+      },
+      {
+        "year": 2008,
+        "records": 11655,
+        "complete_sheet_grid": 11655,
+        "complete_sheet_grid_percent": 100.0,
+        "exact_match": 11507,
+        "xy": 9684
+      },
+      {
+        "year": 2009,
+        "records": 15643,
+        "complete_sheet_grid": 15643,
+        "complete_sheet_grid_percent": 100.0,
+        "exact_match": 15326,
+        "xy": 13853
+      },
+      {
+        "year": 2010,
+        "records": 11721,
+        "complete_sheet_grid": 11721,
+        "complete_sheet_grid_percent": 100.0,
+        "exact_match": 10996,
+        "xy": 10480
+      },
+      {
+        "year": 2011,
+        "records": 16414,
+        "complete_sheet_grid": 16414,
+        "complete_sheet_grid_percent": 100.0,
+        "exact_match": 15932,
+        "xy": 15490
+      },
+      {
+        "year": 2012,
+        "records": 15997,
+        "complete_sheet_grid": 15997,
+        "complete_sheet_grid_percent": 100.0,
+        "exact_match": 15748,
+        "xy": 15925
+      },
+      {
+        "year": 2013,
+        "records": 10797,
+        "complete_sheet_grid": 10797,
+        "complete_sheet_grid_percent": 100.0,
+        "exact_match": 10628,
+        "xy": 10756
+      },
+      {
+        "year": 2014,
+        "records": 9806,
+        "complete_sheet_grid": 9806,
+        "complete_sheet_grid_percent": 100.0,
+        "exact_match": 9736,
+        "xy": 9793
+      },
+      {
+        "year": 2015,
+        "records": 11810,
+        "complete_sheet_grid": 11810,
+        "complete_sheet_grid_percent": 100.0,
+        "exact_match": 11708,
+        "xy": 11799
+      },
+      {
+        "year": 2016,
+        "records": 8749,
+        "complete_sheet_grid": 8749,
+        "complete_sheet_grid_percent": 100.0,
+        "exact_match": 8650,
+        "xy": 8749
+      },
+      {
+        "year": 2017,
+        "records": 13691,
+        "complete_sheet_grid": 13691,
+        "complete_sheet_grid_percent": 100.0,
+        "exact_match": 13614,
+        "xy": 13691
+      },
+      {
+        "year": 2018,
+        "records": 7064,
+        "complete_sheet_grid": 7064,
+        "complete_sheet_grid_percent": 100.0,
+        "exact_match": 7012,
+        "xy": 7064
+      },
+      {
+        "year": 2019,
+        "records": 10826,
+        "complete_sheet_grid": 10826,
+        "complete_sheet_grid_percent": 100.0,
+        "exact_match": 10753,
+        "xy": 10826
+      },
+      {
+        "year": 2020,
+        "records": 8064,
+        "complete_sheet_grid": 8064,
+        "complete_sheet_grid_percent": 100.0,
+        "exact_match": 7996,
+        "xy": 8064
+      },
+      {
+        "year": 2021,
+        "records": 8206,
+        "complete_sheet_grid": 8206,
+        "complete_sheet_grid_percent": 100.0,
+        "exact_match": 8151,
+        "xy": 8206
+      },
+      {
+        "year": 2022,
+        "records": 8433,
+        "complete_sheet_grid": 8433,
+        "complete_sheet_grid_percent": 100.0,
+        "exact_match": 8381,
+        "xy": 8433
+      },
+      {
+        "year": 2023,
+        "records": 5223,
+        "complete_sheet_grid": 5223,
+        "complete_sheet_grid_percent": 100.0,
+        "exact_match": 5223,
+        "xy": 5223
+      }
+    ]
+  },
+  "grid_auxiliary_field_validation": {
+    "kml_crs": "OGC KML 2.2 longitude/latitude/altitude (WGS 84 semantics)",
+    "huso_on_keyed_parts": {
+      "29": 1089,
+      "30": 3674,
+      "31": 1300
+    },
+    "cutm10_composition_check": {
+      "exact_composition": 6059,
+      "different_composition": 4,
+      "blank": 4
+    },
+    "full_nominal_100km2_parts": 3359,
+    "zero_area_attribute_parts": 4,
+    "xy_to_kml_centroid_diagnostic": {
+      "ETRS89": {
+        "samples": 3359,
+        "median_m": 76.47,
+        "p95_m": 85.669,
+        "maximum_m": 88.081
+      },
+      "ED50": {
+        "samples": 3359,
+        "median_m": 171.394,
+        "p95_m": 182.06,
+        "maximum_m": 186.61
+      }
+    },
+    "interpretation": "For complete nominal squares, auxiliary X/Y centroids are closer to ETRS89 UTM than ED50 UTM, but the asset does not state an original datum. KML geometry remains authoritative; no grid is regenerated from X/Y.",
+    "canary_islands": "157 polygon parts in CUADcanarias have local labels but no HOJA, HUSO, CUTM10 or other description fields; they cannot support exact EGIF links."
+  },
+  "multiple_part_cells": {
+    "cells": 118,
+    "by_intersected_autonomous_community": {
+      "01": {
+        "name": "Andalucía",
+        "cells": 13
+      },
+      "03": {
+        "name": "Principado de Asturias",
+        "cells": 3
+      },
+      "04": {
+        "name": "Illes Balears",
+        "cells": 62
+      },
+      "06": {
+        "name": "Cantabria",
+        "cells": 4
+      },
+      "07": {
+        "name": "Castilla y León",
+        "cells": 4
+      },
+      "09": {
+        "name": "Cataluña/Catalunya",
+        "cells": 2
+      },
+      "10": {
+        "name": "Comunitat Valenciana",
+        "cells": 4
+      },
+      "11": {
+        "name": "Extremadura",
+        "cells": 2
+      },
+      "12": {
+        "name": "Galicia",
+        "cells": 20
+      },
+      "14": {
+        "name": "Región de Murcia",
+        "cells": 2
+      },
+      "15": {
+        "name": "Comunidad Foral de Navarra",
+        "cells": 2
+      },
+      "16": {
+        "name": "País Vasco/Euskadi",
+        "cells": 2
+      },
+      "20": {
+        "name": "Territorios no asociados a ninguna autonomía",
+        "cells": 2
+      }
+    },
+    "largest": [
+      {
+        "pair": "0904:F06",
+        "parts": 46,
+        "communities": [
+          {
+            "code": "04",
+            "name": "Illes Balears"
+          }
+        ]
+      },
+      {
+        "pair": "1004:J07",
+        "parts": 41,
+        "communities": [
+          {
+            "code": "04",
+            "name": "Illes Balears"
+          }
+        ]
+      },
+      {
+        "pair": "1004:D04",
+        "parts": 39,
+        "communities": [
+          {
+            "code": "04",
+            "name": "Illes Balears"
+          }
+        ]
+      },
+      {
+        "pair": "1103:I08",
+        "parts": 37,
+        "communities": [
+          {
+            "code": "04",
+            "name": "Illes Balears"
+          }
+        ]
+      },
+      {
+        "pair": "0904:C06",
+        "parts": 33,
+        "communities": [
+          {
+            "code": "04",
+            "name": "Illes Balears"
+          }
+        ]
+      },
+      {
+        "pair": "0904:G06",
+        "parts": 33,
+        "communities": [
+          {
+            "code": "04",
+            "name": "Illes Balears"
+          }
+        ]
+      },
+      {
+        "pair": "1103:G06",
+        "parts": 33,
+        "communities": [
+          {
+            "code": "04",
+            "name": "Illes Balears"
+          }
+        ]
+      },
+      {
+        "pair": "0904:D04",
+        "parts": 32,
+        "communities": [
+          {
+            "code": "04",
+            "name": "Illes Balears"
+          }
+        ]
+      },
+      {
+        "pair": "0904:E04",
+        "parts": 28,
+        "communities": [
+          {
+            "code": "04",
+            "name": "Illes Balears"
+          }
+        ]
+      },
+      {
+        "pair": "1103:H07",
+        "parts": 28,
+        "communities": [
+          {
+            "code": "04",
+            "name": "Illes Balears"
+          }
+        ]
+      },
+      {
+        "pair": "0904:E06",
+        "parts": 27,
+        "communities": [
+          {
+            "code": "04",
+            "name": "Illes Balears"
+          }
+        ]
+      },
+      {
+        "pair": "0904:C07",
+        "parts": 26,
+        "communities": [
+          {
+            "code": "04",
+            "name": "Illes Balears"
+          }
+        ]
+      },
+      {
+        "pair": "1103:G05",
+        "parts": 22,
+        "communities": [
+          {
+            "code": "04",
+            "name": "Illes Balears"
+          }
+        ]
+      },
+      {
+        "pair": "1004:E03",
+        "parts": 19,
+        "communities": [
+          {
+            "code": "04",
+            "name": "Illes Balears"
+          }
+        ]
+      },
+      {
+        "pair": "1103:G07",
+        "parts": 18,
+        "communities": [
+          {
+            "code": "04",
+            "name": "Illes Balears"
+          }
+        ]
+      },
+      {
+        "pair": "1004:G05",
+        "parts": 14,
+        "communities": [
+          {
+            "code": "04",
+            "name": "Illes Balears"
+          }
+        ]
+      },
+      {
+        "pair": "1103:G04",
+        "parts": 14,
+        "communities": [
+          {
+            "code": "04",
+            "name": "Illes Balears"
+          }
+        ]
+      },
+      {
+        "pair": "1103:J07",
+        "parts": 14,
+        "communities": [
+          {
+            "code": "04",
+            "name": "Illes Balears"
+          }
+        ]
+      },
+      {
+        "pair": "0904:D07",
+        "parts": 13,
+        "communities": [
+          {
+            "code": "04",
+            "name": "Illes Balears"
+          }
+        ]
+      },
+      {
+        "pair": "1004:D03",
+        "parts": 12,
+        "communities": [
+          {
+            "code": "04",
+            "name": "Illes Balears"
+          }
+        ]
+      },
+      {
+        "pair": "1004:H08",
+        "parts": 12,
+        "communities": [
+          {
+            "code": "04",
+            "name": "Illes Balears"
+          }
+        ]
+      },
+      {
+        "pair": "0904:C05",
+        "parts": 11,
+        "communities": [
+          {
+            "code": "04",
+            "name": "Illes Balears"
+          }
+        ]
+      },
+      {
+        "pair": "1004:A09",
+        "parts": 11,
+        "communities": [
+          {
+            "code": "04",
+            "name": "Illes Balears"
+          }
+        ]
+      },
+      {
+        "pair": "1004:B07",
+        "parts": 11,
+        "communities": [
+          {
+            "code": "04",
+            "name": "Illes Balears"
+          }
+        ]
+      },
+      {
+        "pair": "1004:B09",
+        "parts": 11,
+        "communities": [
+          {
+            "code": "04",
+            "name": "Illes Balears"
+          }
+        ]
+      },
+      {
+        "pair": "1004:F03",
+        "parts": 11,
+        "communities": [
+          {
+            "code": "04",
+            "name": "Illes Balears"
+          }
+        ]
+      },
+      {
+        "pair": "1004:F04",
+        "parts": 11,
+        "communities": [
+          {
+            "code": "04",
+            "name": "Illes Balears"
+          }
+        ]
+      },
+      {
+        "pair": "1004:A08",
+        "parts": 9,
+        "communities": [
+          {
+            "code": "04",
+            "name": "Illes Balears"
+          }
+        ]
+      },
+      {
+        "pair": "1103:I04",
+        "parts": 9,
+        "communities": [
+          {
+            "code": "04",
+            "name": "Illes Balears"
+          }
+        ]
+      },
+      {
+        "pair": "0904:B07",
+        "parts": 8,
+        "communities": [
+          {
+            "code": "04",
+            "name": "Illes Balears"
+          }
+        ]
+      }
+    ],
+    "semantics": "multiple KML polygons retained as geometry parts of one HOJA+CUAD cell"
+  },
+  "future_web_estimate": {
+    "unique_cells": 5183,
+    "geometry_parts": 5941,
+    "vertices": 73335,
+    "grid_geojson_raw_bytes": 3441963,
+    "grid_geojson_gzip_bytes": 881459,
+    "relations": 626957,
+    "relation_json_raw_bytes": 23824367,
+    "relation_json_gzip_bytes": 2442355
+  },
+  "semantics": {
+    "egif_geometry": null,
+    "reference_entity": "historical_grid_cell",
+    "relation": "EGIF source record -> historical_grid_cell",
+    "prohibited_interpretations": [
+      "grid cell as fire perimeter",
+      "grid cell area as burned area",
+      "point containment as recurrence",
+      "grid cell as exact fire location"
+    ]
+  },
+  "full_ignored_audit": "data/derived/spain/es1_5/ccinif_grid_audit.json"
+}

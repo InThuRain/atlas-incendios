@@ -430,6 +430,27 @@ teselas vectoriales/PMTiles; ES-1 no decide todavía renderer ni modifica el
 frontend. Manifests, IDs legacy y guard de publicación deberán generalizarse
 sin romper los permalinks valencianos.
 
+## 2026-08-26 — Malla CCINIF como referencia espacial nacional independiente
+
+La malla histórica entregada por CCINIF se modelará como entidades
+`historical_grid_cell` únicas y relaciones parte EGIF→celda. Un enlace solo es
+`A_CONFIRMED` cuando `HOJA+CUAD` coincide exactamente con una clave del activo;
+no se aplican similitud, relleno de ceros ni selección por municipio. La celda
+no ocupa `fire_geometry` y EGIF conserva `geometry=null`.
+
+**Motivo:** ES-1.5 enlaza exactamente 626.957 de 646.887 partes a 5.183 celdas
+distintas. Los 270 pares valencianos quedan confirmados, pero Canarias contiene
+157 fragmentos sin `HOJA`, incompatibles con un cruce inequívoco. Además, una
+celda puede tener hasta 46 fragmentos y cruzar varios territorios.
+
+**Consecuencias:** ES-2 debe separar registros, geometrías de incendio,
+referencias espaciales y relaciones territoriales. Una futura capa publicaría
+celdas únicas más relaciones, con simbología y texto que impidan confundirlas
+con perímetros o recurrencia. El guard de publicación la excluirá mientras
+CCINIF no confirme licencia, transformaciones y atribución; las condiciones
+generales de MITECO no se presumen suficientes para la cartografía militar
+incorporada.
+
 ## Plantilla para nuevas decisiones
 
 ```markdown

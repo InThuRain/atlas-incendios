@@ -50,11 +50,11 @@ Objetivo: tener un piloto local fiable y agradable de usar.
   valores `0704`/`0804` son compatibles con la serie 5L 1:250.000. No se ha
   localizado el activo, su CRS ni la clave `A01`–`O12`; se preparan consultas,
   sin enviarlas, y no se crean geometrías.
-- [ ] Enviar, tras revisión humana, las consultas de CV-3.6 a MITECO/ADCIF y al
-  Banco de Datos de la Naturaleza, Centro Geográfico del Ejército e IGN-CNIG
-  para localizar `Hc250LL` o su sucesora, el `.csf`, el patrón ICONA, una tabla
-  `HOJA+CUAD`/`COD250` a límites o `COD_INB` y el historial de recodificación;
-  revisar la evidencia antes de cualquier promoción a `A_CONFIRMED`.
+- [x] Resolver la clave operativa mediante entrega directa de CCINIF: ES-1.5
+  recibe y audita `HOJAS.kmz`/`CUADRICULAS.kmz` y permite relaciones exactas
+  `HOJA+CUAD`→celda. La posible genealogía con `Hc250LL`, `.csf` o `COD_INB`
+  queda como contexto histórico, no como requisito para usar el activo oficial
+  recibido. La licencia de redistribución sigue pendiente por separado.
 - [ ] Completar la transcripción y contraste controlado de los anuarios
   definitivos 1968–1991; el OCR de CV-3.2 solo localiza tablas candidatas.
 - [ ] Auditar identidad de episodios multiparte, empezando por Marines–Altura
@@ -116,6 +116,15 @@ Objetivo: tener un piloto local fiable y agradable de usar.
 - [x] ES-1: auditar viabilidad nacional sin modificar el piloto; contar
   646.887 partes EGIF expuestos para 1968–2023, medir los 119.498 polígonos
   ESFire30, inventariar fuentes oficiales de 19 territorios y proponer ES-v1.
+- [x] ES-1.5: auditar la malla histórica entregada por CCINIF. El cruce exacto
+  enlaza 626.957 partes a 5.183 celdas oficiales distintas; los 270 pares
+  valencianos quedan confirmados. Las celdas son referencias documentales,
+  nunca perímetros, y permanecen fuera de publicación.
+- [ ] Obtener de CCINIF permiso escrito y atribución para redistribuir una
+  selección GeoJSON/derivada de la malla; mantener
+  `publishable=false_pending_permission` hasta entonces.
+- [ ] Auditar con CCINIF la ausencia de `HOJA` en `CUADcanarias` antes de
+  intentar resolver los 3.463 partes que quedan `C_AMBIGUOUS`.
 - [ ] Obtener EGIF en formato procesable.
 - [ ] Diseñar identificador estable `fire_id`.
 - [ ] Crear tabla nacional `fires`.

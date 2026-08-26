@@ -14,9 +14,15 @@ data/processed/recent/gva/
 # Snapshot XML EGIF 1968-1992 y normalizados históricos reproducibles.
 # Mantener locales hasta revisar el resultado de CV-3.2 y su publicación.
 data/raw/egif/gva/
+data/raw/egif/spain/
 data/processed/egif/gva/
 data/raw/esfire30/
 data/processed/esfire30/
+
+# Entrega directa CCINIF de la malla histórica EGIF. Licencia de
+# redistribución pendiente; conservar originales y diagnósticos solo en local.
+data/raw/ccinif/
+data/derived/spain/es1_5/
 
 # Salidas reproducibles con atributos y geometría ICV original.
 data/processed/gva/*.jsonl

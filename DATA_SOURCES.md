@@ -154,14 +154,43 @@ ni el `.csf` creado en el proyecto. La malla actual de MITECO/BDN conserva un
 campo `COD_INB` ED50 H30 y documenta una migración desde una malla antigua
 ED50, pero no contiene `HOJA`/`CUAD` ni demuestra ser sucesora de `Hc250LL`.
 
-Los 8.565 pares siguen en `B_PROBABLE`, ninguno alcanza `A_CONFIRMED` y no se
-ha generado geometría.
+Los 8.565 pares seguían en `B_PROBABLE` al cierre de CV-3.6b y no se generó
+geometría. Esta conclusión queda superada, para el enlace documental, por la
+entrega directa de la malla oficial auditada en ES-1.5; la geometría de
+incendio continúa siendo `null`.
 
 La evidencia, discrepancia y documentos concretos pendientes se recogen en
 `CV_3_6_EGIF_CARTOGRAPHIC_KEY_RESEARCH.md`. Las consultas no enviadas para
 MITECO/ADCIF y CEGET/IGN-CNIG están en `CV_3_6_RESEARCH_CONTACT_PACKET.md`.
 La búsqueda del activo y la corrección de numeración se detallan en
 `CV_3_6B_HISTORICAL_GRID_ASSET_SEARCH.md`.
+
+### Malla histórica oficial CCINIF (ES-1.5)
+
+El 26/08/2026 CCINIF/MITECO entregó directamente `HOJAS.kmz` y
+`CUADRICULAS.kmz` y confirmó que son las referencias históricas basadas en la
+Cartografía Militar de España 1:250.000 y cuadrículas nominales de 10 × 10 km
+conservadas en EGIF por continuidad desde 1968. Los activos raw permanecen
+ignorados y sus checksums se fijan en
+`data/sources/ccinif_historical_grid_manifest.json`.
+
+El cruce nacional exacto de 646.887 partes 1968–2023 obtiene 626.957 enlaces
+`A_CONFIRMED` a 5.183 celdas distintas. A significa únicamente que el par
+`HOJA+CUAD` apunta sin ambigüedad a la geometría documental entregada; no
+convierte la celda en perímetro, superficie quemada, ubicación exacta o
+episodio. Canarias conserva 157 fragmentos sin `HOJA`: 3.463 partes quedan
+`C_AMBIGUOUS`, no se fuerzan mediante municipio o semejanza.
+
+Para el País Valencià, los 270 pares de CV-3.5 aparecen exactamente: 8.565
+partes pasan a A como referencias y 610 siguen sin referencia. Los partes EGIF
+mantienen `geometry=null`.
+
+La licencia de redistribución de los KMZ o derivados no se incluyó en la
+entrega. Aunque MITECO publica condiciones generales de reutilización, la
+procedencia cartográfica militar aconseja confirmación específica. La fuente se
+mantiene `publishable=false` / `false_pending_permission`. La auditoría,
+restricciones y consulta propuesta están en
+`ES_1_5_CCINIF_HISTORICAL_GRID_AUDIT.md`.
 
 ### Inventario de perímetros históricos CV-4.1
 
