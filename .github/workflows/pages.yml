@@ -41,6 +41,7 @@ jobs:
           python scripts/validate_frontend_assets.py
           python scripts/validate_recent_frontend_assets.py --public-only
           python scripts/validate_egif_frontend_assets.py
+          python scripts/validate_esfire30_frontend_assets.py
           python - <<'PY'
           import json
           manifest = json.load(open('data/web/gva/manifest.json', encoding='utf-8'))

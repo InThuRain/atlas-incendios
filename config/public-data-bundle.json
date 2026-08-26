@@ -2,21 +2,22 @@
   "schema_version": 1,
   "repository": "InThuRain/atlas-incendios",
   "release": {
-    "tag": "public-data-v4",
-    "asset_name": "atlas-public-data-v4.tar.gz"
+    "tag": "public-data-v5",
+    "asset_name": "atlas-public-data-v5.tar.gz"
   },
   "archive": {
-    "bytes": 11811217,
-    "sha256": "87e3265ea7a573260a733a2fa989e50d5e5b763acdc15207a0401793ec8f7b3c"
+    "bytes": 13399633,
+    "sha256": "622030c9d0d6b52b94a4796d75aaa7bf125df132c7034935531b0a64c8c98e4c"
   },
   "contents": {
-    "file_count": 43,
-    "data_asset_count": 41,
-    "manifest_file_count": 2,
-    "uncompressed_bytes": 77124502,
+    "file_count": 47,
+    "data_asset_count": 44,
+    "manifest_file_count": 3,
+    "uncompressed_bytes": 83955908,
     "icv_data_assets": 38,
     "effis_data_assets": 2,
     "egif_data_assets": 1,
+    "esfire30_data_assets": 3,
     "files": [
       {
         "path": "data/web/gva/egif/assets-manifest.json",
@@ -27,6 +28,26 @@
         "path": "data/web/gva/egif/records-1968-1992.json",
         "bytes": 2345706,
         "sha256": "2f65d1e73e677bcd1b478186c36da0d7e5211af26b068b2f278af1058ebad3e6"
+      },
+      {
+        "path": "data/web/gva/esfire30/assets-manifest.json",
+        "bytes": 5739,
+        "sha256": "7532a50c350f6741af3e63e93a08dff301f027cb0398a5c332d172d665e9804e"
+      },
+      {
+        "path": "data/web/gva/esfire30/geometry/local.geojson",
+        "bytes": 2718495,
+        "sha256": "2af1d6f0997c30344806ef90311e1bbee878fb6a46fdce07250c8425e0d87335"
+      },
+      {
+        "path": "data/web/gva/esfire30/geometry/overview.geojson",
+        "bytes": 1868045,
+        "sha256": "894af3c057b6cff5978e48efb7d4273d8d9d5fdf8d9b8c0f1de7791ff5c5646e"
+      },
+      {
+        "path": "data/web/gva/esfire30/geometry/regional.geojson",
+        "bytes": 2239127,
+        "sha256": "fed00613de4c0f3c29e05235649de21f3c14cc7ed1c97ac3643aa8c87b7b354e"
       },
       {
         "path": "data/web/gva/fires.json",
@@ -238,8 +259,10 @@
   "excluded": [
     "SIGIF",
     "SIGIF-EFFIS link candidates",
+    "EGIF-ESFire30 link candidates",
     "raw",
     "processed",
+    "diagnostic derivatives",
     "EGIF XML",
     "OCR/annual reports",
     "benchmarks",
