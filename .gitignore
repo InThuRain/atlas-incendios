@@ -34,6 +34,9 @@ data/derived/spain/es3/
 data/derived/spain/es4b2/
 data/derived/spain/es4b3/
 data/derived/spain/es4b4a/
+# Muestras y serializaciones diagnósticas del diseño ES-4B5A. No son assets
+# nacionales publicables ni sustituyen al futuro build web reanudable.
+data/derived/spain/es4b5a/
 
 # Dependencias JS locales del laboratorio nacional ES-3.
 benchmarks/es3/node_modules/
