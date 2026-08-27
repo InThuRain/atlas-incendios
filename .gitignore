@@ -65,6 +65,9 @@ data/derived/spain/es1/
 # Subconjunto estático candidato para producción. Continúa ignorado hasta una
 # acción explícita de publicación; se reconstruye con los scripts de build.
 data/web/gva/
+# Derivados nacionales experimentales y futuros builds EGIF: se generan de los
+# snapshots locales y nunca deben entrar por accidente en Git.
+data/web/spain/
 
 # Dependencias locales de los benchmarks JavaScript.
 benchmarks/gva_web/node_modules/
