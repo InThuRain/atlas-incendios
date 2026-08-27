@@ -1,0 +1,6 @@
+{
+  "schema_version": 1,
+  "mapping_set_id": "egif-historical-municipality-mappings-v1",
+  "purpose": "Documented historical EGIF municipality mappings only. Empty until each mapping has an explicit primary or official source.",
+  "mappings": []
+}

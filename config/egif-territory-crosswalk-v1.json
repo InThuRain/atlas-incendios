@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "crosswalk_id": "egif-territory-crosswalk-v1",
+  "purpose": "Explicit EGIF source-domain to current INE territory identifiers; no textual matching.",
+  "source": {
+    "source_id": "egif",
+    "basis": "EGIF public endpoint community dictionary recorded in ES-1.5; target codes are INE 2026 snapshot identifiers."
+  },
+  "community_code_to_ine_ccaa_code": {
+    "1": {"source_label": "EUSKADI", "ine_ccaa_code": "16"},
+    "2": {"source_label": "CATALUÑA", "ine_ccaa_code": "09"},
+    "3": {"source_label": "GALICIA", "ine_ccaa_code": "12"},
+    "4": {"source_label": "ANDALUCIA", "ine_ccaa_code": "01"},
+    "5": {"source_label": "ASTURIAS", "ine_ccaa_code": "03"},
+    "6": {"source_label": "CANTABRIA", "ine_ccaa_code": "06"},
+    "7": {"source_label": "LA RIOJA", "ine_ccaa_code": "17"},
+    "8": {"source_label": "MURCIA", "ine_ccaa_code": "14"},
+    "9": {"source_label": "C. VALENCIANA", "ine_ccaa_code": "10"},
+    "10": {"source_label": "ARAGON", "ine_ccaa_code": "02"},
+    "11": {"source_label": "CASTILLA-MANCHA", "ine_ccaa_code": "08"},
+    "12": {"source_label": "CANARIAS", "ine_ccaa_code": "05"},
+    "13": {"source_label": "NAVARRA", "ine_ccaa_code": "15"},
+    "14": {"source_label": "EXTREMADURA", "ine_ccaa_code": "11"},
+    "15": {"source_label": "ILLES BALEARS", "ine_ccaa_code": "04"},
+    "16": {"source_label": "MADRID", "ine_ccaa_code": "13"},
+    "17": {"source_label": "CASTILLA Y LEON", "ine_ccaa_code": "07"},
+    "18": {"source_label": "CEUTA", "ine_ccaa_code": "18"}
+  },
+  "province_code_policy": "EGIF source province code is normalized only by trimming and zero-padding to two digits, then resolved against the current INE province or province-equivalent code. No name matching.",
+  "municipality_code_policy": "EGIF source municipality code is a province-local code. A current canonical candidate is formed only as current resolved province-equivalent code plus a zero-padded three-digit municipality code and must exist in the INE snapshot with the same parent. Source code 0 means no municipality declared, not a municipality."
+}
