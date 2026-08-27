@@ -1,0 +1,1613 @@
+{
+  "schema_version": 1,
+  "phase": "ES-3 diagnostic benchmark",
+  "dataset": {
+    "name": "ESFire30 v1",
+    "doi": "10.5281/zenodo.18449006",
+    "records": 119498,
+    "years": [
+      1985,
+      2021
+    ],
+    "source_crs": "EPSG:23030",
+    "transformation": "Inverse of UTM zone 30N + ED50 to WGS 84 (41) + axis order change (2D)",
+    "vertices": {
+      "original": 6196709,
+      "overview": 1287275,
+      "overview_reduction_percent": 79.226,
+      "overview_tolerance_source_m": 100.0
+    },
+    "territory_relations": {
+      "primary_ccaa": {
+        "01": 7676,
+        "02": 1751,
+        "03": 13664,
+        "06": 6019,
+        "07": 29324,
+        "08": 4639,
+        "09": 3091,
+        "10": 2189,
+        "11": 8157,
+        "12": 38358,
+        "13": 859,
+        "14": 180,
+        "15": 1273,
+        "16": 1751,
+        "17": 567
+      },
+      "primary_province": {
+        "01": 478,
+        "02": 435,
+        "03": 448,
+        "04": 404,
+        "05": 1547,
+        "06": 3936,
+        "08": 858,
+        "09": 3693,
+        "10": 4221,
+        "11": 965,
+        "12": 833,
+        "13": 1607,
+        "14": 1137,
+        "15": 7973,
+        "16": 660,
+        "17": 554,
+        "18": 673,
+        "19": 1083,
+        "20": 429,
+        "21": 1396,
+        "22": 844,
+        "23": 865,
+        "24": 13402,
+        "25": 982,
+        "26": 567,
+        "27": 8393,
+        "28": 859,
+        "29": 1037,
+        "30": 180,
+        "31": 1273,
+        "32": 15968,
+        "33": 13664,
+        "34": 1497,
+        "36": 6024,
+        "37": 1849,
+        "39": 6019,
+        "40": 497,
+        "41": 1199,
+        "42": 427,
+        "43": 697,
+        "44": 363,
+        "45": 854,
+        "46": 908,
+        "47": 921,
+        "48": 843,
+        "49": 5492,
+        "50": 544
+      },
+      "all_ccaa": {
+        "01": 7695,
+        "02": 1773,
+        "03": 13846,
+        "06": 6136,
+        "07": 29782,
+        "08": 4688,
+        "09": 3097,
+        "10": 2203,
+        "11": 8211,
+        "12": 38644,
+        "13": 891,
+        "14": 183,
+        "15": 1291,
+        "16": 1805,
+        "17": 601
+      },
+      "all_province": {
+        "01": 510,
+        "02": 444,
+        "03": 468,
+        "04": 409,
+        "05": 1585,
+        "06": 3968,
+        "08": 874,
+        "09": 3815,
+        "10": 4287,
+        "11": 972,
+        "12": 854,
+        "13": 1626,
+        "14": 1160,
+        "15": 8024,
+        "16": 673,
+        "17": 564,
+        "18": 677,
+        "19": 1103,
+        "20": 457,
+        "21": 1407,
+        "22": 853,
+        "23": 870,
+        "24": 13619,
+        "25": 1002,
+        "26": 601,
+        "27": 8743,
+        "28": 891,
+        "29": 1048,
+        "30": 183,
+        "31": 1291,
+        "32": 16265,
+        "33": 13846,
+        "34": 1542,
+        "36": 6148,
+        "37": 1906,
+        "39": 6136,
+        "40": 508,
+        "41": 1215,
+        "42": 433,
+        "43": 709,
+        "44": 376,
+        "45": 881,
+        "46": 945,
+        "47": 938,
+        "48": 883,
+        "49": 5612,
+        "50": 564
+      },
+      "crosses_ccaa": 1342,
+      "crosses_province": 2364,
+      "without_ccaa": 0,
+      "without_province": 0,
+      "assignment": "largest positive intersection; no clipping"
+    }
+  },
+  "geojson": {
+    "assets": {
+      "monolithic_overview": {
+        "path": "assets/esfire30-overview-national.geojson",
+        "features": 119498,
+        "raw_bytes": 74111747,
+        "gzip_bytes": 21428489,
+        "sha256": "35b635e39b6cfc987f5edd54c80e08bdb4203640ddf66e39b01dbce3f60e582b"
+      },
+      "lookup": {
+        "path": "assets/esfire30-lookup.jsonl",
+        "records": 119498,
+        "raw_bytes": 26876744,
+        "gzip_bytes": 1123534,
+        "sha256": "1793231b24e65c634b9f4623f964aeec8bedeac956dba3a2b539684135fbcfce"
+      },
+      "tile_input": {
+        "path": "assets/esfire30-tiles-input.ndjson",
+        "records": 119498,
+        "raw_bytes": 74111706,
+        "gzip_bytes": 21428513,
+        "sha256": "cae1209d7fb0f0daa232f600ccc015c59eabda79be5ddbee5b0978ddf8a487d8"
+      },
+      "ccaa_x_block": {
+        "01:1985-1992": {
+          "url": "assets/partitions/esfire30-01-1985-1992.geojson",
+          "features": 3225,
+          "raw_bytes": 2052951,
+          "gzip_bytes": 603286,
+          "sha256": "a27bb638008e1019ebab6e169b83fc7baf1f94a432a6fa5734b4474efb5f867e"
+        },
+        "01:1993-2000": {
+          "url": "assets/partitions/esfire30-01-1993-2000.geojson",
+          "features": 1198,
+          "raw_bytes": 865500,
+          "gzip_bytes": 265020,
+          "sha256": "41938506a02588be11dd5f66bee914aad851e89d667b73dd700a66d9f667a329"
+        },
+        "01:2001-2010": {
+          "url": "assets/partitions/esfire30-01-2001-2010.geojson",
+          "features": 1561,
+          "raw_bytes": 1096697,
+          "gzip_bytes": 332649,
+          "sha256": "e1009793648dcda0d8b14b785cd692061a94a7b6a1a467269eebffdc60c84f25"
+        },
+        "01:2011-2021": {
+          "url": "assets/partitions/esfire30-01-2011-2021.geojson",
+          "features": 1692,
+          "raw_bytes": 1170241,
+          "gzip_bytes": 353270,
+          "sha256": "0e08537a557dab6458f3d78fda205a71637ef61d3d503992ac76d8e696ec0e67"
+        },
+        "02:1985-1992": {
+          "url": "assets/partitions/esfire30-02-1985-1992.geojson",
+          "features": 270,
+          "raw_bytes": 199590,
+          "gzip_bytes": 63138,
+          "sha256": "cbd89d02f1fd00c791aba307d38356bdb23527f87d32bc79ac4efa29c01db29b"
+        },
+        "02:1993-2000": {
+          "url": "assets/partitions/esfire30-02-1993-2000.geojson",
+          "features": 288,
+          "raw_bytes": 215549,
+          "gzip_bytes": 67954,
+          "sha256": "b1e989c37308eabb331d005cfb935838f50584a1668e2ed5ed731e88e502d29d"
+        },
+        "02:2001-2010": {
+          "url": "assets/partitions/esfire30-02-2001-2010.geojson",
+          "features": 458,
+          "raw_bytes": 416656,
+          "gzip_bytes": 136377,
+          "sha256": "465f0c6ce9fd40426bb13db225e7aff0094fa8fae481abfe7fe15d0e3ba54a79"
+        },
+        "02:2011-2021": {
+          "url": "assets/partitions/esfire30-02-2011-2021.geojson",
+          "features": 735,
+          "raw_bytes": 490482,
+          "gzip_bytes": 146749,
+          "sha256": "ef7104d3e2077f96462b20a1627e0b8393a4f0134be332924159ab08f0a890e0"
+        },
+        "03:1985-1992": {
+          "url": "assets/partitions/esfire30-03-1985-1992.geojson",
+          "features": 4753,
+          "raw_bytes": 2630228,
+          "gzip_bytes": 724132,
+          "sha256": "a40cb9d75ced6bc525396b9397de0fe5a53f622d9682f2cb4ff46f9e26d00dc5"
+        },
+        "03:1993-2000": {
+          "url": "assets/partitions/esfire30-03-1993-2000.geojson",
+          "features": 3254,
+          "raw_bytes": 1736764,
+          "gzip_bytes": 472534,
+          "sha256": "7d431332244493c4a1f808f1cb780ab3ec6570d9e3264777d89591e2eb594f27"
+        },
+        "03:2001-2010": {
+          "url": "assets/partitions/esfire30-03-2001-2010.geojson",
+          "features": 2423,
+          "raw_bytes": 1219654,
+          "gzip_bytes": 323357,
+          "sha256": "7102dfa98eb3ccb4dd60dbd45bf7dc8c9d424d9d3b9e126d619864d47b8ef0b7"
+        },
+        "03:2011-2021": {
+          "url": "assets/partitions/esfire30-03-2011-2021.geojson",
+          "features": 3234,
+          "raw_bytes": 1754524,
+          "gzip_bytes": 481041,
+          "sha256": "0f08a19bd89c9b0e832b1325bef36b5edee90f35b9626eeef48e9747e0aadf30"
+        },
+        "06:1985-1992": {
+          "url": "assets/partitions/esfire30-06-1985-1992.geojson",
+          "features": 1483,
+          "raw_bytes": 749044,
+          "gzip_bytes": 197528,
+          "sha256": "833caec45bf36ffee156844ab84169c3f7bc7f3c6b2c78b84309f547a0ea6ca0"
+        },
+        "06:1993-2000": {
+          "url": "assets/partitions/esfire30-06-1993-2000.geojson",
+          "features": 1519,
+          "raw_bytes": 763130,
+          "gzip_bytes": 201161,
+          "sha256": "ab69e86c51de7ff0835af913027b2ca1ad10590f1e222c9c21413802ee4cb554"
+        },
+        "06:2001-2010": {
+          "url": "assets/partitions/esfire30-06-2001-2010.geojson",
+          "features": 1219,
+          "raw_bytes": 623375,
+          "gzip_bytes": 166238,
+          "sha256": "34a32a8dcadb1da47bb3dd3d42253b771f562432894ebeeffd7f58f7ce7594bc"
+        },
+        "06:2011-2021": {
+          "url": "assets/partitions/esfire30-06-2011-2021.geojson",
+          "features": 1798,
+          "raw_bytes": 955864,
+          "gzip_bytes": 259434,
+          "sha256": "f2078bcefd7b73a3e9bba548367c40efbb696fece875045b2cd04b8a07705c27"
+        },
+        "07:1985-1992": {
+          "url": "assets/partitions/esfire30-07-1985-1992.geojson",
+          "features": 12536,
+          "raw_bytes": 7940583,
+          "gzip_bytes": 2308266,
+          "sha256": "118f6bbfd624e7ea5d30912a8922b053221695425ddc841d4b87ebc5d31054c4"
+        },
+        "07:1993-2000": {
+          "url": "assets/partitions/esfire30-07-1993-2000.geojson",
+          "features": 8918,
+          "raw_bytes": 5157192,
+          "gzip_bytes": 1453821,
+          "sha256": "9f895d5e08c00fff860776dad5124652dc46963258828cfa92cfd517d415c9c2"
+        },
+        "07:2001-2010": {
+          "url": "assets/partitions/esfire30-07-2001-2010.geojson",
+          "features": 4603,
+          "raw_bytes": 2724188,
+          "gzip_bytes": 777783,
+          "sha256": "4ed428d1b49122579208bb970d6076ba7d7c3e097d1b951bdf4856d695119a5a"
+        },
+        "07:2011-2021": {
+          "url": "assets/partitions/esfire30-07-2011-2021.geojson",
+          "features": 3267,
+          "raw_bytes": 1987585,
+          "gzip_bytes": 574050,
+          "sha256": "767263947ca4b86e2d749160e8c220e4f0999ae599f4aa1310d85896511bfd35"
+        },
+        "08:1985-1992": {
+          "url": "assets/partitions/esfire30-08-1985-1992.geojson",
+          "features": 1587,
+          "raw_bytes": 961842,
+          "gzip_bytes": 277371,
+          "sha256": "ae2b3d14b788001c515df0d98810c44978b21f1f53b65264089a68c445fae09f"
+        },
+        "08:1993-2000": {
+          "url": "assets/partitions/esfire30-08-1993-2000.geojson",
+          "features": 851,
+          "raw_bytes": 610167,
+          "gzip_bytes": 185007,
+          "sha256": "6c36cd5e929edd91155ef7ccceb33efc57d24e4b1f583f9514049ce765cb6559"
+        },
+        "08:2001-2010": {
+          "url": "assets/partitions/esfire30-08-2001-2010.geojson",
+          "features": 1100,
+          "raw_bytes": 718362,
+          "gzip_bytes": 213296,
+          "sha256": "286baebd231bda9daa3f420db7653871ef0b29b3cd41c93314276e2ab6dc466e"
+        },
+        "08:2011-2021": {
+          "url": "assets/partitions/esfire30-08-2011-2021.geojson",
+          "features": 1101,
+          "raw_bytes": 673195,
+          "gzip_bytes": 196082,
+          "sha256": "7fd14ab523820a85c84f7e802990335dc3220d3515104040392b20815ca8a4a6"
+        },
+        "09:1985-1992": {
+          "url": "assets/partitions/esfire30-09-1985-1992.geojson",
+          "features": 678,
+          "raw_bytes": 657099,
+          "gzip_bytes": 219733,
+          "sha256": "076ebf425082f28f134f39bcfc9ff762f80307d6f691b718c2de9734981c88d3"
+        },
+        "09:1993-2000": {
+          "url": "assets/partitions/esfire30-09-1993-2000.geojson",
+          "features": 792,
+          "raw_bytes": 934368,
+          "gzip_bytes": 321702,
+          "sha256": "0b818fa077b20b5dbc53c6ff007d8d0afe67e8933132fe419e1e026be05cb659"
+        },
+        "09:2001-2010": {
+          "url": "assets/partitions/esfire30-09-2001-2010.geojson",
+          "features": 601,
+          "raw_bytes": 387322,
+          "gzip_bytes": 117540,
+          "sha256": "2d6c4675d4a2851815cf9c818acd9d725948e3d141e363f10e8136b8dcb2cf7c"
+        },
+        "09:2011-2021": {
+          "url": "assets/partitions/esfire30-09-2011-2021.geojson",
+          "features": 1020,
+          "raw_bytes": 634581,
+          "gzip_bytes": 189506,
+          "sha256": "80212bb0f6ec25f7be136d37b30631a2347516ba6672f139bf713531f48a5ff5"
+        },
+        "10:1985-1992": {
+          "url": "assets/partitions/esfire30-10-1985-1992.geojson",
+          "features": 708,
+          "raw_bytes": 935548,
+          "gzip_bytes": 322727,
+          "sha256": "279ce52afeda9b85891afdf1e538b8495e705565018d32215836bae6170a0355"
+        },
+        "10:1993-2000": {
+          "url": "assets/partitions/esfire30-10-1993-2000.geojson",
+          "features": 510,
+          "raw_bytes": 979359,
+          "gzip_bytes": 347957,
+          "sha256": "fe494a4a8362474e72274b452182e48e6aa5a5063114d5ad6d93c6a55bfa9b9c"
+        },
+        "10:2001-2010": {
+          "url": "assets/partitions/esfire30-10-2001-2010.geojson",
+          "features": 375,
+          "raw_bytes": 328149,
+          "gzip_bytes": 106506,
+          "sha256": "f666f95366f3a362d5c2008e24532593b6581af818f8ec4d5ab48a9e59595330"
+        },
+        "10:2011-2021": {
+          "url": "assets/partitions/esfire30-10-2011-2021.geojson",
+          "features": 596,
+          "raw_bytes": 571004,
+          "gzip_bytes": 186848,
+          "sha256": "73db7cb1e5dcf70fddebdbfec4951a0fa13c3a524e4f2ea2d2f039d470cdb877"
+        },
+        "11:1985-1992": {
+          "url": "assets/partitions/esfire30-11-1985-1992.geojson",
+          "features": 3867,
+          "raw_bytes": 2547503,
+          "gzip_bytes": 756322,
+          "sha256": "26d97cbd87b5778dcfed33b929c5a9330a84b6e59a7c69eca84c56741b7e478f"
+        },
+        "11:1993-2000": {
+          "url": "assets/partitions/esfire30-11-1993-2000.geojson",
+          "features": 1037,
+          "raw_bytes": 555587,
+          "gzip_bytes": 153274,
+          "sha256": "5cb0b81c943d8e102aa4be9390502c1f12d60b7c8a414e1d48cd44c434150725"
+        },
+        "11:2001-2010": {
+          "url": "assets/partitions/esfire30-11-2001-2010.geojson",
+          "features": 1758,
+          "raw_bytes": 1135011,
+          "gzip_bytes": 335878,
+          "sha256": "84259479257c21f1ff4a1959bb708e38d27c29bc9a01ba663f0b84912ecdeffe"
+        },
+        "11:2011-2021": {
+          "url": "assets/partitions/esfire30-11-2011-2021.geojson",
+          "features": 1495,
+          "raw_bytes": 821109,
+          "gzip_bytes": 228841,
+          "sha256": "9a60ace7901b9d9a3e6e5824b5718ab78f7a0b2ab931d2c282300f6be376cd8c"
+        },
+        "12:1985-1992": {
+          "url": "assets/partitions/esfire30-12-1985-1992.geojson",
+          "features": 16133,
+          "raw_bytes": 10391069,
+          "gzip_bytes": 3038330,
+          "sha256": "1fcffeb5ea4cabd708280bd24808b988a05032117ef8d14393a6cf68d3f68341"
+        },
+        "12:1993-2000": {
+          "url": "assets/partitions/esfire30-12-1993-2000.geojson",
+          "features": 10158,
+          "raw_bytes": 5785592,
+          "gzip_bytes": 1615208,
+          "sha256": "95e2f4d5d1e94edee10e122aefecf514246d003f178ce78357535658ccddf2a0"
+        },
+        "12:2001-2010": {
+          "url": "assets/partitions/esfire30-12-2001-2010.geojson",
+          "features": 7307,
+          "raw_bytes": 4358864,
+          "gzip_bytes": 1239329,
+          "sha256": "5cac6a893bcf1a8406428a4a95b144f7b032c518b8006406d72f84f6c796f162"
+        },
+        "12:2011-2021": {
+          "url": "assets/partitions/esfire30-12-2011-2021.geojson",
+          "features": 4760,
+          "raw_bytes": 2781432,
+          "gzip_bytes": 787123,
+          "sha256": "fd8e6fa15af1b69045a6f8f988206ab820d2bc4c13a670bd09e7ec4b2faaec57"
+        },
+        "13:1985-1992": {
+          "url": "assets/partitions/esfire30-13-1985-1992.geojson",
+          "features": 284,
+          "raw_bytes": 178927,
+          "gzip_bytes": 52766,
+          "sha256": "94a756d404c1b765ae321fa54b9a59b4ebf8bad1cd580a74fae5f55d4e07d7a7"
+        },
+        "13:1993-2000": {
+          "url": "assets/partitions/esfire30-13-1993-2000.geojson",
+          "features": 159,
+          "raw_bytes": 83475,
+          "gzip_bytes": 23414,
+          "sha256": "c302444e526f6d16a96ebdb2628ead7fb269ce2692c2eb229fb2457b9bc3dcc5"
+        },
+        "13:2001-2010": {
+          "url": "assets/partitions/esfire30-13-2001-2010.geojson",
+          "features": 253,
+          "raw_bytes": 136542,
+          "gzip_bytes": 38012,
+          "sha256": "852252decd871b5d1e9c89ec3dacedaf00cf403d761dd239da0c9a460215b7aa"
+        },
+        "13:2011-2021": {
+          "url": "assets/partitions/esfire30-13-2011-2021.geojson",
+          "features": 163,
+          "raw_bytes": 96722,
+          "gzip_bytes": 28625,
+          "sha256": "98e29c029b23d3205a05f1eea6212afcc8a8fae5363dc8562e5eba47270bcb42"
+        },
+        "14:1985-1992": {
+          "url": "assets/partitions/esfire30-14-1985-1992.geojson",
+          "features": 20,
+          "raw_bytes": 13952,
+          "gzip_bytes": 4642,
+          "sha256": "30fb058a21c51367a5cbe1b18d6cd5c0ea0c19c8399f2b7d50ac01cb8fa56d52"
+        },
+        "14:1993-2000": {
+          "url": "assets/partitions/esfire30-14-1993-2000.geojson",
+          "features": 48,
+          "raw_bytes": 116459,
+          "gzip_bytes": 42616,
+          "sha256": "5b6b3f09ea324ac15181be2eb251e47a314cbd4f0cde64ea6ca182e7fa2373d1"
+        },
+        "14:2001-2010": {
+          "url": "assets/partitions/esfire30-14-2001-2010.geojson",
+          "features": 30,
+          "raw_bytes": 17210,
+          "gzip_bytes": 5372,
+          "sha256": "6efacb16146912ece7d7237b94e5245f3f0d6de1d317b745cc6dd24d0d3de383"
+        },
+        "14:2011-2021": {
+          "url": "assets/partitions/esfire30-14-2011-2021.geojson",
+          "features": 82,
+          "raw_bytes": 48564,
+          "gzip_bytes": 14679,
+          "sha256": "7867886407af0422b092190df197787b1e8def010e0a96e4e2bf318fc148ae3d"
+        },
+        "15:1985-1992": {
+          "url": "assets/partitions/esfire30-15-1985-1992.geojson",
+          "features": 238,
+          "raw_bytes": 118015,
+          "gzip_bytes": 31820,
+          "sha256": "6e5c0c42faa4977204ae52e7cd199f52c96d40a1bc3843c169431c27cdac4b4f"
+        },
+        "15:1993-2000": {
+          "url": "assets/partitions/esfire30-15-1993-2000.geojson",
+          "features": 331,
+          "raw_bytes": 180799,
+          "gzip_bytes": 50369,
+          "sha256": "a992359d22d13264b7535daef00cca4a9e91cdd9f61d8733c127de8aa65168d8"
+        },
+        "15:2001-2010": {
+          "url": "assets/partitions/esfire30-15-2001-2010.geojson",
+          "features": 251,
+          "raw_bytes": 124624,
+          "gzip_bytes": 33617,
+          "sha256": "7e7f0eeb47dcab68899a7f378489aee6d641ecb0a7acedef558f7fc4a6546687"
+        },
+        "15:2011-2021": {
+          "url": "assets/partitions/esfire30-15-2011-2021.geojson",
+          "features": 453,
+          "raw_bytes": 245136,
+          "gzip_bytes": 67513,
+          "sha256": "046c978a16e093463b3e6f2831f3d3377d38837d72822468fec5ec2768719c03"
+        },
+        "16:1985-1992": {
+          "url": "assets/partitions/esfire30-16-1985-1992.geojson",
+          "features": 616,
+          "raw_bytes": 339606,
+          "gzip_bytes": 94256,
+          "sha256": "8066caa41ff099437ec8eb7cc56df3fb016ba3c9b95fdd6f88a6af354f3579f0"
+        },
+        "16:1993-2000": {
+          "url": "assets/partitions/esfire30-16-1993-2000.geojson",
+          "features": 324,
+          "raw_bytes": 167869,
+          "gzip_bytes": 45733,
+          "sha256": "a5baaff396ea1939923df4bd615780a807316be13baa26027d4a1d102ff3bdcb"
+        },
+        "16:2001-2010": {
+          "url": "assets/partitions/esfire30-16-2001-2010.geojson",
+          "features": 284,
+          "raw_bytes": 159864,
+          "gzip_bytes": 45254,
+          "sha256": "f19f379dd3dea60b0de753f9eb610738433320966ea46beea3b9a8a05d816f2c"
+        },
+        "16:2011-2021": {
+          "url": "assets/partitions/esfire30-16-2011-2021.geojson",
+          "features": 527,
+          "raw_bytes": 273590,
+          "gzip_bytes": 74070,
+          "sha256": "b31ceb3345a80acd7d213a1621f0f5367eecc81ec5912e17d02392af53a80b39"
+        },
+        "17:1985-1992": {
+          "url": "assets/partitions/esfire30-17-1985-1992.geojson",
+          "features": 227,
+          "raw_bytes": 131453,
+          "gzip_bytes": 37532,
+          "sha256": "bbf40535e83057d46989fad84442f0f24317a3fccda653406712fad01cb9d07b"
+        },
+        "17:1993-2000": {
+          "url": "assets/partitions/esfire30-17-1993-2000.geojson",
+          "features": 158,
+          "raw_bytes": 73758,
+          "gzip_bytes": 19198,
+          "sha256": "17045cf1b1b7a3bb936284a3ece2610b57e7d5f351de27039f7675e90678f2e5"
+        },
+        "17:2001-2010": {
+          "url": "assets/partitions/esfire30-17-2001-2010.geojson",
+          "features": 57,
+          "raw_bytes": 28988,
+          "gzip_bytes": 8309,
+          "sha256": "1c6b79d4c505f0a6fa7fc4888f5ed511d294f9dd9a2e66cc286b0b62a9a806cb"
+        },
+        "17:2011-2021": {
+          "url": "assets/partitions/esfire30-17-2011-2021.geojson",
+          "features": 125,
+          "raw_bytes": 61653,
+          "gzip_bytes": 16832,
+          "sha256": "649d21e9eef5534c0c54fdcc3be799d1e51dd60b5bfdbef08d7674ada876acba"
+        }
+      },
+      "partition_instances": 119498,
+      "duplicate_instances_from_cross_boundary": 0
+    },
+    "desktop": {
+      "schema_version": 1,
+      "renderer": "Leaflet 1.9.4 Canvas",
+      "viewport": "1280x800",
+      "scenarios": {
+        "spain_overview": {
+          "dataset": "data/derived/spain/es3/assets/esfire30-overview-national.geojson",
+          "raw_bytes": 74111747,
+          "gzip_bytes": 21428454,
+          "runs": [
+            {
+              "geometry_count": 119498,
+              "source_bytes": 74111747,
+              "fetch_ms": 137.6999999997206,
+              "parse_ms": 243.10000000009313,
+              "render_ms": 683,
+              "heap_delta_bytes": 560454669
+            }
+          ],
+          "median": {
+            "geometry_count": 119498,
+            "fetch_ms": 137.6999999997206,
+            "parse_ms": 243.10000000009313,
+            "render_ms": 683,
+            "heap_delta_bytes": 560454669
+          }
+        },
+        "galicia_1985_1992": {
+          "dataset": "data/derived/spain/es3/assets/partitions/esfire30-12-1985-1992.geojson",
+          "raw_bytes": 10391069,
+          "gzip_bytes": 3038300,
+          "runs": [
+            {
+              "geometry_count": 16133,
+              "source_bytes": 10391069,
+              "fetch_ms": 20.699999999720603,
+              "parse_ms": 33.60000000009313,
+              "render_ms": 112.59999999962747,
+              "heap_delta_bytes": 81836398
+            }
+          ],
+          "median": {
+            "geometry_count": 16133,
+            "fetch_ms": 20.699999999720603,
+            "parse_ms": 33.60000000009313,
+            "render_ms": 112.59999999962747,
+            "heap_delta_bytes": 81836398
+          }
+        },
+        "andalucia_1985_1992": {
+          "dataset": "data/derived/spain/es3/assets/partitions/esfire30-01-1985-1992.geojson",
+          "raw_bytes": 2052951,
+          "gzip_bytes": 603256,
+          "runs": [
+            {
+              "geometry_count": 3225,
+              "source_bytes": 2052951,
+              "fetch_ms": 5.600000000093132,
+              "parse_ms": 9.799999999813735,
+              "render_ms": 34,
+              "heap_delta_bytes": 15797426
+            }
+          ],
+          "median": {
+            "geometry_count": 3225,
+            "fetch_ms": 5.600000000093132,
+            "parse_ms": 9.799999999813735,
+            "render_ms": 34,
+            "heap_delta_bytes": 15797426
+          }
+        },
+        "cataluna_1985_1992": {
+          "dataset": "data/derived/spain/es3/assets/partitions/esfire30-09-1985-1992.geojson",
+          "raw_bytes": 657099,
+          "gzip_bytes": 219703,
+          "runs": [
+            {
+              "geometry_count": 678,
+              "source_bytes": 657099,
+              "fetch_ms": 3.5,
+              "parse_ms": 2.6000000000931323,
+              "render_ms": 18.699999999720603,
+              "heap_delta_bytes": 5086791
+            }
+          ],
+          "median": {
+            "geometry_count": 678,
+            "fetch_ms": 3.5,
+            "parse_ms": 2.6000000000931323,
+            "render_ms": 18.699999999720603,
+            "heap_delta_bytes": 5086791
+          }
+        },
+        "pais_valencia_1985_1992": {
+          "dataset": "data/derived/spain/es3/assets/partitions/esfire30-10-1985-1992.geojson",
+          "raw_bytes": 935548,
+          "gzip_bytes": 322697,
+          "runs": [
+            {
+              "geometry_count": 708,
+              "source_bytes": 935548,
+              "fetch_ms": 3.7000000001862645,
+              "parse_ms": 6.2999999998137355,
+              "render_ms": 19.399999999906868,
+              "heap_delta_bytes": 8595916
+            }
+          ],
+          "median": {
+            "geometry_count": 708,
+            "fetch_ms": 3.7000000001862645,
+            "parse_ms": 6.2999999998137355,
+            "render_ms": 19.399999999906868,
+            "heap_delta_bytes": 8595916
+          }
+        }
+      }
+    },
+    "mobile": {
+      "schema_version": 1,
+      "renderer": "Leaflet 1.9.4 Canvas",
+      "viewport": "390x844",
+      "scenarios": {
+        "spain_overview": {
+          "dataset": "data/derived/spain/es3/assets/esfire30-overview-national.geojson",
+          "raw_bytes": 74111747,
+          "gzip_bytes": 21428454,
+          "runs": [
+            {
+              "geometry_count": 119498,
+              "source_bytes": 74111747,
+              "fetch_ms": 131.10000000009313,
+              "parse_ms": 231.20000000018626,
+              "render_ms": 655.7000000001863,
+              "heap_delta_bytes": 560535977
+            }
+          ],
+          "median": {
+            "geometry_count": 119498,
+            "fetch_ms": 131.10000000009313,
+            "parse_ms": 231.20000000018626,
+            "render_ms": 655.7000000001863,
+            "heap_delta_bytes": 560535977
+          }
+        },
+        "galicia_1985_1992": {
+          "dataset": "data/derived/spain/es3/assets/partitions/esfire30-12-1985-1992.geojson",
+          "raw_bytes": 10391069,
+          "gzip_bytes": 3038300,
+          "runs": [
+            {
+              "geometry_count": 16133,
+              "source_bytes": 10391069,
+              "fetch_ms": 20.800000000279397,
+              "parse_ms": 33.5,
+              "render_ms": 109.39999999990687,
+              "heap_delta_bytes": 81793982
+            }
+          ],
+          "median": {
+            "geometry_count": 16133,
+            "fetch_ms": 20.800000000279397,
+            "parse_ms": 33.5,
+            "render_ms": 109.39999999990687,
+            "heap_delta_bytes": 81793982
+          }
+        },
+        "andalucia_1985_1992": {
+          "dataset": "data/derived/spain/es3/assets/partitions/esfire30-01-1985-1992.geojson",
+          "raw_bytes": 2052951,
+          "gzip_bytes": 603256,
+          "runs": [
+            {
+              "geometry_count": 3225,
+              "source_bytes": 2052951,
+              "fetch_ms": 5.7999999998137355,
+              "parse_ms": 9.299999999813735,
+              "render_ms": 29.5,
+              "heap_delta_bytes": 15613878
+            }
+          ],
+          "median": {
+            "geometry_count": 3225,
+            "fetch_ms": 5.7999999998137355,
+            "parse_ms": 9.299999999813735,
+            "render_ms": 29.5,
+            "heap_delta_bytes": 15613878
+          }
+        },
+        "cataluna_1985_1992": {
+          "dataset": "data/derived/spain/es3/assets/partitions/esfire30-09-1985-1992.geojson",
+          "raw_bytes": 657099,
+          "gzip_bytes": 219703,
+          "runs": [
+            {
+              "geometry_count": 678,
+              "source_bytes": 657099,
+              "fetch_ms": 3.3000000002793968,
+              "parse_ms": 5.399999999906868,
+              "render_ms": 13.700000000186265,
+              "heap_delta_bytes": 5071810
+            }
+          ],
+          "median": {
+            "geometry_count": 678,
+            "fetch_ms": 3.3000000002793968,
+            "parse_ms": 5.399999999906868,
+            "render_ms": 13.700000000186265,
+            "heap_delta_bytes": 5071810
+          }
+        },
+        "pais_valencia_1985_1992": {
+          "dataset": "data/derived/spain/es3/assets/partitions/esfire30-10-1985-1992.geojson",
+          "raw_bytes": 935548,
+          "gzip_bytes": 322697,
+          "runs": [
+            {
+              "geometry_count": 708,
+              "source_bytes": 935548,
+              "fetch_ms": 4.100000000093132,
+              "parse_ms": 3.8999999999068677,
+              "render_ms": 16.799999999813735,
+              "heap_delta_bytes": 6683916
+            }
+          ],
+          "median": {
+            "geometry_count": 708,
+            "fetch_ms": 4.100000000093132,
+            "parse_ms": 3.8999999999068677,
+            "render_ms": 16.799999999813735,
+            "heap_delta_bytes": 6683916
+          }
+        }
+      }
+    }
+  },
+  "pmtiles": {
+    "visual_overview": {
+      "path": "data/derived/spain/es3/assets/esfire30-national.pmtiles",
+      "bytes": 54292246,
+      "sha256": "e2cc73d88bc8d565bedbbf08936038bf13e1718aafb5663d97bfc2e5cc727bce",
+      "mbtiles_bytes": 70590464,
+      "min_zoom": 4,
+      "max_zoom": 14,
+      "addressed_tiles": 89568,
+      "tile_contents": 89559,
+      "feature_retention": "drop-smallest-as-needed: visual overview only, not feature-complete at every zoom",
+      "desktop": {
+        "schema_version": 1,
+        "renderer": "MapLibre GL JS with PMTiles",
+        "viewport": "1280x800",
+        "archive_bytes": 54292246,
+        "scenarios": {
+          "spain_full": {
+            "runs": [
+              {
+                "error": null,
+                "renderer": "MapLibre GL JS undefined",
+                "center": [
+                  -3.7,
+                  40.3
+                ],
+                "zoom": 4,
+                "total_ms": 511.60000000009313,
+                "rendered_features": 31546,
+                "pmtiles_requests": 6,
+                "pmtiles_transfer_bytes": 500741,
+                "pmtiles_encoded_bytes": 498941,
+                "heap_delta_bytes": 25467003
+              }
+            ],
+            "median": {
+              "total_ms": 511.60000000009313,
+              "rendered_features": 31546,
+              "pmtiles_requests": 6,
+              "pmtiles_transfer_bytes": 500741,
+              "pmtiles_encoded_bytes": 498941,
+              "heap_delta_bytes": 25467003
+            }
+          },
+          "galicia": {
+            "runs": [
+              {
+                "error": null,
+                "renderer": "MapLibre GL JS undefined",
+                "center": [
+                  -8.1,
+                  42.6
+                ],
+                "zoom": 6,
+                "total_ms": 705.7999999998137,
+                "rendered_features": 14051,
+                "pmtiles_requests": 6,
+                "pmtiles_transfer_bytes": 797879,
+                "pmtiles_encoded_bytes": 796079,
+                "heap_delta_bytes": 24126505
+              }
+            ],
+            "median": {
+              "total_ms": 705.7999999998137,
+              "rendered_features": 14051,
+              "pmtiles_requests": 6,
+              "pmtiles_transfer_bytes": 797879,
+              "pmtiles_encoded_bytes": 796079,
+              "heap_delta_bytes": 24126505
+            }
+          },
+          "andalucia": {
+            "runs": [
+              {
+                "error": null,
+                "renderer": "MapLibre GL JS undefined",
+                "center": [
+                  -4.8,
+                  37.3
+                ],
+                "zoom": 6,
+                "total_ms": 493.29999999981374,
+                "rendered_features": 2838,
+                "pmtiles_requests": 7,
+                "pmtiles_transfer_bytes": 275130,
+                "pmtiles_encoded_bytes": 273030,
+                "heap_delta_bytes": 10459751
+              }
+            ],
+            "median": {
+              "total_ms": 493.29999999981374,
+              "rendered_features": 2838,
+              "pmtiles_requests": 7,
+              "pmtiles_transfer_bytes": 275130,
+              "pmtiles_encoded_bytes": 273030,
+              "heap_delta_bytes": 10459751
+            }
+          },
+          "cataluna": {
+            "runs": [
+              {
+                "error": null,
+                "renderer": "MapLibre GL JS undefined",
+                "center": [
+                  1.7,
+                  41.8
+                ],
+                "zoom": 7,
+                "total_ms": 511.70000000018626,
+                "rendered_features": 893,
+                "pmtiles_requests": 8,
+                "pmtiles_transfer_bytes": 198827,
+                "pmtiles_encoded_bytes": 196427,
+                "heap_delta_bytes": 6401789
+              }
+            ],
+            "median": {
+              "total_ms": 511.70000000018626,
+              "rendered_features": 893,
+              "pmtiles_requests": 8,
+              "pmtiles_transfer_bytes": 198827,
+              "pmtiles_encoded_bytes": 196427,
+              "heap_delta_bytes": 6401789
+            }
+          },
+          "pais_valencia": {
+            "runs": [
+              {
+                "error": null,
+                "renderer": "MapLibre GL JS undefined",
+                "center": [
+                  -0.7,
+                  39.3
+                ],
+                "zoom": 8,
+                "total_ms": 515.3999999999069,
+                "rendered_features": 1352,
+                "pmtiles_requests": 11,
+                "pmtiles_transfer_bytes": 198935,
+                "pmtiles_encoded_bytes": 195635,
+                "heap_delta_bytes": 7366600
+              }
+            ],
+            "median": {
+              "total_ms": 515.3999999999069,
+              "rendered_features": 1352,
+              "pmtiles_requests": 11,
+              "pmtiles_transfer_bytes": 198935,
+              "pmtiles_encoded_bytes": 195635,
+              "heap_delta_bytes": 7366600
+            }
+          },
+          "provincia_local": {
+            "runs": [
+              {
+                "error": null,
+                "renderer": "MapLibre GL JS undefined",
+                "center": [
+                  -3.5,
+                  37.2
+                ],
+                "zoom": 9,
+                "total_ms": 447.29999999981374,
+                "rendered_features": 792,
+                "pmtiles_requests": 10,
+                "pmtiles_transfer_bytes": 89359,
+                "pmtiles_encoded_bytes": 86359,
+                "heap_delta_bytes": 6615378
+              }
+            ],
+            "median": {
+              "total_ms": 447.29999999981374,
+              "rendered_features": 792,
+              "pmtiles_requests": 10,
+              "pmtiles_transfer_bytes": 89359,
+              "pmtiles_encoded_bytes": 86359,
+              "heap_delta_bytes": 6615378
+            }
+          }
+        }
+      },
+      "mobile": {
+        "schema_version": 1,
+        "renderer": "MapLibre GL JS with PMTiles",
+        "viewport": "390x844",
+        "archive_bytes": 54292246,
+        "scenarios": {
+          "spain_full": {
+            "runs": [
+              {
+                "error": null,
+                "renderer": "MapLibre GL JS undefined",
+                "center": [
+                  -3.7,
+                  40.3
+                ],
+                "zoom": 4,
+                "total_ms": 446.6999999997206,
+                "rendered_features": 31546,
+                "pmtiles_requests": 6,
+                "pmtiles_transfer_bytes": 500741,
+                "pmtiles_encoded_bytes": 498941,
+                "heap_delta_bytes": 23270319
+              }
+            ],
+            "median": {
+              "total_ms": 446.6999999997206,
+              "rendered_features": 31546,
+              "pmtiles_requests": 6,
+              "pmtiles_transfer_bytes": 500741,
+              "pmtiles_encoded_bytes": 498941,
+              "heap_delta_bytes": 23270319
+            }
+          },
+          "galicia": {
+            "runs": [
+              {
+                "error": null,
+                "renderer": "MapLibre GL JS undefined",
+                "center": [
+                  -8.1,
+                  42.6
+                ],
+                "zoom": 6,
+                "total_ms": 610.2000000001863,
+                "rendered_features": 11798,
+                "pmtiles_requests": 6,
+                "pmtiles_transfer_bytes": 797879,
+                "pmtiles_encoded_bytes": 796079,
+                "heap_delta_bytes": 20050217
+              }
+            ],
+            "median": {
+              "total_ms": 610.2000000001863,
+              "rendered_features": 11798,
+              "pmtiles_requests": 6,
+              "pmtiles_transfer_bytes": 797879,
+              "pmtiles_encoded_bytes": 796079,
+              "heap_delta_bytes": 20050217
+            }
+          },
+          "andalucia": {
+            "runs": [
+              {
+                "error": null,
+                "renderer": "MapLibre GL JS undefined",
+                "center": [
+                  -4.8,
+                  37.3
+                ],
+                "zoom": 6,
+                "total_ms": 448.79999999981374,
+                "rendered_features": 2600,
+                "pmtiles_requests": 6,
+                "pmtiles_transfer_bytes": 264482,
+                "pmtiles_encoded_bytes": 262682,
+                "heap_delta_bytes": 8867983
+              }
+            ],
+            "median": {
+              "total_ms": 448.79999999981374,
+              "rendered_features": 2600,
+              "pmtiles_requests": 6,
+              "pmtiles_transfer_bytes": 264482,
+              "pmtiles_encoded_bytes": 262682,
+              "heap_delta_bytes": 8867983
+            }
+          },
+          "cataluna": {
+            "runs": [
+              {
+                "error": null,
+                "renderer": "MapLibre GL JS undefined",
+                "center": [
+                  1.7,
+                  41.8
+                ],
+                "zoom": 7,
+                "total_ms": 439.09999999962747,
+                "rendered_features": 556,
+                "pmtiles_requests": 5,
+                "pmtiles_transfer_bytes": 91424,
+                "pmtiles_encoded_bytes": 89924,
+                "heap_delta_bytes": 5428381
+              }
+            ],
+            "median": {
+              "total_ms": 439.09999999962747,
+              "rendered_features": 556,
+              "pmtiles_requests": 5,
+              "pmtiles_transfer_bytes": 91424,
+              "pmtiles_encoded_bytes": 89924,
+              "heap_delta_bytes": 5428381
+            }
+          },
+          "pais_valencia": {
+            "runs": [
+              {
+                "error": null,
+                "renderer": "MapLibre GL JS undefined",
+                "center": [
+                  -0.7,
+                  39.3
+                ],
+                "zoom": 8,
+                "total_ms": 440.10000000009313,
+                "rendered_features": 1068,
+                "pmtiles_requests": 5,
+                "pmtiles_transfer_bytes": 134444,
+                "pmtiles_encoded_bytes": 132944,
+                "heap_delta_bytes": 5952499
+              }
+            ],
+            "median": {
+              "total_ms": 440.10000000009313,
+              "rendered_features": 1068,
+              "pmtiles_requests": 5,
+              "pmtiles_transfer_bytes": 134444,
+              "pmtiles_encoded_bytes": 132944,
+              "heap_delta_bytes": 5952499
+            }
+          },
+          "provincia_local": {
+            "runs": [
+              {
+                "error": null,
+                "renderer": "MapLibre GL JS undefined",
+                "center": [
+                  -3.5,
+                  37.2
+                ],
+                "zoom": 9,
+                "total_ms": 429.20000000018626,
+                "rendered_features": 440,
+                "pmtiles_requests": 6,
+                "pmtiles_transfer_bytes": 58775,
+                "pmtiles_encoded_bytes": 56975,
+                "heap_delta_bytes": 3654654
+              }
+            ],
+            "median": {
+              "total_ms": 429.20000000018626,
+              "rendered_features": 440,
+              "pmtiles_requests": 6,
+              "pmtiles_transfer_bytes": 58775,
+              "pmtiles_encoded_bytes": 56975,
+              "heap_delta_bytes": 3654654
+            }
+          }
+        }
+      }
+    },
+    "fidelity_candidate": {
+      "path": "data/derived/spain/es3/assets/esfire30-national-fidelity.pmtiles",
+      "bytes": 61347888,
+      "sha256": "92f0f081131932075f54a89d86fc8aa7e5879d56ca4d7177c64562f9612751b4",
+      "min_zoom": 4,
+      "max_zoom": 14,
+      "feature_retention": "no tile/feature limits and no tiny-polygon reduction at maximum zoom; must be revalidated per zoom before production",
+      "desktop": {
+        "schema_version": 1,
+        "renderer": "MapLibre GL JS with PMTiles",
+        "viewport": "1280x800",
+        "archive_bytes": 61347888,
+        "scenarios": {
+          "spain_full": {
+            "runs": [
+              {
+                "error": null,
+                "renderer": "MapLibre GL JS undefined",
+                "center": [
+                  -3.7,
+                  40.3
+                ],
+                "zoom": 4,
+                "total_ms": 715,
+                "rendered_features": 115378,
+                "pmtiles_requests": 6,
+                "pmtiles_transfer_bytes": 1478928,
+                "pmtiles_encoded_bytes": 1477128,
+                "heap_delta_bytes": 72569205
+              }
+            ],
+            "median": {
+              "total_ms": 715,
+              "rendered_features": 115378,
+              "pmtiles_requests": 6,
+              "pmtiles_transfer_bytes": 1478928,
+              "pmtiles_encoded_bytes": 1477128,
+              "heap_delta_bytes": 72569205
+            }
+          },
+          "galicia": {
+            "runs": [
+              {
+                "error": null,
+                "renderer": "MapLibre GL JS undefined",
+                "center": [
+                  -8.1,
+                  42.6
+                ],
+                "zoom": 6,
+                "total_ms": 1017.3999999999069,
+                "rendered_features": 96256,
+                "pmtiles_requests": 6,
+                "pmtiles_transfer_bytes": 2514336,
+                "pmtiles_encoded_bytes": 2512536,
+                "heap_delta_bytes": 88633607
+              }
+            ],
+            "median": {
+              "total_ms": 1017.3999999999069,
+              "rendered_features": 96256,
+              "pmtiles_requests": 6,
+              "pmtiles_transfer_bytes": 2514336,
+              "pmtiles_encoded_bytes": 2512536,
+              "heap_delta_bytes": 88633607
+            }
+          },
+          "andalucia": {
+            "runs": [
+              {
+                "error": null,
+                "renderer": "MapLibre GL JS undefined",
+                "center": [
+                  -4.8,
+                  37.3
+                ],
+                "zoom": 6,
+                "total_ms": 641.3999999999069,
+                "rendered_features": 19823,
+                "pmtiles_requests": 7,
+                "pmtiles_transfer_bytes": 717075,
+                "pmtiles_encoded_bytes": 714975,
+                "heap_delta_bytes": 21923852
+              }
+            ],
+            "median": {
+              "total_ms": 641.3999999999069,
+              "rendered_features": 19823,
+              "pmtiles_requests": 7,
+              "pmtiles_transfer_bytes": 717075,
+              "pmtiles_encoded_bytes": 714975,
+              "heap_delta_bytes": 21923852
+            }
+          },
+          "cataluna": {
+            "runs": [
+              {
+                "error": null,
+                "renderer": "MapLibre GL JS undefined",
+                "center": [
+                  1.7,
+                  41.8
+                ],
+                "zoom": 7,
+                "total_ms": 601.1000000000931,
+                "rendered_features": 5615,
+                "pmtiles_requests": 8,
+                "pmtiles_transfer_bytes": 399241,
+                "pmtiles_encoded_bytes": 396841,
+                "heap_delta_bytes": 13368974
+              }
+            ],
+            "median": {
+              "total_ms": 601.1000000000931,
+              "rendered_features": 5615,
+              "pmtiles_requests": 8,
+              "pmtiles_transfer_bytes": 399241,
+              "pmtiles_encoded_bytes": 396841,
+              "heap_delta_bytes": 13368974
+            }
+          },
+          "pais_valencia": {
+            "runs": [
+              {
+                "error": null,
+                "renderer": "MapLibre GL JS undefined",
+                "center": [
+                  -0.7,
+                  39.3
+                ],
+                "zoom": 8,
+                "total_ms": 498.59999999962747,
+                "rendered_features": 2186,
+                "pmtiles_requests": 11,
+                "pmtiles_transfer_bytes": 236991,
+                "pmtiles_encoded_bytes": 233691,
+                "heap_delta_bytes": 9154665
+              }
+            ],
+            "median": {
+              "total_ms": 498.59999999962747,
+              "rendered_features": 2186,
+              "pmtiles_requests": 11,
+              "pmtiles_transfer_bytes": 236991,
+              "pmtiles_encoded_bytes": 233691,
+              "heap_delta_bytes": 9154665
+            }
+          },
+          "provincia_local": {
+            "runs": [
+              {
+                "error": null,
+                "renderer": "MapLibre GL JS undefined",
+                "center": [
+                  -3.5,
+                  37.2
+                ],
+                "zoom": 9,
+                "total_ms": 434.79999999981374,
+                "rendered_features": 792,
+                "pmtiles_requests": 10,
+                "pmtiles_transfer_bytes": 89422,
+                "pmtiles_encoded_bytes": 86422,
+                "heap_delta_bytes": 4490967
+              }
+            ],
+            "median": {
+              "total_ms": 434.79999999981374,
+              "rendered_features": 792,
+              "pmtiles_requests": 10,
+              "pmtiles_transfer_bytes": 89422,
+              "pmtiles_encoded_bytes": 86422,
+              "heap_delta_bytes": 4490967
+            }
+          }
+        }
+      },
+      "mobile": {
+        "schema_version": 1,
+        "renderer": "MapLibre GL JS with PMTiles",
+        "viewport": "390x844",
+        "archive_bytes": 61347888,
+        "scenarios": {
+          "spain_full": {
+            "runs": [
+              {
+                "error": null,
+                "renderer": "MapLibre GL JS undefined",
+                "center": [
+                  -3.7,
+                  40.3
+                ],
+                "zoom": 4,
+                "total_ms": 665.9000000003725,
+                "rendered_features": 115378,
+                "pmtiles_requests": 6,
+                "pmtiles_transfer_bytes": 1478928,
+                "pmtiles_encoded_bytes": 1477128,
+                "heap_delta_bytes": 79542148
+              }
+            ],
+            "median": {
+              "total_ms": 665.9000000003725,
+              "rendered_features": 115378,
+              "pmtiles_requests": 6,
+              "pmtiles_transfer_bytes": 1478928,
+              "pmtiles_encoded_bytes": 1477128,
+              "heap_delta_bytes": 79542148
+            }
+          },
+          "galicia": {
+            "runs": [
+              {
+                "error": null,
+                "renderer": "MapLibre GL JS undefined",
+                "center": [
+                  -8.1,
+                  42.6
+                ],
+                "zoom": 6,
+                "total_ms": 962.2000000001863,
+                "rendered_features": 72359,
+                "pmtiles_requests": 6,
+                "pmtiles_transfer_bytes": 2514336,
+                "pmtiles_encoded_bytes": 2512536,
+                "heap_delta_bytes": 70719525
+              }
+            ],
+            "median": {
+              "total_ms": 962.2000000001863,
+              "rendered_features": 72359,
+              "pmtiles_requests": 6,
+              "pmtiles_transfer_bytes": 2514336,
+              "pmtiles_encoded_bytes": 2512536,
+              "heap_delta_bytes": 70719525
+            }
+          },
+          "andalucia": {
+            "runs": [
+              {
+                "error": null,
+                "renderer": "MapLibre GL JS undefined",
+                "center": [
+                  -4.8,
+                  37.3
+                ],
+                "zoom": 6,
+                "total_ms": 482.10000000009313,
+                "rendered_features": 19129,
+                "pmtiles_requests": 6,
+                "pmtiles_transfer_bytes": 692394,
+                "pmtiles_encoded_bytes": 690594,
+                "heap_delta_bytes": 20264120
+              }
+            ],
+            "median": {
+              "total_ms": 482.10000000009313,
+              "rendered_features": 19129,
+              "pmtiles_requests": 6,
+              "pmtiles_transfer_bytes": 692394,
+              "pmtiles_encoded_bytes": 690594,
+              "heap_delta_bytes": 20264120
+            }
+          },
+          "cataluna": {
+            "runs": [
+              {
+                "error": null,
+                "renderer": "MapLibre GL JS undefined",
+                "center": [
+                  1.7,
+                  41.8
+                ],
+                "zoom": 7,
+                "total_ms": 432.8000000002794,
+                "rendered_features": 3208,
+                "pmtiles_requests": 5,
+                "pmtiles_transfer_bytes": 161257,
+                "pmtiles_encoded_bytes": 159757,
+                "heap_delta_bytes": 7327291
+              }
+            ],
+            "median": {
+              "total_ms": 432.8000000002794,
+              "rendered_features": 3208,
+              "pmtiles_requests": 5,
+              "pmtiles_transfer_bytes": 161257,
+              "pmtiles_encoded_bytes": 159757,
+              "heap_delta_bytes": 7327291
+            }
+          },
+          "pais_valencia": {
+            "runs": [
+              {
+                "error": null,
+                "renderer": "MapLibre GL JS undefined",
+                "center": [
+                  -0.7,
+                  39.3
+                ],
+                "zoom": 8,
+                "total_ms": 430,
+                "rendered_features": 1703,
+                "pmtiles_requests": 5,
+                "pmtiles_transfer_bytes": 152830,
+                "pmtiles_encoded_bytes": 151330,
+                "heap_delta_bytes": 6865619
+              }
+            ],
+            "median": {
+              "total_ms": 430,
+              "rendered_features": 1703,
+              "pmtiles_requests": 5,
+              "pmtiles_transfer_bytes": 152830,
+              "pmtiles_encoded_bytes": 151330,
+              "heap_delta_bytes": 6865619
+            }
+          },
+          "provincia_local": {
+            "runs": [
+              {
+                "error": null,
+                "renderer": "MapLibre GL JS undefined",
+                "center": [
+                  -3.5,
+                  37.2
+                ],
+                "zoom": 9,
+                "total_ms": 428.1999999997206,
+                "rendered_features": 440,
+                "pmtiles_requests": 6,
+                "pmtiles_transfer_bytes": 58805,
+                "pmtiles_encoded_bytes": 57005,
+                "heap_delta_bytes": 5091068
+              }
+            ],
+            "median": {
+              "total_ms": 428.1999999997206,
+              "rendered_features": 440,
+              "pmtiles_requests": 6,
+              "pmtiles_transfer_bytes": 58805,
+              "pmtiles_encoded_bytes": 57005,
+              "heap_delta_bytes": 5091068
+            }
+          }
+        }
+      }
+    },
+    "input_properties": [
+      "geometry_id",
+      "year"
+    ],
+    "selection_contract": "geometry_id remains a vector-tile property and joins the separate lookup; MVT numeric feature id is intentionally not used."
+  },
+  "simplification_sample": {
+    "10m": {
+      "records_sampled": 1195,
+      "sample_step": 100,
+      "tolerance_source_m": 10.0,
+      "invalid_original": 0,
+      "invalid_simplified": 0,
+      "collapsed": 0,
+      "relative_area_error_percent": {
+        "max": 9.09175095385973,
+        "p95": 0.0,
+        "mean": 0.016804490399073446
+      },
+      "hausdorff_distance_source_m": {
+        "max": 8.747644758254333,
+        "p95": 0.0,
+        "mean": 0.015406255061186064
+      },
+      "note": "Muestra sistemática diagnóstica; no es una garantía global ni una reparación topológica."
+    },
+    "30m": {
+      "records_sampled": 1195,
+      "sample_step": 100,
+      "tolerance_source_m": 30.0,
+      "invalid_original": 0,
+      "invalid_simplified": 0,
+      "collapsed": 0,
+      "relative_area_error_percent": {
+        "max": 16.15384613277298,
+        "p95": 6.338028173616244,
+        "mean": 2.022577733798431
+      },
+      "hausdorff_distance_source_m": {
+        "max": 29.99968499327402,
+        "p95": 29.999675207440756,
+        "mean": 27.74185885504676
+      },
+      "note": "Muestra sistemática diagnóstica; no es una garantía global ni una reparación topológica."
+    },
+    "100m": {
+      "records_sampled": 1195,
+      "sample_step": 100,
+      "tolerance_source_m": 100.0,
+      "invalid_original": 0,
+      "invalid_simplified": 0,
+      "collapsed": 0,
+      "relative_area_error_percent": {
+        "max": 60.65573771957511,
+        "p95": 24.999999967600225,
+        "mean": 9.395597931472317
+      },
+      "hausdorff_distance_source_m": {
+        "max": 99.99313267343119,
+        "p95": 99.242162220999,
+        "mean": 78.5831874757741
+      },
+      "note": "Muestra sistemática diagnóstica; no es una garantía global ni una reparación topológica."
+    }
+  },
+  "limits": [
+    "Measurements are localhost/headless diagnostics, not a production deployment.",
+    "PMTiles requests require an HTTP server with Range support.",
+    "No asset in data/derived is published or used by the Valencian frontend."
+  ]
+}

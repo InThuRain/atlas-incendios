@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="es">
+<meta charset="utf-8">
+<title>ES-3 vector-tile diagnostic</title>
+<style>html,body,#map{margin:0;width:100%;height:100%;background:#fff}#debug-output{display:none}</style>
+<div id="map"></div><pre id="debug-output"></pre>
+<script src="/data/derived/spain/es3/tools/browser/maplibre-gl-5.16.0.js"></script>
+<script type="module">
+import { PMTiles, Protocol } from "/data/derived/spain/es3/tools/browser/pmtiles-4.3.0.mjs";
+
+const output = document.querySelector('#debug-output');
+const params = new URLSearchParams(location.search);
+const center = (params.get('center') || '-3.7,40.3').split(',').map(Number);
+const zoom = Number(params.get('zoom') || 4);
+const archive = `/data/derived/spain/es3/assets/${params.get('archive') || 'esfire30-national.pmtiles'}`;
+const protocol = new Protocol();
+maplibregl.addProtocol('pmtiles', protocol.tile);
+const start = performance.now();
+const before = performance.memory?.usedJSHeapSize ?? null;
+const map = new maplibregl.Map({
+  container: 'map', center, zoom, attributionControl: false,
+  style: {version: 8, sources: {esfire30: {type: 'vector', url: `pmtiles://${location.origin}${archive}`}}, layers: [{id: 'perimeters', type: 'fill', source: 'esfire30', 'source-layer': 'esfire30', paint: {'fill-color': '#c75b39', 'fill-opacity': 0.45, 'fill-outline-color': '#823d29'}}]}
+});
+let completed = false;
+function finish(error) {
+  if (completed) return; completed = true;
+  const resources = performance.getEntriesByType('resource').filter(row => row.name.includes('.pmtiles'));
+  const result = {
+    error: error ? String(error) : null,
+    renderer: `MapLibre GL JS ${maplibregl.version}`,
+    center, zoom, total_ms: performance.now() - start,
+    rendered_features: map.queryRenderedFeatures({layers:['perimeters']}).length,
+    pmtiles_requests: resources.length,
+    pmtiles_transfer_bytes: resources.reduce((sum, row) => sum + (row.transferSize || 0), 0),
+    pmtiles_encoded_bytes: resources.reduce((sum, row) => sum + (row.encodedBodySize || 0), 0),
+    heap_delta_bytes: before === null || !performance.memory ? null : performance.memory.usedJSHeapSize - before,
+  };
+  output.textContent = JSON.stringify(result); output.dataset.complete = 'true';
+  map.remove();
+}
+map.on('error', event => finish(event?.error || 'MapLibre error'));
+map.on('idle', () => setTimeout(() => finish(null), 100));
+</script>

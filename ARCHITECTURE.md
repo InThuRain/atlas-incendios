@@ -452,3 +452,21 @@ de IDs, permalink `v=1` y `public-data-v5` queda declarada y probada en
 Los registros nacionales se particionarán por fuente × CCAA × periodo. Una
 geometría transfronteriza no se duplica: los manifests territoriales referencian
 su `geometry_id` compartido. ES-2 no decide formato de tesela ni renderer.
+
+## Entrega geométrica nacional (ES-3)
+
+El laboratorio ES-3 confirma que GeoJSON ESFire30 nacional monolítico es
+**NOT_RECOMMENDED** como carga inicial (~560 MiB de heap para 119.498
+features). GeoJSON por CCAA × bloque temporal es **RECOMMENDED** para
+provincia/local; la vista España/overview/regional debe usar
+PMTiles/vector tiles, también **RECOMMENDED**. Las fichas recuperarán el
+`geometry_id` desde atributos mínimos del tile y un lookup separado.
+
+La variante PMTiles de fidelidad queda como referencia experimental del
+siguiente pipeline. No se migra todavía el frontend ni se abandona Leaflet; la
+arquitectura candidata es híbrida, vector tiles para overview/regional y
+GeoJSON de detalle para provincia/local. La simplificación de 100 m no es
+adecuada para detalle. Los manifests deben resolver transfronterizas mediante
+referencias compartidas, sin clipping ni identidad duplicada. PMTiles exige
+HTTP Range: Range/caché en GitHub Pages continúa pendiente de un smoke test
+real antes de un despliegue.

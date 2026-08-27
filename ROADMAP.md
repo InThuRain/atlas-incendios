@@ -125,10 +125,12 @@ Objetivo: tener un piloto local fiable y agradable de usar.
   assets; versionar el snapshot nominal INE de 01/01/2026 (8.132 municipios),
   generalizar el guard fail-closed y validar País Valencià, Navarra y Canarias
   sin modificar el visor público.
-- [ ] ES-3: prototipo nacional aislado de ESFire30 con geometrías únicas,
+- [x] ES-3: prototipo nacional aislado de ESFire30 con geometrías únicas,
   relaciones territoriales y benchmark GeoJSON particionado frente a
-  PMTiles/vector tiles; no publicar ni migrar el piloto antes de decidir con
-  medidas.
+  PMTiles/vector tiles. GeoJSON monolítico queda descartado; PMTiles de
+  fidelidad es la referencia experimental para España/overview/regional y
+  GeoJSON particionado para provincia/local. No publicar ni migrar todavía el
+  piloto; queda pendiente un smoke test HTTP Range/caché real en Pages.
 - [ ] Obtener de CCINIF permiso escrito y atribución para redistribuir una
   selección GeoJSON/derivada de la malla; mantener
   `publishable=false_pending_permission` hasta entonces.

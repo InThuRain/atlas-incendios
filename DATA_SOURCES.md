@@ -482,6 +482,17 @@ Fuentes oficiales:
 El raw queda en `data/raw/territories/spain/` ignorado. El snapshot canónico y
 su manifiesto se regeneran con `scripts/territories/build_spain_snapshot.py`.
 
+ES-3 adquirió únicamente para cruce diagnóstico dos respuestas de la API OGC
+Features `administrativeunit` del IGN, el 26/08/2026: nivel comunidad autónoma
+(20 features, SHA-256 `48d1cd7b1cc2a3a98f6d02a0043fddc8db43ba28aaa8789d6b030243417bf757`)
+y provincia (53 features, SHA-256
+`58e4f68f4efc324dd9dfd0c1df0ea755846e3b717676b7137456577dc2083290`).
+La API entrega esas respuestas en CRS84; se mantienen raw e ignoradas y no
+forman parte del Atlas público. URLs reproducibles:
+
+- <https://api-features.ign.es/collections/administrativeunit/items?f=json&limit=100&nationallevelname=Comunidad%20aut%C3%B3noma>
+- <https://api-features.ign.es/collections/administrativeunit/items?f=json&limit=100&nationallevelname=Provincia>
+
 ## 4. Teledetección
 
 Posibles fuentes complementarias:

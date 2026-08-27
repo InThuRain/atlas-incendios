@@ -474,6 +474,26 @@ atribución y procedencia; SIGIF, CCINIF y Navarra de diseño siguen bloqueados.
 El snapshot territorial 01/01/2026 contiene códigos/nombres INE pero no límites
 históricos ni geometrías IGN/CNIG.
 
+## 2026-08-27 — Entrega nacional ESFire30 por viewport, no GeoJSON monolítico
+
+GeoJSON ESFire30 nacional monolítico queda **NOT_RECOMMENDED** como carga
+inicial. GeoJSON particionado por CCAA × bloque queda **RECOMMENDED** para
+provincia/local; PMTiles/vector tiles queda **RECOMMENDED** para
+España/overview/regional. La variante PMTiles de fidelidad es la referencia
+experimental para el siguiente pipeline, manteniendo `geometry_id` y lookup de
+atributos.
+
+**Motivo:** ES-3 mide ~560 MiB de heap para 119.498 features como GeoJSON
+Canvas, frente a 0,5–2,5 MB solicitados y ~5–89 MB de heap en PMTiles.
+GeoJSON particionado continúa fluido para territorios acotados.
+
+**Consecuencias:** no se migra aún el visor valenciano ni se abandona Leaflet o
+se adopta MapLibre en producción. La simplificación 100 m no se usa para
+detalle. Los tiles no reemplazan geometrías fuente, deben preservar IDs como
+atributos y requieren HTTP Range. Las transfronterizas se entregarán mediante
+relaciones compartidas, sin clipping ni asignación administrativa fuente. El
+smoke test real de HTTP Range/caché en GitHub Pages sigue pendiente.
+
 ## Plantilla para nuevas decisiones
 
 ```markdown

@@ -83,6 +83,19 @@ Antes de una refactorización grande:
 - no mezclar limpieza, funcionalidad y cambios de datos en un mismo commit si puede evitarse;
 - no reescribir historia sin petición explícita.
 
+### Ejecución consciente de cuota
+
+- Trabajar una sola subfase por petición; no continuar automáticamente a la
+  siguiente.
+- Diseñar operaciones costosas como idempotentes, interrumpibles y reanudables,
+  con checkpoints persistidos.
+- Reutilizar descargas, checksums y resultados válidos; no repetir benchmarks o
+  adquisiciones caras sin una razón verificable.
+- Durante desarrollo ejecutar tests específicos; reservar la suite completa
+  para cierres de fase o cuando se solicite expresamente.
+- Preparar siempre comandos reproducibles para que el usuario pueda ejecutar
+  fuera de Codex tareas deterministas largas.
+
 ## Estilo del proyecto
 
 Preferir soluciones comprensibles y mantenibles frente a optimizaciones prematuras.
