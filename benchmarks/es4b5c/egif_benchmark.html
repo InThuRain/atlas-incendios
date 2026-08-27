@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ES-4B5C — EGIF browser benchmark</title>
+  <style>body{font:14px/1.45 system-ui,sans-serif;margin:1rem}pre{white-space:pre-wrap}</style>
+</head>
+<body>
+  <h1>ES-4B5C — EGIF browser benchmark</h1>
+  <p id="status">Preparando benchmark…</p>
+  <pre id="debug-output" aria-live="polite"></pre>
+  <script type="module">
+    const PARAMETERS = new URLSearchParams(location.search);
+    const DEFAULT_MANIFEST = '/data/web/spain/egif/2026-08-27/manifest.json';
+    const SCENARIOS_URL = './scenarios.json';
+    const output = document.querySelector('#debug-output');
+    const status = document.querySelector('#status');
+
+    const now = () => performance.now();
+    const round = value => typeof value === 'number' ? Number(value.toFixed(3)) : value;
+    const heap = () => {
+      const value = performance.memory?.usedJSHeapSize;
+      return typeof value === 'number'
+        ? {status: 'available', used_js_heap_size: value}
+        : {status: 'unavailable', used_js_heap_size: null};
+    };
+    const sum = values => values.reduce((total, value) => total + value, 0);
+    const emptyNetwork = () => ({requests: 0, body_bytes: 0, resource_transfer_bytes: 0, resource_transfer_available: true, gzip_estimated_bytes: 0, fetch_ms: 0, parse_ms: 0});
+
+    function addNetwork(target, value) {
+      target.requests += 1;
+      target.body_bytes += value.body_bytes;
+      target.gzip_estimated_bytes += value.gzip_estimated_bytes || 0;
+      target.fetch_ms += value.fetch_ms;
+      target.parse_ms += value.parse_ms;
+      if (value.resource_transfer_bytes === null) target.resource_transfer_available = false;
+      else target.resource_transfer_bytes += value.resource_transfer_bytes;
+    }
+
+    async function fetchJson(url, gzipEstimatedBytes) {
+      const before = performance.getEntriesByName(url).length;
+      const fetchStart = now();
+      const response = await fetch(url, {cache: 'default'});
+      const buffer = await response.arrayBuffer();
+      const fetchMs = now() - fetchStart;
+      if (!response.ok) throw new Error(`HTTP ${response.status}: ${url}`);
+      const parseStart = now();
+      const payload = JSON.parse(new TextDecoder().decode(buffer));
+      const parseMs = now() - parseStart;
+      const entry = performance.getEntriesByName(url).slice(before).pop();
+      return {payload, metrics: {
+        body_bytes: buffer.byteLength,
+        resource_transfer_bytes: entry && typeof entry.transferSize === 'number' ? entry.transferSize : null,
+        gzip_estimated_bytes: gzipEstimatedBytes || 0,
+        fetch_ms: round(fetchMs), parse_ms: round(parseMs),
+      }};
+    }
+
+    function blocksMatch(asset, requestedBlocks) {
+      return requestedBlocks === 'all' || requestedBlocks.some(([from, to]) => asset.from_year === from && asset.to_year === to);
+    }
+
+    function selectedAssets(manifest, scenario) {
+      return manifest.assets.filter(asset => asset.status === 'complete' && asset.source_id === 'egif'
+        && (!scenario.territory_id || asset.territory_id === scenario.territory_id)
+        && blocksMatch(asset, scenario.blocks)).sort((a, b) => a.asset_id.localeCompare(b.asset_id));
+    }
+
+    function countColumnar(loaded, predicate) {
+      let matches = 0;
+      for (const item of loaded.values()) {
+        const columns = item.initial.columns;
+        for (let ordinal = 0; ordinal < item.record_count; ordinal += 1) if (predicate(columns, ordinal)) matches += 1;
+      }
+      return matches;
+    }
+
+    function firstValue(loaded, field, allowNull = false) {
+      for (const item of loaded.values()) {
+        const found = item.initial.columns[field].find(value => allowNull || value !== null);
+        if (found !== undefined && (allowNull || found !== null)) return found;
+      }
+      return null;
+    }
+
+    async function loadDetail(item, detailNetwork) {
+      if (item.detail) return {from_cache: true, detail: item.detail};
+      const url = new URL(item.metadata.detail.path, item.baseUrl).href;
+      const fetched = await fetchJson(url, item.metadata.detail.gzip_size);
+      addNetwork(detailNetwork, fetched.metrics);
+      const detail = fetched.payload;
+      if (detail.role !== 'detail_on_selection' || detail.initial_record_id_order_sha256 !== item.metadata.initial.record_id_order_sha256) {
+        throw new Error(`Detail ordinal contract inválido: ${item.metadata.asset_id}`);
+      }
+      item.detail = detail;
+      return {from_cache: false, detail};
+    }
+
+    async function selectRecord(item, ordinal, detailNetwork) {
+      const detail = await loadDetail(item, detailNetwork);
+      const record = {};
+      for (const field of item.initial.fields) record[field] = item.initial.columns[field][ordinal];
+      for (const field of detail.detail.fields) record[field] = detail.detail.columns[field][ordinal];
+      return {record, detail_from_cache: detail.from_cache};
+    }
+
+    function materializationComparison(item) {
+      if (!item || item.record_count > 5000) return {status: 'not_run', reason: 'only one small asset is compared'};
+      const fields = item.initial.fields;
+      const columns = item.initial.columns;
+      const count = Math.min(item.record_count, 1000);
+      const targetYear = columns.year[0];
+      const columnStart = now();
+      let columnMatches = 0;
+      for (let index = 0; index < count; index += 1) if (columns.year[index] === targetYear) columnMatches += 1;
+      const columnMs = now() - columnStart;
+      const objectStart = now();
+      const records = Array.from({length: count}, (_, ordinal) => Object.fromEntries(fields.map(field => [field, columns[field][ordinal]])));
+      const objectMatches = records.filter(record => record.year === targetYear).length;
+      const objectMs = now() - objectStart;
+      return {status: 'run', sample_records: count, columnar_filter_ms: round(columnMs), materialize_and_filter_ms: round(objectMs), columnar_matches: columnMatches, object_matches: objectMatches};
+    }
+
+    async function runOnce(manifest, scenario, baseUrl) {
+      performance.clearResourceTimings();
+      const beforeHeap = heap();
+      const initialNetwork = emptyNetwork();
+      const assets = selectedAssets(manifest, scenario);
+      if (!assets.length) throw new Error(`Escenario sin assets: ${scenario.id}`);
+      const initialFetchStart = now();
+      const downloaded = await Promise.all(assets.map(async metadata => {
+        const url = new URL(metadata.initial.path, baseUrl).href;
+        const fetched = await fetchJson(url, metadata.initial.gzip_size);
+        addNetwork(initialNetwork, fetched.metrics);
+        const initial = fetched.payload;
+        if (initial.role !== 'initial' || initial.asset_id !== metadata.asset_id || initial.fields.length !== 13) throw new Error(`Initial contract inválido: ${metadata.asset_id}`);
+        const prepareStart = now();
+        const ids = initial.columns.record_id;
+        const lookup = new Map();
+        for (let ordinal = 0; ordinal < ids.length; ordinal += 1) lookup.set(ids[ordinal], ordinal);
+        const prepareMs = now() - prepareStart;
+        if (lookup.size !== metadata.record_count) throw new Error(`Lookup no único: ${metadata.asset_id}`);
+        return [metadata.asset_id, {metadata, initial, lookup, record_count: metadata.record_count, baseUrl, detail: null, prepare_ms: prepareMs}];
+      }));
+      const loaded = new Map(downloaded);
+      const initialLoadMs = now() - initialFetchStart;
+      const afterInitialHeap = heap();
+      const totalRecords = sum([...loaded.values()].map(item => item.record_count));
+      const lookupItem = loaded.values().next().value;
+      const lookupId = lookupItem.initial.columns.record_id[0];
+      const lookupStart = now();
+      const lookupOrdinal = lookupItem.lookup.get(lookupId);
+      const lookupMs = now() - lookupStart;
+      const selectedYear = firstValue(loaded, 'year');
+      const firstRange = scenario.blocks === 'all' ? [1968, 1992] : scenario.blocks[0];
+      const selectedProvince = firstValue(loaded, 'province_id');
+      const selectedMunicipality = firstValue(loaded, 'municipality_id');
+      const filterStart = now();
+      const filters = {
+        year: {value: selectedYear, matches: countColumnar(loaded, (columns, ordinal) => columns.year[ordinal] === selectedYear)},
+        range: {from: firstRange[0], to: firstRange[1], matches: countColumnar(loaded, (columns, ordinal) => columns.year[ordinal] >= firstRange[0] && columns.year[ordinal] <= firstRange[1])},
+        province: {value: selectedProvince, matches: countColumnar(loaded, (columns, ordinal) => columns.province_id[ordinal] === selectedProvince)},
+        municipality_resolved: {value: selectedMunicipality, matches: selectedMunicipality === null ? null : countColumnar(loaded, (columns, ordinal) => columns.municipality_id[ordinal] === selectedMunicipality)},
+        municipality_null: {matches: countColumnar(loaded, (columns, ordinal) => columns.municipality_id[ordinal] === null)},
+      };
+      const filterMs = now() - filterStart;
+      const detailNetwork = emptyNetwork();
+      const firstSelectStart = now();
+      const firstSelected = await selectRecord(lookupItem, lookupOrdinal, detailNetwork);
+      const firstSelectMs = now() - firstSelectStart;
+      const secondOrdinal = Math.min(lookupOrdinal + 1, lookupItem.record_count - 1);
+      const beforeSecondRequests = detailNetwork.requests;
+      const secondSelectStart = now();
+      const secondSelected = await selectRecord(lookupItem, secondOrdinal, detailNetwork);
+      const secondSelectMs = now() - secondSelectStart;
+      const otherItem = [...loaded.values()].find(item => item !== lookupItem);
+      let otherDetail = {status: 'unavailable', reason: 'one initial asset only'};
+      if (otherItem) {
+        const beforeOtherRequests = detailNetwork.requests;
+        const otherStart = now();
+        const otherSelected = await selectRecord(otherItem, 0, detailNetwork);
+        otherDetail = {status: 'run', selection_ms: round(now() - otherStart), additional_requests: detailNetwork.requests - beforeOtherRequests, record_id: otherSelected.record.record_id};
+      }
+      const afterDetailHeap = heap();
+      return {
+        scenario: scenario.id,
+        initial_assets: assets.map(asset => asset.asset_id),
+        initial_asset_count: assets.length,
+        initial_records: totalRecords,
+        network: {initial: initialNetwork, detail: detailNetwork},
+        timings_ms: {initial_load_wall_ms: round(initialLoadMs), initial_fetch_ms_sum: round(initialNetwork.fetch_ms), initial_parse_ms_sum: round(initialNetwork.parse_ms), prepare_ms_sum: round(sum([...loaded.values()].map(item => item.prepare_ms))), lookup_ms: round(lookupMs), filter_ms: round(filterMs), first_selection_ms: round(firstSelectMs), second_selection_same_asset_ms: round(secondSelectMs)},
+        heap: {before: beforeHeap, after_initial: afterInitialHeap, after_detail: afterDetailHeap},
+        lookup: {record_id: lookupId, ordinal: lookupOrdinal, lookup_found: lookupOrdinal === 0, map_entries: lookupItem.lookup.size},
+        filters,
+        selection: {first_record_id: firstSelected.record.record_id, first_detail_from_cache: firstSelected.detail_from_cache, second_record_id: secondSelected.record.record_id, second_same_asset_additional_detail_requests: detailNetwork.requests - beforeSecondRequests, other_detail: otherDetail},
+        columnar_vs_objects_small_sample: materializationComparison(lookupItem),
+      };
+    }
+
+    async function main() {
+      const manifestUrl = PARAMETERS.get('manifest') || DEFAULT_MANIFEST;
+      const scenarioId = PARAMETERS.get('scenario');
+      const cacheMode = PARAMETERS.get('cache') || 'cold';
+      const scenarios = await (await fetch(SCENARIOS_URL, {cache: 'no-store'})).json();
+      const scenario = scenarios.scenarios.find(item => item.id === scenarioId);
+      if (!scenario) throw new Error(`Escenario desconocido: ${scenarioId}`);
+      const manifestResponse = await fetch(manifestUrl, {cache: 'no-store'});
+      if (!manifestResponse.ok) throw new Error(`No se pudo leer manifest: ${manifestResponse.status}`);
+      const manifest = await manifestResponse.json();
+      const baseUrl = new URL(manifestUrl, location.href);
+      let result;
+      if (cacheMode === 'warm') {
+        status.textContent = 'Calentando caché local…';
+        await runOnce(manifest, scenario, baseUrl);
+        status.textContent = 'Midiendo repetición con caché caliente…';
+        result = await runOnce(manifest, scenario, baseUrl);
+        result.cache_priming = 'same fresh browser profile; first pass discarded; HTTP memory/disk cache may satisfy repeated requests';
+      } else {
+        status.textContent = 'Midiendo carga fría…';
+        result = await runOnce(manifest, scenario, baseUrl);
+      }
+      result.cache_mode = cacheMode;
+      result.manifest_url = manifestUrl;
+      result.manifest_schema_version = manifest.schema_version;
+      result.complete = true;
+      status.textContent = 'Benchmark completado.';
+      output.textContent = JSON.stringify(result);
+      output.dataset.complete = 'true';
+    }
+
+    main().catch(error => {
+      status.textContent = 'Benchmark fallido.';
+      output.textContent = JSON.stringify({error: String(error?.stack || error), complete: true});
+      output.dataset.complete = 'true';
+    });
+  </script>
+</body>
+</html>

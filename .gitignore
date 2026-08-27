@@ -71,3 +71,7 @@ data/web/spain/
 
 # Dependencias locales de los benchmarks JavaScript.
 benchmarks/gva_web/node_modules/
+
+# Resultados locales de Chromium para ES-4B5C. El harness y los escenarios sí
+# se versionan; las mediciones dependen de máquina/navegador y se regeneran.
+benchmarks/es4b5c/results.json

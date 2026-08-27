@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "description": "ES-4B5C scenarios select existing EGIF web assets only; they never rebuild data.",
+  "scenarios": [
+    {"id": "a_la_rioja_full", "label": "A — La Rioja, periodo completo", "territory_id": "ES:CCAA:17", "blocks": "all"},
+    {"id": "b_pais_valencia_full", "label": "B — País Valencià, periodo completo", "territory_id": "ES:CCAA:10", "blocks": "all"},
+    {"id": "c_cataluna_full", "label": "C — Cataluña, periodo completo", "territory_id": "ES:CCAA:09", "blocks": "all"},
+    {"id": "d_andalucia_full", "label": "D — Andalucía, periodo completo", "territory_id": "ES:CCAA:01", "blocks": "all"},
+    {"id": "e_castilla_y_leon_full", "label": "E — Castilla y León, periodo completo", "territory_id": "ES:CCAA:07", "blocks": "all"},
+    {"id": "f_galicia_full", "label": "F — Galicia, periodo completo", "territory_id": "ES:CCAA:12", "blocks": "all"},
+    {"id": "g_galicia_1993_2002", "label": "G — Galicia, 1993–2002", "territory_id": "ES:CCAA:12", "blocks": [[1993, 2002]]},
+    {"id": "h_spain_1993_2002", "label": "H — España, 1993–2002", "territory_id": null, "blocks": [[1993, 2002]]},
+    {"id": "i_spain_2013_2023", "label": "I — España, 2013–2023", "territory_id": null, "blocks": [[2013, 2023]]},
+    {"id": "j_spain_all_initial", "label": "J — España, todos los bloques INITIAL", "territory_id": null, "blocks": "all"},
+    {"id": "smoke_la_rioja_2013_2023", "label": "Smoke — La Rioja, 2013–2023", "territory_id": "ES:CCAA:17", "blocks": [[2013, 2023]], "include_in_all": false}
+  ]
+}
