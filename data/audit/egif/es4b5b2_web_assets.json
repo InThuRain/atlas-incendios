@@ -1,0 +1,4382 @@
+{
+  "schema_version": 1,
+  "audit_id": "es-4b5b2-egif-web-assets-1",
+  "input": {
+    "builder_manifest": "data/web/spain/egif/2026-08-27/manifest.json",
+    "builder_manifest_sha256": "a69f7ad3272b36ea573d4a5ecf597ad781db30e4f82f9d54e2b59c5526990e5f",
+    "normalized_manifest": "data/processed/egif/spain/2026-08-27/manifest.json",
+    "normalized_manifest_sha256": "4cca3b79e4c688940c08f05c8aab66f73ef84911311b5482c6e6343814c4bd0e",
+    "territory_manifest": "data/derived/spain/es4b3/territory_relations/2026-08-27/manifest.json",
+    "territory_manifest_sha256": "47c183929a9c77101bcb6181dd94e6c1a3810c72668b240874171c86f9ebda00"
+  },
+  "source_scope": {
+    "included_source_ids": [
+      "egif"
+    ],
+    "excluded_source_ids": [
+      "ccinif_grid",
+      "gva_sigif"
+    ],
+    "profile": "development"
+  },
+  "integrity": {
+    "valid": true,
+    "errors": [],
+    "assets": 88,
+    "unique_record_ids": 646887,
+    "duplicate_record_ids": 0,
+    "annual_reconciliation": {
+      "expected_records": 646887,
+      "asset_records": 646887,
+      "mismatches": {}
+    },
+    "territory_manifest_records": 646887,
+    "structural_sample": [
+      {
+        "asset_id": "egif:ES:CCAA:01:1968-1979",
+        "record_count": 3135,
+        "first_record_id": "egif-record:1968040495",
+        "last_record_id": "egif-record:1979297328"
+      },
+      {
+        "asset_id": "egif:ES:CCAA:09:2013-2023",
+        "record_count": 5154,
+        "first_record_id": "egif-record:2013080001",
+        "last_record_id": "egif-record:2022430128"
+      },
+      {
+        "asset_id": "egif:ES:CCAA:12:1993-2002",
+        "record_count": 110605,
+        "first_record_id": "egif-record:1993150001",
+        "last_record_id": "egif-record:2002363357"
+      },
+      {
+        "asset_id": "egif:ES:CCAA:18:2013-2023",
+        "record_count": 8,
+        "first_record_id": "egif-record:2014510001",
+        "last_record_id": "egif-record:2022510002"
+      }
+    ]
+  },
+  "totals": {
+    "records": 646887,
+    "raw_bytes": 181891957,
+    "gzip_bytes": 14338792,
+    "raw_bytes_per_record": 281.180418,
+    "gzip_bytes_per_record": 22.165837,
+    "compression_ratio_gzip_over_raw": 0.07883137
+  },
+  "initial_vs_detail": {
+    "initial": {
+      "raw_bytes": 96883738,
+      "gzip_bytes": 3901303,
+      "raw_percent": 53.264443,
+      "gzip_percent": 27.208031,
+      "raw_bytes_per_record": 149.769184,
+      "gzip_bytes_per_record": 6.030888
+    },
+    "detail_on_selection": {
+      "raw_bytes": 85008219,
+      "gzip_bytes": 10437489,
+      "raw_percent": 46.735557,
+      "gzip_percent": 72.791969,
+      "raw_bytes_per_record": 131.411234,
+      "gzip_bytes_per_record": 16.134949
+    }
+  },
+  "record_id_lookup_cost": {
+    "serialized_lookup": "none; the record_id column is the source for a runtime record_id -> ordinal map",
+    "record_id_column_raw_bytes": 16172284,
+    "record_id_column_gzip_bytes": 1587210,
+    "initial_raw_percent": 16.692465,
+    "initial_gzip_percent": 40.6841,
+    "runtime_map_heap": "not measured; reserved for ES-4B5C browser benchmarks"
+  },
+  "territory_fields": {
+    "autonomous_community": {
+      "ES:CCAA:01": 45512,
+      "ES:CCAA:02": 15194,
+      "ES:CCAA:03": 54898,
+      "ES:CCAA:04": 5933,
+      "ES:CCAA:05": 3770,
+      "ES:CCAA:06": 21320,
+      "ES:CCAA:07": 81438,
+      "ES:CCAA:08": 28735,
+      "ES:CCAA:09": 31319,
+      "ES:CCAA:10": 22108,
+      "ES:CCAA:11": 35465,
+      "ES:CCAA:12": 264313,
+      "ES:CCAA:13": 11451,
+      "ES:CCAA:14": 4642,
+      "ES:CCAA:15": 9572,
+      "ES:CCAA:16": 7199,
+      "ES:CCAA:17": 3996,
+      "ES:CCAA:18": 22
+    },
+    "province": {
+      "present": 646887
+    },
+    "municipality": {
+      "null": 71490,
+      "resolved": 575397
+    }
+  },
+  "cause_fields": {
+    "cause_source_code": {
+      "present": 646887
+    },
+    "canonical_cause": {
+      "null": 646887
+    },
+    "cause_mapping_status": {
+      "unmapped": 646887
+    }
+  },
+  "gif_administrative": {
+    "false": 644695,
+    "true": 2192
+  },
+  "assets": [
+    {
+      "asset_id": "egif:ES:CCAA:01:1968-1979",
+      "autonomous_community_id": "ES:CCAA:01",
+      "autonomous_community_name": "Andalucía",
+      "from_year": 1968,
+      "to_year": 1979,
+      "record_count": 3135,
+      "raw_bytes": 780683,
+      "gzip_bytes": 62057,
+      "raw_bytes_per_record": 249.021691,
+      "gzip_bytes_per_record": 19.794896,
+      "compression_ratio_gzip_over_raw": 0.07949065,
+      "initial": {
+        "path": "assets/ES_CCAA_01/1968-1979/initial.json",
+        "raw_size": 438024,
+        "gzip_size": 17437,
+        "sha256": "ebde08da31d3bccf85185303def334e3752868c8328f590187c1fb4fb6724de3",
+        "record_id_order_sha256": "a6c676d6606ebd1350a8d36e84469144eb6bb03309fa313334c5f5fe66e678b1"
+      },
+      "detail": {
+        "path": "assets/ES_CCAA_01/1968-1979/detail.json",
+        "raw_size": 342659,
+        "gzip_size": 44620,
+        "sha256": "54c175c13c7c3c673a9c102c63e5d4ce19a4ebad8aaf2e13e8ff1599cc6f1a4d",
+        "ordinal_alignment": "same_sorted_record_id_order_as_initial"
+      },
+      "record_id_column": {
+        "raw_bytes": 78376,
+        "gzip_bytes": 7904,
+        "initial_raw_percent": 17.893083,
+        "initial_gzip_percent": 45.328898
+      }
+    },
+    {
+      "asset_id": "egif:ES:CCAA:01:1980-1992",
+      "autonomous_community_id": "ES:CCAA:01",
+      "autonomous_community_name": "Andalucía",
+      "from_year": 1980,
+      "to_year": 1992,
+      "record_count": 13815,
+      "raw_bytes": 3579726,
+      "gzip_bytes": 257037,
+      "raw_bytes_per_record": 259.118784,
+      "gzip_bytes_per_record": 18.605646,
+      "compression_ratio_gzip_over_raw": 0.07180354,
+      "initial": {
+        "path": "assets/ES_CCAA_01/1980-1992/initial.json",
+        "raw_size": 2078734,
+        "gzip_size": 78843,
+        "sha256": "42bf31c513a9639d1dc2cc811add1e9478b3451d684a4097f9c7bf804eab0336",
+        "record_id_order_sha256": "a33aaee6353f293bc7cbebeec2846c121c020ef46f9d12629f26b553d385a6de"
+      },
+      "detail": {
+        "path": "assets/ES_CCAA_01/1980-1992/detail.json",
+        "raw_size": 1500992,
+        "gzip_size": 178194,
+        "sha256": "321a19149cf115750e623c6afe0be56bb59df9b2df4aa6a0190b7683b2ce28c6",
+        "ordinal_alignment": "same_sorted_record_id_order_as_initial"
+      },
+      "record_id_column": {
+        "raw_bytes": 345376,
+        "gzip_bytes": 31899,
+        "initial_raw_percent": 16.614728,
+        "initial_gzip_percent": 40.458887
+      }
+    },
+    {
+      "asset_id": "egif:ES:CCAA:01:1993-2002",
+      "autonomous_community_id": "ES:CCAA:01",
+      "autonomous_community_name": "Andalucía",
+      "from_year": 1993,
+      "to_year": 2002,
+      "record_count": 10945,
+      "raw_bytes": 3161835,
+      "gzip_bytes": 253528,
+      "raw_bytes_per_record": 288.883965,
+      "gzip_bytes_per_record": 23.163819,
+      "compression_ratio_gzip_over_raw": 0.08018382,
+      "initial": {
+        "path": "assets/ES_CCAA_01/1993-2002/initial.json",
+        "raw_size": 1645128,
+        "gzip_size": 69971,
+        "sha256": "b6e57a00ee3261a614b4683c62e97f2e09f05dcd2af93764ef95ac46b769cf49",
+        "record_id_order_sha256": "472b99f03b1ee55167d74ac9cf6b5c82204e555038e8fbf892e3f72ee4a309e0"
+      },
+      "detail": {
+        "path": "assets/ES_CCAA_01/1993-2002/detail.json",
+        "raw_size": 1516707,
+        "gzip_size": 183557,
+        "sha256": "93ae032e143c76bf8093c433d30cc39272264c07848e190e29854ea33d5b6ac6",
+        "ordinal_alignment": "same_sorted_record_id_order_as_initial"
+      },
+      "record_id_column": {
+        "raw_bytes": 273626,
+        "gzip_bytes": 27309,
+        "initial_raw_percent": 16.632505,
+        "initial_gzip_percent": 39.029026
+      }
+    },
+    {
+      "asset_id": "egif:ES:CCAA:01:2003-2012",
+      "autonomous_community_id": "ES:CCAA:01",
+      "autonomous_community_name": "Andalucía",
+      "from_year": 2003,
+      "to_year": 2012,
+      "record_count": 9175,
+      "raw_bytes": 2736647,
+      "gzip_bytes": 263654,
+      "raw_bytes_per_record": 298.272153,
+      "gzip_bytes_per_record": 28.736131,
+      "compression_ratio_gzip_over_raw": 0.09634198,
+      "initial": {
+        "path": "assets/ES_CCAA_01/2003-2012/initial.json",
+        "raw_size": 1383600,
+        "gzip_size": 64330,
+        "sha256": "437a31ea03d4332d1547efd90c95a47f17f85bf94707c7035e2f6d838e236bac",
+        "record_id_order_sha256": "a9311ff21c8fea123cd01a5f76280b4769eff4ee56054d43d1ab0d72e79499af"
+      },
+      "detail": {
+        "path": "assets/ES_CCAA_01/2003-2012/detail.json",
+        "raw_size": 1353047,
+        "gzip_size": 199324,
+        "sha256": "d89757b932cc5a0418fbb7052abb17b240f8e8f1d038407f0b49e066edaf3b00",
+        "ordinal_alignment": "same_sorted_record_id_order_as_initial"
+      },
+      "record_id_column": {
+        "raw_bytes": 229376,
+        "gzip_bytes": 23290,
+        "initial_raw_percent": 16.578202,
+        "initial_gzip_percent": 36.203948
+      }
+    },
+    {
+      "asset_id": "egif:ES:CCAA:01:2013-2023",
+      "autonomous_community_id": "ES:CCAA:01",
+      "autonomous_community_name": "Andalucía",
+      "from_year": 2013,
+      "to_year": 2023,
+      "record_count": 8442,
+      "raw_bytes": 2528351,
+      "gzip_bytes": 254549,
+      "raw_bytes_per_record": 299.496683,
+      "gzip_bytes_per_record": 30.152689,
+      "compression_ratio_gzip_over_raw": 0.10067787,
+      "initial": {
+        "path": "assets/ES_CCAA_01/2013-2023/initial.json",
+        "raw_size": 1275479,
+        "gzip_size": 61424,
+        "sha256": "83294de4c76195267d0ddfeb344bafb84894e5827a668729d6f1a079f83e6c8b",
+        "record_id_order_sha256": "2ee769388e594af98d8152a3385994cd71ed5fce9fa5a2bae0a5afe84c608c25"
+      },
+      "detail": {
+        "path": "assets/ES_CCAA_01/2013-2023/detail.json",
+        "raw_size": 1252872,
+        "gzip_size": 193125,
+        "sha256": "5993e38c10d27034d6c80e295c7d75e60cfacb944f134a714614c883a829d6c5",
+        "ordinal_alignment": "same_sorted_record_id_order_as_initial"
+      },
+      "record_id_column": {
+        "raw_bytes": 211051,
+        "gzip_bytes": 21068,
+        "initial_raw_percent": 16.546803,
+        "initial_gzip_percent": 34.299297
+      }
+    },
+    {
+      "asset_id": "egif:ES:CCAA:02:1968-1979",
+      "autonomous_community_id": "ES:CCAA:02",
+      "autonomous_community_name": "Aragón",
+      "from_year": 1968,
+      "to_year": 1979,
+      "record_count": 725,
+      "raw_bytes": 181415,
+      "gzip_bytes": 16810,
+      "raw_bytes_per_record": 250.227586,
+      "gzip_bytes_per_record": 23.186207,
+      "compression_ratio_gzip_over_raw": 0.09266047,
+      "initial": {
+        "path": "assets/ES_CCAA_02/1968-1979/initial.json",
+        "raw_size": 101797,
+        "gzip_size": 5005,
+        "sha256": "cc567e92c99fe887e491d827fbc51678467002a88a26d61e7f844b8c194532b7",
+        "record_id_order_sha256": "806157e0369ae448c08dff2a2ebb41dbc21ba8a23e5291fad0292560d181d324"
+      },
+      "detail": {
+        "path": "assets/ES_CCAA_02/1968-1979/detail.json",
+        "raw_size": 79618,
+        "gzip_size": 11805,
+        "sha256": "4cc9d7dfdc1411d1ce69144a6730ee245766d1869ca8fc5c45321297d052000d",
+        "ordinal_alignment": "same_sorted_record_id_order_as_initial"
+      },
+      "record_id_column": {
+        "raw_bytes": 18126,
+        "gzip_bytes": 2149,
+        "initial_raw_percent": 17.806026,
+        "initial_gzip_percent": 42.937063
+      }
+    },
+    {
+      "asset_id": "egif:ES:CCAA:02:1980-1992",
+      "autonomous_community_id": "ES:CCAA:02",
+      "autonomous_community_name": "Aragón",
+      "from_year": 1980,
+      "to_year": 1992,
+      "record_count": 2657,
+      "raw_bytes": 688270,
+      "gzip_bytes": 53939,
+      "raw_bytes_per_record": 259.040271,
+      "gzip_bytes_per_record": 20.300715,
+      "compression_ratio_gzip_over_raw": 0.07836895,
+      "initial": {
+        "path": "assets/ES_CCAA_02/1980-1992/initial.json",
+        "raw_size": 399035,
+        "gzip_size": 17714,
+        "sha256": "555a654dece99f9ce118766161f6f399b0dc09b224c82e227494bef61f07f4ab",
+        "record_id_order_sha256": "83fd561cc714c8a95395a4fd4e2314e16c724d244a800abbd93ef32a938b1415"
+      },
+      "detail": {
+        "path": "assets/ES_CCAA_02/1980-1992/detail.json",
+        "raw_size": 289235,
+        "gzip_size": 36225,
+        "sha256": "2280a32cb00fc470929e08ed3550773fda8c61527733192ba05cfd9e6049f718",
+        "ordinal_alignment": "same_sorted_record_id_order_as_initial"
+      },
+      "record_id_column": {
+        "raw_bytes": 66426,
+        "gzip_bytes": 5579,
+        "initial_raw_percent": 16.64666,
+        "initial_gzip_percent": 31.494863
+      }
+    },
+    {
+      "asset_id": "egif:ES:CCAA:02:1993-2002",
+      "autonomous_community_id": "ES:CCAA:02",
+      "autonomous_community_name": "Aragón",
+      "from_year": 1993,
+      "to_year": 2002,
+      "record_count": 3595,
+      "raw_bytes": 1040607,
+      "gzip_bytes": 87768,
+      "raw_bytes_per_record": 289.459527,
+      "gzip_bytes_per_record": 24.413908,
+      "compression_ratio_gzip_over_raw": 0.08434308,
+      "initial": {
+        "path": "assets/ES_CCAA_02/1993-2002/initial.json",
+        "raw_size": 541139,
+        "gzip_size": 25111,
+        "sha256": "1a7846f137918bbd921026b0d07f4411188a73388f6a5c4d3b30a718c82ca9f3",
+        "record_id_order_sha256": "a385b79adfe29741d292b47961e871cacdf72c48f4dc53d31d688665d00673aa"
+      },
+      "detail": {
+        "path": "assets/ES_CCAA_02/1993-2002/detail.json",
+        "raw_size": 499468,
+        "gzip_size": 62657,
+        "sha256": "7e690cb8857e3539bdf5bb1daa6d709c4bc2c65ec12980188b87118d97b07cec",
+        "ordinal_alignment": "same_sorted_record_id_order_as_initial"
+      },
+      "record_id_column": {
+        "raw_bytes": 89876,
+        "gzip_bytes": 7894,
+        "initial_raw_percent": 16.608672,
+        "initial_gzip_percent": 31.436422
+      }
+    },
+    {
+      "asset_id": "egif:ES:CCAA:02:2003-2012",
+      "autonomous_community_id": "ES:CCAA:02",
+      "autonomous_community_name": "Aragón",
+      "from_year": 2003,
+      "to_year": 2012,
+      "record_count": 4413,
+      "raw_bytes": 1306438,
+      "gzip_bytes": 126621,
+      "raw_bytes_per_record": 296.043055,
+      "gzip_bytes_per_record": 28.692726,
+      "compression_ratio_gzip_over_raw": 0.09692079,
+      "initial": {
+        "path": "assets/ES_CCAA_02/2003-2012/initial.json",
+        "raw_size": 665786,
+        "gzip_size": 33668,
+        "sha256": "75103e6ccf42c8bda49f7ff39e67daaebe16c1e8a7f7cc8b0f8f78de216a30f1",
+        "record_id_order_sha256": "eed7c53a3cdcf58344298785a709ae20c82930b4086b9c324047008f67a92796"
+      },
+      "detail": {
+        "path": "assets/ES_CCAA_02/2003-2012/detail.json",
+        "raw_size": 640652,
+        "gzip_size": 92953,
+        "sha256": "3045b04d9aea2808f336d9dd224a841d947410618a99c1a452a75388f41fe0a4",
+        "ordinal_alignment": "same_sorted_record_id_order_as_initial"
+      },
+      "record_id_column": {
+        "raw_bytes": 110326,
+        "gzip_bytes": 11280,
+        "initial_raw_percent": 16.57079,
+        "initial_gzip_percent": 33.503624
+      }
+    },
+    {
+      "asset_id": "egif:ES:CCAA:02:2013-2023",
+      "autonomous_community_id": "ES:CCAA:02",
+      "autonomous_community_name": "Aragón",
+      "from_year": 2013,
+      "to_year": 2023,
+      "record_count": 3804,
+      "raw_bytes": 1134621,
+      "gzip_bytes": 120010,
+      "raw_bytes_per_record": 298.270505,
+      "gzip_bytes_per_record": 31.54837,
+      "compression_ratio_gzip_over_raw": 0.105771,
+      "initial": {
+        "path": "assets/ES_CCAA_02/2013-2023/initial.json",
+        "raw_size": 575798,
+        "gzip_size": 31029,
+        "sha256": "a98d175265ae3fce37b5e4b16828f4a5682269017533c8c44f23384f294759d8",
+        "record_id_order_sha256": "c2500024e015bb1c0f0938831486a1d325bb1a7df69cfde2de9e6771cd750037"
+      },
+      "detail": {
+        "path": "assets/ES_CCAA_02/2013-2023/detail.json",
+        "raw_size": 558823,
+        "gzip_size": 88981,
+        "sha256": "733f9c1ef78090b7e2af88e0c09c1b82b69bc658664443c8533a0be8fdd1c7f7",
+        "ordinal_alignment": "same_sorted_record_id_order_as_initial"
+      },
+      "record_id_column": {
+        "raw_bytes": 95101,
+        "gzip_bytes": 9769,
+        "initial_raw_percent": 16.516382,
+        "initial_gzip_percent": 31.483451
+      }
+    },
+    {
+      "asset_id": "egif:ES:CCAA:03:1968-1979",
+      "autonomous_community_id": "ES:CCAA:03",
+      "autonomous_community_name": "Asturias, Principado de",
+      "from_year": 1968,
+      "to_year": 1979,
+      "record_count": 2204,
+      "raw_bytes": 550307,
+      "gzip_bytes": 44005,
+      "raw_bytes_per_record": 249.685572,
+      "gzip_bytes_per_record": 19.965971,
+      "compression_ratio_gzip_over_raw": 0.07996446,
+      "initial": {
+        "path": "assets/ES_CCAA_03/1968-1979/initial.json",
+        "raw_size": 308479,
+        "gzip_size": 11893,
+        "sha256": "347c15851e53a6014361673a931a223fd5217aba0e99153d39f6019bd7c6a6f8",
+        "record_id_order_sha256": "a4ce4e3fd5c6a67db0d4c9d057870a8c95f1ae2161c09a20ccfa97edf6ab2d86"
+      },
+      "detail": {
+        "path": "assets/ES_CCAA_03/1968-1979/detail.json",
+        "raw_size": 241828,
+        "gzip_size": 32112,
+        "sha256": "2bf97245c5d32335e49e79216520c9fb1ebe3a6587441177db8873a74c8aad80",
+        "ordinal_alignment": "same_sorted_record_id_order_as_initial"
+      },
+      "record_id_column": {
+        "raw_bytes": 55101,
+        "gzip_bytes": 5333,
+        "initial_raw_percent": 17.862156,
+        "initial_gzip_percent": 44.841503
+      }
+    },
+    {
+      "asset_id": "egif:ES:CCAA:03:1980-1992",
+      "autonomous_community_id": "ES:CCAA:03",
+      "autonomous_community_name": "Asturias, Principado de",
+      "from_year": 1980,
+      "to_year": 1992,
+      "record_count": 7798,
+      "raw_bytes": 2022531,
+      "gzip_bytes": 150236,
+      "raw_bytes_per_record": 259.36535,
+      "gzip_bytes_per_record": 19.265966,
+      "compression_ratio_gzip_over_raw": 0.07428119,
+      "initial": {
+        "path": "assets/ES_CCAA_03/1980-1992/initial.json",
+        "raw_size": 1172828,
+        "gzip_size": 43213,
+        "sha256": "3dc8dd59dea9ded11849716494631e3a57df6f41cc1bcd8762abb0f93d9b19d7",
+        "record_id_order_sha256": "c1f4b07d1b01136325f0e55df5e1fa54cdf5f65d714a18c7472d0ff45fdeb6b1"
+      },
+      "detail": {
+        "path": "assets/ES_CCAA_03/1980-1992/detail.json",
+        "raw_size": 849703,
+        "gzip_size": 107023,
+        "sha256": "72551066c04fab1a6ee8ca661e408e4787019a2d5d5bdc9a1a1438177005c8ba",
+        "ordinal_alignment": "same_sorted_record_id_order_as_initial"
+      },
+      "record_id_column": {
+        "raw_bytes": 194951,
+        "gzip_bytes": 18983,
+        "initial_raw_percent": 16.622301,
+        "initial_gzip_percent": 43.92891
+      }
+    },
+    {
+      "asset_id": "egif:ES:CCAA:03:1993-2002",
+      "autonomous_community_id": "ES:CCAA:03",
+      "autonomous_community_name": "Asturias, Principado de",
+      "from_year": 1993,
+      "to_year": 2002,
+      "record_count": 13083,
+      "raw_bytes": 3745288,
+      "gzip_bytes": 270069,
+      "raw_bytes_per_record": 286.271344,
+      "gzip_bytes_per_record": 20.642742,
+      "compression_ratio_gzip_over_raw": 0.07210901,
+      "initial": {
+        "path": "assets/ES_CCAA_03/1993-2002/initial.json",
+        "raw_size": 1965617,
+        "gzip_size": 72173,
+        "sha256": "f5d59a2d301e522ef699efe31febb13d2d7816d72ed4600f78e235c91bfc549e",
+        "record_id_order_sha256": "cd45f2021b5d65801926199711dcf5fd43d3d0a671bbf83fb553a29a8067b6a4"
+      },
+      "detail": {
+        "path": "assets/ES_CCAA_03/1993-2002/detail.json",
+        "raw_size": 1779671,
+        "gzip_size": 197896,
+        "sha256": "ff2fcfe045937105af45b56030472fb6e0168bff787911412297e2ddc0f13b61",
+        "ordinal_alignment": "same_sorted_record_id_order_as_initial"
+      },
+      "record_id_column": {
+        "raw_bytes": 327076,
+        "gzip_bytes": 33329,
+        "initial_raw_percent": 16.639864,
+        "initial_gzip_percent": 46.179319
+      }
+    },
+    {
+      "asset_id": "egif:ES:CCAA:03:2003-2012",
+      "autonomous_community_id": "ES:CCAA:03",
+      "autonomous_community_name": "Asturias, Principado de",
+      "from_year": 2003,
+      "to_year": 2012,
+      "record_count": 18952,
+      "raw_bytes": 5574625,
+      "gzip_bytes": 459828,
+      "raw_bytes_per_record": 294.144417,
+      "gzip_bytes_per_record": 24.262769,
+      "compression_ratio_gzip_over_raw": 0.08248591,
+      "initial": {
+        "path": "assets/ES_CCAA_03/2003-2012/initial.json",
+        "raw_size": 2848918,
+        "gzip_size": 106988,
+        "sha256": "81b125f50075fcf1a71302de40956d7b34a766ca08cefc5624d3531f9cf58e82",
+        "record_id_order_sha256": "495de986bf1a1e4a8f922065e2d81d9749413a64f39a4c40779ba905482e88cc"
+      },
+      "detail": {
+        "path": "assets/ES_CCAA_03/2003-2012/detail.json",
+        "raw_size": 2725707,
+        "gzip_size": 352840,
+        "sha256": "fb66cd4ef142706ce0fd27f450043b8b65ddaea809971ca2bcac3408f2df9b42",
+        "ordinal_alignment": "same_sorted_record_id_order_as_initial"
+      },
+      "record_id_column": {
+        "raw_bytes": 473801,
+        "gzip_bytes": 46219,
+        "initial_raw_percent": 16.63091,
+        "initial_gzip_percent": 43.200172
+      }
+    },
+    {
+      "asset_id": "egif:ES:CCAA:03:2013-2023",
+      "autonomous_community_id": "ES:CCAA:03",
+      "autonomous_community_name": "Asturias, Principado de",
+      "from_year": 2013,
+      "to_year": 2023,
+      "record_count": 12861,
+      "raw_bytes": 3769170,
+      "gzip_bytes": 328615,
+      "raw_bytes_per_record": 293.069746,
+      "gzip_bytes_per_record": 25.551279,
+      "compression_ratio_gzip_over_raw": 0.08718498,
+      "initial": {
+        "path": "assets/ES_CCAA_03/2013-2023/initial.json",
+        "raw_size": 1937460,
+        "gzip_size": 79978,
+        "sha256": "2bcfd5e44850d924ac3c385a32d698b917a26900580f3fe64fc382162cce1a30",
+        "record_id_order_sha256": "4628b61f7eea94622fa22987ab3d09d7327df7c2545410f734e6cbe59295d691"
+      },
+      "detail": {
+        "path": "assets/ES_CCAA_03/2013-2023/detail.json",
+        "raw_size": 1831710,
+        "gzip_size": 248637,
+        "sha256": "a8132f28ca3b378ec04d9e17f8cc9a2f73154fdb9557552e276a6f6e9b006b8e",
+        "ordinal_alignment": "same_sorted_record_id_order_as_initial"
+      },
+      "record_id_column": {
+        "raw_bytes": 321526,
+        "gzip_bytes": 32638,
+        "initial_raw_percent": 16.595233,
+        "initial_gzip_percent": 40.808722
+      }
+    },
+    {
+      "asset_id": "egif:ES:CCAA:04:1968-1979",
+      "autonomous_community_id": "ES:CCAA:04",
+      "autonomous_community_name": "Balears, Illes",
+      "from_year": 1968,
+      "to_year": 1979,
+      "record_count": 736,
+      "raw_bytes": 184220,
+      "gzip_bytes": 16061,
+      "raw_bytes_per_record": 250.298913,
+      "gzip_bytes_per_record": 21.822011,
+      "compression_ratio_gzip_over_raw": 0.0871838,
+      "initial": {
+        "path": "assets/ES_CCAA_04/1968-1979/initial.json",
+        "raw_size": 103349,
+        "gzip_size": 4567,
+        "sha256": "4d3f95dd816e5dbe27fbbc5c2af257064fc9ec181cf2bccd1f45712fc37f76c1",
+        "record_id_order_sha256": "6cdce8fd3110ff97ed3d83988091a27d567c00ef73219b5e1e1b281e5fb4130a"
+      },
+      "detail": {
+        "path": "assets/ES_CCAA_04/1968-1979/detail.json",
+        "raw_size": 80871,
+        "gzip_size": 11494,
+        "sha256": "7ec04332ed6db21f52dd4877afa97f0dff39e3e82c64d2ec27279e3dbfeb617e",
+        "ordinal_alignment": "same_sorted_record_id_order_as_initial"
+      },
+      "record_id_column": {
+        "raw_bytes": 18401,
+        "gzip_bytes": 1805,
+        "initial_raw_percent": 17.80472,
+        "initial_gzip_percent": 39.522663
+      }
+    },
+    {
+      "asset_id": "egif:ES:CCAA:04:1980-1992",
+      "autonomous_community_id": "ES:CCAA:04",
+      "autonomous_community_name": "Balears, Illes",
+      "from_year": 1980,
+      "to_year": 1992,
+      "record_count": 1675,
+      "raw_bytes": 433318,
+      "gzip_bytes": 34565,
+      "raw_bytes_per_record": 258.697313,
+      "gzip_bytes_per_record": 20.635821,
+      "compression_ratio_gzip_over_raw": 0.07976821,
+      "initial": {
+        "path": "assets/ES_CCAA_04/1980-1992/initial.json",
+        "raw_size": 251066,
+        "gzip_size": 10442,
+        "sha256": "ae8758eb6da9df37c565fa7279e6f6e3ca616db05dd18690d17ec0b9d8fa4510",
+        "record_id_order_sha256": "774765c05d29460cfd36bfe693e076a77a6206919d3d84efa434839bbb123aea"
+      },
+      "detail": {
+        "path": "assets/ES_CCAA_04/1980-1992/detail.json",
+        "raw_size": 182252,
+        "gzip_size": 24123,
+        "sha256": "28c35f728f0c8eff30f809f5033b137ca5dc635d2602ea44642c20406394d002",
+        "ordinal_alignment": "same_sorted_record_id_order_as_initial"
+      },
+      "record_id_column": {
+        "raw_bytes": 41876,
+        "gzip_bytes": 3673,
+        "initial_raw_percent": 16.67928,
+        "initial_gzip_percent": 35.175254
+      }
+    },
+    {
+      "asset_id": "egif:ES:CCAA:04:1993-2002",
+      "autonomous_community_id": "ES:CCAA:04",
+      "autonomous_community_name": "Balears, Illes",
+      "from_year": 1993,
+      "to_year": 2002,
+      "record_count": 1219,
+      "raw_bytes": 353590,
+      "gzip_bytes": 32043,
+      "raw_bytes_per_record": 290.065628,
+      "gzip_bytes_per_record": 26.2863,
+      "compression_ratio_gzip_over_raw": 0.09062191,
+      "initial": {
+        "path": "assets/ES_CCAA_04/1993-2002/initial.json",
+        "raw_size": 184063,
+        "gzip_size": 8497,
+        "sha256": "b74ac7a16410c602e70f02ed3b4553c9998fe21eba5376af9ef44e10afb82050",
+        "record_id_order_sha256": "465d2e075c1ebdf7369576b981c9ef6b6f56b98169026328288926617bc61b3d"
+      },
+      "detail": {
+        "path": "assets/ES_CCAA_04/1993-2002/detail.json",
+        "raw_size": 169527,
+        "gzip_size": 23546,
+        "sha256": "cce98ad3bd12a4b886e16891c1fb82a0ebe37e8c4b57cff72dfeb9665cc39864",
+        "ordinal_alignment": "same_sorted_record_id_order_as_initial"
+      },
+      "record_id_column": {
+        "raw_bytes": 30476,
+        "gzip_bytes": 2909,
+        "initial_raw_percent": 16.557374,
+        "initial_gzip_percent": 34.235613
+      }
+    },
+    {
+      "asset_id": "egif:ES:CCAA:04:2003-2012",
+      "autonomous_community_id": "ES:CCAA:04",
+      "autonomous_community_name": "Balears, Illes",
+      "from_year": 2003,
+      "to_year": 2012,
+      "record_count": 1320,
+      "raw_bytes": 393701,
+      "gzip_bytes": 39385,
+      "raw_bytes_per_record": 298.258333,
+      "gzip_bytes_per_record": 29.837121,
+      "compression_ratio_gzip_over_raw": 0.10003785,
+      "initial": {
+        "path": "assets/ES_CCAA_04/2003-2012/initial.json",
+        "raw_size": 199916,
+        "gzip_size": 9569,
+        "sha256": "d015c3c3fa8f78e4991fb940376e21524d088821f0e7209899c8b667501019eb",
+        "record_id_order_sha256": "93e01d1ad0da88fe49aa2235a24b5261ff0ac22b73fb9fa08239cab8dc5a3fd7"
+      },
+      "detail": {
+        "path": "assets/ES_CCAA_04/2003-2012/detail.json",
+        "raw_size": 193785,
+        "gzip_size": 29816,
+        "sha256": "36fa963be6c8d4874cc3e5ff79379a31d63452f3579becc3cb2c2bb3d07bb19f",
+        "ordinal_alignment": "same_sorted_record_id_order_as_initial"
+      },
+      "record_id_column": {
+        "raw_bytes": 33001,
+        "gzip_bytes": 3175,
+        "initial_raw_percent": 16.507433,
+        "initial_gzip_percent": 33.180061
+      }
+    },
+    {
+      "asset_id": "egif:ES:CCAA:04:2013-2023",
+      "autonomous_community_id": "ES:CCAA:04",
+      "autonomous_community_name": "Balears, Illes",
+      "from_year": 2013,
+      "to_year": 2023,
+      "record_count": 983,
+      "raw_bytes": 294644,
+      "gzip_bytes": 32422,
+      "raw_bytes_per_record": 299.739573,
+      "gzip_bytes_per_record": 32.982706,
+      "compression_ratio_gzip_over_raw": 0.11003788,
+      "initial": {
+        "path": "assets/ES_CCAA_04/2013-2023/initial.json",
+        "raw_size": 149177,
+        "gzip_size": 7690,
+        "sha256": "e10d09c77f679f083f617004ec14451840bc410743a1fa3b12323f0d8c29590c",
+        "record_id_order_sha256": "b90e08e08f219c3299c81b14316e2e9809b155b841b7266188f5f315acf34028"
+      },
+      "detail": {
+        "path": "assets/ES_CCAA_04/2013-2023/detail.json",
+        "raw_size": 145467,
+        "gzip_size": 24732,
+        "sha256": "2dacc191e33a1bf7fd055222aaea4b946cd2311dce2c34c3b7ff4858493c8fd7",
+        "ordinal_alignment": "same_sorted_record_id_order_as_initial"
+      },
+      "record_id_column": {
+        "raw_bytes": 24576,
+        "gzip_bytes": 2342,
+        "initial_raw_percent": 16.474389,
+        "initial_gzip_percent": 30.455137
+      }
+    },
+    {
+      "asset_id": "egif:ES:CCAA:05:1968-1979",
+      "autonomous_community_id": "ES:CCAA:05",
+      "autonomous_community_name": "Canarias",
+      "from_year": 1968,
+      "to_year": 1979,
+      "record_count": 409,
+      "raw_bytes": 103139,
+      "gzip_bytes": 9443,
+      "raw_bytes_per_record": 252.173594,
+      "gzip_bytes_per_record": 23.08802,
+      "compression_ratio_gzip_over_raw": 0.09155606,
+      "initial": {
+        "path": "assets/ES_CCAA_05/1968-1979/initial.json",
+        "raw_size": 57794,
+        "gzip_size": 2846,
+        "sha256": "ce7efa5299f5b297570b7ece9d7b56f6cef20dcd3011e1609f8a0bfcb987d8eb",
+        "record_id_order_sha256": "8e7c2bd19e67900ed07c651abf8e7bbba3bc6363dea01b4b1306731fc41e221f"
+      },
+      "detail": {
+        "path": "assets/ES_CCAA_05/1968-1979/detail.json",
+        "raw_size": 45345,
+        "gzip_size": 6597,
+        "sha256": "0147858552fe2d8f44cf4fbf888112245bfb66634bacfd96fd45ddbcab4de803",
+        "ordinal_alignment": "same_sorted_record_id_order_as_initial"
+      },
+      "record_id_column": {
+        "raw_bytes": 10226,
+        "gzip_bytes": 1007,
+        "initial_raw_percent": 17.693878,
+        "initial_gzip_percent": 35.382994
+      }
+    },
+    {
+      "asset_id": "egif:ES:CCAA:05:1980-1992",
+      "autonomous_community_id": "ES:CCAA:05",
+      "autonomous_community_name": "Canarias",
+      "from_year": 1980,
+      "to_year": 1992,
+      "record_count": 822,
+      "raw_bytes": 214024,
+      "gzip_bytes": 18091,
+      "raw_bytes_per_record": 260.36983,
+      "gzip_bytes_per_record": 22.008516,
+      "compression_ratio_gzip_over_raw": 0.0845279,
+      "initial": {
+        "path": "assets/ES_CCAA_05/1980-1992/initial.json",
+        "raw_size": 124085,
+        "gzip_size": 5729,
+        "sha256": "e898147bf2c5176967351e4429bfc03b227140753f1e1e3fc186921ac0c39610",
+        "record_id_order_sha256": "00757d3ba2970e933fe9783997b9cbe914c739a7e11d8cf34588a3d4638271c7"
+      },
+      "detail": {
+        "path": "assets/ES_CCAA_05/1980-1992/detail.json",
+        "raw_size": 89939,
+        "gzip_size": 12362,
+        "sha256": "545d22054a052057d7417697633b5bd8396fff72c4fc0debefd449d4d3dfe7bb",
+        "ordinal_alignment": "same_sorted_record_id_order_as_initial"
+      },
+      "record_id_column": {
+        "raw_bytes": 20551,
+        "gzip_bytes": 1840,
+        "initial_raw_percent": 16.562034,
+        "initial_gzip_percent": 32.117298
+      }
+    },
+    {
+      "asset_id": "egif:ES:CCAA:05:1993-2002",
+      "autonomous_community_id": "ES:CCAA:05",
+      "autonomous_community_name": "Canarias",
+      "from_year": 1993,
+      "to_year": 2002,
+      "record_count": 623,
+      "raw_bytes": 182687,
+      "gzip_bytes": 18272,
+      "raw_bytes_per_record": 293.23756,
+      "gzip_bytes_per_record": 29.329053,
+      "compression_ratio_gzip_over_raw": 0.10001806,
+      "initial": {
+        "path": "assets/ES_CCAA_05/1993-2002/initial.json",
+        "raw_size": 94557,
+        "gzip_size": 4943,
+        "sha256": "ebc9b2a188d77ed8448487e4c0ae0f5ae4e24388d700ae6e362f033cd3395abb",
+        "record_id_order_sha256": "e8c80bd2635e3dfea978e5b98abe47a07751001e4c4988cdee207399d8d2afe4"
+      },
+      "detail": {
+        "path": "assets/ES_CCAA_05/1993-2002/detail.json",
+        "raw_size": 88130,
+        "gzip_size": 13329,
+        "sha256": "ee74a191ac915dbec8c94ce1834f324d3a27b8071dd5bea698fe315cf339e588",
+        "ordinal_alignment": "same_sorted_record_id_order_as_initial"
+      },
+      "record_id_column": {
+        "raw_bytes": 15576,
+        "gzip_bytes": 1495,
+        "initial_raw_percent": 16.472604,
+        "initial_gzip_percent": 30.244791
+      }
+    },
+    {
+      "asset_id": "egif:ES:CCAA:05:2003-2012",
+      "autonomous_community_id": "ES:CCAA:05",
+      "autonomous_community_name": "Canarias",
+      "from_year": 2003,
+      "to_year": 2012,
+      "record_count": 1218,
+      "raw_bytes": 364175,
+      "gzip_bytes": 37037,
+      "raw_bytes_per_record": 298.994253,
+      "gzip_bytes_per_record": 30.408046,
+      "compression_ratio_gzip_over_raw": 0.10170111,
+      "initial": {
+        "path": "assets/ES_CCAA_05/2003-2012/initial.json",
+        "raw_size": 184506,
+        "gzip_size": 8785,
+        "sha256": "332afc566e57ca2afb3ebf5c034d4d17083f21ae118f07b7d50dbfea83288ce3",
+        "record_id_order_sha256": "1ddcbb3e5a5b8847cb2b9e58ae121a3c4ab1fa2e493532a2369dfe15a65e10b4"
+      },
+      "detail": {
+        "path": "assets/ES_CCAA_05/2003-2012/detail.json",
+        "raw_size": 179669,
+        "gzip_size": 28252,
+        "sha256": "bc11ed69bbfdeda211d6b925279c67535f68496befb7483954e56529ae2fa71e",
+        "ordinal_alignment": "same_sorted_record_id_order_as_initial"
+      },
+      "record_id_column": {
+        "raw_bytes": 30451,
+        "gzip_bytes": 2960,
+        "initial_raw_percent": 16.50407,
+        "initial_gzip_percent": 33.693796
+      }
+    },
+    {
+      "asset_id": "egif:ES:CCAA:05:2013-2023",
+      "autonomous_community_id": "ES:CCAA:05",
+      "autonomous_community_name": "Canarias",
+      "from_year": 2013,
+      "to_year": 2023,
+      "record_count": 698,
+      "raw_bytes": 209634,
+      "gzip_bytes": 24200,
+      "raw_bytes_per_record": 300.335244,
+      "gzip_bytes_per_record": 34.670487,
+      "compression_ratio_gzip_over_raw": 0.11543929,
+      "initial": {
+        "path": "assets/ES_CCAA_05/2013-2023/initial.json",
+        "raw_size": 106205,
+        "gzip_size": 5628,
+        "sha256": "8d997caf4f6342fc610c9b74f26bf978189e8d6a55da4c18f3ea8e4464bf1fac",
+        "record_id_order_sha256": "ae35e8ebe179a20e21517cce0191447c5b953a147346e8eb3aa92dd67aca9df0"
+      },
+      "detail": {
+        "path": "assets/ES_CCAA_05/2013-2023/detail.json",
+        "raw_size": 103429,
+        "gzip_size": 18572,
+        "sha256": "99fd501ec1faaabcaae1c2862674a05e09d3784182070b9d5030830fa2912c45",
+        "ordinal_alignment": "same_sorted_record_id_order_as_initial"
+      },
+      "record_id_column": {
+        "raw_bytes": 17451,
+        "gzip_bytes": 1743,
+        "initial_raw_percent": 16.43143,
+        "initial_gzip_percent": 30.970149
+      }
+    },
+    {
+      "asset_id": "egif:ES:CCAA:06:1968-1979",
+      "autonomous_community_id": "ES:CCAA:06",
+      "autonomous_community_name": "Cantabria",
+      "from_year": 1968,
+      "to_year": 1979,
+      "record_count": 1569,
+      "raw_bytes": 391402,
+      "gzip_bytes": 31023,
+      "raw_bytes_per_record": 249.459528,
+      "gzip_bytes_per_record": 19.772467,
+      "compression_ratio_gzip_over_raw": 0.07926122,
+      "initial": {
+        "path": "assets/ES_CCAA_06/1968-1979/initial.json",
+        "raw_size": 219609,
+        "gzip_size": 8551,
+        "sha256": "995f521901f0cc1f4f38a853faf04daf0e9e61b136696d1cdac7167f07ecf7a3",
+        "record_id_order_sha256": "7ed6fe9d2cec1d9ac52d5cbd4e1490e7de1236bdf7c944c300741abb9ef9ff5d"
+      },
+      "detail": {
+        "path": "assets/ES_CCAA_06/1968-1979/detail.json",
+        "raw_size": 171793,
+        "gzip_size": 22472,
+        "sha256": "a04e92358e569fb39cbdaec9a7c21a9bf02dd8cc0de4aca36d70f526d54c5b1f",
+        "ordinal_alignment": "same_sorted_record_id_order_as_initial"
+      },
+      "record_id_column": {
+        "raw_bytes": 39226,
+        "gzip_bytes": 3768,
+        "initial_raw_percent": 17.861745,
+        "initial_gzip_percent": 44.065022
+      }
+    },
+    {
+      "asset_id": "egif:ES:CCAA:06:1980-1992",
+      "autonomous_community_id": "ES:CCAA:06",
+      "autonomous_community_name": "Cantabria",
+      "from_year": 1980,
+      "to_year": 1992,
+      "record_count": 4340,
+      "raw_bytes": 1125809,
+      "gzip_bytes": 83382,
+      "raw_bytes_per_record": 259.402995,
+      "gzip_bytes_per_record": 19.212442,
+      "compression_ratio_gzip_over_raw": 0.07406407,
+      "initial": {
+        "path": "assets/ES_CCAA_06/1980-1992/initial.json",
+        "raw_size": 653467,
+        "gzip_size": 26230,
+        "sha256": "a40da57cbcef56c6da90677bd4c90f93553afec299c5ce8a01431b6c29aee805",
+        "record_id_order_sha256": "a8a5fc86e5d0a3799d8a4b7c55f2cb5c6d0d424a5a37fbca0199f6561ed220b9"
+      },
+      "detail": {
+        "path": "assets/ES_CCAA_06/1980-1992/detail.json",
+        "raw_size": 472342,
+        "gzip_size": 57152,
+        "sha256": "007e89ba5924207b18a3782d19589e64179f4f9361865c9cbcbcb7359ead8c7c",
+        "ordinal_alignment": "same_sorted_record_id_order_as_initial"
+      },
+      "record_id_column": {
+        "raw_bytes": 108501,
+        "gzip_bytes": 10474,
+        "initial_raw_percent": 16.603899,
+        "initial_gzip_percent": 39.931376
+      }
+    },
+    {
+      "asset_id": "egif:ES:CCAA:06:1993-2002",
+      "autonomous_community_id": "ES:CCAA:06",
+      "autonomous_community_name": "Cantabria",
+      "from_year": 1993,
+      "to_year": 2002,
+      "record_count": 3498,
+      "raw_bytes": 1008223,
+      "gzip_bytes": 80988,
+      "raw_bytes_per_record": 288.228416,
+      "gzip_bytes_per_record": 23.152659,
+      "compression_ratio_gzip_over_raw": 0.08032747,
+      "initial": {
+        "path": "assets/ES_CCAA_06/1993-2002/initial.json",
+        "raw_size": 526686,
+        "gzip_size": 22954,
+        "sha256": "a9fede9df1c7cb6816dbb2435b5f96ec2f4f40827a175ba4d2368a00bca20baf",
+        "record_id_order_sha256": "738ab6ec770fbfd25add03a6f22acc69dadd637b18ed06ccc153362421b5a305"
+      },
+      "detail": {
+        "path": "assets/ES_CCAA_06/1993-2002/detail.json",
+        "raw_size": 481537,
+        "gzip_size": 58034,
+        "sha256": "c0120651fa60980eccd7f5276288e09204bf06895e3ac702e98fab297a5cf940",
+        "ordinal_alignment": "same_sorted_record_id_order_as_initial"
+      },
+      "record_id_column": {
+        "raw_bytes": 87451,
+        "gzip_bytes": 8943,
+        "initial_raw_percent": 16.604011,
+        "initial_gzip_percent": 38.96053
+      }
+    },
+    {
+      "asset_id": "egif:ES:CCAA:06:2003-2012",
+      "autonomous_community_id": "ES:CCAA:06",
+      "autonomous_community_name": "Cantabria",
+      "from_year": 2003,
+      "to_year": 2012,
+      "record_count": 5190,
+      "raw_bytes": 1551907,
+      "gzip_bytes": 142844,
+      "raw_bytes_per_record": 299.01869,
+      "gzip_bytes_per_record": 27.522929,
+      "compression_ratio_gzip_over_raw": 0.09204418,
+      "initial": {
+        "path": "assets/ES_CCAA_06/2003-2012/initial.json",
+        "raw_size": 781618,
+        "gzip_size": 33800,
+        "sha256": "2f328e72b4bc93032e9599da84f47370eb83bc80c3c8200493117b7e9145147b",
+        "record_id_order_sha256": "e99263034bc843b2ed67b95abea2153abc5ed4f41c6ec3dad1164adf9e87c96a"
+      },
+      "detail": {
+        "path": "assets/ES_CCAA_06/2003-2012/detail.json",
+        "raw_size": 770289,
+        "gzip_size": 109044,
+        "sha256": "00e3cb2f94a47b3b3954ea426459144f0b5f1261e1c49e3525826b99b76889f4",
+        "ordinal_alignment": "same_sorted_record_id_order_as_initial"
+      },
+      "record_id_column": {
+        "raw_bytes": 129751,
+        "gzip_bytes": 13502,
+        "initial_raw_percent": 16.600309,
+        "initial_gzip_percent": 39.946746
+      }
+    },
+    {
+      "asset_id": "egif:ES:CCAA:06:2013-2023",
+      "autonomous_community_id": "ES:CCAA:06",
+      "autonomous_community_name": "Cantabria",
+      "from_year": 2013,
+      "to_year": 2023,
+      "record_count": 6723,
+      "raw_bytes": 2033595,
+      "gzip_bytes": 200340,
+      "raw_bytes_per_record": 302.483266,
+      "gzip_bytes_per_record": 29.799197,
+      "compression_ratio_gzip_over_raw": 0.09851519,
+      "initial": {
+        "path": "assets/ES_CCAA_06/2013-2023/initial.json",
+        "raw_size": 1014795,
+        "gzip_size": 45691,
+        "sha256": "22915563bfc98efe70389776524a3bbe87b4ef17e03ba78642889f75b8ae98a4",
+        "record_id_order_sha256": "f377fe8a814da467e2f501f30d27a1f14f473ad658f95bb016bf44adad26d3f4"
+      },
+      "detail": {
+        "path": "assets/ES_CCAA_06/2013-2023/detail.json",
+        "raw_size": 1018800,
+        "gzip_size": 154649,
+        "sha256": "b2ff3f1e6356c19e2264dbcba240ec487a05b787e0f423b3b5334acbd929771c",
+        "ordinal_alignment": "same_sorted_record_id_order_as_initial"
+      },
+      "record_id_column": {
+        "raw_bytes": 168076,
+        "gzip_bytes": 16967,
+        "initial_raw_percent": 16.562557,
+        "initial_gzip_percent": 37.134228
+      }
+    },
+    {
+      "asset_id": "egif:ES:CCAA:07:1968-1979",
+      "autonomous_community_id": "ES:CCAA:07",
+      "autonomous_community_name": "Castilla y León",
+      "from_year": 1968,
+      "to_year": 1979,
+      "record_count": 5682,
+      "raw_bytes": 1413411,
+      "gzip_bytes": 107600,
+      "raw_bytes_per_record": 248.752376,
+      "gzip_bytes_per_record": 18.936994,
+      "compression_ratio_gzip_over_raw": 0.07612789,
+      "initial": {
+        "path": "assets/ES_CCAA_07/1968-1979/initial.json",
+        "raw_size": 793178,
+        "gzip_size": 29464,
+        "sha256": "5f5eb73f0323d85ca8cc1b1b27d9a19d75a541cad4a98be0df1bf07297bc8ab3",
+        "record_id_order_sha256": "f0228c2a2ae5e17ea9ed92688ba4920a6d84ac3aab028858fbd4d67e90fcd54e"
+      },
+      "detail": {
+        "path": "assets/ES_CCAA_07/1968-1979/detail.json",
+        "raw_size": 620233,
+        "gzip_size": 78136,
+        "sha256": "03722b726dc8dc62f27f7f1928f0d5736ae702e6ae8b3061bdbb51286edabdd9",
+        "ordinal_alignment": "same_sorted_record_id_order_as_initial"
+      },
+      "record_id_column": {
+        "raw_bytes": 142051,
+        "gzip_bytes": 14417,
+        "initial_raw_percent": 17.909095,
+        "initial_gzip_percent": 48.930899
+      }
+    },
+    {
+      "asset_id": "egif:ES:CCAA:07:1980-1992",
+      "autonomous_community_id": "ES:CCAA:07",
+      "autonomous_community_name": "Castilla y León",
+      "from_year": 1980,
+      "to_year": 1992,
+      "record_count": 20107,
+      "raw_bytes": 5217895,
+      "gzip_bytes": 373350,
+      "raw_bytes_per_record": 259.506391,
+      "gzip_bytes_per_record": 18.56816,
+      "compression_ratio_gzip_over_raw": 0.07155184,
+      "initial": {
+        "path": "assets/ES_CCAA_07/1980-1992/initial.json",
+        "raw_size": 3029452,
+        "gzip_size": 116970,
+        "sha256": "6160b43ac78cbc6206894440885c8db4b7c5a9f487f541242c6c5cc9261b7b05",
+        "record_id_order_sha256": "8f407eda4338acd3bf45b5b79846eb86c9b0b8a14879eac125ea83982d2f7ceb"
+      },
+      "detail": {
+        "path": "assets/ES_CCAA_07/1980-1992/detail.json",
+        "raw_size": 2188443,
+        "gzip_size": 256380,
+        "sha256": "31dab1f2b477ddcea771050f43d8bbf84f383d4d9022df6365204e2fcb2a4620",
+        "ordinal_alignment": "same_sorted_record_id_order_as_initial"
+      },
+      "record_id_column": {
+        "raw_bytes": 502676,
+        "gzip_bytes": 45684,
+        "initial_raw_percent": 16.592968,
+        "initial_gzip_percent": 39.056168
+      }
+    },
+    {
+      "asset_id": "egif:ES:CCAA:07:1993-2002",
+      "autonomous_community_id": "ES:CCAA:07",
+      "autonomous_community_name": "Castilla y León",
+      "from_year": 1993,
+      "to_year": 2002,
+      "record_count": 19765,
+      "raw_bytes": 5707044,
+      "gzip_bytes": 439337,
+      "raw_bytes_per_record": 288.744953,
+      "gzip_bytes_per_record": 22.228029,
+      "compression_ratio_gzip_over_raw": 0.07698153,
+      "initial": {
+        "path": "assets/ES_CCAA_07/1993-2002/initial.json",
+        "raw_size": 2971538,
+        "gzip_size": 120401,
+        "sha256": "3dea17270989e294beafccdae17bde08a827ddecae9a103de91f95907267f95d",
+        "record_id_order_sha256": "5774ed086519f4bd4469090fe80b978a0af3f67a5a5ee4a47666441cba63b268"
+      },
+      "detail": {
+        "path": "assets/ES_CCAA_07/1993-2002/detail.json",
+        "raw_size": 2735506,
+        "gzip_size": 318936,
+        "sha256": "57f7a099d693fa45acf0655f2b6e4c46b8c31d6981d1fdbf1928022fed336f53",
+        "ordinal_alignment": "same_sorted_record_id_order_as_initial"
+      },
+      "record_id_column": {
+        "raw_bytes": 494126,
+        "gzip_bytes": 45779,
+        "initial_raw_percent": 16.628628,
+        "initial_gzip_percent": 38.022109
+      }
+    },
+    {
+      "asset_id": "egif:ES:CCAA:07:2003-2012",
+      "autonomous_community_id": "ES:CCAA:07",
+      "autonomous_community_name": "Castilla y León",
+      "from_year": 2003,
+      "to_year": 2012,
+      "record_count": 20506,
+      "raw_bytes": 6022446,
+      "gzip_bytes": 532143,
+      "raw_bytes_per_record": 293.691895,
+      "gzip_bytes_per_record": 25.9506,
+      "compression_ratio_gzip_over_raw": 0.08835995,
+      "initial": {
+        "path": "assets/ES_CCAA_07/2003-2012/initial.json",
+        "raw_size": 3087880,
+        "gzip_size": 137728,
+        "sha256": "dc138f6abe3dad8110948d71b6dd071e0859aa2df1c369169b6aa4fdcb5506d6",
+        "record_id_order_sha256": "6b5b4dc94e5422bce9e20e51e3d60f7046b52f9cd10ce1bd18fa348ea2a9d405"
+      },
+      "detail": {
+        "path": "assets/ES_CCAA_07/2003-2012/detail.json",
+        "raw_size": 2934566,
+        "gzip_size": 394415,
+        "sha256": "5971bc4a6b0b790f81b2f625c4252a59f45731851e89efd79d523d170d852b5c",
+        "ordinal_alignment": "same_sorted_record_id_order_as_initial"
+      },
+      "record_id_column": {
+        "raw_bytes": 512651,
+        "gzip_bytes": 49068,
+        "initial_raw_percent": 16.602038,
+        "initial_gzip_percent": 35.626743
+      }
+    },
+    {
+      "asset_id": "egif:ES:CCAA:07:2013-2023",
+      "autonomous_community_id": "ES:CCAA:07",
+      "autonomous_community_name": "Castilla y León",
+      "from_year": 2013,
+      "to_year": 2023,
+      "record_count": 15378,
+      "raw_bytes": 4536695,
+      "gzip_bytes": 425565,
+      "raw_bytes_per_record": 295.01203,
+      "gzip_bytes_per_record": 27.673625,
+      "compression_ratio_gzip_over_raw": 0.09380507,
+      "initial": {
+        "path": "assets/ES_CCAA_07/2013-2023/initial.json",
+        "raw_size": 2319694,
+        "gzip_size": 110328,
+        "sha256": "e92510ca638261652cabe579989b02cb7653a1fe2536473640e866351568a8ee",
+        "record_id_order_sha256": "96944dfd78cec1cac15e761453f6bc06bda366f8d630bdfaee86fc336a675c30"
+      },
+      "detail": {
+        "path": "assets/ES_CCAA_07/2013-2023/detail.json",
+        "raw_size": 2217001,
+        "gzip_size": 315237,
+        "sha256": "e80c1306d1528e1ae3491a7370fdaa21de0bb04e51be046eb7ad6beb7e2d9b71",
+        "ordinal_alignment": "same_sorted_record_id_order_as_initial"
+      },
+      "record_id_column": {
+        "raw_bytes": 384451,
+        "gzip_bytes": 37772,
+        "initial_raw_percent": 16.57335,
+        "initial_gzip_percent": 34.236096
+      }
+    },
+    {
+      "asset_id": "egif:ES:CCAA:08:1968-1979",
+      "autonomous_community_id": "ES:CCAA:08",
+      "autonomous_community_name": "Castilla-La Mancha",
+      "from_year": 1968,
+      "to_year": 1979,
+      "record_count": 1062,
+      "raw_bytes": 265353,
+      "gzip_bytes": 23106,
+      "raw_bytes_per_record": 249.861582,
+      "gzip_bytes_per_record": 21.757062,
+      "compression_ratio_gzip_over_raw": 0.08707646,
+      "initial": {
+        "path": "assets/ES_CCAA_08/1968-1979/initial.json",
+        "raw_size": 148857,
+        "gzip_size": 6924,
+        "sha256": "76e9fef8fe79eda44d70b31a5673c3677e19b3d045e59228fdb980e6c7887457",
+        "record_id_order_sha256": "9bfc88e8c34c0535bb5ae14a71d0258580c5e29e9d314379dec0536c07fb7fc4"
+      },
+      "detail": {
+        "path": "assets/ES_CCAA_08/1968-1979/detail.json",
+        "raw_size": 116496,
+        "gzip_size": 16182,
+        "sha256": "829d4033c8a1c2824239f6e27dff0792a42735f5b8fe08bd86436a0a6f1af832",
+        "ordinal_alignment": "same_sorted_record_id_order_as_initial"
+      },
+      "record_id_column": {
+        "raw_bytes": 26551,
+        "gzip_bytes": 3004,
+        "initial_raw_percent": 17.836581,
+        "initial_gzip_percent": 43.385326
+      }
+    },
+    {
+      "asset_id": "egif:ES:CCAA:08:1980-1992",
+      "autonomous_community_id": "ES:CCAA:08",
+      "autonomous_community_name": "Castilla-La Mancha",
+      "from_year": 1980,
+      "to_year": 1992,
+      "record_count": 4506,
+      "raw_bytes": 1167372,
+      "gzip_bytes": 88655,
+      "raw_bytes_per_record": 259.070573,
+      "gzip_bytes_per_record": 19.674878,
+      "compression_ratio_gzip_over_raw": 0.07594409,
+      "initial": {
+        "path": "assets/ES_CCAA_08/1980-1992/initial.json",
+        "raw_size": 677485,
+        "gzip_size": 29189,
+        "sha256": "abff2cce2ee7525a61c6424ec2f89bce78b5fb959e152e52e05f4f80385849ad",
+        "record_id_order_sha256": "bc3149d5fe019fe9374504d315e0221516a109579741cf17289328a4909cd0b0"
+      },
+      "detail": {
+        "path": "assets/ES_CCAA_08/1980-1992/detail.json",
+        "raw_size": 489887,
+        "gzip_size": 59466,
+        "sha256": "0fe8128ee901068f1d09a663eba80aecd5a25343992eeb7e62c33ca3ab2cb2a7",
+        "ordinal_alignment": "same_sorted_record_id_order_as_initial"
+      },
+      "record_id_column": {
+        "raw_bytes": 112651,
+        "gzip_bytes": 10697,
+        "initial_raw_percent": 16.627822,
+        "initial_gzip_percent": 36.647367
+      }
+    },
+    {
+      "asset_id": "egif:ES:CCAA:08:1993-2002",
+      "autonomous_community_id": "ES:CCAA:08",
+      "autonomous_community_name": "Castilla-La Mancha",
+      "from_year": 1993,
+      "to_year": 2002,
+      "record_count": 6341,
+      "raw_bytes": 1837990,
+      "gzip_bytes": 153609,
+      "raw_bytes_per_record": 289.858067,
+      "gzip_bytes_per_record": 24.224728,
+      "compression_ratio_gzip_over_raw": 0.08357445,
+      "initial": {
+        "path": "assets/ES_CCAA_08/1993-2002/initial.json",
+        "raw_size": 953508,
+        "gzip_size": 44190,
+        "sha256": "1018dd73ca2eb9f781389c5dc4bf8a5c463a4f29d13f5be4b508f648121bd054",
+        "record_id_order_sha256": "9689e79402da620ca3e5c7923305a4daa7081ccb7facf58a3fdef3a0a33856a4"
+      },
+      "detail": {
+        "path": "assets/ES_CCAA_08/1993-2002/detail.json",
+        "raw_size": 884482,
+        "gzip_size": 109419,
+        "sha256": "135443a421d2239d2b394e2fca57230253aedaf5170e4fc15063600326cc14a0",
+        "ordinal_alignment": "same_sorted_record_id_order_as_initial"
+      },
+      "record_id_column": {
+        "raw_bytes": 158526,
+        "gzip_bytes": 16306,
+        "initial_raw_percent": 16.625555,
+        "initial_gzip_percent": 36.899751
+      }
+    },
+    {
+      "asset_id": "egif:ES:CCAA:08:2003-2012",
+      "autonomous_community_id": "ES:CCAA:08",
+      "autonomous_community_name": "Castilla-La Mancha",
+      "from_year": 2003,
+      "to_year": 2012,
+      "record_count": 8902,
+      "raw_bytes": 2642966,
+      "gzip_bytes": 252108,
+      "raw_bytes_per_record": 296.895754,
+      "gzip_bytes_per_record": 28.320377,
+      "compression_ratio_gzip_over_raw": 0.09538829,
+      "initial": {
+        "path": "assets/ES_CCAA_08/2003-2012/initial.json",
+        "raw_size": 1340863,
+        "gzip_size": 61903,
+        "sha256": "7477ebad99dcfaca6b292ae2f3ff42624ee7ca15671407ba93c58a010ef68bbc",
+        "record_id_order_sha256": "b51c7413299bea37b37b5c8bd658005999cb5c054795a96ba2a3baaa0d005825"
+      },
+      "detail": {
+        "path": "assets/ES_CCAA_08/2003-2012/detail.json",
+        "raw_size": 1302103,
+        "gzip_size": 190205,
+        "sha256": "969914034865fe1008f3635a33498b42fd0d2c8c213af328b15f91c46fb94dad",
+        "ordinal_alignment": "same_sorted_record_id_order_as_initial"
+      },
+      "record_id_column": {
+        "raw_bytes": 222551,
+        "gzip_bytes": 22800,
+        "initial_raw_percent": 16.597594,
+        "initial_gzip_percent": 36.831818
+      }
+    },
+    {
+      "asset_id": "egif:ES:CCAA:08:2013-2023",
+      "autonomous_community_id": "ES:CCAA:08",
+      "autonomous_community_name": "Castilla-La Mancha",
+      "from_year": 2013,
+      "to_year": 2023,
+      "record_count": 7924,
+      "raw_bytes": 2357605,
+      "gzip_bytes": 235436,
+      "raw_bytes_per_record": 297.527133,
+      "gzip_bytes_per_record": 29.711762,
+      "compression_ratio_gzip_over_raw": 0.09986236,
+      "initial": {
+        "path": "assets/ES_CCAA_08/2013-2023/initial.json",
+        "raw_size": 1195019,
+        "gzip_size": 57407,
+        "sha256": "9727042b9836513159d4e11e0d607298f49986799cfe8e28e13cac31df696d4e",
+        "record_id_order_sha256": "b86abf6ec262d2b5162768e59ff269b924c6d69879e64e6a3d450c4ad3b2f9a4"
+      },
+      "detail": {
+        "path": "assets/ES_CCAA_08/2013-2023/detail.json",
+        "raw_size": 1162586,
+        "gzip_size": 178029,
+        "sha256": "540c2f44d145f7635b4a4cc50f6ea4ea6df9a776a098d0b9b1927805d7a56a29",
+        "ordinal_alignment": "same_sorted_record_id_order_as_initial"
+      },
+      "record_id_column": {
+        "raw_bytes": 198101,
+        "gzip_bytes": 19839,
+        "initial_raw_percent": 16.577226,
+        "initial_gzip_percent": 34.558503
+      }
+    },
+    {
+      "asset_id": "egif:ES:CCAA:09:1968-1979",
+      "autonomous_community_id": "ES:CCAA:09",
+      "autonomous_community_name": "Cataluña",
+      "from_year": 1968,
+      "to_year": 1979,
+      "record_count": 4612,
+      "raw_bytes": 1144500,
+      "gzip_bytes": 86426,
+      "raw_bytes_per_record": 248.156982,
+      "gzip_bytes_per_record": 18.739376,
+      "compression_ratio_gzip_over_raw": 0.0755142,
+      "initial": {
+        "path": "assets/ES_CCAA_09/1968-1979/initial.json",
+        "raw_size": 643021,
+        "gzip_size": 23744,
+        "sha256": "74f92cf70526f15565ef247106b9594d6d29fe86d77fbe8481ef842e71eaf198",
+        "record_id_order_sha256": "62d701c29b3e901bf1316b874181dcf03fbe4ef9ed27803dc4e7819eec42d739"
+      },
+      "detail": {
+        "path": "assets/ES_CCAA_09/1968-1979/detail.json",
+        "raw_size": 501479,
+        "gzip_size": 62682,
+        "sha256": "5d3d206a750e609618b67cec71da781cfe51e8942907381c035a4d76a1cf9d66",
+        "ordinal_alignment": "same_sorted_record_id_order_as_initial"
+      },
+      "record_id_column": {
+        "raw_bytes": 115301,
+        "gzip_bytes": 11029,
+        "initial_raw_percent": 17.931141,
+        "initial_gzip_percent": 46.449629
+      }
+    },
+    {
+      "asset_id": "egif:ES:CCAA:09:1980-1992",
+      "autonomous_community_id": "ES:CCAA:09",
+      "autonomous_community_name": "Cataluña",
+      "from_year": 1980,
+      "to_year": 1992,
+      "record_count": 7441,
+      "raw_bytes": 1921122,
+      "gzip_bytes": 132928,
+      "raw_bytes_per_record": 258.180621,
+      "gzip_bytes_per_record": 17.864266,
+      "compression_ratio_gzip_over_raw": 0.0691929,
+      "initial": {
+        "path": "assets/ES_CCAA_09/1980-1992/initial.json",
+        "raw_size": 1114002,
+        "gzip_size": 46393,
+        "sha256": "a6573d408c42b9229d1b81aebafa43f86a2bbc11a4397804de79c4ca6dc631cf",
+        "record_id_order_sha256": "c4a39fbbcfaaa771bad5331d6ca7cfc3e27d8da7bf100afa5eefa02adc38fa8d"
+      },
+      "detail": {
+        "path": "assets/ES_CCAA_09/1980-1992/detail.json",
+        "raw_size": 807120,
+        "gzip_size": 86535,
+        "sha256": "2a7529e9dc7459ffdc051aff2e94d9a5268a64a7665b50b46c81e126abdc31cd",
+        "ordinal_alignment": "same_sorted_record_id_order_as_initial"
+      },
+      "record_id_column": {
+        "raw_bytes": 186026,
+        "gzip_bytes": 17144,
+        "initial_raw_percent": 16.698893,
+        "initial_gzip_percent": 36.953851
+      }
+    },
+    {
+      "asset_id": "egif:ES:CCAA:09:1993-2002",
+      "autonomous_community_id": "ES:CCAA:09",
+      "autonomous_community_name": "Cataluña",
+      "from_year": 1993,
+      "to_year": 2002,
+      "record_count": 7765,
+      "raw_bytes": 2244284,
+      "gzip_bytes": 187380,
+      "raw_bytes_per_record": 289.025628,
+      "gzip_bytes_per_record": 24.131359,
+      "compression_ratio_gzip_over_raw": 0.08349211,
+      "initial": {
+        "path": "assets/ES_CCAA_09/1993-2002/initial.json",
+        "raw_size": 1168710,
+        "gzip_size": 52065,
+        "sha256": "21ea9b850278f4f0e98af1309de64a8562a4b0bbe4b35c9d4ed55ec15a8b8488",
+        "record_id_order_sha256": "6ab0cd99a234507e48f41f3fc6c694344ff6c0fc93495b5d1f7feb8f748606d9"
+      },
+      "detail": {
+        "path": "assets/ES_CCAA_09/1993-2002/detail.json",
+        "raw_size": 1075574,
+        "gzip_size": 135315,
+        "sha256": "6ff23ff9308e316810c4d33d91a46760b07428610bcad1678a8c12873ddf0aef",
+        "ordinal_alignment": "same_sorted_record_id_order_as_initial"
+      },
+      "record_id_column": {
+        "raw_bytes": 194126,
+        "gzip_bytes": 18116,
+        "initial_raw_percent": 16.61028,
+        "initial_gzip_percent": 34.794968
+      }
+    },
+    {
+      "asset_id": "egif:ES:CCAA:09:2003-2012",
+      "autonomous_community_id": "ES:CCAA:09",
+      "autonomous_community_name": "Cataluña",
+      "from_year": 2003,
+      "to_year": 2012,
+      "record_count": 6347,
+      "raw_bytes": 1896203,
+      "gzip_bytes": 186692,
+      "raw_bytes_per_record": 298.75579,
+      "gzip_bytes_per_record": 29.414211,
+      "compression_ratio_gzip_over_raw": 0.0984557,
+      "initial": {
+        "path": "assets/ES_CCAA_09/2003-2012/initial.json",
+        "raw_size": 957883,
+        "gzip_size": 47160,
+        "sha256": "3c0abfb6aea5810cabb680b9278b739b6092af003290a956b63023e294d6eb43",
+        "record_id_order_sha256": "5cf4473dd369765685be2ecbff547d9028bbf47a0ed89c0e72287510cdaad8b2"
+      },
+      "detail": {
+        "path": "assets/ES_CCAA_09/2003-2012/detail.json",
+        "raw_size": 938320,
+        "gzip_size": 139532,
+        "sha256": "5b94a4557dd5c99ffc1b4026c63a2f16099d7055e78b594a4a3f803bed6af0f5",
+        "ordinal_alignment": "same_sorted_record_id_order_as_initial"
+      },
+      "record_id_column": {
+        "raw_bytes": 158676,
+        "gzip_bytes": 16503,
+        "initial_raw_percent": 16.56528,
+        "initial_gzip_percent": 34.993639
+      }
+    },
+    {
+      "asset_id": "egif:ES:CCAA:09:2013-2023",
+      "autonomous_community_id": "ES:CCAA:09",
+      "autonomous_community_name": "Cataluña",
+      "from_year": 2013,
+      "to_year": 2023,
+      "record_count": 5154,
+      "raw_bytes": 1550724,
+      "gzip_bytes": 159617,
+      "raw_bytes_per_record": 300.877765,
+      "gzip_bytes_per_record": 30.969538,
+      "compression_ratio_gzip_over_raw": 0.10293063,
+      "initial": {
+        "path": "assets/ES_CCAA_09/2013-2023/initial.json",
+        "raw_size": 779554,
+        "gzip_size": 39886,
+        "sha256": "5da858e7fac542869e3e3ea06b54c39f317f31fee3f8c104c010807d20f3082f",
+        "record_id_order_sha256": "95059a4b09cf82d1c5a0c166691ccd16f398eefa9c5448077799474f5376f294"
+      },
+      "detail": {
+        "path": "assets/ES_CCAA_09/2013-2023/detail.json",
+        "raw_size": 771170,
+        "gzip_size": 119731,
+        "sha256": "f5e44860ba449d0ce55b59f3c93763f2251cad094d0c1a2e8bc102886c8f424a",
+        "ordinal_alignment": "same_sorted_record_id_order_as_initial"
+      },
+      "record_id_column": {
+        "raw_bytes": 128851,
+        "gzip_bytes": 13153,
+        "initial_raw_percent": 16.52881,
+        "initial_gzip_percent": 32.976483
+      }
+    },
+    {
+      "asset_id": "egif:ES:CCAA:10:1968-1979",
+      "autonomous_community_id": "ES:CCAA:10",
+      "autonomous_community_name": "Comunitat Valenciana",
+      "from_year": 1968,
+      "to_year": 1979,
+      "record_count": 2395,
+      "raw_bytes": 596808,
+      "gzip_bytes": 48430,
+      "raw_bytes_per_record": 249.189144,
+      "gzip_bytes_per_record": 20.221294,
+      "compression_ratio_gzip_over_raw": 0.08114838,
+      "initial": {
+        "path": "assets/ES_CCAA_10/1968-1979/initial.json",
+        "raw_size": 334755,
+        "gzip_size": 13371,
+        "sha256": "c7c05d2936181ec319b539d8edf2c210e4f086f4165dd6fc5c6d69f5fa4fb772",
+        "record_id_order_sha256": "b7d18a1b747accad549edae16eab8a100aeb854f7b151f0633c7bf1a038fe61a"
+      },
+      "detail": {
+        "path": "assets/ES_CCAA_10/1968-1979/detail.json",
+        "raw_size": 262053,
+        "gzip_size": 35059,
+        "sha256": "35411cd15a8576f9e3919f8637105e1f93e69d5532f8d8dc7dd2d7258fc3aa7d",
+        "ordinal_alignment": "same_sorted_record_id_order_as_initial"
+      },
+      "record_id_column": {
+        "raw_bytes": 59876,
+        "gzip_bytes": 5936,
+        "initial_raw_percent": 17.886514,
+        "initial_gzip_percent": 44.394585
+      }
+    },
+    {
+      "asset_id": "egif:ES:CCAA:10:1980-1992",
+      "autonomous_community_id": "ES:CCAA:10",
+      "autonomous_community_name": "Comunitat Valenciana",
+      "from_year": 1980,
+      "to_year": 1992,
+      "record_count": 6780,
+      "raw_bytes": 1752506,
+      "gzip_bytes": 132062,
+      "raw_bytes_per_record": 258.481711,
+      "gzip_bytes_per_record": 19.478171,
+      "compression_ratio_gzip_over_raw": 0.07535609,
+      "initial": {
+        "path": "assets/ES_CCAA_10/1980-1992/initial.json",
+        "raw_size": 1015995,
+        "gzip_size": 42081,
+        "sha256": "26b34b8079c35751d8c2b6fa585eec1a7d0d78cab5b7748008011dc6d41379f4",
+        "record_id_order_sha256": "eecba68331ba8ad17b2f4be804f32d01099ef1e6df8dd8ed812a6d9b6d943ff5"
+      },
+      "detail": {
+        "path": "assets/ES_CCAA_10/1980-1992/detail.json",
+        "raw_size": 736511,
+        "gzip_size": 89981,
+        "sha256": "cee18b3ddba7c69cb1dce3987074c38b66b355e743f9c43a1b16437bd6ec590b",
+        "ordinal_alignment": "same_sorted_record_id_order_as_initial"
+      },
+      "record_id_column": {
+        "raw_bytes": 169501,
+        "gzip_bytes": 15930,
+        "initial_raw_percent": 16.683251,
+        "initial_gzip_percent": 37.855564
+      }
+    },
+    {
+      "asset_id": "egif:ES:CCAA:10:1993-2002",
+      "autonomous_community_id": "ES:CCAA:10",
+      "autonomous_community_name": "Comunitat Valenciana",
+      "from_year": 1993,
+      "to_year": 2002,
+      "record_count": 5159,
+      "raw_bytes": 1488512,
+      "gzip_bytes": 125365,
+      "raw_bytes_per_record": 288.527234,
+      "gzip_bytes_per_record": 24.300252,
+      "compression_ratio_gzip_over_raw": 0.08422169,
+      "initial": {
+        "path": "assets/ES_CCAA_10/1993-2002/initial.json",
+        "raw_size": 775913,
+        "gzip_size": 35816,
+        "sha256": "44c61e3d232e67438a3309e4e59d79cf48b1543723874e716521ae594910ccb0",
+        "record_id_order_sha256": "695ea5c4320edfcc528cbd7f21c50843b4550093cda6d8433a529e99dbe26c40"
+      },
+      "detail": {
+        "path": "assets/ES_CCAA_10/1993-2002/detail.json",
+        "raw_size": 712599,
+        "gzip_size": 89549,
+        "sha256": "edcfd7b5e6e4187303b5d24d3b64c624a430df0809070255b8c77d9e0e618b7d",
+        "ordinal_alignment": "same_sorted_record_id_order_as_initial"
+      },
+      "record_id_column": {
+        "raw_bytes": 128976,
+        "gzip_bytes": 13087,
+        "initial_raw_percent": 16.622482,
+        "initial_gzip_percent": 36.539535
+      }
+    },
+    {
+      "asset_id": "egif:ES:CCAA:10:2003-2012",
+      "autonomous_community_id": "ES:CCAA:10",
+      "autonomous_community_name": "Comunitat Valenciana",
+      "from_year": 2003,
+      "to_year": 2012,
+      "record_count": 4414,
+      "raw_bytes": 1311392,
+      "gzip_bytes": 127893,
+      "raw_bytes_per_record": 297.098324,
+      "gzip_bytes_per_record": 28.9744,
+      "compression_ratio_gzip_over_raw": 0.09752462,
+      "initial": {
+        "path": "assets/ES_CCAA_10/2003-2012/initial.json",
+        "raw_size": 665632,
+        "gzip_size": 31885,
+        "sha256": "0f3cad124ee189aebd073bbbc4dcd50cbd64677bf2764c83287c6cb5def5b3df",
+        "record_id_order_sha256": "99f202da538d4eb506ef7c6da3d135b330570cc3d1df795fa99c649208ba2c10"
+      },
+      "detail": {
+        "path": "assets/ES_CCAA_10/2003-2012/detail.json",
+        "raw_size": 645760,
+        "gzip_size": 96008,
+        "sha256": "aa07e6e98e9013ad99b997b1aa8e7d96b4f1a5aca2baadbacb69b4d3bcf7bf90",
+        "ordinal_alignment": "same_sorted_record_id_order_as_initial"
+      },
+      "record_id_column": {
+        "raw_bytes": 110351,
+        "gzip_bytes": 11400,
+        "initial_raw_percent": 16.57838,
+        "initial_gzip_percent": 35.753489
+      }
+    },
+    {
+      "asset_id": "egif:ES:CCAA:10:2013-2023",
+      "autonomous_community_id": "ES:CCAA:10",
+      "autonomous_community_name": "Comunitat Valenciana",
+      "from_year": 2013,
+      "to_year": 2023,
+      "record_count": 3360,
+      "raw_bytes": 1008136,
+      "gzip_bytes": 107562,
+      "raw_bytes_per_record": 300.040476,
+      "gzip_bytes_per_record": 32.0125,
+      "compression_ratio_gzip_over_raw": 0.10669394,
+      "initial": {
+        "path": "assets/ES_CCAA_10/2013-2023/initial.json",
+        "raw_size": 508419,
+        "gzip_size": 26094,
+        "sha256": "ec59337256b510a1408e12a0ed550d7e6d2dd76b8cc12f23f55fb814505c9254",
+        "record_id_order_sha256": "070536d5d461a7af6614baf0aeece5a4bd62c7a7cc64055c6fff9889a4463ad1"
+      },
+      "detail": {
+        "path": "assets/ES_CCAA_10/2013-2023/detail.json",
+        "raw_size": 499717,
+        "gzip_size": 81468,
+        "sha256": "5da017e4e6d2974cf50922f256f707a760ca1e0d7cdb7276e86e27e6678017d9",
+        "ordinal_alignment": "same_sorted_record_id_order_as_initial"
+      },
+      "record_id_column": {
+        "raw_bytes": 84001,
+        "gzip_bytes": 8564,
+        "initial_raw_percent": 16.522003,
+        "initial_gzip_percent": 32.819805
+      }
+    },
+    {
+      "asset_id": "egif:ES:CCAA:11:1968-1979",
+      "autonomous_community_id": "ES:CCAA:11",
+      "autonomous_community_name": "Extremadura",
+      "from_year": 1968,
+      "to_year": 1979,
+      "record_count": 937,
+      "raw_bytes": 235029,
+      "gzip_bytes": 20291,
+      "raw_bytes_per_record": 250.831377,
+      "gzip_bytes_per_record": 21.655283,
+      "compression_ratio_gzip_over_raw": 0.08633403,
+      "initial": {
+        "path": "assets/ES_CCAA_11/1968-1979/initial.json",
+        "raw_size": 131655,
+        "gzip_size": 5943,
+        "sha256": "d702208007e569bd63d846f89466d429069051c5ea6d538198d08e2085479c51",
+        "record_id_order_sha256": "65c5b9a2869b68ec037d7d687090427c937351e18814beff644213a04c9d6e35"
+      },
+      "detail": {
+        "path": "assets/ES_CCAA_11/1968-1979/detail.json",
+        "raw_size": 103374,
+        "gzip_size": 14348,
+        "sha256": "f8d8acbfd94c309cba7cb5069c9ff81d83db2048df3158e01e07f5463f24eeed",
+        "ordinal_alignment": "same_sorted_record_id_order_as_initial"
+      },
+      "record_id_column": {
+        "raw_bytes": 23426,
+        "gzip_bytes": 2304,
+        "initial_raw_percent": 17.793475,
+        "initial_gzip_percent": 38.768299
+      }
+    },
+    {
+      "asset_id": "egif:ES:CCAA:11:1980-1992",
+      "autonomous_community_id": "ES:CCAA:11",
+      "autonomous_community_name": "Extremadura",
+      "from_year": 1980,
+      "to_year": 1992,
+      "record_count": 6411,
+      "raw_bytes": 1668545,
+      "gzip_bytes": 123843,
+      "raw_bytes_per_record": 260.26283,
+      "gzip_bytes_per_record": 19.317267,
+      "compression_ratio_gzip_over_raw": 0.07422215,
+      "initial": {
+        "path": "assets/ES_CCAA_11/1980-1992/initial.json",
+        "raw_size": 969040,
+        "gzip_size": 40477,
+        "sha256": "08c91755d4b234bec05a901a8972ceac255e7e51cdb917cc104bbee70506ac9f",
+        "record_id_order_sha256": "3ca303f3c384cf0ad7bdab6e7f7f651481a350a4e8d4e2070356edfeda2a9c54"
+      },
+      "detail": {
+        "path": "assets/ES_CCAA_11/1980-1992/detail.json",
+        "raw_size": 699505,
+        "gzip_size": 83366,
+        "sha256": "017f19039de6a693acb9c8c9eb152670c967a8b7839466c5db515b95ac9b2e46",
+        "ordinal_alignment": "same_sorted_record_id_order_as_initial"
+      },
+      "record_id_column": {
+        "raw_bytes": 160276,
+        "gzip_bytes": 14597,
+        "initial_raw_percent": 16.539668,
+        "initial_gzip_percent": 36.062455
+      }
+    },
+    {
+      "asset_id": "egif:ES:CCAA:11:1993-2002",
+      "autonomous_community_id": "ES:CCAA:11",
+      "autonomous_community_name": "Extremadura",
+      "from_year": 1993,
+      "to_year": 2002,
+      "record_count": 10414,
+      "raw_bytes": 3013250,
+      "gzip_bytes": 234498,
+      "raw_bytes_per_record": 289.346073,
+      "gzip_bytes_per_record": 22.517572,
+      "compression_ratio_gzip_over_raw": 0.07782228,
+      "initial": {
+        "path": "assets/ES_CCAA_11/1993-2002/initial.json",
+        "raw_size": 1565761,
+        "gzip_size": 63012,
+        "sha256": "79624fe286e4d299fb67f9f590a0fd9d907a86007bc714ad912e46df10555a0e",
+        "record_id_order_sha256": "9d7cb5ade1db17807dc2a7d65faca78acf983d2f8ef701fe454e56e8467122f8"
+      },
+      "detail": {
+        "path": "assets/ES_CCAA_11/1993-2002/detail.json",
+        "raw_size": 1447489,
+        "gzip_size": 171486,
+        "sha256": "d0e04168799a65caac9bbec38e20dff9defe3ca70c010a046d927af902d7b3fe",
+        "ordinal_alignment": "same_sorted_record_id_order_as_initial"
+      },
+      "record_id_column": {
+        "raw_bytes": 260351,
+        "gzip_bytes": 24641,
+        "initial_raw_percent": 16.627761,
+        "initial_gzip_percent": 39.10525
+      }
+    },
+    {
+      "asset_id": "egif:ES:CCAA:11:2003-2012",
+      "autonomous_community_id": "ES:CCAA:11",
+      "autonomous_community_name": "Extremadura",
+      "from_year": 2003,
+      "to_year": 2012,
+      "record_count": 10142,
+      "raw_bytes": 3002054,
+      "gzip_bytes": 267334,
+      "raw_bytes_per_record": 296.002169,
+      "gzip_bytes_per_record": 26.359101,
+      "compression_ratio_gzip_over_raw": 0.08905036,
+      "initial": {
+        "path": "assets/ES_CCAA_11/2003-2012/initial.json",
+        "raw_size": 1526492,
+        "gzip_size": 65082,
+        "sha256": "0ffaa1d569b5afa27ad8f80a628fa0cec876c6799a87521b902c9f13cdf70772",
+        "record_id_order_sha256": "797113f3940e719ad6f419138dd39097d2effea82756fbdebc59bbaa3c080134"
+      },
+      "detail": {
+        "path": "assets/ES_CCAA_11/2003-2012/detail.json",
+        "raw_size": 1475562,
+        "gzip_size": 202252,
+        "sha256": "93c26490f18c154f4bc384bc46ddb18832cf65d8287e0adda88565b1993e7f97",
+        "ordinal_alignment": "same_sorted_record_id_order_as_initial"
+      },
+      "record_id_column": {
+        "raw_bytes": 253551,
+        "gzip_bytes": 24352,
+        "initial_raw_percent": 16.610044,
+        "initial_gzip_percent": 37.417412
+      }
+    },
+    {
+      "asset_id": "egif:ES:CCAA:11:2013-2023",
+      "autonomous_community_id": "ES:CCAA:11",
+      "autonomous_community_name": "Extremadura",
+      "from_year": 2013,
+      "to_year": 2023,
+      "record_count": 7561,
+      "raw_bytes": 2254917,
+      "gzip_bytes": 224320,
+      "raw_bytes_per_record": 298.229996,
+      "gzip_bytes_per_record": 29.668033,
+      "compression_ratio_gzip_over_raw": 0.09948038,
+      "initial": {
+        "path": "assets/ES_CCAA_11/2013-2023/initial.json",
+        "raw_size": 1141854,
+        "gzip_size": 56511,
+        "sha256": "c43062ef86308d593077e456caf9a85b4a6c231a921f11637e6eaa02bc491bdf",
+        "record_id_order_sha256": "1fe8b3acd751a1655a3cf1e281f9a7f8bab88ab8f20332128f0192f2d35fabc5"
+      },
+      "detail": {
+        "path": "assets/ES_CCAA_11/2013-2023/detail.json",
+        "raw_size": 1113063,
+        "gzip_size": 167809,
+        "sha256": "8c9c284f5d5c58b404332a3b819bc5a19906ae75a33867ade777005710cacca4",
+        "ordinal_alignment": "same_sorted_record_id_order_as_initial"
+      },
+      "record_id_column": {
+        "raw_bytes": 189026,
+        "gzip_bytes": 19451,
+        "initial_raw_percent": 16.554306,
+        "initial_gzip_percent": 34.419847
+      }
+    },
+    {
+      "asset_id": "egif:ES:CCAA:12:1968-1979",
+      "autonomous_community_id": "ES:CCAA:12",
+      "autonomous_community_name": "Galicia",
+      "from_year": 1968,
+      "to_year": 1979,
+      "record_count": 17880,
+      "raw_bytes": 4441849,
+      "gzip_bytes": 307490,
+      "raw_bytes_per_record": 248.425559,
+      "gzip_bytes_per_record": 17.197427,
+      "compression_ratio_gzip_over_raw": 0.06922568,
+      "initial": {
+        "path": "assets/ES_CCAA_12/1968-1979/initial.json",
+        "raw_size": 2493679,
+        "gzip_size": 79951,
+        "sha256": "595931a09c019029c467314c48131b3dfd7ec008354d33f9849facaa210ed280",
+        "record_id_order_sha256": "6c42345c58b42a894951333fc35971a078576283fffa9605563c2565010fb96a"
+      },
+      "detail": {
+        "path": "assets/ES_CCAA_12/1968-1979/detail.json",
+        "raw_size": 1948170,
+        "gzip_size": 227539,
+        "sha256": "9677096bb01ccd2ba987149e98784b89c4199a29554fc3c1481799e4c4311b27",
+        "ordinal_alignment": "same_sorted_record_id_order_as_initial"
+      },
+      "record_id_column": {
+        "raw_bytes": 447022,
+        "gzip_bytes": 43318,
+        "initial_raw_percent": 17.926205,
+        "initial_gzip_percent": 54.180686
+      }
+    },
+    {
+      "asset_id": "egif:ES:CCAA:12:1980-1992",
+      "autonomous_community_id": "ES:CCAA:12",
+      "autonomous_community_name": "Galicia",
+      "from_year": 1980,
+      "to_year": 1992,
+      "record_count": 53177,
+      "raw_bytes": 13746883,
+      "gzip_bytes": 918708,
+      "raw_bytes_per_record": 258.511819,
+      "gzip_bytes_per_record": 17.276416,
+      "compression_ratio_gzip_over_raw": 0.06683028,
+      "initial": {
+        "path": "assets/ES_CCAA_12/1980-1992/initial.json",
+        "raw_size": 7974454,
+        "gzip_size": 273266,
+        "sha256": "4a0e2e635452014f308a7216ca02b979822d72acc0ef31e30eaf3be80e9dee8e",
+        "record_id_order_sha256": "8170a7266e394d9a654ba96e7a73324f954a1028f54b2da4b97846ef3fcf67d0"
+      },
+      "detail": {
+        "path": "assets/ES_CCAA_12/1980-1992/detail.json",
+        "raw_size": 5772429,
+        "gzip_size": 645442,
+        "sha256": "9789c028cfb9efb20ded3272328f6488cf307c1a0d3a4b5082ce4b78b4d13838",
+        "ordinal_alignment": "same_sorted_record_id_order_as_initial"
+      },
+      "record_id_column": {
+        "raw_bytes": 1329426,
+        "gzip_bytes": 129542,
+        "initial_raw_percent": 16.67106,
+        "initial_gzip_percent": 47.405092
+      }
+    },
+    {
+      "asset_id": "egif:ES:CCAA:12:1993-2002",
+      "autonomous_community_id": "ES:CCAA:12",
+      "autonomous_community_name": "Galicia",
+      "from_year": 1993,
+      "to_year": 2002,
+      "record_count": 110605,
+      "raw_bytes": 31465528,
+      "gzip_bytes": 2012903,
+      "raw_bytes_per_record": 284.485584,
+      "gzip_bytes_per_record": 18.199024,
+      "compression_ratio_gzip_over_raw": 0.06397169,
+      "initial": {
+        "path": "assets/ES_CCAA_12/1993-2002/initial.json",
+        "raw_size": 16610507,
+        "gzip_size": 572974,
+        "sha256": "d1e985714d7a3666ae79c2ba78069779a2979ff8419b69c3f47b87d8052c1e6b",
+        "record_id_order_sha256": "a70f55f5352096f69a5fd9068dd65afe84de479d694808cd8281a805ce70a6c2"
+      },
+      "detail": {
+        "path": "assets/ES_CCAA_12/1993-2002/detail.json",
+        "raw_size": 14855021,
+        "gzip_size": 1439929,
+        "sha256": "f73c266f060faa7de7a295384574b2ceff0f8b739a524923560237a5bb2718ce",
+        "ordinal_alignment": "same_sorted_record_id_order_as_initial"
+      },
+      "record_id_column": {
+        "raw_bytes": 2765126,
+        "gzip_bytes": 277679,
+        "initial_raw_percent": 16.646849,
+        "initial_gzip_percent": 48.462757
+      }
+    },
+    {
+      "asset_id": "egif:ES:CCAA:12:2003-2012",
+      "autonomous_community_id": "ES:CCAA:12",
+      "autonomous_community_name": "Galicia",
+      "from_year": 2003,
+      "to_year": 2012,
+      "record_count": 61801,
+      "raw_bytes": 17731521,
+      "gzip_bytes": 1259523,
+      "raw_bytes_per_record": 286.913173,
+      "gzip_bytes_per_record": 20.380301,
+      "compression_ratio_gzip_over_raw": 0.07103299,
+      "initial": {
+        "path": "assets/ES_CCAA_12/2003-2012/initial.json",
+        "raw_size": 9298763,
+        "gzip_size": 344827,
+        "sha256": "5dd51de6b319179e8e163dbed8e04ed1f4bba4acddc7cb40770dad8262c8263e",
+        "record_id_order_sha256": "1529b370ddb42068ec453961a0e10f58a48d674dcb37ec56f0853c948af85823"
+      },
+      "detail": {
+        "path": "assets/ES_CCAA_12/2003-2012/detail.json",
+        "raw_size": 8432758,
+        "gzip_size": 914696,
+        "sha256": "4263f1baa68a8b7054b8c0fce057113e9247478bbab05fb551084c7dd656aea6",
+        "ordinal_alignment": "same_sorted_record_id_order_as_initial"
+      },
+      "record_id_column": {
+        "raw_bytes": 1545026,
+        "gzip_bytes": 152221,
+        "initial_raw_percent": 16.615393,
+        "initial_gzip_percent": 44.144165
+      }
+    },
+    {
+      "asset_id": "egif:ES:CCAA:12:2013-2023",
+      "autonomous_community_id": "ES:CCAA:12",
+      "autonomous_community_name": "Galicia",
+      "from_year": 2013,
+      "to_year": 2023,
+      "record_count": 20850,
+      "raw_bytes": 6067326,
+      "gzip_bytes": 508943,
+      "raw_bytes_per_record": 290.998849,
+      "gzip_bytes_per_record": 24.409736,
+      "compression_ratio_gzip_over_raw": 0.08388259,
+      "initial": {
+        "path": "assets/ES_CCAA_12/2013-2023/initial.json",
+        "raw_size": 3143799,
+        "gzip_size": 129108,
+        "sha256": "d2cfef2893e110093b98b9ed6f5c7dc1f2a9638c28a50f1986301349238c4cc2",
+        "record_id_order_sha256": "0acb0d773e81240648aa3665d9d67bb984f42d255b764106ad394cbae956d8e7"
+      },
+      "detail": {
+        "path": "assets/ES_CCAA_12/2013-2023/detail.json",
+        "raw_size": 2923527,
+        "gzip_size": 379835,
+        "sha256": "8b02b5e3becae6813ff0657b1065aa496d56927d5c22f26121cdddcf0fd146a0",
+        "ordinal_alignment": "same_sorted_record_id_order_as_initial"
+      },
+      "record_id_column": {
+        "raw_bytes": 521251,
+        "gzip_bytes": 51132,
+        "initial_raw_percent": 16.58029,
+        "initial_gzip_percent": 39.604052
+      }
+    },
+    {
+      "asset_id": "egif:ES:CCAA:13:1968-1979",
+      "autonomous_community_id": "ES:CCAA:13",
+      "autonomous_community_name": "Madrid, Comunidad de",
+      "from_year": 1968,
+      "to_year": 1979,
+      "record_count": 926,
+      "raw_bytes": 230992,
+      "gzip_bytes": 18638,
+      "raw_bytes_per_record": 249.451404,
+      "gzip_bytes_per_record": 20.12743,
+      "compression_ratio_gzip_over_raw": 0.08068678,
+      "initial": {
+        "path": "assets/ES_CCAA_13/1968-1979/initial.json",
+        "raw_size": 129714,
+        "gzip_size": 5450,
+        "sha256": "a362b4ae42aa8ab79e293839bac8281e3e08ba3848b66e301aba16e0c85e90f8",
+        "record_id_order_sha256": "0035fa4eb971da5055b76d4ba60858056ec9e5b202de2797603e76f9823cb86b"
+      },
+      "detail": {
+        "path": "assets/ES_CCAA_13/1968-1979/detail.json",
+        "raw_size": 101278,
+        "gzip_size": 13188,
+        "sha256": "4b8393f070f7511478e6983aa99e54af8e64754130780d325f1e5366140f24e7",
+        "ordinal_alignment": "same_sorted_record_id_order_as_initial"
+      },
+      "record_id_column": {
+        "raw_bytes": 23151,
+        "gzip_bytes": 2240,
+        "initial_raw_percent": 17.847727,
+        "initial_gzip_percent": 41.100917
+      }
+    },
+    {
+      "asset_id": "egif:ES:CCAA:13:1980-1992",
+      "autonomous_community_id": "ES:CCAA:13",
+      "autonomous_community_name": "Madrid, Comunidad de",
+      "from_year": 1980,
+      "to_year": 1992,
+      "record_count": 1759,
+      "raw_bytes": 455614,
+      "gzip_bytes": 35961,
+      "raw_bytes_per_record": 259.018761,
+      "gzip_bytes_per_record": 20.444002,
+      "compression_ratio_gzip_over_raw": 0.07892865,
+      "initial": {
+        "path": "assets/ES_CCAA_13/1980-1992/initial.json",
+        "raw_size": 264214,
+        "gzip_size": 11572,
+        "sha256": "ddd9b3e7193e2dd5d12c7a168999b6589d21bc5dc58d5afea100a3dadeee093a",
+        "record_id_order_sha256": "da0113974ef8e1acb7450fce410635387c2f470482f7ad2a23d634b89d4a1034"
+      },
+      "detail": {
+        "path": "assets/ES_CCAA_13/1980-1992/detail.json",
+        "raw_size": 191400,
+        "gzip_size": 24389,
+        "sha256": "d0f09f1b6e5acc9fab6d3a011f5156d7fabb48e5358b603c3e058d3c1abdb5c1",
+        "ordinal_alignment": "same_sorted_record_id_order_as_initial"
+      },
+      "record_id_column": {
+        "raw_bytes": 43976,
+        "gzip_bytes": 3952,
+        "initial_raw_percent": 16.644084,
+        "initial_gzip_percent": 34.1514
+      }
+    },
+    {
+      "asset_id": "egif:ES:CCAA:13:1993-2002",
+      "autonomous_community_id": "ES:CCAA:13",
+      "autonomous_community_name": "Madrid, Comunidad de",
+      "from_year": 1993,
+      "to_year": 2002,
+      "record_count": 2425,
+      "raw_bytes": 690045,
+      "gzip_bytes": 54259,
+      "raw_bytes_per_record": 284.554639,
+      "gzip_bytes_per_record": 22.374845,
+      "compression_ratio_gzip_over_raw": 0.0786311,
+      "initial": {
+        "path": "assets/ES_CCAA_13/1993-2002/initial.json",
+        "raw_size": 365214,
+        "gzip_size": 16966,
+        "sha256": "3a328dc04c8995dae9168bc365ec77caf88f2ef119b751ef5260b629f7dd3fcd",
+        "record_id_order_sha256": "04a1850f459d5256c21cb27610b4fa59b4dcf45429554458d66ecedda488d0b5"
+      },
+      "detail": {
+        "path": "assets/ES_CCAA_13/1993-2002/detail.json",
+        "raw_size": 324831,
+        "gzip_size": 37293,
+        "sha256": "1900b322c50560072153703d20b4b9ef3a34eac2257cde841bc2fa516765eafc",
+        "ordinal_alignment": "same_sorted_record_id_order_as_initial"
+      },
+      "record_id_column": {
+        "raw_bytes": 60626,
+        "gzip_bytes": 6016,
+        "initial_raw_percent": 16.60013,
+        "initial_gzip_percent": 35.459154
+      }
+    },
+    {
+      "asset_id": "egif:ES:CCAA:13:2003-2012",
+      "autonomous_community_id": "ES:CCAA:13",
+      "autonomous_community_name": "Madrid, Comunidad de",
+      "from_year": 2003,
+      "to_year": 2012,
+      "record_count": 3053,
+      "raw_bytes": 899579,
+      "gzip_bytes": 84417,
+      "raw_bytes_per_record": 294.654111,
+      "gzip_bytes_per_record": 27.650508,
+      "compression_ratio_gzip_over_raw": 0.09384056,
+      "initial": {
+        "path": "assets/ES_CCAA_13/2003-2012/initial.json",
+        "raw_size": 461244,
+        "gzip_size": 23538,
+        "sha256": "3f6a6566897453ea44c34da5d7094e184afe537fd00cb171f5a7280cea53b1b1",
+        "record_id_order_sha256": "9408679a6666144986036ce6736fb8bafc0b8f9db7501da0a0552853096ea11e"
+      },
+      "detail": {
+        "path": "assets/ES_CCAA_13/2003-2012/detail.json",
+        "raw_size": 438335,
+        "gzip_size": 60879,
+        "sha256": "6e4c56f3ccde7f03df75849f5738acb9bddcc9d85ad7dd92ef7f50969104c9e0",
+        "ordinal_alignment": "same_sorted_record_id_order_as_initial"
+      },
+      "record_id_column": {
+        "raw_bytes": 76326,
+        "gzip_bytes": 7791,
+        "initial_raw_percent": 16.547858,
+        "initial_gzip_percent": 33.099669
+      }
+    },
+    {
+      "asset_id": "egif:ES:CCAA:13:2013-2023",
+      "autonomous_community_id": "ES:CCAA:13",
+      "autonomous_community_name": "Madrid, Comunidad de",
+      "from_year": 2013,
+      "to_year": 2023,
+      "record_count": 3288,
+      "raw_bytes": 979166,
+      "gzip_bytes": 97973,
+      "raw_bytes_per_record": 297.799878,
+      "gzip_bytes_per_record": 29.797141,
+      "compression_ratio_gzip_over_raw": 0.1000576,
+      "initial": {
+        "path": "assets/ES_CCAA_13/2013-2023/initial.json",
+        "raw_size": 497166,
+        "gzip_size": 25500,
+        "sha256": "2fe73338d488c668dd1e71a36714636afde3bd7b37c17a48080b4860268504b4",
+        "record_id_order_sha256": "1834daeaa9a7e59390be4ede5621c9ec6b263130562f12c97f6af3b31c552866"
+      },
+      "detail": {
+        "path": "assets/ES_CCAA_13/2013-2023/detail.json",
+        "raw_size": 482000,
+        "gzip_size": 72473,
+        "sha256": "ea28d2ccb54cee5da4db9352f060586f3aef363856948f4e54613faba45d4d72",
+        "ordinal_alignment": "same_sorted_record_id_order_as_initial"
+      },
+      "record_id_column": {
+        "raw_bytes": 82201,
+        "gzip_bytes": 8309,
+        "initial_raw_percent": 16.533914,
+        "initial_gzip_percent": 32.584314
+      }
+    },
+    {
+      "asset_id": "egif:ES:CCAA:14:1968-1979",
+      "autonomous_community_id": "ES:CCAA:14",
+      "autonomous_community_name": "Murcia, Región de",
+      "from_year": 1968,
+      "to_year": 1979,
+      "record_count": 94,
+      "raw_bytes": 25037,
+      "gzip_bytes": 3437,
+      "raw_bytes_per_record": 266.351064,
+      "gzip_bytes_per_record": 36.56383,
+      "compression_ratio_gzip_over_raw": 0.13727683,
+      "initial": {
+        "path": "assets/ES_CCAA_14/1968-1979/initial.json",
+        "raw_size": 13921,
+        "gzip_size": 1234,
+        "sha256": "88c5c6baa52d32d879c7af13921b2da881a196ed85f73941c0a9ffde92ae65bf",
+        "record_id_order_sha256": "cacfd67075b3e8fadc0ed7e47dea6c1bdb7bb51189eae04dc7d19451c32a8366"
+      },
+      "detail": {
+        "path": "assets/ES_CCAA_14/1968-1979/detail.json",
+        "raw_size": 11116,
+        "gzip_size": 2203,
+        "sha256": "26c2a91f0017c265eab5b463197e7358efea0b32338bed5c4aecbd9713b87d35",
+        "ordinal_alignment": "same_sorted_record_id_order_as_initial"
+      },
+      "record_id_column": {
+        "raw_bytes": 2351,
+        "gzip_bytes": 354,
+        "initial_raw_percent": 16.888155,
+        "initial_gzip_percent": 28.687196
+      }
+    },
+    {
+      "asset_id": "egif:ES:CCAA:14:1980-1992",
+      "autonomous_community_id": "ES:CCAA:14",
+      "autonomous_community_name": "Murcia, Región de",
+      "from_year": 1980,
+      "to_year": 1992,
+      "record_count": 615,
+      "raw_bytes": 160891,
+      "gzip_bytes": 14339,
+      "raw_bytes_per_record": 261.611382,
+      "gzip_bytes_per_record": 23.315447,
+      "compression_ratio_gzip_over_raw": 0.08912245,
+      "initial": {
+        "path": "assets/ES_CCAA_14/1980-1992/initial.json",
+        "raw_size": 93419,
+        "gzip_size": 4628,
+        "sha256": "3e3c2f77abc1760e5ae99225e9c2e4d364defcb7214326704c18edc640985810",
+        "record_id_order_sha256": "f79134d092f5797f9c3d942fa0bccea343a7a14234ed6a0a8d214d784f5573f1"
+      },
+      "detail": {
+        "path": "assets/ES_CCAA_14/1980-1992/detail.json",
+        "raw_size": 67472,
+        "gzip_size": 9711,
+        "sha256": "3e0b08f3aa3955ca70977cc74d7918227cc5cb56b9267b400cc94a21e63bde74",
+        "ordinal_alignment": "same_sorted_record_id_order_as_initial"
+      },
+      "record_id_column": {
+        "raw_bytes": 15376,
+        "gzip_bytes": 1495,
+        "initial_raw_percent": 16.459179,
+        "initial_gzip_percent": 32.303371
+      }
+    },
+    {
+      "asset_id": "egif:ES:CCAA:14:1993-2002",
+      "autonomous_community_id": "ES:CCAA:14",
+      "autonomous_community_name": "Murcia, Región de",
+      "from_year": 1993,
+      "to_year": 2002,
+      "record_count": 1447,
+      "raw_bytes": 423357,
+      "gzip_bytes": 38668,
+      "raw_bytes_per_record": 292.575674,
+      "gzip_bytes_per_record": 26.722875,
+      "compression_ratio_gzip_over_raw": 0.09133663,
+      "initial": {
+        "path": "assets/ES_CCAA_14/1993-2002/initial.json",
+        "raw_size": 218457,
+        "gzip_size": 10129,
+        "sha256": "197d87223e4de0f624c1011e32c83416d22dc0d9cd7f8bcb5b3555423ae928e9",
+        "record_id_order_sha256": "4dab00fafd67a955c8f477d5b4cbf710abcfd051f9e58f1aaa2fe06d9412e71e"
+      },
+      "detail": {
+        "path": "assets/ES_CCAA_14/1993-2002/detail.json",
+        "raw_size": 204900,
+        "gzip_size": 28539,
+        "sha256": "6485d80cbf439ddc572fc890d84ed508ac980854d367685f9ce645cf286f17e7",
+        "ordinal_alignment": "same_sorted_record_id_order_as_initial"
+      },
+      "record_id_column": {
+        "raw_bytes": 36176,
+        "gzip_bytes": 3507,
+        "initial_raw_percent": 16.559781,
+        "initial_gzip_percent": 34.623359
+      }
+    },
+    {
+      "asset_id": "egif:ES:CCAA:14:2003-2012",
+      "autonomous_community_id": "ES:CCAA:14",
+      "autonomous_community_name": "Murcia, Región de",
+      "from_year": 2003,
+      "to_year": 2012,
+      "record_count": 1241,
+      "raw_bytes": 371304,
+      "gzip_bytes": 38134,
+      "raw_bytes_per_record": 299.197421,
+      "gzip_bytes_per_record": 30.728445,
+      "compression_ratio_gzip_over_raw": 0.10270291,
+      "initial": {
+        "path": "assets/ES_CCAA_14/2003-2012/initial.json",
+        "raw_size": 187928,
+        "gzip_size": 9220,
+        "sha256": "2531272ce69286605b24cbc732c6a5fce62c88af5462ebee2a540f30e9f94c61",
+        "record_id_order_sha256": "3282225604fab8fe1ebb2fffbbe6c4f559d5fd5896224d1035c1f15e151b61d2"
+      },
+      "detail": {
+        "path": "assets/ES_CCAA_14/2003-2012/detail.json",
+        "raw_size": 183376,
+        "gzip_size": 28914,
+        "sha256": "08de9ac977f9a0d5ba6db28323fc946da3cec9fb797afa63fe43be3620ed83b5",
+        "ordinal_alignment": "same_sorted_record_id_order_as_initial"
+      },
+      "record_id_column": {
+        "raw_bytes": 31026,
+        "gzip_bytes": 2902,
+        "initial_raw_percent": 16.509514,
+        "initial_gzip_percent": 31.475054
+      }
+    },
+    {
+      "asset_id": "egif:ES:CCAA:14:2013-2023",
+      "autonomous_community_id": "ES:CCAA:14",
+      "autonomous_community_name": "Murcia, Región de",
+      "from_year": 2013,
+      "to_year": 2023,
+      "record_count": 1245,
+      "raw_bytes": 374123,
+      "gzip_bytes": 40122,
+      "raw_bytes_per_record": 300.500402,
+      "gzip_bytes_per_record": 32.226506,
+      "compression_ratio_gzip_over_raw": 0.10724281,
+      "initial": {
+        "path": "assets/ES_CCAA_14/2013-2023/initial.json",
+        "raw_size": 188689,
+        "gzip_size": 9256,
+        "sha256": "85f6d54a0a675d0ffc79b8a53dbdfae3e51e077f80e7242d8007e9ceee762167",
+        "record_id_order_sha256": "a37dbb687e5aaf07a6f7db188a2ceb1c2a8e585a80c508831516857f595696ba"
+      },
+      "detail": {
+        "path": "assets/ES_CCAA_14/2013-2023/detail.json",
+        "raw_size": 185434,
+        "gzip_size": 30866,
+        "sha256": "e0519babbdf7435578b38093019f705683c82f18aaca2e79f715c54fc0522e3c",
+        "ordinal_alignment": "same_sorted_record_id_order_as_initial"
+      },
+      "record_id_column": {
+        "raw_bytes": 31126,
+        "gzip_bytes": 2899,
+        "initial_raw_percent": 16.495927,
+        "initial_gzip_percent": 31.320225
+      }
+    },
+    {
+      "asset_id": "egif:ES:CCAA:15:1980-1992",
+      "autonomous_community_id": "ES:CCAA:15",
+      "autonomous_community_name": "Navarra, Comunidad Foral de",
+      "from_year": 1980,
+      "to_year": 1992,
+      "record_count": 1175,
+      "raw_bytes": 307777,
+      "gzip_bytes": 26540,
+      "raw_bytes_per_record": 261.937872,
+      "gzip_bytes_per_record": 22.587234,
+      "compression_ratio_gzip_over_raw": 0.08623126,
+      "initial": {
+        "path": "assets/ES_CCAA_15/1980-1992/initial.json",
+        "raw_size": 179481,
+        "gzip_size": 8696,
+        "sha256": "46ae6fa56b7d2099220cee278aafbe99b0160627b540ad5b416b07f80a4679c8",
+        "record_id_order_sha256": "6b10cd7f963df8c6625371e73f5b2618533c85c9c791967420d6fd9c26d5c6a9"
+      },
+      "detail": {
+        "path": "assets/ES_CCAA_15/1980-1992/detail.json",
+        "raw_size": 128296,
+        "gzip_size": 17844,
+        "sha256": "ee84e8762f0cb662460bdccbef75f779cefc6f3550a29e0c8a87e26157105a11",
+        "ordinal_alignment": "same_sorted_record_id_order_as_initial"
+      },
+      "record_id_column": {
+        "raw_bytes": 29376,
+        "gzip_bytes": 2713,
+        "initial_raw_percent": 16.367192,
+        "initial_gzip_percent": 31.198252
+      }
+    },
+    {
+      "asset_id": "egif:ES:CCAA:15:1993-2002",
+      "autonomous_community_id": "ES:CCAA:15",
+      "autonomous_community_name": "Navarra, Comunidad Foral de",
+      "from_year": 1993,
+      "to_year": 2002,
+      "record_count": 486,
+      "raw_bytes": 140241,
+      "gzip_bytes": 13130,
+      "raw_bytes_per_record": 288.561728,
+      "gzip_bytes_per_record": 27.016461,
+      "compression_ratio_gzip_over_raw": 0.09362455,
+      "initial": {
+        "path": "assets/ES_CCAA_15/1993-2002/initial.json",
+        "raw_size": 73833,
+        "gzip_size": 4016,
+        "sha256": "990a9eb7499a0dae2ded89bfba83158e4acc3b4075aef87b668cc0d6c4934a64",
+        "record_id_order_sha256": "a492298769e3cc404a0f253688173fdf8757a37269831763eda594904fbb7d23"
+      },
+      "detail": {
+        "path": "assets/ES_CCAA_15/1993-2002/detail.json",
+        "raw_size": 66408,
+        "gzip_size": 9114,
+        "sha256": "d723c6999fec284f4a9170f5d3580441711eb357e2ec86add410bbfc0be0b299",
+        "ordinal_alignment": "same_sorted_record_id_order_as_initial"
+      },
+      "record_id_column": {
+        "raw_bytes": 12151,
+        "gzip_bytes": 1141,
+        "initial_raw_percent": 16.457411,
+        "initial_gzip_percent": 28.411355
+      }
+    },
+    {
+      "asset_id": "egif:ES:CCAA:15:2003-2012",
+      "autonomous_community_id": "ES:CCAA:15",
+      "autonomous_community_name": "Navarra, Comunidad Foral de",
+      "from_year": 2003,
+      "to_year": 2012,
+      "record_count": 5270,
+      "raw_bytes": 1548417,
+      "gzip_bytes": 139356,
+      "raw_bytes_per_record": 293.817268,
+      "gzip_bytes_per_record": 26.443264,
+      "compression_ratio_gzip_over_raw": 0.08999901,
+      "initial": {
+        "path": "assets/ES_CCAA_15/2003-2012/initial.json",
+        "raw_size": 793627,
+        "gzip_size": 36592,
+        "sha256": "a050ae3b8994a8f3281fb044a8af87a8801210e35e986b673ed033394abd424a",
+        "record_id_order_sha256": "0a54b3c1261baf3808b4dcee83c2e83bf34c46f7cd1b6cd69364e74ba340f950"
+      },
+      "detail": {
+        "path": "assets/ES_CCAA_15/2003-2012/detail.json",
+        "raw_size": 754790,
+        "gzip_size": 102764,
+        "sha256": "f7ce93485a6b5641be89b69d7883dcba5d6abf1038c3fd2f5b929eeb3cfc1443",
+        "ordinal_alignment": "same_sorted_record_id_order_as_initial"
+      },
+      "record_id_column": {
+        "raw_bytes": 131751,
+        "gzip_bytes": 13694,
+        "initial_raw_percent": 16.601124,
+        "initial_gzip_percent": 37.423481
+      }
+    },
+    {
+      "asset_id": "egif:ES:CCAA:15:2013-2023",
+      "autonomous_community_id": "ES:CCAA:15",
+      "autonomous_community_name": "Navarra, Comunidad Foral de",
+      "from_year": 2013,
+      "to_year": 2023,
+      "record_count": 2641,
+      "raw_bytes": 776288,
+      "gzip_bytes": 75898,
+      "raw_bytes_per_record": 293.937145,
+      "gzip_bytes_per_record": 28.738357,
+      "compression_ratio_gzip_over_raw": 0.09777042,
+      "initial": {
+        "path": "assets/ES_CCAA_15/2013-2023/initial.json",
+        "raw_size": 397551,
+        "gzip_size": 19126,
+        "sha256": "67139d7f1eafe82765be53b6d77f9c312e75f39427a170abb59ef86226360cd3",
+        "record_id_order_sha256": "2ed75579ded4c6956a7abd7c817d0e5ca29e2aaa8a25106d543c331d5be0e75f"
+      },
+      "detail": {
+        "path": "assets/ES_CCAA_15/2013-2023/detail.json",
+        "raw_size": 378737,
+        "gzip_size": 56772,
+        "sha256": "3f0f2214904fb910210d3081c49e13fad10923e0074e677edcdd07b15a5b203d",
+        "ordinal_alignment": "same_sorted_record_id_order_as_initial"
+      },
+      "record_id_column": {
+        "raw_bytes": 66026,
+        "gzip_bytes": 6647,
+        "initial_raw_percent": 16.608184,
+        "initial_gzip_percent": 34.753738
+      }
+    },
+    {
+      "asset_id": "egif:ES:CCAA:16:1968-1979",
+      "autonomous_community_id": "ES:CCAA:16",
+      "autonomous_community_name": "País Vasco",
+      "from_year": 1968,
+      "to_year": 1979,
+      "record_count": 352,
+      "raw_bytes": 88904,
+      "gzip_bytes": 8557,
+      "raw_bytes_per_record": 252.568182,
+      "gzip_bytes_per_record": 24.309659,
+      "compression_ratio_gzip_over_raw": 0.09624989,
+      "initial": {
+        "path": "assets/ES_CCAA_16/1968-1979/initial.json",
+        "raw_size": 49825,
+        "gzip_size": 2657,
+        "sha256": "9490801df6abafb452199cb237abafa678a55d943df49c6525329388381b2cba",
+        "record_id_order_sha256": "b2d00a7337a0a57ae2919f8f6781b0d042f40e2a09d17aee6e918ee929b34e42"
+      },
+      "detail": {
+        "path": "assets/ES_CCAA_16/1968-1979/detail.json",
+        "raw_size": 39079,
+        "gzip_size": 5900,
+        "sha256": "2ee91d40217472a976e83cb88d088d00b192cb6eef9754c2d260344f466ade7b",
+        "ordinal_alignment": "same_sorted_record_id_order_as_initial"
+      },
+      "record_id_column": {
+        "raw_bytes": 8801,
+        "gzip_bytes": 882,
+        "initial_raw_percent": 17.663823,
+        "initial_gzip_percent": 33.195333
+      }
+    },
+    {
+      "asset_id": "egif:ES:CCAA:16:1980-1992",
+      "autonomous_community_id": "ES:CCAA:16",
+      "autonomous_community_name": "País Vasco",
+      "from_year": 1980,
+      "to_year": 1992,
+      "record_count": 2506,
+      "raw_bytes": 652356,
+      "gzip_bytes": 52888,
+      "raw_bytes_per_record": 260.317638,
+      "gzip_bytes_per_record": 21.104549,
+      "compression_ratio_gzip_over_raw": 0.0810723,
+      "initial": {
+        "path": "assets/ES_CCAA_16/1980-1992/initial.json",
+        "raw_size": 379879,
+        "gzip_size": 16924,
+        "sha256": "84027a3f9f4e1777cac21048eb018224ccb712eafcfb8f5c57979eb0554ec833",
+        "record_id_order_sha256": "a2d24980b5369761ecc85187c2428aec051c7ba90a05b61bf688b0de7e70b58e"
+      },
+      "detail": {
+        "path": "assets/ES_CCAA_16/1980-1992/detail.json",
+        "raw_size": 272477,
+        "gzip_size": 35964,
+        "sha256": "609b3e929fb43fdc60efed89d10be603101eccbc4f0f9021fcc8bbb3b48d49d3",
+        "ordinal_alignment": "same_sorted_record_id_order_as_initial"
+      },
+      "record_id_column": {
+        "raw_bytes": 62651,
+        "gzip_bytes": 5643,
+        "initial_raw_percent": 16.492357,
+        "initial_gzip_percent": 33.343181
+      }
+    },
+    {
+      "asset_id": "egif:ES:CCAA:16:1993-2002",
+      "autonomous_community_id": "ES:CCAA:16",
+      "autonomous_community_name": "País Vasco",
+      "from_year": 1993,
+      "to_year": 2002,
+      "record_count": 1945,
+      "raw_bytes": 561980,
+      "gzip_bytes": 51747,
+      "raw_bytes_per_record": 288.935733,
+      "gzip_bytes_per_record": 26.605141,
+      "compression_ratio_gzip_over_raw": 0.09207979,
+      "initial": {
+        "path": "assets/ES_CCAA_16/1993-2002/initial.json",
+        "raw_size": 292969,
+        "gzip_size": 14387,
+        "sha256": "fb3d8a3e6176825533813704264d0c07dc7a149535f68d95c6a32f8c98af81b5",
+        "record_id_order_sha256": "6a20ea751fe3e81c751ab9dfabaa070e6fd2acf369c090696ff951225cb8b944"
+      },
+      "detail": {
+        "path": "assets/ES_CCAA_16/1993-2002/detail.json",
+        "raw_size": 269011,
+        "gzip_size": 37360,
+        "sha256": "da0c6648879ad93143efa9e77236840e59f646faf87c40a8bf34392d1a62319a",
+        "ordinal_alignment": "same_sorted_record_id_order_as_initial"
+      },
+      "record_id_column": {
+        "raw_bytes": 48626,
+        "gzip_bytes": 4721,
+        "initial_raw_percent": 16.597661,
+        "initial_gzip_percent": 32.814346
+      }
+    },
+    {
+      "asset_id": "egif:ES:CCAA:16:2003-2012",
+      "autonomous_community_id": "ES:CCAA:16",
+      "autonomous_community_name": "País Vasco",
+      "from_year": 2003,
+      "to_year": 2012,
+      "record_count": 1349,
+      "raw_bytes": 397385,
+      "gzip_bytes": 41354,
+      "raw_bytes_per_record": 294.577465,
+      "gzip_bytes_per_record": 30.6553,
+      "compression_ratio_gzip_over_raw": 0.10406533,
+      "initial": {
+        "path": "assets/ES_CCAA_16/2003-2012/initial.json",
+        "raw_size": 203715,
+        "gzip_size": 10649,
+        "sha256": "c7ee02b094f73979f680c5183bfdfa322443ffc89027881b45dc7f0260d4afb5",
+        "record_id_order_sha256": "d55ae316cc4ce5beb371c8035479ce2fba82d2c37f049b29a8e159fb0f8f3117"
+      },
+      "detail": {
+        "path": "assets/ES_CCAA_16/2003-2012/detail.json",
+        "raw_size": 193670,
+        "gzip_size": 30705,
+        "sha256": "6d920ff6dbe0c16b61d5ece6f87230a70fa3374386553db7d3a852984eae1b37",
+        "ordinal_alignment": "same_sorted_record_id_order_as_initial"
+      },
+      "record_id_column": {
+        "raw_bytes": 33726,
+        "gzip_bytes": 3336,
+        "initial_raw_percent": 16.555482,
+        "initial_gzip_percent": 31.326885
+      }
+    },
+    {
+      "asset_id": "egif:ES:CCAA:16:2013-2023",
+      "autonomous_community_id": "ES:CCAA:16",
+      "autonomous_community_name": "País Vasco",
+      "from_year": 2013,
+      "to_year": 2023,
+      "record_count": 1047,
+      "raw_bytes": 310411,
+      "gzip_bytes": 34707,
+      "raw_bytes_per_record": 296.4766,
+      "gzip_bytes_per_record": 33.148997,
+      "compression_ratio_gzip_over_raw": 0.11180983,
+      "initial": {
+        "path": "assets/ES_CCAA_16/2013-2023/initial.json",
+        "raw_size": 158492,
+        "gzip_size": 8756,
+        "sha256": "cd8fd79759cb1818efb8f8140d2d01fb05c3e7cfbc01dc87e20d6bed6f8c966e",
+        "record_id_order_sha256": "8013b1ea2d13f18708bafe04bdcfec5c0371cbcdc07fe5babe5f6fec45fd3186"
+      },
+      "detail": {
+        "path": "assets/ES_CCAA_16/2013-2023/detail.json",
+        "raw_size": 151919,
+        "gzip_size": 25951,
+        "sha256": "7f79ac179f400ddba69d0ff5459e27d4d39f2a5e96d134812a2174710a27d911",
+        "ordinal_alignment": "same_sorted_record_id_order_as_initial"
+      },
+      "record_id_column": {
+        "raw_bytes": 26176,
+        "gzip_bytes": 2595,
+        "initial_raw_percent": 16.51566,
+        "initial_gzip_percent": 29.63682
+      }
+    },
+    {
+      "asset_id": "egif:ES:CCAA:17:1968-1979",
+      "autonomous_community_id": "ES:CCAA:17",
+      "autonomous_community_name": "Rioja, La",
+      "from_year": 1968,
+      "to_year": 1979,
+      "record_count": 249,
+      "raw_bytes": 63528,
+      "gzip_bytes": 6681,
+      "raw_bytes_per_record": 255.13253,
+      "gzip_bytes_per_record": 26.831325,
+      "compression_ratio_gzip_over_raw": 0.10516623,
+      "initial": {
+        "path": "assets/ES_CCAA_17/1968-1979/initial.json",
+        "raw_size": 35531,
+        "gzip_size": 2134,
+        "sha256": "121f59c3bd1470a896f861b036ed4060ebb264ff56287ea6382e240b5204b83b",
+        "record_id_order_sha256": "ffcf982c943f41da5436281f2980ef06c139e05aa48201f83266b6837ae11dc2"
+      },
+      "detail": {
+        "path": "assets/ES_CCAA_17/1968-1979/detail.json",
+        "raw_size": 27997,
+        "gzip_size": 4547,
+        "sha256": "55346f19655cdfe3000149059921934aef7b7a96abf1c4bf6d104b864f257323",
+        "ordinal_alignment": "same_sorted_record_id_order_as_initial"
+      },
+      "record_id_column": {
+        "raw_bytes": 6226,
+        "gzip_bytes": 743,
+        "initial_raw_percent": 17.522727,
+        "initial_gzip_percent": 34.817245
+      }
+    },
+    {
+      "asset_id": "egif:ES:CCAA:17:1980-1992",
+      "autonomous_community_id": "ES:CCAA:17",
+      "autonomous_community_name": "Rioja, La",
+      "from_year": 1980,
+      "to_year": 1992,
+      "record_count": 949,
+      "raw_bytes": 246698,
+      "gzip_bytes": 21304,
+      "raw_bytes_per_record": 259.955743,
+      "gzip_bytes_per_record": 22.448894,
+      "compression_ratio_gzip_over_raw": 0.0863566,
+      "initial": {
+        "path": "assets/ES_CCAA_17/1980-1992/initial.json",
+        "raw_size": 142685,
+        "gzip_size": 6756,
+        "sha256": "915c71bd424cacec728ac85505182440f6319e36d83a35d3b227f7025834dff1",
+        "record_id_order_sha256": "c68848319d5601b95cafc0d6987789398e25afce8bc7f4ee1122357f35e28f74"
+      },
+      "detail": {
+        "path": "assets/ES_CCAA_17/1980-1992/detail.json",
+        "raw_size": 104013,
+        "gzip_size": 14548,
+        "sha256": "f160110f2c0c8c30feb770d71841202e524e31f3ca6ec9be0ea0ac2035b5012f",
+        "ordinal_alignment": "same_sorted_record_id_order_as_initial"
+      },
+      "record_id_column": {
+        "raw_bytes": 23726,
+        "gzip_bytes": 2047,
+        "initial_raw_percent": 16.628237,
+        "initial_gzip_percent": 30.298993
+      }
+    },
+    {
+      "asset_id": "egif:ES:CCAA:17:1993-2002",
+      "autonomous_community_id": "ES:CCAA:17",
+      "autonomous_community_name": "Rioja, La",
+      "from_year": 1993,
+      "to_year": 2002,
+      "record_count": 1191,
+      "raw_bytes": 344624,
+      "gzip_bytes": 32057,
+      "raw_bytes_per_record": 289.356843,
+      "gzip_bytes_per_record": 26.916037,
+      "compression_ratio_gzip_over_raw": 0.09302022,
+      "initial": {
+        "path": "assets/ES_CCAA_17/1993-2002/initial.json",
+        "raw_size": 179721,
+        "gzip_size": 8932,
+        "sha256": "d6ee142ed76bba35c19c10704caaf565f56724491928f69f8bb5f28c3e308a7c",
+        "record_id_order_sha256": "b2f36607cffb96ad6f88404c28b39fca3306c62c252c2e868018663e08fe1f5c"
+      },
+      "detail": {
+        "path": "assets/ES_CCAA_17/1993-2002/detail.json",
+        "raw_size": 164903,
+        "gzip_size": 23125,
+        "sha256": "7953cdf28e5032980e572c7177df0db5267e249376261c4da1902b91e666a4a3",
+        "ordinal_alignment": "same_sorted_record_id_order_as_initial"
+      },
+      "record_id_column": {
+        "raw_bytes": 29776,
+        "gzip_bytes": 2865,
+        "initial_raw_percent": 16.567902,
+        "initial_gzip_percent": 32.075683
+      }
+    },
+    {
+      "asset_id": "egif:ES:CCAA:17:2003-2012",
+      "autonomous_community_id": "ES:CCAA:17",
+      "autonomous_community_name": "Rioja, La",
+      "from_year": 2003,
+      "to_year": 2012,
+      "record_count": 905,
+      "raw_bytes": 266995,
+      "gzip_bytes": 27984,
+      "raw_bytes_per_record": 295.022099,
+      "gzip_bytes_per_record": 30.921547,
+      "compression_ratio_gzip_over_raw": 0.10481095,
+      "initial": {
+        "path": "assets/ES_CCAA_17/2003-2012/initial.json",
+        "raw_size": 137101,
+        "gzip_size": 7288,
+        "sha256": "a4ea3832ded9e0ffc54cacb571c6233e03e1a9b036321dab547194536cd41051",
+        "record_id_order_sha256": "7b0cf0181c9802017325ede214030de7cfeb9baaea23ff8cf9833da7efc848ac"
+      },
+      "detail": {
+        "path": "assets/ES_CCAA_17/2003-2012/detail.json",
+        "raw_size": 129894,
+        "gzip_size": 20696,
+        "sha256": "64bc8936546366c967cf23d96ce898f7749f534131f9cf7b2edf606122851127",
+        "ordinal_alignment": "same_sorted_record_id_order_as_initial"
+      },
+      "record_id_column": {
+        "raw_bytes": 22626,
+        "gzip_bytes": 2112,
+        "initial_raw_percent": 16.503162,
+        "initial_gzip_percent": 28.979144
+      }
+    },
+    {
+      "asset_id": "egif:ES:CCAA:17:2013-2023",
+      "autonomous_community_id": "ES:CCAA:17",
+      "autonomous_community_name": "Rioja, La",
+      "from_year": 2013,
+      "to_year": 2023,
+      "record_count": 702,
+      "raw_bytes": 208364,
+      "gzip_bytes": 23765,
+      "raw_bytes_per_record": 296.814815,
+      "gzip_bytes_per_record": 33.853276,
+      "compression_ratio_gzip_over_raw": 0.11405521,
+      "initial": {
+        "path": "assets/ES_CCAA_17/2013-2023/initial.json",
+        "raw_size": 106646,
+        "gzip_size": 5901,
+        "sha256": "71a85bafe7d9c93ef6b402a96db568ba65dabe2e16c5ff83e39093fd96d63bfe",
+        "record_id_order_sha256": "7580b6460266c4e2864e8a12a23fa50216644e1f4a3548a2c65dbf400a116c1b"
+      },
+      "detail": {
+        "path": "assets/ES_CCAA_17/2013-2023/detail.json",
+        "raw_size": 101718,
+        "gzip_size": 17864,
+        "sha256": "a82aa64ede10549815406de604e8dc516e4fad38f64a28c6a104a00e616482ff",
+        "ordinal_alignment": "same_sorted_record_id_order_as_initial"
+      },
+      "record_id_column": {
+        "raw_bytes": 17551,
+        "gzip_bytes": 1646,
+        "initial_raw_percent": 16.457251,
+        "initial_gzip_percent": 27.893577
+      }
+    },
+    {
+      "asset_id": "egif:ES:CCAA:18:1980-1992",
+      "autonomous_community_id": "ES:CCAA:18",
+      "autonomous_community_name": "Ceuta",
+      "from_year": 1980,
+      "to_year": 1992,
+      "record_count": 1,
+      "raw_bytes": 2007,
+      "gzip_bytes": 955,
+      "raw_bytes_per_record": 2007.0,
+      "gzip_bytes_per_record": 955.0,
+      "compression_ratio_gzip_over_raw": 0.47583458,
+      "initial": {
+        "path": "assets/ES_CCAA_18/1980-1992/initial.json",
+        "raw_size": 983,
+        "gzip_size": 455,
+        "sha256": "13b5a7f159dfb9109790da66c928d7ed43dcad261dbf2e7b437fcab44b1af103",
+        "record_id_order_sha256": "b15df7acd790ab186b5a0a8aa7b37e3dec2696dfbc023d65e1f5fef89f131278"
+      },
+      "detail": {
+        "path": "assets/ES_CCAA_18/1980-1992/detail.json",
+        "raw_size": 1024,
+        "gzip_size": 500,
+        "sha256": "27e4e7832d2fe16c6e69f8c75dc972cbf5d7c63431ab7caa2ff4803f2212cdb1",
+        "ordinal_alignment": "same_sorted_record_id_order_as_initial"
+      },
+      "record_id_column": {
+        "raw_bytes": 26,
+        "gzip_bytes": 46,
+        "initial_raw_percent": 2.644964,
+        "initial_gzip_percent": 10.10989
+      }
+    },
+    {
+      "asset_id": "egif:ES:CCAA:18:1993-2002",
+      "autonomous_community_id": "ES:CCAA:18",
+      "autonomous_community_name": "Ceuta",
+      "from_year": 1993,
+      "to_year": 2002,
+      "record_count": 7,
+      "raw_bytes": 3735,
+      "gzip_bytes": 1236,
+      "raw_bytes_per_record": 533.571429,
+      "gzip_bytes_per_record": 176.571429,
+      "compression_ratio_gzip_over_raw": 0.33092369,
+      "initial": {
+        "path": "assets/ES_CCAA_18/1993-2002/initial.json",
+        "raw_size": 1883,
+        "gzip_size": 556,
+        "sha256": "781af81615cca156e29c279aa8dc438a6b586334e8abbcae51d316df967b2b94",
+        "record_id_order_sha256": "b52686b765bb371f510134ef5f758146a3f8ffb5b299b05b84e950f9d793feb9"
+      },
+      "detail": {
+        "path": "assets/ES_CCAA_18/1993-2002/detail.json",
+        "raw_size": 1852,
+        "gzip_size": 680,
+        "sha256": "e049554e2c29845ac05fda5810536a214748e3dd42fd8bd778ac4d23d995613f",
+        "ordinal_alignment": "same_sorted_record_id_order_as_initial"
+      },
+      "record_id_column": {
+        "raw_bytes": 176,
+        "gzip_bytes": 68,
+        "initial_raw_percent": 9.346787,
+        "initial_gzip_percent": 12.230216
+      }
+    },
+    {
+      "asset_id": "egif:ES:CCAA:18:2003-2012",
+      "autonomous_community_id": "ES:CCAA:18",
+      "autonomous_community_name": "Ceuta",
+      "from_year": 2003,
+      "to_year": 2012,
+      "record_count": 6,
+      "raw_bytes": 3539,
+      "gzip_bytes": 1300,
+      "raw_bytes_per_record": 589.833333,
+      "gzip_bytes_per_record": 216.666667,
+      "compression_ratio_gzip_over_raw": 0.36733541,
+      "initial": {
+        "path": "assets/ES_CCAA_18/2003-2012/initial.json",
+        "raw_size": 1731,
+        "gzip_size": 548,
+        "sha256": "f22fb72094370a7ded62f22f815aa060221a74a790ebae79f70cd7f6c248df9c",
+        "record_id_order_sha256": "77e467e98c0e87347a57cb03d4dc5f0a706bed5f908b57ab1e03314f1948e0c5"
+      },
+      "detail": {
+        "path": "assets/ES_CCAA_18/2003-2012/detail.json",
+        "raw_size": 1808,
+        "gzip_size": 752,
+        "sha256": "c78eae317c89e14e38c342fb54631a9ac50453550ad4909699dfc02f3ce98db5",
+        "ordinal_alignment": "same_sorted_record_id_order_as_initial"
+      },
+      "record_id_column": {
+        "raw_bytes": 151,
+        "gzip_bytes": 63,
+        "initial_raw_percent": 8.723281,
+        "initial_gzip_percent": 11.49635
+      }
+    },
+    {
+      "asset_id": "egif:ES:CCAA:18:2013-2023",
+      "autonomous_community_id": "ES:CCAA:18",
+      "autonomous_community_name": "Ceuta",
+      "from_year": 2013,
+      "to_year": 2023,
+      "record_count": 8,
+      "raw_bytes": 4152,
+      "gzip_bytes": 1446,
+      "raw_bytes_per_record": 519.0,
+      "gzip_bytes_per_record": 180.75,
+      "compression_ratio_gzip_over_raw": 0.3482659,
+      "initial": {
+        "path": "assets/ES_CCAA_18/2013-2023/initial.json",
+        "raw_size": 2042,
+        "gzip_size": 588,
+        "sha256": "f58705769698302129cd0821bc9be174bd2e15d8c714eb4716703b090dccb6e2",
+        "record_id_order_sha256": "76f417339586584b6ea98f8b9c0ae8b5dff1eb97056d1dceb9326436de416499"
+      },
+      "detail": {
+        "path": "assets/ES_CCAA_18/2013-2023/detail.json",
+        "raw_size": 2110,
+        "gzip_size": 858,
+        "sha256": "c350a88845a4d268f0048126f60912d30e8b66a898f709324bd7b6e4fb68078b",
+        "ordinal_alignment": "same_sorted_record_id_order_as_initial"
+      },
+      "record_id_column": {
+        "raw_bytes": 201,
+        "gzip_bytes": 72,
+        "initial_raw_percent": 9.843291,
+        "initial_gzip_percent": 12.244898
+      }
+    }
+  ],
+  "top_assets": {
+    "by_gzip_bytes": [
+      {
+        "asset_id": "egif:ES:CCAA:12:1993-2002",
+        "autonomous_community_id": "ES:CCAA:12",
+        "autonomous_community_name": "Galicia",
+        "from_year": 1993,
+        "to_year": 2002,
+        "record_count": 110605,
+        "raw_bytes": 31465528,
+        "gzip_bytes": 2012903,
+        "raw_bytes_per_record": 284.485584,
+        "gzip_bytes_per_record": 18.199024,
+        "compression_ratio_gzip_over_raw": 0.06397169,
+        "initial": {
+          "path": "assets/ES_CCAA_12/1993-2002/initial.json",
+          "raw_size": 16610507,
+          "gzip_size": 572974,
+          "sha256": "d1e985714d7a3666ae79c2ba78069779a2979ff8419b69c3f47b87d8052c1e6b",
+          "record_id_order_sha256": "a70f55f5352096f69a5fd9068dd65afe84de479d694808cd8281a805ce70a6c2"
+        },
+        "detail": {
+          "path": "assets/ES_CCAA_12/1993-2002/detail.json",
+          "raw_size": 14855021,
+          "gzip_size": 1439929,
+          "sha256": "f73c266f060faa7de7a295384574b2ceff0f8b739a524923560237a5bb2718ce",
+          "ordinal_alignment": "same_sorted_record_id_order_as_initial"
+        },
+        "record_id_column": {
+          "raw_bytes": 2765126,
+          "gzip_bytes": 277679,
+          "initial_raw_percent": 16.646849,
+          "initial_gzip_percent": 48.462757
+        }
+      },
+      {
+        "asset_id": "egif:ES:CCAA:12:2003-2012",
+        "autonomous_community_id": "ES:CCAA:12",
+        "autonomous_community_name": "Galicia",
+        "from_year": 2003,
+        "to_year": 2012,
+        "record_count": 61801,
+        "raw_bytes": 17731521,
+        "gzip_bytes": 1259523,
+        "raw_bytes_per_record": 286.913173,
+        "gzip_bytes_per_record": 20.380301,
+        "compression_ratio_gzip_over_raw": 0.07103299,
+        "initial": {
+          "path": "assets/ES_CCAA_12/2003-2012/initial.json",
+          "raw_size": 9298763,
+          "gzip_size": 344827,
+          "sha256": "5dd51de6b319179e8e163dbed8e04ed1f4bba4acddc7cb40770dad8262c8263e",
+          "record_id_order_sha256": "1529b370ddb42068ec453961a0e10f58a48d674dcb37ec56f0853c948af85823"
+        },
+        "detail": {
+          "path": "assets/ES_CCAA_12/2003-2012/detail.json",
+          "raw_size": 8432758,
+          "gzip_size": 914696,
+          "sha256": "4263f1baa68a8b7054b8c0fce057113e9247478bbab05fb551084c7dd656aea6",
+          "ordinal_alignment": "same_sorted_record_id_order_as_initial"
+        },
+        "record_id_column": {
+          "raw_bytes": 1545026,
+          "gzip_bytes": 152221,
+          "initial_raw_percent": 16.615393,
+          "initial_gzip_percent": 44.144165
+        }
+      },
+      {
+        "asset_id": "egif:ES:CCAA:12:1980-1992",
+        "autonomous_community_id": "ES:CCAA:12",
+        "autonomous_community_name": "Galicia",
+        "from_year": 1980,
+        "to_year": 1992,
+        "record_count": 53177,
+        "raw_bytes": 13746883,
+        "gzip_bytes": 918708,
+        "raw_bytes_per_record": 258.511819,
+        "gzip_bytes_per_record": 17.276416,
+        "compression_ratio_gzip_over_raw": 0.06683028,
+        "initial": {
+          "path": "assets/ES_CCAA_12/1980-1992/initial.json",
+          "raw_size": 7974454,
+          "gzip_size": 273266,
+          "sha256": "4a0e2e635452014f308a7216ca02b979822d72acc0ef31e30eaf3be80e9dee8e",
+          "record_id_order_sha256": "8170a7266e394d9a654ba96e7a73324f954a1028f54b2da4b97846ef3fcf67d0"
+        },
+        "detail": {
+          "path": "assets/ES_CCAA_12/1980-1992/detail.json",
+          "raw_size": 5772429,
+          "gzip_size": 645442,
+          "sha256": "9789c028cfb9efb20ded3272328f6488cf307c1a0d3a4b5082ce4b78b4d13838",
+          "ordinal_alignment": "same_sorted_record_id_order_as_initial"
+        },
+        "record_id_column": {
+          "raw_bytes": 1329426,
+          "gzip_bytes": 129542,
+          "initial_raw_percent": 16.67106,
+          "initial_gzip_percent": 47.405092
+        }
+      },
+      {
+        "asset_id": "egif:ES:CCAA:07:2003-2012",
+        "autonomous_community_id": "ES:CCAA:07",
+        "autonomous_community_name": "Castilla y León",
+        "from_year": 2003,
+        "to_year": 2012,
+        "record_count": 20506,
+        "raw_bytes": 6022446,
+        "gzip_bytes": 532143,
+        "raw_bytes_per_record": 293.691895,
+        "gzip_bytes_per_record": 25.9506,
+        "compression_ratio_gzip_over_raw": 0.08835995,
+        "initial": {
+          "path": "assets/ES_CCAA_07/2003-2012/initial.json",
+          "raw_size": 3087880,
+          "gzip_size": 137728,
+          "sha256": "dc138f6abe3dad8110948d71b6dd071e0859aa2df1c369169b6aa4fdcb5506d6",
+          "record_id_order_sha256": "6b5b4dc94e5422bce9e20e51e3d60f7046b52f9cd10ce1bd18fa348ea2a9d405"
+        },
+        "detail": {
+          "path": "assets/ES_CCAA_07/2003-2012/detail.json",
+          "raw_size": 2934566,
+          "gzip_size": 394415,
+          "sha256": "5971bc4a6b0b790f81b2f625c4252a59f45731851e89efd79d523d170d852b5c",
+          "ordinal_alignment": "same_sorted_record_id_order_as_initial"
+        },
+        "record_id_column": {
+          "raw_bytes": 512651,
+          "gzip_bytes": 49068,
+          "initial_raw_percent": 16.602038,
+          "initial_gzip_percent": 35.626743
+        }
+      },
+      {
+        "asset_id": "egif:ES:CCAA:12:2013-2023",
+        "autonomous_community_id": "ES:CCAA:12",
+        "autonomous_community_name": "Galicia",
+        "from_year": 2013,
+        "to_year": 2023,
+        "record_count": 20850,
+        "raw_bytes": 6067326,
+        "gzip_bytes": 508943,
+        "raw_bytes_per_record": 290.998849,
+        "gzip_bytes_per_record": 24.409736,
+        "compression_ratio_gzip_over_raw": 0.08388259,
+        "initial": {
+          "path": "assets/ES_CCAA_12/2013-2023/initial.json",
+          "raw_size": 3143799,
+          "gzip_size": 129108,
+          "sha256": "d2cfef2893e110093b98b9ed6f5c7dc1f2a9638c28a50f1986301349238c4cc2",
+          "record_id_order_sha256": "0acb0d773e81240648aa3665d9d67bb984f42d255b764106ad394cbae956d8e7"
+        },
+        "detail": {
+          "path": "assets/ES_CCAA_12/2013-2023/detail.json",
+          "raw_size": 2923527,
+          "gzip_size": 379835,
+          "sha256": "8b02b5e3becae6813ff0657b1065aa496d56927d5c22f26121cdddcf0fd146a0",
+          "ordinal_alignment": "same_sorted_record_id_order_as_initial"
+        },
+        "record_id_column": {
+          "raw_bytes": 521251,
+          "gzip_bytes": 51132,
+          "initial_raw_percent": 16.58029,
+          "initial_gzip_percent": 39.604052
+        }
+      },
+      {
+        "asset_id": "egif:ES:CCAA:03:2003-2012",
+        "autonomous_community_id": "ES:CCAA:03",
+        "autonomous_community_name": "Asturias, Principado de",
+        "from_year": 2003,
+        "to_year": 2012,
+        "record_count": 18952,
+        "raw_bytes": 5574625,
+        "gzip_bytes": 459828,
+        "raw_bytes_per_record": 294.144417,
+        "gzip_bytes_per_record": 24.262769,
+        "compression_ratio_gzip_over_raw": 0.08248591,
+        "initial": {
+          "path": "assets/ES_CCAA_03/2003-2012/initial.json",
+          "raw_size": 2848918,
+          "gzip_size": 106988,
+          "sha256": "81b125f50075fcf1a71302de40956d7b34a766ca08cefc5624d3531f9cf58e82",
+          "record_id_order_sha256": "495de986bf1a1e4a8f922065e2d81d9749413a64f39a4c40779ba905482e88cc"
+        },
+        "detail": {
+          "path": "assets/ES_CCAA_03/2003-2012/detail.json",
+          "raw_size": 2725707,
+          "gzip_size": 352840,
+          "sha256": "fb66cd4ef142706ce0fd27f450043b8b65ddaea809971ca2bcac3408f2df9b42",
+          "ordinal_alignment": "same_sorted_record_id_order_as_initial"
+        },
+        "record_id_column": {
+          "raw_bytes": 473801,
+          "gzip_bytes": 46219,
+          "initial_raw_percent": 16.63091,
+          "initial_gzip_percent": 43.200172
+        }
+      },
+      {
+        "asset_id": "egif:ES:CCAA:07:1993-2002",
+        "autonomous_community_id": "ES:CCAA:07",
+        "autonomous_community_name": "Castilla y León",
+        "from_year": 1993,
+        "to_year": 2002,
+        "record_count": 19765,
+        "raw_bytes": 5707044,
+        "gzip_bytes": 439337,
+        "raw_bytes_per_record": 288.744953,
+        "gzip_bytes_per_record": 22.228029,
+        "compression_ratio_gzip_over_raw": 0.07698153,
+        "initial": {
+          "path": "assets/ES_CCAA_07/1993-2002/initial.json",
+          "raw_size": 2971538,
+          "gzip_size": 120401,
+          "sha256": "3dea17270989e294beafccdae17bde08a827ddecae9a103de91f95907267f95d",
+          "record_id_order_sha256": "5774ed086519f4bd4469090fe80b978a0af3f67a5a5ee4a47666441cba63b268"
+        },
+        "detail": {
+          "path": "assets/ES_CCAA_07/1993-2002/detail.json",
+          "raw_size": 2735506,
+          "gzip_size": 318936,
+          "sha256": "57f7a099d693fa45acf0655f2b6e4c46b8c31d6981d1fdbf1928022fed336f53",
+          "ordinal_alignment": "same_sorted_record_id_order_as_initial"
+        },
+        "record_id_column": {
+          "raw_bytes": 494126,
+          "gzip_bytes": 45779,
+          "initial_raw_percent": 16.628628,
+          "initial_gzip_percent": 38.022109
+        }
+      },
+      {
+        "asset_id": "egif:ES:CCAA:07:2013-2023",
+        "autonomous_community_id": "ES:CCAA:07",
+        "autonomous_community_name": "Castilla y León",
+        "from_year": 2013,
+        "to_year": 2023,
+        "record_count": 15378,
+        "raw_bytes": 4536695,
+        "gzip_bytes": 425565,
+        "raw_bytes_per_record": 295.01203,
+        "gzip_bytes_per_record": 27.673625,
+        "compression_ratio_gzip_over_raw": 0.09380507,
+        "initial": {
+          "path": "assets/ES_CCAA_07/2013-2023/initial.json",
+          "raw_size": 2319694,
+          "gzip_size": 110328,
+          "sha256": "e92510ca638261652cabe579989b02cb7653a1fe2536473640e866351568a8ee",
+          "record_id_order_sha256": "96944dfd78cec1cac15e761453f6bc06bda366f8d630bdfaee86fc336a675c30"
+        },
+        "detail": {
+          "path": "assets/ES_CCAA_07/2013-2023/detail.json",
+          "raw_size": 2217001,
+          "gzip_size": 315237,
+          "sha256": "e80c1306d1528e1ae3491a7370fdaa21de0bb04e51be046eb7ad6beb7e2d9b71",
+          "ordinal_alignment": "same_sorted_record_id_order_as_initial"
+        },
+        "record_id_column": {
+          "raw_bytes": 384451,
+          "gzip_bytes": 37772,
+          "initial_raw_percent": 16.57335,
+          "initial_gzip_percent": 34.236096
+        }
+      },
+      {
+        "asset_id": "egif:ES:CCAA:07:1980-1992",
+        "autonomous_community_id": "ES:CCAA:07",
+        "autonomous_community_name": "Castilla y León",
+        "from_year": 1980,
+        "to_year": 1992,
+        "record_count": 20107,
+        "raw_bytes": 5217895,
+        "gzip_bytes": 373350,
+        "raw_bytes_per_record": 259.506391,
+        "gzip_bytes_per_record": 18.56816,
+        "compression_ratio_gzip_over_raw": 0.07155184,
+        "initial": {
+          "path": "assets/ES_CCAA_07/1980-1992/initial.json",
+          "raw_size": 3029452,
+          "gzip_size": 116970,
+          "sha256": "6160b43ac78cbc6206894440885c8db4b7c5a9f487f541242c6c5cc9261b7b05",
+          "record_id_order_sha256": "8f407eda4338acd3bf45b5b79846eb86c9b0b8a14879eac125ea83982d2f7ceb"
+        },
+        "detail": {
+          "path": "assets/ES_CCAA_07/1980-1992/detail.json",
+          "raw_size": 2188443,
+          "gzip_size": 256380,
+          "sha256": "31dab1f2b477ddcea771050f43d8bbf84f383d4d9022df6365204e2fcb2a4620",
+          "ordinal_alignment": "same_sorted_record_id_order_as_initial"
+        },
+        "record_id_column": {
+          "raw_bytes": 502676,
+          "gzip_bytes": 45684,
+          "initial_raw_percent": 16.592968,
+          "initial_gzip_percent": 39.056168
+        }
+      },
+      {
+        "asset_id": "egif:ES:CCAA:03:2013-2023",
+        "autonomous_community_id": "ES:CCAA:03",
+        "autonomous_community_name": "Asturias, Principado de",
+        "from_year": 2013,
+        "to_year": 2023,
+        "record_count": 12861,
+        "raw_bytes": 3769170,
+        "gzip_bytes": 328615,
+        "raw_bytes_per_record": 293.069746,
+        "gzip_bytes_per_record": 25.551279,
+        "compression_ratio_gzip_over_raw": 0.08718498,
+        "initial": {
+          "path": "assets/ES_CCAA_03/2013-2023/initial.json",
+          "raw_size": 1937460,
+          "gzip_size": 79978,
+          "sha256": "2bcfd5e44850d924ac3c385a32d698b917a26900580f3fe64fc382162cce1a30",
+          "record_id_order_sha256": "4628b61f7eea94622fa22987ab3d09d7327df7c2545410f734e6cbe59295d691"
+        },
+        "detail": {
+          "path": "assets/ES_CCAA_03/2013-2023/detail.json",
+          "raw_size": 1831710,
+          "gzip_size": 248637,
+          "sha256": "a8132f28ca3b378ec04d9e17f8cc9a2f73154fdb9557552e276a6f6e9b006b8e",
+          "ordinal_alignment": "same_sorted_record_id_order_as_initial"
+        },
+        "record_id_column": {
+          "raw_bytes": 321526,
+          "gzip_bytes": 32638,
+          "initial_raw_percent": 16.595233,
+          "initial_gzip_percent": 40.808722
+        }
+      }
+    ],
+    "by_record_count": [
+      {
+        "asset_id": "egif:ES:CCAA:12:1993-2002",
+        "autonomous_community_id": "ES:CCAA:12",
+        "autonomous_community_name": "Galicia",
+        "from_year": 1993,
+        "to_year": 2002,
+        "record_count": 110605,
+        "raw_bytes": 31465528,
+        "gzip_bytes": 2012903,
+        "raw_bytes_per_record": 284.485584,
+        "gzip_bytes_per_record": 18.199024,
+        "compression_ratio_gzip_over_raw": 0.06397169,
+        "initial": {
+          "path": "assets/ES_CCAA_12/1993-2002/initial.json",
+          "raw_size": 16610507,
+          "gzip_size": 572974,
+          "sha256": "d1e985714d7a3666ae79c2ba78069779a2979ff8419b69c3f47b87d8052c1e6b",
+          "record_id_order_sha256": "a70f55f5352096f69a5fd9068dd65afe84de479d694808cd8281a805ce70a6c2"
+        },
+        "detail": {
+          "path": "assets/ES_CCAA_12/1993-2002/detail.json",
+          "raw_size": 14855021,
+          "gzip_size": 1439929,
+          "sha256": "f73c266f060faa7de7a295384574b2ceff0f8b739a524923560237a5bb2718ce",
+          "ordinal_alignment": "same_sorted_record_id_order_as_initial"
+        },
+        "record_id_column": {
+          "raw_bytes": 2765126,
+          "gzip_bytes": 277679,
+          "initial_raw_percent": 16.646849,
+          "initial_gzip_percent": 48.462757
+        }
+      },
+      {
+        "asset_id": "egif:ES:CCAA:12:2003-2012",
+        "autonomous_community_id": "ES:CCAA:12",
+        "autonomous_community_name": "Galicia",
+        "from_year": 2003,
+        "to_year": 2012,
+        "record_count": 61801,
+        "raw_bytes": 17731521,
+        "gzip_bytes": 1259523,
+        "raw_bytes_per_record": 286.913173,
+        "gzip_bytes_per_record": 20.380301,
+        "compression_ratio_gzip_over_raw": 0.07103299,
+        "initial": {
+          "path": "assets/ES_CCAA_12/2003-2012/initial.json",
+          "raw_size": 9298763,
+          "gzip_size": 344827,
+          "sha256": "5dd51de6b319179e8e163dbed8e04ed1f4bba4acddc7cb40770dad8262c8263e",
+          "record_id_order_sha256": "1529b370ddb42068ec453961a0e10f58a48d674dcb37ec56f0853c948af85823"
+        },
+        "detail": {
+          "path": "assets/ES_CCAA_12/2003-2012/detail.json",
+          "raw_size": 8432758,
+          "gzip_size": 914696,
+          "sha256": "4263f1baa68a8b7054b8c0fce057113e9247478bbab05fb551084c7dd656aea6",
+          "ordinal_alignment": "same_sorted_record_id_order_as_initial"
+        },
+        "record_id_column": {
+          "raw_bytes": 1545026,
+          "gzip_bytes": 152221,
+          "initial_raw_percent": 16.615393,
+          "initial_gzip_percent": 44.144165
+        }
+      },
+      {
+        "asset_id": "egif:ES:CCAA:12:1980-1992",
+        "autonomous_community_id": "ES:CCAA:12",
+        "autonomous_community_name": "Galicia",
+        "from_year": 1980,
+        "to_year": 1992,
+        "record_count": 53177,
+        "raw_bytes": 13746883,
+        "gzip_bytes": 918708,
+        "raw_bytes_per_record": 258.511819,
+        "gzip_bytes_per_record": 17.276416,
+        "compression_ratio_gzip_over_raw": 0.06683028,
+        "initial": {
+          "path": "assets/ES_CCAA_12/1980-1992/initial.json",
+          "raw_size": 7974454,
+          "gzip_size": 273266,
+          "sha256": "4a0e2e635452014f308a7216ca02b979822d72acc0ef31e30eaf3be80e9dee8e",
+          "record_id_order_sha256": "8170a7266e394d9a654ba96e7a73324f954a1028f54b2da4b97846ef3fcf67d0"
+        },
+        "detail": {
+          "path": "assets/ES_CCAA_12/1980-1992/detail.json",
+          "raw_size": 5772429,
+          "gzip_size": 645442,
+          "sha256": "9789c028cfb9efb20ded3272328f6488cf307c1a0d3a4b5082ce4b78b4d13838",
+          "ordinal_alignment": "same_sorted_record_id_order_as_initial"
+        },
+        "record_id_column": {
+          "raw_bytes": 1329426,
+          "gzip_bytes": 129542,
+          "initial_raw_percent": 16.67106,
+          "initial_gzip_percent": 47.405092
+        }
+      },
+      {
+        "asset_id": "egif:ES:CCAA:12:2013-2023",
+        "autonomous_community_id": "ES:CCAA:12",
+        "autonomous_community_name": "Galicia",
+        "from_year": 2013,
+        "to_year": 2023,
+        "record_count": 20850,
+        "raw_bytes": 6067326,
+        "gzip_bytes": 508943,
+        "raw_bytes_per_record": 290.998849,
+        "gzip_bytes_per_record": 24.409736,
+        "compression_ratio_gzip_over_raw": 0.08388259,
+        "initial": {
+          "path": "assets/ES_CCAA_12/2013-2023/initial.json",
+          "raw_size": 3143799,
+          "gzip_size": 129108,
+          "sha256": "d2cfef2893e110093b98b9ed6f5c7dc1f2a9638c28a50f1986301349238c4cc2",
+          "record_id_order_sha256": "0acb0d773e81240648aa3665d9d67bb984f42d255b764106ad394cbae956d8e7"
+        },
+        "detail": {
+          "path": "assets/ES_CCAA_12/2013-2023/detail.json",
+          "raw_size": 2923527,
+          "gzip_size": 379835,
+          "sha256": "8b02b5e3becae6813ff0657b1065aa496d56927d5c22f26121cdddcf0fd146a0",
+          "ordinal_alignment": "same_sorted_record_id_order_as_initial"
+        },
+        "record_id_column": {
+          "raw_bytes": 521251,
+          "gzip_bytes": 51132,
+          "initial_raw_percent": 16.58029,
+          "initial_gzip_percent": 39.604052
+        }
+      },
+      {
+        "asset_id": "egif:ES:CCAA:07:2003-2012",
+        "autonomous_community_id": "ES:CCAA:07",
+        "autonomous_community_name": "Castilla y León",
+        "from_year": 2003,
+        "to_year": 2012,
+        "record_count": 20506,
+        "raw_bytes": 6022446,
+        "gzip_bytes": 532143,
+        "raw_bytes_per_record": 293.691895,
+        "gzip_bytes_per_record": 25.9506,
+        "compression_ratio_gzip_over_raw": 0.08835995,
+        "initial": {
+          "path": "assets/ES_CCAA_07/2003-2012/initial.json",
+          "raw_size": 3087880,
+          "gzip_size": 137728,
+          "sha256": "dc138f6abe3dad8110948d71b6dd071e0859aa2df1c369169b6aa4fdcb5506d6",
+          "record_id_order_sha256": "6b5b4dc94e5422bce9e20e51e3d60f7046b52f9cd10ce1bd18fa348ea2a9d405"
+        },
+        "detail": {
+          "path": "assets/ES_CCAA_07/2003-2012/detail.json",
+          "raw_size": 2934566,
+          "gzip_size": 394415,
+          "sha256": "5971bc4a6b0b790f81b2f625c4252a59f45731851e89efd79d523d170d852b5c",
+          "ordinal_alignment": "same_sorted_record_id_order_as_initial"
+        },
+        "record_id_column": {
+          "raw_bytes": 512651,
+          "gzip_bytes": 49068,
+          "initial_raw_percent": 16.602038,
+          "initial_gzip_percent": 35.626743
+        }
+      },
+      {
+        "asset_id": "egif:ES:CCAA:07:1980-1992",
+        "autonomous_community_id": "ES:CCAA:07",
+        "autonomous_community_name": "Castilla y León",
+        "from_year": 1980,
+        "to_year": 1992,
+        "record_count": 20107,
+        "raw_bytes": 5217895,
+        "gzip_bytes": 373350,
+        "raw_bytes_per_record": 259.506391,
+        "gzip_bytes_per_record": 18.56816,
+        "compression_ratio_gzip_over_raw": 0.07155184,
+        "initial": {
+          "path": "assets/ES_CCAA_07/1980-1992/initial.json",
+          "raw_size": 3029452,
+          "gzip_size": 116970,
+          "sha256": "6160b43ac78cbc6206894440885c8db4b7c5a9f487f541242c6c5cc9261b7b05",
+          "record_id_order_sha256": "8f407eda4338acd3bf45b5b79846eb86c9b0b8a14879eac125ea83982d2f7ceb"
+        },
+        "detail": {
+          "path": "assets/ES_CCAA_07/1980-1992/detail.json",
+          "raw_size": 2188443,
+          "gzip_size": 256380,
+          "sha256": "31dab1f2b477ddcea771050f43d8bbf84f383d4d9022df6365204e2fcb2a4620",
+          "ordinal_alignment": "same_sorted_record_id_order_as_initial"
+        },
+        "record_id_column": {
+          "raw_bytes": 502676,
+          "gzip_bytes": 45684,
+          "initial_raw_percent": 16.592968,
+          "initial_gzip_percent": 39.056168
+        }
+      },
+      {
+        "asset_id": "egif:ES:CCAA:07:1993-2002",
+        "autonomous_community_id": "ES:CCAA:07",
+        "autonomous_community_name": "Castilla y León",
+        "from_year": 1993,
+        "to_year": 2002,
+        "record_count": 19765,
+        "raw_bytes": 5707044,
+        "gzip_bytes": 439337,
+        "raw_bytes_per_record": 288.744953,
+        "gzip_bytes_per_record": 22.228029,
+        "compression_ratio_gzip_over_raw": 0.07698153,
+        "initial": {
+          "path": "assets/ES_CCAA_07/1993-2002/initial.json",
+          "raw_size": 2971538,
+          "gzip_size": 120401,
+          "sha256": "3dea17270989e294beafccdae17bde08a827ddecae9a103de91f95907267f95d",
+          "record_id_order_sha256": "5774ed086519f4bd4469090fe80b978a0af3f67a5a5ee4a47666441cba63b268"
+        },
+        "detail": {
+          "path": "assets/ES_CCAA_07/1993-2002/detail.json",
+          "raw_size": 2735506,
+          "gzip_size": 318936,
+          "sha256": "57f7a099d693fa45acf0655f2b6e4c46b8c31d6981d1fdbf1928022fed336f53",
+          "ordinal_alignment": "same_sorted_record_id_order_as_initial"
+        },
+        "record_id_column": {
+          "raw_bytes": 494126,
+          "gzip_bytes": 45779,
+          "initial_raw_percent": 16.628628,
+          "initial_gzip_percent": 38.022109
+        }
+      },
+      {
+        "asset_id": "egif:ES:CCAA:03:2003-2012",
+        "autonomous_community_id": "ES:CCAA:03",
+        "autonomous_community_name": "Asturias, Principado de",
+        "from_year": 2003,
+        "to_year": 2012,
+        "record_count": 18952,
+        "raw_bytes": 5574625,
+        "gzip_bytes": 459828,
+        "raw_bytes_per_record": 294.144417,
+        "gzip_bytes_per_record": 24.262769,
+        "compression_ratio_gzip_over_raw": 0.08248591,
+        "initial": {
+          "path": "assets/ES_CCAA_03/2003-2012/initial.json",
+          "raw_size": 2848918,
+          "gzip_size": 106988,
+          "sha256": "81b125f50075fcf1a71302de40956d7b34a766ca08cefc5624d3531f9cf58e82",
+          "record_id_order_sha256": "495de986bf1a1e4a8f922065e2d81d9749413a64f39a4c40779ba905482e88cc"
+        },
+        "detail": {
+          "path": "assets/ES_CCAA_03/2003-2012/detail.json",
+          "raw_size": 2725707,
+          "gzip_size": 352840,
+          "sha256": "fb66cd4ef142706ce0fd27f450043b8b65ddaea809971ca2bcac3408f2df9b42",
+          "ordinal_alignment": "same_sorted_record_id_order_as_initial"
+        },
+        "record_id_column": {
+          "raw_bytes": 473801,
+          "gzip_bytes": 46219,
+          "initial_raw_percent": 16.63091,
+          "initial_gzip_percent": 43.200172
+        }
+      },
+      {
+        "asset_id": "egif:ES:CCAA:12:1968-1979",
+        "autonomous_community_id": "ES:CCAA:12",
+        "autonomous_community_name": "Galicia",
+        "from_year": 1968,
+        "to_year": 1979,
+        "record_count": 17880,
+        "raw_bytes": 4441849,
+        "gzip_bytes": 307490,
+        "raw_bytes_per_record": 248.425559,
+        "gzip_bytes_per_record": 17.197427,
+        "compression_ratio_gzip_over_raw": 0.06922568,
+        "initial": {
+          "path": "assets/ES_CCAA_12/1968-1979/initial.json",
+          "raw_size": 2493679,
+          "gzip_size": 79951,
+          "sha256": "595931a09c019029c467314c48131b3dfd7ec008354d33f9849facaa210ed280",
+          "record_id_order_sha256": "6c42345c58b42a894951333fc35971a078576283fffa9605563c2565010fb96a"
+        },
+        "detail": {
+          "path": "assets/ES_CCAA_12/1968-1979/detail.json",
+          "raw_size": 1948170,
+          "gzip_size": 227539,
+          "sha256": "9677096bb01ccd2ba987149e98784b89c4199a29554fc3c1481799e4c4311b27",
+          "ordinal_alignment": "same_sorted_record_id_order_as_initial"
+        },
+        "record_id_column": {
+          "raw_bytes": 447022,
+          "gzip_bytes": 43318,
+          "initial_raw_percent": 17.926205,
+          "initial_gzip_percent": 54.180686
+        }
+      },
+      {
+        "asset_id": "egif:ES:CCAA:07:2013-2023",
+        "autonomous_community_id": "ES:CCAA:07",
+        "autonomous_community_name": "Castilla y León",
+        "from_year": 2013,
+        "to_year": 2023,
+        "record_count": 15378,
+        "raw_bytes": 4536695,
+        "gzip_bytes": 425565,
+        "raw_bytes_per_record": 295.01203,
+        "gzip_bytes_per_record": 27.673625,
+        "compression_ratio_gzip_over_raw": 0.09380507,
+        "initial": {
+          "path": "assets/ES_CCAA_07/2013-2023/initial.json",
+          "raw_size": 2319694,
+          "gzip_size": 110328,
+          "sha256": "e92510ca638261652cabe579989b02cb7653a1fe2536473640e866351568a8ee",
+          "record_id_order_sha256": "96944dfd78cec1cac15e761453f6bc06bda366f8d630bdfaee86fc336a675c30"
+        },
+        "detail": {
+          "path": "assets/ES_CCAA_07/2013-2023/detail.json",
+          "raw_size": 2217001,
+          "gzip_size": 315237,
+          "sha256": "e80c1306d1528e1ae3491a7370fdaa21de0bb04e51be046eb7ad6beb7e2d9b71",
+          "ordinal_alignment": "same_sorted_record_id_order_as_initial"
+        },
+        "record_id_column": {
+          "raw_bytes": 384451,
+          "gzip_bytes": 37772,
+          "initial_raw_percent": 16.57335,
+          "initial_gzip_percent": 34.236096
+        }
+      }
+    ],
+    "worst_compression": [
+      {
+        "asset_id": "egif:ES:CCAA:18:1980-1992",
+        "autonomous_community_id": "ES:CCAA:18",
+        "autonomous_community_name": "Ceuta",
+        "from_year": 1980,
+        "to_year": 1992,
+        "record_count": 1,
+        "raw_bytes": 2007,
+        "gzip_bytes": 955,
+        "raw_bytes_per_record": 2007.0,
+        "gzip_bytes_per_record": 955.0,
+        "compression_ratio_gzip_over_raw": 0.47583458,
+        "initial": {
+          "path": "assets/ES_CCAA_18/1980-1992/initial.json",
+          "raw_size": 983,
+          "gzip_size": 455,
+          "sha256": "13b5a7f159dfb9109790da66c928d7ed43dcad261dbf2e7b437fcab44b1af103",
+          "record_id_order_sha256": "b15df7acd790ab186b5a0a8aa7b37e3dec2696dfbc023d65e1f5fef89f131278"
+        },
+        "detail": {
+          "path": "assets/ES_CCAA_18/1980-1992/detail.json",
+          "raw_size": 1024,
+          "gzip_size": 500,
+          "sha256": "27e4e7832d2fe16c6e69f8c75dc972cbf5d7c63431ab7caa2ff4803f2212cdb1",
+          "ordinal_alignment": "same_sorted_record_id_order_as_initial"
+        },
+        "record_id_column": {
+          "raw_bytes": 26,
+          "gzip_bytes": 46,
+          "initial_raw_percent": 2.644964,
+          "initial_gzip_percent": 10.10989
+        }
+      },
+      {
+        "asset_id": "egif:ES:CCAA:18:2003-2012",
+        "autonomous_community_id": "ES:CCAA:18",
+        "autonomous_community_name": "Ceuta",
+        "from_year": 2003,
+        "to_year": 2012,
+        "record_count": 6,
+        "raw_bytes": 3539,
+        "gzip_bytes": 1300,
+        "raw_bytes_per_record": 589.833333,
+        "gzip_bytes_per_record": 216.666667,
+        "compression_ratio_gzip_over_raw": 0.36733541,
+        "initial": {
+          "path": "assets/ES_CCAA_18/2003-2012/initial.json",
+          "raw_size": 1731,
+          "gzip_size": 548,
+          "sha256": "f22fb72094370a7ded62f22f815aa060221a74a790ebae79f70cd7f6c248df9c",
+          "record_id_order_sha256": "77e467e98c0e87347a57cb03d4dc5f0a706bed5f908b57ab1e03314f1948e0c5"
+        },
+        "detail": {
+          "path": "assets/ES_CCAA_18/2003-2012/detail.json",
+          "raw_size": 1808,
+          "gzip_size": 752,
+          "sha256": "c78eae317c89e14e38c342fb54631a9ac50453550ad4909699dfc02f3ce98db5",
+          "ordinal_alignment": "same_sorted_record_id_order_as_initial"
+        },
+        "record_id_column": {
+          "raw_bytes": 151,
+          "gzip_bytes": 63,
+          "initial_raw_percent": 8.723281,
+          "initial_gzip_percent": 11.49635
+        }
+      },
+      {
+        "asset_id": "egif:ES:CCAA:18:2013-2023",
+        "autonomous_community_id": "ES:CCAA:18",
+        "autonomous_community_name": "Ceuta",
+        "from_year": 2013,
+        "to_year": 2023,
+        "record_count": 8,
+        "raw_bytes": 4152,
+        "gzip_bytes": 1446,
+        "raw_bytes_per_record": 519.0,
+        "gzip_bytes_per_record": 180.75,
+        "compression_ratio_gzip_over_raw": 0.3482659,
+        "initial": {
+          "path": "assets/ES_CCAA_18/2013-2023/initial.json",
+          "raw_size": 2042,
+          "gzip_size": 588,
+          "sha256": "f58705769698302129cd0821bc9be174bd2e15d8c714eb4716703b090dccb6e2",
+          "record_id_order_sha256": "76f417339586584b6ea98f8b9c0ae8b5dff1eb97056d1dceb9326436de416499"
+        },
+        "detail": {
+          "path": "assets/ES_CCAA_18/2013-2023/detail.json",
+          "raw_size": 2110,
+          "gzip_size": 858,
+          "sha256": "c350a88845a4d268f0048126f60912d30e8b66a898f709324bd7b6e4fb68078b",
+          "ordinal_alignment": "same_sorted_record_id_order_as_initial"
+        },
+        "record_id_column": {
+          "raw_bytes": 201,
+          "gzip_bytes": 72,
+          "initial_raw_percent": 9.843291,
+          "initial_gzip_percent": 12.244898
+        }
+      },
+      {
+        "asset_id": "egif:ES:CCAA:18:1993-2002",
+        "autonomous_community_id": "ES:CCAA:18",
+        "autonomous_community_name": "Ceuta",
+        "from_year": 1993,
+        "to_year": 2002,
+        "record_count": 7,
+        "raw_bytes": 3735,
+        "gzip_bytes": 1236,
+        "raw_bytes_per_record": 533.571429,
+        "gzip_bytes_per_record": 176.571429,
+        "compression_ratio_gzip_over_raw": 0.33092369,
+        "initial": {
+          "path": "assets/ES_CCAA_18/1993-2002/initial.json",
+          "raw_size": 1883,
+          "gzip_size": 556,
+          "sha256": "781af81615cca156e29c279aa8dc438a6b586334e8abbcae51d316df967b2b94",
+          "record_id_order_sha256": "b52686b765bb371f510134ef5f758146a3f8ffb5b299b05b84e950f9d793feb9"
+        },
+        "detail": {
+          "path": "assets/ES_CCAA_18/1993-2002/detail.json",
+          "raw_size": 1852,
+          "gzip_size": 680,
+          "sha256": "e049554e2c29845ac05fda5810536a214748e3dd42fd8bd778ac4d23d995613f",
+          "ordinal_alignment": "same_sorted_record_id_order_as_initial"
+        },
+        "record_id_column": {
+          "raw_bytes": 176,
+          "gzip_bytes": 68,
+          "initial_raw_percent": 9.346787,
+          "initial_gzip_percent": 12.230216
+        }
+      },
+      {
+        "asset_id": "egif:ES:CCAA:14:1968-1979",
+        "autonomous_community_id": "ES:CCAA:14",
+        "autonomous_community_name": "Murcia, Región de",
+        "from_year": 1968,
+        "to_year": 1979,
+        "record_count": 94,
+        "raw_bytes": 25037,
+        "gzip_bytes": 3437,
+        "raw_bytes_per_record": 266.351064,
+        "gzip_bytes_per_record": 36.56383,
+        "compression_ratio_gzip_over_raw": 0.13727683,
+        "initial": {
+          "path": "assets/ES_CCAA_14/1968-1979/initial.json",
+          "raw_size": 13921,
+          "gzip_size": 1234,
+          "sha256": "88c5c6baa52d32d879c7af13921b2da881a196ed85f73941c0a9ffde92ae65bf",
+          "record_id_order_sha256": "cacfd67075b3e8fadc0ed7e47dea6c1bdb7bb51189eae04dc7d19451c32a8366"
+        },
+        "detail": {
+          "path": "assets/ES_CCAA_14/1968-1979/detail.json",
+          "raw_size": 11116,
+          "gzip_size": 2203,
+          "sha256": "26c2a91f0017c265eab5b463197e7358efea0b32338bed5c4aecbd9713b87d35",
+          "ordinal_alignment": "same_sorted_record_id_order_as_initial"
+        },
+        "record_id_column": {
+          "raw_bytes": 2351,
+          "gzip_bytes": 354,
+          "initial_raw_percent": 16.888155,
+          "initial_gzip_percent": 28.687196
+        }
+      },
+      {
+        "asset_id": "egif:ES:CCAA:05:2013-2023",
+        "autonomous_community_id": "ES:CCAA:05",
+        "autonomous_community_name": "Canarias",
+        "from_year": 2013,
+        "to_year": 2023,
+        "record_count": 698,
+        "raw_bytes": 209634,
+        "gzip_bytes": 24200,
+        "raw_bytes_per_record": 300.335244,
+        "gzip_bytes_per_record": 34.670487,
+        "compression_ratio_gzip_over_raw": 0.11543929,
+        "initial": {
+          "path": "assets/ES_CCAA_05/2013-2023/initial.json",
+          "raw_size": 106205,
+          "gzip_size": 5628,
+          "sha256": "8d997caf4f6342fc610c9b74f26bf978189e8d6a55da4c18f3ea8e4464bf1fac",
+          "record_id_order_sha256": "ae35e8ebe179a20e21517cce0191447c5b953a147346e8eb3aa92dd67aca9df0"
+        },
+        "detail": {
+          "path": "assets/ES_CCAA_05/2013-2023/detail.json",
+          "raw_size": 103429,
+          "gzip_size": 18572,
+          "sha256": "99fd501ec1faaabcaae1c2862674a05e09d3784182070b9d5030830fa2912c45",
+          "ordinal_alignment": "same_sorted_record_id_order_as_initial"
+        },
+        "record_id_column": {
+          "raw_bytes": 17451,
+          "gzip_bytes": 1743,
+          "initial_raw_percent": 16.43143,
+          "initial_gzip_percent": 30.970149
+        }
+      },
+      {
+        "asset_id": "egif:ES:CCAA:17:2013-2023",
+        "autonomous_community_id": "ES:CCAA:17",
+        "autonomous_community_name": "Rioja, La",
+        "from_year": 2013,
+        "to_year": 2023,
+        "record_count": 702,
+        "raw_bytes": 208364,
+        "gzip_bytes": 23765,
+        "raw_bytes_per_record": 296.814815,
+        "gzip_bytes_per_record": 33.853276,
+        "compression_ratio_gzip_over_raw": 0.11405521,
+        "initial": {
+          "path": "assets/ES_CCAA_17/2013-2023/initial.json",
+          "raw_size": 106646,
+          "gzip_size": 5901,
+          "sha256": "71a85bafe7d9c93ef6b402a96db568ba65dabe2e16c5ff83e39093fd96d63bfe",
+          "record_id_order_sha256": "7580b6460266c4e2864e8a12a23fa50216644e1f4a3548a2c65dbf400a116c1b"
+        },
+        "detail": {
+          "path": "assets/ES_CCAA_17/2013-2023/detail.json",
+          "raw_size": 101718,
+          "gzip_size": 17864,
+          "sha256": "a82aa64ede10549815406de604e8dc516e4fad38f64a28c6a104a00e616482ff",
+          "ordinal_alignment": "same_sorted_record_id_order_as_initial"
+        },
+        "record_id_column": {
+          "raw_bytes": 17551,
+          "gzip_bytes": 1646,
+          "initial_raw_percent": 16.457251,
+          "initial_gzip_percent": 27.893577
+        }
+      },
+      {
+        "asset_id": "egif:ES:CCAA:16:2013-2023",
+        "autonomous_community_id": "ES:CCAA:16",
+        "autonomous_community_name": "País Vasco",
+        "from_year": 2013,
+        "to_year": 2023,
+        "record_count": 1047,
+        "raw_bytes": 310411,
+        "gzip_bytes": 34707,
+        "raw_bytes_per_record": 296.4766,
+        "gzip_bytes_per_record": 33.148997,
+        "compression_ratio_gzip_over_raw": 0.11180983,
+        "initial": {
+          "path": "assets/ES_CCAA_16/2013-2023/initial.json",
+          "raw_size": 158492,
+          "gzip_size": 8756,
+          "sha256": "cd8fd79759cb1818efb8f8140d2d01fb05c3e7cfbc01dc87e20d6bed6f8c966e",
+          "record_id_order_sha256": "8013b1ea2d13f18708bafe04bdcfec5c0371cbcdc07fe5babe5f6fec45fd3186"
+        },
+        "detail": {
+          "path": "assets/ES_CCAA_16/2013-2023/detail.json",
+          "raw_size": 151919,
+          "gzip_size": 25951,
+          "sha256": "7f79ac179f400ddba69d0ff5459e27d4d39f2a5e96d134812a2174710a27d911",
+          "ordinal_alignment": "same_sorted_record_id_order_as_initial"
+        },
+        "record_id_column": {
+          "raw_bytes": 26176,
+          "gzip_bytes": 2595,
+          "initial_raw_percent": 16.51566,
+          "initial_gzip_percent": 29.63682
+        }
+      },
+      {
+        "asset_id": "egif:ES:CCAA:04:2013-2023",
+        "autonomous_community_id": "ES:CCAA:04",
+        "autonomous_community_name": "Balears, Illes",
+        "from_year": 2013,
+        "to_year": 2023,
+        "record_count": 983,
+        "raw_bytes": 294644,
+        "gzip_bytes": 32422,
+        "raw_bytes_per_record": 299.739573,
+        "gzip_bytes_per_record": 32.982706,
+        "compression_ratio_gzip_over_raw": 0.11003788,
+        "initial": {
+          "path": "assets/ES_CCAA_04/2013-2023/initial.json",
+          "raw_size": 149177,
+          "gzip_size": 7690,
+          "sha256": "e10d09c77f679f083f617004ec14451840bc410743a1fa3b12323f0d8c29590c",
+          "record_id_order_sha256": "b90e08e08f219c3299c81b14316e2e9809b155b841b7266188f5f315acf34028"
+        },
+        "detail": {
+          "path": "assets/ES_CCAA_04/2013-2023/detail.json",
+          "raw_size": 145467,
+          "gzip_size": 24732,
+          "sha256": "2dacc191e33a1bf7fd055222aaea4b946cd2311dce2c34c3b7ff4858493c8fd7",
+          "ordinal_alignment": "same_sorted_record_id_order_as_initial"
+        },
+        "record_id_column": {
+          "raw_bytes": 24576,
+          "gzip_bytes": 2342,
+          "initial_raw_percent": 16.474389,
+          "initial_gzip_percent": 30.455137
+        }
+      },
+      {
+        "asset_id": "egif:ES:CCAA:14:2013-2023",
+        "autonomous_community_id": "ES:CCAA:14",
+        "autonomous_community_name": "Murcia, Región de",
+        "from_year": 2013,
+        "to_year": 2023,
+        "record_count": 1245,
+        "raw_bytes": 374123,
+        "gzip_bytes": 40122,
+        "raw_bytes_per_record": 300.500402,
+        "gzip_bytes_per_record": 32.226506,
+        "compression_ratio_gzip_over_raw": 0.10724281,
+        "initial": {
+          "path": "assets/ES_CCAA_14/2013-2023/initial.json",
+          "raw_size": 188689,
+          "gzip_size": 9256,
+          "sha256": "85f6d54a0a675d0ffc79b8a53dbdfae3e51e077f80e7242d8007e9ceee762167",
+          "record_id_order_sha256": "a37dbb687e5aaf07a6f7db188a2ceb1c2a8e585a80c508831516857f595696ba"
+        },
+        "detail": {
+          "path": "assets/ES_CCAA_14/2013-2023/detail.json",
+          "raw_size": 185434,
+          "gzip_size": 30866,
+          "sha256": "e0519babbdf7435578b38093019f705683c82f18aaca2e79f715c54fc0522e3c",
+          "ordinal_alignment": "same_sorted_record_id_order_as_initial"
+        },
+        "record_id_column": {
+          "raw_bytes": 31126,
+          "gzip_bytes": 2899,
+          "initial_raw_percent": 16.495927,
+          "initial_gzip_percent": 31.320225
+        }
+      }
+    ]
+  },
+  "by_autonomous_community": [
+    {
+      "autonomous_community_id": "ES:CCAA:01",
+      "autonomous_community_name": "Andalucía",
+      "assets": 5,
+      "records": 45512,
+      "raw_bytes": 12787242,
+      "gzip_bytes": 1090825,
+      "initial_raw_bytes": 6820965,
+      "initial_gzip_bytes": 292005,
+      "detail_raw_bytes": 5966277,
+      "detail_gzip_bytes": 798820,
+      "national_record_percent": 7.035541,
+      "raw_bytes_per_record": 280.964185,
+      "gzip_bytes_per_record": 23.967855
+    },
+    {
+      "autonomous_community_id": "ES:CCAA:02",
+      "autonomous_community_name": "Aragón",
+      "assets": 5,
+      "records": 15194,
+      "raw_bytes": 4351351,
+      "gzip_bytes": 405148,
+      "initial_raw_bytes": 2283555,
+      "initial_gzip_bytes": 112527,
+      "detail_raw_bytes": 2067796,
+      "detail_gzip_bytes": 292621,
+      "national_record_percent": 2.348787,
+      "raw_bytes_per_record": 286.386139,
+      "gzip_bytes_per_record": 26.664999
+    },
+    {
+      "autonomous_community_id": "ES:CCAA:03",
+      "autonomous_community_name": "Asturias, Principado de",
+      "assets": 5,
+      "records": 54898,
+      "raw_bytes": 15661921,
+      "gzip_bytes": 1252753,
+      "initial_raw_bytes": 8233302,
+      "initial_gzip_bytes": 314245,
+      "detail_raw_bytes": 7428619,
+      "detail_gzip_bytes": 938508,
+      "national_record_percent": 8.48649,
+      "raw_bytes_per_record": 285.291286,
+      "gzip_bytes_per_record": 22.819647
+    },
+    {
+      "autonomous_community_id": "ES:CCAA:04",
+      "autonomous_community_name": "Balears, Illes",
+      "assets": 5,
+      "records": 5933,
+      "raw_bytes": 1659473,
+      "gzip_bytes": 154476,
+      "initial_raw_bytes": 887571,
+      "initial_gzip_bytes": 40765,
+      "detail_raw_bytes": 771902,
+      "detail_gzip_bytes": 113711,
+      "national_record_percent": 0.917162,
+      "raw_bytes_per_record": 279.702174,
+      "gzip_bytes_per_record": 26.036744
+    },
+    {
+      "autonomous_community_id": "ES:CCAA:05",
+      "autonomous_community_name": "Canarias",
+      "assets": 5,
+      "records": 3770,
+      "raw_bytes": 1073659,
+      "gzip_bytes": 107043,
+      "initial_raw_bytes": 567147,
+      "initial_gzip_bytes": 27931,
+      "detail_raw_bytes": 506512,
+      "detail_gzip_bytes": 79112,
+      "national_record_percent": 0.582791,
+      "raw_bytes_per_record": 284.790186,
+      "gzip_bytes_per_record": 28.393369
+    },
+    {
+      "autonomous_community_id": "ES:CCAA:06",
+      "autonomous_community_name": "Cantabria",
+      "assets": 5,
+      "records": 21320,
+      "raw_bytes": 6110936,
+      "gzip_bytes": 538577,
+      "initial_raw_bytes": 3196175,
+      "initial_gzip_bytes": 137226,
+      "detail_raw_bytes": 2914761,
+      "detail_gzip_bytes": 401351,
+      "national_record_percent": 3.295784,
+      "raw_bytes_per_record": 286.629268,
+      "gzip_bytes_per_record": 25.261585
+    },
+    {
+      "autonomous_community_id": "ES:CCAA:07",
+      "autonomous_community_name": "Castilla y León",
+      "assets": 5,
+      "records": 81438,
+      "raw_bytes": 22897491,
+      "gzip_bytes": 1877995,
+      "initial_raw_bytes": 12201742,
+      "initial_gzip_bytes": 514891,
+      "detail_raw_bytes": 10695749,
+      "detail_gzip_bytes": 1363104,
+      "national_record_percent": 12.589216,
+      "raw_bytes_per_record": 281.164702,
+      "gzip_bytes_per_record": 23.060426
+    },
+    {
+      "autonomous_community_id": "ES:CCAA:08",
+      "autonomous_community_name": "Castilla-La Mancha",
+      "assets": 5,
+      "records": 28735,
+      "raw_bytes": 8271286,
+      "gzip_bytes": 752914,
+      "initial_raw_bytes": 4315732,
+      "initial_gzip_bytes": 199613,
+      "detail_raw_bytes": 3955554,
+      "detail_gzip_bytes": 553301,
+      "national_record_percent": 4.442043,
+      "raw_bytes_per_record": 287.847085,
+      "gzip_bytes_per_record": 26.201984
+    },
+    {
+      "autonomous_community_id": "ES:CCAA:09",
+      "autonomous_community_name": "Cataluña",
+      "assets": 5,
+      "records": 31319,
+      "raw_bytes": 8756833,
+      "gzip_bytes": 753043,
+      "initial_raw_bytes": 4663170,
+      "initial_gzip_bytes": 209248,
+      "detail_raw_bytes": 4093663,
+      "detail_gzip_bytes": 543795,
+      "national_record_percent": 4.841495,
+      "raw_bytes_per_record": 279.601296,
+      "gzip_bytes_per_record": 24.044286
+    },
+    {
+      "autonomous_community_id": "ES:CCAA:10",
+      "autonomous_community_name": "Comunitat Valenciana",
+      "assets": 5,
+      "records": 22108,
+      "raw_bytes": 6157354,
+      "gzip_bytes": 541312,
+      "initial_raw_bytes": 3300714,
+      "initial_gzip_bytes": 149247,
+      "detail_raw_bytes": 2856640,
+      "detail_gzip_bytes": 392065,
+      "national_record_percent": 3.417598,
+      "raw_bytes_per_record": 278.512484,
+      "gzip_bytes_per_record": 24.484892
+    },
+    {
+      "autonomous_community_id": "ES:CCAA:11",
+      "autonomous_community_name": "Extremadura",
+      "assets": 5,
+      "records": 35465,
+      "raw_bytes": 10173795,
+      "gzip_bytes": 870286,
+      "initial_raw_bytes": 5334802,
+      "initial_gzip_bytes": 231025,
+      "detail_raw_bytes": 4838993,
+      "detail_gzip_bytes": 639261,
+      "national_record_percent": 5.48241,
+      "raw_bytes_per_record": 286.868603,
+      "gzip_bytes_per_record": 24.539292
+    },
+    {
+      "autonomous_community_id": "ES:CCAA:12",
+      "autonomous_community_name": "Galicia",
+      "assets": 5,
+      "records": 264313,
+      "raw_bytes": 73453107,
+      "gzip_bytes": 5007567,
+      "initial_raw_bytes": 39521202,
+      "initial_gzip_bytes": 1400126,
+      "detail_raw_bytes": 33931905,
+      "detail_gzip_bytes": 3607441,
+      "national_record_percent": 40.859223,
+      "raw_bytes_per_record": 277.901984,
+      "gzip_bytes_per_record": 18.945595
+    },
+    {
+      "autonomous_community_id": "ES:CCAA:13",
+      "autonomous_community_name": "Madrid, Comunidad de",
+      "assets": 5,
+      "records": 11451,
+      "raw_bytes": 3255396,
+      "gzip_bytes": 291248,
+      "initial_raw_bytes": 1717552,
+      "initial_gzip_bytes": 83026,
+      "detail_raw_bytes": 1537844,
+      "detail_gzip_bytes": 208222,
+      "national_record_percent": 1.77017,
+      "raw_bytes_per_record": 284.289232,
+      "gzip_bytes_per_record": 25.434285
+    },
+    {
+      "autonomous_community_id": "ES:CCAA:14",
+      "autonomous_community_name": "Murcia, Región de",
+      "assets": 5,
+      "records": 4642,
+      "raw_bytes": 1354712,
+      "gzip_bytes": 134700,
+      "initial_raw_bytes": 702414,
+      "initial_gzip_bytes": 34467,
+      "detail_raw_bytes": 652298,
+      "detail_gzip_bytes": 100233,
+      "national_record_percent": 0.717591,
+      "raw_bytes_per_record": 291.838001,
+      "gzip_bytes_per_record": 29.017665
+    },
+    {
+      "autonomous_community_id": "ES:CCAA:15",
+      "autonomous_community_name": "Navarra, Comunidad Foral de",
+      "assets": 4,
+      "records": 9572,
+      "raw_bytes": 2772723,
+      "gzip_bytes": 254924,
+      "initial_raw_bytes": 1444492,
+      "initial_gzip_bytes": 68430,
+      "detail_raw_bytes": 1328231,
+      "detail_gzip_bytes": 186494,
+      "national_record_percent": 1.479702,
+      "raw_bytes_per_record": 289.670184,
+      "gzip_bytes_per_record": 26.632261
+    },
+    {
+      "autonomous_community_id": "ES:CCAA:16",
+      "autonomous_community_name": "País Vasco",
+      "assets": 5,
+      "records": 7199,
+      "raw_bytes": 2011036,
+      "gzip_bytes": 189253,
+      "initial_raw_bytes": 1084880,
+      "initial_gzip_bytes": 53373,
+      "detail_raw_bytes": 926156,
+      "detail_gzip_bytes": 135880,
+      "national_record_percent": 1.112868,
+      "raw_bytes_per_record": 279.349354,
+      "gzip_bytes_per_record": 26.28879
+    },
+    {
+      "autonomous_community_id": "ES:CCAA:17",
+      "autonomous_community_name": "Rioja, La",
+      "assets": 5,
+      "records": 3996,
+      "raw_bytes": 1130209,
+      "gzip_bytes": 111791,
+      "initial_raw_bytes": 601684,
+      "initial_gzip_bytes": 31011,
+      "detail_raw_bytes": 528525,
+      "detail_gzip_bytes": 80780,
+      "national_record_percent": 0.617728,
+      "raw_bytes_per_record": 282.835085,
+      "gzip_bytes_per_record": 27.975726
+    },
+    {
+      "autonomous_community_id": "ES:CCAA:18",
+      "autonomous_community_name": "Ceuta",
+      "assets": 4,
+      "records": 22,
+      "raw_bytes": 13433,
+      "gzip_bytes": 4937,
+      "initial_raw_bytes": 6639,
+      "initial_gzip_bytes": 2147,
+      "detail_raw_bytes": 6794,
+      "detail_gzip_bytes": 2790,
+      "national_record_percent": 0.003401,
+      "raw_bytes_per_record": 610.590909,
+      "gzip_bytes_per_record": 224.409091
+    }
+  ],
+  "by_temporal_block": [
+    {
+      "temporal_block": "1968-1979",
+      "assets": 16,
+      "records": 42967,
+      "raw_bytes": 10696577,
+      "gzip_bytes": 810055,
+      "initial_raw_bytes": 6003188,
+      "initial_gzip_bytes": 221171,
+      "detail_raw_bytes": 4693389,
+      "detail_gzip_bytes": 588884,
+      "raw_bytes_per_record": 248.948658,
+      "gzip_bytes_per_record": 18.852957
+    },
+    {
+      "temporal_block": "1980-1992",
+      "assets": 18,
+      "records": 136534,
+      "raw_bytes": 35363344,
+      "gzip_bytes": 2518783,
+      "initial_raw_bytes": 20520304,
+      "initial_gzip_bytes": 779578,
+      "detail_raw_bytes": 14843040,
+      "detail_gzip_bytes": 1739205,
+      "raw_bytes_per_record": 259.007603,
+      "gzip_bytes_per_record": 18.448028
+    },
+    {
+      "temporal_block": "1993-2002",
+      "assets": 18,
+      "records": 200513,
+      "raw_bytes": 57412820,
+      "gzip_bytes": 4086857,
+      "initial_raw_bytes": 30135204,
+      "initial_gzip_bytes": 1147093,
+      "detail_raw_bytes": 27277616,
+      "detail_gzip_bytes": 2939764,
+      "raw_bytes_per_record": 286.329664,
+      "gzip_bytes_per_record": 20.382005
+    },
+    {
+      "temporal_block": "2003-2012",
+      "assets": 18,
+      "records": 164204,
+      "raw_bytes": 48021294,
+      "gzip_bytes": 4027607,
+      "initial_raw_bytes": 24727203,
+      "initial_gzip_bytes": 1033560,
+      "detail_raw_bytes": 23294091,
+      "detail_gzip_bytes": 2994047,
+      "raw_bytes_per_record": 292.44899,
+      "gzip_bytes_per_record": 24.528069
+    },
+    {
+      "temporal_block": "2013-2023",
+      "assets": 18,
+      "records": 102669,
+      "raw_bytes": 30397922,
+      "gzip_bytes": 2895490,
+      "initial_raw_bytes": 15497839,
+      "initial_gzip_bytes": 719901,
+      "detail_raw_bytes": 14900083,
+      "detail_gzip_bytes": 2175589,
+      "raw_bytes_per_record": 296.076927,
+      "gzip_bytes_per_record": 28.202184
+    }
+  ]
+}
