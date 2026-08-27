@@ -34,6 +34,10 @@ data/derived/spain/es3/
 # Dependencias JS locales del laboratorio nacional ES-3.
 benchmarks/es3/node_modules/
 
+# Checkpoints locales de ejecuciones reanudables de Codex. No contienen
+# datasets ni son parte de un resultado publicable.
+work/
+
 # Salidas reproducibles con atributos y geometría ICV original.
 data/processed/gva/*.jsonl
 data/processed/gva/manifest.json

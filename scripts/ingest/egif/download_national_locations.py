@@ -229,7 +229,17 @@ def download_block(
     year_from: int,
     year_to: int,
     expected: int,
+    *,
+    chapters: str = CHAPTERS,
+    export_block_size: int = 50_000,
 ) -> tuple[bytes, dict[str, Any]]:
+    """Download one national EGIF query using the requested chapter mask.
+
+    ``location_only`` keeps the historical ES-1.5 default.  ES-4A reuses the
+    same public search/export protocol with the complete chapter mask; keeping
+    the transport in one function avoids two subtly different implementations
+    of the stateful exporter.
+    """
     initial = client.get(SEARCH_URL)
     parser = SearchPageParser()
     parser.feed(initial.decode("utf-8", errors="replace"))
@@ -244,8 +254,8 @@ def download_block(
         )
     state: dict[str, Any] = {
         "sBusqueda": criteria,
-        "capitulos": CHAPTERS,
-        "bloque": 50_000,
+        "capitulos": chapters,
+        "bloque": export_block_size,
         "skip": 0,
         "total": total,
         "sguid": returned_pin,
@@ -293,8 +303,12 @@ def download_block(
                 "download_url_template": DOWNLOAD_URL
                 + "?guid=<session-guid>&pakete=<package>",
                 "search_criteria": criteria,
-                "chapters": CHAPTERS,
-                "chapter_semantics": "Localización only; PIF identity/common fields retained by exporter",
+                "chapters": chapters,
+                "chapter_semantics": (
+                    "Localización only; PIF identity/common fields retained by exporter"
+                    if chapters == CHAPTERS
+                    else "Requested EGIF chapter mask"
+                ),
                 "export_responses": responses,
             }
     raise PipelineError(f"EGIF {year_from}-{year_to}: exportación no finalizada")
