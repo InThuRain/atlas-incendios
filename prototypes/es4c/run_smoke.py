@@ -14,7 +14,7 @@ import sys
 import threading
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
-from urllib.parse import quote
+from urllib.parse import quote, urlencode
 
 ROOT = Path(__file__).resolve().parents[2]
 ES3_RESULTS = ROOT / "benchmarks/es3/results.json"
@@ -23,6 +23,14 @@ sys.path.insert(0, str(ROOT / "benchmarks/gva_frontend"))
 from cdp_client import run_page  # noqa: E402
 
 SCENARIOS = ("spain", "galicia", "pais_valencia")
+EGIF_SMOKES = {
+    "a_spain_1993_2002": {"map": "spain", "from": 1993, "to": 2002, "scope": "ES", "records": 200513, "initial_requests": 0},
+    "b_pais_valencia_1993_2002": {"map": "pais_valencia", "from": 1993, "to": 2002, "scope": "ES:CCAA:10", "records": 5159, "initial_requests": 1},
+    "c_galicia_1993_2002": {"map": "galicia", "from": 1993, "to": 2002, "scope": "ES:CCAA:12", "records": 110605, "initial_requests": 1},
+    "d_galicia_2013_2023": {"map": "galicia", "from": 2013, "to": 2023, "scope": "ES:CCAA:12", "records": 20850, "initial_requests": 1},
+    "e_rapid_galicia_to_rioja": {"map": "spain", "from": 1993, "to": 2002, "scope": "ES", "rapid": True, "records": 1191, "final_scope": "ES:CCAA:17"},
+    "f_mobile_pais_valencia": {"map": "pais_valencia", "from": 1993, "to": 2002, "scope": "ES:CCAA:10", "records": 5159, "initial_requests": 1, "mobile_only": True},
+}
 EXPECTED_SHA256 = "92f0f081131932075f54a89d86fc8aa7e5879d56ca4d7177c64562f9612751b4"
 
 
@@ -79,6 +87,9 @@ class RangeState:
         self.full_pmtiles_requests = 0
         self.range_bytes = 0
         self.statuses = []
+        self.initial_requests = 0
+        self.initial_raw_bytes = 0
+        self.detail_requests = 0
 
     def record(self, is_range: bool, bytes_sent: int, status: int) -> None:
         with self.lock:
@@ -89,6 +100,14 @@ class RangeState:
                 self.full_pmtiles_requests += 1
             self.statuses.append(status)
 
+    def record_egif(self, path: str, bytes_sent: int) -> None:
+        with self.lock:
+            if path.endswith("/initial.json"):
+                self.initial_requests += 1
+                self.initial_raw_bytes += bytes_sent
+            elif path.endswith("/detail.json"):
+                self.detail_requests += 1
+
     def payload(self) -> dict:
         with self.lock:
             return {
@@ -96,6 +115,9 @@ class RangeState:
                 "full_pmtiles_requests": self.full_pmtiles_requests,
                 "range_bytes": self.range_bytes,
                 "statuses": list(self.statuses),
+                "initial_requests": self.initial_requests,
+                "initial_raw_bytes": self.initial_raw_bytes,
+                "detail_requests": self.detail_requests,
             }
 
 
@@ -138,6 +160,8 @@ class RangeRequestHandler(SimpleHTTPRequestHandler):
             self.remaining = None
             if is_pmtiles:
                 self.range_state.record(False, size, 200)
+            elif path.endswith(("/initial.json", "/detail.json")):
+                self.range_state.record_egif(path, size)
             return stream
         start, end = requested
         length = end - start + 1
@@ -156,13 +180,19 @@ class RangeRequestHandler(SimpleHTTPRequestHandler):
     def copyfile(self, source, output):
         remaining = getattr(self, "remaining", None)
         if remaining is None:
-            return super().copyfile(source, output)
-        while remaining:
-            block = source.read(min(64 * 1024, remaining))
-            if not block:
-                break
-            output.write(block)
-            remaining -= len(block)
+            try:
+                return super().copyfile(source, output)
+            except (BrokenPipeError, ConnectionResetError):
+                return None
+        try:
+            while remaining:
+                block = source.read(min(64 * 1024, remaining))
+                if not block:
+                    break
+                output.write(block)
+                remaining -= len(block)
+        except (BrokenPipeError, ConnectionResetError):
+            return None
 
 
 def start_server(background: bool = True) -> tuple[ThreadingHTTPServer, RangeState]:
@@ -175,14 +205,21 @@ def start_server(background: bool = True) -> tuple[ThreadingHTTPServer, RangeSta
     return server, state
 
 
-def run_case(chrome: str, scenario: str, device: str) -> dict:
+def run_case(chrome: str, scenario: str, device: str, egif_config: dict | None = None) -> dict:
     server, state = start_server()
     try:
         window = "390,844" if device == "mobile_390x844" else "1280,800"
-        url = f"http://127.0.0.1:{server.server_port}/prototypes/es4c/index.html?smoke={quote(scenario)}"
+        query = {"smoke": scenario}
+        if egif_config:
+            query.update({"from": egif_config["from"], "to": egif_config["to"], "egif_scope": egif_config["scope"]})
+            if egif_config.get("rapid"):
+                query["egif_rapid"] = "1"
+        url = f"http://127.0.0.1:{server.server_port}/prototypes/es4c/index.html?{urlencode(query)}"
         result = run_page(chrome, url, window, timeout=120)
         result["server_range_stats"] = state.payload()
         result["device"] = device
+        if egif_config:
+            result["expected_egif"] = egif_config
         return result
     finally:
         server.shutdown()
@@ -206,6 +243,19 @@ def validate_results(payload: dict) -> list[str]:
             errors.append(f"{label}: se descargó PMTiles completo")
         if any(status != 206 for status in stats.get("statuses", [])):
             errors.append(f"{label}: estados PMTiles distintos de 206")
+        expected_egif = result.get("expected_egif")
+        if expected_egif:
+            egif = result.get("egif", {})
+            if egif.get("status") != "complete":
+                errors.append(f"{label}: EGIF no completó: {egif}")
+            elif egif.get("summary", {}).get("records") != expected_egif["records"]:
+                errors.append(f"{label}: recuento EGIF inesperado")
+            if stats.get("detail_requests") != 0:
+                errors.append(f"{label}: DETAIL fue solicitado en C1B1")
+            if "initial_requests" in expected_egif and stats.get("initial_requests") != expected_egif["initial_requests"]:
+                errors.append(f"{label}: assets INITIAL inesperados: {stats.get('initial_requests')}")
+            if expected_egif.get("final_scope") and result.get("state", {}).get("autonomous_community_id") != expected_egif["final_scope"]:
+                errors.append(f"{label}: cancelación no conservó el último ámbito")
     return errors
 
 
@@ -216,6 +266,8 @@ def main() -> int:
     parser.add_argument("--desktop", action="store_true")
     parser.add_argument("--mobile", action="store_true")
     parser.add_argument("--all-smokes", action="store_true")
+    parser.add_argument("--egif-smoke", choices=tuple(EGIF_SMOKES), action="append")
+    parser.add_argument("--all-egif-smokes", action="store_true")
     parser.add_argument("--output", type=Path, default=ROOT / "prototypes/es4c/smoke-results.json")
     parser.add_argument("--check", action="store_true")
     parser.add_argument("--serve", action="store_true", help="sirve el prototipo interactivo local con HTTP Range")
@@ -237,13 +289,20 @@ def main() -> int:
         print(json.dumps({"valid": not errors, "errors": errors, "output": str(args.output)}))
         return 0 if not errors else 1
     archive = validate_archive()
-    scenarios = args.scenario or (SCENARIOS if args.all_smokes else ("spain",))
+    requested_egif = args.egif_smoke or (tuple(EGIF_SMOKES) if args.all_egif_smokes else ())
+    scenarios = args.scenario or (SCENARIOS if args.all_smokes else (() if requested_egif else ("spain",)))
     devices = []
     if args.desktop or not args.mobile:
         devices.append("desktop")
     if args.mobile:
         devices.append("mobile_390x844")
     rows = []
+    for name in requested_egif:
+        config = EGIF_SMOKES[name]
+        egif_devices = ["mobile_390x844"] if config.get("mobile_only") else ["desktop"]
+        for device in egif_devices:
+            print(f"{name}::{device}: ejecutando", flush=True)
+            rows.append(run_case(args.chrome, config["map"], device, config))
     for scenario in scenarios:
         for device in devices:
             print(f"{scenario}::{device}: ejecutando", flush=True)

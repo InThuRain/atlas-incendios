@@ -10,7 +10,7 @@
     <main class="runtime-shell">
       <section id="map" aria-label="Mapa nacional experimental de perímetros ESFire30"></section>
       <aside class="panel" aria-label="Información del prototipo">
-        <p class="eyebrow">Prototipo aislado · ES-4C1A</p>
+        <p class="eyebrow">Prototipo aislado · ES-4C1B1</p>
         <h1>ESFire30 · España</h1>
         <p class="source-note">
           Perímetros derivados de teledetección Landsat (30 m), 1985–2021.
@@ -18,12 +18,25 @@
         </p>
         <p class="legend"><span aria-hidden="true"></span> Perímetro ESFire30 · teledetección documentada</p>
         <p class="source-note">Canarias no está cubierta por ESFire30.</p>
+        <fieldset class="scope-filter">
+          <legend>Ámbito EGIF</legend>
+          <label>Territorio
+            <select id="territory-scope">
+              <option value="ES">España</option>
+            </select>
+          </label>
+        </fieldset>
         <fieldset class="year-filter">
           <legend>Periodo mostrado</legend>
-          <label>Desde <input id="from-year" type="number" min="1985" max="2021" value="1985"></label>
-          <label>Hasta <input id="to-year" type="number" min="1985" max="2021" value="2021"></label>
+          <label>Desde <input id="from-year" type="number" min="1968" max="2023" value="1985"></label>
+          <label>Hasta <input id="to-year" type="number" min="1968" max="2023" value="2021"></label>
           <button id="apply-years" type="button">Aplicar</button>
         </fieldset>
+        <section class="egif-summary" aria-live="polite">
+          <h2>EGIF · partes administrativos</h2>
+          <p id="egif-status">Preparando resumen del manifest…</p>
+          <dl id="egif-metrics" hidden></dl>
+        </section>
         <section class="selection" aria-live="polite">
           <h2>Selección</h2>
           <p id="selection-summary">Pulsa o toca un perímetro para inspeccionarlo.</p>

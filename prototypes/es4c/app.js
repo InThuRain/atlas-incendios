@@ -1,12 +1,17 @@
 import { Protocol } from "/data/derived/spain/es3/tools/browser/pmtiles-4.3.0.mjs";
+import { EGIFInitialLoader } from "./egif_initial_loader.mjs";
+import { TERRITORY_OPTIONS } from "./territory_catalog.mjs";
 
 const ARCHIVE_PATH = "/data/derived/spain/es3/assets/esfire30-national-fidelity.pmtiles";
 const SOURCE_ID = "esfire30";
 const SOURCE_LAYER = "esfire30";
 const FILL_LAYER = "esfire30-perimeters";
 const SELECTED_LAYER = "esfire30-selected";
-const YEAR_MIN = 1985;
-const YEAR_MAX = 2021;
+const YEAR_MIN = 1968;
+const YEAR_MAX = 2023;
+const ESFIRE_YEAR_MIN = 1985;
+const ESFIRE_YEAR_MAX = 2021;
+const EGIF_MANIFEST_URL = "/data/web/spain/egif/2026-08-27/manifest.json";
 const DEFAULT_VIEW = { center: [-3.7, 40.3], zoom: 4 };
 const VIEWS = {
   spain: DEFAULT_VIEW,
@@ -19,6 +24,9 @@ const selectionSummary = document.querySelector("#selection-summary");
 const fromInput = document.querySelector("#from-year");
 const toInput = document.querySelector("#to-year");
 const applyButton = document.querySelector("#apply-years");
+const territoryScope = document.querySelector("#territory-scope");
+const egifStatus = document.querySelector("#egif-status");
+const egifMetrics = document.querySelector("#egif-metrics");
 const params = new URLSearchParams(location.search);
 const startedAt = performance.now();
 const initialHeap = performance.memory?.usedJSHeapSize ?? null;
@@ -28,8 +36,31 @@ const state = {
   zoom: DEFAULT_VIEW.zoom,
   from: YEAR_MIN,
   to: YEAR_MAX,
+  territory_scope: "ES",
+  autonomous_community_id: null,
   selected_geometry_id: null,
 };
+const egifLoader = new EGIFInitialLoader({ manifestUrl: EGIF_MANIFEST_URL });
+let egifReady = Promise.resolve();
+let latestEgifResult = null;
+
+for (const territory of TERRITORY_OPTIONS) {
+  const option = document.createElement("option");
+  option.value = territory.territory_id;
+  option.textContent = territory.label;
+  territoryScope.append(option);
+}
+state.from = clampYear(params.get("from"), ESFIRE_YEAR_MIN);
+state.to = clampYear(params.get("to"), ESFIRE_YEAR_MAX);
+if (state.from > state.to) [state.from, state.to] = [state.to, state.from];
+fromInput.value = String(state.from);
+toInput.value = String(state.to);
+const requestedTerritory = params.get("egif_scope");
+if (requestedTerritory && [...territoryScope.options].some((option) => option.value === requestedTerritory)) {
+  territoryScope.value = requestedTerritory;
+  state.territory_scope = requestedTerritory === "ES" ? "ES" : "autonomous_community";
+  state.autonomous_community_id = requestedTerritory === "ES" ? null : requestedTerritory;
+}
 
 const protocol = new Protocol();
 maplibregl.addProtocol("pmtiles", protocol.tile);
@@ -78,7 +109,10 @@ function clampYear(value, fallback) {
 function yearFilter() {
   // Tippecanoe conserva `year` como atributo de tesela; la conversión hace
   // explícita la comparación numérica sin depender de su serialización MVT.
-  return ["all", [">=", ["to-number", ["get", "year"]], state.from], ["<=", ["to-number", ["get", "year"]], state.to]];
+  const from = Math.max(state.from, ESFIRE_YEAR_MIN);
+  const to = Math.min(state.to, ESFIRE_YEAR_MAX);
+  if (from > to) return ["==", ["get", "year"], "__outside_esfire30_coverage__"];
+  return ["all", [">=", ["to-number", ["get", "year"]], from], ["<=", ["to-number", ["get", "year"]], to]];
 }
 
 function applyFilters() {
@@ -88,7 +122,7 @@ function applyFilters() {
     : ["==", ["get", "geometry_id"], "__none__"]);
 }
 
-function applyYears() {
+async function applyYears() {
   const from = clampYear(fromInput.value, YEAR_MIN);
   const to = clampYear(toInput.value, YEAR_MAX);
   state.from = Math.min(from, to);
@@ -96,6 +130,59 @@ function applyYears() {
   fromInput.value = String(state.from);
   toInput.value = String(state.to);
   applyFilters();
+  await refreshEgif();
+}
+
+function formatNumber(value, maximumFractionDigits = 0) {
+  return new Intl.NumberFormat("es-ES", { maximumFractionDigits }).format(value);
+}
+
+function renderEgifResult(result) {
+  latestEgifResult = result;
+  egifMetrics.hidden = true;
+  egifMetrics.replaceChildren();
+  if (result.status === "stale") return;
+  const summary = result.summary;
+  if (result.kind === "manifest_summary") {
+    egifStatus.textContent = `${formatNumber(summary.records)} partes EGIF disponibles en ${state.from}–${state.to}; España usa solo el manifest y no carga INITIAL.`;
+    const rows = [["Bloques implicados", summary.blocks.map(([from, to]) => `${from}–${to}`).join(", ")], ["Assets INITIAL no cargados", "0"]];
+    for (const [label, value] of rows) { const term = document.createElement("dt"); term.textContent = label; const definition = document.createElement("dd"); definition.textContent = value; egifMetrics.append(term, definition); }
+    egifMetrics.hidden = false;
+    return;
+  }
+  egifStatus.textContent = `${formatNumber(summary.records)} partes EGIF cargados en ${result.assets.length} asset(s) INITIAL. No hay geometrías EGIF ni enlaces con ESFire30.`;
+  const rows = [
+    ["GIF administrativos", formatNumber(summary.administrative_gif)],
+    ["Superficie forestal declarada (valores conocidos)", `${formatNumber(summary.known_forest_area_sum, 2)} ha`],
+    ["Partes con superficie forestal desconocida", formatNumber(summary.records_with_unknown_forest_area)],
+    ["Partes con municipio resuelto", formatNumber(summary.municipality_resolved)],
+    ["Partes sin municipio resuelto", formatNumber(summary.municipality_unresolved)],
+    ["Años con partes", formatNumber(Object.keys(summary.annual).length)],
+    ["Distribución anual", Object.entries(summary.annual).map(([year, count]) => `${year}: ${formatNumber(count)}`).join(" · ")],
+  ];
+  for (const [label, value] of rows) { const term = document.createElement("dt"); term.textContent = label; const definition = document.createElement("dd"); definition.textContent = value; egifMetrics.append(term, definition); }
+  egifMetrics.hidden = false;
+}
+
+async function refreshEgif() {
+  const territoryId = state.autonomous_community_id || "ES";
+  egifStatus.textContent = territoryId === "ES" ? "Calculando resumen EGIF desde el manifest…" : "Cargando assets INITIAL EGIF…";
+  try {
+    const result = await egifLoader.loadScope({ territoryId, fromYear: state.from, toYear: state.to });
+    renderEgifResult(result);
+    return result;
+  } catch (error) {
+    egifStatus.textContent = `EGIF no disponible: ${error.message}. ESFire30 continúa operativo.`;
+    latestEgifResult = { status: "error", error: String(error) };
+    return latestEgifResult;
+  }
+}
+
+async function setEgifScope(territoryId) {
+  territoryScope.value = territoryId;
+  state.territory_scope = territoryId === "ES" ? "ES" : "autonomous_community";
+  state.autonomous_community_id = territoryId === "ES" ? null : territoryId;
+  return refreshEgif();
 }
 
 function selectFeature(feature) {
@@ -168,10 +255,19 @@ map.on("click", FILL_LAYER, (event) => selectFeature(event.features?.[0]));
 map.on("mouseenter", FILL_LAYER, () => { map.getCanvas().style.cursor = "pointer"; });
 map.on("mouseleave", FILL_LAYER, () => { map.getCanvas().style.cursor = ""; });
 map.on("error", (event) => errors.push(String(event?.error || "MapLibre error")));
-applyButton.addEventListener("click", applyYears);
+applyButton.addEventListener("click", () => { applyYears(); });
+territoryScope.addEventListener("change", () => { setEgifScope(territoryScope.value); });
 
 async function runSmoke(name, initialReady = false) {
   if (!initialReady) await waitForIdle();
+  let cancellation = null;
+  if (params.get("egif_rapid") === "1") {
+    const obsolete = setEgifScope("ES:CCAA:12");
+    await Promise.resolve();
+    const current = setEgifScope("ES:CCAA:17");
+    const [obsoleteResult, currentResult] = await Promise.all([obsolete, current]);
+    cancellation = { obsolete_status: obsoleteResult.status, current_status: currentResult.status, final_territory_id: state.autonomous_community_id };
+  }
   const initial = {
     range: await rangeStats(), resources: resources(), usable_ms: performance.now() - startedAt,
     heap_delta_bytes: initialHeap === null || !performance.memory ? null : performance.memory.usedJSHeapSize - initialHeap,
@@ -193,7 +289,7 @@ async function runSmoke(name, initialReady = false) {
       .some((feature) => String(feature.properties?.geometry_id) === selection.geometry_id);
   }
   const result = {
-    prototype: "es4c1a",
+    prototype: "es4c1b1",
     scenario: name,
     archive: ARCHIVE_PATH,
     source: "ESFire30",
@@ -203,6 +299,8 @@ async function runSmoke(name, initialReady = false) {
     after_navigation: afterNavigation,
     after_selection: { range: await rangeStats(), resources: resources() },
     selection: { ...selection, stable_at_next_zoom: stableAtNextZoom },
+    egif: latestEgifResult,
+    cancellation,
     heap_delta_bytes: initialHeap === null || !performance.memory ? null : performance.memory.usedJSHeapSize - initialHeap,
     errors,
   };
@@ -213,11 +311,12 @@ async function runSmoke(name, initialReady = false) {
 
 map.once("idle", () => {
   applyFilters();
+  egifReady = refreshEgif();
   const smoke = params.get("smoke");
-  if (smoke) runSmoke(smoke, true).catch((error) => {
-    output.textContent = JSON.stringify({ prototype: "es4c1a", scenario: smoke, errors: [...errors, String(error)] });
-    output.dataset.complete = "true";
-  });
+  if (smoke) egifReady.then(() => runSmoke(smoke, true)).catch((error) => {
+      output.textContent = JSON.stringify({ prototype: "es4c1b1", scenario: smoke, errors: [...errors, String(error)] });
+      output.dataset.complete = "true";
+    });
 });
 
 window.__es4cRuntime = {
@@ -225,6 +324,9 @@ window.__es4cRuntime = {
   getState: () => ({ ...state }),
   selectFirstRenderedFeature,
   applyYears,
+  setEgifScope,
+  refreshEgif,
+  getEgifResult: () => latestEgifResult,
   runSmoke,
   ARCHIVE_PATH,
 };
