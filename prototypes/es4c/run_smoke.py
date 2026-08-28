@@ -63,6 +63,18 @@ C1C2_SMOKES = {
     "h_history_restore": {"map": "pais_valencia", "from": 1995, "to": 1995, "scope": "ES:CCAA:10", "roundtrip": "none", "history_test": True, "expect_geometry": True, "records": 467},
     "i_mobile_copy_restore": {"map": "pais_valencia", "from": 1995, "to": 1995, "scope": "ES:CCAA:10", "roundtrip": "both", "expect_geometry": True, "records": 467, "require_egif_selection": True, "require_geometry_selection": True, "mobile_only": True},
 }
+C2A_SMOKES = {
+    "a_spain_boundaries": {"map": "spain", "from": 1995, "to": 1995, "scope": "ES", "expect_geometry": True, "expected_territory": None},
+    "b_pais_valencia_click": {"map": "pais_valencia", "from": 1993, "to": 2002, "scope": "ES", "territory_click": "ES:CCAA:10", "expect_geometry": True, "expected_territory": "ES:CCAA:10", "records": 5159, "initial_requests": 1},
+    "c_galicia_selector": {"map": "galicia", "from": 1993, "to": 2002, "scope": "ES", "territory_select": "ES:CCAA:12", "expect_geometry": True, "expected_territory": "ES:CCAA:12", "records": 110605, "initial_requests": 1},
+    "d_andalucia_selector": {"map": "spain", "from": 1993, "to": 2002, "scope": "ES", "territory_select": "ES:CCAA:01", "expect_geometry": False, "expected_territory": "ES:CCAA:01"},
+    "e_canarias_selector": {"map": "spain", "from": 1995, "to": 1995, "scope": "ES", "territory_select": "ES:CCAA:05", "expect_geometry": False, "expected_territory": "ES:CCAA:05"},
+    "f_baleares_selector": {"map": "spain", "from": 1995, "to": 1995, "scope": "ES", "territory_select": "ES:CCAA:04", "expect_geometry": False, "expected_territory": "ES:CCAA:04"},
+    "g_ceuta_selector": {"map": "spain", "from": 1995, "to": 1995, "scope": "ES", "territory_select": "ES:CCAA:18", "expect_geometry": False, "expected_territory": "ES:CCAA:18"},
+    "h_melilla_selector": {"map": "spain", "from": 1995, "to": 1995, "scope": "ES", "territory_select": "ES:CCAA:19", "expect_geometry": False, "expected_territory": "ES:CCAA:19"},
+    "i_restore_c1c2_gva": {"map": "pais_valencia", "from": 1995, "to": 1995, "scope": "ES", "state_hash": "#es4c-state-v1=eyJ2IjoiZXM0Yy1zdGF0ZS12MSIsIm1hcCI6eyJsYXQiOjM5LjMsImxvbiI6LTAuNywieiI6OH0sInRpbWUiOnsiZnJvbSI6MTk5NSwidG8iOjE5OTV9LCJ0ZXJyaXRvcnkiOnsic2NvcGUiOiJhdXRvbm9tb3VzX2NvbW11bml0eSIsImF1dG9ub21vdXNfY29tbXVuaXR5X2lkIjoiRVM6Q0NBQToxMCJ9LCJzb3VyY2VzIjp7ImVzZmlyZTMwIjp0cnVlLCJlZ2lmIjp0cnVlfSwic2VsZWN0aW9ucyI6eyJnZW9tZXRyeV9pZCI6bnVsbCwiZWdpZl9yZWNvcmRfaWQiOm51bGx9fQ", "territory_restore": True, "expect_geometry": False, "expected_territory": "ES:CCAA:10", "records": 467, "initial_requests": 1, "expected_center": [-0.7, 39.3], "expected_zoom": 8},
+    "j_mobile_pais_valencia": {"map": "pais_valencia", "from": 1995, "to": 1995, "scope": "ES", "territory_select": "ES:CCAA:10", "expect_geometry": True, "expected_territory": "ES:CCAA:10", "records": 467, "initial_requests": 1, "mobile_only": True},
+}
 EXPECTED_SHA256 = "92f0f081131932075f54a89d86fc8aa7e5879d56ca4d7177c64562f9612751b4"
 
 
@@ -257,9 +269,17 @@ def run_case(chrome: str, scenario: str, device: str, egif_config: dict | None =
                 query["range_rapid"] = "1"
             if egif_config.get("history_test"):
                 query["history_test"] = "1"
+            if egif_config.get("territory_select"):
+                query["territory_select"] = egif_config["territory_select"]
+            if egif_config.get("territory_click"):
+                query["territory_click"] = egif_config["territory_click"]
+            if egif_config.get("territory_restore"):
+                query["territory_restore"] = "1"
         url = f"http://127.0.0.1:{server.server_port}/prototypes/es4c/index.html?{urlencode(query)}"
         if egif_config and egif_config.get("corrupt_hash"):
             url += egif_config["corrupt_hash"]
+        if egif_config and egif_config.get("state_hash"):
+            url += egif_config["state_hash"]
         if egif_config and egif_config.get("roundtrip"):
             prepare_query = dict(query)
             prepare_query["state_prepare"] = egif_config["roundtrip"]
@@ -336,6 +356,22 @@ def validate_results(payload: dict) -> list[str]:
                     errors.append(f"{label}: hash corrupto no aplicó defaults seguros")
             if expected_egif.get("history_test") and result.get("history_round_trip", {}).get("final_range") != {"from": 1995, "to": 1995}:
                 errors.append(f"{label}: back/forward básico no restauró el estado")
+            expected_territory = expected_egif.get("expected_territory", "__absent__")
+            if expected_territory != "__absent__":
+                territory = result.get("territory_layer", {})
+                if not territory.get("loaded"):
+                    errors.append(f"{label}: capa territorial BDLJE no cargó")
+                elif territory.get("selected_territory_id") != expected_territory:
+                    errors.append(f"{label}: highlight territorial inesperado")
+                if expected_territory and not territory.get("selected_bounds"):
+                    errors.append(f"{label}: territorio seleccionado sin bounds oficiales")
+            if expected_egif.get("expected_center"):
+                center = result.get("state", {}).get("center") or []
+                expected_center = expected_egif["expected_center"]
+                if len(center) != 2 or any(abs(center[index] - expected_center[index]) > 0.0001 for index in range(2)):
+                    errors.append(f"{label}: restore territorial cambió el centro serializado")
+                if abs(result.get("state", {}).get("zoom", 0) - expected_egif["expected_zoom"]) > 0.01:
+                    errors.append(f"{label}: restore territorial cambió el zoom serializado")
             if expected_egif.get("detail"):
                 detail = result.get("egif_detail", {})
                 if not detail or detail.get("status") == "missing_initial":
@@ -381,6 +417,8 @@ def main() -> int:
     parser.add_argument("--all-c1c-smokes", action="store_true")
     parser.add_argument("--c1c2-smoke", choices=tuple(C1C2_SMOKES), action="append")
     parser.add_argument("--all-c1c2-smokes", action="store_true")
+    parser.add_argument("--c2a-smoke", choices=tuple(C2A_SMOKES), action="append")
+    parser.add_argument("--all-c2a-smokes", action="store_true")
     parser.add_argument("--output", type=Path, default=ROOT / "prototypes/es4c/smoke-results.json")
     parser.add_argument("--check", action="store_true")
     parser.add_argument("--serve", action="store_true", help="sirve el prototipo interactivo local con HTTP Range")
@@ -406,7 +444,8 @@ def main() -> int:
     requested_detail = args.egif_detail_smoke or (tuple(EGIF_DETAIL_SMOKES) if args.all_egif_detail_smokes else ())
     requested_c1c = args.c1c_smoke or (tuple(C1C_SMOKES) if args.all_c1c_smokes else ())
     requested_c1c2 = args.c1c2_smoke or (tuple(C1C2_SMOKES) if args.all_c1c2_smokes else ())
-    scenarios = args.scenario or (SCENARIOS if args.all_smokes else (() if (requested_egif or requested_detail or requested_c1c or requested_c1c2) else ("spain",)))
+    requested_c2a = args.c2a_smoke or (tuple(C2A_SMOKES) if args.all_c2a_smokes else ())
+    scenarios = args.scenario or (SCENARIOS if args.all_smokes else (() if (requested_egif or requested_detail or requested_c1c or requested_c1c2 or requested_c2a) else ("spain",)))
     devices = []
     if args.desktop or not args.mobile:
         devices.append("desktop")
@@ -435,6 +474,12 @@ def main() -> int:
         config = C1C2_SMOKES[name]
         c1c2_devices = ["mobile_390x844"] if config.get("mobile_only") else ["desktop"]
         for device in c1c2_devices:
+            print(f"{name}::{device}: ejecutando", flush=True)
+            rows.append(run_case(args.chrome, config["map"], device, config))
+    for name in requested_c2a:
+        config = C2A_SMOKES[name]
+        c2a_devices = ["mobile_390x844"] if config.get("mobile_only") else ["desktop"]
+        for device in c2a_devices:
             print(f"{name}::{device}: ejecutando", flush=True)
             rows.append(run_case(args.chrome, config["map"], device, config))
     for scenario in scenarios:

@@ -10,6 +10,7 @@ body { color: #1d2a24; background: #edf2ee; }
 .eyebrow { margin: 0 0 .25rem; color: #647168; font-size: .7rem; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; }
 h1, h2 { margin: 0; } h1 { font-size: 1.1rem; } h2 { font-size: .95rem; }
 .source-note, .attribution { line-height: 1.4; }.attribution { color: #536159; font-size: .74rem; }
+#territory-status { margin: -.35rem .15rem .75rem; color: #536159; font-size: .75rem; }
 .legend { display: flex; align-items: center; gap: .45rem; margin: .6rem 0; font-weight: 650; line-height: 1.25; }
 .legend span { display: inline-block; width: .95rem; height: .7rem; border: 2px solid #76321f; background: rgb(181 77 47 / .42); }
 .year-filter, .scope-filter, .source-filter { display: grid; grid-template-columns: 1fr 1fr; gap: .4rem; margin: .8rem 0; padding: .55rem; border: 1px solid #c8d3cb; }

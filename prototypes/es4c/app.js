@@ -4,6 +4,7 @@ import { EGIFDetailLoader, locateRecord, pageOfInitialRows } from "./egif_detail
 import { canonicalTerritoryName, TERRITORY_OPTIONS } from "./territory_catalog.mjs";
 import { createRuntimeState, effectiveCoverage, reduceRuntimeState, SOURCE_COVERAGE } from "./runtime_state.mjs";
 import { parseStateHash, serializeState } from "./state_serialization.mjs";
+import { addOfficialTerritoryLayer } from "./territory_layer.mjs";
 
 const ARCHIVE_PATH = "/data/derived/spain/es3/assets/esfire30-national-fidelity.pmtiles";
 const SOURCE_ID = "esfire30";
@@ -46,6 +47,7 @@ const sourceCoverage = document.querySelector("#source-coverage");
 const runtimeStateSummary = document.querySelector("#runtime-state-summary");
 const copyStateLink = document.querySelector("#copy-state-link");
 const copyStateStatus = document.querySelector("#copy-state-status");
+const territoryStatus = document.querySelector("#territory-status");
 const params = new URLSearchParams(location.search);
 const startedAt = performance.now();
 const initialHeap = performance.memory?.usedJSHeapSize ?? null;
@@ -65,6 +67,8 @@ const EGIF_PAGE_SIZE = 50;
 const territoryIds = new Set(TERRITORY_OPTIONS.map((territory) => territory.territory_id));
 let stateHydrated = false;
 let restoringFromUrl = false;
+let territoryLayer = null;
+let territoryLayerError = null;
 
 for (const territory of TERRITORY_OPTIONS) {
   const option = document.createElement("option");
@@ -126,6 +130,23 @@ const map = new maplibregl.Map({
   },
 });
 map.addControl(new maplibregl.NavigationControl({ showCompass: true }), "bottom-right");
+
+const territoryLayerReady = new Promise((resolve) => {
+  map.once("load", () => {
+    addOfficialTerritoryLayer(map, {
+      onSelect: (territoryId) => { setEgifScope(territoryId); },
+    }).then((layer) => {
+      territoryLayer = layer;
+      syncTerritoryLayer();
+      territoryStatus.textContent = "Límite oficial BDLJE cargado. Este ámbito controla EGIF; ESFire30 aún no se filtra territorialmente.";
+      resolve(layer);
+    }).catch((error) => {
+      territoryLayerError = String(error);
+      territoryStatus.textContent = `Límite oficial no disponible: ${error.message}. EGIF y ESFire30 continúan independientemente.`;
+      resolve(null);
+    });
+  });
+});
 
 function clampYear(value, fallback) {
   const parsed = Number(value);
@@ -195,6 +216,12 @@ function transition(event) {
   return state;
 }
 
+function syncTerritoryLayer({ fit = false } = {}) {
+  if (!territoryLayer) return false;
+  territoryLayer.setSelected(state.autonomous_community_id);
+  return fit ? territoryLayer.fit(state.autonomous_community_id) : true;
+}
+
 function sourceCoverageDescription(sourceId) {
   const source = SOURCE_COVERAGE[sourceId];
   const range = effectiveCoverage(state, sourceId);
@@ -213,7 +240,7 @@ function renderRuntimeState() {
     sourceCoverage.append(item);
   }
   const egifSummary = latestEgifResult?.summary;
-  const territory = state.autonomous_community_id || "España";
+  const territory = territoryScope.selectedOptions[0]?.textContent || "España";
   const esfireVisible = state.esfire30_visible && effectiveCoverage(state, "esfire30")
     ? map.queryRenderedFeatures({ layers: [FILL_LAYER] }).length : 0;
   runtimeStateSummary.textContent = `Periodo solicitado: ${state.from}–${state.to} · ámbito: ${territory} · fuentes: ESFire30 ${state.esfire30_visible ? "activa" : "desactivada"}, EGIF ${state.egif_visible ? "activa" : "desactivada"} · EGIF INITIAL: ${activeInitialAssets.length} asset(s), ${egifSummary?.summary?.records ?? egifSummary?.records ?? 0} partes · ESFire30 visibles en viewport: ${formatNumber(esfireVisible)}.`;
@@ -444,9 +471,11 @@ async function refreshEgif() {
   }
 }
 
-async function setEgifScope(territoryId) {
+async function setEgifScope(territoryId, { fit = true } = {}) {
   territoryScope.value = territoryId;
   transition({ type: "set_scope", territory_id: territoryId });
+  await territoryLayerReady;
+  syncTerritoryLayer({ fit });
   return refreshSources();
 }
 
@@ -499,6 +528,10 @@ async function restoreStateFromHash() {
   esfireVisibleInput.checked = state.esfire30_visible;
   egifVisibleInput.checked = state.egif_visible;
   map.jumpTo({ center: state.center, zoom: state.zoom });
+  await territoryLayerReady;
+  // La URL contiene su propia vista. Solo se resalta el límite; no se hace
+  // fitBounds durante restauración porque destruiría center/zoom compartidos.
+  syncTerritoryLayer();
   applyFilters();
   await refreshSources();
   await waitForIdle();
@@ -668,6 +701,17 @@ async function runSmoke(name, initialReady = false) {
   const preparedRoundTrip = params.get("state_prepare")
     ? await prepareStateRoundTrip(params.get("state_prepare"), name) : null;
   let cancellation = null;
+  let territoryInteraction = null;
+  if (params.get("territory_select") || params.get("territory_click")) {
+    const territoryId = params.get("territory_select") || params.get("territory_click");
+    if (params.get("territory_click")) {
+      // Reutiliza exactamente la misma ruta que el listener de clic de la
+      // feature administrativa, no una deducción desde ESFire30.
+      await territoryLayer.selectFromFeature(territoryLayer.byId.get(territoryId));
+    } else await setEgifScope(territoryId);
+    await waitForIdle();
+    territoryInteraction = { mode: params.get("territory_click") ? "click_feature" : "selector", territory_id: state.autonomous_community_id, center: [...state.center], zoom: state.zoom };
+  }
   if (params.get("egif_rapid") === "1") {
     const obsolete = setEgifScope("ES:CCAA:12");
     await Promise.resolve();
@@ -710,12 +754,12 @@ async function runSmoke(name, initialReady = false) {
     source_feature_sample: map.querySourceFeatures(SOURCE_ID, { sourceLayer: SOURCE_LAYER })[0]?.properties ?? null,
   };
   const view = VIEWS[name] || VIEWS.spain;
-  if (name !== "spain") {
+  if (name !== "spain" && params.get("territory_restore") !== "1") {
     map.jumpTo({ center: view.center, zoom: view.zoom });
     await waitForIdle();
   }
   const afterNavigation = { range: await rangeStats(), resources: resources() };
-  const selection = selectFirstRenderedFeature();
+  const selection = params.get("territory_restore") === "1" ? null : selectFirstRenderedFeature();
   let stableAtNextZoom = false;
   if (selection) {
     map.jumpTo({ center: selection.representative_coordinate || map.getCenter(), zoom: Math.min(map.getZoom() + 1, 14) });
@@ -748,6 +792,14 @@ async function runSmoke(name, initialReady = false) {
     copy_result: preparedRoundTrip?.copied || null,
     prepared_round_trip: preparedRoundTrip,
     source_toggle: sourceToggle,
+    territory_layer: territoryLayer ? {
+      loaded: true,
+      selected_territory_id: state.autonomous_community_id,
+      selected_bounds: state.autonomous_community_id ? territoryLayer.byId.get(state.autonomous_community_id)?.properties?.bounds || null : null,
+      national_bounds: territoryLayer.collection.metadata?.national_bounds || null,
+      interaction: territoryInteraction,
+      error: null,
+    } : { loaded: false, error: territoryLayerError },
     coverage: coverageStatePayload(),
     heap_delta_bytes: initialHeap === null || !performance.memory ? null : performance.memory.usedJSHeapSize - initialHeap,
     errors,
@@ -758,19 +810,21 @@ async function runSmoke(name, initialReady = false) {
 }
 
 map.once("idle", () => {
-  applyFilters();
-  renderRuntimeState();
-  egifReady = refreshSources().then(async () => {
+  territoryLayerReady.then(async () => {
+    applyFilters();
+    renderRuntimeState();
+    egifReady = refreshSources().then(async () => {
     await restoreSelectionsFromState();
     stateHydrated = true;
     renderRuntimeState();
     replaceStateUrl();
-  });
-  const smoke = params.get("smoke");
-  if (smoke) egifReady.then(() => runSmoke(smoke, true)).catch((error) => {
+    });
+    const smoke = params.get("smoke");
+    if (smoke) egifReady.then(() => runSmoke(smoke, true)).catch((error) => {
       output.textContent = JSON.stringify({ prototype: "es4c1c2", scenario: smoke, errors: [...errors, String(error)] });
       output.dataset.complete = "true";
     });
+  });
 });
 
 window.__es4cRuntime = {
@@ -786,6 +840,7 @@ window.__es4cRuntime = {
   serializeState: () => serializeState(state),
   restoreStateFromHash,
   copyCurrentStateLink,
+  territoryLayerReady,
   getEgifResult: () => latestEgifResult,
   runSmoke,
   ARCHIVE_PATH,

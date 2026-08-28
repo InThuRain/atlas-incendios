@@ -10,7 +10,7 @@
     <main class="runtime-shell">
       <section id="map" aria-label="Mapa nacional experimental de perímetros ESFire30"></section>
       <aside class="panel" aria-label="Información del prototipo">
-        <p class="eyebrow">Prototipo aislado · ES-4C1C1</p>
+        <p class="eyebrow">Prototipo aislado · ES-4C2A1</p>
         <h1>ESFire30 · España</h1>
         <p class="source-note">
           Perímetros derivados de teledetección Landsat (30 m), 1985–2021.
@@ -19,13 +19,15 @@
         <p class="legend"><span aria-hidden="true"></span> Perímetro ESFire30 · teledetección documentada</p>
         <p class="source-note">Canarias no está cubierta por ESFire30.</p>
         <fieldset class="scope-filter">
-          <legend>Ámbito EGIF</legend>
+          <legend>Ámbito territorial</legend>
           <label>Territorio
             <select id="territory-scope">
               <option value="ES">España</option>
             </select>
           </label>
         </fieldset>
+        <p id="territory-status" class="source-note">Cargando límite administrativo oficial…</p>
+        <p class="source-note">El ámbito resalta el límite oficial y controla EGIF; ESFire30 no se filtra territorialmente todavía.</p>
         <fieldset class="year-filter">
           <legend>Periodo mostrado</legend>
           <label>Desde <input id="from-year" type="number" min="1968" max="2023" value="1985"></label>
@@ -80,6 +82,7 @@
           <p id="selection-summary">Pulsa o toca un perímetro para inspeccionarlo.</p>
         </section>
         <p class="attribution">Fuente: ESFire30 Causes, UAH/CSIC, CC BY 4.0. Atlas: CRS transformado y teselas diagnósticas generadas a partir del snapshot auditado.</p>
+        <p class="attribution">Límites territoriales: Obra derivada de BDLJE CC-BY 4.0 ign.es.</p>
       </aside>
     </main>
     <pre id="debug-output" aria-hidden="true"></pre>

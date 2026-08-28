@@ -1,0 +1,442 @@
+{
+  "schema_version": "es4c2a1-ccaa-manifest-v1",
+  "phase": "ES-4C2A1 prototype only",
+  "generated_at": "2026-08-28T00:00:00Z",
+  "source": {
+    "organization": "IGN / CNIG",
+    "product": "BDLJE / Límites y Unidades Administrativas Actuales · collection administrativeunit",
+    "url": "https://api-features.ign.es/collections/administrativeunit/items?f=json&limit=100&nationallevelname=Comunidad%20aut%C3%B3noma",
+    "retrieved_at": "2026-08-26",
+    "raw_path": "data/raw/territories/spain/ign-ogc-2026-08-26/autonomous-territories.geojson",
+    "raw_bytes": 156859995,
+    "raw_sha256": "48d1cd7b1cc2a3a98f6d02a0043fddc8db43ba28aaa8789d6b030243417bf757",
+    "format": "GeoJSON FeatureCollection via OGC API Features",
+    "release_metadata": {
+      "shapefile": "2026-07-28",
+      "gml": "2026-08-10"
+    },
+    "native_crs": "ETRS89 geographic (península, Baleares, Ceuta y Melilla); REGCAN95 geographic (Canarias)",
+    "license": "CC BY 4.0",
+    "attribution": "Obra derivada de BDLJE CC-BY 4.0 ign.es"
+  },
+  "source_schema": {
+    "layer": "administrativeunit",
+    "source_features": 20,
+    "used_features": 19,
+    "excluded_features": [
+      {
+        "nationalcode": "34200000000",
+        "reason": "territorios no asociados a ninguna autonomía"
+      }
+    ],
+    "fields_used": [
+      "nationalcode",
+      "nameunit",
+      "nationallevelname"
+    ]
+  },
+  "crosswalk": [
+    {
+      "territory_id": "ES:CCAA:01",
+      "source_code": "34010000000",
+      "source_name": "Andalucía",
+      "official_name": "Andalucía",
+      "territory_type": "autonomous_community",
+      "geometry_type": "MultiPolygon",
+      "geometry_parts": 129,
+      "bounds": [
+        -7.5230471,
+        35.937646,
+        -1.6301237,
+        38.7290874
+      ],
+      "original_vertices": 84643,
+      "derived_vertices": 18073,
+      "relative_area_error_percent": 0.000199841646943507,
+      "hausdorff_distance_m": 9.998324903231232
+    },
+    {
+      "territory_id": "ES:CCAA:02",
+      "source_code": "34020000000",
+      "source_name": "Aragón",
+      "official_name": "Aragón",
+      "territory_type": "autonomous_community",
+      "geometry_type": "Polygon",
+      "geometry_parts": 1,
+      "bounds": [
+        -2.1736713,
+        39.8467782,
+        0.7713067,
+        42.9243863
+      ],
+      "original_vertices": 38548,
+      "derived_vertices": 9161,
+      "relative_area_error_percent": 6.108737855592963e-06,
+      "hausdorff_distance_m": 9.998654279480682
+    },
+    {
+      "territory_id": "ES:CCAA:03",
+      "source_code": "34030000000",
+      "source_name": "Principado de Asturias",
+      "official_name": "Asturias, Principado de",
+      "territory_type": "autonomous_community",
+      "geometry_type": "MultiPolygon",
+      "geometry_parts": 702,
+      "bounds": [
+        -7.1824889,
+        42.8825428,
+        -4.5105015,
+        43.6665322
+      ],
+      "original_vertices": 45997,
+      "derived_vertices": 14246,
+      "relative_area_error_percent": 0.0009055683069169364,
+      "hausdorff_distance_m": 9.999775629431669
+    },
+    {
+      "territory_id": "ES:CCAA:04",
+      "source_code": "34040000000",
+      "source_name": "Illes Balears",
+      "official_name": "Balears, Illes",
+      "territory_type": "autonomous_community",
+      "geometry_type": "MultiPolygon",
+      "geometry_parts": 446,
+      "bounds": [
+        1.1572766,
+        38.6403876,
+        4.327784,
+        40.0945744
+      ],
+      "original_vertices": 101704,
+      "derived_vertices": 24300,
+      "relative_area_error_percent": 0.0014177410728959078,
+      "hausdorff_distance_m": 9.99907465055164
+    },
+    {
+      "territory_id": "ES:CCAA:05",
+      "source_code": "34050000000",
+      "source_name": "Canarias",
+      "official_name": "Canarias",
+      "territory_type": "autonomous_community",
+      "geometry_type": "MultiPolygon",
+      "geometry_parts": 1074,
+      "bounds": [
+        -18.1611787,
+        27.6377231,
+        -13.3349584,
+        29.4164194
+      ],
+      "original_vertices": 169514,
+      "derived_vertices": 29647,
+      "relative_area_error_percent": 0.0019916710005673907,
+      "hausdorff_distance_m": 9.999407690514635
+    },
+    {
+      "territory_id": "ES:CCAA:06",
+      "source_code": "34060000000",
+      "source_name": "Cantabria",
+      "official_name": "Cantabria",
+      "territory_type": "autonomous_community",
+      "geometry_type": "MultiPolygon",
+      "geometry_parts": 79,
+      "bounds": [
+        -4.8517354,
+        42.7580499,
+        -3.1496347,
+        43.513693
+      ],
+      "original_vertices": 18509,
+      "derived_vertices": 7308,
+      "relative_area_error_percent": 0.0002548026023466524,
+      "hausdorff_distance_m": 9.994566657083803
+    },
+    {
+      "territory_id": "ES:CCAA:07",
+      "source_code": "34070000000",
+      "source_name": "Castilla y León",
+      "official_name": "Castilla y León",
+      "territory_type": "autonomous_community",
+      "geometry_type": "MultiPolygon",
+      "geometry_parts": 6,
+      "bounds": [
+        -7.0770689,
+        40.0819315,
+        -1.7753716,
+        43.2382042
+      ],
+      "original_vertices": 29559,
+      "derived_vertices": 13781,
+      "relative_area_error_percent": 4.299045068641327e-06,
+      "hausdorff_distance_m": 9.998827343812392
+    },
+    {
+      "territory_id": "ES:CCAA:08",
+      "source_code": "34080000000",
+      "source_name": "Castilla-La Mancha",
+      "official_name": "Castilla-La Mancha",
+      "territory_type": "autonomous_community",
+      "geometry_type": "MultiPolygon",
+      "geometry_parts": 2,
+      "bounds": [
+        -5.4061837,
+        38.0218377,
+        -0.9157933,
+        41.3276322
+      ],
+      "original_vertices": 30970,
+      "derived_vertices": 11027,
+      "relative_area_error_percent": 5.6617459242320194e-05,
+      "hausdorff_distance_m": 9.994944071003243
+    },
+    {
+      "territory_id": "ES:CCAA:09",
+      "source_code": "34090000000",
+      "source_name": "Cataluña/Catalunya",
+      "official_name": "Cataluña",
+      "territory_type": "autonomous_community",
+      "geometry_type": "MultiPolygon",
+      "geometry_parts": 745,
+      "bounds": [
+        0.1590703,
+        40.5229684,
+        3.3325414,
+        42.8614189
+      ],
+      "original_vertices": 149499,
+      "derived_vertices": 23634,
+      "relative_area_error_percent": 0.0002454603184037893,
+      "hausdorff_distance_m": 9.999831105950102
+    },
+    {
+      "territory_id": "ES:CCAA:10",
+      "source_code": "34100000000",
+      "source_name": "Comunitat Valenciana",
+      "official_name": "Comunitat Valenciana",
+      "territory_type": "autonomous_community",
+      "geometry_type": "MultiPolygon",
+      "geometry_parts": 79,
+      "bounds": [
+        -1.528778,
+        37.8437849,
+        0.6903133,
+        40.7886312
+      ],
+      "original_vertices": 70585,
+      "derived_vertices": 11530,
+      "relative_area_error_percent": 0.00035064980055920467,
+      "hausdorff_distance_m": 9.999669711652485
+    },
+    {
+      "territory_id": "ES:CCAA:11",
+      "source_code": "34110000000",
+      "source_name": "Extremadura",
+      "official_name": "Extremadura",
+      "territory_type": "autonomous_community",
+      "geometry_type": "Polygon",
+      "geometry_parts": 1,
+      "bounds": [
+        -7.5413318,
+        37.941026,
+        -4.6475774,
+        40.4866514
+      ],
+      "original_vertices": 15034,
+      "derived_vertices": 7930,
+      "relative_area_error_percent": 2.4314998528052863e-05,
+      "hausdorff_distance_m": 9.991567424315871
+    },
+    {
+      "territory_id": "ES:CCAA:12",
+      "source_code": "34120000000",
+      "source_name": "Galicia",
+      "official_name": "Galicia",
+      "territory_type": "autonomous_community",
+      "geometry_type": "MultiPolygon",
+      "geometry_parts": 1779,
+      "bounds": [
+        -9.301509,
+        41.8072331,
+        -6.7339533,
+        43.7923796
+      ],
+      "original_vertices": 144445,
+      "derived_vertices": 43592,
+      "relative_area_error_percent": 0.0008124537143373965,
+      "hausdorff_distance_m": 9.999614253328506
+    },
+    {
+      "territory_id": "ES:CCAA:13",
+      "source_code": "34130000000",
+      "source_name": "Comunidad de Madrid",
+      "official_name": "Madrid, Comunidad de",
+      "territory_type": "autonomous_community",
+      "geometry_type": "MultiPolygon",
+      "geometry_parts": 2,
+      "bounds": [
+        -4.5790762,
+        39.8847193,
+        -3.0529833,
+        41.1658448
+      ],
+      "original_vertices": 21212,
+      "derived_vertices": 4258,
+      "relative_area_error_percent": 7.07105356531991e-05,
+      "hausdorff_distance_m": 9.994944071003243
+    },
+    {
+      "territory_id": "ES:CCAA:14",
+      "source_code": "34140000000",
+      "source_name": "Región de Murcia",
+      "official_name": "Murcia, Región de",
+      "territory_type": "autonomous_community",
+      "geometry_type": "MultiPolygon",
+      "geometry_parts": 99,
+      "bounds": [
+        -2.3441843,
+        37.3737525,
+        -0.647983,
+        38.7550843
+      ],
+      "original_vertices": 34723,
+      "derived_vertices": 6128,
+      "relative_area_error_percent": 0.00012797053240624725,
+      "hausdorff_distance_m": 9.999627165062131
+    },
+    {
+      "territory_id": "ES:CCAA:15",
+      "source_code": "34150000000",
+      "source_name": "Comunidad Foral de Navarra",
+      "official_name": "Navarra, Comunidad Foral de",
+      "territory_type": "autonomous_community",
+      "geometry_type": "MultiPolygon",
+      "geometry_parts": 3,
+      "bounds": [
+        -2.5000827,
+        41.9098937,
+        -0.7240924,
+        43.3148431
+      ],
+      "original_vertices": 14142,
+      "derived_vertices": 4725,
+      "relative_area_error_percent": 2.4588298077680775e-06,
+      "hausdorff_distance_m": 9.992850976146315
+    },
+    {
+      "territory_id": "ES:CCAA:16",
+      "source_code": "34160000000",
+      "source_name": "País Vasco/Euskadi",
+      "official_name": "País Vasco",
+      "territory_type": "autonomous_community",
+      "geometry_type": "MultiPolygon",
+      "geometry_parts": 33,
+      "bounds": [
+        -3.4503314,
+        42.4723634,
+        -1.7293689,
+        43.4572102
+      ],
+      "original_vertices": 19669,
+      "derived_vertices": 7283,
+      "relative_area_error_percent": 0.00017073910534758904,
+      "hausdorff_distance_m": 9.998263782689351
+    },
+    {
+      "territory_id": "ES:CCAA:17",
+      "source_code": "34170000000",
+      "source_name": "La Rioja",
+      "official_name": "Rioja, La",
+      "territory_type": "autonomous_community",
+      "geometry_type": "Polygon",
+      "geometry_parts": 1,
+      "bounds": [
+        -3.1342714,
+        41.919034,
+        -1.6787015,
+        42.6442647
+      ],
+      "original_vertices": 3885,
+      "derived_vertices": 2636,
+      "relative_area_error_percent": 0.00025507115979417377,
+      "hausdorff_distance_m": 9.99075536580503
+    },
+    {
+      "territory_id": "ES:CCAA:18",
+      "source_code": "34180000000",
+      "source_name": "Ciudad Autónoma de Ceuta",
+      "official_name": "Ceuta",
+      "territory_type": "autonomous_city",
+      "geometry_type": "Polygon",
+      "geometry_parts": 1,
+      "bounds": [
+        -5.3820607,
+        35.8707385,
+        -5.2782948,
+        35.9179785
+      ],
+      "original_vertices": 2758,
+      "derived_vertices": 563,
+      "relative_area_error_percent": 0.05451534205509706,
+      "hausdorff_distance_m": 9.960261553594313
+    },
+    {
+      "territory_id": "ES:CCAA:19",
+      "source_code": "34190000000",
+      "source_name": "Ciudad Autónoma de Melilla",
+      "official_name": "Melilla",
+      "territory_type": "autonomous_city",
+      "geometry_type": "Polygon",
+      "geometry_parts": 1,
+      "bounds": [
+        -2.9702955,
+        35.2654885,
+        -2.923187,
+        35.3203002
+      ],
+      "original_vertices": 1218,
+      "derived_vertices": 182,
+      "relative_area_error_percent": 0.025826298497643542,
+      "hausdorff_distance_m": 9.927894730535062
+    }
+  ],
+  "derived": {
+    "path": "data/derived/spain/es4c2a/ccaa.geojson",
+    "format": "GeoJSON FeatureCollection",
+    "web_crs": "EPSG:4326",
+    "logical_territories": 19,
+    "raw_bytes": 8211747,
+    "gzip_bytes": 2661917,
+    "sha256": "86fa15441605a0a95784fde45d1feffb302b6defc79b44665a64e02e5805535d",
+    "simplification_tolerance_m": 10.0,
+    "vertices": {
+      "original": 996614,
+      "derived": 240004,
+      "reduction_percent": 75.91805854623756
+    },
+    "simplification_error": {
+      "relative_area_error_percent": {
+        "max": 0.05451534205509706,
+        "p95": 0.025826298497643542
+      },
+      "hausdorff_distance_m": {
+        "max": 9.999831105950102,
+        "p95": 9.999775629431669
+      }
+    },
+    "national_bounds": [
+      -18.1611787,
+      27.6377231,
+      4.327784,
+      43.7923796
+    ]
+  },
+  "validation": {
+    "unique_territory_ids": 19,
+    "all_geometry_valid": true,
+    "all_geometry_non_null": true,
+    "canarias_present": true,
+    "baleares_present": true,
+    "ceuta_present": true,
+    "melilla_present": true,
+    "multiparts_preserved": true
+  }
+}
