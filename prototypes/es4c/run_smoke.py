@@ -31,6 +31,16 @@ EGIF_SMOKES = {
     "e_rapid_galicia_to_rioja": {"map": "spain", "from": 1993, "to": 2002, "scope": "ES", "rapid": True, "records": 1191, "final_scope": "ES:CCAA:17"},
     "f_mobile_pais_valencia": {"map": "pais_valencia", "from": 1993, "to": 2002, "scope": "ES:CCAA:10", "records": 5159, "initial_requests": 1, "mobile_only": True},
 }
+EGIF_DETAIL_SMOKES = {
+    "a_gva_first_detail": {"map": "pais_valencia", "from": 1993, "to": 2002, "scope": "ES:CCAA:10", "detail": "single", "detail_requests": 1},
+    "b_same_asset_cache": {"map": "pais_valencia", "from": 1993, "to": 2002, "scope": "ES:CCAA:10", "detail": "same_asset", "detail_requests": 1, "cached_second": True},
+    "c_other_block": {"map": "pais_valencia", "from": 1993, "to": 2002, "scope": "ES:CCAA:10", "detail": "change_block", "detail_requests": 1, "other_block": True},
+    "d_null_municipality": {"map": "pais_valencia", "from": 1993, "to": 2002, "scope": "ES:CCAA:10", "detail": "null_municipality", "detail_requests": 1},
+    "e_unmapped_cause": {"map": "pais_valencia", "from": 1993, "to": 2002, "scope": "ES:CCAA:10", "detail": "single", "detail_requests": 1},
+    "f_rapid_a_to_b": {"map": "pais_valencia", "from": 1993, "to": 2002, "scope": "ES:CCAA:10", "detail": "rapid", "detail_requests_min": 1},
+    "g_independent_esfire": {"map": "pais_valencia", "from": 1993, "to": 2002, "scope": "ES:CCAA:10", "detail": "single", "detail_requests": 1},
+    "h_mobile_list_detail": {"map": "pais_valencia", "from": 1993, "to": 2002, "scope": "ES:CCAA:10", "detail": "single", "detail_requests": 1, "mobile_only": True},
+}
 EXPECTED_SHA256 = "92f0f081131932075f54a89d86fc8aa7e5879d56ca4d7177c64562f9612751b4"
 
 
@@ -90,6 +100,7 @@ class RangeState:
         self.initial_requests = 0
         self.initial_raw_bytes = 0
         self.detail_requests = 0
+        self.detail_raw_bytes = 0
 
     def record(self, is_range: bool, bytes_sent: int, status: int) -> None:
         with self.lock:
@@ -107,6 +118,7 @@ class RangeState:
                 self.initial_raw_bytes += bytes_sent
             elif path.endswith("/detail.json"):
                 self.detail_requests += 1
+                self.detail_raw_bytes += bytes_sent
 
     def payload(self) -> dict:
         with self.lock:
@@ -118,6 +130,7 @@ class RangeState:
                 "initial_requests": self.initial_requests,
                 "initial_raw_bytes": self.initial_raw_bytes,
                 "detail_requests": self.detail_requests,
+                "detail_raw_bytes": self.detail_raw_bytes,
             }
 
 
@@ -214,6 +227,8 @@ def run_case(chrome: str, scenario: str, device: str, egif_config: dict | None =
             query.update({"from": egif_config["from"], "to": egif_config["to"], "egif_scope": egif_config["scope"]})
             if egif_config.get("rapid"):
                 query["egif_rapid"] = "1"
+            if egif_config.get("detail"):
+                query["egif_detail"] = egif_config["detail"]
         url = f"http://127.0.0.1:{server.server_port}/prototypes/es4c/index.html?{urlencode(query)}"
         result = run_page(chrome, url, window, timeout=120)
         result["server_range_stats"] = state.payload()
@@ -248,14 +263,41 @@ def validate_results(payload: dict) -> list[str]:
             egif = result.get("egif", {})
             if egif.get("status") != "complete":
                 errors.append(f"{label}: EGIF no completó: {egif}")
-            elif egif.get("summary", {}).get("records") != expected_egif["records"]:
+            elif "records" in expected_egif and egif.get("summary", {}).get("records") != expected_egif["records"]:
                 errors.append(f"{label}: recuento EGIF inesperado")
-            if stats.get("detail_requests") != 0:
+            if not expected_egif.get("detail") and stats.get("detail_requests") != 0:
                 errors.append(f"{label}: DETAIL fue solicitado en C1B1")
             if "initial_requests" in expected_egif and stats.get("initial_requests") != expected_egif["initial_requests"]:
                 errors.append(f"{label}: assets INITIAL inesperados: {stats.get('initial_requests')}")
             if expected_egif.get("final_scope") and result.get("state", {}).get("autonomous_community_id") != expected_egif["final_scope"]:
                 errors.append(f"{label}: cancelación no conservó el último ámbito")
+            if expected_egif.get("detail"):
+                detail = result.get("egif_detail", {})
+                if not detail or detail.get("status") == "missing_initial":
+                    errors.append(f"{label}: no se ejecutó selección DETAIL")
+                if expected_egif["detail"] in ("single", "null_municipality", "change_block") and detail.get("result", {}).get("status") != "complete":
+                    errors.append(f"{label}: DETAIL no completó: {detail}")
+                if stats.get("detail_requests", 0) < expected_egif.get("detail_requests_min", expected_egif.get("detail_requests", 0)):
+                    errors.append(f"{label}: DETAIL insuficiente")
+                if "detail_requests" in expected_egif and stats.get("detail_requests") != expected_egif["detail_requests"]:
+                    errors.append(f"{label}: requests DETAIL inesperados: {stats.get('detail_requests')}")
+                if expected_egif["detail"] == "rapid" and detail.get("final_record_id") != detail.get("second", {}).get("record_id"):
+                    errors.append(f"{label}: DETAIL stale reemplazó la selección B")
+                if expected_egif.get("cached_second") and not detail.get("second", {}).get("result", {}).get("metrics", {}).get("cached"):
+                    errors.append(f"{label}: la segunda selección no reutilizó DETAIL")
+                if expected_egif.get("other_block") and not detail.get("result", {}).get("asset_id", "").endswith("2003-2012"):
+                    errors.append(f"{label}: DETAIL no cambió al bloque temporal esperado")
+                if expected_egif["detail"] == "null_municipality" and detail.get("result", {}).get("record", {}).get("municipality_id") is not None:
+                    errors.append(f"{label}: municipio null no se preservó")
+                if expected_egif["detail"] == "single" and detail.get("result", {}).get("record", {}).get("canonical_cause") is not None:
+                    errors.append(f"{label}: se inventó causa canónica")
+                browser = result.get("egif_record_browser", {})
+                if not browser.get("visible") or browser.get("rows", 0) <= 0:
+                    errors.append(f"{label}: lista paginada EGIF no visible")
+                if not browser.get("detail_visible"):
+                    errors.append(f"{label}: ficha EGIF no visible")
+                if expected_egif.get("detail") == "single" and result.get("state", {}).get("selected_geometry_id") and not result.get("state", {}).get("selected_egif_record_id"):
+                    errors.append(f"{label}: selección EGIF no coexistió con ESFire30")
     return errors
 
 
@@ -268,6 +310,8 @@ def main() -> int:
     parser.add_argument("--all-smokes", action="store_true")
     parser.add_argument("--egif-smoke", choices=tuple(EGIF_SMOKES), action="append")
     parser.add_argument("--all-egif-smokes", action="store_true")
+    parser.add_argument("--egif-detail-smoke", choices=tuple(EGIF_DETAIL_SMOKES), action="append")
+    parser.add_argument("--all-egif-detail-smokes", action="store_true")
     parser.add_argument("--output", type=Path, default=ROOT / "prototypes/es4c/smoke-results.json")
     parser.add_argument("--check", action="store_true")
     parser.add_argument("--serve", action="store_true", help="sirve el prototipo interactivo local con HTTP Range")
@@ -290,7 +334,8 @@ def main() -> int:
         return 0 if not errors else 1
     archive = validate_archive()
     requested_egif = args.egif_smoke or (tuple(EGIF_SMOKES) if args.all_egif_smokes else ())
-    scenarios = args.scenario or (SCENARIOS if args.all_smokes else (() if requested_egif else ("spain",)))
+    requested_detail = args.egif_detail_smoke or (tuple(EGIF_DETAIL_SMOKES) if args.all_egif_detail_smokes else ())
+    scenarios = args.scenario or (SCENARIOS if args.all_smokes else (() if (requested_egif or requested_detail) else ("spain",)))
     devices = []
     if args.desktop or not args.mobile:
         devices.append("desktop")
@@ -301,6 +346,12 @@ def main() -> int:
         config = EGIF_SMOKES[name]
         egif_devices = ["mobile_390x844"] if config.get("mobile_only") else ["desktop"]
         for device in egif_devices:
+            print(f"{name}::{device}: ejecutando", flush=True)
+            rows.append(run_case(args.chrome, config["map"], device, config))
+    for name in requested_detail:
+        config = EGIF_DETAIL_SMOKES[name]
+        detail_devices = ["mobile_390x844"] if config.get("mobile_only") else ["desktop"]
+        for device in detail_devices:
             print(f"{name}::{device}: ejecutando", flush=True)
             rows.append(run_case(args.chrome, config["map"], device, config))
     for scenario in scenarios:

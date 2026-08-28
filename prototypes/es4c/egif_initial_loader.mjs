@@ -168,6 +168,9 @@ export class EGIFInitialLoader {
         status: "complete",
         kind: "initial_assets",
         assets: assets.map((asset) => ({ asset_id: asset.asset_id, path: asset.initial.path, record_count: asset.record_count })),
+        // Solo para el runtime aislado. No se serializa ni se expone como
+        // resultado de depuración: conserva las columnas y lookups cargados.
+        loaded_assets: loadedAssets,
         summary: summarizeInitialAssets(loadedAssets, fromYear, toYear),
       };
     } catch (error) {

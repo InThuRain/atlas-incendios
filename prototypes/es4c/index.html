@@ -10,7 +10,7 @@
     <main class="runtime-shell">
       <section id="map" aria-label="Mapa nacional experimental de perímetros ESFire30"></section>
       <aside class="panel" aria-label="Información del prototipo">
-        <p class="eyebrow">Prototipo aislado · ES-4C1B1</p>
+        <p class="eyebrow">Prototipo aislado · ES-4C1B2</p>
         <h1>ESFire30 · España</h1>
         <p class="source-note">
           Perímetros derivados de teledetección Landsat (30 m), 1985–2021.
@@ -36,6 +36,32 @@
           <h2>EGIF · partes administrativos</h2>
           <p id="egif-status">Preparando resumen del manifest…</p>
           <dl id="egif-metrics" hidden></dl>
+        </section>
+        <section id="egif-record-browser" class="egif-record-browser" hidden aria-label="Lista experimental de partes EGIF">
+          <h2>Partes EGIF cargados</h2>
+          <p class="source-note">Lista técnica paginada: los partes no tienen geometría ni seleccionan perímetros ESFire30.</p>
+          <form id="egif-record-lookup" class="record-lookup">
+            <label>Record ID
+              <input id="egif-record-id" type="search" placeholder="egif-record:…" autocomplete="off">
+            </label>
+            <button type="submit">Abrir ficha</button>
+          </form>
+          <div class="record-table-wrap">
+            <table>
+              <thead><tr><th>Año</th><th>Parte</th><th>Provincia</th><th>Municipio</th><th>Sup. forestal</th><th>GIF</th></tr></thead>
+              <tbody id="egif-record-rows"></tbody>
+            </table>
+          </div>
+          <nav class="record-pagination" aria-label="Paginación de partes EGIF">
+            <button id="egif-page-previous" type="button">Anterior</button>
+            <span id="egif-page-status"></span>
+            <button id="egif-page-next" type="button">Siguiente</button>
+          </nav>
+        </section>
+        <section id="egif-detail" class="egif-detail" hidden aria-live="polite">
+          <h2>Ficha administrativa EGIF</h2>
+          <p id="egif-detail-status">Selecciona una parte para cargar DETAIL.</p>
+          <dl id="egif-detail-fields"></dl>
         </section>
         <section class="selection" aria-live="polite">
           <h2>Selección</h2>

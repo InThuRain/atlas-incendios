@@ -62,7 +62,7 @@ class ES4C1B1InitialLoaderTests(unittest.TestCase):
         self.assertEqual(0, result.returncode, result.stderr)
         self.assertEqual({"valid": True}, json.loads(result.stdout))
 
-    def test_prototype_only_references_initial_loader_not_detail_or_public_frontend(self):
+    def test_initial_loader_keeps_detail_out_of_its_own_contract_and_public_frontend_untouched(self):
         loader = (ROOT / "prototypes/es4c/egif_initial_loader.mjs").read_text(encoding="utf-8")
         app = (ROOT / "prototypes/es4c/app.js").read_text(encoding="utf-8")
         public_index = (ROOT / "index.html").read_text(encoding="utf-8")

@@ -1,6 +1,7 @@
 import { Protocol } from "/data/derived/spain/es3/tools/browser/pmtiles-4.3.0.mjs";
 import { EGIFInitialLoader } from "./egif_initial_loader.mjs";
-import { TERRITORY_OPTIONS } from "./territory_catalog.mjs";
+import { EGIFDetailLoader, locateRecord, pageOfInitialRows } from "./egif_detail_loader.mjs";
+import { canonicalTerritoryName, TERRITORY_OPTIONS } from "./territory_catalog.mjs";
 
 const ARCHIVE_PATH = "/data/derived/spain/es3/assets/esfire30-national-fidelity.pmtiles";
 const SOURCE_ID = "esfire30";
@@ -27,6 +28,16 @@ const applyButton = document.querySelector("#apply-years");
 const territoryScope = document.querySelector("#territory-scope");
 const egifStatus = document.querySelector("#egif-status");
 const egifMetrics = document.querySelector("#egif-metrics");
+const egifRecordBrowser = document.querySelector("#egif-record-browser");
+const egifRecordRows = document.querySelector("#egif-record-rows");
+const egifRecordLookup = document.querySelector("#egif-record-lookup");
+const egifRecordIdInput = document.querySelector("#egif-record-id");
+const egifPagePrevious = document.querySelector("#egif-page-previous");
+const egifPageNext = document.querySelector("#egif-page-next");
+const egifPageStatus = document.querySelector("#egif-page-status");
+const egifDetail = document.querySelector("#egif-detail");
+const egifDetailStatus = document.querySelector("#egif-detail-status");
+const egifDetailFields = document.querySelector("#egif-detail-fields");
 const params = new URLSearchParams(location.search);
 const startedAt = performance.now();
 const initialHeap = performance.memory?.usedJSHeapSize ?? null;
@@ -39,10 +50,15 @@ const state = {
   territory_scope: "ES",
   autonomous_community_id: null,
   selected_geometry_id: null,
+  selected_egif_record_id: null,
 };
 const egifLoader = new EGIFInitialLoader({ manifestUrl: EGIF_MANIFEST_URL });
+const egifDetailLoader = new EGIFDetailLoader({ manifestUrl: EGIF_MANIFEST_URL });
 let egifReady = Promise.resolve();
 let latestEgifResult = null;
+let activeInitialAssets = [];
+let egifPage = 0;
+const EGIF_PAGE_SIZE = 50;
 
 for (const territory of TERRITORY_OPTIONS) {
   const option = document.createElement("option");
@@ -137,19 +153,154 @@ function formatNumber(value, maximumFractionDigits = 0) {
   return new Intl.NumberFormat("es-ES", { maximumFractionDigits }).format(value);
 }
 
+function formatOptionalArea(value) {
+  return typeof value === "number" && Number.isFinite(value) ? `${formatNumber(value, 2)} ha` : "No disponible";
+}
+
+function formatGif(value) {
+  if (value === true) return "Sí (administrativo EGIF)";
+  if (value === false) return "No (administrativo EGIF)";
+  return "No determinable";
+}
+
+function clearEgifSelection() {
+  state.selected_egif_record_id = null;
+  egifDetailLoader.clearSelection();
+  egifDetail.hidden = true;
+  egifDetailStatus.textContent = "Selecciona una parte para cargar DETAIL.";
+  egifDetailFields.replaceChildren();
+}
+
+function renderEgifPage() {
+  egifRecordRows.replaceChildren();
+  if (!activeInitialAssets.length) {
+    egifRecordBrowser.hidden = true;
+    return;
+  }
+  const pageData = pageOfInitialRows(activeInitialAssets, state.from, state.to, egifPage, EGIF_PAGE_SIZE);
+  const pages = Math.max(1, Math.ceil(pageData.total / EGIF_PAGE_SIZE));
+  if (egifPage >= pages) {
+    egifPage = pages - 1;
+    return renderEgifPage();
+  }
+  for (const row of pageData.rows) {
+    const tr = document.createElement("tr");
+    const values = [
+      String(row.year),
+      row.record_id,
+      row.province_id || "No disponible",
+      row.municipality_id || "No resuelto",
+      formatOptionalArea(row.reported_forest_area_ha),
+      row.is_gif_forest_ge_500_ha === true ? "Sí" : row.is_gif_forest_ge_500_ha === false ? "No" : "No det.",
+    ];
+    values.forEach((value, index) => {
+      const cell = document.createElement("td");
+      if (index === 1) {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.textContent = value;
+        button.dataset.recordId = row.record_id;
+        cell.append(button);
+      } else cell.textContent = value;
+      tr.append(cell);
+    });
+    egifRecordRows.append(tr);
+  }
+  egifPageStatus.textContent = `${formatNumber(pageData.total)} partes · página ${egifPage + 1}/${pages}`;
+  egifPagePrevious.disabled = egifPage === 0;
+  egifPageNext.disabled = egifPage + 1 >= pages;
+  egifRecordBrowser.hidden = false;
+}
+
+function renderDetailFields(record, names) {
+  egifDetailFields.replaceChildren();
+  const municipality = record.municipality_id
+    ? (names.municipality || record.municipality_id)
+    : "Municipio no resuelto en la normalización";
+  const rows = [
+    ["Record ID", record.record_id],
+    ["ID fuente / Número de parte", record.source_record_id || "No disponible"],
+    ["Fuente", "EGIF · parte administrativo"],
+    ["Año", record.year],
+    ["Fecha de inicio", record.detection_date || "No disponible"],
+    ["Fecha de extinción", record.extinction_date || "No disponible"],
+    ["CCAA", names.autonomous_community || record.autonomous_community_id || "No disponible"],
+    ["Provincia", names.province || record.province_id || "No disponible"],
+    ["Municipio", municipality],
+    ["Municipio declarado en la fuente", record.source_municipality_name || "No disponible"],
+    ["Paraje declarado", record.source_paraje || "No disponible"],
+    ["Superficie forestal declarada", formatOptionalArea(record.reported_forest_area_ha)],
+    ["Superficie total declarada", formatOptionalArea(record.reported_total_area_ha)],
+    ["Superficie arbolada declarada", formatOptionalArea(record.reported_wooded_area_ha)],
+    ["Superficie no arbolada declarada", formatOptionalArea(record.reported_nonwooded_area_ha)],
+    ["GIF", formatGif(record.is_gif_forest_ge_500_ha)],
+    ["Causa", record.cause_source_code == null ? "Código EGIF no disponible" : `Código EGIF ${record.cause_source_code} (sin normalizar)`],
+    ["Causa canónica", record.canonical_cause || "No mapeada"],
+    ["Estado del mapeo", record.cause_mapping_status || "unmapped"],
+    ["Modelo de parte", record.form_model || "No disponible"],
+    ["ID de base fuente", record.source_database_id || "No disponible"],
+    ["Identidad del episodio", record.episode_identity_status || "unresolved"],
+  ];
+  for (const [label, value] of rows) {
+    const term = document.createElement("dt");
+    term.textContent = label;
+    const definition = document.createElement("dd");
+    definition.textContent = value == null ? "No disponible" : String(value);
+    egifDetailFields.append(term, definition);
+  }
+}
+
+async function selectEgifRecord(recordId) {
+  if (!locateRecord(activeInitialAssets, recordId)) {
+    egifDetail.hidden = false;
+    egifDetailStatus.textContent = "El record_id no pertenece al ámbito EGIF cargado.";
+    return { status: "missing" };
+  }
+  state.selected_egif_record_id = recordId;
+  egifDetail.hidden = false;
+  egifDetailStatus.textContent = "Cargando DETAIL EGIF solo para la parte seleccionada…";
+  egifDetailFields.replaceChildren();
+  const heapBefore = performance.memory?.usedJSHeapSize ?? null;
+  try {
+    const result = await egifDetailLoader.select({ recordId, loadedAssets: activeInitialAssets });
+    if (result.status === "stale" || state.selected_egif_record_id !== recordId) return result;
+    const [autonomous_community, province, municipality] = await Promise.all([
+      canonicalTerritoryName(result.record.autonomous_community_id),
+      canonicalTerritoryName(result.record.province_id),
+      canonicalTerritoryName(result.record.municipality_id),
+    ]);
+    if (state.selected_egif_record_id !== recordId) return { status: "stale" };
+    renderDetailFields(result.record, { autonomous_community, province, municipality });
+    const heapAfter = performance.memory?.usedJSHeapSize ?? null;
+    egifDetailStatus.textContent = `DETAIL cargado para ${recordId}${result.metrics.cached ? " desde caché de sesión" : ""}.`;
+    return { ...result, heap_delta_bytes: heapBefore === null || heapAfter === null ? null : heapAfter - heapBefore };
+  } catch (error) {
+    if (error.name === "AbortError") return { status: "stale" };
+    if (state.selected_egif_record_id === recordId) {
+      egifDetailStatus.textContent = `No se pudo cargar DETAIL EGIF: ${error.message}. INITIAL y ESFire30 continúan disponibles.`;
+    }
+    return { status: "error", error: String(error) };
+  }
+}
+
 function renderEgifResult(result) {
-  latestEgifResult = result;
+  latestEgifResult = { ...result };
+  delete latestEgifResult.loaded_assets;
   egifMetrics.hidden = true;
   egifMetrics.replaceChildren();
   if (result.status === "stale") return;
   const summary = result.summary;
   if (result.kind === "manifest_summary") {
+    activeInitialAssets = [];
+    egifRecordBrowser.hidden = true;
     egifStatus.textContent = `${formatNumber(summary.records)} partes EGIF disponibles en ${state.from}–${state.to}; España usa solo el manifest y no carga INITIAL.`;
     const rows = [["Bloques implicados", summary.blocks.map(([from, to]) => `${from}–${to}`).join(", ")], ["Assets INITIAL no cargados", "0"]];
     for (const [label, value] of rows) { const term = document.createElement("dt"); term.textContent = label; const definition = document.createElement("dd"); definition.textContent = value; egifMetrics.append(term, definition); }
     egifMetrics.hidden = false;
     return;
   }
+  activeInitialAssets = result.loaded_assets || [];
+  egifPage = 0;
   egifStatus.textContent = `${formatNumber(summary.records)} partes EGIF cargados en ${result.assets.length} asset(s) INITIAL. No hay geometrías EGIF ni enlaces con ESFire30.`;
   const rows = [
     ["GIF administrativos", formatNumber(summary.administrative_gif)],
@@ -163,9 +314,13 @@ function renderEgifResult(result) {
   ];
   for (const [label, value] of rows) { const term = document.createElement("dt"); term.textContent = label; const definition = document.createElement("dd"); definition.textContent = value; egifMetrics.append(term, definition); }
   egifMetrics.hidden = false;
+  renderEgifPage();
 }
 
 async function refreshEgif() {
+  clearEgifSelection();
+  activeInitialAssets = [];
+  egifRecordBrowser.hidden = true;
   const territoryId = state.autonomous_community_id || "ES";
   egifStatus.textContent = territoryId === "ES" ? "Calculando resumen EGIF desde el manifest…" : "Cargando assets INITIAL EGIF…";
   try {
@@ -258,6 +413,63 @@ map.on("mouseleave", FILL_LAYER, () => { map.getCanvas().style.cursor = ""; });
 map.on("error", (event) => errors.push(String(event?.error || "MapLibre error")));
 applyButton.addEventListener("click", () => { applyYears(); });
 territoryScope.addEventListener("change", () => { setEgifScope(territoryScope.value); });
+egifRecordRows.addEventListener("click", (event) => {
+  const button = event.target.closest("button[data-record-id]");
+  if (button) selectEgifRecord(button.dataset.recordId);
+});
+egifRecordLookup.addEventListener("submit", (event) => {
+  event.preventDefault();
+  const recordId = egifRecordIdInput.value.trim();
+  if (recordId) selectEgifRecord(recordId);
+});
+egifPagePrevious.addEventListener("click", () => { if (egifPage > 0) { egifPage -= 1; renderEgifPage(); } });
+egifPageNext.addEventListener("click", () => { egifPage += 1; renderEgifPage(); });
+
+function activeRecordId(predicate = () => true, offset = 0) {
+  let matches = 0;
+  for (const loaded of activeInitialAssets) {
+    const columns = loaded.data.columns;
+    for (let ordinal = 0; ordinal < columns.record_id.length; ordinal += 1) {
+      if (!predicate(columns, ordinal)) continue;
+      if (matches === offset) return columns.record_id[ordinal];
+      matches += 1;
+    }
+  }
+  return null;
+}
+
+async function runDetailSmoke(mode) {
+  const first = activeRecordId();
+  if (!first) return { status: "missing_initial" };
+  if (mode === "change_block") {
+    fromInput.value = "2003";
+    toInput.value = "2012";
+    await applyYears();
+    const recordId = activeRecordId();
+    const result = await selectEgifRecord(recordId);
+    return { mode, record_id: recordId, result };
+  }
+  if (mode === "null_municipality") {
+    const recordId = activeRecordId((columns, ordinal) => columns.municipality_id[ordinal] == null);
+    const result = await selectEgifRecord(recordId);
+    return { mode, record_id: recordId, result };
+  }
+  if (mode === "same_asset") {
+    const second = activeRecordId(() => true, 1);
+    const firstResult = await selectEgifRecord(first);
+    const secondResult = await selectEgifRecord(second);
+    return { mode, first: { record_id: first, result: firstResult }, second: { record_id: second, result: secondResult } };
+  }
+  if (mode === "rapid") {
+    const second = activeRecordId(() => true, 1);
+    const firstPromise = selectEgifRecord(first);
+    const secondPromise = selectEgifRecord(second);
+    const [firstResult, secondResult] = await Promise.all([firstPromise, secondPromise]);
+    return { mode, first: { record_id: first, result: firstResult }, second: { record_id: second, result: secondResult }, final_record_id: state.selected_egif_record_id };
+  }
+  const result = await selectEgifRecord(first);
+  return { mode: mode || "single", record_id: first, result };
+}
 
 async function runSmoke(name, initialReady = false) {
   if (!initialReady) await waitForIdle();
@@ -269,6 +481,7 @@ async function runSmoke(name, initialReady = false) {
     const [obsoleteResult, currentResult] = await Promise.all([obsolete, current]);
     cancellation = { obsolete_status: obsoleteResult.status, current_status: currentResult.status, final_territory_id: state.autonomous_community_id };
   }
+  const detail = params.get("egif_detail") ? await runDetailSmoke(params.get("egif_detail")) : null;
   const initial = {
     range: await rangeStats(), resources: resources(), usable_ms: performance.now() - startedAt,
     heap_delta_bytes: initialHeap === null || !performance.memory ? null : performance.memory.usedJSHeapSize - initialHeap,
@@ -301,6 +514,12 @@ async function runSmoke(name, initialReady = false) {
     after_selection: { range: await rangeStats(), resources: resources() },
     selection: { ...selection, stable_at_next_zoom: stableAtNextZoom },
     egif: latestEgifResult,
+    egif_detail: detail,
+    egif_record_browser: {
+      visible: !egifRecordBrowser.hidden,
+      rows: egifRecordRows.children.length,
+      detail_visible: !egifDetail.hidden,
+    },
     cancellation,
     heap_delta_bytes: initialHeap === null || !performance.memory ? null : performance.memory.usedJSHeapSize - initialHeap,
     errors,
@@ -327,6 +546,7 @@ window.__es4cRuntime = {
   applyYears,
   setEgifScope,
   refreshEgif,
+  selectEgifRecord,
   getEgifResult: () => latestEgifResult,
   runSmoke,
   ARCHIVE_PATH,
