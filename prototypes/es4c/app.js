@@ -3,6 +3,7 @@ import { EGIFInitialLoader } from "./egif_initial_loader.mjs";
 import { EGIFDetailLoader, locateRecord, pageOfInitialRows } from "./egif_detail_loader.mjs";
 import { canonicalTerritoryName, TERRITORY_OPTIONS } from "./territory_catalog.mjs";
 import { createRuntimeState, effectiveCoverage, reduceRuntimeState, SOURCE_COVERAGE } from "./runtime_state.mjs";
+import { parseStateHash, serializeState } from "./state_serialization.mjs";
 
 const ARCHIVE_PATH = "/data/derived/spain/es3/assets/esfire30-national-fidelity.pmtiles";
 const SOURCE_ID = "esfire30";
@@ -43,6 +44,8 @@ const esfireVisibleInput = document.querySelector("#esfire30-visible");
 const egifVisibleInput = document.querySelector("#egif-visible");
 const sourceCoverage = document.querySelector("#source-coverage");
 const runtimeStateSummary = document.querySelector("#runtime-state-summary");
+const copyStateLink = document.querySelector("#copy-state-link");
+const copyStateStatus = document.querySelector("#copy-state-status");
 const params = new URLSearchParams(location.search);
 const startedAt = performance.now();
 const initialHeap = performance.memory?.usedJSHeapSize ?? null;
@@ -51,6 +54,7 @@ let state = createRuntimeState({
   center: [...DEFAULT_VIEW.center],
   zoom: DEFAULT_VIEW.zoom,
 });
+const PROTOTYPE_DEFAULT_STATE = { ...state, center: [...state.center] };
 const egifLoader = new EGIFInitialLoader({ manifestUrl: EGIF_MANIFEST_URL });
 const egifDetailLoader = new EGIFDetailLoader({ manifestUrl: EGIF_MANIFEST_URL });
 let egifReady = Promise.resolve();
@@ -58,6 +62,9 @@ let latestEgifResult = null;
 let activeInitialAssets = [];
 let egifPage = 0;
 const EGIF_PAGE_SIZE = 50;
+const territoryIds = new Set(TERRITORY_OPTIONS.map((territory) => territory.territory_id));
+let stateHydrated = false;
+let restoringFromUrl = false;
 
 for (const territory of TERRITORY_OPTIONS) {
   const option = document.createElement("option");
@@ -73,6 +80,13 @@ if (requestedTerritory && [...territoryScope.options].some((option) => option.va
   territoryScope.value = requestedTerritory;
   state = reduceRuntimeState(state, { type: "set_scope", territory_id: requestedTerritory });
 }
+const restoredHash = parseStateHash(location.hash, PROTOTYPE_DEFAULT_STATE, territoryIds);
+if (restoredHash.status !== "absent") state = restoredHash.state;
+fromInput.value = String(state.from);
+toInput.value = String(state.to);
+territoryScope.value = state.autonomous_community_id || "ES";
+esfireVisibleInput.checked = state.esfire30_visible;
+egifVisibleInput.checked = state.egif_visible;
 
 const protocol = new Protocol();
 maplibregl.addProtocol("pmtiles", protocol.tile);
@@ -177,6 +191,7 @@ function transition(event) {
   state = reduceRuntimeState(state, event);
   if (previous.selected_geometry_id && !state.selected_geometry_id) clearGeometrySelection(false);
   if (previous.selected_egif_record_id && !state.selected_egif_record_id) clearEgifSelection(false);
+  replaceStateUrl();
   return state;
 }
 
@@ -215,6 +230,38 @@ function coverageStatePayload() {
     };
   };
   return { requested_range: { from: state.from, to: state.to }, territory_id: state.autonomous_community_id || "ES", esfire30: describe("esfire30"), egif: describe("egif") };
+}
+
+function stateUrl() {
+  return `${location.origin}${location.pathname}${location.search}${serializeState(state)}`;
+}
+
+function replaceStateUrl() {
+  if (!stateHydrated || restoringFromUrl) return;
+  history.replaceState({ prototype: "es4c", version: 1 }, "", `${location.pathname}${location.search}${serializeState(state)}`);
+}
+
+async function copyCurrentStateLink() {
+  const url = stateUrl();
+  try {
+    if (navigator.clipboard?.writeText) await navigator.clipboard.writeText(url);
+    else {
+      const fallback = document.createElement("textarea");
+      fallback.value = url;
+      fallback.setAttribute("readonly", "");
+      fallback.style.position = "fixed";
+      fallback.style.opacity = "0";
+      document.body.append(fallback);
+      fallback.select();
+      document.execCommand("copy");
+      fallback.remove();
+    }
+    copyStateStatus.textContent = "Enlace copiado.";
+    return { status: "copied", url };
+  } catch (error) {
+    copyStateStatus.textContent = "No se pudo copiar automáticamente; copia esta URL: " + url;
+    return { status: "fallback", url, error: String(error) };
+  }
 }
 
 function renderEgifPage() {
@@ -420,6 +467,49 @@ async function refreshSources() {
   return result;
 }
 
+function findLoadedGeometry(geometryId) {
+  return map.querySourceFeatures(SOURCE_ID, { sourceLayer: SOURCE_LAYER })
+    .find((feature) => String(feature.properties?.geometry_id) === geometryId) || null;
+}
+
+async function restoreSelectionsFromState() {
+  if (state.selected_egif_record_id) {
+    if (!state.egif_visible || !effectiveCoverage(state, "egif")) clearEgifSelection();
+    else {
+      const selected = await selectEgifRecord(state.selected_egif_record_id);
+      if (selected.status !== "complete") clearEgifSelection();
+    }
+  }
+  if (state.selected_geometry_id) {
+    const geometry = state.esfire30_visible && effectiveCoverage(state, "esfire30")
+      ? findLoadedGeometry(state.selected_geometry_id) : null;
+    if (geometry) selectFeature(geometry);
+    else clearGeometrySelection();
+  }
+}
+
+async function restoreStateFromHash() {
+  const parsed = parseStateHash(location.hash, PROTOTYPE_DEFAULT_STATE, territoryIds);
+  if (parsed.status === "absent") return { status: "absent" };
+  restoringFromUrl = true;
+  state = parsed.state;
+  fromInput.value = String(state.from);
+  toInput.value = String(state.to);
+  territoryScope.value = state.autonomous_community_id || "ES";
+  esfireVisibleInput.checked = state.esfire30_visible;
+  egifVisibleInput.checked = state.egif_visible;
+  map.jumpTo({ center: state.center, zoom: state.zoom });
+  applyFilters();
+  await refreshSources();
+  await waitForIdle();
+  await restoreSelectionsFromState();
+  restoringFromUrl = false;
+  stateHydrated = true;
+  renderRuntimeState();
+  replaceStateUrl();
+  return { status: parsed.status, state: { ...state } };
+}
+
 function selectFeature(feature) {
   const geometryId = feature?.properties?.geometry_id;
   if (!geometryId) return null;
@@ -483,6 +573,7 @@ function persistView() {
   const center = map.getCenter();
   state.center = [center.lng, center.lat];
   state.zoom = map.getZoom();
+  replaceStateUrl();
 }
 
 map.on("moveend", persistView);
@@ -505,12 +596,19 @@ egifRecordLookup.addEventListener("submit", (event) => {
 });
 egifPagePrevious.addEventListener("click", () => { if (egifPage > 0) { egifPage -= 1; renderEgifPage(); } });
 egifPageNext.addEventListener("click", () => { egifPage += 1; renderEgifPage(); });
+copyStateLink.addEventListener("click", () => { copyCurrentStateLink(); });
+window.addEventListener("hashchange", () => { restoreStateFromHash().catch((error) => errors.push(String(error))); });
+window.addEventListener("popstate", () => { restoreStateFromHash().catch((error) => errors.push(String(error))); });
 
 function activeRecordId(predicate = () => true, offset = 0) {
   let matches = 0;
   for (const loaded of activeInitialAssets) {
     const columns = loaded.data.columns;
     for (let ordinal = 0; ordinal < columns.record_id.length; ordinal += 1) {
+      // El asset contiene todo el bloque: el smoke debe escoger una fila que
+      // pertenezca al rango exacto activo, igual que la lista y la ficha.
+      const year = columns.year[ordinal];
+      if (year < state.from || year > state.to) continue;
       if (!predicate(columns, ordinal)) continue;
       if (matches === offset) return columns.record_id[ordinal];
       matches += 1;
@@ -552,8 +650,23 @@ async function runDetailSmoke(mode) {
   return { mode: mode || "single", record_id: first, result };
 }
 
+async function prepareStateRoundTrip(mode, name) {
+  let egifSelection = null;
+  if (mode === "egif" || mode === "both") egifSelection = await runDetailSmoke("single");
+  if (mode === "geometry" || mode === "both") {
+    const view = VIEWS[name] || VIEWS.pais_valencia;
+    map.jumpTo({ center: view.center, zoom: view.zoom });
+    await waitForIdle();
+    selectFirstRenderedFeature();
+  }
+  const copied = await copyCurrentStateLink();
+  return { copied, hash: serializeState(state), egif_selection: egifSelection, state: { ...state } };
+}
+
 async function runSmoke(name, initialReady = false) {
   if (!initialReady) await waitForIdle();
+  const preparedRoundTrip = params.get("state_prepare")
+    ? await prepareStateRoundTrip(params.get("state_prepare"), name) : null;
   let cancellation = null;
   if (params.get("egif_rapid") === "1") {
     const obsolete = setEgifScope("ES:CCAA:12");
@@ -579,6 +692,16 @@ async function runSmoke(name, initialReady = false) {
     const [obsoleteResult, currentResult] = await Promise.all([obsolete, current]);
     rangeCancellation = { obsolete_status: obsoleteResult?.status, current_status: currentResult?.status, final_range: { from: state.from, to: state.to } };
   }
+  let historyRoundTrip = null;
+  if (params.get("history_test") === "1") {
+    const original = serializeState(state);
+    const alternate = serializeState({ ...state, from: 1975, to: 1975, selected_geometry_id: null, selected_egif_record_id: null });
+    history.pushState({ prototype: "es4c", test: "alternate" }, "", `${location.pathname}${location.search}${alternate}`);
+    await restoreStateFromHash();
+    history.back();
+    await new Promise((resolve) => setTimeout(resolve, 150));
+    historyRoundTrip = { original, alternate, final_range: { from: state.from, to: state.to } };
+  }
   const detail = params.get("egif_detail") ? await runDetailSmoke(params.get("egif_detail")) : null;
   const initial = {
     range: await rangeStats(), resources: resources(), usable_ms: performance.now() - startedAt,
@@ -601,7 +724,7 @@ async function runSmoke(name, initialReady = false) {
       .some((feature) => String(feature.properties?.geometry_id) === selection.geometry_id);
   }
   const result = {
-    prototype: "es4c1c1",
+    prototype: "es4c1c2",
     scenario: name,
     archive: ARCHIVE_PATH,
     source: "ESFire30",
@@ -620,6 +743,10 @@ async function runSmoke(name, initialReady = false) {
     },
     cancellation,
     range_cancellation: rangeCancellation,
+    history_round_trip: historyRoundTrip,
+    serialized_hash: preparedRoundTrip?.hash || null,
+    copy_result: preparedRoundTrip?.copied || null,
+    prepared_round_trip: preparedRoundTrip,
     source_toggle: sourceToggle,
     coverage: coverageStatePayload(),
     heap_delta_bytes: initialHeap === null || !performance.memory ? null : performance.memory.usedJSHeapSize - initialHeap,
@@ -633,10 +760,15 @@ async function runSmoke(name, initialReady = false) {
 map.once("idle", () => {
   applyFilters();
   renderRuntimeState();
-  egifReady = refreshSources();
+  egifReady = refreshSources().then(async () => {
+    await restoreSelectionsFromState();
+    stateHydrated = true;
+    renderRuntimeState();
+    replaceStateUrl();
+  });
   const smoke = params.get("smoke");
   if (smoke) egifReady.then(() => runSmoke(smoke, true)).catch((error) => {
-      output.textContent = JSON.stringify({ prototype: "es4c1c1", scenario: smoke, errors: [...errors, String(error)] });
+      output.textContent = JSON.stringify({ prototype: "es4c1c2", scenario: smoke, errors: [...errors, String(error)] });
       output.dataset.complete = "true";
     });
 });
@@ -651,6 +783,9 @@ window.__es4cRuntime = {
   refreshSources,
   setSourceVisibility,
   selectEgifRecord,
+  serializeState: () => serializeState(state),
+  restoreStateFromHash,
+  copyCurrentStateLink,
   getEgifResult: () => latestEgifResult,
   runSmoke,
   ARCHIVE_PATH,

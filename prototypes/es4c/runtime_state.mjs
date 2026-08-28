@@ -46,12 +46,14 @@ export function createRuntimeState(overrides = {}) {
 
 function geometryStillVisible(state) {
   if (!state.selected_geometry_id) return true;
+  if (!Number.isInteger(state.selected_geometry_year)) return true;
   const range = effectiveCoverage(state, "esfire30");
   return Boolean(range && state.selected_geometry_year >= range.from && state.selected_geometry_year <= range.to);
 }
 
 function recordStillVisible(state) {
   if (!state.selected_egif_record_id) return true;
+  if (!Number.isInteger(state.selected_egif_year)) return true;
   const range = effectiveCoverage(state, "egif");
   return Boolean(range && state.selected_egif_year >= range.from && state.selected_egif_year <= range.to);
 }

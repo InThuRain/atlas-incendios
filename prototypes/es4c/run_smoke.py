@@ -52,6 +52,17 @@ C1C_SMOKES = {
     "h_rapid_range": {"map": "pais_valencia", "from": 1975, "to": 1975, "scope": "ES:CCAA:10", "range_rapid": True, "expect_geometry": True, "egif_status": "covered", "esfire_status": "covered", "final_range": {"from": 1995, "to": 1995}},
     "i_mobile_mixed": {"map": "pais_valencia", "from": 1995, "to": 1995, "scope": "ES:CCAA:10", "expect_geometry": True, "egif_status": "covered", "esfire_status": "covered", "initial_requests": 1, "mobile_only": True},
 }
+C1C2_SMOKES = {
+    "a_gva_1995_round_trip": {"map": "pais_valencia", "from": 1995, "to": 1995, "scope": "ES:CCAA:10", "roundtrip": "none", "expect_geometry": True, "records": 467, "initial_requests_min": 1},
+    "b_spain_1975_round_trip": {"map": "spain", "from": 1975, "to": 1975, "scope": "ES", "roundtrip": "none", "expect_geometry": False, "records": 4128, "initial_requests": 0, "esfire_status": "no_coverage"},
+    "c_gva_2023_round_trip": {"map": "pais_valencia", "from": 2023, "to": 2023, "scope": "ES:CCAA:10", "roundtrip": "none", "expect_geometry": False, "records": 96, "initial_requests_min": 1, "esfire_status": "no_coverage"},
+    "d_egif_selection_round_trip": {"map": "pais_valencia", "from": 1995, "to": 1995, "scope": "ES:CCAA:10", "roundtrip": "egif", "expect_geometry": True, "records": 467, "require_egif_selection": True},
+    "e_geometry_selection_round_trip": {"map": "pais_valencia", "from": 1995, "to": 1995, "scope": "ES:CCAA:10", "roundtrip": "geometry", "expect_geometry": True, "records": 467, "require_geometry_selection": True},
+    "f_both_selection_round_trip": {"map": "pais_valencia", "from": 1995, "to": 1995, "scope": "ES:CCAA:10", "roundtrip": "both", "expect_geometry": True, "records": 467, "require_egif_selection": True, "require_geometry_selection": True},
+    "g_corrupt_hash": {"map": "spain", "from": 1995, "to": 1995, "scope": "ES", "corrupt_hash": "#es4c-state-v99=broken", "expect_geometry": True, "safe_defaults": True},
+    "h_history_restore": {"map": "pais_valencia", "from": 1995, "to": 1995, "scope": "ES:CCAA:10", "roundtrip": "none", "history_test": True, "expect_geometry": True, "records": 467},
+    "i_mobile_copy_restore": {"map": "pais_valencia", "from": 1995, "to": 1995, "scope": "ES:CCAA:10", "roundtrip": "both", "expect_geometry": True, "records": 467, "require_egif_selection": True, "require_geometry_selection": True, "mobile_only": True},
+}
 EXPECTED_SHA256 = "92f0f081131932075f54a89d86fc8aa7e5879d56ca4d7177c64562f9612751b4"
 
 
@@ -244,8 +255,23 @@ def run_case(chrome: str, scenario: str, device: str, egif_config: dict | None =
                 query["source_toggle"] = egif_config["source_toggle"]
             if egif_config.get("range_rapid"):
                 query["range_rapid"] = "1"
+            if egif_config.get("history_test"):
+                query["history_test"] = "1"
         url = f"http://127.0.0.1:{server.server_port}/prototypes/es4c/index.html?{urlencode(query)}"
-        result = run_page(chrome, url, window, timeout=120)
+        if egif_config and egif_config.get("corrupt_hash"):
+            url += egif_config["corrupt_hash"]
+        if egif_config and egif_config.get("roundtrip"):
+            prepare_query = dict(query)
+            prepare_query["state_prepare"] = egif_config["roundtrip"]
+            prepare_url = f"http://127.0.0.1:{server.server_port}/prototypes/es4c/index.html?{urlencode(prepare_query)}"
+            prepared = run_page(chrome, prepare_url, window, timeout=120)
+            serialized_hash = prepared.get("serialized_hash")
+            if not serialized_hash:
+                return {"errors": ["No se produjo hash serializado"], "scenario": scenario, "device": device, "roundtrip_preparation": prepared}
+            result = run_page(chrome, url + serialized_hash, window, timeout=120)
+            result["roundtrip_preparation"] = prepared
+        else:
+            result = run_page(chrome, url, window, timeout=120)
         result["server_range_stats"] = state.payload()
         result["device"] = device
         if egif_config:
@@ -283,10 +309,12 @@ def validate_results(payload: dict) -> list[str]:
                 errors.append(f"{label}: EGIF no completó: {egif}")
             elif "records" in expected_egif and egif.get("summary", {}).get("records") != expected_egif["records"]:
                 errors.append(f"{label}: recuento EGIF inesperado")
-            if not expected_egif.get("detail") and stats.get("detail_requests") != 0:
+            if not expected_egif.get("detail") and expected_egif.get("roundtrip") not in ("egif", "both") and stats.get("detail_requests") != 0:
                 errors.append(f"{label}: DETAIL fue solicitado en C1B1")
             if "initial_requests" in expected_egif and stats.get("initial_requests") != expected_egif["initial_requests"]:
                 errors.append(f"{label}: assets INITIAL inesperados: {stats.get('initial_requests')}")
+            if stats.get("initial_requests", 0) < expected_egif.get("initial_requests_min", 0):
+                errors.append(f"{label}: INITIAL no fue restaurado")
             if expected_egif.get("final_scope") and result.get("state", {}).get("autonomous_community_id") != expected_egif["final_scope"]:
                 errors.append(f"{label}: cancelación no conservó el último ámbito")
             coverage = result.get("coverage", {})
@@ -298,6 +326,16 @@ def validate_results(payload: dict) -> list[str]:
                 errors.append(f"{label}: intersección ESFire30 inesperada")
             if expected_egif.get("final_range") and coverage.get("requested_range") != expected_egif["final_range"]:
                 errors.append(f"{label}: cambio rápido de rango dejó estado obsoleto")
+            if expected_egif.get("require_egif_selection") and not result.get("state", {}).get("selected_egif_record_id"):
+                errors.append(f"{label}: no restauró selección EGIF")
+            if expected_egif.get("require_geometry_selection") and not result.get("state", {}).get("selected_geometry_id"):
+                errors.append(f"{label}: no restauró selección ESFire30")
+            if expected_egif.get("safe_defaults"):
+                state = result.get("state", {})
+                if state.get("from") != 1985 or state.get("to") != 2021 or state.get("autonomous_community_id") is not None:
+                    errors.append(f"{label}: hash corrupto no aplicó defaults seguros")
+            if expected_egif.get("history_test") and result.get("history_round_trip", {}).get("final_range") != {"from": 1995, "to": 1995}:
+                errors.append(f"{label}: back/forward básico no restauró el estado")
             if expected_egif.get("detail"):
                 detail = result.get("egif_detail", {})
                 if not detail or detail.get("status") == "missing_initial":
@@ -341,6 +379,8 @@ def main() -> int:
     parser.add_argument("--all-egif-detail-smokes", action="store_true")
     parser.add_argument("--c1c-smoke", choices=tuple(C1C_SMOKES), action="append")
     parser.add_argument("--all-c1c-smokes", action="store_true")
+    parser.add_argument("--c1c2-smoke", choices=tuple(C1C2_SMOKES), action="append")
+    parser.add_argument("--all-c1c2-smokes", action="store_true")
     parser.add_argument("--output", type=Path, default=ROOT / "prototypes/es4c/smoke-results.json")
     parser.add_argument("--check", action="store_true")
     parser.add_argument("--serve", action="store_true", help="sirve el prototipo interactivo local con HTTP Range")
@@ -365,7 +405,8 @@ def main() -> int:
     requested_egif = args.egif_smoke or (tuple(EGIF_SMOKES) if args.all_egif_smokes else ())
     requested_detail = args.egif_detail_smoke or (tuple(EGIF_DETAIL_SMOKES) if args.all_egif_detail_smokes else ())
     requested_c1c = args.c1c_smoke or (tuple(C1C_SMOKES) if args.all_c1c_smokes else ())
-    scenarios = args.scenario or (SCENARIOS if args.all_smokes else (() if (requested_egif or requested_detail or requested_c1c) else ("spain",)))
+    requested_c1c2 = args.c1c2_smoke or (tuple(C1C2_SMOKES) if args.all_c1c2_smokes else ())
+    scenarios = args.scenario or (SCENARIOS if args.all_smokes else (() if (requested_egif or requested_detail or requested_c1c or requested_c1c2) else ("spain",)))
     devices = []
     if args.desktop or not args.mobile:
         devices.append("desktop")
@@ -388,6 +429,12 @@ def main() -> int:
         config = C1C_SMOKES[name]
         c1c_devices = ["mobile_390x844"] if config.get("mobile_only") else ["desktop"]
         for device in c1c_devices:
+            print(f"{name}::{device}: ejecutando", flush=True)
+            rows.append(run_case(args.chrome, config["map"], device, config))
+    for name in requested_c1c2:
+        config = C1C2_SMOKES[name]
+        c1c2_devices = ["mobile_390x844"] if config.get("mobile_only") else ["desktop"]
+        for device in c1c2_devices:
             print(f"{name}::{device}: ejecutando", flush=True)
             rows.append(run_case(args.chrome, config["map"], device, config))
     for scenario in scenarios:

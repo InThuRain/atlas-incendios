@@ -20,6 +20,7 @@ h1, h2 { margin: 0; } h1 { font-size: 1.1rem; } h2 { font-size: .95rem; }
 .selection { border-top: 1px solid #d6dfd8; padding-top: .7rem; }.selection p { margin: .35rem 0; line-height: 1.35; }
 .egif-summary { border-top: 1px solid #d6dfd8; padding-top: .7rem; }.egif-summary p { margin: .35rem 0; line-height: 1.35; }
 .coverage-summary { border-top: 1px solid #d6dfd8; padding-top: .7rem; }.coverage-summary ul { margin: .35rem 0; padding-left: 1.1rem; line-height: 1.35; }.coverage-summary p { color: #536159; font-size: .75rem; line-height: 1.35; }
+.coverage-summary button { min-height: 2rem; border: 0; border-radius: .3rem; color: white; background: #2a6350; font-weight: 700; cursor: pointer; }.coverage-summary #copy-state-status { min-height: 1em; margin: .35rem 0 0; }
 .egif-summary dl { display: grid; grid-template-columns: 1fr auto; gap: .25rem .6rem; margin: .55rem 0; }.egif-summary dt { color: #536159; }.egif-summary dd { margin: 0; font-variant-numeric: tabular-nums; text-align: right; }
 .egif-record-browser, .egif-detail { border-top: 1px solid #d6dfd8; margin-top: .7rem; padding-top: .7rem; }
 .record-lookup { display: grid; grid-template-columns: 1fr auto; align-items: end; gap: .4rem; margin: .55rem 0; }
