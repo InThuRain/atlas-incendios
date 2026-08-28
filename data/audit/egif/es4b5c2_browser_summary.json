@@ -1,0 +1,3536 @@
+{
+  "schema_version": 1,
+  "audit_id": "es-4b5c2-egif-browser-analysis-1",
+  "input": {
+    "results_runs_total": 41,
+    "main_runs": 40,
+    "smoke_runs_excluded_from_comparisons": 1,
+    "results_environment": {
+      "git_commit": "e41aad1eb755177909f1127c5c467e9d445ac490",
+      "browser": "Google Chrome 151.0.7922.71",
+      "python": "3.8.10",
+      "platform": {
+        "system": "Linux",
+        "release": "5.15.0-113-generic",
+        "machine": "x86_64"
+      },
+      "manifest": "data/web/spain/egif/2026-08-27/manifest.json",
+      "manifest_sha256": "a69f7ad3272b36ea573d4a5ecf597ad781db30e4f82f9d54e2b59c5526990e5f",
+      "server": {
+        "kind": "local_python_http",
+        "compression": "none",
+        "asset_cache_control": "public, max-age=31536000, immutable"
+      }
+    }
+  },
+  "integrity": {
+    "valid": true,
+    "errors": [],
+    "main_matrix_observations_per_combination": 1,
+    "percentiles": "not computed: each scenario × device × cache combination has one observation"
+  },
+  "rows": [
+    {
+      "scenario": "a_la_rioja_full",
+      "scenario_label": "A — La Rioja, periodo completo",
+      "device": "desktop",
+      "cache_mode": "cold",
+      "initial_records": 3996,
+      "initial_assets": 5,
+      "initial_gzip_manifest_bytes": 31011,
+      "initial_body_raw_bytes": 601684,
+      "initial_resource_transfer_bytes": 603184,
+      "initial_requests": 5,
+      "initial_fetch_ms_sum_parallel": 38.6,
+      "initial_load_wall_ms": 9.3,
+      "initial_parse_ms_sum": 0.7,
+      "initial_prepare_ms_sum": 0.8,
+      "filter_bundle_ms": 0.6,
+      "lookup_query_ms": 0,
+      "heap_before_bytes": 3213083,
+      "heap_initial_bytes": 5731708,
+      "heap_initial_delta_bytes": 2518625,
+      "detail_gzip_manifest_bytes_probe": 19095,
+      "detail_body_raw_bytes_probe": 132010,
+      "detail_resource_transfer_bytes_probe": 132610,
+      "detail_requests_probe": 2,
+      "detail_fetch_ms_sum_probe": 3.2,
+      "detail_parse_ms_sum_probe": 0.4,
+      "first_selection_ms": 2.2,
+      "second_selection_same_asset_ms": 0,
+      "heap_detail_bytes": 6312494,
+      "heap_detail_delta_from_initial_bytes": 580786,
+      "filters": {
+        "year": {
+          "value": 1968,
+          "matches": 19
+        },
+        "range": {
+          "from": 1968,
+          "to": 1992,
+          "matches": 1198
+        },
+        "province": {
+          "value": "ES:PROV:26",
+          "matches": 3996
+        },
+        "municipality_resolved": {
+          "value": "ES:MUN:26038",
+          "matches": 22
+        },
+        "municipality_null": {
+          "matches": 501
+        }
+      },
+      "lookup": {
+        "record_id": "egif-record:1968260294",
+        "ordinal": 0,
+        "lookup_found": true,
+        "map_entries": 249
+      },
+      "columnar_vs_objects_small_sample": {
+        "status": "run",
+        "sample_records": 249,
+        "columnar_filter_ms": 0,
+        "materialize_and_filter_ms": 0.4,
+        "columnar_matches": 19,
+        "object_matches": 19
+      },
+      "same_asset_detail_telemetry": {
+        "status": "not_usable_for_comparison",
+        "reason": "the harness recorded this after loading a second detail asset",
+        "reported_value": 1,
+        "other_detail_requests": 1
+      },
+      "errors": []
+    },
+    {
+      "scenario": "a_la_rioja_full",
+      "scenario_label": "A — La Rioja, periodo completo",
+      "device": "desktop",
+      "cache_mode": "warm",
+      "initial_records": 3996,
+      "initial_assets": 5,
+      "initial_gzip_manifest_bytes": 31011,
+      "initial_body_raw_bytes": 601684,
+      "initial_resource_transfer_bytes": 0,
+      "initial_requests": 5,
+      "initial_fetch_ms_sum_parallel": 23.799999999999997,
+      "initial_load_wall_ms": 5.8,
+      "initial_parse_ms_sum": 1.1,
+      "initial_prepare_ms_sum": 0.3,
+      "filter_bundle_ms": 0.3,
+      "lookup_query_ms": 0,
+      "heap_before_bytes": 6507616,
+      "heap_initial_bytes": 6780512,
+      "heap_initial_delta_bytes": 272896,
+      "detail_gzip_manifest_bytes_probe": 19095,
+      "detail_body_raw_bytes_probe": 132010,
+      "detail_resource_transfer_bytes_probe": 0,
+      "detail_requests_probe": 2,
+      "detail_fetch_ms_sum_probe": 2.2,
+      "detail_parse_ms_sum_probe": 0.30000000000000004,
+      "first_selection_ms": 0.9,
+      "second_selection_same_asset_ms": 0,
+      "heap_detail_bytes": 7188978,
+      "heap_detail_delta_from_initial_bytes": 408466,
+      "filters": {
+        "year": {
+          "value": 1968,
+          "matches": 19
+        },
+        "range": {
+          "from": 1968,
+          "to": 1992,
+          "matches": 1198
+        },
+        "province": {
+          "value": "ES:PROV:26",
+          "matches": 3996
+        },
+        "municipality_resolved": {
+          "value": "ES:MUN:26038",
+          "matches": 22
+        },
+        "municipality_null": {
+          "matches": 501
+        }
+      },
+      "lookup": {
+        "record_id": "egif-record:1968260294",
+        "ordinal": 0,
+        "lookup_found": true,
+        "map_entries": 249
+      },
+      "columnar_vs_objects_small_sample": {
+        "status": "run",
+        "sample_records": 249,
+        "columnar_filter_ms": 0,
+        "materialize_and_filter_ms": 0.3,
+        "columnar_matches": 19,
+        "object_matches": 19
+      },
+      "same_asset_detail_telemetry": {
+        "status": "not_usable_for_comparison",
+        "reason": "the harness recorded this after loading a second detail asset",
+        "reported_value": 1,
+        "other_detail_requests": 1
+      },
+      "errors": []
+    },
+    {
+      "scenario": "a_la_rioja_full",
+      "scenario_label": "A — La Rioja, periodo completo",
+      "device": "mobile_390x844",
+      "cache_mode": "cold",
+      "initial_records": 3996,
+      "initial_assets": 5,
+      "initial_gzip_manifest_bytes": 31011,
+      "initial_body_raw_bytes": 601684,
+      "initial_resource_transfer_bytes": 603184,
+      "initial_requests": 5,
+      "initial_fetch_ms_sum_parallel": 32.900000000000006,
+      "initial_load_wall_ms": 8.2,
+      "initial_parse_ms_sum": 0.9,
+      "initial_prepare_ms_sum": 0.4,
+      "filter_bundle_ms": 0.7,
+      "lookup_query_ms": 0,
+      "heap_before_bytes": 3213167,
+      "heap_initial_bytes": 5731708,
+      "heap_initial_delta_bytes": 2518541,
+      "detail_gzip_manifest_bytes_probe": 19095,
+      "detail_body_raw_bytes_probe": 132010,
+      "detail_resource_transfer_bytes_probe": 132610,
+      "detail_requests_probe": 2,
+      "detail_fetch_ms_sum_probe": 3.7,
+      "detail_parse_ms_sum_probe": 0.4,
+      "first_selection_ms": 1.9,
+      "second_selection_same_asset_ms": 0,
+      "heap_detail_bytes": 6312494,
+      "heap_detail_delta_from_initial_bytes": 580786,
+      "filters": {
+        "year": {
+          "value": 1968,
+          "matches": 19
+        },
+        "range": {
+          "from": 1968,
+          "to": 1992,
+          "matches": 1198
+        },
+        "province": {
+          "value": "ES:PROV:26",
+          "matches": 3996
+        },
+        "municipality_resolved": {
+          "value": "ES:MUN:26038",
+          "matches": 22
+        },
+        "municipality_null": {
+          "matches": 501
+        }
+      },
+      "lookup": {
+        "record_id": "egif-record:1968260294",
+        "ordinal": 0,
+        "lookup_found": true,
+        "map_entries": 249
+      },
+      "columnar_vs_objects_small_sample": {
+        "status": "run",
+        "sample_records": 249,
+        "columnar_filter_ms": 0,
+        "materialize_and_filter_ms": 0.4,
+        "columnar_matches": 19,
+        "object_matches": 19
+      },
+      "same_asset_detail_telemetry": {
+        "status": "not_usable_for_comparison",
+        "reason": "the harness recorded this after loading a second detail asset",
+        "reported_value": 1,
+        "other_detail_requests": 1
+      },
+      "errors": []
+    },
+    {
+      "scenario": "a_la_rioja_full",
+      "scenario_label": "A — La Rioja, periodo completo",
+      "device": "mobile_390x844",
+      "cache_mode": "warm",
+      "initial_records": 3996,
+      "initial_assets": 5,
+      "initial_gzip_manifest_bytes": 31011,
+      "initial_body_raw_bytes": 601684,
+      "initial_resource_transfer_bytes": 0,
+      "initial_requests": 5,
+      "initial_fetch_ms_sum_parallel": 21.799999999999997,
+      "initial_load_wall_ms": 5.3,
+      "initial_parse_ms_sum": 0.8,
+      "initial_prepare_ms_sum": 0.3,
+      "filter_bundle_ms": 0.3,
+      "lookup_query_ms": 0,
+      "heap_before_bytes": 6507892,
+      "heap_initial_bytes": 6761984,
+      "heap_initial_delta_bytes": 254092,
+      "detail_gzip_manifest_bytes_probe": 19095,
+      "detail_body_raw_bytes_probe": 132010,
+      "detail_resource_transfer_bytes_probe": 0,
+      "detail_requests_probe": 2,
+      "detail_fetch_ms_sum_probe": 1.7000000000000002,
+      "detail_parse_ms_sum_probe": 0.4,
+      "first_selection_ms": 0.9,
+      "second_selection_same_asset_ms": 0,
+      "heap_detail_bytes": 7175738,
+      "heap_detail_delta_from_initial_bytes": 413754,
+      "filters": {
+        "year": {
+          "value": 1968,
+          "matches": 19
+        },
+        "range": {
+          "from": 1968,
+          "to": 1992,
+          "matches": 1198
+        },
+        "province": {
+          "value": "ES:PROV:26",
+          "matches": 3996
+        },
+        "municipality_resolved": {
+          "value": "ES:MUN:26038",
+          "matches": 22
+        },
+        "municipality_null": {
+          "matches": 501
+        }
+      },
+      "lookup": {
+        "record_id": "egif-record:1968260294",
+        "ordinal": 0,
+        "lookup_found": true,
+        "map_entries": 249
+      },
+      "columnar_vs_objects_small_sample": {
+        "status": "run",
+        "sample_records": 249,
+        "columnar_filter_ms": 0,
+        "materialize_and_filter_ms": 0.3,
+        "columnar_matches": 19,
+        "object_matches": 19
+      },
+      "same_asset_detail_telemetry": {
+        "status": "not_usable_for_comparison",
+        "reason": "the harness recorded this after loading a second detail asset",
+        "reported_value": 1,
+        "other_detail_requests": 1
+      },
+      "errors": []
+    },
+    {
+      "scenario": "b_pais_valencia_full",
+      "scenario_label": "B — País Valencià, periodo completo",
+      "device": "desktop",
+      "cache_mode": "cold",
+      "initial_records": 22108,
+      "initial_assets": 5,
+      "initial_gzip_manifest_bytes": 149247,
+      "initial_body_raw_bytes": 3300714,
+      "initial_resource_transfer_bytes": 3302214,
+      "initial_requests": 5,
+      "initial_fetch_ms_sum_parallel": 76,
+      "initial_load_wall_ms": 24.7,
+      "initial_parse_ms_sum": 6.3,
+      "initial_prepare_ms_sum": 6.3,
+      "filter_bundle_ms": 2.2,
+      "lookup_query_ms": 0,
+      "heap_before_bytes": 3213346,
+      "heap_initial_bytes": 16032943,
+      "heap_initial_delta_bytes": 12819597,
+      "detail_gzip_manifest_bytes_probe": 125040,
+      "detail_body_raw_bytes_probe": 998564,
+      "detail_resource_transfer_bytes_probe": 999164,
+      "detail_requests_probe": 2,
+      "detail_fetch_ms_sum_probe": 5.3,
+      "detail_parse_ms_sum_probe": 2.2,
+      "first_selection_ms": 3.8,
+      "second_selection_same_asset_ms": 0,
+      "heap_detail_bytes": 19794223,
+      "heap_detail_delta_from_initial_bytes": 3761280,
+      "filters": {
+        "year": {
+          "value": 1968,
+          "matches": 113
+        },
+        "range": {
+          "from": 1968,
+          "to": 1992,
+          "matches": 9175
+        },
+        "province": {
+          "value": "ES:PROV:03",
+          "matches": 6084
+        },
+        "municipality_resolved": {
+          "value": "ES:MUN:03136",
+          "matches": 153
+        },
+        "municipality_null": {
+          "matches": 3933
+        }
+      },
+      "lookup": {
+        "record_id": "egif-record:1968030045",
+        "ordinal": 0,
+        "lookup_found": true,
+        "map_entries": 2395
+      },
+      "columnar_vs_objects_small_sample": {
+        "status": "run",
+        "sample_records": 1000,
+        "columnar_filter_ms": 0.1,
+        "materialize_and_filter_ms": 0.9,
+        "columnar_matches": 113,
+        "object_matches": 113
+      },
+      "same_asset_detail_telemetry": {
+        "status": "not_usable_for_comparison",
+        "reason": "the harness recorded this after loading a second detail asset",
+        "reported_value": 1,
+        "other_detail_requests": 1
+      },
+      "errors": []
+    },
+    {
+      "scenario": "b_pais_valencia_full",
+      "scenario_label": "B — País Valencià, periodo completo",
+      "device": "desktop",
+      "cache_mode": "warm",
+      "initial_records": 22108,
+      "initial_assets": 5,
+      "initial_gzip_manifest_bytes": 149247,
+      "initial_body_raw_bytes": 3300714,
+      "initial_resource_transfer_bytes": 0,
+      "initial_requests": 5,
+      "initial_fetch_ms_sum_parallel": 44,
+      "initial_load_wall_ms": 16.9,
+      "initial_parse_ms_sum": 7.7,
+      "initial_prepare_ms_sum": 2.2,
+      "filter_bundle_ms": 1.6,
+      "lookup_query_ms": 0,
+      "heap_before_bytes": 20517221,
+      "heap_initial_bytes": 28323111,
+      "heap_initial_delta_bytes": 7805890,
+      "detail_gzip_manifest_bytes_probe": 125040,
+      "detail_body_raw_bytes_probe": 998564,
+      "detail_resource_transfer_bytes_probe": 0,
+      "detail_requests_probe": 2,
+      "detail_fetch_ms_sum_probe": 6.9,
+      "detail_parse_ms_sum_probe": 2,
+      "first_selection_ms": 5.6,
+      "second_selection_same_asset_ms": 0,
+      "heap_detail_bytes": 30671811,
+      "heap_detail_delta_from_initial_bytes": 2348700,
+      "filters": {
+        "year": {
+          "value": 1968,
+          "matches": 113
+        },
+        "range": {
+          "from": 1968,
+          "to": 1992,
+          "matches": 9175
+        },
+        "province": {
+          "value": "ES:PROV:03",
+          "matches": 6084
+        },
+        "municipality_resolved": {
+          "value": "ES:MUN:03136",
+          "matches": 153
+        },
+        "municipality_null": {
+          "matches": 3933
+        }
+      },
+      "lookup": {
+        "record_id": "egif-record:1968030045",
+        "ordinal": 0,
+        "lookup_found": true,
+        "map_entries": 2395
+      },
+      "columnar_vs_objects_small_sample": {
+        "status": "run",
+        "sample_records": 1000,
+        "columnar_filter_ms": 0,
+        "materialize_and_filter_ms": 0.7,
+        "columnar_matches": 113,
+        "object_matches": 113
+      },
+      "same_asset_detail_telemetry": {
+        "status": "not_usable_for_comparison",
+        "reason": "the harness recorded this after loading a second detail asset",
+        "reported_value": 1,
+        "other_detail_requests": 1
+      },
+      "errors": []
+    },
+    {
+      "scenario": "b_pais_valencia_full",
+      "scenario_label": "B — País Valencià, periodo completo",
+      "device": "mobile_390x844",
+      "cache_mode": "cold",
+      "initial_records": 22108,
+      "initial_assets": 5,
+      "initial_gzip_manifest_bytes": 149247,
+      "initial_body_raw_bytes": 3300714,
+      "initial_resource_transfer_bytes": 3302214,
+      "initial_requests": 5,
+      "initial_fetch_ms_sum_parallel": 77.9,
+      "initial_load_wall_ms": 24.2,
+      "initial_parse_ms_sum": 6.3,
+      "initial_prepare_ms_sum": 5.8,
+      "filter_bundle_ms": 1.8,
+      "lookup_query_ms": 0,
+      "heap_before_bytes": 3213346,
+      "heap_initial_bytes": 15836811,
+      "heap_initial_delta_bytes": 12623465,
+      "detail_gzip_manifest_bytes_probe": 125040,
+      "detail_body_raw_bytes_probe": 998564,
+      "detail_resource_transfer_bytes_probe": 999164,
+      "detail_requests_probe": 2,
+      "detail_fetch_ms_sum_probe": 5.4,
+      "detail_parse_ms_sum_probe": 2,
+      "first_selection_ms": 3.8,
+      "second_selection_same_asset_ms": 0.1,
+      "heap_detail_bytes": 19684351,
+      "heap_detail_delta_from_initial_bytes": 3847540,
+      "filters": {
+        "year": {
+          "value": 1968,
+          "matches": 113
+        },
+        "range": {
+          "from": 1968,
+          "to": 1992,
+          "matches": 9175
+        },
+        "province": {
+          "value": "ES:PROV:03",
+          "matches": 6084
+        },
+        "municipality_resolved": {
+          "value": "ES:MUN:03136",
+          "matches": 153
+        },
+        "municipality_null": {
+          "matches": 3933
+        }
+      },
+      "lookup": {
+        "record_id": "egif-record:1968030045",
+        "ordinal": 0,
+        "lookup_found": true,
+        "map_entries": 2395
+      },
+      "columnar_vs_objects_small_sample": {
+        "status": "run",
+        "sample_records": 1000,
+        "columnar_filter_ms": 0,
+        "materialize_and_filter_ms": 1,
+        "columnar_matches": 113,
+        "object_matches": 113
+      },
+      "same_asset_detail_telemetry": {
+        "status": "not_usable_for_comparison",
+        "reason": "the harness recorded this after loading a second detail asset",
+        "reported_value": 1,
+        "other_detail_requests": 1
+      },
+      "errors": []
+    },
+    {
+      "scenario": "b_pais_valencia_full",
+      "scenario_label": "B — País Valencià, periodo completo",
+      "device": "mobile_390x844",
+      "cache_mode": "warm",
+      "initial_records": 22108,
+      "initial_assets": 5,
+      "initial_gzip_manifest_bytes": 149247,
+      "initial_body_raw_bytes": 3300714,
+      "initial_resource_transfer_bytes": 0,
+      "initial_requests": 5,
+      "initial_fetch_ms_sum_parallel": 51.300000000000004,
+      "initial_load_wall_ms": 18.5,
+      "initial_parse_ms_sum": 8.1,
+      "initial_prepare_ms_sum": 1.9,
+      "filter_bundle_ms": 1.6,
+      "lookup_query_ms": 0,
+      "heap_before_bytes": 20521109,
+      "heap_initial_bytes": 28326179,
+      "heap_initial_delta_bytes": 7805070,
+      "detail_gzip_manifest_bytes_probe": 125040,
+      "detail_body_raw_bytes_probe": 998564,
+      "detail_resource_transfer_bytes_probe": 0,
+      "detail_requests_probe": 2,
+      "detail_fetch_ms_sum_probe": 6,
+      "detail_parse_ms_sum_probe": 2,
+      "first_selection_ms": 4.9,
+      "second_selection_same_asset_ms": 0,
+      "heap_detail_bytes": 30674627,
+      "heap_detail_delta_from_initial_bytes": 2348448,
+      "filters": {
+        "year": {
+          "value": 1968,
+          "matches": 113
+        },
+        "range": {
+          "from": 1968,
+          "to": 1992,
+          "matches": 9175
+        },
+        "province": {
+          "value": "ES:PROV:03",
+          "matches": 6084
+        },
+        "municipality_resolved": {
+          "value": "ES:MUN:03136",
+          "matches": 153
+        },
+        "municipality_null": {
+          "matches": 3933
+        }
+      },
+      "lookup": {
+        "record_id": "egif-record:1968030045",
+        "ordinal": 0,
+        "lookup_found": true,
+        "map_entries": 2395
+      },
+      "columnar_vs_objects_small_sample": {
+        "status": "run",
+        "sample_records": 1000,
+        "columnar_filter_ms": 0.1,
+        "materialize_and_filter_ms": 0.8,
+        "columnar_matches": 113,
+        "object_matches": 113
+      },
+      "same_asset_detail_telemetry": {
+        "status": "not_usable_for_comparison",
+        "reason": "the harness recorded this after loading a second detail asset",
+        "reported_value": 1,
+        "other_detail_requests": 1
+      },
+      "errors": []
+    },
+    {
+      "scenario": "c_cataluna_full",
+      "scenario_label": "C — Cataluña, periodo completo",
+      "device": "desktop",
+      "cache_mode": "cold",
+      "initial_records": 31319,
+      "initial_assets": 5,
+      "initial_gzip_manifest_bytes": 209248,
+      "initial_body_raw_bytes": 4663170,
+      "initial_resource_transfer_bytes": 4664670,
+      "initial_requests": 5,
+      "initial_fetch_ms_sum_parallel": 91.8,
+      "initial_load_wall_ms": 30.1,
+      "initial_parse_ms_sum": 13,
+      "initial_prepare_ms_sum": 4.6,
+      "filter_bundle_ms": 2.4,
+      "lookup_query_ms": 0,
+      "heap_before_bytes": 3213135,
+      "heap_initial_bytes": 21227248,
+      "heap_initial_delta_bytes": 18014113,
+      "detail_gzip_manifest_bytes_probe": 149217,
+      "detail_body_raw_bytes_probe": 1308599,
+      "detail_resource_transfer_bytes_probe": 1309199,
+      "detail_requests_probe": 2,
+      "detail_fetch_ms_sum_probe": 5.1,
+      "detail_parse_ms_sum_probe": 3.9000000000000004,
+      "first_selection_ms": 4.3,
+      "second_selection_same_asset_ms": 0.1,
+      "heap_detail_bytes": 26558042,
+      "heap_detail_delta_from_initial_bytes": 5330794,
+      "filters": {
+        "year": {
+          "value": 1968,
+          "matches": 195
+        },
+        "range": {
+          "from": 1968,
+          "to": 1992,
+          "matches": 12053
+        },
+        "province": {
+          "value": "ES:PROV:08",
+          "matches": 13223
+        },
+        "municipality_resolved": {
+          "value": "ES:MUN:08284",
+          "matches": 130
+        },
+        "municipality_null": {
+          "matches": 6461
+        }
+      },
+      "lookup": {
+        "record_id": "egif-record:1968080028",
+        "ordinal": 0,
+        "lookup_found": true,
+        "map_entries": 4612
+      },
+      "columnar_vs_objects_small_sample": {
+        "status": "run",
+        "sample_records": 1000,
+        "columnar_filter_ms": 0,
+        "materialize_and_filter_ms": 1.2,
+        "columnar_matches": 195,
+        "object_matches": 195
+      },
+      "same_asset_detail_telemetry": {
+        "status": "not_usable_for_comparison",
+        "reason": "the harness recorded this after loading a second detail asset",
+        "reported_value": 1,
+        "other_detail_requests": 1
+      },
+      "errors": []
+    },
+    {
+      "scenario": "c_cataluna_full",
+      "scenario_label": "C — Cataluña, periodo completo",
+      "device": "desktop",
+      "cache_mode": "warm",
+      "initial_records": 31319,
+      "initial_assets": 5,
+      "initial_gzip_manifest_bytes": 209248,
+      "initial_body_raw_bytes": 4663170,
+      "initial_resource_transfer_bytes": 0,
+      "initial_requests": 5,
+      "initial_fetch_ms_sum_parallel": 85.9,
+      "initial_load_wall_ms": 27.3,
+      "initial_parse_ms_sum": 10.6,
+      "initial_prepare_ms_sum": 5.1,
+      "filter_bundle_ms": 2.8,
+      "lookup_query_ms": 0,
+      "heap_before_bytes": 27308836,
+      "heap_initial_bytes": 38110614,
+      "heap_initial_delta_bytes": 10801778,
+      "detail_gzip_manifest_bytes_probe": 149217,
+      "detail_body_raw_bytes_probe": 1308599,
+      "detail_resource_transfer_bytes_probe": 0,
+      "detail_requests_probe": 2,
+      "detail_fetch_ms_sum_probe": 3.9000000000000004,
+      "detail_parse_ms_sum_probe": 2.8,
+      "first_selection_ms": 3.5,
+      "second_selection_same_asset_ms": 0,
+      "heap_detail_bytes": 41938857,
+      "heap_detail_delta_from_initial_bytes": 3828243,
+      "filters": {
+        "year": {
+          "value": 1968,
+          "matches": 195
+        },
+        "range": {
+          "from": 1968,
+          "to": 1992,
+          "matches": 12053
+        },
+        "province": {
+          "value": "ES:PROV:08",
+          "matches": 13223
+        },
+        "municipality_resolved": {
+          "value": "ES:MUN:08284",
+          "matches": 130
+        },
+        "municipality_null": {
+          "matches": 6461
+        }
+      },
+      "lookup": {
+        "record_id": "egif-record:1968080028",
+        "ordinal": 0,
+        "lookup_found": true,
+        "map_entries": 4612
+      },
+      "columnar_vs_objects_small_sample": {
+        "status": "run",
+        "sample_records": 1000,
+        "columnar_filter_ms": 0,
+        "materialize_and_filter_ms": 1.3,
+        "columnar_matches": 195,
+        "object_matches": 195
+      },
+      "same_asset_detail_telemetry": {
+        "status": "not_usable_for_comparison",
+        "reason": "the harness recorded this after loading a second detail asset",
+        "reported_value": 1,
+        "other_detail_requests": 1
+      },
+      "errors": []
+    },
+    {
+      "scenario": "c_cataluna_full",
+      "scenario_label": "C — Cataluña, periodo completo",
+      "device": "mobile_390x844",
+      "cache_mode": "cold",
+      "initial_records": 31319,
+      "initial_assets": 5,
+      "initial_gzip_manifest_bytes": 209248,
+      "initial_body_raw_bytes": 4663170,
+      "initial_resource_transfer_bytes": 4664670,
+      "initial_requests": 5,
+      "initial_fetch_ms_sum_parallel": 92.8,
+      "initial_load_wall_ms": 30.5,
+      "initial_parse_ms_sum": 12.8,
+      "initial_prepare_ms_sum": 6,
+      "filter_bundle_ms": 2.6,
+      "lookup_query_ms": 0,
+      "heap_before_bytes": 3213083,
+      "heap_initial_bytes": 21169844,
+      "heap_initial_delta_bytes": 17956761,
+      "detail_gzip_manifest_bytes_probe": 149217,
+      "detail_body_raw_bytes_probe": 1308599,
+      "detail_resource_transfer_bytes_probe": 1309199,
+      "detail_requests_probe": 2,
+      "detail_fetch_ms_sum_probe": 7.2,
+      "detail_parse_ms_sum_probe": 3.9,
+      "first_selection_ms": 6.1,
+      "second_selection_same_asset_ms": 0.1,
+      "heap_detail_bytes": 26513838,
+      "heap_detail_delta_from_initial_bytes": 5343994,
+      "filters": {
+        "year": {
+          "value": 1968,
+          "matches": 195
+        },
+        "range": {
+          "from": 1968,
+          "to": 1992,
+          "matches": 12053
+        },
+        "province": {
+          "value": "ES:PROV:08",
+          "matches": 13223
+        },
+        "municipality_resolved": {
+          "value": "ES:MUN:08284",
+          "matches": 130
+        },
+        "municipality_null": {
+          "matches": 6461
+        }
+      },
+      "lookup": {
+        "record_id": "egif-record:1968080028",
+        "ordinal": 0,
+        "lookup_found": true,
+        "map_entries": 4612
+      },
+      "columnar_vs_objects_small_sample": {
+        "status": "run",
+        "sample_records": 1000,
+        "columnar_filter_ms": 0,
+        "materialize_and_filter_ms": 1.1,
+        "columnar_matches": 195,
+        "object_matches": 195
+      },
+      "same_asset_detail_telemetry": {
+        "status": "not_usable_for_comparison",
+        "reason": "the harness recorded this after loading a second detail asset",
+        "reported_value": 1,
+        "other_detail_requests": 1
+      },
+      "errors": []
+    },
+    {
+      "scenario": "c_cataluna_full",
+      "scenario_label": "C — Cataluña, periodo completo",
+      "device": "mobile_390x844",
+      "cache_mode": "warm",
+      "initial_records": 31319,
+      "initial_assets": 5,
+      "initial_gzip_manifest_bytes": 209248,
+      "initial_body_raw_bytes": 4663170,
+      "initial_resource_transfer_bytes": 0,
+      "initial_requests": 5,
+      "initial_fetch_ms_sum_parallel": 67.8,
+      "initial_load_wall_ms": 23.3,
+      "initial_parse_ms_sum": 9.6,
+      "initial_prepare_ms_sum": 5.3,
+      "filter_bundle_ms": 2.4,
+      "lookup_query_ms": 0,
+      "heap_before_bytes": 27264940,
+      "heap_initial_bytes": 38110798,
+      "heap_initial_delta_bytes": 10845858,
+      "detail_gzip_manifest_bytes_probe": 149217,
+      "detail_body_raw_bytes_probe": 1308599,
+      "detail_resource_transfer_bytes_probe": 0,
+      "detail_requests_probe": 2,
+      "detail_fetch_ms_sum_probe": 3.9000000000000004,
+      "detail_parse_ms_sum_probe": 2.6,
+      "first_selection_ms": 2.9,
+      "second_selection_same_asset_ms": 0,
+      "heap_detail_bytes": 41939041,
+      "heap_detail_delta_from_initial_bytes": 3828243,
+      "filters": {
+        "year": {
+          "value": 1968,
+          "matches": 195
+        },
+        "range": {
+          "from": 1968,
+          "to": 1992,
+          "matches": 12053
+        },
+        "province": {
+          "value": "ES:PROV:08",
+          "matches": 13223
+        },
+        "municipality_resolved": {
+          "value": "ES:MUN:08284",
+          "matches": 130
+        },
+        "municipality_null": {
+          "matches": 6461
+        }
+      },
+      "lookup": {
+        "record_id": "egif-record:1968080028",
+        "ordinal": 0,
+        "lookup_found": true,
+        "map_entries": 4612
+      },
+      "columnar_vs_objects_small_sample": {
+        "status": "run",
+        "sample_records": 1000,
+        "columnar_filter_ms": 0,
+        "materialize_and_filter_ms": 1.3,
+        "columnar_matches": 195,
+        "object_matches": 195
+      },
+      "same_asset_detail_telemetry": {
+        "status": "not_usable_for_comparison",
+        "reason": "the harness recorded this after loading a second detail asset",
+        "reported_value": 1,
+        "other_detail_requests": 1
+      },
+      "errors": []
+    },
+    {
+      "scenario": "d_andalucia_full",
+      "scenario_label": "D — Andalucía, periodo completo",
+      "device": "desktop",
+      "cache_mode": "cold",
+      "initial_records": 45512,
+      "initial_assets": 5,
+      "initial_gzip_manifest_bytes": 292005,
+      "initial_body_raw_bytes": 6820965,
+      "initial_resource_transfer_bytes": 6822465,
+      "initial_requests": 5,
+      "initial_fetch_ms_sum_parallel": 115.80000000000001,
+      "initial_load_wall_ms": 38.8,
+      "initial_parse_ms_sum": 15.8,
+      "initial_prepare_ms_sum": 6.4,
+      "filter_bundle_ms": 3.9,
+      "lookup_query_ms": 0,
+      "heap_before_bytes": 3213086,
+      "heap_initial_bytes": 30857289,
+      "heap_initial_delta_bytes": 27644203,
+      "detail_gzip_manifest_bytes_probe": 222814,
+      "detail_body_raw_bytes_probe": 1843651,
+      "detail_resource_transfer_bytes_probe": 1844251,
+      "detail_requests_probe": 2,
+      "detail_fetch_ms_sum_probe": 7,
+      "detail_parse_ms_sum_probe": 7.6,
+      "first_selection_ms": 3.9,
+      "second_selection_same_asset_ms": 0.1,
+      "heap_detail_bytes": 36630215,
+      "heap_detail_delta_from_initial_bytes": 5772926,
+      "filters": {
+        "year": {
+          "value": 1968,
+          "matches": 158
+        },
+        "range": {
+          "from": 1968,
+          "to": 1992,
+          "matches": 16950
+        },
+        "province": {
+          "value": "ES:PROV:04",
+          "matches": 3379
+        },
+        "municipality_resolved": {
+          "value": "ES:MUN:04019",
+          "matches": 31
+        },
+        "municipality_null": {
+          "matches": 5386
+        }
+      },
+      "lookup": {
+        "record_id": "egif-record:1968040495",
+        "ordinal": 0,
+        "lookup_found": true,
+        "map_entries": 3135
+      },
+      "columnar_vs_objects_small_sample": {
+        "status": "run",
+        "sample_records": 1000,
+        "columnar_filter_ms": 0,
+        "materialize_and_filter_ms": 1.3,
+        "columnar_matches": 158,
+        "object_matches": 158
+      },
+      "same_asset_detail_telemetry": {
+        "status": "not_usable_for_comparison",
+        "reason": "the harness recorded this after loading a second detail asset",
+        "reported_value": 1,
+        "other_detail_requests": 1
+      },
+      "errors": []
+    },
+    {
+      "scenario": "d_andalucia_full",
+      "scenario_label": "D — Andalucía, periodo completo",
+      "device": "desktop",
+      "cache_mode": "warm",
+      "initial_records": 45512,
+      "initial_assets": 5,
+      "initial_gzip_manifest_bytes": 292005,
+      "initial_body_raw_bytes": 6820965,
+      "initial_resource_transfer_bytes": 0,
+      "initial_requests": 5,
+      "initial_fetch_ms_sum_parallel": 90.60000000000001,
+      "initial_load_wall_ms": 29.6,
+      "initial_parse_ms_sum": 11.4,
+      "initial_prepare_ms_sum": 4.9,
+      "filter_bundle_ms": 3,
+      "lookup_query_ms": 0,
+      "heap_before_bytes": 37183149,
+      "heap_initial_bytes": 56037054,
+      "heap_initial_delta_bytes": 18853905,
+      "detail_gzip_manifest_bytes_probe": 222814,
+      "detail_body_raw_bytes_probe": 1843651,
+      "detail_resource_transfer_bytes_probe": 0,
+      "detail_requests_probe": 2,
+      "detail_fetch_ms_sum_probe": 11.9,
+      "detail_parse_ms_sum_probe": 4.6,
+      "first_selection_ms": 3.3,
+      "second_selection_same_asset_ms": 0,
+      "heap_detail_bytes": 58609845,
+      "heap_detail_delta_from_initial_bytes": 2572791,
+      "filters": {
+        "year": {
+          "value": 1968,
+          "matches": 158
+        },
+        "range": {
+          "from": 1968,
+          "to": 1992,
+          "matches": 16950
+        },
+        "province": {
+          "value": "ES:PROV:04",
+          "matches": 3379
+        },
+        "municipality_resolved": {
+          "value": "ES:MUN:04019",
+          "matches": 31
+        },
+        "municipality_null": {
+          "matches": 5386
+        }
+      },
+      "lookup": {
+        "record_id": "egif-record:1968040495",
+        "ordinal": 0,
+        "lookup_found": true,
+        "map_entries": 3135
+      },
+      "columnar_vs_objects_small_sample": {
+        "status": "run",
+        "sample_records": 1000,
+        "columnar_filter_ms": 0,
+        "materialize_and_filter_ms": 1,
+        "columnar_matches": 158,
+        "object_matches": 158
+      },
+      "same_asset_detail_telemetry": {
+        "status": "not_usable_for_comparison",
+        "reason": "the harness recorded this after loading a second detail asset",
+        "reported_value": 1,
+        "other_detail_requests": 1
+      },
+      "errors": []
+    },
+    {
+      "scenario": "d_andalucia_full",
+      "scenario_label": "D — Andalucía, periodo completo",
+      "device": "mobile_390x844",
+      "cache_mode": "cold",
+      "initial_records": 45512,
+      "initial_assets": 5,
+      "initial_gzip_manifest_bytes": 292005,
+      "initial_body_raw_bytes": 6820965,
+      "initial_resource_transfer_bytes": 6822465,
+      "initial_requests": 5,
+      "initial_fetch_ms_sum_parallel": 109.20000000000002,
+      "initial_load_wall_ms": 37.6,
+      "initial_parse_ms_sum": 16.2,
+      "initial_prepare_ms_sum": 6.7,
+      "filter_bundle_ms": 2.9,
+      "lookup_query_ms": 0,
+      "heap_before_bytes": 3213138,
+      "heap_initial_bytes": 30857301,
+      "heap_initial_delta_bytes": 27644163,
+      "detail_gzip_manifest_bytes_probe": 222814,
+      "detail_body_raw_bytes_probe": 1843651,
+      "detail_resource_transfer_bytes_probe": 1844251,
+      "detail_requests_probe": 2,
+      "detail_fetch_ms_sum_probe": 7.7,
+      "detail_parse_ms_sum_probe": 8.1,
+      "first_selection_ms": 4,
+      "second_selection_same_asset_ms": 0.2,
+      "heap_detail_bytes": 36507055,
+      "heap_detail_delta_from_initial_bytes": 5649754,
+      "filters": {
+        "year": {
+          "value": 1968,
+          "matches": 158
+        },
+        "range": {
+          "from": 1968,
+          "to": 1992,
+          "matches": 16950
+        },
+        "province": {
+          "value": "ES:PROV:04",
+          "matches": 3379
+        },
+        "municipality_resolved": {
+          "value": "ES:MUN:04019",
+          "matches": 31
+        },
+        "municipality_null": {
+          "matches": 5386
+        }
+      },
+      "lookup": {
+        "record_id": "egif-record:1968040495",
+        "ordinal": 0,
+        "lookup_found": true,
+        "map_entries": 3135
+      },
+      "columnar_vs_objects_small_sample": {
+        "status": "run",
+        "sample_records": 1000,
+        "columnar_filter_ms": 0,
+        "materialize_and_filter_ms": 1.1,
+        "columnar_matches": 158,
+        "object_matches": 158
+      },
+      "same_asset_detail_telemetry": {
+        "status": "not_usable_for_comparison",
+        "reason": "the harness recorded this after loading a second detail asset",
+        "reported_value": 1,
+        "other_detail_requests": 1
+      },
+      "errors": []
+    },
+    {
+      "scenario": "d_andalucia_full",
+      "scenario_label": "D — Andalucía, periodo completo",
+      "device": "mobile_390x844",
+      "cache_mode": "warm",
+      "initial_records": 45512,
+      "initial_assets": 5,
+      "initial_gzip_manifest_bytes": 292005,
+      "initial_body_raw_bytes": 6820965,
+      "initial_resource_transfer_bytes": 0,
+      "initial_requests": 5,
+      "initial_fetch_ms_sum_parallel": 84.5,
+      "initial_load_wall_ms": 27.2,
+      "initial_parse_ms_sum": 10.2,
+      "initial_prepare_ms_sum": 4,
+      "filter_bundle_ms": 2.7,
+      "lookup_query_ms": 0,
+      "heap_before_bytes": 37228629,
+      "heap_initial_bytes": 56148086,
+      "heap_initial_delta_bytes": 18919457,
+      "detail_gzip_manifest_bytes_probe": 222814,
+      "detail_body_raw_bytes_probe": 1843651,
+      "detail_resource_transfer_bytes_probe": 0,
+      "detail_requests_probe": 2,
+      "detail_fetch_ms_sum_probe": 9.1,
+      "detail_parse_ms_sum_probe": 4.2,
+      "first_selection_ms": 2.4,
+      "second_selection_same_asset_ms": 0,
+      "heap_detail_bytes": 58720901,
+      "heap_detail_delta_from_initial_bytes": 2572815,
+      "filters": {
+        "year": {
+          "value": 1968,
+          "matches": 158
+        },
+        "range": {
+          "from": 1968,
+          "to": 1992,
+          "matches": 16950
+        },
+        "province": {
+          "value": "ES:PROV:04",
+          "matches": 3379
+        },
+        "municipality_resolved": {
+          "value": "ES:MUN:04019",
+          "matches": 31
+        },
+        "municipality_null": {
+          "matches": 5386
+        }
+      },
+      "lookup": {
+        "record_id": "egif-record:1968040495",
+        "ordinal": 0,
+        "lookup_found": true,
+        "map_entries": 3135
+      },
+      "columnar_vs_objects_small_sample": {
+        "status": "run",
+        "sample_records": 1000,
+        "columnar_filter_ms": 0,
+        "materialize_and_filter_ms": 0.9,
+        "columnar_matches": 158,
+        "object_matches": 158
+      },
+      "same_asset_detail_telemetry": {
+        "status": "not_usable_for_comparison",
+        "reason": "the harness recorded this after loading a second detail asset",
+        "reported_value": 1,
+        "other_detail_requests": 1
+      },
+      "errors": []
+    },
+    {
+      "scenario": "e_castilla_y_leon_full",
+      "scenario_label": "E — Castilla y León, periodo completo",
+      "device": "desktop",
+      "cache_mode": "cold",
+      "initial_records": 81438,
+      "initial_assets": 5,
+      "initial_gzip_manifest_bytes": 514891,
+      "initial_body_raw_bytes": 12201742,
+      "initial_resource_transfer_bytes": 12203242,
+      "initial_requests": 5,
+      "initial_fetch_ms_sum_parallel": 180.70000000000002,
+      "initial_load_wall_ms": 66.3,
+      "initial_parse_ms_sum": 29.6,
+      "initial_prepare_ms_sum": 13.7,
+      "filter_bundle_ms": 5.2,
+      "lookup_query_ms": 0,
+      "heap_before_bytes": 3213512,
+      "heap_initial_bytes": 51157549,
+      "heap_initial_delta_bytes": 47944037,
+      "detail_gzip_manifest_bytes_probe": 334516,
+      "detail_body_raw_bytes_probe": 2808676,
+      "detail_resource_transfer_bytes_probe": 2809276,
+      "detail_requests_probe": 2,
+      "detail_fetch_ms_sum_probe": 7.5,
+      "detail_parse_ms_sum_probe": 8.6,
+      "first_selection_ms": 5.6,
+      "second_selection_same_asset_ms": 0,
+      "heap_detail_bytes": 62500456,
+      "heap_detail_delta_from_initial_bytes": 11342907,
+      "filters": {
+        "year": {
+          "value": 1968,
+          "matches": 471
+        },
+        "range": {
+          "from": 1968,
+          "to": 1992,
+          "matches": 25789
+        },
+        "province": {
+          "value": "ES:PROV:05",
+          "matches": 8896
+        },
+        "municipality_resolved": {
+          "value": "ES:MUN:05168",
+          "matches": 152
+        },
+        "municipality_null": {
+          "matches": 8904
+        }
+      },
+      "lookup": {
+        "record_id": "egif-record:1968050005",
+        "ordinal": 0,
+        "lookup_found": true,
+        "map_entries": 5682
+      },
+      "columnar_vs_objects_small_sample": {
+        "status": "not_run",
+        "reason": "only one small asset is compared"
+      },
+      "same_asset_detail_telemetry": {
+        "status": "not_usable_for_comparison",
+        "reason": "the harness recorded this after loading a second detail asset",
+        "reported_value": 1,
+        "other_detail_requests": 1
+      },
+      "errors": []
+    },
+    {
+      "scenario": "e_castilla_y_leon_full",
+      "scenario_label": "E — Castilla y León, periodo completo",
+      "device": "desktop",
+      "cache_mode": "warm",
+      "initial_records": 81438,
+      "initial_assets": 5,
+      "initial_gzip_manifest_bytes": 514891,
+      "initial_body_raw_bytes": 12201742,
+      "initial_resource_transfer_bytes": 0,
+      "initial_requests": 5,
+      "initial_fetch_ms_sum_parallel": 157.5,
+      "initial_load_wall_ms": 54.7,
+      "initial_parse_ms_sum": 26.1,
+      "initial_prepare_ms_sum": 8.5,
+      "filter_bundle_ms": 3.1,
+      "lookup_query_ms": 0,
+      "heap_before_bytes": 62606746,
+      "heap_initial_bytes": 94394272,
+      "heap_initial_delta_bytes": 31787526,
+      "detail_gzip_manifest_bytes_probe": 334516,
+      "detail_body_raw_bytes_probe": 2808676,
+      "detail_resource_transfer_bytes_probe": 0,
+      "detail_requests_probe": 2,
+      "detail_fetch_ms_sum_probe": 5.6,
+      "detail_parse_ms_sum_probe": 6.7,
+      "first_selection_ms": 4.1,
+      "second_selection_same_asset_ms": 0,
+      "heap_detail_bytes": 102529004,
+      "heap_detail_delta_from_initial_bytes": 8134732,
+      "filters": {
+        "year": {
+          "value": 1968,
+          "matches": 471
+        },
+        "range": {
+          "from": 1968,
+          "to": 1992,
+          "matches": 25789
+        },
+        "province": {
+          "value": "ES:PROV:05",
+          "matches": 8896
+        },
+        "municipality_resolved": {
+          "value": "ES:MUN:05168",
+          "matches": 152
+        },
+        "municipality_null": {
+          "matches": 8904
+        }
+      },
+      "lookup": {
+        "record_id": "egif-record:1968050005",
+        "ordinal": 0,
+        "lookup_found": true,
+        "map_entries": 5682
+      },
+      "columnar_vs_objects_small_sample": {
+        "status": "not_run",
+        "reason": "only one small asset is compared"
+      },
+      "same_asset_detail_telemetry": {
+        "status": "not_usable_for_comparison",
+        "reason": "the harness recorded this after loading a second detail asset",
+        "reported_value": 1,
+        "other_detail_requests": 1
+      },
+      "errors": []
+    },
+    {
+      "scenario": "e_castilla_y_leon_full",
+      "scenario_label": "E — Castilla y León, periodo completo",
+      "device": "mobile_390x844",
+      "cache_mode": "cold",
+      "initial_records": 81438,
+      "initial_assets": 5,
+      "initial_gzip_manifest_bytes": 514891,
+      "initial_body_raw_bytes": 12201742,
+      "initial_resource_transfer_bytes": 12203242,
+      "initial_requests": 5,
+      "initial_fetch_ms_sum_parallel": 167.1,
+      "initial_load_wall_ms": 63.7,
+      "initial_parse_ms_sum": 29.8,
+      "initial_prepare_ms_sum": 13.6,
+      "filter_bundle_ms": 4,
+      "lookup_query_ms": 0,
+      "heap_before_bytes": 3213352,
+      "heap_initial_bytes": 51157561,
+      "heap_initial_delta_bytes": 47944209,
+      "detail_gzip_manifest_bytes_probe": 334516,
+      "detail_body_raw_bytes_probe": 2808676,
+      "detail_resource_transfer_bytes_probe": 2809276,
+      "detail_requests_probe": 2,
+      "detail_fetch_ms_sum_probe": 7,
+      "detail_parse_ms_sum_probe": 8.2,
+      "first_selection_ms": 6,
+      "second_selection_same_asset_ms": 0.1,
+      "heap_detail_bytes": 62501320,
+      "heap_detail_delta_from_initial_bytes": 11343759,
+      "filters": {
+        "year": {
+          "value": 1968,
+          "matches": 471
+        },
+        "range": {
+          "from": 1968,
+          "to": 1992,
+          "matches": 25789
+        },
+        "province": {
+          "value": "ES:PROV:05",
+          "matches": 8896
+        },
+        "municipality_resolved": {
+          "value": "ES:MUN:05168",
+          "matches": 152
+        },
+        "municipality_null": {
+          "matches": 8904
+        }
+      },
+      "lookup": {
+        "record_id": "egif-record:1968050005",
+        "ordinal": 0,
+        "lookup_found": true,
+        "map_entries": 5682
+      },
+      "columnar_vs_objects_small_sample": {
+        "status": "not_run",
+        "reason": "only one small asset is compared"
+      },
+      "same_asset_detail_telemetry": {
+        "status": "not_usable_for_comparison",
+        "reason": "the harness recorded this after loading a second detail asset",
+        "reported_value": 1,
+        "other_detail_requests": 1
+      },
+      "errors": []
+    },
+    {
+      "scenario": "e_castilla_y_leon_full",
+      "scenario_label": "E — Castilla y León, periodo completo",
+      "device": "mobile_390x844",
+      "cache_mode": "warm",
+      "initial_records": 81438,
+      "initial_assets": 5,
+      "initial_gzip_manifest_bytes": 514891,
+      "initial_body_raw_bytes": 12201742,
+      "initial_resource_transfer_bytes": 0,
+      "initial_requests": 5,
+      "initial_fetch_ms_sum_parallel": 153.29999999999998,
+      "initial_load_wall_ms": 54.7,
+      "initial_parse_ms_sum": 29.1,
+      "initial_prepare_ms_sum": 9.1,
+      "filter_bundle_ms": 3.6,
+      "lookup_query_ms": 0,
+      "heap_before_bytes": 62506298,
+      "heap_initial_bytes": 93794436,
+      "heap_initial_delta_bytes": 31288138,
+      "detail_gzip_manifest_bytes_probe": 334516,
+      "detail_body_raw_bytes_probe": 2808676,
+      "detail_resource_transfer_bytes_probe": 0,
+      "detail_requests_probe": 2,
+      "detail_fetch_ms_sum_probe": 4.6,
+      "detail_parse_ms_sum_probe": 6.1,
+      "first_selection_ms": 3.5,
+      "second_selection_same_asset_ms": 0,
+      "heap_detail_bytes": 101846688,
+      "heap_detail_delta_from_initial_bytes": 8052252,
+      "filters": {
+        "year": {
+          "value": 1968,
+          "matches": 471
+        },
+        "range": {
+          "from": 1968,
+          "to": 1992,
+          "matches": 25789
+        },
+        "province": {
+          "value": "ES:PROV:05",
+          "matches": 8896
+        },
+        "municipality_resolved": {
+          "value": "ES:MUN:05168",
+          "matches": 152
+        },
+        "municipality_null": {
+          "matches": 8904
+        }
+      },
+      "lookup": {
+        "record_id": "egif-record:1968050005",
+        "ordinal": 0,
+        "lookup_found": true,
+        "map_entries": 5682
+      },
+      "columnar_vs_objects_small_sample": {
+        "status": "not_run",
+        "reason": "only one small asset is compared"
+      },
+      "same_asset_detail_telemetry": {
+        "status": "not_usable_for_comparison",
+        "reason": "the harness recorded this after loading a second detail asset",
+        "reported_value": 1,
+        "other_detail_requests": 1
+      },
+      "errors": []
+    },
+    {
+      "scenario": "f_galicia_full",
+      "scenario_label": "F — Galicia, periodo completo",
+      "device": "desktop",
+      "cache_mode": "cold",
+      "initial_records": 264313,
+      "initial_assets": 5,
+      "initial_gzip_manifest_bytes": 1400126,
+      "initial_body_raw_bytes": 39521202,
+      "initial_resource_transfer_bytes": 39522702,
+      "initial_requests": 5,
+      "initial_fetch_ms_sum_parallel": 570.5,
+      "initial_load_wall_ms": 210,
+      "initial_parse_ms_sum": 106.6,
+      "initial_prepare_ms_sum": 42.1,
+      "filter_bundle_ms": 8.4,
+      "lookup_query_ms": 0,
+      "heap_before_bytes": 3213328,
+      "heap_initial_bytes": 153747605,
+      "heap_initial_delta_bytes": 150534277,
+      "detail_gzip_manifest_bytes_probe": 872981,
+      "detail_body_raw_bytes_probe": 7720599,
+      "detail_resource_transfer_bytes_probe": 7721199,
+      "detail_requests_probe": 2,
+      "detail_fetch_ms_sum_probe": 21.9,
+      "detail_parse_ms_sum_probe": 25.4,
+      "first_selection_ms": 10.5,
+      "second_selection_same_asset_ms": 0.3,
+      "heap_detail_bytes": 181277463,
+      "heap_detail_delta_from_initial_bytes": 27529858,
+      "filters": {
+        "year": {
+          "value": 1968,
+          "matches": 376
+        },
+        "range": {
+          "from": 1968,
+          "to": 1992,
+          "matches": 71057
+        },
+        "province": {
+          "value": "ES:PROV:15",
+          "matches": 61519
+        },
+        "municipality_resolved": {
+          "value": "ES:MUN:32009",
+          "matches": 996
+        },
+        "municipality_null": {
+          "matches": 31468
+        }
+      },
+      "lookup": {
+        "record_id": "egif-record:1968150161",
+        "ordinal": 0,
+        "lookup_found": true,
+        "map_entries": 17880
+      },
+      "columnar_vs_objects_small_sample": {
+        "status": "not_run",
+        "reason": "only one small asset is compared"
+      },
+      "same_asset_detail_telemetry": {
+        "status": "not_usable_for_comparison",
+        "reason": "the harness recorded this after loading a second detail asset",
+        "reported_value": 1,
+        "other_detail_requests": 1
+      },
+      "errors": []
+    },
+    {
+      "scenario": "f_galicia_full",
+      "scenario_label": "F — Galicia, periodo completo",
+      "device": "desktop",
+      "cache_mode": "warm",
+      "initial_records": 264313,
+      "initial_assets": 5,
+      "initial_gzip_manifest_bytes": 1400126,
+      "initial_body_raw_bytes": 39521202,
+      "initial_resource_transfer_bytes": 0,
+      "initial_requests": 5,
+      "initial_fetch_ms_sum_parallel": 418.90000000000003,
+      "initial_load_wall_ms": 172.9,
+      "initial_parse_ms_sum": 91.7,
+      "initial_prepare_ms_sum": 31.4,
+      "filter_bundle_ms": 8.7,
+      "lookup_query_ms": 0,
+      "heap_before_bytes": 181179477,
+      "heap_initial_bytes": 286335643,
+      "heap_initial_delta_bytes": 105156166,
+      "detail_gzip_manifest_bytes_probe": 872981,
+      "detail_body_raw_bytes_probe": 7720599,
+      "detail_resource_transfer_bytes_probe": 0,
+      "detail_requests_probe": 2,
+      "detail_fetch_ms_sum_probe": 21.799999999999997,
+      "detail_parse_ms_sum_probe": 18.5,
+      "first_selection_ms": 21.2,
+      "second_selection_same_asset_ms": 0.1,
+      "heap_detail_bytes": 299886154,
+      "heap_detail_delta_from_initial_bytes": 13550511,
+      "filters": {
+        "year": {
+          "value": 1968,
+          "matches": 376
+        },
+        "range": {
+          "from": 1968,
+          "to": 1992,
+          "matches": 71057
+        },
+        "province": {
+          "value": "ES:PROV:15",
+          "matches": 61519
+        },
+        "municipality_resolved": {
+          "value": "ES:MUN:32009",
+          "matches": 996
+        },
+        "municipality_null": {
+          "matches": 31468
+        }
+      },
+      "lookup": {
+        "record_id": "egif-record:1968150161",
+        "ordinal": 0,
+        "lookup_found": true,
+        "map_entries": 17880
+      },
+      "columnar_vs_objects_small_sample": {
+        "status": "not_run",
+        "reason": "only one small asset is compared"
+      },
+      "same_asset_detail_telemetry": {
+        "status": "not_usable_for_comparison",
+        "reason": "the harness recorded this after loading a second detail asset",
+        "reported_value": 1,
+        "other_detail_requests": 1
+      },
+      "errors": []
+    },
+    {
+      "scenario": "f_galicia_full",
+      "scenario_label": "F — Galicia, periodo completo",
+      "device": "mobile_390x844",
+      "cache_mode": "cold",
+      "initial_records": 264313,
+      "initial_assets": 5,
+      "initial_gzip_manifest_bytes": 1400126,
+      "initial_body_raw_bytes": 39521202,
+      "initial_resource_transfer_bytes": 39522702,
+      "initial_requests": 5,
+      "initial_fetch_ms_sum_parallel": 439.5,
+      "initial_load_wall_ms": 198.6,
+      "initial_parse_ms_sum": 102.3,
+      "initial_prepare_ms_sum": 37.5,
+      "filter_bundle_ms": 8.5,
+      "lookup_query_ms": 0,
+      "heap_before_bytes": 3213080,
+      "heap_initial_bytes": 156042125,
+      "heap_initial_delta_bytes": 152829045,
+      "detail_gzip_manifest_bytes_probe": 872981,
+      "detail_body_raw_bytes_probe": 7720599,
+      "detail_resource_transfer_bytes_probe": 7721199,
+      "detail_requests_probe": 2,
+      "detail_fetch_ms_sum_probe": 18.799999999999997,
+      "detail_parse_ms_sum_probe": 23.799999999999997,
+      "first_selection_ms": 10.3,
+      "second_selection_same_asset_ms": 0.3,
+      "heap_detail_bytes": 181243455,
+      "heap_detail_delta_from_initial_bytes": 25201330,
+      "filters": {
+        "year": {
+          "value": 1968,
+          "matches": 376
+        },
+        "range": {
+          "from": 1968,
+          "to": 1992,
+          "matches": 71057
+        },
+        "province": {
+          "value": "ES:PROV:15",
+          "matches": 61519
+        },
+        "municipality_resolved": {
+          "value": "ES:MUN:32009",
+          "matches": 996
+        },
+        "municipality_null": {
+          "matches": 31468
+        }
+      },
+      "lookup": {
+        "record_id": "egif-record:1968150161",
+        "ordinal": 0,
+        "lookup_found": true,
+        "map_entries": 17880
+      },
+      "columnar_vs_objects_small_sample": {
+        "status": "not_run",
+        "reason": "only one small asset is compared"
+      },
+      "same_asset_detail_telemetry": {
+        "status": "not_usable_for_comparison",
+        "reason": "the harness recorded this after loading a second detail asset",
+        "reported_value": 1,
+        "other_detail_requests": 1
+      },
+      "errors": []
+    },
+    {
+      "scenario": "f_galicia_full",
+      "scenario_label": "F — Galicia, periodo completo",
+      "device": "mobile_390x844",
+      "cache_mode": "warm",
+      "initial_records": 264313,
+      "initial_assets": 5,
+      "initial_gzip_manifest_bytes": 1400126,
+      "initial_body_raw_bytes": 39521202,
+      "initial_resource_transfer_bytes": 0,
+      "initial_requests": 5,
+      "initial_fetch_ms_sum_parallel": 590.7,
+      "initial_load_wall_ms": 177.5,
+      "initial_parse_ms_sum": 95,
+      "initial_prepare_ms_sum": 33.2,
+      "filter_bundle_ms": 8.8,
+      "lookup_query_ms": 0,
+      "heap_before_bytes": 181180257,
+      "heap_initial_bytes": 289166439,
+      "heap_initial_delta_bytes": 107986182,
+      "detail_gzip_manifest_bytes_probe": 872981,
+      "detail_body_raw_bytes_probe": 7720599,
+      "detail_resource_transfer_bytes_probe": 0,
+      "detail_requests_probe": 2,
+      "detail_fetch_ms_sum_probe": 19.5,
+      "detail_parse_ms_sum_probe": 18.5,
+      "first_selection_ms": 18.7,
+      "second_selection_same_asset_ms": 0.1,
+      "heap_detail_bytes": 300130114,
+      "heap_detail_delta_from_initial_bytes": 10963675,
+      "filters": {
+        "year": {
+          "value": 1968,
+          "matches": 376
+        },
+        "range": {
+          "from": 1968,
+          "to": 1992,
+          "matches": 71057
+        },
+        "province": {
+          "value": "ES:PROV:15",
+          "matches": 61519
+        },
+        "municipality_resolved": {
+          "value": "ES:MUN:32009",
+          "matches": 996
+        },
+        "municipality_null": {
+          "matches": 31468
+        }
+      },
+      "lookup": {
+        "record_id": "egif-record:1968150161",
+        "ordinal": 0,
+        "lookup_found": true,
+        "map_entries": 17880
+      },
+      "columnar_vs_objects_small_sample": {
+        "status": "not_run",
+        "reason": "only one small asset is compared"
+      },
+      "same_asset_detail_telemetry": {
+        "status": "not_usable_for_comparison",
+        "reason": "the harness recorded this after loading a second detail asset",
+        "reported_value": 1,
+        "other_detail_requests": 1
+      },
+      "errors": []
+    },
+    {
+      "scenario": "g_galicia_1993_2002",
+      "scenario_label": "G — Galicia, 1993–2002",
+      "device": "desktop",
+      "cache_mode": "cold",
+      "initial_records": 110605,
+      "initial_assets": 1,
+      "initial_gzip_manifest_bytes": 572974,
+      "initial_body_raw_bytes": 16610507,
+      "initial_resource_transfer_bytes": 16610807,
+      "initial_requests": 1,
+      "initial_fetch_ms_sum_parallel": 21.9,
+      "initial_load_wall_ms": 81.1,
+      "initial_parse_ms_sum": 44.7,
+      "initial_prepare_ms_sum": 14.3,
+      "filter_bundle_ms": 4.5,
+      "lookup_query_ms": 0.1,
+      "heap_before_bytes": 3213147,
+      "heap_initial_bytes": 72835474,
+      "heap_initial_delta_bytes": 69622327,
+      "detail_gzip_manifest_bytes_probe": 1439929,
+      "detail_body_raw_bytes_probe": 14855021,
+      "detail_resource_transfer_bytes_probe": 14855321,
+      "detail_requests_probe": 1,
+      "detail_fetch_ms_sum_probe": 25.8,
+      "detail_parse_ms_sum_probe": 52.3,
+      "first_selection_ms": 78.3,
+      "second_selection_same_asset_ms": 2.4,
+      "heap_detail_bytes": 123086961,
+      "heap_detail_delta_from_initial_bytes": 50251487,
+      "filters": {
+        "year": {
+          "value": 1993,
+          "matches": 7158
+        },
+        "range": {
+          "from": 1993,
+          "to": 2002,
+          "matches": 110605
+        },
+        "province": {
+          "value": "ES:PROV:15",
+          "matches": 26586
+        },
+        "municipality_resolved": {
+          "value": "ES:MUN:15088",
+          "matches": 327
+        },
+        "municipality_null": {
+          "matches": 1976
+        }
+      },
+      "lookup": {
+        "record_id": "egif-record:1993150001",
+        "ordinal": 0,
+        "lookup_found": true,
+        "map_entries": 110605
+      },
+      "columnar_vs_objects_small_sample": {
+        "status": "not_run",
+        "reason": "only one small asset is compared"
+      },
+      "same_asset_detail_telemetry": {
+        "status": "verified",
+        "additional_detail_requests": 0
+      },
+      "errors": []
+    },
+    {
+      "scenario": "g_galicia_1993_2002",
+      "scenario_label": "G — Galicia, 1993–2002",
+      "device": "desktop",
+      "cache_mode": "warm",
+      "initial_records": 110605,
+      "initial_assets": 1,
+      "initial_gzip_manifest_bytes": 572974,
+      "initial_body_raw_bytes": 16610507,
+      "initial_resource_transfer_bytes": 0,
+      "initial_requests": 1,
+      "initial_fetch_ms_sum_parallel": 19.7,
+      "initial_load_wall_ms": 89.6,
+      "initial_parse_ms_sum": 58.6,
+      "initial_prepare_ms_sum": 11.2,
+      "filter_bundle_ms": 4.9,
+      "lookup_query_ms": 0,
+      "heap_before_bytes": 123092119,
+      "heap_initial_bytes": 170193498,
+      "heap_initial_delta_bytes": 47101379,
+      "detail_gzip_manifest_bytes_probe": 1439929,
+      "detail_body_raw_bytes_probe": 14855021,
+      "detail_resource_transfer_bytes_probe": 0,
+      "detail_requests_probe": 1,
+      "detail_fetch_ms_sum_probe": 18.7,
+      "detail_parse_ms_sum_probe": 38.9,
+      "first_selection_ms": 71.6,
+      "second_selection_same_asset_ms": 0,
+      "heap_detail_bytes": 205629643,
+      "heap_detail_delta_from_initial_bytes": 35436145,
+      "filters": {
+        "year": {
+          "value": 1993,
+          "matches": 7158
+        },
+        "range": {
+          "from": 1993,
+          "to": 2002,
+          "matches": 110605
+        },
+        "province": {
+          "value": "ES:PROV:15",
+          "matches": 26586
+        },
+        "municipality_resolved": {
+          "value": "ES:MUN:15088",
+          "matches": 327
+        },
+        "municipality_null": {
+          "matches": 1976
+        }
+      },
+      "lookup": {
+        "record_id": "egif-record:1993150001",
+        "ordinal": 0,
+        "lookup_found": true,
+        "map_entries": 110605
+      },
+      "columnar_vs_objects_small_sample": {
+        "status": "not_run",
+        "reason": "only one small asset is compared"
+      },
+      "same_asset_detail_telemetry": {
+        "status": "verified",
+        "additional_detail_requests": 0
+      },
+      "errors": []
+    },
+    {
+      "scenario": "g_galicia_1993_2002",
+      "scenario_label": "G — Galicia, 1993–2002",
+      "device": "mobile_390x844",
+      "cache_mode": "cold",
+      "initial_records": 110605,
+      "initial_assets": 1,
+      "initial_gzip_manifest_bytes": 572974,
+      "initial_body_raw_bytes": 16610507,
+      "initial_resource_transfer_bytes": 16610807,
+      "initial_requests": 1,
+      "initial_fetch_ms_sum_parallel": 23.2,
+      "initial_load_wall_ms": 81.3,
+      "initial_parse_ms_sum": 43.6,
+      "initial_prepare_ms_sum": 14.3,
+      "filter_bundle_ms": 4.3,
+      "lookup_query_ms": 0.1,
+      "heap_before_bytes": 3213079,
+      "heap_initial_bytes": 72835546,
+      "heap_initial_delta_bytes": 69622467,
+      "detail_gzip_manifest_bytes_probe": 1439929,
+      "detail_body_raw_bytes_probe": 14855021,
+      "detail_resource_transfer_bytes_probe": 14855321,
+      "detail_requests_probe": 1,
+      "detail_fetch_ms_sum_probe": 25.7,
+      "detail_parse_ms_sum_probe": 51.6,
+      "first_selection_ms": 77.6,
+      "second_selection_same_asset_ms": 2.4,
+      "heap_detail_bytes": 123083281,
+      "heap_detail_delta_from_initial_bytes": 50247735,
+      "filters": {
+        "year": {
+          "value": 1993,
+          "matches": 7158
+        },
+        "range": {
+          "from": 1993,
+          "to": 2002,
+          "matches": 110605
+        },
+        "province": {
+          "value": "ES:PROV:15",
+          "matches": 26586
+        },
+        "municipality_resolved": {
+          "value": "ES:MUN:15088",
+          "matches": 327
+        },
+        "municipality_null": {
+          "matches": 1976
+        }
+      },
+      "lookup": {
+        "record_id": "egif-record:1993150001",
+        "ordinal": 0,
+        "lookup_found": true,
+        "map_entries": 110605
+      },
+      "columnar_vs_objects_small_sample": {
+        "status": "not_run",
+        "reason": "only one small asset is compared"
+      },
+      "same_asset_detail_telemetry": {
+        "status": "verified",
+        "additional_detail_requests": 0
+      },
+      "errors": []
+    },
+    {
+      "scenario": "g_galicia_1993_2002",
+      "scenario_label": "G — Galicia, 1993–2002",
+      "device": "mobile_390x844",
+      "cache_mode": "warm",
+      "initial_records": 110605,
+      "initial_assets": 1,
+      "initial_gzip_manifest_bytes": 572974,
+      "initial_body_raw_bytes": 16610507,
+      "initial_resource_transfer_bytes": 0,
+      "initial_requests": 1,
+      "initial_fetch_ms_sum_parallel": 20.9,
+      "initial_load_wall_ms": 98.6,
+      "initial_parse_ms_sum": 66.3,
+      "initial_prepare_ms_sum": 11.3,
+      "filter_bundle_ms": 5.1,
+      "lookup_query_ms": 0,
+      "heap_before_bytes": 123033223,
+      "heap_initial_bytes": 170229770,
+      "heap_initial_delta_bytes": 47196547,
+      "detail_gzip_manifest_bytes_probe": 1439929,
+      "detail_body_raw_bytes_probe": 14855021,
+      "detail_resource_transfer_bytes_probe": 0,
+      "detail_requests_probe": 1,
+      "detail_fetch_ms_sum_probe": 16.5,
+      "detail_parse_ms_sum_probe": 36.6,
+      "first_selection_ms": 68.6,
+      "second_selection_same_asset_ms": 0,
+      "heap_detail_bytes": 204763879,
+      "heap_detail_delta_from_initial_bytes": 34534109,
+      "filters": {
+        "year": {
+          "value": 1993,
+          "matches": 7158
+        },
+        "range": {
+          "from": 1993,
+          "to": 2002,
+          "matches": 110605
+        },
+        "province": {
+          "value": "ES:PROV:15",
+          "matches": 26586
+        },
+        "municipality_resolved": {
+          "value": "ES:MUN:15088",
+          "matches": 327
+        },
+        "municipality_null": {
+          "matches": 1976
+        }
+      },
+      "lookup": {
+        "record_id": "egif-record:1993150001",
+        "ordinal": 0,
+        "lookup_found": true,
+        "map_entries": 110605
+      },
+      "columnar_vs_objects_small_sample": {
+        "status": "not_run",
+        "reason": "only one small asset is compared"
+      },
+      "same_asset_detail_telemetry": {
+        "status": "verified",
+        "additional_detail_requests": 0
+      },
+      "errors": []
+    },
+    {
+      "scenario": "h_spain_1993_2002",
+      "scenario_label": "H — España, 1993–2002",
+      "device": "desktop",
+      "cache_mode": "cold",
+      "initial_records": 200513,
+      "initial_assets": 18,
+      "initial_gzip_manifest_bytes": 1147093,
+      "initial_body_raw_bytes": 30135204,
+      "initial_resource_transfer_bytes": 30140604,
+      "initial_requests": 18,
+      "initial_fetch_ms_sum_parallel": 1073.8000000000002,
+      "initial_load_wall_ms": 154,
+      "initial_parse_ms_sum": 73.9,
+      "initial_prepare_ms_sum": 32.4,
+      "filter_bundle_ms": 7,
+      "lookup_query_ms": 0,
+      "heap_before_bytes": 3213089,
+      "heap_initial_bytes": 122223020,
+      "heap_initial_delta_bytes": 119009931,
+      "detail_gzip_manifest_bytes_probe": 246214,
+      "detail_body_raw_bytes_probe": 2016175,
+      "detail_resource_transfer_bytes_probe": 2016775,
+      "detail_requests_probe": 2,
+      "detail_fetch_ms_sum_probe": 17.7,
+      "detail_parse_ms_sum_probe": 5.2,
+      "first_selection_ms": 7.6,
+      "second_selection_same_asset_ms": 0.2,
+      "heap_detail_bytes": 123928444,
+      "heap_detail_delta_from_initial_bytes": 1705424,
+      "filters": {
+        "year": {
+          "value": 1993,
+          "matches": 14253
+        },
+        "range": {
+          "from": 1993,
+          "to": 2002,
+          "matches": 200513
+        },
+        "province": {
+          "value": "ES:PROV:04",
+          "matches": 794
+        },
+        "municipality_resolved": {
+          "value": "ES:MUN:04073",
+          "matches": 7
+        },
+        "municipality_null": {
+          "matches": 2032
+        }
+      },
+      "lookup": {
+        "record_id": "egif-record:1993040001",
+        "ordinal": 0,
+        "lookup_found": true,
+        "map_entries": 10945
+      },
+      "columnar_vs_objects_small_sample": {
+        "status": "not_run",
+        "reason": "only one small asset is compared"
+      },
+      "same_asset_detail_telemetry": {
+        "status": "not_usable_for_comparison",
+        "reason": "the harness recorded this after loading a second detail asset",
+        "reported_value": 1,
+        "other_detail_requests": 1
+      },
+      "errors": []
+    },
+    {
+      "scenario": "h_spain_1993_2002",
+      "scenario_label": "H — España, 1993–2002",
+      "device": "desktop",
+      "cache_mode": "warm",
+      "initial_records": 200513,
+      "initial_assets": 18,
+      "initial_gzip_manifest_bytes": 1147093,
+      "initial_body_raw_bytes": 30135204,
+      "initial_resource_transfer_bytes": 0,
+      "initial_requests": 18,
+      "initial_fetch_ms_sum_parallel": 979.2000000000002,
+      "initial_load_wall_ms": 155.8,
+      "initial_parse_ms_sum": 83.7,
+      "initial_prepare_ms_sum": 25.5,
+      "filter_bundle_ms": 6.5,
+      "lookup_query_ms": 0,
+      "heap_before_bytes": 124009534,
+      "heap_initial_bytes": 204986830,
+      "heap_initial_delta_bytes": 80977296,
+      "detail_gzip_manifest_bytes_probe": 246214,
+      "detail_body_raw_bytes_probe": 2016175,
+      "detail_resource_transfer_bytes_probe": 0,
+      "detail_requests_probe": 2,
+      "detail_fetch_ms_sum_probe": 13.799999999999999,
+      "detail_parse_ms_sum_probe": 4.6,
+      "first_selection_ms": 7,
+      "second_selection_same_asset_ms": 0,
+      "heap_detail_bytes": 204473973,
+      "heap_detail_delta_from_initial_bytes": -512857,
+      "filters": {
+        "year": {
+          "value": 1993,
+          "matches": 14253
+        },
+        "range": {
+          "from": 1993,
+          "to": 2002,
+          "matches": 200513
+        },
+        "province": {
+          "value": "ES:PROV:04",
+          "matches": 794
+        },
+        "municipality_resolved": {
+          "value": "ES:MUN:04073",
+          "matches": 7
+        },
+        "municipality_null": {
+          "matches": 2032
+        }
+      },
+      "lookup": {
+        "record_id": "egif-record:1993040001",
+        "ordinal": 0,
+        "lookup_found": true,
+        "map_entries": 10945
+      },
+      "columnar_vs_objects_small_sample": {
+        "status": "not_run",
+        "reason": "only one small asset is compared"
+      },
+      "same_asset_detail_telemetry": {
+        "status": "not_usable_for_comparison",
+        "reason": "the harness recorded this after loading a second detail asset",
+        "reported_value": 1,
+        "other_detail_requests": 1
+      },
+      "errors": []
+    },
+    {
+      "scenario": "h_spain_1993_2002",
+      "scenario_label": "H — España, 1993–2002",
+      "device": "mobile_390x844",
+      "cache_mode": "cold",
+      "initial_records": 200513,
+      "initial_assets": 18,
+      "initial_gzip_manifest_bytes": 1147093,
+      "initial_body_raw_bytes": 30135204,
+      "initial_resource_transfer_bytes": 30140604,
+      "initial_requests": 18,
+      "initial_fetch_ms_sum_parallel": 1400.4,
+      "initial_load_wall_ms": 164.4,
+      "initial_parse_ms_sum": 74.5,
+      "initial_prepare_ms_sum": 34.2,
+      "filter_bundle_ms": 7.3,
+      "lookup_query_ms": 0,
+      "heap_before_bytes": 3213073,
+      "heap_initial_bytes": 122179984,
+      "heap_initial_delta_bytes": 118966911,
+      "detail_gzip_manifest_bytes_probe": 246214,
+      "detail_body_raw_bytes_probe": 2016175,
+      "detail_resource_transfer_bytes_probe": 2016775,
+      "detail_requests_probe": 2,
+      "detail_fetch_ms_sum_probe": 14.5,
+      "detail_parse_ms_sum_probe": 5,
+      "first_selection_ms": 7.6,
+      "second_selection_same_asset_ms": 0.3,
+      "heap_detail_bytes": 123780700,
+      "heap_detail_delta_from_initial_bytes": 1600716,
+      "filters": {
+        "year": {
+          "value": 1993,
+          "matches": 14253
+        },
+        "range": {
+          "from": 1993,
+          "to": 2002,
+          "matches": 200513
+        },
+        "province": {
+          "value": "ES:PROV:04",
+          "matches": 794
+        },
+        "municipality_resolved": {
+          "value": "ES:MUN:04073",
+          "matches": 7
+        },
+        "municipality_null": {
+          "matches": 2032
+        }
+      },
+      "lookup": {
+        "record_id": "egif-record:1993040001",
+        "ordinal": 0,
+        "lookup_found": true,
+        "map_entries": 10945
+      },
+      "columnar_vs_objects_small_sample": {
+        "status": "not_run",
+        "reason": "only one small asset is compared"
+      },
+      "same_asset_detail_telemetry": {
+        "status": "not_usable_for_comparison",
+        "reason": "the harness recorded this after loading a second detail asset",
+        "reported_value": 1,
+        "other_detail_requests": 1
+      },
+      "errors": []
+    },
+    {
+      "scenario": "h_spain_1993_2002",
+      "scenario_label": "H — España, 1993–2002",
+      "device": "mobile_390x844",
+      "cache_mode": "warm",
+      "initial_records": 200513,
+      "initial_assets": 18,
+      "initial_gzip_manifest_bytes": 1147093,
+      "initial_body_raw_bytes": 30135204,
+      "initial_resource_transfer_bytes": 0,
+      "initial_requests": 18,
+      "initial_fetch_ms_sum_parallel": 1093,
+      "initial_load_wall_ms": 155.4,
+      "initial_parse_ms_sum": 76.9,
+      "initial_prepare_ms_sum": 25,
+      "filter_bundle_ms": 6.4,
+      "lookup_query_ms": 0,
+      "heap_before_bytes": 123930306,
+      "heap_initial_bytes": 205000826,
+      "heap_initial_delta_bytes": 81070520,
+      "detail_gzip_manifest_bytes_probe": 246214,
+      "detail_body_raw_bytes_probe": 2016175,
+      "detail_resource_transfer_bytes_probe": 0,
+      "detail_requests_probe": 2,
+      "detail_fetch_ms_sum_probe": 15,
+      "detail_parse_ms_sum_probe": 4.4,
+      "first_selection_ms": 6.2,
+      "second_selection_same_asset_ms": 0,
+      "heap_detail_bytes": 204462225,
+      "heap_detail_delta_from_initial_bytes": -538601,
+      "filters": {
+        "year": {
+          "value": 1993,
+          "matches": 14253
+        },
+        "range": {
+          "from": 1993,
+          "to": 2002,
+          "matches": 200513
+        },
+        "province": {
+          "value": "ES:PROV:04",
+          "matches": 794
+        },
+        "municipality_resolved": {
+          "value": "ES:MUN:04073",
+          "matches": 7
+        },
+        "municipality_null": {
+          "matches": 2032
+        }
+      },
+      "lookup": {
+        "record_id": "egif-record:1993040001",
+        "ordinal": 0,
+        "lookup_found": true,
+        "map_entries": 10945
+      },
+      "columnar_vs_objects_small_sample": {
+        "status": "not_run",
+        "reason": "only one small asset is compared"
+      },
+      "same_asset_detail_telemetry": {
+        "status": "not_usable_for_comparison",
+        "reason": "the harness recorded this after loading a second detail asset",
+        "reported_value": 1,
+        "other_detail_requests": 1
+      },
+      "errors": []
+    },
+    {
+      "scenario": "i_spain_2013_2023",
+      "scenario_label": "I — España, 2013–2023",
+      "device": "desktop",
+      "cache_mode": "cold",
+      "initial_records": 102669,
+      "initial_assets": 18,
+      "initial_gzip_manifest_bytes": 719901,
+      "initial_body_raw_bytes": 15497839,
+      "initial_resource_transfer_bytes": 15503239,
+      "initial_requests": 18,
+      "initial_fetch_ms_sum_parallel": 945.6,
+      "initial_load_wall_ms": 87.9,
+      "initial_parse_ms_sum": 38,
+      "initial_prepare_ms_sum": 15.3,
+      "filter_bundle_ms": 4.7,
+      "lookup_query_ms": 0,
+      "heap_before_bytes": 3213109,
+      "heap_initial_bytes": 64430918,
+      "heap_initial_delta_bytes": 61217809,
+      "detail_gzip_manifest_bytes_probe": 282106,
+      "detail_body_raw_bytes_probe": 1811695,
+      "detail_resource_transfer_bytes_probe": 1812295,
+      "detail_requests_probe": 2,
+      "detail_fetch_ms_sum_probe": 10.8,
+      "detail_parse_ms_sum_probe": 4.6,
+      "first_selection_ms": 6.4,
+      "second_selection_same_asset_ms": 0.1,
+      "heap_detail_bytes": 68520323,
+      "heap_detail_delta_from_initial_bytes": 4089405,
+      "filters": {
+        "year": {
+          "value": 2013,
+          "matches": 10797
+        },
+        "range": {
+          "from": 2013,
+          "to": 2023,
+          "matches": 102669
+        },
+        "province": {
+          "value": "ES:PROV:04",
+          "matches": 788
+        },
+        "municipality_resolved": {
+          "value": "ES:MUN:04001",
+          "matches": 4
+        },
+        "municipality_null": {
+          "matches": 339
+        }
+      },
+      "lookup": {
+        "record_id": "egif-record:2013040001",
+        "ordinal": 0,
+        "lookup_found": true,
+        "map_entries": 8442
+      },
+      "columnar_vs_objects_small_sample": {
+        "status": "not_run",
+        "reason": "only one small asset is compared"
+      },
+      "same_asset_detail_telemetry": {
+        "status": "not_usable_for_comparison",
+        "reason": "the harness recorded this after loading a second detail asset",
+        "reported_value": 1,
+        "other_detail_requests": 1
+      },
+      "errors": []
+    },
+    {
+      "scenario": "i_spain_2013_2023",
+      "scenario_label": "I — España, 2013–2023",
+      "device": "desktop",
+      "cache_mode": "warm",
+      "initial_records": 102669,
+      "initial_assets": 18,
+      "initial_gzip_manifest_bytes": 719901,
+      "initial_body_raw_bytes": 15497839,
+      "initial_resource_transfer_bytes": 0,
+      "initial_requests": 18,
+      "initial_fetch_ms_sum_parallel": 751.8,
+      "initial_load_wall_ms": 75.1,
+      "initial_parse_ms_sum": 32.4,
+      "initial_prepare_ms_sum": 10.4,
+      "filter_bundle_ms": 3.8,
+      "lookup_query_ms": 0,
+      "heap_before_bytes": 68477981,
+      "heap_initial_bytes": 112409656,
+      "heap_initial_delta_bytes": 43931675,
+      "detail_gzip_manifest_bytes_probe": 282106,
+      "detail_body_raw_bytes_probe": 1811695,
+      "detail_resource_transfer_bytes_probe": 0,
+      "detail_requests_probe": 2,
+      "detail_fetch_ms_sum_probe": 14.2,
+      "detail_parse_ms_sum_probe": 4.4,
+      "first_selection_ms": 15.8,
+      "second_selection_same_asset_ms": 0,
+      "heap_detail_bytes": 112675683,
+      "heap_detail_delta_from_initial_bytes": 266027,
+      "filters": {
+        "year": {
+          "value": 2013,
+          "matches": 10797
+        },
+        "range": {
+          "from": 2013,
+          "to": 2023,
+          "matches": 102669
+        },
+        "province": {
+          "value": "ES:PROV:04",
+          "matches": 788
+        },
+        "municipality_resolved": {
+          "value": "ES:MUN:04001",
+          "matches": 4
+        },
+        "municipality_null": {
+          "matches": 339
+        }
+      },
+      "lookup": {
+        "record_id": "egif-record:2013040001",
+        "ordinal": 0,
+        "lookup_found": true,
+        "map_entries": 8442
+      },
+      "columnar_vs_objects_small_sample": {
+        "status": "not_run",
+        "reason": "only one small asset is compared"
+      },
+      "same_asset_detail_telemetry": {
+        "status": "not_usable_for_comparison",
+        "reason": "the harness recorded this after loading a second detail asset",
+        "reported_value": 1,
+        "other_detail_requests": 1
+      },
+      "errors": []
+    },
+    {
+      "scenario": "i_spain_2013_2023",
+      "scenario_label": "I — España, 2013–2023",
+      "device": "mobile_390x844",
+      "cache_mode": "cold",
+      "initial_records": 102669,
+      "initial_assets": 18,
+      "initial_gzip_manifest_bytes": 719901,
+      "initial_body_raw_bytes": 15497839,
+      "initial_resource_transfer_bytes": 15503239,
+      "initial_requests": 18,
+      "initial_fetch_ms_sum_parallel": 1000.9,
+      "initial_load_wall_ms": 89.7,
+      "initial_parse_ms_sum": 40,
+      "initial_prepare_ms_sum": 16.2,
+      "filter_bundle_ms": 4.5,
+      "lookup_query_ms": 0,
+      "heap_before_bytes": 3213373,
+      "heap_initial_bytes": 64435230,
+      "heap_initial_delta_bytes": 61221857,
+      "detail_gzip_manifest_bytes_probe": 282106,
+      "detail_body_raw_bytes_probe": 1811695,
+      "detail_resource_transfer_bytes_probe": 1812295,
+      "detail_requests_probe": 2,
+      "detail_fetch_ms_sum_probe": 10.8,
+      "detail_parse_ms_sum_probe": 4.5,
+      "first_selection_ms": 6.8,
+      "second_selection_same_asset_ms": 0.3,
+      "heap_detail_bytes": 68803139,
+      "heap_detail_delta_from_initial_bytes": 4367909,
+      "filters": {
+        "year": {
+          "value": 2013,
+          "matches": 10797
+        },
+        "range": {
+          "from": 2013,
+          "to": 2023,
+          "matches": 102669
+        },
+        "province": {
+          "value": "ES:PROV:04",
+          "matches": 788
+        },
+        "municipality_resolved": {
+          "value": "ES:MUN:04001",
+          "matches": 4
+        },
+        "municipality_null": {
+          "matches": 339
+        }
+      },
+      "lookup": {
+        "record_id": "egif-record:2013040001",
+        "ordinal": 0,
+        "lookup_found": true,
+        "map_entries": 8442
+      },
+      "columnar_vs_objects_small_sample": {
+        "status": "not_run",
+        "reason": "only one small asset is compared"
+      },
+      "same_asset_detail_telemetry": {
+        "status": "not_usable_for_comparison",
+        "reason": "the harness recorded this after loading a second detail asset",
+        "reported_value": 1,
+        "other_detail_requests": 1
+      },
+      "errors": []
+    },
+    {
+      "scenario": "i_spain_2013_2023",
+      "scenario_label": "I — España, 2013–2023",
+      "device": "mobile_390x844",
+      "cache_mode": "warm",
+      "initial_records": 102669,
+      "initial_assets": 18,
+      "initial_gzip_manifest_bytes": 719901,
+      "initial_body_raw_bytes": 15497839,
+      "initial_resource_transfer_bytes": 0,
+      "initial_requests": 18,
+      "initial_fetch_ms_sum_parallel": 776.7999999999998,
+      "initial_load_wall_ms": 77.7,
+      "initial_parse_ms_sum": 32.6,
+      "initial_prepare_ms_sum": 12.5,
+      "filter_bundle_ms": 4,
+      "lookup_query_ms": 0,
+      "heap_before_bytes": 68749757,
+      "heap_initial_bytes": 112669508,
+      "heap_initial_delta_bytes": 43919751,
+      "detail_gzip_manifest_bytes_probe": 282106,
+      "detail_body_raw_bytes_probe": 1811695,
+      "detail_resource_transfer_bytes_probe": 0,
+      "detail_requests_probe": 2,
+      "detail_fetch_ms_sum_probe": 18.900000000000002,
+      "detail_parse_ms_sum_probe": 4.7,
+      "first_selection_ms": 19.7,
+      "second_selection_same_asset_ms": 0,
+      "heap_detail_bytes": 112746459,
+      "heap_detail_delta_from_initial_bytes": 76951,
+      "filters": {
+        "year": {
+          "value": 2013,
+          "matches": 10797
+        },
+        "range": {
+          "from": 2013,
+          "to": 2023,
+          "matches": 102669
+        },
+        "province": {
+          "value": "ES:PROV:04",
+          "matches": 788
+        },
+        "municipality_resolved": {
+          "value": "ES:MUN:04001",
+          "matches": 4
+        },
+        "municipality_null": {
+          "matches": 339
+        }
+      },
+      "lookup": {
+        "record_id": "egif-record:2013040001",
+        "ordinal": 0,
+        "lookup_found": true,
+        "map_entries": 8442
+      },
+      "columnar_vs_objects_small_sample": {
+        "status": "not_run",
+        "reason": "only one small asset is compared"
+      },
+      "same_asset_detail_telemetry": {
+        "status": "not_usable_for_comparison",
+        "reason": "the harness recorded this after loading a second detail asset",
+        "reported_value": 1,
+        "other_detail_requests": 1
+      },
+      "errors": []
+    },
+    {
+      "scenario": "j_spain_all_initial",
+      "scenario_label": "J — España, todos los bloques INITIAL",
+      "device": "desktop",
+      "cache_mode": "cold",
+      "initial_records": 646887,
+      "initial_assets": 88,
+      "initial_gzip_manifest_bytes": 3901303,
+      "initial_body_raw_bytes": 96883738,
+      "initial_resource_transfer_bytes": 96910138,
+      "initial_requests": 88,
+      "initial_fetch_ms_sum_parallel": 27319.6,
+      "initial_load_wall_ms": 661,
+      "initial_parse_ms_sum": 300.9,
+      "initial_prepare_ms_sum": 166.8,
+      "filter_bundle_ms": 17.8,
+      "lookup_query_ms": 0,
+      "heap_before_bytes": 3212819,
+      "heap_initial_bytes": 267971678,
+      "heap_initial_delta_bytes": 264758859,
+      "detail_gzip_manifest_bytes_probe": 222814,
+      "detail_body_raw_bytes_probe": 1843651,
+      "detail_resource_transfer_bytes_probe": 1844251,
+      "detail_requests_probe": 2,
+      "detail_fetch_ms_sum_probe": 11,
+      "detail_parse_ms_sum_probe": 4.9,
+      "first_selection_ms": 9,
+      "second_selection_same_asset_ms": 0.2,
+      "heap_detail_bytes": 195363483,
+      "heap_detail_delta_from_initial_bytes": -72608195,
+      "filters": {
+        "year": {
+          "value": 1968,
+          "matches": 2038
+        },
+        "range": {
+          "from": 1968,
+          "to": 1992,
+          "matches": 179501
+        },
+        "province": {
+          "value": "ES:PROV:04",
+          "matches": 3379
+        },
+        "municipality_resolved": {
+          "value": "ES:MUN:04019",
+          "matches": 31
+        },
+        "municipality_null": {
+          "matches": 71490
+        }
+      },
+      "lookup": {
+        "record_id": "egif-record:1968040495",
+        "ordinal": 0,
+        "lookup_found": true,
+        "map_entries": 3135
+      },
+      "columnar_vs_objects_small_sample": {
+        "status": "run",
+        "sample_records": 1000,
+        "columnar_filter_ms": 0.1,
+        "materialize_and_filter_ms": 0.9,
+        "columnar_matches": 158,
+        "object_matches": 158
+      },
+      "same_asset_detail_telemetry": {
+        "status": "not_usable_for_comparison",
+        "reason": "the harness recorded this after loading a second detail asset",
+        "reported_value": 1,
+        "other_detail_requests": 1
+      },
+      "errors": []
+    },
+    {
+      "scenario": "j_spain_all_initial",
+      "scenario_label": "J — España, todos los bloques INITIAL",
+      "device": "desktop",
+      "cache_mode": "warm",
+      "initial_records": 646887,
+      "initial_assets": 88,
+      "initial_gzip_manifest_bytes": 3901303,
+      "initial_body_raw_bytes": 96883738,
+      "initial_resource_transfer_bytes": 0,
+      "initial_requests": 88,
+      "initial_fetch_ms_sum_parallel": 20188.3,
+      "initial_load_wall_ms": 472.2,
+      "initial_parse_ms_sum": 204.3,
+      "initial_prepare_ms_sum": 101.1,
+      "filter_bundle_ms": 17.3,
+      "lookup_query_ms": 0,
+      "heap_before_bytes": 194636825,
+      "heap_initial_bytes": 530288890,
+      "heap_initial_delta_bytes": 335652065,
+      "detail_gzip_manifest_bytes_probe": 222814,
+      "detail_body_raw_bytes_probe": 1843651,
+      "detail_resource_transfer_bytes_probe": 0,
+      "detail_requests_probe": 2,
+      "detail_fetch_ms_sum_probe": 3.8,
+      "detail_parse_ms_sum_probe": 4.4,
+      "first_selection_ms": 2.6,
+      "second_selection_same_asset_ms": 0.1,
+      "heap_detail_bytes": 535781745,
+      "heap_detail_delta_from_initial_bytes": 5492855,
+      "filters": {
+        "year": {
+          "value": 1968,
+          "matches": 2038
+        },
+        "range": {
+          "from": 1968,
+          "to": 1992,
+          "matches": 179501
+        },
+        "province": {
+          "value": "ES:PROV:04",
+          "matches": 3379
+        },
+        "municipality_resolved": {
+          "value": "ES:MUN:04019",
+          "matches": 31
+        },
+        "municipality_null": {
+          "matches": 71490
+        }
+      },
+      "lookup": {
+        "record_id": "egif-record:1968040495",
+        "ordinal": 0,
+        "lookup_found": true,
+        "map_entries": 3135
+      },
+      "columnar_vs_objects_small_sample": {
+        "status": "run",
+        "sample_records": 1000,
+        "columnar_filter_ms": 0,
+        "materialize_and_filter_ms": 0.7,
+        "columnar_matches": 158,
+        "object_matches": 158
+      },
+      "same_asset_detail_telemetry": {
+        "status": "not_usable_for_comparison",
+        "reason": "the harness recorded this after loading a second detail asset",
+        "reported_value": 1,
+        "other_detail_requests": 1
+      },
+      "errors": []
+    },
+    {
+      "scenario": "j_spain_all_initial",
+      "scenario_label": "J — España, todos los bloques INITIAL",
+      "device": "mobile_390x844",
+      "cache_mode": "cold",
+      "initial_records": 646887,
+      "initial_assets": 88,
+      "initial_gzip_manifest_bytes": 3901303,
+      "initial_body_raw_bytes": 96883738,
+      "initial_resource_transfer_bytes": 96910138,
+      "initial_requests": 88,
+      "initial_fetch_ms_sum_parallel": 25242.299999999992,
+      "initial_load_wall_ms": 581.2,
+      "initial_parse_ms_sum": 228.5,
+      "initial_prepare_ms_sum": 160.2,
+      "filter_bundle_ms": 16,
+      "lookup_query_ms": 0,
+      "heap_before_bytes": 3213131,
+      "heap_initial_bytes": 196480850,
+      "heap_initial_delta_bytes": 193267719,
+      "detail_gzip_manifest_bytes_probe": 222814,
+      "detail_body_raw_bytes_probe": 1843651,
+      "detail_resource_transfer_bytes_probe": 1844251,
+      "detail_requests_probe": 2,
+      "detail_fetch_ms_sum_probe": 5.800000000000001,
+      "detail_parse_ms_sum_probe": 4.8,
+      "first_selection_ms": 3.8,
+      "second_selection_same_asset_ms": 0,
+      "heap_detail_bytes": 204027458,
+      "heap_detail_delta_from_initial_bytes": 7546608,
+      "filters": {
+        "year": {
+          "value": 1968,
+          "matches": 2038
+        },
+        "range": {
+          "from": 1968,
+          "to": 1992,
+          "matches": 179501
+        },
+        "province": {
+          "value": "ES:PROV:04",
+          "matches": 3379
+        },
+        "municipality_resolved": {
+          "value": "ES:MUN:04019",
+          "matches": 31
+        },
+        "municipality_null": {
+          "matches": 71490
+        }
+      },
+      "lookup": {
+        "record_id": "egif-record:1968040495",
+        "ordinal": 0,
+        "lookup_found": true,
+        "map_entries": 3135
+      },
+      "columnar_vs_objects_small_sample": {
+        "status": "run",
+        "sample_records": 1000,
+        "columnar_filter_ms": 0,
+        "materialize_and_filter_ms": 0.9,
+        "columnar_matches": 158,
+        "object_matches": 158
+      },
+      "same_asset_detail_telemetry": {
+        "status": "not_usable_for_comparison",
+        "reason": "the harness recorded this after loading a second detail asset",
+        "reported_value": 1,
+        "other_detail_requests": 1
+      },
+      "errors": []
+    },
+    {
+      "scenario": "j_spain_all_initial",
+      "scenario_label": "J — España, todos los bloques INITIAL",
+      "device": "mobile_390x844",
+      "cache_mode": "warm",
+      "initial_records": 646887,
+      "initial_assets": 88,
+      "initial_gzip_manifest_bytes": 3901303,
+      "initial_body_raw_bytes": 96883738,
+      "initial_resource_transfer_bytes": 0,
+      "initial_requests": 88,
+      "initial_fetch_ms_sum_parallel": 20135.399999999998,
+      "initial_load_wall_ms": 573.5,
+      "initial_parse_ms_sum": 250,
+      "initial_prepare_ms_sum": 164.2,
+      "filter_bundle_ms": 34.1,
+      "lookup_query_ms": 0,
+      "heap_before_bytes": 196114393,
+      "heap_initial_bytes": 534987235,
+      "heap_initial_delta_bytes": 338872842,
+      "detail_gzip_manifest_bytes_probe": 222814,
+      "detail_body_raw_bytes_probe": 1843651,
+      "detail_resource_transfer_bytes_probe": 0,
+      "detail_requests_probe": 2,
+      "detail_fetch_ms_sum_probe": 5.5,
+      "detail_parse_ms_sum_probe": 5.5,
+      "first_selection_ms": 4,
+      "second_selection_same_asset_ms": 0,
+      "heap_detail_bytes": 540527230,
+      "heap_detail_delta_from_initial_bytes": 5539995,
+      "filters": {
+        "year": {
+          "value": 1968,
+          "matches": 2038
+        },
+        "range": {
+          "from": 1968,
+          "to": 1992,
+          "matches": 179501
+        },
+        "province": {
+          "value": "ES:PROV:04",
+          "matches": 3379
+        },
+        "municipality_resolved": {
+          "value": "ES:MUN:04019",
+          "matches": 31
+        },
+        "municipality_null": {
+          "matches": 71490
+        }
+      },
+      "lookup": {
+        "record_id": "egif-record:1968040495",
+        "ordinal": 0,
+        "lookup_found": true,
+        "map_entries": 3135
+      },
+      "columnar_vs_objects_small_sample": {
+        "status": "run",
+        "sample_records": 1000,
+        "columnar_filter_ms": 0.1,
+        "materialize_and_filter_ms": 0.8,
+        "columnar_matches": 158,
+        "object_matches": 158
+      },
+      "same_asset_detail_telemetry": {
+        "status": "not_usable_for_comparison",
+        "reason": "the harness recorded this after loading a second detail asset",
+        "reported_value": 1,
+        "other_detail_requests": 1
+      },
+      "errors": []
+    }
+  ],
+  "scenario_summaries": [
+    {
+      "scenario": "a_la_rioja_full",
+      "observations": 4,
+      "cold_observations": 2,
+      "classification": "GOOD",
+      "max_cold_initial_heap_delta_bytes": 2518625,
+      "max_cold_initial_heap_delta_mib": 2.402,
+      "comparison_basis": "ES-3 CCAA diagnostic geometry budget: 85 MiB; EGIF has no geometry and therefore must leave headroom rather than consume that budget by default"
+    },
+    {
+      "scenario": "b_pais_valencia_full",
+      "observations": 4,
+      "cold_observations": 2,
+      "classification": "GOOD",
+      "max_cold_initial_heap_delta_bytes": 12819597,
+      "max_cold_initial_heap_delta_mib": 12.226,
+      "comparison_basis": "ES-3 CCAA diagnostic geometry budget: 85 MiB; EGIF has no geometry and therefore must leave headroom rather than consume that budget by default"
+    },
+    {
+      "scenario": "c_cataluna_full",
+      "observations": 4,
+      "cold_observations": 2,
+      "classification": "GOOD",
+      "max_cold_initial_heap_delta_bytes": 18014113,
+      "max_cold_initial_heap_delta_mib": 17.18,
+      "comparison_basis": "ES-3 CCAA diagnostic geometry budget: 85 MiB; EGIF has no geometry and therefore must leave headroom rather than consume that budget by default"
+    },
+    {
+      "scenario": "d_andalucia_full",
+      "observations": 4,
+      "cold_observations": 2,
+      "classification": "GOOD",
+      "max_cold_initial_heap_delta_bytes": 27644203,
+      "max_cold_initial_heap_delta_mib": 26.364,
+      "comparison_basis": "ES-3 CCAA diagnostic geometry budget: 85 MiB; EGIF has no geometry and therefore must leave headroom rather than consume that budget by default"
+    },
+    {
+      "scenario": "e_castilla_y_leon_full",
+      "observations": 4,
+      "cold_observations": 2,
+      "classification": "GOOD",
+      "max_cold_initial_heap_delta_bytes": 47944209,
+      "max_cold_initial_heap_delta_mib": 45.723,
+      "comparison_basis": "ES-3 CCAA diagnostic geometry budget: 85 MiB; EGIF has no geometry and therefore must leave headroom rather than consume that budget by default"
+    },
+    {
+      "scenario": "f_galicia_full",
+      "observations": 4,
+      "cold_observations": 2,
+      "classification": "MARGINAL",
+      "max_cold_initial_heap_delta_bytes": 152829045,
+      "max_cold_initial_heap_delta_mib": 145.749,
+      "comparison_basis": "ES-3 CCAA diagnostic geometry budget: 85 MiB; EGIF has no geometry and therefore must leave headroom rather than consume that budget by default"
+    },
+    {
+      "scenario": "g_galicia_1993_2002",
+      "observations": 4,
+      "cold_observations": 2,
+      "classification": "ACCEPTABLE",
+      "max_cold_initial_heap_delta_bytes": 69622467,
+      "max_cold_initial_heap_delta_mib": 66.397,
+      "comparison_basis": "ES-3 CCAA diagnostic geometry budget: 85 MiB; EGIF has no geometry and therefore must leave headroom rather than consume that budget by default"
+    },
+    {
+      "scenario": "h_spain_1993_2002",
+      "observations": 4,
+      "cold_observations": 2,
+      "classification": "MARGINAL",
+      "max_cold_initial_heap_delta_bytes": 119009931,
+      "max_cold_initial_heap_delta_mib": 113.497,
+      "comparison_basis": "ES-3 CCAA diagnostic geometry budget: 85 MiB; EGIF has no geometry and therefore must leave headroom rather than consume that budget by default"
+    },
+    {
+      "scenario": "i_spain_2013_2023",
+      "observations": 4,
+      "cold_observations": 2,
+      "classification": "ACCEPTABLE",
+      "max_cold_initial_heap_delta_bytes": 61221857,
+      "max_cold_initial_heap_delta_mib": 58.386,
+      "comparison_basis": "ES-3 CCAA diagnostic geometry budget: 85 MiB; EGIF has no geometry and therefore must leave headroom rather than consume that budget by default"
+    },
+    {
+      "scenario": "j_spain_all_initial",
+      "observations": 4,
+      "cold_observations": 2,
+      "classification": "VIABLE_BUT_NOT_DEFAULT",
+      "max_cold_initial_heap_delta_bytes": 264758859,
+      "max_cold_initial_heap_delta_mib": 252.494,
+      "comparison_basis": "ES-3 CCAA diagnostic geometry budget: 85 MiB; EGIF has no geometry and therefore must leave headroom rather than consume that budget by default"
+    }
+  ],
+  "cold_vs_warm": [
+    {
+      "scenario": "a_la_rioja_full",
+      "device": "desktop",
+      "cold_transfer_bytes": 603184,
+      "warm_transfer_bytes": 0,
+      "cold_load_wall_ms": 9.3,
+      "warm_load_wall_ms": 5.8,
+      "cold_parse_ms": 0.7,
+      "warm_parse_ms": 1.1,
+      "cold_prepare_ms": 0.8,
+      "warm_prepare_ms": 0.3,
+      "heap_comparison": "not comparable: warm runs include an in-page priming pass and GC timing is uncontrolled"
+    },
+    {
+      "scenario": "a_la_rioja_full",
+      "device": "mobile_390x844",
+      "cold_transfer_bytes": 603184,
+      "warm_transfer_bytes": 0,
+      "cold_load_wall_ms": 8.2,
+      "warm_load_wall_ms": 5.3,
+      "cold_parse_ms": 0.9,
+      "warm_parse_ms": 0.8,
+      "cold_prepare_ms": 0.4,
+      "warm_prepare_ms": 0.3,
+      "heap_comparison": "not comparable: warm runs include an in-page priming pass and GC timing is uncontrolled"
+    },
+    {
+      "scenario": "b_pais_valencia_full",
+      "device": "desktop",
+      "cold_transfer_bytes": 3302214,
+      "warm_transfer_bytes": 0,
+      "cold_load_wall_ms": 24.7,
+      "warm_load_wall_ms": 16.9,
+      "cold_parse_ms": 6.3,
+      "warm_parse_ms": 7.7,
+      "cold_prepare_ms": 6.3,
+      "warm_prepare_ms": 2.2,
+      "heap_comparison": "not comparable: warm runs include an in-page priming pass and GC timing is uncontrolled"
+    },
+    {
+      "scenario": "b_pais_valencia_full",
+      "device": "mobile_390x844",
+      "cold_transfer_bytes": 3302214,
+      "warm_transfer_bytes": 0,
+      "cold_load_wall_ms": 24.2,
+      "warm_load_wall_ms": 18.5,
+      "cold_parse_ms": 6.3,
+      "warm_parse_ms": 8.1,
+      "cold_prepare_ms": 5.8,
+      "warm_prepare_ms": 1.9,
+      "heap_comparison": "not comparable: warm runs include an in-page priming pass and GC timing is uncontrolled"
+    },
+    {
+      "scenario": "c_cataluna_full",
+      "device": "desktop",
+      "cold_transfer_bytes": 4664670,
+      "warm_transfer_bytes": 0,
+      "cold_load_wall_ms": 30.1,
+      "warm_load_wall_ms": 27.3,
+      "cold_parse_ms": 13,
+      "warm_parse_ms": 10.6,
+      "cold_prepare_ms": 4.6,
+      "warm_prepare_ms": 5.1,
+      "heap_comparison": "not comparable: warm runs include an in-page priming pass and GC timing is uncontrolled"
+    },
+    {
+      "scenario": "c_cataluna_full",
+      "device": "mobile_390x844",
+      "cold_transfer_bytes": 4664670,
+      "warm_transfer_bytes": 0,
+      "cold_load_wall_ms": 30.5,
+      "warm_load_wall_ms": 23.3,
+      "cold_parse_ms": 12.8,
+      "warm_parse_ms": 9.6,
+      "cold_prepare_ms": 6,
+      "warm_prepare_ms": 5.3,
+      "heap_comparison": "not comparable: warm runs include an in-page priming pass and GC timing is uncontrolled"
+    },
+    {
+      "scenario": "d_andalucia_full",
+      "device": "desktop",
+      "cold_transfer_bytes": 6822465,
+      "warm_transfer_bytes": 0,
+      "cold_load_wall_ms": 38.8,
+      "warm_load_wall_ms": 29.6,
+      "cold_parse_ms": 15.8,
+      "warm_parse_ms": 11.4,
+      "cold_prepare_ms": 6.4,
+      "warm_prepare_ms": 4.9,
+      "heap_comparison": "not comparable: warm runs include an in-page priming pass and GC timing is uncontrolled"
+    },
+    {
+      "scenario": "d_andalucia_full",
+      "device": "mobile_390x844",
+      "cold_transfer_bytes": 6822465,
+      "warm_transfer_bytes": 0,
+      "cold_load_wall_ms": 37.6,
+      "warm_load_wall_ms": 27.2,
+      "cold_parse_ms": 16.2,
+      "warm_parse_ms": 10.2,
+      "cold_prepare_ms": 6.7,
+      "warm_prepare_ms": 4,
+      "heap_comparison": "not comparable: warm runs include an in-page priming pass and GC timing is uncontrolled"
+    },
+    {
+      "scenario": "e_castilla_y_leon_full",
+      "device": "desktop",
+      "cold_transfer_bytes": 12203242,
+      "warm_transfer_bytes": 0,
+      "cold_load_wall_ms": 66.3,
+      "warm_load_wall_ms": 54.7,
+      "cold_parse_ms": 29.6,
+      "warm_parse_ms": 26.1,
+      "cold_prepare_ms": 13.7,
+      "warm_prepare_ms": 8.5,
+      "heap_comparison": "not comparable: warm runs include an in-page priming pass and GC timing is uncontrolled"
+    },
+    {
+      "scenario": "e_castilla_y_leon_full",
+      "device": "mobile_390x844",
+      "cold_transfer_bytes": 12203242,
+      "warm_transfer_bytes": 0,
+      "cold_load_wall_ms": 63.7,
+      "warm_load_wall_ms": 54.7,
+      "cold_parse_ms": 29.8,
+      "warm_parse_ms": 29.1,
+      "cold_prepare_ms": 13.6,
+      "warm_prepare_ms": 9.1,
+      "heap_comparison": "not comparable: warm runs include an in-page priming pass and GC timing is uncontrolled"
+    },
+    {
+      "scenario": "f_galicia_full",
+      "device": "desktop",
+      "cold_transfer_bytes": 39522702,
+      "warm_transfer_bytes": 0,
+      "cold_load_wall_ms": 210,
+      "warm_load_wall_ms": 172.9,
+      "cold_parse_ms": 106.6,
+      "warm_parse_ms": 91.7,
+      "cold_prepare_ms": 42.1,
+      "warm_prepare_ms": 31.4,
+      "heap_comparison": "not comparable: warm runs include an in-page priming pass and GC timing is uncontrolled"
+    },
+    {
+      "scenario": "f_galicia_full",
+      "device": "mobile_390x844",
+      "cold_transfer_bytes": 39522702,
+      "warm_transfer_bytes": 0,
+      "cold_load_wall_ms": 198.6,
+      "warm_load_wall_ms": 177.5,
+      "cold_parse_ms": 102.3,
+      "warm_parse_ms": 95,
+      "cold_prepare_ms": 37.5,
+      "warm_prepare_ms": 33.2,
+      "heap_comparison": "not comparable: warm runs include an in-page priming pass and GC timing is uncontrolled"
+    },
+    {
+      "scenario": "g_galicia_1993_2002",
+      "device": "desktop",
+      "cold_transfer_bytes": 16610807,
+      "warm_transfer_bytes": 0,
+      "cold_load_wall_ms": 81.1,
+      "warm_load_wall_ms": 89.6,
+      "cold_parse_ms": 44.7,
+      "warm_parse_ms": 58.6,
+      "cold_prepare_ms": 14.3,
+      "warm_prepare_ms": 11.2,
+      "heap_comparison": "not comparable: warm runs include an in-page priming pass and GC timing is uncontrolled"
+    },
+    {
+      "scenario": "g_galicia_1993_2002",
+      "device": "mobile_390x844",
+      "cold_transfer_bytes": 16610807,
+      "warm_transfer_bytes": 0,
+      "cold_load_wall_ms": 81.3,
+      "warm_load_wall_ms": 98.6,
+      "cold_parse_ms": 43.6,
+      "warm_parse_ms": 66.3,
+      "cold_prepare_ms": 14.3,
+      "warm_prepare_ms": 11.3,
+      "heap_comparison": "not comparable: warm runs include an in-page priming pass and GC timing is uncontrolled"
+    },
+    {
+      "scenario": "h_spain_1993_2002",
+      "device": "desktop",
+      "cold_transfer_bytes": 30140604,
+      "warm_transfer_bytes": 0,
+      "cold_load_wall_ms": 154,
+      "warm_load_wall_ms": 155.8,
+      "cold_parse_ms": 73.9,
+      "warm_parse_ms": 83.7,
+      "cold_prepare_ms": 32.4,
+      "warm_prepare_ms": 25.5,
+      "heap_comparison": "not comparable: warm runs include an in-page priming pass and GC timing is uncontrolled"
+    },
+    {
+      "scenario": "h_spain_1993_2002",
+      "device": "mobile_390x844",
+      "cold_transfer_bytes": 30140604,
+      "warm_transfer_bytes": 0,
+      "cold_load_wall_ms": 164.4,
+      "warm_load_wall_ms": 155.4,
+      "cold_parse_ms": 74.5,
+      "warm_parse_ms": 76.9,
+      "cold_prepare_ms": 34.2,
+      "warm_prepare_ms": 25,
+      "heap_comparison": "not comparable: warm runs include an in-page priming pass and GC timing is uncontrolled"
+    },
+    {
+      "scenario": "i_spain_2013_2023",
+      "device": "desktop",
+      "cold_transfer_bytes": 15503239,
+      "warm_transfer_bytes": 0,
+      "cold_load_wall_ms": 87.9,
+      "warm_load_wall_ms": 75.1,
+      "cold_parse_ms": 38,
+      "warm_parse_ms": 32.4,
+      "cold_prepare_ms": 15.3,
+      "warm_prepare_ms": 10.4,
+      "heap_comparison": "not comparable: warm runs include an in-page priming pass and GC timing is uncontrolled"
+    },
+    {
+      "scenario": "i_spain_2013_2023",
+      "device": "mobile_390x844",
+      "cold_transfer_bytes": 15503239,
+      "warm_transfer_bytes": 0,
+      "cold_load_wall_ms": 89.7,
+      "warm_load_wall_ms": 77.7,
+      "cold_parse_ms": 40,
+      "warm_parse_ms": 32.6,
+      "cold_prepare_ms": 16.2,
+      "warm_prepare_ms": 12.5,
+      "heap_comparison": "not comparable: warm runs include an in-page priming pass and GC timing is uncontrolled"
+    },
+    {
+      "scenario": "j_spain_all_initial",
+      "device": "desktop",
+      "cold_transfer_bytes": 96910138,
+      "warm_transfer_bytes": 0,
+      "cold_load_wall_ms": 661,
+      "warm_load_wall_ms": 472.2,
+      "cold_parse_ms": 300.9,
+      "warm_parse_ms": 204.3,
+      "cold_prepare_ms": 166.8,
+      "warm_prepare_ms": 101.1,
+      "heap_comparison": "not comparable: warm runs include an in-page priming pass and GC timing is uncontrolled"
+    },
+    {
+      "scenario": "j_spain_all_initial",
+      "device": "mobile_390x844",
+      "cold_transfer_bytes": 96910138,
+      "warm_transfer_bytes": 0,
+      "cold_load_wall_ms": 581.2,
+      "warm_load_wall_ms": 573.5,
+      "cold_parse_ms": 228.5,
+      "warm_parse_ms": 250,
+      "cold_prepare_ms": 160.2,
+      "warm_prepare_ms": 164.2,
+      "heap_comparison": "not comparable: warm runs include an in-page priming pass and GC timing is uncontrolled"
+    }
+  ],
+  "desktop_vs_mobile_viewport": [
+    {
+      "scenario": "a_la_rioja_full",
+      "cache_mode": "cold",
+      "desktop_initial_heap_delta_bytes": 2518625,
+      "mobile_initial_heap_delta_bytes": 2518541,
+      "desktop_parse_ms": 0.7,
+      "mobile_parse_ms": 0.9,
+      "desktop_prepare_ms": 0.8,
+      "mobile_prepare_ms": 0.4,
+      "desktop_filter_bundle_ms": 0.6,
+      "mobile_filter_bundle_ms": 0.7,
+      "limitation": "mobile is viewport emulation only; no mobile CPU/network/UA simulation"
+    },
+    {
+      "scenario": "a_la_rioja_full",
+      "cache_mode": "warm",
+      "desktop_initial_heap_delta_bytes": 272896,
+      "mobile_initial_heap_delta_bytes": 254092,
+      "desktop_parse_ms": 1.1,
+      "mobile_parse_ms": 0.8,
+      "desktop_prepare_ms": 0.3,
+      "mobile_prepare_ms": 0.3,
+      "desktop_filter_bundle_ms": 0.3,
+      "mobile_filter_bundle_ms": 0.3,
+      "limitation": "mobile is viewport emulation only; no mobile CPU/network/UA simulation"
+    },
+    {
+      "scenario": "b_pais_valencia_full",
+      "cache_mode": "cold",
+      "desktop_initial_heap_delta_bytes": 12819597,
+      "mobile_initial_heap_delta_bytes": 12623465,
+      "desktop_parse_ms": 6.3,
+      "mobile_parse_ms": 6.3,
+      "desktop_prepare_ms": 6.3,
+      "mobile_prepare_ms": 5.8,
+      "desktop_filter_bundle_ms": 2.2,
+      "mobile_filter_bundle_ms": 1.8,
+      "limitation": "mobile is viewport emulation only; no mobile CPU/network/UA simulation"
+    },
+    {
+      "scenario": "b_pais_valencia_full",
+      "cache_mode": "warm",
+      "desktop_initial_heap_delta_bytes": 7805890,
+      "mobile_initial_heap_delta_bytes": 7805070,
+      "desktop_parse_ms": 7.7,
+      "mobile_parse_ms": 8.1,
+      "desktop_prepare_ms": 2.2,
+      "mobile_prepare_ms": 1.9,
+      "desktop_filter_bundle_ms": 1.6,
+      "mobile_filter_bundle_ms": 1.6,
+      "limitation": "mobile is viewport emulation only; no mobile CPU/network/UA simulation"
+    },
+    {
+      "scenario": "c_cataluna_full",
+      "cache_mode": "cold",
+      "desktop_initial_heap_delta_bytes": 18014113,
+      "mobile_initial_heap_delta_bytes": 17956761,
+      "desktop_parse_ms": 13,
+      "mobile_parse_ms": 12.8,
+      "desktop_prepare_ms": 4.6,
+      "mobile_prepare_ms": 6,
+      "desktop_filter_bundle_ms": 2.4,
+      "mobile_filter_bundle_ms": 2.6,
+      "limitation": "mobile is viewport emulation only; no mobile CPU/network/UA simulation"
+    },
+    {
+      "scenario": "c_cataluna_full",
+      "cache_mode": "warm",
+      "desktop_initial_heap_delta_bytes": 10801778,
+      "mobile_initial_heap_delta_bytes": 10845858,
+      "desktop_parse_ms": 10.6,
+      "mobile_parse_ms": 9.6,
+      "desktop_prepare_ms": 5.1,
+      "mobile_prepare_ms": 5.3,
+      "desktop_filter_bundle_ms": 2.8,
+      "mobile_filter_bundle_ms": 2.4,
+      "limitation": "mobile is viewport emulation only; no mobile CPU/network/UA simulation"
+    },
+    {
+      "scenario": "d_andalucia_full",
+      "cache_mode": "cold",
+      "desktop_initial_heap_delta_bytes": 27644203,
+      "mobile_initial_heap_delta_bytes": 27644163,
+      "desktop_parse_ms": 15.8,
+      "mobile_parse_ms": 16.2,
+      "desktop_prepare_ms": 6.4,
+      "mobile_prepare_ms": 6.7,
+      "desktop_filter_bundle_ms": 3.9,
+      "mobile_filter_bundle_ms": 2.9,
+      "limitation": "mobile is viewport emulation only; no mobile CPU/network/UA simulation"
+    },
+    {
+      "scenario": "d_andalucia_full",
+      "cache_mode": "warm",
+      "desktop_initial_heap_delta_bytes": 18853905,
+      "mobile_initial_heap_delta_bytes": 18919457,
+      "desktop_parse_ms": 11.4,
+      "mobile_parse_ms": 10.2,
+      "desktop_prepare_ms": 4.9,
+      "mobile_prepare_ms": 4,
+      "desktop_filter_bundle_ms": 3,
+      "mobile_filter_bundle_ms": 2.7,
+      "limitation": "mobile is viewport emulation only; no mobile CPU/network/UA simulation"
+    },
+    {
+      "scenario": "e_castilla_y_leon_full",
+      "cache_mode": "cold",
+      "desktop_initial_heap_delta_bytes": 47944037,
+      "mobile_initial_heap_delta_bytes": 47944209,
+      "desktop_parse_ms": 29.6,
+      "mobile_parse_ms": 29.8,
+      "desktop_prepare_ms": 13.7,
+      "mobile_prepare_ms": 13.6,
+      "desktop_filter_bundle_ms": 5.2,
+      "mobile_filter_bundle_ms": 4,
+      "limitation": "mobile is viewport emulation only; no mobile CPU/network/UA simulation"
+    },
+    {
+      "scenario": "e_castilla_y_leon_full",
+      "cache_mode": "warm",
+      "desktop_initial_heap_delta_bytes": 31787526,
+      "mobile_initial_heap_delta_bytes": 31288138,
+      "desktop_parse_ms": 26.1,
+      "mobile_parse_ms": 29.1,
+      "desktop_prepare_ms": 8.5,
+      "mobile_prepare_ms": 9.1,
+      "desktop_filter_bundle_ms": 3.1,
+      "mobile_filter_bundle_ms": 3.6,
+      "limitation": "mobile is viewport emulation only; no mobile CPU/network/UA simulation"
+    },
+    {
+      "scenario": "f_galicia_full",
+      "cache_mode": "cold",
+      "desktop_initial_heap_delta_bytes": 150534277,
+      "mobile_initial_heap_delta_bytes": 152829045,
+      "desktop_parse_ms": 106.6,
+      "mobile_parse_ms": 102.3,
+      "desktop_prepare_ms": 42.1,
+      "mobile_prepare_ms": 37.5,
+      "desktop_filter_bundle_ms": 8.4,
+      "mobile_filter_bundle_ms": 8.5,
+      "limitation": "mobile is viewport emulation only; no mobile CPU/network/UA simulation"
+    },
+    {
+      "scenario": "f_galicia_full",
+      "cache_mode": "warm",
+      "desktop_initial_heap_delta_bytes": 105156166,
+      "mobile_initial_heap_delta_bytes": 107986182,
+      "desktop_parse_ms": 91.7,
+      "mobile_parse_ms": 95,
+      "desktop_prepare_ms": 31.4,
+      "mobile_prepare_ms": 33.2,
+      "desktop_filter_bundle_ms": 8.7,
+      "mobile_filter_bundle_ms": 8.8,
+      "limitation": "mobile is viewport emulation only; no mobile CPU/network/UA simulation"
+    },
+    {
+      "scenario": "g_galicia_1993_2002",
+      "cache_mode": "cold",
+      "desktop_initial_heap_delta_bytes": 69622327,
+      "mobile_initial_heap_delta_bytes": 69622467,
+      "desktop_parse_ms": 44.7,
+      "mobile_parse_ms": 43.6,
+      "desktop_prepare_ms": 14.3,
+      "mobile_prepare_ms": 14.3,
+      "desktop_filter_bundle_ms": 4.5,
+      "mobile_filter_bundle_ms": 4.3,
+      "limitation": "mobile is viewport emulation only; no mobile CPU/network/UA simulation"
+    },
+    {
+      "scenario": "g_galicia_1993_2002",
+      "cache_mode": "warm",
+      "desktop_initial_heap_delta_bytes": 47101379,
+      "mobile_initial_heap_delta_bytes": 47196547,
+      "desktop_parse_ms": 58.6,
+      "mobile_parse_ms": 66.3,
+      "desktop_prepare_ms": 11.2,
+      "mobile_prepare_ms": 11.3,
+      "desktop_filter_bundle_ms": 4.9,
+      "mobile_filter_bundle_ms": 5.1,
+      "limitation": "mobile is viewport emulation only; no mobile CPU/network/UA simulation"
+    },
+    {
+      "scenario": "h_spain_1993_2002",
+      "cache_mode": "cold",
+      "desktop_initial_heap_delta_bytes": 119009931,
+      "mobile_initial_heap_delta_bytes": 118966911,
+      "desktop_parse_ms": 73.9,
+      "mobile_parse_ms": 74.5,
+      "desktop_prepare_ms": 32.4,
+      "mobile_prepare_ms": 34.2,
+      "desktop_filter_bundle_ms": 7,
+      "mobile_filter_bundle_ms": 7.3,
+      "limitation": "mobile is viewport emulation only; no mobile CPU/network/UA simulation"
+    },
+    {
+      "scenario": "h_spain_1993_2002",
+      "cache_mode": "warm",
+      "desktop_initial_heap_delta_bytes": 80977296,
+      "mobile_initial_heap_delta_bytes": 81070520,
+      "desktop_parse_ms": 83.7,
+      "mobile_parse_ms": 76.9,
+      "desktop_prepare_ms": 25.5,
+      "mobile_prepare_ms": 25,
+      "desktop_filter_bundle_ms": 6.5,
+      "mobile_filter_bundle_ms": 6.4,
+      "limitation": "mobile is viewport emulation only; no mobile CPU/network/UA simulation"
+    },
+    {
+      "scenario": "i_spain_2013_2023",
+      "cache_mode": "cold",
+      "desktop_initial_heap_delta_bytes": 61217809,
+      "mobile_initial_heap_delta_bytes": 61221857,
+      "desktop_parse_ms": 38,
+      "mobile_parse_ms": 40,
+      "desktop_prepare_ms": 15.3,
+      "mobile_prepare_ms": 16.2,
+      "desktop_filter_bundle_ms": 4.7,
+      "mobile_filter_bundle_ms": 4.5,
+      "limitation": "mobile is viewport emulation only; no mobile CPU/network/UA simulation"
+    },
+    {
+      "scenario": "i_spain_2013_2023",
+      "cache_mode": "warm",
+      "desktop_initial_heap_delta_bytes": 43931675,
+      "mobile_initial_heap_delta_bytes": 43919751,
+      "desktop_parse_ms": 32.4,
+      "mobile_parse_ms": 32.6,
+      "desktop_prepare_ms": 10.4,
+      "mobile_prepare_ms": 12.5,
+      "desktop_filter_bundle_ms": 3.8,
+      "mobile_filter_bundle_ms": 4,
+      "limitation": "mobile is viewport emulation only; no mobile CPU/network/UA simulation"
+    },
+    {
+      "scenario": "j_spain_all_initial",
+      "cache_mode": "cold",
+      "desktop_initial_heap_delta_bytes": 264758859,
+      "mobile_initial_heap_delta_bytes": 193267719,
+      "desktop_parse_ms": 300.9,
+      "mobile_parse_ms": 228.5,
+      "desktop_prepare_ms": 166.8,
+      "mobile_prepare_ms": 160.2,
+      "desktop_filter_bundle_ms": 17.8,
+      "mobile_filter_bundle_ms": 16,
+      "limitation": "mobile is viewport emulation only; no mobile CPU/network/UA simulation"
+    },
+    {
+      "scenario": "j_spain_all_initial",
+      "cache_mode": "warm",
+      "desktop_initial_heap_delta_bytes": 335652065,
+      "mobile_initial_heap_delta_bytes": 338872842,
+      "desktop_parse_ms": 204.3,
+      "mobile_parse_ms": 250,
+      "desktop_prepare_ms": 101.1,
+      "mobile_prepare_ms": 164.2,
+      "desktop_filter_bundle_ms": 17.3,
+      "mobile_filter_bundle_ms": 34.1,
+      "limitation": "mobile is viewport emulation only; no mobile CPU/network/UA simulation"
+    }
+  ],
+  "architecture_decision": {
+    "ccaa_x_temporal_block_initial_columnar": "RECOMMENDED",
+    "ccaa_full_period_initial": "VIABLE; Galicia full is MARGINAL as a default because it consumes 145.75 MiB cold EGIF-only heap increment",
+    "spain_x_temporal_block_initial": "VIABLE on explicit demand; 1993-2002 is MARGINAL and must not combine by default with a heavy geometry view",
+    "spain_all_initial": "VIABLE_BUT_NOT_DEFAULT; technically completes but consumes 184.31-252.49 MiB cold INITIAL heap before geometry",
+    "detail_lazy": "RECOMMENDED; large detail assets confirm that detail must not be initial payload"
+  },
+  "known_measurement_limitations": [
+    "fetch_ms is the sum of parallel fetch durations; initial_load_wall_ms is the elapsed load metric.",
+    "localhost has no HTTP compression, CDN, TLS or real network latency; body raw bytes, Resource Timing transferSize and manifest gzip are intentionally distinct.",
+    "warm heap is not comparable with cold heap because the warm benchmark executes a priming pass in the same browser context and GC is uncontrolled.",
+    "The multi-asset same-asset selection request counter was recorded after a later other-detail selection; only the one-asset smoke validates it directly. Do not aggregate that field.",
+    "Columnar-vs-objects is a <=1,000-row timing sample, with no isolated heap measurement."
+  ]
+}
