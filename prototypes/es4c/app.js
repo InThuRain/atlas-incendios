@@ -154,6 +154,7 @@ function renderEgifResult(result) {
   const rows = [
     ["GIF administrativos", formatNumber(summary.administrative_gif)],
     ["Superficie forestal declarada (valores conocidos)", `${formatNumber(summary.known_forest_area_sum, 2)} ha`],
+    ["Partes con superficie forestal conocida", formatNumber(summary.records_with_known_forest_area)],
     ["Partes con superficie forestal desconocida", formatNumber(summary.records_with_unknown_forest_area)],
     ["Partes con municipio resuelto", formatNumber(summary.municipality_resolved)],
     ["Partes sin municipio resuelto", formatNumber(summary.municipality_unresolved)],

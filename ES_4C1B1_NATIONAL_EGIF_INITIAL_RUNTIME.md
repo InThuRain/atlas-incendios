@@ -85,8 +85,8 @@ Compartir rango no establece identidad entre fuentes. No hay
 
 Para una CCAA cargada el panel muestra partes, GIF administrativos (basados
 solo en superficie forestal EGIF >=500 ha), suma de superficie forestal de
-valores conocidos, partes con superficie desconocida, partes con municipio
-resuelto/no resuelto y distribución anual. `null`/unknown no se convierte en
+valores conocidos, partes con superficie conocida/desconocida, partes con
+municipio resuelto/no resuelto y distribución anual. `null`/unknown no se convierte en
 0 ha: el contrato conserva `known_forest_area_sum`,
 `records_with_known_forest_area` y `records_with_unknown_forest_area`. Los
 códigos de causa se conservan en columnas pero no se exponen como selector ni
