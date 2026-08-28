@@ -10,7 +10,7 @@
     <main class="runtime-shell">
       <section id="map" aria-label="Mapa nacional experimental de perímetros ESFire30"></section>
       <aside class="panel" aria-label="Información del prototipo">
-        <p class="eyebrow">Prototipo aislado · ES-4C1B2</p>
+        <p class="eyebrow">Prototipo aislado · ES-4C1C1</p>
         <h1>ESFire30 · España</h1>
         <p class="source-note">
           Perímetros derivados de teledetección Landsat (30 m), 1985–2021.
@@ -32,6 +32,16 @@
           <label>Hasta <input id="to-year" type="number" min="1968" max="2023" value="2021"></label>
           <button id="apply-years" type="button">Aplicar</button>
         </fieldset>
+        <fieldset class="source-filter">
+          <legend>Fuentes</legend>
+          <label><input id="esfire30-visible" type="checkbox" checked> ESFire30 · perímetros Landsat</label>
+          <label><input id="egif-visible" type="checkbox" checked> EGIF · partes administrativos</label>
+        </fieldset>
+        <section class="coverage-summary" aria-live="polite">
+          <h2>Cobertura por fuente</h2>
+          <ul id="source-coverage"></ul>
+          <p id="runtime-state-summary"></p>
+        </section>
         <section class="egif-summary" aria-live="polite">
           <h2>EGIF · partes administrativos</h2>
           <p id="egif-status">Preparando resumen del manifest…</p>

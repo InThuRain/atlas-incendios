@@ -153,6 +153,12 @@ export class EGIFInitialLoader {
     return loaded;
   }
 
+  cancel() {
+    this.generation += 1;
+    if (this.activeController) this.activeController.abort();
+    this.activeController = null;
+  }
+
   async loadScope({ territoryId = "ES", fromYear, toYear }) {
     const manifest = await this.loadManifest();
     const generation = ++this.generation;

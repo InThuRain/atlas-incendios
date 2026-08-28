@@ -65,10 +65,11 @@ class ES4C1B1InitialLoaderTests(unittest.TestCase):
     def test_initial_loader_keeps_detail_out_of_its_own_contract_and_public_frontend_untouched(self):
         loader = (ROOT / "prototypes/es4c/egif_initial_loader.mjs").read_text(encoding="utf-8")
         app = (ROOT / "prototypes/es4c/app.js").read_text(encoding="utf-8")
+        runtime_state = (ROOT / "prototypes/es4c/runtime_state.mjs").read_text(encoding="utf-8")
         public_index = (ROOT / "index.html").read_text(encoding="utf-8")
         self.assertIn("initial.path", loader)
         self.assertNotIn("detail.path", loader)
-        self.assertIn("territory_scope", app)
+        self.assertIn("territory_scope", runtime_state)
         self.assertNotIn("prototypes/es4c", public_index)
 
 
