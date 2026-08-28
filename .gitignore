@@ -75,3 +75,7 @@ benchmarks/gva_web/node_modules/
 # Resultados locales de Chromium para ES-4B5C. El harness y los escenarios sí
 # se versionan; las mediciones dependen de máquina/navegador y se regeneran.
 benchmarks/es4b5c/results.json
+
+# Resultados locales del prototipo PMTiles nacional ES-4C. El prototipo y sus
+# scripts se versionan; el PMTiles de ES-3 y las mediciones permanecen locales.
+prototypes/es4c/smoke-results.json

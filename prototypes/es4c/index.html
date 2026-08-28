@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ES-4C · Prototipo nacional ESFire30</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <main class="runtime-shell">
+      <section id="map" aria-label="Mapa nacional experimental de perímetros ESFire30"></section>
+      <aside class="panel" aria-label="Información del prototipo">
+        <p class="eyebrow">Prototipo aislado · ES-4C1A</p>
+        <h1>ESFire30 · España</h1>
+        <p class="source-note">
+          Perímetros derivados de teledetección Landsat (30 m), 1985–2021.
+          No constituyen cartografía oficial de incendios.
+        </p>
+        <p class="legend"><span aria-hidden="true"></span> Perímetro ESFire30 · teledetección documentada</p>
+        <p class="source-note">Canarias no está cubierta por ESFire30.</p>
+        <fieldset class="year-filter">
+          <legend>Periodo mostrado</legend>
+          <label>Desde <input id="from-year" type="number" min="1985" max="2021" value="1985"></label>
+          <label>Hasta <input id="to-year" type="number" min="1985" max="2021" value="2021"></label>
+          <button id="apply-years" type="button">Aplicar</button>
+        </fieldset>
+        <section class="selection" aria-live="polite">
+          <h2>Selección</h2>
+          <p id="selection-summary">Pulsa o toca un perímetro para inspeccionarlo.</p>
+        </section>
+        <p class="attribution">Fuente: ESFire30 Causes, UAH/CSIC, CC BY 4.0. Atlas: CRS transformado y teselas diagnósticas generadas a partir del snapshot auditado.</p>
+      </aside>
+    </main>
+    <pre id="debug-output" aria-hidden="true"></pre>
+    <script src="/data/derived/spain/es3/tools/browser/maplibre-gl-5.16.0.js"></script>
+    <script type="module" src="app.js"></script>
+  </body>
+</html>
