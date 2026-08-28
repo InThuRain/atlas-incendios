@@ -75,6 +75,20 @@ C2A_SMOKES = {
     "i_restore_c1c2_gva": {"map": "pais_valencia", "from": 1995, "to": 1995, "scope": "ES", "state_hash": "#es4c-state-v1=eyJ2IjoiZXM0Yy1zdGF0ZS12MSIsIm1hcCI6eyJsYXQiOjM5LjMsImxvbiI6LTAuNywieiI6OH0sInRpbWUiOnsiZnJvbSI6MTk5NSwidG8iOjE5OTV9LCJ0ZXJyaXRvcnkiOnsic2NvcGUiOiJhdXRvbm9tb3VzX2NvbW11bml0eSIsImF1dG9ub21vdXNfY29tbXVuaXR5X2lkIjoiRVM6Q0NBQToxMCJ9LCJzb3VyY2VzIjp7ImVzZmlyZTMwIjp0cnVlLCJlZ2lmIjp0cnVlfSwic2VsZWN0aW9ucyI6eyJnZW9tZXRyeV9pZCI6bnVsbCwiZWdpZl9yZWNvcmRfaWQiOm51bGx9fQ", "territory_restore": True, "expect_geometry": False, "expected_territory": "ES:CCAA:10", "records": 467, "initial_requests": 1, "expected_center": [-0.7, 39.3], "expected_zoom": 8},
     "j_mobile_pais_valencia": {"map": "pais_valencia", "from": 1995, "to": 1995, "scope": "ES", "territory_select": "ES:CCAA:10", "expect_geometry": True, "expected_territory": "ES:CCAA:10", "records": 467, "initial_requests": 1, "mobile_only": True},
 }
+C2A2_SMOKES = {
+    "a_gva_alacant": {"map": "pais_valencia", "from": 1993, "to": 2002, "scope": "ES", "province_select": "ES:PROV:03", "expected_province": "ES:PROV:03", "expected_parent": "ES:CCAA:10"},
+    "b_gva_valencia_cache": {"map": "pais_valencia", "from": 1993, "to": 2002, "scope": "ES", "province_sequence": "ES:PROV:03,ES:PROV:46", "expected_province": "ES:PROV:46", "expected_parent": "ES:CCAA:10", "same_ccaa_cache": True},
+    "c_galicia_coruna": {"map": "galicia", "from": 1993, "to": 2002, "scope": "ES", "province_select": "ES:PROV:15", "expected_province": "ES:PROV:15", "expected_parent": "ES:CCAA:12"},
+    "d_andalucia_sevilla": {"map": "spain", "from": 1993, "to": 2002, "scope": "ES", "province_select": "ES:PROV:41", "expected_province": "ES:PROV:41", "expected_parent": "ES:CCAA:01"},
+    "e_canarias_las_palmas": {"map": "spain", "from": 1995, "to": 1995, "scope": "ES", "province_select": "ES:PROV:35", "expected_province": "ES:PROV:35", "expected_parent": "ES:CCAA:05", "expect_geometry": False},
+    "f_canarias_tenerife": {"map": "spain", "from": 1995, "to": 1995, "scope": "ES", "province_select": "ES:PROV:38", "expected_province": "ES:PROV:38", "expected_parent": "ES:CCAA:05", "expect_geometry": False},
+    "g_baleares": {"map": "spain", "from": 1995, "to": 1995, "scope": "ES", "province_select": "ES:PROV:07", "expected_province": "ES:PROV:07", "expected_parent": "ES:CCAA:04", "expect_geometry": False},
+    "h_ceuta": {"map": "spain", "from": 1995, "to": 1995, "scope": "ES", "territory_select": "ES:CCAA:18", "expected_territory": "ES:CCAA:18", "expect_geometry": False},
+    "i_melilla": {"map": "spain", "from": 1995, "to": 1995, "scope": "ES", "territory_select": "ES:CCAA:19", "expected_territory": "ES:CCAA:19", "expect_geometry": False},
+    "j_restore_province": {"map": "pais_valencia", "from": 1995, "to": 1995, "scope": "ES", "state_hash": "#es4c-state-v1=eyJ2IjoiZXM0Yy1zdGF0ZS12MSIsIm1hcCI6eyJsYXQiOjM5LjMsImxvbiI6LTAuNywieiI6OH0sInRpbWUiOnsiZnJvbSI6MTk5NSwidG8iOjE5OTV9LCJ0ZXJyaXRvcnkiOnsic2NvcGUiOiJwcm92aW5jZSIsImF1dG9ub21vdXNfY29tbXVuaXR5X2lkIjoiRVM6Q0NBQToxMCIsInByb3ZpbmNlX2lkIjoiRVM6UFJPVjo0NiJ9LCJzb3VyY2VzIjp7ImVzZmlyZTMwIjp0cnVlLCJlZ2lmIjp0cnVlfSwic2VsZWN0aW9ucyI6eyJnZW9tZXRyeV9pZCI6bnVsbCwiZWdpZl9yZWNvcmRfaWQiOm51bGx9fQ", "territory_restore": True, "expected_province": "ES:PROV:46", "expected_parent": "ES:CCAA:10", "expect_geometry": False, "expected_center": [-0.7, 39.3], "expected_zoom": 8},
+    "k_up_to_spain": {"map": "pais_valencia", "from": 1995, "to": 1995, "scope": "ES", "province_select": "ES:PROV:03", "territory_up": True, "expected_territory": None},
+    "l_mobile_gva": {"map": "pais_valencia", "from": 1995, "to": 1995, "scope": "ES", "province_select": "ES:PROV:03", "expected_province": "ES:PROV:03", "expected_parent": "ES:CCAA:10", "mobile_only": True},
+}
 EXPECTED_SHA256 = "92f0f081131932075f54a89d86fc8aa7e5879d56ca4d7177c64562f9612751b4"
 
 
@@ -275,6 +289,11 @@ def run_case(chrome: str, scenario: str, device: str, egif_config: dict | None =
                 query["territory_click"] = egif_config["territory_click"]
             if egif_config.get("territory_restore"):
                 query["territory_restore"] = "1"
+            for key in ("province_select", "province_click", "province_sequence"):
+                if egif_config.get(key):
+                    query[key] = egif_config[key]
+            if egif_config.get("territory_up"):
+                query["territory_up"] = "1"
         url = f"http://127.0.0.1:{server.server_port}/prototypes/es4c/index.html?{urlencode(query)}"
         if egif_config and egif_config.get("corrupt_hash"):
             url += egif_config["corrupt_hash"]
@@ -372,6 +391,21 @@ def validate_results(payload: dict) -> list[str]:
                     errors.append(f"{label}: restore territorial cambió el centro serializado")
                 if abs(result.get("state", {}).get("zoom", 0) - expected_egif["expected_zoom"]) > 0.01:
                     errors.append(f"{label}: restore territorial cambió el zoom serializado")
+            expected_province = expected_egif.get("expected_province")
+            if expected_province:
+                province = result.get("province_layer", {})
+                if not province.get("loaded"):
+                    errors.append(f"{label}: capa provincial BDLJE no cargó")
+                elif province.get("selected_province_id") != expected_province:
+                    errors.append(f"{label}: highlight provincial inesperado")
+                elif not province.get("selected_bounds"):
+                    errors.append(f"{label}: provincia seleccionada sin bounds oficiales")
+                if result.get("state", {}).get("autonomous_community_id") != expected_egif.get("expected_parent"):
+                    errors.append(f"{label}: parent CCAA provincial inesperado")
+            if expected_egif.get("same_ccaa_cache"):
+                interaction = result.get("province_layer", {}).get("interaction", {})
+                if interaction.get("first_initial_requests") != interaction.get("final_initial_requests"):
+                    errors.append(f"{label}: cambió provincia y volvió a pedir INITIAL de la misma CCAA")
             if expected_egif.get("detail"):
                 detail = result.get("egif_detail", {})
                 if not detail or detail.get("status") == "missing_initial":
@@ -419,6 +453,8 @@ def main() -> int:
     parser.add_argument("--all-c1c2-smokes", action="store_true")
     parser.add_argument("--c2a-smoke", choices=tuple(C2A_SMOKES), action="append")
     parser.add_argument("--all-c2a-smokes", action="store_true")
+    parser.add_argument("--c2a2-smoke", choices=tuple(C2A2_SMOKES), action="append")
+    parser.add_argument("--all-c2a2-smokes", action="store_true")
     parser.add_argument("--output", type=Path, default=ROOT / "prototypes/es4c/smoke-results.json")
     parser.add_argument("--check", action="store_true")
     parser.add_argument("--serve", action="store_true", help="sirve el prototipo interactivo local con HTTP Range")
@@ -445,7 +481,8 @@ def main() -> int:
     requested_c1c = args.c1c_smoke or (tuple(C1C_SMOKES) if args.all_c1c_smokes else ())
     requested_c1c2 = args.c1c2_smoke or (tuple(C1C2_SMOKES) if args.all_c1c2_smokes else ())
     requested_c2a = args.c2a_smoke or (tuple(C2A_SMOKES) if args.all_c2a_smokes else ())
-    scenarios = args.scenario or (SCENARIOS if args.all_smokes else (() if (requested_egif or requested_detail or requested_c1c or requested_c1c2 or requested_c2a) else ("spain",)))
+    requested_c2a2 = args.c2a2_smoke or (tuple(C2A2_SMOKES) if args.all_c2a2_smokes else ())
+    scenarios = args.scenario or (SCENARIOS if args.all_smokes else (() if (requested_egif or requested_detail or requested_c1c or requested_c1c2 or requested_c2a or requested_c2a2) else ("spain",)))
     devices = []
     if args.desktop or not args.mobile:
         devices.append("desktop")
@@ -480,6 +517,12 @@ def main() -> int:
         config = C2A_SMOKES[name]
         c2a_devices = ["mobile_390x844"] if config.get("mobile_only") else ["desktop"]
         for device in c2a_devices:
+            print(f"{name}::{device}: ejecutando", flush=True)
+            rows.append(run_case(args.chrome, config["map"], device, config))
+    for name in requested_c2a2:
+        config = C2A2_SMOKES[name]
+        c2a2_devices = ["mobile_390x844"] if config.get("mobile_only") else ["desktop"]
+        for device in c2a2_devices:
             print(f"{name}::{device}: ejecutando", flush=True)
             rows.append(run_case(args.chrome, config["map"], device, config))
     for scenario in scenarios:

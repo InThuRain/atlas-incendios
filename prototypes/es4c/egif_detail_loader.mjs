@@ -56,15 +56,24 @@ export function selectedDetailRow(data, ordinal) {
   return row;
 }
 
-export function pageOfInitialRows(loadedAssets, fromYear, toYear, page, pageSize) {
+export function rowMatchesInitialScope(columns, ordinal, fromYear, toYear, provinceId = null) {
+  const year = columns.year[ordinal];
+  return year >= fromYear && year <= toYear && (!provinceId || columns.province_id[ordinal] === provinceId);
+}
+
+export function recordMatchesInitialScope(loadedAssets, recordId, fromYear, toYear, provinceId = null) {
+  const location = locateRecord(loadedAssets, recordId);
+  return Boolean(location && rowMatchesInitialScope(location.loaded.data.columns, location.ordinal, fromYear, toYear, provinceId));
+}
+
+export function pageOfInitialRows(loadedAssets, fromYear, toYear, page, pageSize, provinceId = null) {
   const start = Math.max(0, page) * pageSize;
   const rows = [];
   let total = 0;
   for (const loaded of loadedAssets || []) {
     const columns = loaded.data.columns;
     for (let ordinal = 0; ordinal < columns.record_id.length; ordinal += 1) {
-      const year = columns.year[ordinal];
-      if (year < fromYear || year > toYear) continue;
+      if (!rowMatchesInitialScope(columns, ordinal, fromYear, toYear, provinceId)) continue;
       if (total >= start && rows.length < pageSize) {
         rows.push({ asset_id: loaded.asset.asset_id, ordinal, ...selectedInitialRow(loaded, ordinal) });
       }

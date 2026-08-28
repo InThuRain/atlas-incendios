@@ -1,10 +1,12 @@
 import { Protocol } from "/data/derived/spain/es3/tools/browser/pmtiles-4.3.0.mjs";
 import { EGIFInitialLoader } from "./egif_initial_loader.mjs";
-import { EGIFDetailLoader, locateRecord, pageOfInitialRows } from "./egif_detail_loader.mjs";
+import { EGIFDetailLoader, locateRecord, pageOfInitialRows, recordMatchesInitialScope } from "./egif_detail_loader.mjs";
 import { canonicalTerritoryName, TERRITORY_OPTIONS } from "./territory_catalog.mjs";
+import { PROVINCES_BY_COMMUNITY, PROVINCE_OPTIONS } from "./province_catalog.mjs";
 import { createRuntimeState, effectiveCoverage, reduceRuntimeState, SOURCE_COVERAGE } from "./runtime_state.mjs";
 import { parseStateHash, serializeState } from "./state_serialization.mjs";
 import { addOfficialTerritoryLayer } from "./territory_layer.mjs";
+import { addOfficialProvinceLayer } from "./province_layer.mjs";
 
 const ARCHIVE_PATH = "/data/derived/spain/es3/assets/esfire30-national-fidelity.pmtiles";
 const SOURCE_ID = "esfire30";
@@ -29,6 +31,9 @@ const fromInput = document.querySelector("#from-year");
 const toInput = document.querySelector("#to-year");
 const applyButton = document.querySelector("#apply-years");
 const territoryScope = document.querySelector("#territory-scope");
+const provinceScope = document.querySelector("#province-scope");
+const provinceScopeContainer = document.querySelector("#province-scope-container");
+const territoryBreadcrumb = document.querySelector("#territory-breadcrumb");
 const egifStatus = document.querySelector("#egif-status");
 const egifMetrics = document.querySelector("#egif-metrics");
 const egifRecordBrowser = document.querySelector("#egif-record-browser");
@@ -65,10 +70,13 @@ let activeInitialAssets = [];
 let egifPage = 0;
 const EGIF_PAGE_SIZE = 50;
 const territoryIds = new Set(TERRITORY_OPTIONS.map((territory) => territory.territory_id));
+const provinceParents = new Map(PROVINCE_OPTIONS.map((province) => [province.territory_id, province.parent_id]));
 let stateHydrated = false;
 let restoringFromUrl = false;
 let territoryLayer = null;
 let territoryLayerError = null;
+let provinceLayer = null;
+let provinceLayerError = null;
 
 for (const territory of TERRITORY_OPTIONS) {
   const option = document.createElement("option");
@@ -84,7 +92,7 @@ if (requestedTerritory && [...territoryScope.options].some((option) => option.va
   territoryScope.value = requestedTerritory;
   state = reduceRuntimeState(state, { type: "set_scope", territory_id: requestedTerritory });
 }
-const restoredHash = parseStateHash(location.hash, PROTOTYPE_DEFAULT_STATE, territoryIds);
+const restoredHash = parseStateHash(location.hash, PROTOTYPE_DEFAULT_STATE, territoryIds, provinceParents);
 if (restoredHash.status !== "absent") state = restoredHash.state;
 fromInput.value = String(state.from);
 toInput.value = String(state.to);
@@ -134,7 +142,11 @@ map.addControl(new maplibregl.NavigationControl({ showCompass: true }), "bottom-
 const territoryLayerReady = new Promise((resolve) => {
   map.once("load", () => {
     addOfficialTerritoryLayer(map, {
-      onSelect: (territoryId) => { setEgifScope(territoryId); },
+      onSelect: (territoryId) => {
+        // Cuando ya estamos dentro de esa CCAA, el clic inferior de la capa
+        // CCAA no debe borrar la selección de provincia de la capa superior.
+        if (state.autonomous_community_id !== territoryId) setEgifScope(territoryId);
+      },
     }).then((layer) => {
       territoryLayer = layer;
       syncTerritoryLayer();
@@ -146,6 +158,25 @@ const territoryLayerReady = new Promise((resolve) => {
       resolve(null);
     });
   });
+});
+
+const provinceLayerReady = territoryLayerReady.then(async () => {
+  try {
+    const layer = await addOfficialProvinceLayer(map, {
+      onSelect: (provinceId, parentId) => {
+        // La feature ya trae el parent_id BDLJE cruzado con ES-2; no se
+        // deduce territorio a partir de incendios ni de su viewport.
+        if (state.autonomous_community_id === parentId) setProvinceScope(provinceId, parentId);
+      },
+    });
+    provinceLayer = layer;
+    syncTerritoryLayer();
+    return layer;
+  } catch (error) {
+    provinceLayerError = String(error);
+    territoryStatus.textContent = `${territoryStatus.textContent} Límite provincial no disponible: ${error.message}.`;
+    return null;
+  }
 });
 
 function clampYear(value, fallback) {
@@ -216,10 +247,45 @@ function transition(event) {
   return state;
 }
 
+function renderProvinceSelector() {
+  const communityId = state.autonomous_community_id;
+  const provinces = communityId ? (PROVINCES_BY_COMMUNITY.get(communityId) || []) : [];
+  provinceScope.replaceChildren();
+  const all = document.createElement("option");
+  all.value = "";
+  all.textContent = "Toda la comunidad autónoma";
+  provinceScope.append(all);
+  for (const province of provinces) {
+    const option = document.createElement("option");
+    option.value = province.territory_id;
+    option.textContent = province.official_name;
+    provinceScope.append(option);
+  }
+  provinceScope.value = state.province_id || "";
+  provinceScopeContainer.hidden = !communityId || provinces.length === 0;
+}
+
+function renderBreadcrumb() {
+  territoryBreadcrumb.replaceChildren();
+  const entries = [{ label: "España", target: "ES", current: state.territory_scope === "ES" }];
+  if (state.autonomous_community_id) entries.push({ label: territoryScope.selectedOptions[0]?.textContent || state.autonomous_community_id, target: state.autonomous_community_id, current: state.territory_scope === "autonomous_community" });
+  if (state.province_id) entries.push({ label: PROVINCE_OPTIONS.find((row) => row.territory_id === state.province_id)?.official_name || state.province_id, target: state.province_id, current: true });
+  for (const entry of entries) {
+    const button = document.createElement("button");
+    button.type = "button"; button.textContent = entry.label; button.disabled = entry.current;
+    button.dataset.territoryTarget = entry.target;
+    territoryBreadcrumb.append(button);
+  }
+}
+
 function syncTerritoryLayer({ fit = false } = {}) {
-  if (!territoryLayer) return false;
-  territoryLayer.setSelected(state.autonomous_community_id);
-  return fit ? territoryLayer.fit(state.autonomous_community_id) : true;
+  if (territoryLayer) territoryLayer.setSelected(state.autonomous_community_id);
+  if (provinceLayer) provinceLayer.setScope(state.autonomous_community_id, state.province_id);
+  renderProvinceSelector();
+  renderBreadcrumb();
+  if (!fit) return Boolean(territoryLayer || provinceLayer);
+  if (state.province_id && provinceLayer) return provinceLayer.fit(state.province_id);
+  return territoryLayer ? territoryLayer.fit(state.autonomous_community_id || "ES") : false;
 }
 
 function sourceCoverageDescription(sourceId) {
@@ -240,7 +306,9 @@ function renderRuntimeState() {
     sourceCoverage.append(item);
   }
   const egifSummary = latestEgifResult?.summary;
-  const territory = territoryScope.selectedOptions[0]?.textContent || "España";
+  const territory = state.province_id
+    ? (PROVINCE_OPTIONS.find((row) => row.territory_id === state.province_id)?.official_name || state.province_id)
+    : (territoryScope.selectedOptions[0]?.textContent || "España");
   const esfireVisible = state.esfire30_visible && effectiveCoverage(state, "esfire30")
     ? map.queryRenderedFeatures({ layers: [FILL_LAYER] }).length : 0;
   runtimeStateSummary.textContent = `Periodo solicitado: ${state.from}–${state.to} · ámbito: ${territory} · fuentes: ESFire30 ${state.esfire30_visible ? "activa" : "desactivada"}, EGIF ${state.egif_visible ? "activa" : "desactivada"} · EGIF INITIAL: ${activeInitialAssets.length} asset(s), ${egifSummary?.summary?.records ?? egifSummary?.records ?? 0} partes · ESFire30 visibles en viewport: ${formatNumber(esfireVisible)}.`;
@@ -256,7 +324,7 @@ function coverageStatePayload() {
       status: !state[`${sourceId}_visible`] ? "disabled" : range ? "covered" : "no_coverage",
     };
   };
-  return { requested_range: { from: state.from, to: state.to }, territory_id: state.autonomous_community_id || "ES", esfire30: describe("esfire30"), egif: describe("egif") };
+  return { requested_range: { from: state.from, to: state.to }, territory_id: state.province_id || state.autonomous_community_id || "ES", esfire30: describe("esfire30"), egif: describe("egif") };
 }
 
 function stateUrl() {
@@ -297,7 +365,7 @@ function renderEgifPage() {
     egifRecordBrowser.hidden = true;
     return;
   }
-  const pageData = pageOfInitialRows(activeInitialAssets, state.from, state.to, egifPage, EGIF_PAGE_SIZE);
+  const pageData = pageOfInitialRows(activeInitialAssets, state.from, state.to, egifPage, EGIF_PAGE_SIZE, state.province_id);
   const pages = Math.max(1, Math.ceil(pageData.total / EGIF_PAGE_SIZE));
   if (egifPage >= pages) {
     egifPage = pages - 1;
@@ -371,7 +439,7 @@ function renderDetailFields(record, names) {
 }
 
 async function selectEgifRecord(recordId) {
-  if (!locateRecord(activeInitialAssets, recordId)) {
+  if (!recordMatchesInitialScope(activeInitialAssets, recordId, state.from, state.to, state.province_id)) {
     egifDetail.hidden = false;
     egifDetailStatus.textContent = "El record_id no pertenece al ámbito EGIF cargado.";
     return { status: "missing" };
@@ -460,7 +528,7 @@ async function refreshEgif() {
   const territoryId = state.autonomous_community_id || "ES";
   egifStatus.textContent = territoryId === "ES" ? "Calculando resumen EGIF desde el manifest…" : "Cargando assets INITIAL EGIF…";
   try {
-    const result = await egifLoader.loadScope({ territoryId, fromYear: coverage.from, toYear: coverage.to });
+    const result = await egifLoader.loadScope({ territoryId, fromYear: coverage.from, toYear: coverage.to, provinceId: state.province_id });
     renderEgifResult(result);
     return result;
   } catch (error) {
@@ -474,7 +542,16 @@ async function refreshEgif() {
 async function setEgifScope(territoryId, { fit = true } = {}) {
   territoryScope.value = territoryId;
   transition({ type: "set_scope", territory_id: territoryId });
-  await territoryLayerReady;
+  await Promise.all([territoryLayerReady, provinceLayerReady]);
+  syncTerritoryLayer({ fit });
+  return refreshSources();
+}
+
+async function setProvinceScope(provinceId, parentId, { fit = true } = {}) {
+  if (provinceParents.get(provinceId) !== parentId) throw new Error("Provincia y CCAA incompatibles");
+  territoryScope.value = parentId;
+  transition({ type: "set_province", province_id: provinceId, autonomous_community_id: parentId });
+  await Promise.all([territoryLayerReady, provinceLayerReady]);
   syncTerritoryLayer({ fit });
   return refreshSources();
 }
@@ -518,7 +595,7 @@ async function restoreSelectionsFromState() {
 }
 
 async function restoreStateFromHash() {
-  const parsed = parseStateHash(location.hash, PROTOTYPE_DEFAULT_STATE, territoryIds);
+  const parsed = parseStateHash(location.hash, PROTOTYPE_DEFAULT_STATE, territoryIds, provinceParents);
   if (parsed.status === "absent") return { status: "absent" };
   restoringFromUrl = true;
   state = parsed.state;
@@ -528,7 +605,7 @@ async function restoreStateFromHash() {
   esfireVisibleInput.checked = state.esfire30_visible;
   egifVisibleInput.checked = state.egif_visible;
   map.jumpTo({ center: state.center, zoom: state.zoom });
-  await territoryLayerReady;
+  await Promise.all([territoryLayerReady, provinceLayerReady]);
   // La URL contiene su propia vista. Solo se resalta el límite; no se hace
   // fitBounds durante restauración porque destruiría center/zoom compartidos.
   syncTerritoryLayer();
@@ -616,6 +693,17 @@ map.on("mouseleave", FILL_LAYER, () => { map.getCanvas().style.cursor = ""; });
 map.on("error", (event) => errors.push(String(event?.error || "MapLibre error")));
 applyButton.addEventListener("click", () => { applyYears(); });
 territoryScope.addEventListener("change", () => { setEgifScope(territoryScope.value); });
+provinceScope.addEventListener("change", () => {
+  const provinceId = provinceScope.value;
+  if (provinceId) setProvinceScope(provinceId, state.autonomous_community_id);
+  else if (state.autonomous_community_id) setEgifScope(state.autonomous_community_id, { fit: false });
+});
+territoryBreadcrumb.addEventListener("click", (event) => {
+  const target = event.target.closest("button[data-territory-target]")?.dataset.territoryTarget;
+  if (!target) return;
+  if (target === "ES" || target.startsWith("ES:CCAA:")) setEgifScope(target);
+  else if (target.startsWith("ES:PROV:")) setProvinceScope(target, provinceParents.get(target));
+});
 esfireVisibleInput.addEventListener("change", () => { setSourceVisibility("esfire30", esfireVisibleInput.checked); });
 egifVisibleInput.addEventListener("change", () => { setSourceVisibility("egif", egifVisibleInput.checked); });
 egifRecordRows.addEventListener("click", (event) => {
@@ -642,6 +730,7 @@ function activeRecordId(predicate = () => true, offset = 0) {
       // pertenezca al rango exacto activo, igual que la lista y la ficha.
       const year = columns.year[ordinal];
       if (year < state.from || year > state.to) continue;
+      if (state.province_id && columns.province_id[ordinal] !== state.province_id) continue;
       if (!predicate(columns, ordinal)) continue;
       if (matches === offset) return columns.record_id[ordinal];
       matches += 1;
@@ -711,6 +800,31 @@ async function runSmoke(name, initialReady = false) {
     } else await setEgifScope(territoryId);
     await waitForIdle();
     territoryInteraction = { mode: params.get("territory_click") ? "click_feature" : "selector", territory_id: state.autonomous_community_id, center: [...state.center], zoom: state.zoom };
+  }
+  let provinceInteraction = null;
+  if (params.get("province_select") || params.get("province_click")) {
+    const provinceId = params.get("province_select") || params.get("province_click");
+    const parentId = provinceParents.get(provinceId);
+    if (!parentId) throw new Error(`Provincia de smoke desconocida: ${provinceId}`);
+    if (state.autonomous_community_id !== parentId) await setEgifScope(parentId);
+    if (params.get("province_click")) await provinceLayer.selectFromFeature(provinceLayer.byId.get(provinceId));
+    else await setProvinceScope(provinceId, parentId);
+    await waitForIdle();
+    provinceInteraction = { mode: params.get("province_click") ? "click_feature" : "selector", province_id: state.province_id, parent_id: state.autonomous_community_id, center: [...state.center], zoom: state.zoom };
+  }
+  if (params.get("province_sequence")) {
+    const [first, second] = params.get("province_sequence").split(",", 2);
+    const parentId = provinceParents.get(first);
+    await setEgifScope(parentId);
+    await setProvinceScope(first, parentId);
+    const afterFirst = await rangeStats();
+    await setProvinceScope(second, provinceParents.get(second));
+    provinceInteraction = { mode: "same_ccaa_sequence", first, second, first_initial_requests: afterFirst.initial_requests, final_initial_requests: (await rangeStats()).initial_requests, province_id: state.province_id, parent_id: state.autonomous_community_id };
+  }
+  if (params.get("territory_up") === "1") {
+    await setEgifScope(state.autonomous_community_id, { fit: false });
+    await setEgifScope("ES", { fit: false });
+    territoryInteraction = { mode: "breadcrumb_up", territory_id: state.autonomous_community_id, province_id: state.province_id };
   }
   if (params.get("egif_rapid") === "1") {
     const obsolete = setEgifScope("ES:CCAA:12");
@@ -800,6 +914,13 @@ async function runSmoke(name, initialReady = false) {
       interaction: territoryInteraction,
       error: null,
     } : { loaded: false, error: territoryLayerError },
+    province_layer: provinceLayer ? {
+      loaded: true,
+      selected_province_id: state.province_id,
+      selected_bounds: state.province_id ? provinceLayer.byId.get(state.province_id)?.properties?.bounds || null : null,
+      interaction: provinceInteraction,
+      error: null,
+    } : { loaded: false, error: provinceLayerError },
     coverage: coverageStatePayload(),
     heap_delta_bytes: initialHeap === null || !performance.memory ? null : performance.memory.usedJSHeapSize - initialHeap,
     errors,
@@ -810,7 +931,7 @@ async function runSmoke(name, initialReady = false) {
 }
 
 map.once("idle", () => {
-  territoryLayerReady.then(async () => {
+  Promise.all([territoryLayerReady, provinceLayerReady]).then(async () => {
     applyFilters();
     renderRuntimeState();
     egifReady = refreshSources().then(async () => {
@@ -833,6 +954,7 @@ window.__es4cRuntime = {
   selectFirstRenderedFeature,
   applyYears,
   setEgifScope,
+  setProvinceScope,
   refreshEgif,
   refreshSources,
   setSourceVisibility,

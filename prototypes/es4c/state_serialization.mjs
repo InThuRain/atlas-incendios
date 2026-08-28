@@ -33,7 +33,12 @@ export function canonicalPayload(state) {
     v: STATE_VERSION,
     map: { lat: rounded(validCoordinate(lat, -90, 90, 40.3), 5), lon: rounded(validCoordinate(lon, -180, 180, -3.7), 5), z: rounded(validCoordinate(state.zoom, 3, 14, 4), 2) },
     time: { from: state.from, to: state.to },
-    territory: { scope: state.territory_scope, autonomous_community_id: state.autonomous_community_id || null },
+    territory: {
+      scope: state.territory_scope,
+      autonomous_community_id: state.autonomous_community_id || null,
+      // Campo aditivo v1: los enlaces C1C2 sin él siguen siendo válidos.
+      province_id: state.province_id || null,
+    },
     sources: { esfire30: Boolean(state.esfire30_visible), egif: Boolean(state.egif_visible) },
     selections: { geometry_id: state.selected_geometry_id || null, egif_record_id: state.selected_egif_record_id || null },
   };
@@ -43,7 +48,7 @@ export function serializeState(state) {
   return `${HASH_PREFIX}${base64UrlEncode(JSON.stringify(canonicalPayload(state)))}`;
 }
 
-export function parseStateHash(hash, defaults, territoryIds) {
+export function parseStateHash(hash, defaults, territoryIds, provinceParents = new Map()) {
   if (!hash || !hash.startsWith("#es4c-state-")) return { status: "absent", state: { ...defaults } };
   if (!hash.startsWith(HASH_PREFIX)) return { status: "unknown_version", state: { ...defaults } };
   let payload;
@@ -58,10 +63,14 @@ export function parseStateHash(hash, defaults, territoryIds) {
     && typeof map.lon === "number" && Number.isFinite(map.lon) && map.lon >= -180 && map.lon <= 180
     && typeof map.z === "number" && Number.isFinite(map.z) && map.z >= 3 && map.z <= 14;
   const territory = payload.territory || {};
-  const validScope = territory.scope === "ES" || territory.scope === "autonomous_community";
+  const validScope = territory.scope === "ES" || territory.scope === "autonomous_community" || territory.scope === "province";
   const validCommunity = territory.autonomous_community_id == null || territoryIds.has(territory.autonomous_community_id);
-  const scope = validScope && validCommunity && territory.scope === "autonomous_community" && territory.autonomous_community_id
-    ? "autonomous_community" : "ES";
+  const provinceId = validId(territory.province_id, /^ES:PROV:\d{2}$/);
+  const provinceParent = provinceId ? provinceParents.get(provinceId) : null;
+  const provinceScope = validScope && territory.scope === "province" && validCommunity
+    && provinceId && provinceParent === territory.autonomous_community_id;
+  const communityScope = validScope && validCommunity && territory.scope === "autonomous_community" && territory.autonomous_community_id;
+  const scope = provinceScope ? "province" : communityScope ? "autonomous_community" : "ES";
   const sources = payload.sources || {};
   const selections = payload.selections || {};
   const state = {
@@ -70,7 +79,8 @@ export function parseStateHash(hash, defaults, territoryIds) {
     center: validMap ? [map.lon, map.lat] : [...defaults.center],
     zoom: validMap ? map.z : defaults.zoom,
     territory_scope: scope,
-    autonomous_community_id: scope === "autonomous_community" ? territory.autonomous_community_id : null,
+    autonomous_community_id: scope === "ES" ? null : territory.autonomous_community_id,
+    province_id: scope === "province" ? provinceId : null,
     esfire30_visible: typeof sources.esfire30 === "boolean" ? sources.esfire30 : defaults.esfire30_visible,
     egif_visible: typeof sources.egif === "boolean" ? sources.egif : defaults.egif_visible,
     selected_geometry_id: validId(selections.geometry_id, /^esfire30:/),

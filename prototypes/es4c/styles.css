@@ -16,6 +16,9 @@ h1, h2 { margin: 0; } h1 { font-size: 1.1rem; } h2 { font-size: .95rem; }
 .year-filter, .scope-filter, .source-filter { display: grid; grid-template-columns: 1fr 1fr; gap: .4rem; margin: .8rem 0; padding: .55rem; border: 1px solid #c8d3cb; }
 .year-filter legend, .scope-filter legend, .source-filter legend { font-weight: 700; }.year-filter label, .scope-filter label { display: grid; gap: .2rem; }.year-filter input, .year-filter button, .scope-filter select { min-height: 2rem; box-sizing: border-box; }
 .scope-filter { grid-template-columns: 1fr; }.scope-filter select { width: 100%; }
+.territory-breadcrumb { display: flex; flex-wrap: wrap; gap: .35rem; margin: -.35rem 0 .7rem; }
+.territory-breadcrumb button { min-height: 1.75rem; border: 1px solid #b9c9bf; border-radius: .25rem; background: #f7faf8; color: #1c5a45; font: inherit; cursor: pointer; }
+.territory-breadcrumb button:disabled { color: #536159; background: #e9efeb; cursor: default; }
 .source-filter { grid-template-columns: 1fr; }.source-filter label { line-height: 1.5; }
 .year-filter button { grid-column: 1 / -1; border: 0; border-radius: .3rem; color: white; background: #2a6350; font-weight: 700; cursor: pointer; }
 .selection { border-top: 1px solid #d6dfd8; padding-top: .7rem; }.selection p { margin: .35rem 0; line-height: 1.35; }

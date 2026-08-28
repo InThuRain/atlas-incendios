@@ -34,6 +34,7 @@ export function createRuntimeState(overrides = {}) {
     to: 2021,
     territory_scope: "ES",
     autonomous_community_id: null,
+    province_id: null,
     esfire30_visible: true,
     egif_visible: true,
     selected_geometry_id: null,
@@ -64,6 +65,14 @@ export function reduceRuntimeState(state, event) {
   else if (event.type === "set_scope") {
     next.territory_scope = event.territory_id === "ES" ? "ES" : "autonomous_community";
     next.autonomous_community_id = event.territory_id === "ES" ? null : event.territory_id;
+    next.province_id = null;
+  } else if (event.type === "set_province") {
+    if (typeof event.province_id !== "string" || typeof event.autonomous_community_id !== "string") {
+      throw new Error("Una provincia requiere su CCAA canónica");
+    }
+    next.territory_scope = "province";
+    next.autonomous_community_id = event.autonomous_community_id;
+    next.province_id = event.province_id;
   } else if (event.type === "set_visibility") next[`${event.source_id}_visible`] = Boolean(event.visible);
   else if (event.type === "select_geometry") Object.assign(next, { selected_geometry_id: event.geometry_id, selected_geometry_year: event.year });
   else if (event.type === "select_egif_record") Object.assign(next, { selected_egif_record_id: event.record_id, selected_egif_year: event.year });
@@ -73,7 +82,8 @@ export function reduceRuntimeState(state, event) {
 
   if (!geometryStillVisible(next)) Object.assign(next, { selected_geometry_id: null, selected_geometry_year: null });
   if (!recordStillVisible(next)) Object.assign(next, { selected_egif_record_id: null, selected_egif_year: null });
-  if (event.type === "set_scope" && state.autonomous_community_id !== next.autonomous_community_id) {
+  if ((event.type === "set_scope" && state.autonomous_community_id !== next.autonomous_community_id)
+    || (event.type === "set_province" && state.province_id !== next.province_id)) {
     Object.assign(next, { selected_egif_record_id: null, selected_egif_year: null });
   }
   return next;

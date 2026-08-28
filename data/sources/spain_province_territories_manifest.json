@@ -1,0 +1,1039 @@
+{
+  "schema_version": "es4c2a2-province-manifest-v1",
+  "phase": "ES-4C2A2 prototype only",
+  "generated_at": "2026-08-28T00:00:00Z",
+  "source": {
+    "organization": "IGN / CNIG",
+    "product": "BDLJE / Límites y Unidades Administrativas Actuales · collection administrativeunit",
+    "url": "https://api-features.ign.es/collections/administrativeunit/items?f=json&limit=100&nationallevelname=Provincia",
+    "retrieved_at": "2026-08-26",
+    "raw_path": "data/raw/territories/spain/ign-ogc-2026-08-26/province-level.geojson",
+    "raw_bytes": 187127244,
+    "raw_sha256": "58e4f68f4efc324dd9dfd0c1df0ea755846e3b717676b7137456577dc2083290",
+    "format": "GeoJSON FeatureCollection via OGC API Features",
+    "release_metadata": {
+      "shapefile": "2026-07-28",
+      "gml": "2026-08-10"
+    },
+    "native_crs": "ETRS89 geographic (península, Baleares, Ceuta y Melilla); REGCAN95 geographic (Canarias)",
+    "license": "CC BY 4.0",
+    "attribution": "Obra derivada de BDLJE CC-BY 4.0 ign.es"
+  },
+  "source_schema": {
+    "layer": "administrativeunit",
+    "source_features": 53,
+    "features_by_role": {
+      "canonical_province": 50,
+      "autonomous_city_province_equivalent": 2,
+      "unassociated": 1
+    },
+    "fields_used": [
+      "nationalcode",
+      "nameunit",
+      "nationallevelname"
+    ]
+  },
+  "crosswalk": [
+    {
+      "territory_id": "ES:PROV:01",
+      "parent_id": "ES:CCAA:16",
+      "source_code": "34160100000",
+      "official_name": "Araba/Álava",
+      "source_name": "Araba/Álava",
+      "territory_type": "province",
+      "bounds": [
+        -3.2867669,
+        42.4723634,
+        -2.2326871,
+        43.2171873
+      ],
+      "geometry_type": "Polygon",
+      "geometry_parts": 1,
+      "original_vertices": 7974,
+      "derived_vertices": 2827,
+      "relative_area_error_percent": 0.0014153460404617022
+    },
+    {
+      "territory_id": "ES:PROV:02",
+      "parent_id": "ES:CCAA:08",
+      "source_code": "34080200000",
+      "official_name": "Albacete",
+      "source_name": "Albacete",
+      "territory_type": "province",
+      "bounds": [
+        -2.8828884,
+        38.0218377,
+        -0.9157933,
+        39.4230767
+      ],
+      "geometry_type": "Polygon",
+      "geometry_parts": 1,
+      "original_vertices": 8839,
+      "derived_vertices": 3158,
+      "relative_area_error_percent": 0.00013820358893062485
+    },
+    {
+      "territory_id": "ES:PROV:03",
+      "parent_id": "ES:CCAA:10",
+      "source_code": "34100300000",
+      "official_name": "Alicante/Alacant",
+      "source_name": "Alacant/Alicante",
+      "territory_type": "province",
+      "bounds": [
+        -1.0941618,
+        37.8437789,
+        0.2340674,
+        38.8873914
+      ],
+      "geometry_type": "MultiPolygon",
+      "geometry_parts": 56,
+      "original_vertices": 36221,
+      "derived_vertices": 4985,
+      "relative_area_error_percent": 0.0015516596073092753
+    },
+    {
+      "territory_id": "ES:PROV:04",
+      "parent_id": "ES:CCAA:01",
+      "source_code": "34010400000",
+      "official_name": "Almería",
+      "source_name": "Almería",
+      "territory_type": "province",
+      "bounds": [
+        -3.1401874,
+        35.937646,
+        -1.6301237,
+        37.9162478
+      ],
+      "geometry_type": "MultiPolygon",
+      "geometry_parts": 94,
+      "original_vertices": 19617,
+      "derived_vertices": 5097,
+      "relative_area_error_percent": 0.0005682262187786311
+    },
+    {
+      "territory_id": "ES:PROV:05",
+      "parent_id": "ES:CCAA:07",
+      "source_code": "34070500000",
+      "official_name": "Ávila",
+      "source_name": "Ávila",
+      "territory_type": "province",
+      "bounds": [
+        -5.7375619,
+        40.0819259,
+        -4.1602343,
+        41.1642497
+      ],
+      "geometry_type": "Polygon",
+      "geometry_parts": 1,
+      "original_vertices": 9587,
+      "derived_vertices": 3297,
+      "relative_area_error_percent": 0.0001747362594385927
+    },
+    {
+      "territory_id": "ES:PROV:06",
+      "parent_id": "ES:CCAA:11",
+      "source_code": "34110600000",
+      "official_name": "Badajoz",
+      "source_name": "Badajoz",
+      "territory_type": "province",
+      "bounds": [
+        -7.335668,
+        37.941026,
+        -4.6475774,
+        39.4517888
+      ],
+      "geometry_type": "Polygon",
+      "geometry_parts": 1,
+      "original_vertices": 11716,
+      "derived_vertices": 6056,
+      "relative_area_error_percent": 5.863730809751775e-05
+    },
+    {
+      "territory_id": "ES:PROV:07",
+      "parent_id": "ES:CCAA:04",
+      "source_code": "34040700000",
+      "official_name": "Balears, Illes",
+      "source_name": "Illes Balears",
+      "territory_type": "province",
+      "bounds": [
+        1.1572766,
+        38.6403876,
+        4.327784,
+        40.0945744
+      ],
+      "geometry_type": "MultiPolygon",
+      "geometry_parts": 446,
+      "original_vertices": 101704,
+      "derived_vertices": 24300,
+      "relative_area_error_percent": 0.0014177410728959078
+    },
+    {
+      "territory_id": "ES:PROV:08",
+      "parent_id": "ES:CCAA:09",
+      "source_code": "34090800000",
+      "official_name": "Barcelona",
+      "source_name": "Barcelona",
+      "territory_type": "province",
+      "bounds": [
+        1.3603969,
+        41.1927453,
+        2.7775843,
+        42.3229607
+      ],
+      "geometry_type": "MultiPolygon",
+      "geometry_parts": 4,
+      "original_vertices": 35743,
+      "derived_vertices": 6781,
+      "relative_area_error_percent": 0.0003243166513633381
+    },
+    {
+      "territory_id": "ES:PROV:09",
+      "parent_id": "ES:CCAA:07",
+      "source_code": "34070900000",
+      "official_name": "Burgos",
+      "source_name": "Burgos",
+      "territory_type": "province",
+      "bounds": [
+        -4.3353271,
+        41.4507842,
+        -2.517397,
+        43.1987473
+      ],
+      "geometry_type": "MultiPolygon",
+      "geometry_parts": 5,
+      "original_vertices": 8001,
+      "derived_vertices": 5012,
+      "relative_area_error_percent": 8.546320011400576e-05
+    },
+    {
+      "territory_id": "ES:PROV:10",
+      "parent_id": "ES:CCAA:11",
+      "source_code": "34111000000",
+      "official_name": "Cáceres",
+      "source_name": "Cáceres",
+      "territory_type": "province",
+      "bounds": [
+        -7.5413318,
+        39.0314856,
+        -4.9529505,
+        40.4866514
+      ],
+      "geometry_type": "Polygon",
+      "geometry_parts": 1,
+      "original_vertices": 10331,
+      "derived_vertices": 5096,
+      "relative_area_error_percent": 0.00012239690736586095
+    },
+    {
+      "territory_id": "ES:PROV:11",
+      "parent_id": "ES:CCAA:01",
+      "source_code": "34011100000",
+      "official_name": "Cádiz",
+      "source_name": "Cádiz",
+      "territory_type": "province",
+      "bounds": [
+        -6.473735,
+        35.999968,
+        -5.0867934,
+        37.0524453
+      ],
+      "geometry_type": "MultiPolygon",
+      "geometry_parts": 35,
+      "original_vertices": 44344,
+      "derived_vertices": 6314,
+      "relative_area_error_percent": 0.00041085006766321323
+    },
+    {
+      "territory_id": "ES:PROV:12",
+      "parent_id": "ES:CCAA:10",
+      "source_code": "34101200000",
+      "official_name": "Castellón/Castelló",
+      "source_name": "Castelló/Castellón",
+      "territory_type": "province",
+      "bounds": [
+        -0.8462969,
+        39.7146978,
+        0.6903109,
+        40.7886312
+      ],
+      "geometry_type": "MultiPolygon",
+      "geometry_parts": 22,
+      "original_vertices": 21629,
+      "derived_vertices": 4300,
+      "relative_area_error_percent": 0.0006368786306231003
+    },
+    {
+      "territory_id": "ES:PROV:13",
+      "parent_id": "ES:CCAA:08",
+      "source_code": "34081300000",
+      "official_name": "Ciudad Real",
+      "source_name": "Ciudad Real",
+      "territory_type": "province",
+      "bounds": [
+        -5.0469484,
+        38.3424525,
+        -2.6378903,
+        39.5767615
+      ],
+      "geometry_type": "MultiPolygon",
+      "geometry_parts": 2,
+      "original_vertices": 8256,
+      "derived_vertices": 4262,
+      "relative_area_error_percent": 0.00011672445759598725
+    },
+    {
+      "territory_id": "ES:PROV:14",
+      "parent_id": "ES:CCAA:01",
+      "source_code": "34011400000",
+      "official_name": "Córdoba",
+      "source_name": "Córdoba",
+      "territory_type": "province",
+      "bounds": [
+        -5.585924,
+        37.1840705,
+        -4.0009398,
+        38.7290874
+      ],
+      "geometry_type": "MultiPolygon",
+      "geometry_parts": 2,
+      "original_vertices": 12191,
+      "derived_vertices": 5326,
+      "relative_area_error_percent": 0.0003388587231874356
+    },
+    {
+      "territory_id": "ES:PROV:15",
+      "parent_id": "ES:CCAA:12",
+      "source_code": "34121500000",
+      "official_name": "Coruña, A",
+      "source_name": "A Coruña",
+      "territory_type": "province",
+      "bounds": [
+        -9.301509,
+        42.4590444,
+        -7.6617212,
+        43.7923508
+      ],
+      "geometry_type": "MultiPolygon",
+      "geometry_parts": 1069,
+      "original_vertices": 92037,
+      "derived_vertices": 26418,
+      "relative_area_error_percent": 0.0014060138535916021
+    },
+    {
+      "territory_id": "ES:PROV:16",
+      "parent_id": "ES:CCAA:08",
+      "source_code": "34081600000",
+      "official_name": "Cuenca",
+      "source_name": "Cuenca",
+      "territory_type": "province",
+      "bounds": [
+        -3.1702345,
+        39.2264807,
+        -1.1425465,
+        40.6586924
+      ],
+      "geometry_type": "Polygon",
+      "geometry_parts": 1,
+      "original_vertices": 7123,
+      "derived_vertices": 3255,
+      "relative_area_error_percent": 0.00015655162905114987
+    },
+    {
+      "territory_id": "ES:PROV:17",
+      "parent_id": "ES:CCAA:09",
+      "source_code": "34091700000",
+      "official_name": "Girona",
+      "source_name": "Girona",
+      "territory_type": "province",
+      "bounds": [
+        1.7243051,
+        41.6507685,
+        3.3325414,
+        42.4955747
+      ],
+      "geometry_type": "MultiPolygon",
+      "geometry_parts": 715,
+      "original_vertices": 111969,
+      "derived_vertices": 15838,
+      "relative_area_error_percent": 0.00040660987161914876
+    },
+    {
+      "territory_id": "ES:PROV:18",
+      "parent_id": "ES:CCAA:01",
+      "source_code": "34011800000",
+      "official_name": "Granada",
+      "source_name": "Granada",
+      "territory_type": "province",
+      "bounds": [
+        -4.3281329,
+        36.6935384,
+        -2.2077891,
+        38.0840932
+      ],
+      "geometry_type": "MultiPolygon",
+      "geometry_parts": 2,
+      "original_vertices": 11479,
+      "derived_vertices": 4170,
+      "relative_area_error_percent": 0.0005986521257639078
+    },
+    {
+      "territory_id": "ES:PROV:19",
+      "parent_id": "ES:CCAA:08",
+      "source_code": "34081900000",
+      "official_name": "Guadalajara",
+      "source_name": "Guadalajara",
+      "territory_type": "province",
+      "bounds": [
+        -3.5410982,
+        40.1524557,
+        -1.5356379,
+        41.3276322
+      ],
+      "geometry_type": "MultiPolygon",
+      "geometry_parts": 2,
+      "original_vertices": 10303,
+      "derived_vertices": 3922,
+      "relative_area_error_percent": 0.00016899430817806968
+    },
+    {
+      "territory_id": "ES:PROV:20",
+      "parent_id": "ES:CCAA:16",
+      "source_code": "34162000000",
+      "official_name": "Gipuzkoa",
+      "source_name": "Gipuzkoa",
+      "territory_type": "province",
+      "bounds": [
+        -2.6027191,
+        42.8952453,
+        -1.7293689,
+        43.3959087
+      ],
+      "geometry_type": "MultiPolygon",
+      "geometry_parts": 11,
+      "original_vertices": 10796,
+      "derived_vertices": 2973,
+      "relative_area_error_percent": 0.0005079319771746706
+    },
+    {
+      "territory_id": "ES:PROV:21",
+      "parent_id": "ES:CCAA:01",
+      "source_code": "34012100000",
+      "official_name": "Huelva",
+      "source_name": "Huelva",
+      "territory_type": "province",
+      "bounds": [
+        -7.5230471,
+        36.7897183,
+        -6.1215588,
+        38.2082098
+      ],
+      "geometry_type": "Polygon",
+      "geometry_parts": 1,
+      "original_vertices": 14598,
+      "derived_vertices": 4787,
+      "relative_area_error_percent": 1.485009860093722e-05
+    },
+    {
+      "territory_id": "ES:PROV:22",
+      "parent_id": "ES:CCAA:02",
+      "source_code": "34022200000",
+      "official_name": "Huesca",
+      "source_name": "Huesca",
+      "territory_type": "province",
+      "bounds": [
+        -0.9341684,
+        41.3478056,
+        0.7713067,
+        42.9243863
+      ],
+      "geometry_type": "Polygon",
+      "geometry_parts": 1,
+      "original_vertices": 30034,
+      "derived_vertices": 5502,
+      "relative_area_error_percent": 0.00017661124640922638
+    },
+    {
+      "territory_id": "ES:PROV:23",
+      "parent_id": "ES:CCAA:01",
+      "source_code": "34012300000",
+      "official_name": "Jaén",
+      "source_name": "Jaén",
+      "territory_type": "province",
+      "bounds": [
+        -4.2875674,
+        37.3782781,
+        -2.4349518,
+        38.5325343
+      ],
+      "geometry_type": "Polygon",
+      "geometry_parts": 1,
+      "original_vertices": 10904,
+      "derived_vertices": 4365,
+      "relative_area_error_percent": 0.0002075447168805455
+    },
+    {
+      "territory_id": "ES:PROV:24",
+      "parent_id": "ES:CCAA:07",
+      "source_code": "34072400000",
+      "official_name": "León",
+      "source_name": "León",
+      "territory_type": "province",
+      "bounds": [
+        -7.0770689,
+        42.0292261,
+        -4.7338815,
+        43.2382042
+      ],
+      "geometry_type": "Polygon",
+      "geometry_parts": 1,
+      "original_vertices": 6315,
+      "derived_vertices": 4085,
+      "relative_area_error_percent": 4.99549594839323e-05
+    },
+    {
+      "territory_id": "ES:PROV:25",
+      "parent_id": "ES:CCAA:09",
+      "source_code": "34092500000",
+      "official_name": "Lleida",
+      "source_name": "Lleida",
+      "territory_type": "province",
+      "bounds": [
+        0.3200365,
+        41.2741968,
+        1.8550577,
+        42.8614495
+      ],
+      "geometry_type": "MultiPolygon",
+      "geometry_parts": 2,
+      "original_vertices": 45309,
+      "derived_vertices": 6349,
+      "relative_area_error_percent": 0.0003494444152101347
+    },
+    {
+      "territory_id": "ES:PROV:26",
+      "parent_id": "ES:CCAA:17",
+      "source_code": "34172600000",
+      "official_name": "Rioja, La",
+      "source_name": "La Rioja",
+      "territory_type": "province",
+      "bounds": [
+        -3.1342714,
+        41.919034,
+        -1.6787015,
+        42.6442647
+      ],
+      "geometry_type": "Polygon",
+      "geometry_parts": 1,
+      "original_vertices": 3885,
+      "derived_vertices": 2636,
+      "relative_area_error_percent": 0.00025507115979417377
+    },
+    {
+      "territory_id": "ES:PROV:27",
+      "parent_id": "ES:CCAA:12",
+      "source_code": "34122700000",
+      "official_name": "Lugo",
+      "source_name": "Lugo",
+      "territory_type": "province",
+      "bounds": [
+        -7.9997322,
+        42.3257002,
+        -6.814053,
+        43.7616442
+      ],
+      "geometry_type": "MultiPolygon",
+      "geometry_parts": 31,
+      "original_vertices": 16345,
+      "derived_vertices": 5911,
+      "relative_area_error_percent": 0.0003566510286171217
+    },
+    {
+      "territory_id": "ES:PROV:28",
+      "parent_id": "ES:CCAA:13",
+      "source_code": "34132800000",
+      "official_name": "Madrid",
+      "source_name": "Madrid",
+      "territory_type": "province",
+      "bounds": [
+        -4.5790762,
+        39.8847193,
+        -3.0529833,
+        41.1658448
+      ],
+      "geometry_type": "MultiPolygon",
+      "geometry_parts": 2,
+      "original_vertices": 21212,
+      "derived_vertices": 4258,
+      "relative_area_error_percent": 7.07105356531991e-05
+    },
+    {
+      "territory_id": "ES:PROV:29",
+      "parent_id": "ES:CCAA:01",
+      "source_code": "34012900000",
+      "official_name": "Málaga",
+      "source_name": "Málaga",
+      "territory_type": "province",
+      "bounds": [
+        -5.6117767,
+        36.3102806,
+        -3.7659671,
+        37.2821995
+      ],
+      "geometry_type": "Polygon",
+      "geometry_parts": 1,
+      "original_vertices": 12339,
+      "derived_vertices": 4214,
+      "relative_area_error_percent": 0.001462043730809319
+    },
+    {
+      "territory_id": "ES:PROV:30",
+      "parent_id": "ES:CCAA:14",
+      "source_code": "34143000000",
+      "official_name": "Murcia",
+      "source_name": "Murcia",
+      "territory_type": "province",
+      "bounds": [
+        -2.3441843,
+        37.3737525,
+        -0.647983,
+        38.7550843
+      ],
+      "geometry_type": "MultiPolygon",
+      "geometry_parts": 99,
+      "original_vertices": 34723,
+      "derived_vertices": 6128,
+      "relative_area_error_percent": 0.00012797053240624725
+    },
+    {
+      "territory_id": "ES:PROV:31",
+      "parent_id": "ES:CCAA:15",
+      "source_code": "34153100000",
+      "official_name": "Navarra",
+      "source_name": "Navarra",
+      "territory_type": "province",
+      "bounds": [
+        -2.5000827,
+        41.9098937,
+        -0.7240924,
+        43.3148431
+      ],
+      "geometry_type": "MultiPolygon",
+      "geometry_parts": 3,
+      "original_vertices": 14142,
+      "derived_vertices": 4725,
+      "relative_area_error_percent": 2.4588298077680775e-06
+    },
+    {
+      "territory_id": "ES:PROV:32",
+      "parent_id": "ES:CCAA:12",
+      "source_code": "34123200000",
+      "official_name": "Ourense",
+      "source_name": "Ourense",
+      "territory_type": "province",
+      "bounds": [
+        -8.3663444,
+        41.8072331,
+        -6.7339533,
+        42.5785999
+      ],
+      "geometry_type": "Polygon",
+      "geometry_parts": 1,
+      "original_vertices": 5844,
+      "derived_vertices": 2998,
+      "relative_area_error_percent": 0.00023044940473050478
+    },
+    {
+      "territory_id": "ES:PROV:33",
+      "parent_id": "ES:CCAA:03",
+      "source_code": "34033300000",
+      "official_name": "Asturias",
+      "source_name": "Asturias",
+      "territory_type": "province",
+      "bounds": [
+        -7.1824889,
+        42.8825428,
+        -4.5105015,
+        43.6665322
+      ],
+      "geometry_type": "MultiPolygon",
+      "geometry_parts": 702,
+      "original_vertices": 45997,
+      "derived_vertices": 14246,
+      "relative_area_error_percent": 0.0009055683069169364
+    },
+    {
+      "territory_id": "ES:PROV:34",
+      "parent_id": "ES:CCAA:07",
+      "source_code": "34073400000",
+      "official_name": "Palencia",
+      "source_name": "Palencia",
+      "territory_type": "province",
+      "bounds": [
+        -5.0318945,
+        41.7581663,
+        -3.8896226,
+        43.0609889
+      ],
+      "geometry_type": "MultiPolygon",
+      "geometry_parts": 6,
+      "original_vertices": 3962,
+      "derived_vertices": 2932,
+      "relative_area_error_percent": 9.226324745918982e-05
+    },
+    {
+      "territory_id": "ES:PROV:35",
+      "parent_id": "ES:CCAA:05",
+      "source_code": "34053500000",
+      "official_name": "Palmas, Las",
+      "source_name": "Las Palmas",
+      "territory_type": "province",
+      "bounds": [
+        -15.8346468,
+        27.7345038,
+        -13.3349584,
+        29.4164194
+      ],
+      "geometry_type": "MultiPolygon",
+      "geometry_parts": 119,
+      "original_vertices": 60759,
+      "derived_vertices": 11252,
+      "relative_area_error_percent": 0.002206500102193438
+    },
+    {
+      "territory_id": "ES:PROV:36",
+      "parent_id": "ES:CCAA:12",
+      "source_code": "34123600000",
+      "official_name": "Pontevedra",
+      "source_name": "Pontevedra",
+      "territory_type": "province",
+      "bounds": [
+        -8.9494526,
+        41.868849,
+        -7.861428,
+        42.8601382
+      ],
+      "geometry_type": "MultiPolygon",
+      "geometry_parts": 681,
+      "original_vertices": 37932,
+      "derived_vertices": 13984,
+      "relative_area_error_percent": 0.0016900880221918384
+    },
+    {
+      "territory_id": "ES:PROV:37",
+      "parent_id": "ES:CCAA:07",
+      "source_code": "34073700000",
+      "official_name": "Salamanca",
+      "source_name": "Salamanca",
+      "territory_type": "province",
+      "bounds": [
+        -6.9316817,
+        40.2389235,
+        -5.0898411,
+        41.2942159
+      ],
+      "geometry_type": "Polygon",
+      "geometry_parts": 1,
+      "original_vertices": 6130,
+      "derived_vertices": 3825,
+      "relative_area_error_percent": 1.5614683520322207e-05
+    },
+    {
+      "territory_id": "ES:PROV:38",
+      "parent_id": "ES:CCAA:05",
+      "source_code": "34053800000",
+      "official_name": "Santa Cruz de Tenerife",
+      "source_name": "Santa Cruz de Tenerife",
+      "territory_type": "province",
+      "bounds": [
+        -18.1611787,
+        27.6377231,
+        -16.1185711,
+        28.8575686
+      ],
+      "geometry_type": "MultiPolygon",
+      "geometry_parts": 955,
+      "original_vertices": 108755,
+      "derived_vertices": 18399,
+      "relative_area_error_percent": 0.001261936757108094
+    },
+    {
+      "territory_id": "ES:PROV:39",
+      "parent_id": "ES:CCAA:06",
+      "source_code": "34063900000",
+      "official_name": "Cantabria",
+      "source_name": "Cantabria",
+      "territory_type": "province",
+      "bounds": [
+        -4.8517354,
+        42.7580499,
+        -3.1496347,
+        43.513693
+      ],
+      "geometry_type": "MultiPolygon",
+      "geometry_parts": 79,
+      "original_vertices": 18509,
+      "derived_vertices": 7308,
+      "relative_area_error_percent": 0.0002548026023466524
+    },
+    {
+      "territory_id": "ES:PROV:40",
+      "parent_id": "ES:CCAA:07",
+      "source_code": "34074000000",
+      "official_name": "Segovia",
+      "source_name": "Segovia",
+      "territory_type": "province",
+      "bounds": [
+        -4.7246528,
+        40.6329848,
+        -3.206929,
+        41.5860824
+      ],
+      "geometry_type": "Polygon",
+      "geometry_parts": 1,
+      "original_vertices": 3319,
+      "derived_vertices": 2126,
+      "relative_area_error_percent": 0.00038456390562915997
+    },
+    {
+      "territory_id": "ES:PROV:41",
+      "parent_id": "ES:CCAA:01",
+      "source_code": "34014100000",
+      "official_name": "Sevilla",
+      "source_name": "Sevilla",
+      "territory_type": "province",
+      "bounds": [
+        -6.5385147,
+        36.8421915,
+        -4.6533503,
+        38.1974173
+      ],
+      "geometry_type": "Polygon",
+      "geometry_parts": 1,
+      "original_vertices": 11336,
+      "derived_vertices": 5537,
+      "relative_area_error_percent": 7.010411744844278e-05
+    },
+    {
+      "territory_id": "ES:PROV:42",
+      "parent_id": "ES:CCAA:07",
+      "source_code": "34074200000",
+      "official_name": "Soria",
+      "source_name": "Soria",
+      "territory_type": "province",
+      "bounds": [
+        -3.5504383,
+        41.0565078,
+        -1.7753716,
+        42.1467061
+      ],
+      "geometry_type": "Polygon",
+      "geometry_parts": 1,
+      "original_vertices": 3171,
+      "derived_vertices": 2387,
+      "relative_area_error_percent": 6.8404385271232936e-06
+    },
+    {
+      "territory_id": "ES:PROV:43",
+      "parent_id": "ES:CCAA:09",
+      "source_code": "34094300000",
+      "official_name": "Tarragona",
+      "source_name": "Tarragona",
+      "territory_type": "province",
+      "bounds": [
+        0.1590703,
+        40.5229684,
+        1.6531513,
+        41.5826063
+      ],
+      "geometry_type": "MultiPolygon",
+      "geometry_parts": 32,
+      "original_vertices": 27773,
+      "derived_vertices": 6627,
+      "relative_area_error_percent": 0.0004895005801311507
+    },
+    {
+      "territory_id": "ES:PROV:44",
+      "parent_id": "ES:CCAA:02",
+      "source_code": "34024400000",
+      "official_name": "Teruel",
+      "source_name": "Teruel",
+      "territory_type": "province",
+      "bounds": [
+        -1.8057277,
+        39.8467782,
+        0.2935008,
+        41.3543894
+      ],
+      "geometry_type": "Polygon",
+      "geometry_parts": 1,
+      "original_vertices": 8325,
+      "derived_vertices": 4193,
+      "relative_area_error_percent": 3.038874346649603e-06
+    },
+    {
+      "territory_id": "ES:PROV:45",
+      "parent_id": "ES:CCAA:08",
+      "source_code": "34084500000",
+      "official_name": "Toledo",
+      "source_name": "Toledo",
+      "territory_type": "province",
+      "bounds": [
+        -5.4061837,
+        39.2584168,
+        -2.9082333,
+        40.3183415
+      ],
+      "geometry_type": "Polygon",
+      "geometry_parts": 1,
+      "original_vertices": 12450,
+      "derived_vertices": 4392,
+      "relative_area_error_percent": 0.0001212287022875489
+    },
+    {
+      "territory_id": "ES:PROV:46",
+      "parent_id": "ES:CCAA:10",
+      "source_code": "34104600000",
+      "official_name": "Valencia/València",
+      "source_name": "València/Valencia",
+      "territory_type": "province",
+      "bounds": [
+        -1.528778,
+        38.6865536,
+        -0.0247022,
+        40.2116832
+      ],
+      "geometry_type": "MultiPolygon",
+      "geometry_parts": 3,
+      "original_vertices": 16089,
+      "derived_vertices": 4032,
+      "relative_area_error_percent": 0.0004292772379677756
+    },
+    {
+      "territory_id": "ES:PROV:47",
+      "parent_id": "ES:CCAA:07",
+      "source_code": "34074700000",
+      "official_name": "Valladolid",
+      "source_name": "Valladolid",
+      "territory_type": "province",
+      "bounds": [
+        -5.5208908,
+        41.0940153,
+        -3.9804421,
+        42.311842
+      ],
+      "geometry_type": "MultiPolygon",
+      "geometry_parts": 3,
+      "original_vertices": 3265,
+      "derived_vertices": 2905,
+      "relative_area_error_percent": 6.0954897959893176e-05
+    },
+    {
+      "territory_id": "ES:PROV:48",
+      "parent_id": "ES:CCAA:16",
+      "source_code": "34164800000",
+      "official_name": "Bizkaia",
+      "source_name": "Bizkaia",
+      "territory_type": "province",
+      "bounds": [
+        -3.4503314,
+        42.9816529,
+        -2.4126037,
+        43.4572102
+      ],
+      "geometry_type": "MultiPolygon",
+      "geometry_parts": 24,
+      "original_vertices": 10694,
+      "derived_vertices": 3606,
+      "relative_area_error_percent": 0.0007543020637117177
+    },
+    {
+      "territory_id": "ES:PROV:49",
+      "parent_id": "ES:CCAA:07",
+      "source_code": "34074900000",
+      "official_name": "Zamora",
+      "source_name": "Zamora",
+      "territory_type": "province",
+      "bounds": [
+        -7.0340431,
+        41.1171729,
+        -5.2288732,
+        42.2541925
+      ],
+      "geometry_type": "Polygon",
+      "geometry_parts": 1,
+      "original_vertices": 4812,
+      "derived_vertices": 3284,
+      "relative_area_error_percent": 0.00020607385884604165
+    },
+    {
+      "territory_id": "ES:PROV:50",
+      "parent_id": "ES:CCAA:02",
+      "source_code": "34025000000",
+      "official_name": "Zaragoza",
+      "source_name": "Zaragoza",
+      "territory_type": "province",
+      "bounds": [
+        -2.1736713,
+        40.9362157,
+        0.385695,
+        42.744036
+      ],
+      "geometry_type": "Polygon",
+      "geometry_parts": 1,
+      "original_vertices": 7397,
+      "derived_vertices": 4779,
+      "relative_area_error_percent": 0.00016597678262342578
+    }
+  ],
+  "province_equivalent_source_units": [
+    {
+      "source_code": "34185100000",
+      "province_equivalent_code": "51",
+      "territory_id": "ES:CCAA:18",
+      "source_name": "Ceuta",
+      "territory_type": "autonomous_city"
+    },
+    {
+      "source_code": "34195200000",
+      "province_equivalent_code": "52",
+      "territory_id": "ES:CCAA:19",
+      "source_name": "Melilla",
+      "territory_type": "autonomous_city"
+    }
+  ],
+  "excluded_features": [
+    {
+      "nationalcode": "34205400000",
+      "reason": "territorios no asociados a ninguna provincia"
+    }
+  ],
+  "derived": {
+    "path": "data/derived/spain/es4c2a/provinces.geojson",
+    "catalog_path": "prototypes/es4c/province_catalog.mjs",
+    "format": "GeoJSON FeatureCollection",
+    "web_crs": "EPSG:4326",
+    "logical_provinces": 50,
+    "raw_bytes": 10781436,
+    "gzip_bytes": 3552897,
+    "sha256": "98502078e51899fb113539b073c522c954da849841c428e6e41289f6bafc2f01",
+    "simplification_tolerance_m": 10.0,
+    "vertices": {
+      "original": 1186185,
+      "derived": 315159,
+      "reduction_percent": 73.4308729245438
+    },
+    "simplification_error": {
+      "relative_area_error_percent": {
+        "max": 0.002206500102193438,
+        "p95": 0.0015516596073092753
+      }
+    }
+  },
+  "validation": {
+    "unique_territory_ids": 50,
+    "all_geometry_valid": true,
+    "all_geometry_non_null": true,
+    "canarias_provinces_present": true,
+    "multiparts_preserved": true
+  }
+}

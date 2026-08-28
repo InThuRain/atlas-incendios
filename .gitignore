@@ -83,3 +83,4 @@ benchmarks/es4b5c/results.json
 # scripts se versionan; el PMTiles de ES-3 y las mediciones permanecen locales.
 prototypes/es4c/smoke-results.json
 prototypes/es4c/*-smoke-results.json
+prototypes/es4c/c2a2-*.json
