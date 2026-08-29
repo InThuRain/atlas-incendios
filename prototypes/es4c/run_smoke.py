@@ -89,6 +89,16 @@ C2A2_SMOKES = {
     "k_up_to_spain": {"map": "pais_valencia", "from": 1995, "to": 1995, "scope": "ES", "province_select": "ES:PROV:03", "territory_up": True, "expected_territory": None},
     "l_mobile_gva": {"map": "pais_valencia", "from": 1995, "to": 1995, "scope": "ES", "province_select": "ES:PROV:03", "expected_province": "ES:PROV:03", "expected_parent": "ES:CCAA:10", "mobile_only": True},
 }
+C2B2_SMOKES = {
+    "a_spain": {"map": "spain", "from": 1995, "to": 1995, "scope": "ES", "territory_index_status": "national", "territory_index_ids": None},
+    "b_pais_valencia": {"map": "pais_valencia", "from": 1993, "to": 2002, "scope": "ES", "territory_select": "ES:CCAA:10", "territory_index_status": "covered", "territory_index_ids": 2203},
+    "c_alacant": {"map": "pais_valencia", "from": 1993, "to": 2002, "scope": "ES", "province_select": "ES:PROV:03", "territory_index_status": "covered", "territory_index_ids": 468},
+    "d_valencia": {"map": "pais_valencia", "from": 1993, "to": 2002, "scope": "ES", "province_select": "ES:PROV:46", "territory_index_status": "covered", "territory_index_ids": 945},
+    "e_galicia": {"map": "galicia", "from": 1993, "to": 2002, "scope": "ES", "territory_select": "ES:CCAA:12", "territory_index_status": "covered", "territory_index_ids": 38645},
+    "f_ourense": {"map": "galicia", "from": 1993, "to": 2002, "scope": "ES", "province_select": "ES:PROV:32", "territory_index_status": "covered", "territory_index_ids": 16265},
+    "g_baleares": {"map": "spain", "from": 1995, "to": 1995, "scope": "ES", "province_select": "ES:PROV:07", "territory_index_status": "no_coverage", "territory_index_ids": 0},
+    "h_mobile_pais_valencia": {"map": "pais_valencia", "from": 1995, "to": 1995, "scope": "ES", "territory_select": "ES:CCAA:10", "territory_index_status": "covered", "territory_index_ids": 2203, "mobile_only": True},
+}
 EXPECTED_SHA256 = "92f0f081131932075f54a89d86fc8aa7e5879d56ca4d7177c64562f9612751b4"
 
 
@@ -406,6 +416,12 @@ def validate_results(payload: dict) -> list[str]:
                 interaction = result.get("province_layer", {}).get("interaction", {})
                 if interaction.get("first_initial_requests") != interaction.get("final_initial_requests"):
                     errors.append(f"{label}: cambió provincia y volvió a pedir INITIAL de la misma CCAA")
+            if "territory_index_status" in expected_egif:
+                index = result.get("esfire30_territory_index", {})
+                if index.get("status") != expected_egif["territory_index_status"]:
+                    errors.append(f"{label}: estado de índice territorial inesperado: {index}")
+                if index.get("geometry_ids") != expected_egif["territory_index_ids"]:
+                    errors.append(f"{label}: cardinalidad de índice territorial inesperada: {index}")
             if expected_egif.get("detail"):
                 detail = result.get("egif_detail", {})
                 if not detail or detail.get("status") == "missing_initial":
@@ -455,6 +471,8 @@ def main() -> int:
     parser.add_argument("--all-c2a-smokes", action="store_true")
     parser.add_argument("--c2a2-smoke", choices=tuple(C2A2_SMOKES), action="append")
     parser.add_argument("--all-c2a2-smokes", action="store_true")
+    parser.add_argument("--c2b2-smoke", choices=tuple(C2B2_SMOKES), action="append")
+    parser.add_argument("--all-c2b2-smokes", action="store_true")
     parser.add_argument("--output", type=Path, default=ROOT / "prototypes/es4c/smoke-results.json")
     parser.add_argument("--check", action="store_true")
     parser.add_argument("--serve", action="store_true", help="sirve el prototipo interactivo local con HTTP Range")
@@ -482,7 +500,8 @@ def main() -> int:
     requested_c1c2 = args.c1c2_smoke or (tuple(C1C2_SMOKES) if args.all_c1c2_smokes else ())
     requested_c2a = args.c2a_smoke or (tuple(C2A_SMOKES) if args.all_c2a_smokes else ())
     requested_c2a2 = args.c2a2_smoke or (tuple(C2A2_SMOKES) if args.all_c2a2_smokes else ())
-    scenarios = args.scenario or (SCENARIOS if args.all_smokes else (() if (requested_egif or requested_detail or requested_c1c or requested_c1c2 or requested_c2a or requested_c2a2) else ("spain",)))
+    requested_c2b2 = args.c2b2_smoke or (tuple(C2B2_SMOKES) if args.all_c2b2_smokes else ())
+    scenarios = args.scenario or (SCENARIOS if args.all_smokes else (() if (requested_egif or requested_detail or requested_c1c or requested_c1c2 or requested_c2a or requested_c2a2 or requested_c2b2) else ("spain",)))
     devices = []
     if args.desktop or not args.mobile:
         devices.append("desktop")
@@ -523,6 +542,12 @@ def main() -> int:
         config = C2A2_SMOKES[name]
         c2a2_devices = ["mobile_390x844"] if config.get("mobile_only") else ["desktop"]
         for device in c2a2_devices:
+            print(f"{name}::{device}: ejecutando", flush=True)
+            rows.append(run_case(args.chrome, config["map"], device, config))
+    for name in requested_c2b2:
+        config = C2B2_SMOKES[name]
+        devices_for_case = ["mobile_390x844"] if config.get("mobile_only") else ["desktop"]
+        for device in devices_for_case:
             print(f"{name}::{device}: ejecutando", flush=True)
             rows.append(run_case(args.chrome, config["map"], device, config))
     for scenario in scenarios:
