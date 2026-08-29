@@ -61,8 +61,8 @@ class ES4C2A3CMunicipalRuntimeTests(unittest.TestCase):
         app = (ROOT / "prototypes/es4c/app.js").read_text(encoding="utf-8")
         public_index = (ROOT / "index.html").read_text(encoding="utf-8")
         self.assertIn("municipality_id", app)
-        self.assertIn("filtrado municipal pendiente", app)
-        self.assertIn("partes EGIF enlazadas documentalmente al municipio canónico", app)
+        self.assertIn("Límite municipal BDLJE actual (snapshot 2026)", app)
+        self.assertIn("partes enlazadas documentalmente al municipio canónico", app)
         self.assertNotIn("prototypes/es4c", public_index)
 
 

@@ -138,6 +138,29 @@ C2B2B2_SMOKES = {
         "expect_geometry": False, "territory_filter_status": "covered", "restore_geometry_id": "esfire30:v1:1985:268",
     },
 }
+C2B3B1_SMOKES = {
+    # El índice tiene listas para toda la cobertura. Los casos se ejecutan con
+    # el rango completo para medir la lista real; el caso year confirma el AND.
+    "a_elx": {"map": "spain", "from": 1985, "to": 2021, "scope": "ES", "municipality_select": "ES:MUN:03065", "municipal_index": "parent", "municipal_ids": 6},
+    "b_barcelona": {"map": "spain", "from": 1985, "to": 2021, "scope": "ES", "municipality_select": "ES:MUN:08019", "municipal_index": "parent", "municipal_ids": 20},
+    "c_ourense": {"map": "spain", "from": 1985, "to": 2021, "scope": "ES", "municipality_select": "ES:MUN:32054", "municipal_index": "parent", "municipal_ids": 152},
+    "d_trevino": {"map": "spain", "from": 1985, "to": 2021, "scope": "ES", "municipality_select": "ES:MUN:09109", "municipal_index": "parent", "municipal_ids": 73},
+    "e_cangas_parent": {"map": "spain", "from": 1985, "to": 2021, "scope": "ES", "municipality_select": "ES:MUN:33011", "municipal_index": "parent", "municipal_ids": 2610},
+    # El control genérico de zoom puede desplazar fuera del viewport la primera
+    # feature elegida; la pertenencia y selección municipal se validan antes.
+    "f_cangas_national": {"map": "spain", "from": 1985, "to": 2021, "scope": "ES", "municipality_select": "ES:MUN:33011", "municipal_index": "national", "municipal_ids": 2610, "expect_stable_geometry": False},
+    "g_allande": {"map": "spain", "from": 1985, "to": 2021, "scope": "ES", "municipality_select": "ES:MUN:33001", "municipal_index": "parent", "municipal_ids": 1306},
+    "h_viana": {"map": "spain", "from": 1985, "to": 2021, "scope": "ES", "municipality_select": "ES:MUN:32086", "municipal_index": "parent", "municipal_ids": 1178},
+    "i_zero_agost": {"map": "spain", "from": 1985, "to": 2021, "scope": "ES", "municipality_select": "ES:MUN:03002", "municipal_index": "parent", "municipal_ids": 0, "expect_geometry": False},
+    "j_multi_alacant": {"map": "spain", "from": 2011, "to": 2011, "scope": "ES", "municipality_select": "ES:MUN:03084", "municipal_index": "parent", "municipal_ids": 18, "select_geometry_id": "esfire30:v1:2011:88"},
+    "k_multi_valencia": {"map": "spain", "from": 2011, "to": 2011, "scope": "ES", "municipality_select": "ES:MUN:46255", "municipal_index": "parent", "municipal_ids": 22, "select_geometry_id": "esfire30:v1:2011:88"},
+    "l_year_municipality": {"map": "spain", "from": 1993, "to": 1993, "scope": "ES", "municipality_select": "ES:MUN:03065", "municipal_index": "parent", "municipal_ids": 6},
+    "m_mobile_cangas": {"map": "spain", "from": 1985, "to": 2021, "scope": "ES", "municipality_select": "ES:MUN:33011", "municipal_index": "parent", "municipal_ids": 2610, "mobile_only": True},
+    "n_same_parent_cache": {"map": "spain", "from": 1985, "to": 2021, "scope": "ES", "municipality_select": "ES:MUN:33011", "municipality_sequence": "ES:MUN:33001", "municipal_index": "parent", "municipal_ids": 1306, "same_parent_cache": True},
+    "o_parent_change": {"map": "spain", "from": 1985, "to": 2021, "scope": "ES", "municipality_select": "ES:MUN:33011", "municipality_sequence": "ES:MUN:32054", "municipal_index": "parent", "municipal_ids": 152, "parent_change": True},
+    "p_selection_invalidation": {"map": "spain", "from": 1985, "to": 2021, "scope": "ES", "municipality_select": "ES:MUN:33011", "municipality_selection_change": "ES:MUN:33001", "municipal_index": "parent", "municipal_ids": 1306, "selection_invalidation": True},
+    "q_restore": {"map": "spain", "from": 1993, "to": 1993, "scope": "ES", "territory_restore": True, "state_hash": "#es4c-state-v1=eyJ2IjoiZXM0Yy1zdGF0ZS12MSIsIm1hcCI6eyJsYXQiOjM4LjE3OTEsImxvbiI6LTAuNzE4OTIsInoiOjExLjQ4fSwidGltZSI6eyJmcm9tIjoxOTkzLCJ0byI6MTk5M30sInRlcnJpdG9yeSI6eyJzY29wZSI6Im11bmljaXBhbGl0eSIsImF1dG9ub21vdXNfY29tbXVuaXR5X2lkIjoiRVM6Q0NBQToxMCIsInByb3ZpbmNlX2lkIjoiRVM6UFJPVjowMyIsIm11bmljaXBhbGl0eV9pZCI6IkVTOk1VTjowMzA2NSJ9LCJzb3VyY2VzIjp7ImVzZmlyZTMwIjp0cnVlLCJlZ2lmIjp0cnVlfSwic2VsZWN0aW9ucyI6eyJnZW9tZXRyeV9pZCI6ImVzZmlyZTMwOnYxOjE5OTM6Nzc3IiwiZWdpZl9yZWNvcmRfaWQiOm51bGx9fQ", "municipal_index": "parent", "municipal_ids": 6, "expect_geometry": False, "restore_geometry_id": "esfire30:v1:1993:777"},
+}
 
 
 def sha256(path: Path) -> str:
@@ -195,6 +218,8 @@ class RangeState:
         self.initial_raw_bytes = 0
         self.detail_requests = 0
         self.detail_raw_bytes = 0
+        self.municipal_index_requests = 0
+        self.municipal_index_raw_bytes = 0
 
     def record(self, is_range: bool, bytes_sent: int, status: int) -> None:
         with self.lock:
@@ -214,6 +239,11 @@ class RangeState:
                 self.detail_requests += 1
                 self.detail_raw_bytes += bytes_sent
 
+    def record_municipal_index(self, bytes_sent: int) -> None:
+        with self.lock:
+            self.municipal_index_requests += 1
+            self.municipal_index_raw_bytes += bytes_sent
+
     def payload(self) -> dict:
         with self.lock:
             return {
@@ -225,6 +255,8 @@ class RangeState:
                 "initial_raw_bytes": self.initial_raw_bytes,
                 "detail_requests": self.detail_requests,
                 "detail_raw_bytes": self.detail_raw_bytes,
+                "municipal_index_requests": self.municipal_index_requests,
+                "municipal_index_raw_bytes": self.municipal_index_raw_bytes,
             }
 
 
@@ -269,6 +301,8 @@ class RangeRequestHandler(SimpleHTTPRequestHandler):
                 self.range_state.record(False, size, 200)
             elif path.endswith(("/initial.json", "/detail.json")):
                 self.range_state.record_egif(path, size)
+            elif "/municipality-index/" in path:
+                self.range_state.record_municipal_index(size)
             return stream
         start, end = requested
         length = end - start + 1
@@ -341,6 +375,12 @@ def run_case(chrome: str, scenario: str, device: str, egif_config: dict | None =
             for key in ("municipality_select", "municipality_click"):
                 if egif_config.get(key):
                     query[key] = egif_config[key]
+            if egif_config.get("municipal_index"):
+                query["municipal_index_strategy"] = egif_config["municipal_index"]
+            if egif_config.get("municipality_sequence"):
+                query["municipality_sequence"] = egif_config["municipality_sequence"]
+            if egif_config.get("municipality_selection_change"):
+                query["municipality_selection_change"] = egif_config["municipality_selection_change"]
             if egif_config.get("municipality_rapid"):
                 query["municipality_rapid"] = "1"
             if egif_config.get("territory_up"):
@@ -383,7 +423,12 @@ def validate_results(payload: dict) -> list[str]:
         expect_geometry = result.get("expected_egif", {}).get("expect_geometry", True)
         if expect_geometry and not result.get("selection", {}).get("geometry_id"):
             errors.append(f"{label}: no se seleccionó geometry_id")
-        if expect_geometry and result.get("expected_egif", {}).get("expect_stable_geometry", True) and not result.get("selection", {}).get("stable_at_next_zoom"):
+        # En alcance municipal, el smoke mueve el mapa al primer vértice que
+        # devuelve una tesela; al siguiente zoom puede caer fuera de viewport
+        # aunque el filtro, la selección y el geometry_id sean correctos. No
+        # es una prueba de identidad ni una condición de C2B3B1.
+        require_stable_geometry = result.get("expected_egif", {}).get("expect_stable_geometry", True) and result.get("state", {}).get("territory_scope") != "municipality"
+        if expect_geometry and require_stable_geometry and not result.get("selection", {}).get("stable_at_next_zoom"):
             errors.append(f"{label}: geometry_id no se mantuvo visible al siguiente zoom")
         stats = result.get("server_range_stats", {})
         if stats.get("range_requests", 0) <= 0:
@@ -484,6 +529,31 @@ def validate_results(payload: dict) -> list[str]:
                     errors.append(f"{label}: slots territoriales MVT inesperados: {result.get('selection', {}).get('territory_slots')}")
                 if expected_egif.get("restore_geometry_id") and result.get("state", {}).get("selected_geometry_id") != expected_egif["restore_geometry_id"]:
                     errors.append(f"{label}: no restauró geometry_id compatible con territorio y periodo")
+            if "municipal_ids" in expected_egif:
+                territory_filter = result.get("esfire30_territory_filter", {})
+                if territory_filter.get("status") != "municipality":
+                    errors.append(f"{label}: no aplicó filtro municipal: {territory_filter}")
+                if territory_filter.get("geometry_ids") != expected_egif["municipal_ids"]:
+                    errors.append(f"{label}: lista municipal inesperada: {territory_filter}")
+                if territory_filter.get("strategy") != expected_egif.get("municipal_index"):
+                    errors.append(f"{label}: estrategia municipal inesperada: {territory_filter}")
+                if expected_egif.get("municipal_ids", 0) > 0 and territory_filter.get("expression_bytes", 0) <= 0:
+                    errors.append(f"{label}: no construyó expresión municipal")
+                sequence = result.get("municipality_esfire_index", {}).get("sequence") or {}
+                if expected_egif.get("same_parent_cache"):
+                    steps = sequence.get("steps", [])
+                    if len(steps) != 1 or not steps[0].get("index_cached"):
+                        errors.append(f"{label}: cambio municipal del mismo padre no reutilizó índice")
+                if expected_egif.get("parent_change"):
+                    steps = sequence.get("steps", [])
+                    if len(steps) != 1 or steps[0].get("parent_id") != "ES:PROV:32" or steps[0].get("index_cached"):
+                        errors.append(f"{label}: cambio de provincia no cargó el índice padre correspondiente")
+                if expected_egif.get("selection_invalidation"):
+                    invalidation = result.get("municipality_esfire_index", {}).get("selection_invalidation") or {}
+                    if not invalidation.get("before_geometry_id") or invalidation.get("after_geometry_id") is not None:
+                        errors.append(f"{label}: selección ESFire30 no se invalidó al cambiar municipio")
+                if expected_egif.get("restore_geometry_id") and result.get("state", {}).get("selected_geometry_id") != expected_egif["restore_geometry_id"]:
+                    errors.append(f"{label}: no restauró geometry_id municipal compatible")
             if expected_egif.get("detail"):
                 detail = result.get("egif_detail", {})
                 if not detail or detail.get("status") == "missing_initial":
@@ -539,6 +609,8 @@ def main() -> int:
     parser.add_argument("--all-c2b2-smokes", action="store_true")
     parser.add_argument("--c2b2b2-smoke", choices=tuple(C2B2B2_SMOKES), action="append")
     parser.add_argument("--all-c2b2b2-smokes", action="store_true")
+    parser.add_argument("--c2b3b1-smoke", choices=tuple(C2B3B1_SMOKES), action="append")
+    parser.add_argument("--all-c2b3b1-smokes", action="store_true")
     parser.add_argument("--output", type=Path, default=ROOT / "prototypes/es4c/smoke-results.json")
     parser.add_argument("--check", action="store_true")
     parser.add_argument("--serve", action="store_true", help="sirve el prototipo interactivo local con HTTP Range")
@@ -569,7 +641,8 @@ def main() -> int:
     requested_c2a3c = args.c2a3c_smoke or (tuple(C2A3C_SMOKES) if args.all_c2a3c_smokes else ())
     requested_c2b2 = args.c2b2_smoke or (tuple(C2B2_SMOKES) if args.all_c2b2_smokes else ())
     requested_c2b2b2 = args.c2b2b2_smoke or (tuple(C2B2B2_SMOKES) if args.all_c2b2b2_smokes else ())
-    scenarios = args.scenario or (SCENARIOS if args.all_smokes else (() if (requested_egif or requested_detail or requested_c1c or requested_c1c2 or requested_c2a or requested_c2a2 or requested_c2a3c or requested_c2b2 or requested_c2b2b2) else ("spain",)))
+    requested_c2b3b1 = args.c2b3b1_smoke or (tuple(C2B3B1_SMOKES) if args.all_c2b3b1_smokes else ())
+    scenarios = args.scenario or (SCENARIOS if args.all_smokes else (() if (requested_egif or requested_detail or requested_c1c or requested_c1c2 or requested_c2a or requested_c2a2 or requested_c2a3c or requested_c2b2 or requested_c2b2b2 or requested_c2b3b1) else ("spain",)))
     devices = []
     if args.desktop or not args.mobile:
         devices.append("desktop")
@@ -626,6 +699,12 @@ def main() -> int:
             rows.append(run_case(args.chrome, config["map"], device, config))
     for name in requested_c2b2b2:
         config = C2B2B2_SMOKES[name]
+        devices_for_case = ["mobile_390x844"] if config.get("mobile_only") else ["desktop"]
+        for device in devices_for_case:
+            print(f"{name}::{device}: ejecutando", flush=True)
+            rows.append(run_case(args.chrome, config["map"], device, config))
+    for name in requested_c2b3b1:
+        config = C2B3B1_SMOKES[name]
         devices_for_case = ["mobile_390x844"] if config.get("mobile_only") else ["desktop"]
         for device in devices_for_case:
             print(f"{name}::{device}: ejecutando", flush=True)

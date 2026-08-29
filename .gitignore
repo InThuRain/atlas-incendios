@@ -88,3 +88,6 @@ benchmarks/es4b5c/results.json
 prototypes/es4c/smoke-results.json
 prototypes/es4c/*-smoke-results.json
 prototypes/es4c/c2a2-*.json
+# Resultados locales de los smokes del índice municipal ESFire30; el harness y
+# el informe reproducible se versionan, las medidas dependen del navegador.
+prototypes/es4c/c2b3b1-*.json
