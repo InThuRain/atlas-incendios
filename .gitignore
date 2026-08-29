@@ -41,6 +41,9 @@ data/derived/spain/es4b5a/
 # local y se regenera desde el snapshot IGN/CNIG; no es un asset público.
 data/derived/spain/es4c2a/
 data/derived/spain/es4c2b/
+# Shards municipales BDLJE locales de ES-4C2A3; los agregados de auditoría y
+# el catálogo ligero versionable viven fuera de esta ruta.
+data/derived/spain/es4c2a3/
 
 # Dependencias JS locales del laboratorio nacional ES-3.
 benchmarks/es3/node_modules/
