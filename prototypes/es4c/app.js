@@ -7,9 +7,8 @@ import { createRuntimeState, effectiveCoverage, reduceRuntimeState, SOURCE_COVER
 import { parseStateHash, serializeState } from "./state_serialization.mjs";
 import { addOfficialTerritoryLayer } from "./territory_layer.mjs";
 import { addOfficialProvinceLayer } from "./province_layer.mjs";
-import { ESFire30TerritoryIndex } from "./esfire30_territory_index.mjs";
 
-const ARCHIVE_PATH = "/data/derived/spain/es3/assets/esfire30-national-fidelity.pmtiles";
+const ARCHIVE_PATH = "/data/derived/spain/es4c2b/pmtiles/esfire30-national-fidelity-territories.pmtiles";
 const SOURCE_ID = "esfire30";
 const SOURCE_LAYER = "esfire30";
 const FILL_LAYER = "esfire30-perimeters";
@@ -18,6 +17,10 @@ const YEAR_MIN = 1968;
 const YEAR_MAX = 2023;
 const ESFIRE_YEAR_MIN = 1985;
 const ESFIRE_YEAR_MAX = 2021;
+const ESFIRE30_TERRITORY_OUT_OF_COVERAGE = new Set([
+  "ES:CCAA:04", "ES:CCAA:05", "ES:CCAA:18", "ES:CCAA:19",
+  "ES:PROV:07", "ES:PROV:35", "ES:PROV:38",
+]);
 const EGIF_MANIFEST_URL = "/data/web/spain/egif/2026-08-27/manifest.json";
 const DEFAULT_VIEW = { center: [-3.7, 40.3], zoom: 4 };
 const VIEWS = {
@@ -65,7 +68,6 @@ let state = createRuntimeState({
 const PROTOTYPE_DEFAULT_STATE = { ...state, center: [...state.center] };
 const egifLoader = new EGIFInitialLoader({ manifestUrl: EGIF_MANIFEST_URL });
 const egifDetailLoader = new EGIFDetailLoader({ manifestUrl: EGIF_MANIFEST_URL });
-const esfireTerritoryIndex = new ESFire30TerritoryIndex();
 let egifReady = Promise.resolve();
 let latestEgifResult = null;
 let activeInitialAssets = [];
@@ -79,7 +81,8 @@ let territoryLayer = null;
 let territoryLayerError = null;
 let provinceLayer = null;
 let provinceLayerError = null;
-let esfireTerritory = { status: "national", ids: null, metrics: null, filter_ms: 0, error: null };
+let esfireTerritory = { status: "national", code: null, property_prefix: null, filter_ms: 0, error: null };
+let selectedGeometryProperties = null;
 
 for (const territory of TERRITORY_OPTIONS) {
   const option = document.createElement("option");
@@ -153,7 +156,7 @@ const territoryLayerReady = new Promise((resolve) => {
     }).then((layer) => {
       territoryLayer = layer;
       syncTerritoryLayer();
-      territoryStatus.textContent = "Límite oficial BDLJE cargado. Este ámbito controla EGIF; ESFire30 aún no se filtra territorialmente.";
+      territoryStatus.textContent = "Límite oficial BDLJE cargado. El ámbito controla EGIF y filtra ESFire30 por intersección territorial.";
       resolve(layer);
     }).catch((error) => {
       territoryLayerError = String(error);
@@ -196,12 +199,25 @@ function yearFilter() {
   return ["all", [">=", ["to-number", ["get", "year"]], from], ["<=", ["to-number", ["get", "year"]], to]];
 }
 
+function territoryCode(territoryId) {
+  const match = /^ES:(CCAA|PROV):(\d{2})$/.exec(territoryId || "");
+  return match ? { code: Number(match[2]), property_prefix: match[1] === "CCAA" ? "ccaa" : "prov" } : null;
+}
+
+function territoryFilterExpression() {
+  if (esfireTerritory.status === "national") return ["!=", ["get", "geometry_id"], "__outside_selected_territory__"];
+  if (esfireTerritory.status !== "covered") return ["==", ["get", "geometry_id"], "__outside_selected_territory__"];
+  return ["any", ...[1, 2, 3].map((slot) => ["==", ["get", `${esfireTerritory.property_prefix}_${slot}`], esfireTerritory.code])];
+}
+
+function featureMatchesTerritory(properties) {
+  if (esfireTerritory.status === "national") return true;
+  if (esfireTerritory.status !== "covered") return false;
+  return [1, 2, 3].some((slot) => Number(properties?.[`${esfireTerritory.property_prefix}_${slot}`]) === esfireTerritory.code);
+}
+
 function applyFilters() {
-  const territoryFilter = esfireTerritory.ids == null
-    ? ["!=", ["get", "geometry_id"], "__outside_selected_territory__"]
-    : esfireTerritory.ids.length
-      ? ["in", ["get", "geometry_id"], ["literal", esfireTerritory.ids]]
-      : ["==", ["get", "geometry_id"], "__outside_selected_territory__"];
+  const territoryFilter = territoryFilterExpression();
   const visibleFilter = ["all", yearFilter(), territoryFilter];
   map.setFilter(FILL_LAYER, visibleFilter);
   map.setFilter(SELECTED_LAYER, state.selected_geometry_id
@@ -212,30 +228,23 @@ function applyFilters() {
 async function refreshEsfireTerritoryFilter() {
   const territoryId = state.province_id || state.autonomous_community_id || "ES";
   if (!state.esfire30_visible || !effectiveCoverage(state, "esfire30")) {
-    esfireTerritory = { status: "inactive", ids: [], metrics: null, filter_ms: 0, error: null };
+    esfireTerritory = { status: "inactive", code: null, property_prefix: null, filter_ms: 0, error: null };
     applyFilters(); return esfireTerritory;
   }
   if (territoryId === "ES") {
-    esfireTerritory = { status: "national", ids: null, metrics: null, filter_ms: 0, error: null };
+    esfireTerritory = { status: "national", code: null, property_prefix: null, filter_ms: 0, error: null };
     applyFilters(); return esfireTerritory;
   }
-  // Mientras se resuelve el índice, no se muestra temporalmente España entera.
-  esfireTerritory = { status: "loading", ids: [], metrics: null, filter_ms: 0, error: null };
+  const encoded = territoryCode(territoryId);
+  const started = performance.now();
+  esfireTerritory = encoded
+    ? { status: ESFIRE30_TERRITORY_OUT_OF_COVERAGE.has(territoryId) ? "no_coverage" : "covered", ...encoded, filter_ms: 0, error: null }
+    : { status: "no_coverage", code: null, property_prefix: null, filter_ms: 0, error: "Código territorial no representable en tesela" };
   applyFilters();
-  const scopeAtRequest = territoryId;
-  try {
-    const result = await esfireTerritoryIndex.idsFor(territoryId);
-    if ((state.province_id || state.autonomous_community_id || "ES") !== scopeAtRequest) return { status: "stale" };
-    const started = performance.now();
-    esfireTerritory = { ...result, filter_ms: 0, error: null };
-    applyFilters(); esfireTerritory.filter_ms = performance.now() - started;
-    if (state.selected_geometry_id && !new Set(result.ids || []).has(state.selected_geometry_id)) clearGeometrySelection();
-    return esfireTerritory;
-  } catch (error) {
-    if ((state.province_id || state.autonomous_community_id || "ES") !== scopeAtRequest) return { status: "stale" };
-    esfireTerritory = { status: "error", ids: [], metrics: null, filter_ms: 0, error: String(error) };
-    applyFilters(); return esfireTerritory;
-  }
+  esfireTerritory.filter_ms = performance.now() - started;
+  const current = selectedGeometryProperties || (state.selected_geometry_id ? findLoadedGeometry(state.selected_geometry_id)?.properties : null);
+  if (state.selected_geometry_id && current && !featureMatchesTerritory(current)) clearGeometrySelection();
+  return esfireTerritory;
 }
 
 async function applyYears() {
@@ -272,6 +281,7 @@ function clearEgifSelection(updateState = true) {
 
 function clearGeometrySelection(updateState = true) {
   if (updateState) state = reduceRuntimeState(state, { type: "clear_geometry_selection" });
+  selectedGeometryProperties = null;
   applyFilters();
   selectionSummary.textContent = "Pulsa o toca un perímetro para inspeccionarlo.";
 }
@@ -623,7 +633,7 @@ async function restoreSelectionsFromState() {
   if (state.selected_geometry_id) {
     const geometry = state.esfire30_visible && effectiveCoverage(state, "esfire30")
       ? findLoadedGeometry(state.selected_geometry_id) : null;
-    if (geometry) selectFeature(geometry);
+    if (geometry && featureMatchesTerritory(geometry.properties)) selectFeature(geometry);
     else clearGeometrySelection();
   }
 }
@@ -658,6 +668,7 @@ function selectFeature(feature) {
   const geometryId = feature?.properties?.geometry_id;
   if (!geometryId) return null;
   transition({ type: "select_geometry", geometry_id: String(geometryId), year: Number(feature.properties.year) });
+  selectedGeometryProperties = { ...feature.properties };
   applyFilters();
   const year = feature.properties.year ?? "no disponible";
   selectionSummary.textContent = `geometry_id: ${state.selected_geometry_id} · año: ${year} · fuente: ESFire30 · superficie: no incluida en esta tesela diagnóstica.`;
@@ -690,6 +701,22 @@ function selectFirstRenderedFeature() {
   const feature = map.queryRenderedFeatures({ layers: [FILL_LAYER] })[0];
   const selected = selectFeature(feature);
   return selected ? { geometry_id: selected, representative_coordinate: representativeCoordinate(feature.geometry) } : null;
+}
+
+function selectRenderedGeometryId(geometryId) {
+  const feature = map.queryRenderedFeatures({ layers: [FILL_LAYER] })
+    .find((candidate) => String(candidate.properties?.geometry_id) === geometryId);
+  const selected = selectFeature(feature);
+  return selected ? { geometry_id: selected, representative_coordinate: representativeCoordinate(feature.geometry) } : null;
+}
+
+function selectedTerritorySlots() {
+  if (!selectedGeometryProperties) return null;
+  const compact = { geometry_id: selectedGeometryProperties.geometry_id, year: selectedGeometryProperties.year };
+  for (const key of ["ccaa_1", "ccaa_2", "ccaa_3", "prov_1", "prov_2", "prov_3"]) {
+    compact[key] = Object.prototype.hasOwnProperty.call(selectedGeometryProperties, key) ? selectedGeometryProperties[key] : null;
+  }
+  return compact;
 }
 
 function waitForIdle(timeoutMs = 25000) {
@@ -900,6 +927,7 @@ async function runSmoke(name, initialReady = false) {
     heap_delta_bytes: initialHeap === null || !performance.memory ? null : performance.memory.usedJSHeapSize - initialHeap,
     rendered_features: map.queryRenderedFeatures({ layers: [FILL_LAYER] }).length,
     source_feature_sample: map.querySourceFeatures(SOURCE_ID, { sourceLayer: SOURCE_LAYER })[0]?.properties ?? null,
+    rendered_feature_sample: map.queryRenderedFeatures({ layers: [FILL_LAYER] })[0]?.properties ?? null,
   };
   const view = VIEWS[name] || VIEWS.spain;
   if (name !== "spain" && params.get("territory_restore") !== "1") {
@@ -907,7 +935,9 @@ async function runSmoke(name, initialReady = false) {
     await waitForIdle();
   }
   const afterNavigation = { range: await rangeStats(), resources: resources() };
-  const selection = params.get("territory_restore") === "1" ? null : selectFirstRenderedFeature();
+  const requestedGeometryId = params.get("select_geometry_id");
+  const requestedSelection = requestedGeometryId ? selectRenderedGeometryId(requestedGeometryId) : null;
+  const selection = params.get("territory_restore") === "1" ? null : (requestedSelection || selectFirstRenderedFeature());
   let stableAtNextZoom = false;
   if (selection) {
     map.jumpTo({ center: selection.representative_coordinate || map.getCenter(), zoom: Math.min(map.getZoom() + 1, 14) });
@@ -925,7 +955,7 @@ async function runSmoke(name, initialReady = false) {
     initial,
     after_navigation: afterNavigation,
     after_selection: { range: await rangeStats(), resources: resources() },
-    selection: { ...selection, stable_at_next_zoom: stableAtNextZoom },
+    selection: { ...selection, stable_at_next_zoom: stableAtNextZoom, territory_slots: selectedTerritorySlots() },
     egif: latestEgifResult,
     egif_detail: detail,
     egif_record_browser: {
@@ -956,7 +986,7 @@ async function runSmoke(name, initialReady = false) {
       error: null,
     } : { loaded: false, error: provinceLayerError },
     coverage: coverageStatePayload(),
-    esfire30_territory_index: { status: esfireTerritory.status, geometry_ids: esfireTerritory.ids?.length ?? null, metrics: esfireTerritory.metrics, filter_ms: esfireTerritory.filter_ms, error: esfireTerritory.error },
+    esfire30_territory_filter: { status: esfireTerritory.status, code: esfireTerritory.code, property_prefix: esfireTerritory.property_prefix, filter_ms: esfireTerritory.filter_ms, error: esfireTerritory.error, external_index_loaded: false },
     heap_delta_bytes: initialHeap === null || !performance.memory ? null : performance.memory.usedJSHeapSize - initialHeap,
     errors,
   };

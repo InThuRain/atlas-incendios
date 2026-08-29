@@ -24,10 +24,10 @@ class ES4C1ARuntimeTests(unittest.TestCase):
     def test_fidelity_asset_matches_es3_provenance(self):
         source = json.loads((ROOT / "benchmarks/es3/results.json").read_text(encoding="utf-8"))
         candidate = source["pmtiles"]["fidelity_candidate"]
-        self.assertEqual(RUNTIME.EXPECTED_SHA256, candidate["sha256"])
+        self.assertEqual(RUNTIME.BASELINE_EXPECTED_SHA256, candidate["sha256"])
         self.assertEqual(61347888, candidate["bytes"])
-        self.assertTrue(RUNTIME.ARCHIVE.is_file())
-        self.assertEqual(candidate["sha256"], RUNTIME.sha256(RUNTIME.ARCHIVE))
+        self.assertTrue(RUNTIME.BASELINE_ARCHIVE.is_file())
+        self.assertEqual(candidate["sha256"], RUNTIME.sha256(RUNTIME.BASELINE_ARCHIVE))
 
     def test_range_parser_preserves_http_inclusive_bounds(self):
         self.assertEqual((5, 9), RUNTIME.parse_single_range("bytes=5-9", 10))

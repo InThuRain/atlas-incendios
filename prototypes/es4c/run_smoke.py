@@ -18,7 +18,10 @@ from urllib.parse import quote, urlencode
 
 ROOT = Path(__file__).resolve().parents[2]
 ES3_RESULTS = ROOT / "benchmarks/es3/results.json"
-ARCHIVE = ROOT / "data/derived/spain/es3/assets/esfire30-national-fidelity.pmtiles"
+BASELINE_ARCHIVE = ROOT / "data/derived/spain/es3/assets/esfire30-national-fidelity.pmtiles"
+BASELINE_EXPECTED_SHA256 = "92f0f081131932075f54a89d86fc8aa7e5879d56ca4d7177c64562f9612751b4"
+ARCHIVE_MANIFEST = ROOT / "data/derived/spain/es4c2b/pmtiles/esfire30-national-fidelity-territories-manifest.json"
+ARCHIVE = ROOT / "data/derived/spain/es4c2b/pmtiles/esfire30-national-fidelity-territories.pmtiles"
 sys.path.insert(0, str(ROOT / "benchmarks/gva_frontend"))
 from cdp_client import run_page  # noqa: E402
 
@@ -99,7 +102,32 @@ C2B2_SMOKES = {
     "g_baleares": {"map": "spain", "from": 1995, "to": 1995, "scope": "ES", "province_select": "ES:PROV:07", "territory_index_status": "no_coverage", "territory_index_ids": 0},
     "h_mobile_pais_valencia": {"map": "pais_valencia", "from": 1995, "to": 1995, "scope": "ES", "territory_select": "ES:CCAA:10", "territory_index_status": "covered", "territory_index_ids": 2203, "mobile_only": True},
 }
-EXPECTED_SHA256 = "92f0f081131932075f54a89d86fc8aa7e5879d56ca4d7177c64562f9612751b4"
+C2B2B2_SMOKES = {
+    # La primera feature renderizada de España a z4 puede desaparecer al
+    # cambiar de tesela tras el zoom del smoke. La estabilidad de identidad se
+    # verifica explícitamente en los controles multi-territorio de abajo.
+    "a_spain": {"map": "spain", "from": 1995, "to": 1995, "scope": "ES", "territory_filter_status": "national", "expect_stable_geometry": False},
+    "b_pais_valencia": {"map": "pais_valencia", "from": 1993, "to": 2002, "scope": "ES", "territory_select": "ES:CCAA:10", "territory_filter_status": "covered"},
+    "c_alacant": {"map": "pais_valencia", "from": 1993, "to": 2002, "scope": "ES", "province_select": "ES:PROV:03", "territory_filter_status": "covered"},
+    "d_valencia": {"map": "pais_valencia", "from": 1993, "to": 2002, "scope": "ES", "province_select": "ES:PROV:46", "territory_filter_status": "covered"},
+    "e_galicia": {"map": "galicia", "from": 1993, "to": 2002, "scope": "ES", "territory_select": "ES:CCAA:12", "territory_filter_status": "covered"},
+    "f_ourense": {"map": "galicia", "from": 1993, "to": 2002, "scope": "ES", "province_select": "ES:PROV:32", "territory_filter_status": "covered"},
+    "g_sevilla": {"map": "spain", "from": 1993, "to": 2002, "scope": "ES", "province_select": "ES:PROV:41", "territory_filter_status": "covered"},
+    "h_multi_alacant": {"map": "pais_valencia", "from": 1985, "to": 1985, "scope": "ES", "province_select": "ES:PROV:03", "select_geometry_id": "esfire30:v1:1985:268", "territory_filter_status": "covered", "expected_slots": {"ccaa_1": 10, "ccaa_2": None, "ccaa_3": None, "prov_1": 3, "prov_2": 46, "prov_3": None}},
+    "i_multi_valencia": {"map": "pais_valencia", "from": 1985, "to": 1985, "scope": "ES", "province_select": "ES:PROV:46", "select_geometry_id": "esfire30:v1:1985:268", "territory_filter_status": "covered", "expected_slots": {"ccaa_1": 10, "ccaa_2": None, "ccaa_3": None, "prov_1": 3, "prov_2": 46, "prov_3": None}},
+    "j_multi_ccaa_07": {"map": "spain", "from": 1985, "to": 1985, "scope": "ES", "territory_select": "ES:CCAA:07", "select_geometry_id": "esfire30:v1:1985:1037", "territory_filter_status": "covered", "expected_slots": {"ccaa_1": 7, "ccaa_2": 17, "ccaa_3": None, "prov_1": 9, "prov_2": 26, "prov_3": None}},
+    "k_multi_ccaa_17": {"map": "spain", "from": 1985, "to": 1985, "scope": "ES", "territory_select": "ES:CCAA:17", "select_geometry_id": "esfire30:v1:1985:1037", "territory_filter_status": "covered", "expected_slots": {"ccaa_1": 7, "ccaa_2": 17, "ccaa_3": None, "prov_1": 9, "prov_2": 26, "prov_3": None}},
+    "l_year_territory": {"map": "galicia", "from": 1993, "to": 2002, "scope": "ES", "territory_select": "ES:CCAA:12", "territory_filter_status": "covered"},
+    "m_baleares": {"map": "spain", "from": 1995, "to": 1995, "scope": "ES", "province_select": "ES:PROV:07", "territory_filter_status": "no_coverage", "expect_geometry": False},
+    "n_canarias": {"map": "spain", "from": 1995, "to": 1995, "scope": "ES", "territory_select": "ES:CCAA:05", "territory_filter_status": "no_coverage", "expect_geometry": False},
+    "o_mobile_galicia": {"map": "galicia", "from": 1993, "to": 2002, "scope": "ES", "territory_select": "ES:CCAA:12", "territory_filter_status": "covered", "mobile_only": True},
+    "p_mobile_alacant": {"map": "pais_valencia", "from": 1993, "to": 2002, "scope": "ES", "province_select": "ES:PROV:03", "territory_filter_status": "covered", "mobile_only": True},
+    "q_restore_alacant": {
+        "map": "pais_valencia", "from": 1985, "to": 1985, "scope": "ES", "territory_restore": True,
+        "state_hash": "#es4c-state-v1=eyJ2IjoiZXM0Yy1zdGF0ZS12MSIsIm1hcCI6eyJsYXQiOjM4Ljg0NjY2LCJsb24iOi0wLjM5NDEzLCJ6IjoxMH0sInRpbWUiOnsiZnJvbSI6MTk4NSwidG8iOjE5ODV9LCJ0ZXJyaXRvcnkiOnsic2NvcGUiOiJwcm92aW5jZSIsImF1dG9ub21vdXNfY29tbXVuaXR5X2lkIjoiRVM6Q0NBQToxMCIsInByb3ZpbmNlX2lkIjoiRVM6UFJPVjowMyJ9LCJzb3VyY2VzIjp7ImVzZmlyZTMwIjp0cnVlLCJlZ2lmIjp0cnVlfSwic2VsZWN0aW9ucyI6eyJnZW9tZXRyeV9pZCI6ImVzZmlyZTMwOnYxOjE5ODU6MjY4IiwiZWdpZl9yZWNvcmRfaWQiOm51bGx9fQ",
+        "expect_geometry": False, "territory_filter_status": "covered", "restore_geometry_id": "esfire30:v1:1985:268",
+    },
+}
 
 
 def sha256(path: Path) -> str:
@@ -112,16 +140,14 @@ def sha256(path: Path) -> str:
 
 def validate_archive() -> dict:
     if not ARCHIVE.is_file():
-        raise FileNotFoundError(
-            f"No existe {ARCHIVE}. Reejecuta externamente el pipeline PMTiles de fidelidad de ES-3 antes de ES-4C1A."
-        )
-    expected = json.loads(ES3_RESULTS.read_text(encoding="utf-8"))["pmtiles"]["fidelity_candidate"]
+        raise FileNotFoundError(f"No existe {ARCHIVE}. Ejecuta externamente el builder territorial ya aprobado.")
+    expected = json.loads(ARCHIVE_MANIFEST.read_text(encoding="utf-8"))["artifacts"]["enriched"]
     actual = sha256(ARCHIVE)
-    if actual != expected["sha256"] or actual != EXPECTED_SHA256:
+    if actual != expected["sha256"]:
         raise RuntimeError(f"Checksum PMTiles inesperado: {actual}")
     if ARCHIVE.stat().st_size != expected["bytes"]:
         raise RuntimeError(f"Tamaño PMTiles inesperado: {ARCHIVE.stat().st_size}")
-    return {"path": str(ARCHIVE.relative_to(ROOT)), "bytes": ARCHIVE.stat().st_size, "sha256": actual}
+    return {"path": str(ARCHIVE.relative_to(ROOT)), "bytes": ARCHIVE.stat().st_size, "sha256": actual, "manifest": str(ARCHIVE_MANIFEST.relative_to(ROOT))}
 
 
 def parse_single_range(header: str | None, size: int) -> tuple[int, int] | None:
@@ -304,6 +330,8 @@ def run_case(chrome: str, scenario: str, device: str, egif_config: dict | None =
                     query[key] = egif_config[key]
             if egif_config.get("territory_up"):
                 query["territory_up"] = "1"
+            if egif_config.get("select_geometry_id"):
+                query["select_geometry_id"] = egif_config["select_geometry_id"]
         url = f"http://127.0.0.1:{server.server_port}/prototypes/es4c/index.html?{urlencode(query)}"
         if egif_config and egif_config.get("corrupt_hash"):
             url += egif_config["corrupt_hash"]
@@ -340,7 +368,7 @@ def validate_results(payload: dict) -> list[str]:
         expect_geometry = result.get("expected_egif", {}).get("expect_geometry", True)
         if expect_geometry and not result.get("selection", {}).get("geometry_id"):
             errors.append(f"{label}: no se seleccionó geometry_id")
-        if expect_geometry and not result.get("selection", {}).get("stable_at_next_zoom"):
+        if expect_geometry and result.get("expected_egif", {}).get("expect_stable_geometry", True) and not result.get("selection", {}).get("stable_at_next_zoom"):
             errors.append(f"{label}: geometry_id no se mantuvo visible al siguiente zoom")
         stats = result.get("server_range_stats", {})
         if stats.get("range_requests", 0) <= 0:
@@ -422,6 +450,19 @@ def validate_results(payload: dict) -> list[str]:
                     errors.append(f"{label}: estado de índice territorial inesperado: {index}")
                 if index.get("geometry_ids") != expected_egif["territory_index_ids"]:
                     errors.append(f"{label}: cardinalidad de índice territorial inesperada: {index}")
+            if "territory_filter_status" in expected_egif:
+                territory_filter = result.get("esfire30_territory_filter", {})
+                if territory_filter.get("status") != expected_egif["territory_filter_status"]:
+                    errors.append(f"{label}: estado de filtro MVT territorial inesperado: {territory_filter}")
+                if territory_filter.get("external_index_loaded") is not False:
+                    errors.append(f"{label}: el filtro territorial sigue dependiendo del índice externo")
+                requested_geometry = expected_egif.get("select_geometry_id")
+                if requested_geometry and result.get("selection", {}).get("geometry_id") != requested_geometry:
+                    errors.append(f"{label}: la geometría de control no se seleccionó tras el filtro territorial")
+                if expected_egif.get("expected_slots") and result.get("selection", {}).get("territory_slots") != {"geometry_id": requested_geometry, "year": 1985, **expected_egif["expected_slots"]}:
+                    errors.append(f"{label}: slots territoriales MVT inesperados: {result.get('selection', {}).get('territory_slots')}")
+                if expected_egif.get("restore_geometry_id") and result.get("state", {}).get("selected_geometry_id") != expected_egif["restore_geometry_id"]:
+                    errors.append(f"{label}: no restauró geometry_id compatible con territorio y periodo")
             if expected_egif.get("detail"):
                 detail = result.get("egif_detail", {})
                 if not detail or detail.get("status") == "missing_initial":
@@ -473,6 +514,8 @@ def main() -> int:
     parser.add_argument("--all-c2a2-smokes", action="store_true")
     parser.add_argument("--c2b2-smoke", choices=tuple(C2B2_SMOKES), action="append")
     parser.add_argument("--all-c2b2-smokes", action="store_true")
+    parser.add_argument("--c2b2b2-smoke", choices=tuple(C2B2B2_SMOKES), action="append")
+    parser.add_argument("--all-c2b2b2-smokes", action="store_true")
     parser.add_argument("--output", type=Path, default=ROOT / "prototypes/es4c/smoke-results.json")
     parser.add_argument("--check", action="store_true")
     parser.add_argument("--serve", action="store_true", help="sirve el prototipo interactivo local con HTTP Range")
@@ -501,7 +544,8 @@ def main() -> int:
     requested_c2a = args.c2a_smoke or (tuple(C2A_SMOKES) if args.all_c2a_smokes else ())
     requested_c2a2 = args.c2a2_smoke or (tuple(C2A2_SMOKES) if args.all_c2a2_smokes else ())
     requested_c2b2 = args.c2b2_smoke or (tuple(C2B2_SMOKES) if args.all_c2b2_smokes else ())
-    scenarios = args.scenario or (SCENARIOS if args.all_smokes else (() if (requested_egif or requested_detail or requested_c1c or requested_c1c2 or requested_c2a or requested_c2a2 or requested_c2b2) else ("spain",)))
+    requested_c2b2b2 = args.c2b2b2_smoke or (tuple(C2B2B2_SMOKES) if args.all_c2b2b2_smokes else ())
+    scenarios = args.scenario or (SCENARIOS if args.all_smokes else (() if (requested_egif or requested_detail or requested_c1c or requested_c1c2 or requested_c2a or requested_c2a2 or requested_c2b2 or requested_c2b2b2) else ("spain",)))
     devices = []
     if args.desktop or not args.mobile:
         devices.append("desktop")
@@ -546,6 +590,12 @@ def main() -> int:
             rows.append(run_case(args.chrome, config["map"], device, config))
     for name in requested_c2b2:
         config = C2B2_SMOKES[name]
+        devices_for_case = ["mobile_390x844"] if config.get("mobile_only") else ["desktop"]
+        for device in devices_for_case:
+            print(f"{name}::{device}: ejecutando", flush=True)
+            rows.append(run_case(args.chrome, config["map"], device, config))
+    for name in requested_c2b2b2:
+        config = C2B2B2_SMOKES[name]
         devices_for_case = ["mobile_390x844"] if config.get("mobile_only") else ["desktop"]
         for device in devices_for_case:
             print(f"{name}::{device}: ejecutando", flush=True)
