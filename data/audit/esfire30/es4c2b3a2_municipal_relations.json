@@ -1,0 +1,2470 @@
+{
+  "coverage": {
+    "ccaa": [
+      {
+        "geometry_ids_unique": 7695,
+        "municipalities_with_geometry": 652,
+        "municipality_relations": 8950,
+        "official_name": "Andalucía",
+        "territory_id": "ES:CCAA:01"
+      },
+      {
+        "geometry_ids_unique": 1773,
+        "municipalities_with_geometry": 423,
+        "municipality_relations": 2204,
+        "official_name": "Aragón",
+        "territory_id": "ES:CCAA:02"
+      },
+      {
+        "geometry_ids_unique": 13846,
+        "municipalities_with_geometry": 78,
+        "municipality_relations": 15532,
+        "official_name": "Asturias, Principado de",
+        "territory_id": "ES:CCAA:03"
+      },
+      {
+        "geometry_ids_unique": 0,
+        "municipalities_with_geometry": 0,
+        "municipality_relations": 0,
+        "official_name": "Balears, Illes",
+        "territory_id": "ES:CCAA:04"
+      },
+      {
+        "geometry_ids_unique": 0,
+        "municipalities_with_geometry": 0,
+        "municipality_relations": 0,
+        "official_name": "Canarias",
+        "territory_id": "ES:CCAA:05"
+      },
+      {
+        "geometry_ids_unique": 6093,
+        "municipalities_with_geometry": 101,
+        "municipality_relations": 7066,
+        "official_name": "Cantabria",
+        "territory_id": "ES:CCAA:06"
+      },
+      {
+        "geometry_ids_unique": 29763,
+        "municipalities_with_geometry": 1755,
+        "municipality_relations": 35383,
+        "official_name": "Castilla y León",
+        "territory_id": "ES:CCAA:07"
+      },
+      {
+        "geometry_ids_unique": 4685,
+        "municipalities_with_geometry": 691,
+        "municipality_relations": 5561,
+        "official_name": "Castilla-La Mancha",
+        "territory_id": "ES:CCAA:08"
+      },
+      {
+        "geometry_ids_unique": 3097,
+        "municipalities_with_geometry": 671,
+        "municipality_relations": 4167,
+        "official_name": "Cataluña",
+        "territory_id": "ES:CCAA:09"
+      },
+      {
+        "geometry_ids_unique": 2203,
+        "municipalities_with_geometry": 391,
+        "municipality_relations": 3223,
+        "official_name": "Comunitat Valenciana",
+        "territory_id": "ES:CCAA:10"
+      },
+      {
+        "geometry_ids_unique": 8211,
+        "municipalities_with_geometry": 372,
+        "municipality_relations": 9623,
+        "official_name": "Extremadura",
+        "territory_id": "ES:CCAA:11"
+      },
+      {
+        "geometry_ids_unique": 38645,
+        "municipalities_with_geometry": 312,
+        "municipality_relations": 45931,
+        "official_name": "Galicia",
+        "territory_id": "ES:CCAA:12"
+      },
+      {
+        "geometry_ids_unique": 892,
+        "municipalities_with_geometry": 160,
+        "municipality_relations": 1104,
+        "official_name": "Madrid, Comunidad de",
+        "territory_id": "ES:CCAA:13"
+      },
+      {
+        "geometry_ids_unique": 183,
+        "municipalities_with_geometry": 21,
+        "municipality_relations": 197,
+        "official_name": "Murcia, Región de",
+        "territory_id": "ES:CCAA:14"
+      },
+      {
+        "geometry_ids_unique": 1280,
+        "municipalities_with_geometry": 195,
+        "municipality_relations": 1532,
+        "official_name": "Navarra, Comunidad Foral de",
+        "territory_id": "ES:CCAA:15"
+      },
+      {
+        "geometry_ids_unique": 1797,
+        "municipalities_with_geometry": 218,
+        "municipality_relations": 2265,
+        "official_name": "País Vasco",
+        "territory_id": "ES:CCAA:16"
+      },
+      {
+        "geometry_ids_unique": 600,
+        "municipalities_with_geometry": 126,
+        "municipality_relations": 739,
+        "official_name": "Rioja, La",
+        "territory_id": "ES:CCAA:17"
+      },
+      {
+        "geometry_ids_unique": 0,
+        "municipalities_with_geometry": 0,
+        "municipality_relations": 0,
+        "official_name": "Ceuta",
+        "territory_id": "ES:CCAA:18"
+      },
+      {
+        "geometry_ids_unique": 0,
+        "municipalities_with_geometry": 0,
+        "municipality_relations": 0,
+        "official_name": "Melilla",
+        "territory_id": "ES:CCAA:19"
+      }
+    ],
+    "province": [
+      {
+        "geometry_ids_unique": 507,
+        "municipalities_with_geometry": 40,
+        "municipality_relations": 556,
+        "official_name": "Araba/Álava",
+        "territory_id": "ES:PROV:01"
+      },
+      {
+        "geometry_ids_unique": 444,
+        "municipalities_with_geometry": 61,
+        "municipality_relations": 485,
+        "official_name": "Albacete",
+        "territory_id": "ES:PROV:02"
+      },
+      {
+        "geometry_ids_unique": 468,
+        "municipalities_with_geometry": 88,
+        "municipality_relations": 674,
+        "official_name": "Alicante/Alacant",
+        "territory_id": "ES:PROV:03"
+      },
+      {
+        "geometry_ids_unique": 409,
+        "municipalities_with_geometry": 85,
+        "municipality_relations": 539,
+        "official_name": "Almería",
+        "territory_id": "ES:PROV:04"
+      },
+      {
+        "geometry_ids_unique": 1585,
+        "municipalities_with_geometry": 182,
+        "municipality_relations": 2049,
+        "official_name": "Ávila",
+        "territory_id": "ES:PROV:05"
+      },
+      {
+        "geometry_ids_unique": 3968,
+        "municipalities_with_geometry": 156,
+        "municipality_relations": 4426,
+        "official_name": "Badajoz",
+        "territory_id": "ES:PROV:06"
+      },
+      {
+        "geometry_ids_unique": 0,
+        "municipalities_with_geometry": 0,
+        "municipality_relations": 0,
+        "official_name": "Balears, Illes",
+        "territory_id": "ES:PROV:07"
+      },
+      {
+        "geometry_ids_unique": 874,
+        "municipalities_with_geometry": 221,
+        "municipality_relations": 1268,
+        "official_name": "Barcelona",
+        "territory_id": "ES:PROV:08"
+      },
+      {
+        "geometry_ids_unique": 3799,
+        "municipalities_with_geometry": 301,
+        "municipality_relations": 4520,
+        "official_name": "Burgos",
+        "territory_id": "ES:PROV:09"
+      },
+      {
+        "geometry_ids_unique": 4287,
+        "municipalities_with_geometry": 216,
+        "municipality_relations": 5197,
+        "official_name": "Cáceres",
+        "territory_id": "ES:PROV:10"
+      },
+      {
+        "geometry_ids_unique": 972,
+        "municipalities_with_geometry": 43,
+        "municipality_relations": 1078,
+        "official_name": "Cádiz",
+        "territory_id": "ES:PROV:11"
+      },
+      {
+        "geometry_ids_unique": 854,
+        "municipalities_with_geometry": 124,
+        "municipality_relations": 1163,
+        "official_name": "Castellón/Castelló",
+        "territory_id": "ES:PROV:12"
+      },
+      {
+        "geometry_ids_unique": 1626,
+        "municipalities_with_geometry": 95,
+        "municipality_relations": 1878,
+        "official_name": "Ciudad Real",
+        "territory_id": "ES:PROV:13"
+      },
+      {
+        "geometry_ids_unique": 1160,
+        "municipalities_with_geometry": 60,
+        "municipality_relations": 1251,
+        "official_name": "Córdoba",
+        "territory_id": "ES:PROV:14"
+      },
+      {
+        "geometry_ids_unique": 8025,
+        "municipalities_with_geometry": 93,
+        "municipality_relations": 9535,
+        "official_name": "Coruña, A",
+        "territory_id": "ES:PROV:15"
+      },
+      {
+        "geometry_ids_unique": 673,
+        "municipalities_with_geometry": 163,
+        "municipality_relations": 814,
+        "official_name": "Cuenca",
+        "territory_id": "ES:PROV:16"
+      },
+      {
+        "geometry_ids_unique": 564,
+        "municipalities_with_geometry": 156,
+        "municipality_relations": 769,
+        "official_name": "Girona",
+        "territory_id": "ES:PROV:17"
+      },
+      {
+        "geometry_ids_unique": 677,
+        "municipalities_with_geometry": 129,
+        "municipality_relations": 852,
+        "official_name": "Granada",
+        "territory_id": "ES:PROV:18"
+      },
+      {
+        "geometry_ids_unique": 1100,
+        "municipalities_with_geometry": 217,
+        "municipality_relations": 1361,
+        "official_name": "Guadalajara",
+        "territory_id": "ES:PROV:19"
+      },
+      {
+        "geometry_ids_unique": 452,
+        "municipalities_with_geometry": 70,
+        "municipality_relations": 558,
+        "official_name": "Gipuzkoa",
+        "territory_id": "ES:PROV:20"
+      },
+      {
+        "geometry_ids_unique": 1407,
+        "municipalities_with_geometry": 77,
+        "municipality_relations": 1653,
+        "official_name": "Huelva",
+        "territory_id": "ES:PROV:21"
+      },
+      {
+        "geometry_ids_unique": 853,
+        "municipalities_with_geometry": 141,
+        "municipality_relations": 1038,
+        "official_name": "Huesca",
+        "territory_id": "ES:PROV:22"
+      },
+      {
+        "geometry_ids_unique": 870,
+        "municipalities_with_geometry": 83,
+        "municipality_relations": 993,
+        "official_name": "Jaén",
+        "territory_id": "ES:PROV:23"
+      },
+      {
+        "geometry_ids_unique": 13617,
+        "municipalities_with_geometry": 195,
+        "municipality_relations": 15656,
+        "official_name": "León",
+        "territory_id": "ES:PROV:24"
+      },
+      {
+        "geometry_ids_unique": 1002,
+        "municipalities_with_geometry": 159,
+        "municipality_relations": 1185,
+        "official_name": "Lleida",
+        "territory_id": "ES:PROV:25"
+      },
+      {
+        "geometry_ids_unique": 600,
+        "municipalities_with_geometry": 126,
+        "municipality_relations": 739,
+        "official_name": "Rioja, La",
+        "territory_id": "ES:PROV:26"
+      },
+      {
+        "geometry_ids_unique": 8744,
+        "municipalities_with_geometry": 67,
+        "municipality_relations": 9902,
+        "official_name": "Lugo",
+        "territory_id": "ES:PROV:27"
+      },
+      {
+        "geometry_ids_unique": 892,
+        "municipalities_with_geometry": 160,
+        "municipality_relations": 1104,
+        "official_name": "Madrid",
+        "territory_id": "ES:PROV:28"
+      },
+      {
+        "geometry_ids_unique": 1048,
+        "municipalities_with_geometry": 90,
+        "municipality_relations": 1234,
+        "official_name": "Málaga",
+        "territory_id": "ES:PROV:29"
+      },
+      {
+        "geometry_ids_unique": 183,
+        "municipalities_with_geometry": 21,
+        "municipality_relations": 197,
+        "official_name": "Murcia",
+        "territory_id": "ES:PROV:30"
+      },
+      {
+        "geometry_ids_unique": 1280,
+        "municipalities_with_geometry": 195,
+        "municipality_relations": 1532,
+        "official_name": "Navarra",
+        "territory_id": "ES:PROV:31"
+      },
+      {
+        "geometry_ids_unique": 16265,
+        "municipalities_with_geometry": 92,
+        "municipality_relations": 19230,
+        "official_name": "Ourense",
+        "territory_id": "ES:PROV:32"
+      },
+      {
+        "geometry_ids_unique": 13846,
+        "municipalities_with_geometry": 78,
+        "municipality_relations": 15532,
+        "official_name": "Asturias",
+        "territory_id": "ES:PROV:33"
+      },
+      {
+        "geometry_ids_unique": 1542,
+        "municipalities_with_geometry": 158,
+        "municipality_relations": 1770,
+        "official_name": "Palencia",
+        "territory_id": "ES:PROV:34"
+      },
+      {
+        "geometry_ids_unique": 0,
+        "municipalities_with_geometry": 0,
+        "municipality_relations": 0,
+        "official_name": "Palmas, Las",
+        "territory_id": "ES:PROV:35"
+      },
+      {
+        "geometry_ids_unique": 6148,
+        "municipalities_with_geometry": 60,
+        "municipality_relations": 7264,
+        "official_name": "Pontevedra",
+        "territory_id": "ES:PROV:36"
+      },
+      {
+        "geometry_ids_unique": 1906,
+        "municipalities_with_geometry": 307,
+        "municipality_relations": 2477,
+        "official_name": "Salamanca",
+        "territory_id": "ES:PROV:37"
+      },
+      {
+        "geometry_ids_unique": 0,
+        "municipalities_with_geometry": 0,
+        "municipality_relations": 0,
+        "official_name": "Santa Cruz de Tenerife",
+        "territory_id": "ES:PROV:38"
+      },
+      {
+        "geometry_ids_unique": 6093,
+        "municipalities_with_geometry": 101,
+        "municipality_relations": 7066,
+        "official_name": "Cantabria",
+        "territory_id": "ES:PROV:39"
+      },
+      {
+        "geometry_ids_unique": 506,
+        "municipalities_with_geometry": 136,
+        "municipality_relations": 631,
+        "official_name": "Segovia",
+        "territory_id": "ES:PROV:40"
+      },
+      {
+        "geometry_ids_unique": 1215,
+        "municipalities_with_geometry": 85,
+        "municipality_relations": 1350,
+        "official_name": "Sevilla",
+        "territory_id": "ES:PROV:41"
+      },
+      {
+        "geometry_ids_unique": 433,
+        "municipalities_with_geometry": 112,
+        "municipality_relations": 496,
+        "official_name": "Soria",
+        "territory_id": "ES:PROV:42"
+      },
+      {
+        "geometry_ids_unique": 709,
+        "municipalities_with_geometry": 135,
+        "municipality_relations": 945,
+        "official_name": "Tarragona",
+        "territory_id": "ES:PROV:43"
+      },
+      {
+        "geometry_ids_unique": 376,
+        "municipalities_with_geometry": 123,
+        "municipality_relations": 465,
+        "official_name": "Teruel",
+        "territory_id": "ES:PROV:44"
+      },
+      {
+        "geometry_ids_unique": 881,
+        "municipalities_with_geometry": 155,
+        "municipality_relations": 1023,
+        "official_name": "Toledo",
+        "territory_id": "ES:PROV:45"
+      },
+      {
+        "geometry_ids_unique": 945,
+        "municipalities_with_geometry": 179,
+        "municipality_relations": 1386,
+        "official_name": "Valencia/València",
+        "territory_id": "ES:PROV:46"
+      },
+      {
+        "geometry_ids_unique": 938,
+        "municipalities_with_geometry": 178,
+        "municipality_relations": 1080,
+        "official_name": "Valladolid",
+        "territory_id": "ES:PROV:47"
+      },
+      {
+        "geometry_ids_unique": 883,
+        "municipalities_with_geometry": 108,
+        "municipality_relations": 1151,
+        "official_name": "Bizkaia",
+        "territory_id": "ES:PROV:48"
+      },
+      {
+        "geometry_ids_unique": 5612,
+        "municipalities_with_geometry": 186,
+        "municipality_relations": 6704,
+        "official_name": "Zamora",
+        "territory_id": "ES:PROV:49"
+      },
+      {
+        "geometry_ids_unique": 564,
+        "municipalities_with_geometry": 159,
+        "municipality_relations": 701,
+        "official_name": "Zaragoza",
+        "territory_id": "ES:PROV:50"
+      }
+    ]
+  },
+  "geometry_to_municipality": {
+    "distribution": {
+      "buckets": {
+        "0": 83,
+        "1": 98376,
+        "11–15": 11,
+        "16–19": 3,
+        "2": 18783,
+        "20+": 0,
+        "3": 1874,
+        "4": 250,
+        "5": 53,
+        "6–10": 65
+      },
+      "maximum": 19,
+      "mean": 1.2006644462668832,
+      "median": 1,
+      "p95": 2,
+      "p99": 3
+    },
+    "extreme_geometries": [
+      {
+        "geometry_id": "esfire30:v1:1986:662",
+        "municipality_count": 16,
+        "source_area_estimate_m2": 139881343.5366027
+      },
+      {
+        "geometry_id": "esfire30:v1:1994:1091",
+        "municipality_count": 19,
+        "source_area_estimate_m2": 79839113.40157361
+      },
+      {
+        "geometry_id": "esfire30:v1:1994:1241",
+        "municipality_count": 18,
+        "source_area_estimate_m2": 150441482.25860855
+      }
+    ],
+    "large_perimeter_controls": [
+      {
+        "geometry_id": "esfire30:v1:1994:2841",
+        "municipality_count": 13,
+        "source_area_estimate_m2": 287664788.8258694
+      },
+      {
+        "geometry_id": "esfire30:v1:2004:2622",
+        "municipality_count": 12,
+        "source_area_estimate_m2": 284397356.28745484
+      },
+      {
+        "geometry_id": "esfire30:v1:2012:24",
+        "municipality_count": 12,
+        "source_area_estimate_m2": 256727993.62579477
+      },
+      {
+        "geometry_id": "esfire30:v1:2021:1311",
+        "municipality_count": 14,
+        "source_area_estimate_m2": 195408890.49152583
+      }
+    ]
+  },
+  "indexes": {
+    "forward_national": {
+      "bytes_per_geometry": 4.354533130261594,
+      "gzip_bytes": 520358,
+      "raw_bytes": 5218816
+    },
+    "inverse_by_ccaa": {
+      "asset_count": 19,
+      "gzip_bytes": 430783,
+      "largest": [
+        {
+          "gzip_bytes": 129538,
+          "raw_bytes": 1099724,
+          "territory_id": "ES:CCAA:12"
+        },
+        {
+          "gzip_bytes": 108067,
+          "raw_bytes": 875927,
+          "territory_id": "ES:CCAA:07"
+        },
+        {
+          "gzip_bytes": 42464,
+          "raw_bytes": 370887,
+          "territory_id": "ES:CCAA:03"
+        },
+        {
+          "gzip_bytes": 28809,
+          "raw_bytes": 232543,
+          "territory_id": "ES:CCAA:11"
+        },
+        {
+          "gzip_bytes": 27551,
+          "raw_bytes": 221793,
+          "territory_id": "ES:CCAA:01"
+        },
+        {
+          "gzip_bytes": 20534,
+          "raw_bytes": 169325,
+          "territory_id": "ES:CCAA:06"
+        },
+        {
+          "gzip_bytes": 19066,
+          "raw_bytes": 146808,
+          "territory_id": "ES:CCAA:08"
+        },
+        {
+          "gzip_bytes": 14682,
+          "raw_bytes": 114437,
+          "territory_id": "ES:CCAA:09"
+        },
+        {
+          "gzip_bytes": 10465,
+          "raw_bytes": 84157,
+          "territory_id": "ES:CCAA:10"
+        },
+        {
+          "gzip_bytes": 8843,
+          "raw_bytes": 64796,
+          "territory_id": "ES:CCAA:02"
+        }
+      ],
+      "raw_bytes": 3537428
+    },
+    "inverse_by_province": {
+      "asset_count": 50,
+      "gzip_bytes": 434383,
+      "largest": [
+        {
+          "gzip_bytes": 53687,
+          "raw_bytes": 457404,
+          "territory_id": "ES:PROV:32"
+        },
+        {
+          "gzip_bytes": 45063,
+          "raw_bytes": 376384,
+          "territory_id": "ES:PROV:24"
+        },
+        {
+          "gzip_bytes": 42464,
+          "raw_bytes": 370887,
+          "territory_id": "ES:PROV:33"
+        },
+        {
+          "gzip_bytes": 28301,
+          "raw_bytes": 238379,
+          "territory_id": "ES:PROV:27"
+        },
+        {
+          "gzip_bytes": 27356,
+          "raw_bytes": 230258,
+          "territory_id": "ES:PROV:15"
+        },
+        {
+          "gzip_bytes": 20534,
+          "raw_bytes": 169325,
+          "territory_id": "ES:PROV:39"
+        },
+        {
+          "gzip_bytes": 20292,
+          "raw_bytes": 173686,
+          "territory_id": "ES:PROV:36"
+        },
+        {
+          "gzip_bytes": 19757,
+          "raw_bytes": 161205,
+          "territory_id": "ES:PROV:49"
+        },
+        {
+          "gzip_bytes": 15760,
+          "raw_bytes": 125804,
+          "territory_id": "ES:PROV:10"
+        },
+        {
+          "gzip_bytes": 14388,
+          "raw_bytes": 113812,
+          "territory_id": "ES:PROV:09"
+        }
+      ],
+      "raw_bytes": 3537423
+    },
+    "inverse_national": {
+      "bytes_per_municipality": 52.89990162321692,
+      "gzip_bytes": 430182,
+      "largest_entry": {
+        "geometry_count": 2610,
+        "gzip_bytes": 6298,
+        "municipality_id": "ES:MUN:33011",
+        "raw_bytes": 62270
+      },
+      "raw_bytes": 3537410
+    }
+  },
+  "input": {
+    "geometry_count_expected": 119498,
+    "municipal_manifest": "data/derived/spain/es4c2b/esfire30_municipality_relations/manifest.json",
+    "municipal_manifest_sha256": "9f9d0609aa781650002d1db82c135c75e4c1b4ecd58cabe48f67e475eef2f2f2",
+    "municipality_catalog": "data/territories/spain/municipality_catalog_2026-08-29.json",
+    "municipality_catalog_sha256": "51174a29f166b194fa9d95e9b3bfc91521b0a189d193fe3a49efde58d35377c8",
+    "municipality_count": 8132,
+    "province_manifest": "data/derived/spain/es4c2b/esfire30_territory_relations/manifest.json",
+    "province_manifest_sha256": "969a5439f706147bb0f691056f4a55dda6653c814a7549c7b972bf0174415981"
+  },
+  "multi_parent_controls": {
+    "multi_ccaa": "esfire30:v1:1985:1037",
+    "multi_province": "esfire30:v1:2011:88",
+    "municipalities_for_multi_ccaa": [
+      "ES:MUN:09046",
+      "ES:MUN:09424",
+      "ES:MUN:26174"
+    ],
+    "municipalities_for_multi_province": [
+      "ES:MUN:03084",
+      "ES:MUN:46255"
+    ]
+  },
+  "municipality_to_geometry": {
+    "distribution": {
+      "buckets": {
+        "0": 1966,
+        "1001–2500": 4,
+        "101–250": 189,
+        "11–50": 1439,
+        "1–10": 4188,
+        "2501–5000": 1,
+        "251–500": 81,
+        "501–1000": 23,
+        "51–100": 241,
+        ">5000": 0
+      },
+      "maximum": 2610,
+      "mean": 17.643507132316774,
+      "median": 3,
+      "p95": 70,
+      "p99": 297
+    },
+    "reference_cases": [
+      {
+        "geometry_count": 6,
+        "municipality_id": "ES:MUN:03065",
+        "official_name": "Elx/Elche",
+        "province_id": "ES:PROV:03"
+      },
+      {
+        "geometry_count": 2,
+        "municipality_id": "ES:MUN:03014",
+        "official_name": "Alacant/Alicante",
+        "province_id": "ES:PROV:03"
+      },
+      {
+        "geometry_count": 6,
+        "municipality_id": "ES:MUN:46250",
+        "official_name": "València",
+        "province_id": "ES:PROV:46"
+      },
+      {
+        "geometry_count": 20,
+        "municipality_id": "ES:MUN:08019",
+        "official_name": "Barcelona",
+        "province_id": "ES:PROV:08"
+      },
+      {
+        "geometry_count": 152,
+        "municipality_id": "ES:MUN:32054",
+        "official_name": "Ourense",
+        "province_id": "ES:PROV:32"
+      },
+      {
+        "geometry_count": 61,
+        "municipality_id": "ES:MUN:15030",
+        "official_name": "Coruña, A",
+        "province_id": "ES:PROV:15"
+      },
+      {
+        "geometry_count": 26,
+        "municipality_id": "ES:MUN:41091",
+        "official_name": "Sevilla",
+        "province_id": "ES:PROV:41"
+      },
+      {
+        "geometry_count": 8,
+        "municipality_id": "ES:MUN:17079",
+        "official_name": "Girona",
+        "province_id": "ES:PROV:17"
+      },
+      {
+        "geometry_count": 1,
+        "municipality_id": "ES:MUN:17094",
+        "official_name": "Llívia",
+        "province_id": "ES:PROV:17"
+      },
+      {
+        "geometry_count": 73,
+        "municipality_id": "ES:MUN:09109",
+        "official_name": "Condado de Treviño",
+        "province_id": "ES:PROV:09"
+      },
+      {
+        "geometry_count": 7,
+        "municipality_id": "ES:MUN:09276",
+        "official_name": "Puebla de Arganzón, La",
+        "province_id": "ES:PROV:09"
+      },
+      {
+        "geometry_count": 1,
+        "municipality_id": "ES:MUN:46001",
+        "official_name": "Ademuz",
+        "province_id": "ES:PROV:46"
+      }
+    ],
+    "top_25": [
+      {
+        "geometry_count": 2610,
+        "municipality_id": "ES:MUN:33011",
+        "official_name": "Cangas del Narcea",
+        "province_id": "ES:PROV:33"
+      },
+      {
+        "geometry_count": 1306,
+        "municipality_id": "ES:MUN:33001",
+        "official_name": "Allande",
+        "province_id": "ES:PROV:33"
+      },
+      {
+        "geometry_count": 1225,
+        "municipality_id": "ES:MUN:33073",
+        "official_name": "Tineo",
+        "province_id": "ES:PROV:33"
+      },
+      {
+        "geometry_count": 1178,
+        "municipality_id": "ES:MUN:32086",
+        "official_name": "Viana do Bolo",
+        "province_id": "ES:PROV:32"
+      },
+      {
+        "geometry_count": 1062,
+        "municipality_id": "ES:MUN:32029",
+        "official_name": "Chandrexa de Queixa",
+        "province_id": "ES:PROV:32"
+      },
+      {
+        "geometry_count": 904,
+        "municipality_id": "ES:MUN:32017",
+        "official_name": "Carballeda de Valdeorras",
+        "province_id": "ES:PROV:32"
+      },
+      {
+        "geometry_count": 861,
+        "municipality_id": "ES:MUN:32083",
+        "official_name": "Veiga, A",
+        "province_id": "ES:PROV:32"
+      },
+      {
+        "geometry_count": 833,
+        "municipality_id": "ES:MUN:32092",
+        "official_name": "Vilariño de Conso",
+        "province_id": "ES:PROV:32"
+      },
+      {
+        "geometry_count": 785,
+        "municipality_id": "ES:MUN:49162",
+        "official_name": "Porto",
+        "province_id": "ES:PROV:49"
+      },
+      {
+        "geometry_count": 757,
+        "municipality_id": "ES:MUN:33028",
+        "official_name": "Ibias",
+        "province_id": "ES:PROV:33"
+      },
+      {
+        "geometry_count": 747,
+        "municipality_id": "ES:MUN:24172",
+        "official_name": "Truchas",
+        "province_id": "ES:PROV:24"
+      },
+      {
+        "geometry_count": 730,
+        "municipality_id": "ES:MUN:32034",
+        "official_name": "Gudiña, A",
+        "province_id": "ES:PROV:32"
+      },
+      {
+        "geometry_count": 723,
+        "municipality_id": "ES:MUN:24067",
+        "official_name": "Encinedo",
+        "province_id": "ES:PROV:24"
+      },
+      {
+        "geometry_count": 690,
+        "municipality_id": "ES:MUN:39097",
+        "official_name": "Vega de Pas",
+        "province_id": "ES:PROV:39"
+      },
+      {
+        "geometry_count": 662,
+        "municipality_id": "ES:MUN:27012",
+        "official_name": "Cervantes",
+        "province_id": "ES:PROV:27"
+      },
+      {
+        "geometry_count": 613,
+        "municipality_id": "ES:MUN:33002",
+        "official_name": "Aller",
+        "province_id": "ES:PROV:33"
+      },
+      {
+        "geometry_count": 599,
+        "municipality_id": "ES:MUN:33033",
+        "official_name": "Lena",
+        "province_id": "ES:PROV:33"
+      },
+      {
+        "geometry_count": 598,
+        "municipality_id": "ES:MUN:24016",
+        "official_name": "Benuza",
+        "province_id": "ES:PROV:24"
+      },
+      {
+        "geometry_count": 566,
+        "municipality_id": "ES:MUN:33049",
+        "official_name": "Piloña",
+        "province_id": "ES:PROV:33"
+      },
+      {
+        "geometry_count": 554,
+        "municipality_id": "ES:MUN:06015",
+        "official_name": "Badajoz",
+        "province_id": "ES:PROV:06"
+      },
+      {
+        "geometry_count": 551,
+        "municipality_id": "ES:MUN:24115",
+        "official_name": "Ponferrada",
+        "province_id": "ES:PROV:24"
+      },
+      {
+        "geometry_count": 539,
+        "municipality_id": "ES:MUN:36018",
+        "official_name": "Forcarei",
+        "province_id": "ES:PROV:36"
+      },
+      {
+        "geometry_count": 534,
+        "municipality_id": "ES:MUN:49100",
+        "official_name": "Lubián",
+        "province_id": "ES:PROV:49"
+      },
+      {
+        "geometry_count": 529,
+        "municipality_id": "ES:MUN:49094",
+        "official_name": "Hermisende",
+        "province_id": "ES:PROV:49"
+      },
+      {
+        "geometry_count": 508,
+        "municipality_id": "ES:MUN:24090",
+        "official_name": "Lucillo",
+        "province_id": "ES:PROV:24"
+      }
+    ]
+  },
+  "reconciliation": {
+    "boundary_touches": 0,
+    "duplicate_examples": [],
+    "duplicates": 0,
+    "expected_relations": 143477,
+    "geometry_ids": 119498,
+    "hierarchy_examples": [],
+    "hierarchy_inconsistencies": 0,
+    "municipality_unresolved_geometry_count": 83,
+    "relations": 143477
+  },
+  "report_sha256": "c311c64f7169207e632a0ce584ef4756e31abed03104d33a695fa38809efad2b",
+  "runtime_note": "No runtime conclusion from list size alone. Compare the largest municipality list with Galicia 38645 before any Chromium phase; zero-municipality geometries remain visible at Spain/CCAA/province but have no municipal filter entry.",
+  "schema_version": "es4c2b3a2-municipal-relation-audit-v1",
+  "scope": "Audit of precomputed C2B3A1 JSONL; targeted geometry reads are limited to the 83 zero-relation geometry_ids.",
+  "semantics": "current_municipality_intersection != historical_municipality_containment; counts are ESFire30 perimeters intersecting current BDLJE municipalities, not administrative fire incidence.",
+  "slivers": {
+    "fraction_of_fire_buckets": {
+      "1e-3–1e-2": 2698,
+      "1e-4–1e-3": 930,
+      "1e-5–1e-4": 312,
+      "1e-6–1e-5": 91,
+      "<1e-6": 43,
+      ">=1e-2": 139403
+    },
+    "fraction_of_municipality": {
+      "available_relations": 143477,
+      "minimum": 9.28782058225963e-14,
+      "p50": 0.001021221608,
+      "p95": 0.015255480301
+    },
+    "smallest_20": [
+      {
+        "geometry_id": "esfire30:v1:1990:1901",
+        "intersection_area_m2": 4.424878580982215e-06,
+        "intersection_fraction_fire": 2.7294083772289565e-11,
+        "intersection_fraction_municipality": 9.28782058225963e-14,
+        "municipality_id": "ES:MUN:39074"
+      },
+      {
+        "geometry_id": "esfire30:v1:1985:6987",
+        "intersection_area_m2": 0.004,
+        "intersection_fraction_fire": 1.7163e-08,
+        "intersection_fraction_municipality": 5.8e-11,
+        "municipality_id": "ES:MUN:02048"
+      },
+      {
+        "geometry_id": "esfire30:v1:2014:1451",
+        "intersection_area_m2": 0.004,
+        "intersection_fraction_fire": 1.8402e-08,
+        "intersection_fraction_municipality": 1.54e-10,
+        "municipality_id": "ES:MUN:39042"
+      },
+      {
+        "geometry_id": "esfire30:v1:1985:146",
+        "intersection_area_m2": 0.077,
+        "intersection_fraction_fire": 1.9915e-08,
+        "intersection_fraction_municipality": 5.15e-10,
+        "municipality_id": "ES:MUN:10077"
+      },
+      {
+        "geometry_id": "esfire30:v1:1997:3698",
+        "intersection_area_m2": 0.006,
+        "intersection_fraction_fire": 2.9909e-08,
+        "intersection_fraction_municipality": 4.5e-11,
+        "municipality_id": "ES:MUN:33032"
+      },
+      {
+        "geometry_id": "esfire30:v1:2000:2268",
+        "intersection_area_m2": 0.003,
+        "intersection_fraction_fire": 3.8993e-08,
+        "intersection_fraction_municipality": 1.4e-11,
+        "municipality_id": "ES:MUN:15077"
+      },
+      {
+        "geometry_id": "esfire30:v1:1995:2559",
+        "intersection_area_m2": 0.009,
+        "intersection_fraction_fire": 5.2552e-08,
+        "intersection_fraction_municipality": 4e-11,
+        "municipality_id": "ES:MUN:33012"
+      },
+      {
+        "geometry_id": "esfire30:v1:1993:1274",
+        "intersection_area_m2": 0.005,
+        "intersection_fraction_fire": 5.268e-08,
+        "intersection_fraction_municipality": 6e-12,
+        "municipality_id": "ES:MUN:33011"
+      },
+      {
+        "geometry_id": "esfire30:v1:1986:216",
+        "intersection_area_m2": 0.188,
+        "intersection_fraction_fire": 5.4401e-08,
+        "intersection_fraction_municipality": 5.434e-09,
+        "municipality_id": "ES:MUN:49269"
+      },
+      {
+        "geometry_id": "esfire30:v1:2007:1201",
+        "intersection_area_m2": 0.008,
+        "intersection_fraction_fire": 7.3236e-08,
+        "intersection_fraction_municipality": 3.1e-11,
+        "municipality_id": "ES:MUN:06094"
+      },
+      {
+        "geometry_id": "esfire30:v1:1989:9250",
+        "intersection_area_m2": 0.158,
+        "intersection_fraction_fire": 8.1595e-08,
+        "intersection_fraction_municipality": 5.64e-10,
+        "municipality_id": "ES:MUN:36017"
+      },
+      {
+        "geometry_id": "esfire30:v1:1985:11747",
+        "intersection_area_m2": 0.327,
+        "intersection_fraction_fire": 9.5266e-08,
+        "intersection_fraction_municipality": 1.93e-09,
+        "municipality_id": "ES:MUN:36018"
+      },
+      {
+        "geometry_id": "esfire30:v1:1985:8187",
+        "intersection_area_m2": 0.008,
+        "intersection_fraction_fire": 1.15924e-07,
+        "intersection_fraction_municipality": 3.91e-10,
+        "municipality_id": "ES:MUN:28041"
+      },
+      {
+        "geometry_id": "esfire30:v1:1989:1858",
+        "intersection_area_m2": 0.031,
+        "intersection_fraction_fire": 1.40574e-07,
+        "intersection_fraction_municipality": 1.46e-10,
+        "municipality_id": "ES:MUN:39083"
+      },
+      {
+        "geometry_id": "esfire30:v1:1993:709",
+        "intersection_area_m2": 0.012,
+        "intersection_fraction_fire": 1.48178e-07,
+        "intersection_fraction_municipality": 1.86e-10,
+        "municipality_id": "ES:MUN:15054"
+      },
+      {
+        "geometry_id": "esfire30:v1:2001:1228",
+        "intersection_area_m2": 0.043,
+        "intersection_fraction_fire": 1.66827e-07,
+        "intersection_fraction_municipality": 3.45e-10,
+        "municipality_id": "ES:MUN:15034"
+      },
+      {
+        "geometry_id": "esfire30:v1:2016:770",
+        "intersection_area_m2": 0.546,
+        "intersection_fraction_fire": 1.70857e-07,
+        "intersection_fraction_municipality": 1.5791e-08,
+        "municipality_id": "ES:MUN:03081"
+      },
+      {
+        "geometry_id": "esfire30:v1:1986:462",
+        "intersection_area_m2": 1.777,
+        "intersection_fraction_fire": 1.75812e-07,
+        "intersection_fraction_municipality": 1.23247e-07,
+        "municipality_id": "ES:MUN:43045"
+      },
+      {
+        "geometry_id": "esfire30:v1:1999:3056",
+        "intersection_area_m2": 0.043,
+        "intersection_fraction_fire": 2.0251e-07,
+        "intersection_fraction_municipality": 1.4e-10,
+        "municipality_id": "ES:MUN:33015"
+      },
+      {
+        "geometry_id": "esfire30:v1:1985:8552",
+        "intersection_area_m2": 0.1,
+        "intersection_fraction_fire": 2.14933e-07,
+        "intersection_fraction_municipality": 1.346e-09,
+        "municipality_id": "ES:MUN:22149"
+      }
+    ]
+  },
+  "zero_relation": {
+    "classification": {
+      "positive_non_municipal_unit": 83
+    },
+    "geometry_count": 83,
+    "non_municipal_geometry_count": 83,
+    "rows": [
+      {
+        "classification": "positive_non_municipal_unit",
+        "geometry_id": "esfire30:v1:1985:1350",
+        "non_municipal_positive_intersections": [
+          {
+            "intersection_area_m2": 487276.80367270863,
+            "intersection_fraction_fire": 1.0000000000000002,
+            "name": "Comunidad de la Sierra Brava de Badaya",
+            "source_code": "34160153001"
+          }
+        ],
+        "parent_province_coverage_fraction": 1.0,
+        "parent_province_ids": [
+          "ES:PROV:01"
+        ]
+      },
+      {
+        "classification": "positive_non_municipal_unit",
+        "geometry_id": "esfire30:v1:1985:1421",
+        "non_municipal_positive_intersections": [
+          {
+            "intersection_area_m2": 91847.44297731428,
+            "intersection_fraction_fire": 1.0,
+            "name": "Comunidad de Campoo y Cabuérniga",
+            "source_code": "34063953072"
+          }
+        ],
+        "parent_province_coverage_fraction": 1.0,
+        "parent_province_ids": [
+          "ES:PROV:39"
+        ]
+      },
+      {
+        "classification": "positive_non_municipal_unit",
+        "geometry_id": "esfire30:v1:1985:1439",
+        "non_municipal_positive_intersections": [
+          {
+            "intersection_area_m2": 62134.54872163734,
+            "intersection_fraction_fire": 0.9999999999999999,
+            "name": "Comunidad de Campoo y Cabuérniga",
+            "source_code": "34063953072"
+          }
+        ],
+        "parent_province_coverage_fraction": 0.9999999999999999,
+        "parent_province_ids": [
+          "ES:PROV:39"
+        ]
+      },
+      {
+        "classification": "positive_non_municipal_unit",
+        "geometry_id": "esfire30:v1:1985:1559",
+        "non_municipal_positive_intersections": [
+          {
+            "intersection_area_m2": 58531.02946713141,
+            "intersection_fraction_fire": 1.0,
+            "name": "Comunidad de Campoo y Cabuérniga",
+            "source_code": "34063953072"
+          }
+        ],
+        "parent_province_coverage_fraction": 1.0,
+        "parent_province_ids": [
+          "ES:PROV:39"
+        ]
+      },
+      {
+        "classification": "positive_non_municipal_unit",
+        "geometry_id": "esfire30:v1:1985:7683",
+        "non_municipal_positive_intersections": [
+          {
+            "intersection_area_m2": 61152.72335052013,
+            "intersection_fraction_fire": 1.0000000000000002,
+            "name": "Mancomunidad de Villagatón y Quintana del Castillo",
+            "source_code": "34072453054"
+          }
+        ],
+        "parent_province_coverage_fraction": 1.0,
+        "parent_province_ids": [
+          "ES:PROV:24"
+        ]
+      },
+      {
+        "classification": "positive_non_municipal_unit",
+        "geometry_id": "esfire30:v1:1985:8390",
+        "non_municipal_positive_intersections": [
+          {
+            "intersection_area_m2": 88273.1879447388,
+            "intersection_fraction_fire": 1.0000000000000002,
+            "name": "Comunidad de Sepúlveda y Riaza",
+            "source_code": "34074053074"
+          }
+        ],
+        "parent_province_coverage_fraction": 1.0,
+        "parent_province_ids": [
+          "ES:PROV:40"
+        ]
+      },
+      {
+        "classification": "positive_non_municipal_unit",
+        "geometry_id": "esfire30:v1:1985:8505",
+        "non_municipal_positive_intersections": [
+          {
+            "intersection_area_m2": 106285.98108022682,
+            "intersection_fraction_fire": 1.0000000000000002,
+            "name": "Ledanía de Castrillo de la Reina, Hacinas y Salas de los Infantes",
+            "source_code": "34070953036"
+          }
+        ],
+        "parent_province_coverage_fraction": 1.0,
+        "parent_province_ids": [
+          "ES:PROV:09"
+        ]
+      },
+      {
+        "classification": "positive_non_municipal_unit",
+        "geometry_id": "esfire30:v1:1985:8506",
+        "non_municipal_positive_intersections": [
+          {
+            "intersection_area_m2": 51341.26787216599,
+            "intersection_fraction_fire": 1.0,
+            "name": "Ledanía de Castrillo de la Reina, Hacinas y Salas de los Infantes",
+            "source_code": "34070953036"
+          }
+        ],
+        "parent_province_coverage_fraction": 1.0,
+        "parent_province_ids": [
+          "ES:PROV:09"
+        ]
+      },
+      {
+        "classification": "positive_non_municipal_unit",
+        "geometry_id": "esfire30:v1:1985:8507",
+        "non_municipal_positive_intersections": [
+          {
+            "intersection_area_m2": 80164.35814022872,
+            "intersection_fraction_fire": 1.0,
+            "name": "Ledanía de Castrillo de la Reina, Hacinas y Salas de los Infantes",
+            "source_code": "34070953036"
+          }
+        ],
+        "parent_province_coverage_fraction": 1.0,
+        "parent_province_ids": [
+          "ES:PROV:09"
+        ]
+      },
+      {
+        "classification": "positive_non_municipal_unit",
+        "geometry_id": "esfire30:v1:1985:8508",
+        "non_municipal_positive_intersections": [
+          {
+            "intersection_area_m2": 54043.38995343843,
+            "intersection_fraction_fire": 1.0000000000000002,
+            "name": "Ledanía de Castrillo de la Reina, Hacinas y Salas de los Infantes",
+            "source_code": "34070953036"
+          }
+        ],
+        "parent_province_coverage_fraction": 1.0,
+        "parent_province_ids": [
+          "ES:PROV:09"
+        ]
+      },
+      {
+        "classification": "positive_non_municipal_unit",
+        "geometry_id": "esfire30:v1:1985:8509",
+        "non_municipal_positive_intersections": [
+          {
+            "intersection_area_m2": 74760.07602547115,
+            "intersection_fraction_fire": 1.0,
+            "name": "Ledanía de Castrillo de la Reina, Hacinas y Salas de los Infantes",
+            "source_code": "34070953036"
+          }
+        ],
+        "parent_province_coverage_fraction": 1.0,
+        "parent_province_ids": [
+          "ES:PROV:09"
+        ]
+      },
+      {
+        "classification": "positive_non_municipal_unit",
+        "geometry_id": "esfire30:v1:1985:8863",
+        "non_municipal_positive_intersections": [
+          {
+            "intersection_area_m2": 87319.81018007964,
+            "intersection_fraction_fire": 0.9999999999999997,
+            "name": "Comunidad del Valle de Salazar",
+            "source_code": "34153153067"
+          }
+        ],
+        "parent_province_coverage_fraction": 0.9999999999999997,
+        "parent_province_ids": [
+          "ES:PROV:31"
+        ]
+      },
+      {
+        "classification": "positive_non_municipal_unit",
+        "geometry_id": "esfire30:v1:1986:2832",
+        "non_municipal_positive_intersections": [
+          {
+            "intersection_area_m2": 163031.42154134804,
+            "intersection_fraction_fire": 1.0,
+            "name": "Ledanía de Castrillo de la Reina, Hacinas y Salas de los Infantes",
+            "source_code": "34070953036"
+          }
+        ],
+        "parent_province_coverage_fraction": 1.0,
+        "parent_province_ids": [
+          "ES:PROV:09"
+        ]
+      },
+      {
+        "classification": "positive_non_municipal_unit",
+        "geometry_id": "esfire30:v1:1986:2833",
+        "non_municipal_positive_intersections": [
+          {
+            "intersection_area_m2": 443156.59770562104,
+            "intersection_fraction_fire": 0.9999999999999993,
+            "name": "Ledanía de Castrillo de la Reina, Hacinas y Salas de los Infantes",
+            "source_code": "34070953036"
+          }
+        ],
+        "parent_province_coverage_fraction": 0.9999999999999993,
+        "parent_province_ids": [
+          "ES:PROV:09"
+        ]
+      },
+      {
+        "classification": "positive_non_municipal_unit",
+        "geometry_id": "esfire30:v1:1986:2834",
+        "non_municipal_positive_intersections": [
+          {
+            "intersection_area_m2": 488191.9727014618,
+            "intersection_fraction_fire": 1.0,
+            "name": "Ledanía de 09162, 09290, 09412 y 09606",
+            "source_code": "34070953021"
+          }
+        ],
+        "parent_province_coverage_fraction": 1.0,
+        "parent_province_ids": [
+          "ES:PROV:09"
+        ]
+      },
+      {
+        "classification": "positive_non_municipal_unit",
+        "geometry_id": "esfire30:v1:1987:1536",
+        "non_municipal_positive_intersections": [
+          {
+            "intersection_area_m2": 234187.82345755975,
+            "intersection_fraction_fire": 1.0000000000000002,
+            "name": "Ledanía de Castrillo de la Reina, Hacinas y Salas de los Infantes",
+            "source_code": "34070953036"
+          }
+        ],
+        "parent_province_coverage_fraction": 1.0,
+        "parent_province_ids": [
+          "ES:PROV:09"
+        ]
+      },
+      {
+        "classification": "positive_non_municipal_unit",
+        "geometry_id": "esfire30:v1:1987:703",
+        "non_municipal_positive_intersections": [
+          {
+            "intersection_area_m2": 51328.26468872012,
+            "intersection_fraction_fire": 0.9999999999999999,
+            "name": "Comunidad de Campoo y Cabuérniga",
+            "source_code": "34063953072"
+          }
+        ],
+        "parent_province_coverage_fraction": 0.9999999999999999,
+        "parent_province_ids": [
+          "ES:PROV:39"
+        ]
+      },
+      {
+        "classification": "positive_non_municipal_unit",
+        "geometry_id": "esfire30:v1:1988:1483",
+        "non_municipal_positive_intersections": [
+          {
+            "intersection_area_m2": 89165.87457496369,
+            "intersection_fraction_fire": 0.9999999999999999,
+            "name": "Parzoneria de Entzia",
+            "source_code": "34160153002"
+          }
+        ],
+        "parent_province_coverage_fraction": 0.9999999999999999,
+        "parent_province_ids": [
+          "ES:PROV:01"
+        ]
+      },
+      {
+        "classification": "positive_non_municipal_unit",
+        "geometry_id": "esfire30:v1:1989:6147",
+        "non_municipal_positive_intersections": [
+          {
+            "intersection_area_m2": 88270.33457915338,
+            "intersection_fraction_fire": 1.0000000000000002,
+            "name": "Ledanía de Castrillo de la Reina, Hacinas y Salas de los Infantes",
+            "source_code": "34070953036"
+          }
+        ],
+        "parent_province_coverage_fraction": 1.0,
+        "parent_province_ids": [
+          "ES:PROV:09"
+        ]
+      },
+      {
+        "classification": "positive_non_municipal_unit",
+        "geometry_id": "esfire30:v1:1989:6148",
+        "non_municipal_positive_intersections": [
+          {
+            "intersection_area_m2": 82866.61139425013,
+            "intersection_fraction_fire": 1.0000000000000002,
+            "name": "Ledanía de 09162, 09290, 09412 y 09606",
+            "source_code": "34070953021"
+          }
+        ],
+        "parent_province_coverage_fraction": 1.0,
+        "parent_province_ids": [
+          "ES:PROV:09"
+        ]
+      },
+      {
+        "classification": "positive_non_municipal_unit",
+        "geometry_id": "esfire30:v1:1989:7051",
+        "non_municipal_positive_intersections": [
+          {
+            "intersection_area_m2": 78354.24228840212,
+            "intersection_fraction_fire": 1.0000000000000002,
+            "name": "Parzonería general de Guipuzkoa y Araba/Álava",
+            "source_code": "34162053000"
+          }
+        ],
+        "parent_province_coverage_fraction": 1.0,
+        "parent_province_ids": [
+          "ES:PROV:20"
+        ]
+      },
+      {
+        "classification": "positive_non_municipal_unit",
+        "geometry_id": "esfire30:v1:1990:1704",
+        "non_municipal_positive_intersections": [
+          {
+            "intersection_area_m2": 55829.573996889754,
+            "intersection_fraction_fire": 1.0,
+            "name": "Comunidad de Campoo y Cabuérniga",
+            "source_code": "34063953072"
+          }
+        ],
+        "parent_province_coverage_fraction": 1.0,
+        "parent_province_ids": [
+          "ES:PROV:39"
+        ]
+      },
+      {
+        "classification": "positive_non_municipal_unit",
+        "geometry_id": "esfire30:v1:1990:2301",
+        "non_municipal_positive_intersections": [
+          {
+            "intersection_area_m2": 90973.0424995045,
+            "intersection_fraction_fire": 1.0000000000000004,
+            "name": "Ledanía de Castrillo de la Reina, Hacinas y Salas de los Infantes",
+            "source_code": "34070953036"
+          }
+        ],
+        "parent_province_coverage_fraction": 1.0,
+        "parent_province_ids": [
+          "ES:PROV:09"
+        ]
+      },
+      {
+        "classification": "positive_non_municipal_unit",
+        "geometry_id": "esfire30:v1:1990:452",
+        "non_municipal_positive_intersections": [
+          {
+            "intersection_area_m2": 90948.47986225743,
+            "intersection_fraction_fire": 1.0,
+            "name": "Comunidad de Campoo y Cabuérniga",
+            "source_code": "34063953072"
+          }
+        ],
+        "parent_province_coverage_fraction": 1.0,
+        "parent_province_ids": [
+          "ES:PROV:39"
+        ]
+      },
+      {
+        "classification": "positive_non_municipal_unit",
+        "geometry_id": "esfire30:v1:1991:1343",
+        "non_municipal_positive_intersections": [
+          {
+            "intersection_area_m2": 73838.93491641122,
+            "intersection_fraction_fire": 1.0,
+            "name": "Comunidad de Campoo y Cabuérniga",
+            "source_code": "34063953072"
+          }
+        ],
+        "parent_province_coverage_fraction": 1.0,
+        "parent_province_ids": [
+          "ES:PROV:39"
+        ]
+      },
+      {
+        "classification": "positive_non_municipal_unit",
+        "geometry_id": "esfire30:v1:1993:250",
+        "non_municipal_positive_intersections": [
+          {
+            "intersection_area_m2": 88268.151695165,
+            "intersection_fraction_fire": 1.0000000000000002,
+            "name": "Mancomunidad de Nalda, Sorzano y Viguera",
+            "source_code": "34172653056"
+          }
+        ],
+        "parent_province_coverage_fraction": 1.0,
+        "parent_province_ids": [
+          "ES:PROV:26"
+        ]
+      },
+      {
+        "classification": "positive_non_municipal_unit",
+        "geometry_id": "esfire30:v1:1993:304",
+        "non_municipal_positive_intersections": [
+          {
+            "intersection_area_m2": 72038.37659790079,
+            "intersection_fraction_fire": 1.0000000000000002,
+            "name": "Comunidad de Campoo y Cabuérniga",
+            "source_code": "34063953072"
+          }
+        ],
+        "parent_province_coverage_fraction": 1.0,
+        "parent_province_ids": [
+          "ES:PROV:39"
+        ]
+      },
+      {
+        "classification": "positive_non_municipal_unit",
+        "geometry_id": "esfire30:v1:1994:3186",
+        "non_municipal_positive_intersections": [
+          {
+            "intersection_area_m2": 118882.98269906959,
+            "intersection_fraction_fire": 0.9999999999999998,
+            "name": "Parzonería general de Guipuzkoa y Araba/Álava",
+            "source_code": "34162053000"
+          }
+        ],
+        "parent_province_coverage_fraction": 0.9999999999999998,
+        "parent_province_ids": [
+          "ES:PROV:20"
+        ]
+      },
+      {
+        "classification": "positive_non_municipal_unit",
+        "geometry_id": "esfire30:v1:1995:3435",
+        "non_municipal_positive_intersections": [
+          {
+            "intersection_area_m2": 90956.6227392973,
+            "intersection_fraction_fire": 1.0000000000000002,
+            "name": "Sierra de Aralar",
+            "source_code": "34153153080"
+          }
+        ],
+        "parent_province_coverage_fraction": 1.0,
+        "parent_province_ids": [
+          "ES:PROV:31"
+        ]
+      },
+      {
+        "classification": "positive_non_municipal_unit",
+        "geometry_id": "esfire30:v1:1995:3436",
+        "non_municipal_positive_intersections": [
+          {
+            "intersection_area_m2": 142288.46164887692,
+            "intersection_fraction_fire": 1.0000000000000002,
+            "name": "Sierra de Aralar",
+            "source_code": "34153153080"
+          }
+        ],
+        "parent_province_coverage_fraction": 1.0,
+        "parent_province_ids": [
+          "ES:PROV:31"
+        ]
+      },
+      {
+        "classification": "positive_non_municipal_unit",
+        "geometry_id": "esfire30:v1:1995:355",
+        "non_municipal_positive_intersections": [
+          {
+            "intersection_area_m2": 57644.12030506955,
+            "intersection_fraction_fire": 0.9999999999999999,
+            "name": "Parzonería general de Guipuzkoa y Araba/Álava",
+            "source_code": "34162053000"
+          }
+        ],
+        "parent_province_coverage_fraction": 0.9999999999999999,
+        "parent_province_ids": [
+          "ES:PROV:20"
+        ]
+      },
+      {
+        "classification": "positive_non_municipal_unit",
+        "geometry_id": "esfire30:v1:1995:516",
+        "non_municipal_positive_intersections": [
+          {
+            "intersection_area_m2": 107157.8819064145,
+            "intersection_fraction_fire": 1.0,
+            "name": "Comunidad de Campoo y Cabuérniga",
+            "source_code": "34063953072"
+          }
+        ],
+        "parent_province_coverage_fraction": 1.0,
+        "parent_province_ids": [
+          "ES:PROV:39"
+        ]
+      },
+      {
+        "classification": "positive_non_municipal_unit",
+        "geometry_id": "esfire30:v1:1997:635",
+        "non_municipal_positive_intersections": [
+          {
+            "intersection_area_m2": 94552.3151426619,
+            "intersection_fraction_fire": 1.0,
+            "name": "Comunidad de Campoo y Cabuérniga",
+            "source_code": "34063953072"
+          }
+        ],
+        "parent_province_coverage_fraction": 1.0,
+        "parent_province_ids": [
+          "ES:PROV:39"
+        ]
+      },
+      {
+        "classification": "positive_non_municipal_unit",
+        "geometry_id": "esfire30:v1:1997:646",
+        "non_municipal_positive_intersections": [
+          {
+            "intersection_area_m2": 111659.46103067548,
+            "intersection_fraction_fire": 0.9999999999999996,
+            "name": "Comunidad de Campoo y Cabuérniga",
+            "source_code": "34063953072"
+          }
+        ],
+        "parent_province_coverage_fraction": 0.9999999999999996,
+        "parent_province_ids": [
+          "ES:PROV:39"
+        ]
+      },
+      {
+        "classification": "positive_non_municipal_unit",
+        "geometry_id": "esfire30:v1:1997:662",
+        "non_municipal_positive_intersections": [
+          {
+            "intersection_area_m2": 65736.44982673739,
+            "intersection_fraction_fire": 1.0,
+            "name": "Comunidad de Campoo y Cabuérniga",
+            "source_code": "34063953072"
+          }
+        ],
+        "parent_province_coverage_fraction": 1.0,
+        "parent_province_ids": [
+          "ES:PROV:39"
+        ]
+      },
+      {
+        "classification": "positive_non_municipal_unit",
+        "geometry_id": "esfire30:v1:1997:664",
+        "non_municipal_positive_intersections": [
+          {
+            "intersection_area_m2": 363793.50683853787,
+            "intersection_fraction_fire": 1.0,
+            "name": "Comunidad de Campoo y Cabuérniga",
+            "source_code": "34063953072"
+          }
+        ],
+        "parent_province_coverage_fraction": 1.0,
+        "parent_province_ids": [
+          "ES:PROV:39"
+        ]
+      },
+      {
+        "classification": "positive_non_municipal_unit",
+        "geometry_id": "esfire30:v1:1997:666",
+        "non_municipal_positive_intersections": [
+          {
+            "intersection_area_m2": 63034.89462863111,
+            "intersection_fraction_fire": 1.0,
+            "name": "Comunidad de Campoo y Cabuérniga",
+            "source_code": "34063953072"
+          }
+        ],
+        "parent_province_coverage_fraction": 1.0,
+        "parent_province_ids": [
+          "ES:PROV:39"
+        ]
+      },
+      {
+        "classification": "positive_non_municipal_unit",
+        "geometry_id": "esfire30:v1:1997:667",
+        "non_municipal_positive_intersections": [
+          {
+            "intersection_area_m2": 175597.94510652742,
+            "intersection_fraction_fire": 1.0,
+            "name": "Comunidad de Campoo y Cabuérniga",
+            "source_code": "34063953072"
+          }
+        ],
+        "parent_province_coverage_fraction": 1.0,
+        "parent_province_ids": [
+          "ES:PROV:39"
+        ]
+      },
+      {
+        "classification": "positive_non_municipal_unit",
+        "geometry_id": "esfire30:v1:1997:675",
+        "non_municipal_positive_intersections": [
+          {
+            "intersection_area_m2": 64835.109369695594,
+            "intersection_fraction_fire": 1.0000000000000002,
+            "name": "Comunidad de Campoo y Cabuérniga",
+            "source_code": "34063953072"
+          }
+        ],
+        "parent_province_coverage_fraction": 1.0,
+        "parent_province_ids": [
+          "ES:PROV:39"
+        ]
+      },
+      {
+        "classification": "positive_non_municipal_unit",
+        "geometry_id": "esfire30:v1:1997:676",
+        "non_municipal_positive_intersections": [
+          {
+            "intersection_area_m2": 574508.3700472361,
+            "intersection_fraction_fire": 0.9999999999999996,
+            "name": "Comunidad de Campoo y Cabuérniga",
+            "source_code": "34063953072"
+          }
+        ],
+        "parent_province_coverage_fraction": 0.9999999999999996,
+        "parent_province_ids": [
+          "ES:PROV:39"
+        ]
+      },
+      {
+        "classification": "positive_non_municipal_unit",
+        "geometry_id": "esfire30:v1:1997:677",
+        "non_municipal_positive_intersections": [
+          {
+            "intersection_area_m2": 169294.59083184323,
+            "intersection_fraction_fire": 1.0000000000000002,
+            "name": "Comunidad de Campoo y Cabuérniga",
+            "source_code": "34063953072"
+          }
+        ],
+        "parent_province_coverage_fraction": 1.0,
+        "parent_province_ids": [
+          "ES:PROV:39"
+        ]
+      },
+      {
+        "classification": "positive_non_municipal_unit",
+        "geometry_id": "esfire30:v1:1997:682",
+        "non_municipal_positive_intersections": [
+          {
+            "intersection_area_m2": 461946.54501778644,
+            "intersection_fraction_fire": 1.0000000000000007,
+            "name": "Comunidad de Campoo y Cabuérniga",
+            "source_code": "34063953072"
+          }
+        ],
+        "parent_province_coverage_fraction": 1.0,
+        "parent_province_ids": [
+          "ES:PROV:39"
+        ]
+      },
+      {
+        "classification": "positive_non_municipal_unit",
+        "geometry_id": "esfire30:v1:1999:1541",
+        "non_municipal_positive_intersections": [
+          {
+            "intersection_area_m2": 101755.57880755399,
+            "intersection_fraction_fire": 1.0,
+            "name": "Comunidad de Campoo y Cabuérniga",
+            "source_code": "34063953072"
+          }
+        ],
+        "parent_province_coverage_fraction": 1.0,
+        "parent_province_ids": [
+          "ES:PROV:39"
+        ]
+      },
+      {
+        "classification": "positive_non_municipal_unit",
+        "geometry_id": "esfire30:v1:2000:1644",
+        "non_municipal_positive_intersections": [
+          {
+            "intersection_area_m2": 102656.4494375952,
+            "intersection_fraction_fire": 1.0000000000000002,
+            "name": "Comunidad de Campoo y Cabuérniga",
+            "source_code": "34063953072"
+          }
+        ],
+        "parent_province_coverage_fraction": 1.0,
+        "parent_province_ids": [
+          "ES:PROV:39"
+        ]
+      },
+      {
+        "classification": "positive_non_municipal_unit",
+        "geometry_id": "esfire30:v1:2000:1646",
+        "non_municipal_positive_intersections": [
+          {
+            "intersection_area_m2": 53129.82823744004,
+            "intersection_fraction_fire": 0.9999999999999999,
+            "name": "Comunidad de Campoo y Cabuérniga",
+            "source_code": "34063953072"
+          }
+        ],
+        "parent_province_coverage_fraction": 0.9999999999999999,
+        "parent_province_ids": [
+          "ES:PROV:39"
+        ]
+      },
+      {
+        "classification": "positive_non_municipal_unit",
+        "geometry_id": "esfire30:v1:2000:3557",
+        "non_municipal_positive_intersections": [
+          {
+            "intersection_area_m2": 2682431.372310144,
+            "intersection_fraction_fire": 0.9999999999999981,
+            "name": "Comunidad de Sepúlveda y Riaza",
+            "source_code": "34074053074"
+          }
+        ],
+        "parent_province_coverage_fraction": 0.9999999999999981,
+        "parent_province_ids": [
+          "ES:PROV:40"
+        ]
+      },
+      {
+        "classification": "positive_non_municipal_unit",
+        "geometry_id": "esfire30:v1:2000:5075",
+        "non_municipal_positive_intersections": [
+          {
+            "intersection_area_m2": 71137.90092545374,
+            "intersection_fraction_fire": 1.0,
+            "name": "Comunidad de Campoo y Cabuérniga",
+            "source_code": "34063953072"
+          }
+        ],
+        "parent_province_coverage_fraction": 1.0,
+        "parent_province_ids": [
+          "ES:PROV:39"
+        ]
+      },
+      {
+        "classification": "positive_non_municipal_unit",
+        "geometry_id": "esfire30:v1:2001:200",
+        "non_municipal_positive_intersections": [
+          {
+            "intersection_area_m2": 69337.14795806604,
+            "intersection_fraction_fire": 1.0,
+            "name": "Comunidad de Campoo y Cabuérniga",
+            "source_code": "34063953072"
+          }
+        ],
+        "parent_province_coverage_fraction": 1.0,
+        "parent_province_ids": [
+          "ES:PROV:39"
+        ]
+      },
+      {
+        "classification": "positive_non_municipal_unit",
+        "geometry_id": "esfire30:v1:2002:1187",
+        "non_municipal_positive_intersections": [
+          {
+            "intersection_area_m2": 71153.36863052344,
+            "intersection_fraction_fire": 0.9999999999999996,
+            "name": "Aldovera",
+            "source_code": "34081953047"
+          }
+        ],
+        "parent_province_coverage_fraction": 0.9999999999999996,
+        "parent_province_ids": [
+          "ES:PROV:19"
+        ]
+      },
+      {
+        "classification": "positive_non_municipal_unit",
+        "geometry_id": "esfire30:v1:2002:1623",
+        "non_municipal_positive_intersections": [
+          {
+            "intersection_area_m2": 69347.94815312709,
+            "intersection_fraction_fire": 1.0,
+            "name": "Parzonería general de Guipuzkoa y Araba/Álava",
+            "source_code": "34162053000"
+          }
+        ],
+        "parent_province_coverage_fraction": 1.0,
+        "parent_province_ids": [
+          "ES:PROV:20"
+        ]
+      },
+      {
+        "classification": "positive_non_municipal_unit",
+        "geometry_id": "esfire30:v1:2002:246",
+        "non_municipal_positive_intersections": [
+          {
+            "intersection_area_m2": 156687.81086589568,
+            "intersection_fraction_fire": 0.9999999999999994,
+            "name": "Comunidad de Campoo y Cabuérniga",
+            "source_code": "34063953072"
+          }
+        ],
+        "parent_province_coverage_fraction": 0.9999999999999994,
+        "parent_province_ids": [
+          "ES:PROV:39"
+        ]
+      },
+      {
+        "classification": "positive_non_municipal_unit",
+        "geometry_id": "esfire30:v1:2003:1824",
+        "non_municipal_positive_intersections": [
+          {
+            "intersection_area_m2": 168394.3069445438,
+            "intersection_fraction_fire": 0.9999999999999997,
+            "name": "Comunidad de Campoo y Cabuérniga",
+            "source_code": "34063953072"
+          }
+        ],
+        "parent_province_coverage_fraction": 0.9999999999999997,
+        "parent_province_ids": [
+          "ES:PROV:39"
+        ]
+      },
+      {
+        "classification": "positive_non_municipal_unit",
+        "geometry_id": "esfire30:v1:2005:2501",
+        "non_municipal_positive_intersections": [
+          {
+            "intersection_area_m2": 720374.0290037799,
+            "intersection_fraction_fire": 1.0,
+            "name": "Comunidad de Campoo y Cabuérniga",
+            "source_code": "34063953072"
+          }
+        ],
+        "parent_province_coverage_fraction": 1.0,
+        "parent_province_ids": [
+          "ES:PROV:39"
+        ]
+      },
+      {
+        "classification": "positive_non_municipal_unit",
+        "geometry_id": "esfire30:v1:2006:1617",
+        "non_municipal_positive_intersections": [
+          {
+            "intersection_area_m2": 108059.84063319764,
+            "intersection_fraction_fire": 0.9999999999999996,
+            "name": "Comunidad de Campoo y Cabuérniga",
+            "source_code": "34063953072"
+          }
+        ],
+        "parent_province_coverage_fraction": 0.9999999999999996,
+        "parent_province_ids": [
+          "ES:PROV:39"
+        ]
+      },
+      {
+        "classification": "positive_non_municipal_unit",
+        "geometry_id": "esfire30:v1:2007:1454",
+        "non_municipal_positive_intersections": [
+          {
+            "intersection_area_m2": 1231.5674667038354,
+            "intersection_fraction_fire": 0.02010752799237388,
+            "name": "Ledanía de 09162, 09290, 09412 y 09606",
+            "source_code": "34070953021"
+          },
+          {
+            "intersection_area_m2": 60017.50637125808,
+            "intersection_fraction_fire": 0.9798924720075924,
+            "name": "Ledanía de Castrillo de la Reina, Hacinas y Salas de los Infantes",
+            "source_code": "34070953036"
+          }
+        ],
+        "parent_province_coverage_fraction": 0.9999999999999997,
+        "parent_province_ids": [
+          "ES:PROV:09"
+        ]
+      },
+      {
+        "classification": "positive_non_municipal_unit",
+        "geometry_id": "esfire30:v1:2008:202",
+        "non_municipal_positive_intersections": [
+          {
+            "intersection_area_m2": 63850.67800543218,
+            "intersection_fraction_fire": 0.9999999999999999,
+            "name": "Mancomunidad de Villagatón y Quintana del Castillo",
+            "source_code": "34072453054"
+          }
+        ],
+        "parent_province_coverage_fraction": 0.9999999999999999,
+        "parent_province_ids": [
+          "ES:PROV:24"
+        ]
+      },
+      {
+        "classification": "positive_non_municipal_unit",
+        "geometry_id": "esfire30:v1:2008:368",
+        "non_municipal_positive_intersections": [
+          {
+            "intersection_area_m2": 54929.2321540971,
+            "intersection_fraction_fire": 1.0000000000000002,
+            "name": "Comunidad de Campoo y Cabuérniga",
+            "source_code": "34063953072"
+          }
+        ],
+        "parent_province_coverage_fraction": 1.0,
+        "parent_province_ids": [
+          "ES:PROV:39"
+        ]
+      },
+      {
+        "classification": "positive_non_municipal_unit",
+        "geometry_id": "esfire30:v1:2009:581",
+        "non_municipal_positive_intersections": [
+          {
+            "intersection_area_m2": 117062.66637458887,
+            "intersection_fraction_fire": 1.0,
+            "name": "Comunidad de Campoo y Cabuérniga",
+            "source_code": "34063953072"
+          }
+        ],
+        "parent_province_coverage_fraction": 1.0,
+        "parent_province_ids": [
+          "ES:PROV:39"
+        ]
+      },
+      {
+        "classification": "positive_non_municipal_unit",
+        "geometry_id": "esfire30:v1:2010:194",
+        "non_municipal_positive_intersections": [
+          {
+            "intersection_area_m2": 101754.19661677182,
+            "intersection_fraction_fire": 0.9999999999999999,
+            "name": "Comunidad de Campoo y Cabuérniga",
+            "source_code": "34063953072"
+          }
+        ],
+        "parent_province_coverage_fraction": 0.9999999999999999,
+        "parent_province_ids": [
+          "ES:PROV:39"
+        ]
+      },
+      {
+        "classification": "positive_non_municipal_unit",
+        "geometry_id": "esfire30:v1:2010:196",
+        "non_municipal_positive_intersections": [
+          {
+            "intersection_area_m2": 65736.30057615462,
+            "intersection_fraction_fire": 0.9999999999999998,
+            "name": "Comunidad de Campoo y Cabuérniga",
+            "source_code": "34063953072"
+          }
+        ],
+        "parent_province_coverage_fraction": 0.9999999999999998,
+        "parent_province_ids": [
+          "ES:PROV:39"
+        ]
+      },
+      {
+        "classification": "positive_non_municipal_unit",
+        "geometry_id": "esfire30:v1:2012:484",
+        "non_municipal_positive_intersections": [
+          {
+            "intersection_area_m2": 98168.96018009655,
+            "intersection_fraction_fire": 1.0,
+            "name": "Sierra de Lokiz",
+            "source_code": "34153153081"
+          }
+        ],
+        "parent_province_coverage_fraction": 1.0,
+        "parent_province_ids": [
+          "ES:PROV:31"
+        ]
+      },
+      {
+        "classification": "positive_non_municipal_unit",
+        "geometry_id": "esfire30:v1:2014:1000",
+        "non_municipal_positive_intersections": [
+          {
+            "intersection_area_m2": 103581.59000412976,
+            "intersection_fraction_fire": 0.9999999999999997,
+            "name": "Comunidad de Barbadillo del Pez y Jaramillo de la Fuente",
+            "source_code": "34070953013"
+          }
+        ],
+        "parent_province_coverage_fraction": 0.9999999999999997,
+        "parent_province_ids": [
+          "ES:PROV:09"
+        ]
+      },
+      {
+        "classification": "positive_non_municipal_unit",
+        "geometry_id": "esfire30:v1:2014:1160",
+        "non_municipal_positive_intersections": [
+          {
+            "intersection_area_m2": 186403.24503701035,
+            "intersection_fraction_fire": 1.0000000000000002,
+            "name": "Comunidad de Campoo y Cabuérniga",
+            "source_code": "34063953072"
+          }
+        ],
+        "parent_province_coverage_fraction": 1.0,
+        "parent_province_ids": [
+          "ES:PROV:39"
+        ]
+      },
+      {
+        "classification": "positive_non_municipal_unit",
+        "geometry_id": "esfire30:v1:2014:1161",
+        "non_municipal_positive_intersections": [
+          {
+            "intersection_area_m2": 128770.95878108102,
+            "intersection_fraction_fire": 1.0,
+            "name": "Comunidad de Campoo y Cabuérniga",
+            "source_code": "34063953072"
+          }
+        ],
+        "parent_province_coverage_fraction": 1.0,
+        "parent_province_ids": [
+          "ES:PROV:39"
+        ]
+      },
+      {
+        "classification": "positive_non_municipal_unit",
+        "geometry_id": "esfire30:v1:2014:1162",
+        "non_municipal_positive_intersections": [
+          {
+            "intersection_area_m2": 89148.92365006471,
+            "intersection_fraction_fire": 1.0000000000000002,
+            "name": "Comunidad de Campoo y Cabuérniga",
+            "source_code": "34063953072"
+          }
+        ],
+        "parent_province_coverage_fraction": 1.0,
+        "parent_province_ids": [
+          "ES:PROV:39"
+        ]
+      },
+      {
+        "classification": "positive_non_municipal_unit",
+        "geometry_id": "esfire30:v1:2014:1164",
+        "non_municipal_positive_intersections": [
+          {
+            "intersection_area_m2": 271949.1844060132,
+            "intersection_fraction_fire": 1.0000000000000002,
+            "name": "Comunidad de Campoo y Cabuérniga",
+            "source_code": "34063953072"
+          }
+        ],
+        "parent_province_coverage_fraction": 1.0,
+        "parent_province_ids": [
+          "ES:PROV:39"
+        ]
+      },
+      {
+        "classification": "positive_non_municipal_unit",
+        "geometry_id": "esfire30:v1:2014:1166",
+        "non_municipal_positive_intersections": [
+          {
+            "intersection_area_m2": 249432.69669338164,
+            "intersection_fraction_fire": 0.9999999999999997,
+            "name": "Comunidad de Campoo y Cabuérniga",
+            "source_code": "34063953072"
+          }
+        ],
+        "parent_province_coverage_fraction": 0.9999999999999997,
+        "parent_province_ids": [
+          "ES:PROV:39"
+        ]
+      },
+      {
+        "classification": "positive_non_municipal_unit",
+        "geometry_id": "esfire30:v1:2014:1181",
+        "non_municipal_positive_intersections": [
+          {
+            "intersection_area_m2": 54028.84599617723,
+            "intersection_fraction_fire": 1.0000000000000002,
+            "name": "Comunidad de Campoo y Cabuérniga",
+            "source_code": "34063953072"
+          }
+        ],
+        "parent_province_coverage_fraction": 1.0,
+        "parent_province_ids": [
+          "ES:PROV:39"
+        ]
+      },
+      {
+        "classification": "positive_non_municipal_unit",
+        "geometry_id": "esfire30:v1:2014:1182",
+        "non_municipal_positive_intersections": [
+          {
+            "intersection_area_m2": 145880.84997616615,
+            "intersection_fraction_fire": 1.0,
+            "name": "Comunidad de Campoo y Cabuérniga",
+            "source_code": "34063953072"
+          }
+        ],
+        "parent_province_coverage_fraction": 1.0,
+        "parent_province_ids": [
+          "ES:PROV:39"
+        ]
+      },
+      {
+        "classification": "positive_non_municipal_unit",
+        "geometry_id": "esfire30:v1:2014:1191",
+        "non_municipal_positive_intersections": [
+          {
+            "intersection_area_m2": 305262.5459473647,
+            "intersection_fraction_fire": 1.0000000000000009,
+            "name": "Comunidad de Campoo y Cabuérniga",
+            "source_code": "34063953072"
+          }
+        ],
+        "parent_province_coverage_fraction": 1.0,
+        "parent_province_ids": [
+          "ES:PROV:39"
+        ]
+      },
+      {
+        "classification": "positive_non_municipal_unit",
+        "geometry_id": "esfire30:v1:2014:2033",
+        "non_municipal_positive_intersections": [
+          {
+            "intersection_area_m2": 72050.81225415696,
+            "intersection_fraction_fire": 1.0,
+            "name": "Sierra de Lokiz",
+            "source_code": "34153153081"
+          }
+        ],
+        "parent_province_coverage_fraction": 1.0,
+        "parent_province_ids": [
+          "ES:PROV:31"
+        ]
+      },
+      {
+        "classification": "positive_non_municipal_unit",
+        "geometry_id": "esfire30:v1:2014:2034",
+        "non_municipal_positive_intersections": [
+          {
+            "intersection_area_m2": 82858.01347418154,
+            "intersection_fraction_fire": 0.9999999999999998,
+            "name": "Sierra de Lokiz",
+            "source_code": "34153153081"
+          }
+        ],
+        "parent_province_coverage_fraction": 0.9999999999999998,
+        "parent_province_ids": [
+          "ES:PROV:31"
+        ]
+      },
+      {
+        "classification": "positive_non_municipal_unit",
+        "geometry_id": "esfire30:v1:2016:1104",
+        "non_municipal_positive_intersections": [
+          {
+            "intersection_area_m2": 101756.59084428714,
+            "intersection_fraction_fire": 1.0,
+            "name": "Comunidad de Campoo y Cabuérniga",
+            "source_code": "34063953072"
+          }
+        ],
+        "parent_province_coverage_fraction": 1.0,
+        "parent_province_ids": [
+          "ES:PROV:39"
+        ]
+      },
+      {
+        "classification": "positive_non_municipal_unit",
+        "geometry_id": "esfire30:v1:2016:1107",
+        "non_municipal_positive_intersections": [
+          {
+            "intersection_area_m2": 84647.13302024425,
+            "intersection_fraction_fire": 0.9999999999999998,
+            "name": "Comunidad de Campoo y Cabuérniga",
+            "source_code": "34063953072"
+          }
+        ],
+        "parent_province_coverage_fraction": 0.9999999999999998,
+        "parent_province_ids": [
+          "ES:PROV:39"
+        ]
+      },
+      {
+        "classification": "positive_non_municipal_unit",
+        "geometry_id": "esfire30:v1:2016:1656",
+        "non_municipal_positive_intersections": [
+          {
+            "intersection_area_m2": 109875.51801003478,
+            "intersection_fraction_fire": 1.0000000000000004,
+            "name": "Sierra de Lokiz",
+            "source_code": "34153153081"
+          }
+        ],
+        "parent_province_coverage_fraction": 1.0,
+        "parent_province_ids": [
+          "ES:PROV:31"
+        ]
+      },
+      {
+        "classification": "positive_non_municipal_unit",
+        "geometry_id": "esfire30:v1:2016:1657",
+        "non_municipal_positive_intersections": [
+          {
+            "intersection_area_m2": 64848.15319450707,
+            "intersection_fraction_fire": 1.0000000000000002,
+            "name": "Parzoneria de Entzia",
+            "source_code": "34160153002"
+          }
+        ],
+        "parent_province_coverage_fraction": 1.0,
+        "parent_province_ids": [
+          "ES:PROV:01"
+        ]
+      },
+      {
+        "classification": "positive_non_municipal_unit",
+        "geometry_id": "esfire30:v1:2017:2196",
+        "non_municipal_positive_intersections": [
+          {
+            "intersection_area_m2": 73854.5028675543,
+            "intersection_fraction_fire": 1.0,
+            "name": "Aldovera",
+            "source_code": "34081953047"
+          }
+        ],
+        "parent_province_coverage_fraction": 1.0,
+        "parent_province_ids": [
+          "ES:PROV:19"
+        ]
+      },
+      {
+        "classification": "positive_non_municipal_unit",
+        "geometry_id": "esfire30:v1:2017:2198",
+        "non_municipal_positive_intersections": [
+          {
+            "intersection_area_m2": 321536.8996744326,
+            "intersection_fraction_fire": 1.0000000000000004,
+            "name": "Aldovera",
+            "source_code": "34081953047"
+          }
+        ],
+        "parent_province_coverage_fraction": 1.0,
+        "parent_province_ids": [
+          "ES:PROV:19"
+        ]
+      },
+      {
+        "classification": "positive_non_municipal_unit",
+        "geometry_id": "esfire30:v1:2017:2650",
+        "non_municipal_positive_intersections": [
+          {
+            "intersection_area_m2": 385404.5406454681,
+            "intersection_fraction_fire": 0.9999999999999996,
+            "name": "Comunidad de Campoo y Cabuérniga",
+            "source_code": "34063953072"
+          }
+        ],
+        "parent_province_coverage_fraction": 0.9999999999999996,
+        "parent_province_ids": [
+          "ES:PROV:39"
+        ]
+      },
+      {
+        "classification": "positive_non_municipal_unit",
+        "geometry_id": "esfire30:v1:2018:255",
+        "non_municipal_positive_intersections": [
+          {
+            "intersection_area_m2": 101768.90637323454,
+            "intersection_fraction_fire": 0.9999999999999999,
+            "name": "Sierra de Lokiz",
+            "source_code": "34153153081"
+          }
+        ],
+        "parent_province_coverage_fraction": 0.9999999999999999,
+        "parent_province_ids": [
+          "ES:PROV:31"
+        ]
+      },
+      {
+        "classification": "positive_non_municipal_unit",
+        "geometry_id": "esfire30:v1:2020:882",
+        "non_municipal_positive_intersections": [
+          {
+            "intersection_area_m2": 117082.20013683144,
+            "intersection_fraction_fire": 0.9999999999999998,
+            "name": "Sierra de Lokiz",
+            "source_code": "34153153081"
+          }
+        ],
+        "parent_province_coverage_fraction": 0.9999999999999998,
+        "parent_province_ids": [
+          "ES:PROV:31"
+        ]
+      },
+      {
+        "classification": "positive_non_municipal_unit",
+        "geometry_id": "esfire30:v1:2020:900",
+        "non_municipal_positive_intersections": [
+          {
+            "intersection_area_m2": 66641.24246661436,
+            "intersection_fraction_fire": 1.0,
+            "name": "Sierra de Aralar",
+            "source_code": "34153153080"
+          }
+        ],
+        "parent_province_coverage_fraction": 1.0,
+        "parent_province_ids": [
+          "ES:PROV:31"
+        ]
+      },
+      {
+        "classification": "positive_non_municipal_unit",
+        "geometry_id": "esfire30:v1:2021:1096",
+        "non_municipal_positive_intersections": [
+          {
+            "intersection_area_m2": 64852.58141426413,
+            "intersection_fraction_fire": 0.9999999999999999,
+            "name": "Ledanía de Castrillo de la Reina, Hacinas y Salas de los Infantes",
+            "source_code": "34070953036"
+          }
+        ],
+        "parent_province_coverage_fraction": 0.9999999999999999,
+        "parent_province_ids": [
+          "ES:PROV:09"
+        ]
+      }
+    ]
+  }
+}
