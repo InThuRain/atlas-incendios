@@ -92,6 +92,16 @@ C2A2_SMOKES = {
     "k_up_to_spain": {"map": "pais_valencia", "from": 1995, "to": 1995, "scope": "ES", "province_select": "ES:PROV:03", "territory_up": True, "expected_territory": None},
     "l_mobile_gva": {"map": "pais_valencia", "from": 1995, "to": 1995, "scope": "ES", "province_select": "ES:PROV:03", "expected_province": "ES:PROV:03", "expected_parent": "ES:CCAA:10", "mobile_only": True},
 }
+C2A3C_SMOKES = {
+    "a_alacant_elx": {"map": "pais_valencia", "from": 1993, "to": 2002, "scope": "ES", "municipality_select": "ES:MUN:03065", "expected_municipality": "ES:MUN:03065"},
+    "b_valencia_llocnou": {"map": "pais_valencia", "from": 1993, "to": 2002, "scope": "ES", "municipality_select": "ES:MUN:46152", "expected_municipality": "ES:MUN:46152"},
+    "c_girona_llivia": {"map": "spain", "from": 1995, "to": 1995, "scope": "ES", "municipality_select": "ES:MUN:17094", "expected_municipality": "ES:MUN:17094"},
+    "d_burgos_trevino": {"map": "spain", "from": 1995, "to": 1995, "scope": "ES", "municipality_select": "ES:MUN:09109", "expected_municipality": "ES:MUN:09109"},
+    "e_ceuta": {"map": "spain", "from": 1995, "to": 1995, "scope": "ES", "municipality_select": "ES:MUN:51001", "expected_municipality": "ES:MUN:51001"},
+    "f_rapid_barcelona_girona": {"map": "spain", "from": 1995, "to": 1995, "scope": "ES", "municipality_rapid": True, "expected_municipality": "ES:MUN:17001", "expect_geometry": False},
+    "g_mobile_elx": {"map": "pais_valencia", "from": 1995, "to": 1995, "scope": "ES", "municipality_select": "ES:MUN:03065", "expected_municipality": "ES:MUN:03065", "mobile_only": True},
+    "h_barcelona_heavy": {"map": "spain", "from": 1995, "to": 1995, "scope": "ES", "municipality_select": "ES:MUN:08001", "expected_municipality": "ES:MUN:08001", "expect_geometry": False},
+}
 C2B2_SMOKES = {
     "a_spain": {"map": "spain", "from": 1995, "to": 1995, "scope": "ES", "territory_index_status": "national", "territory_index_ids": None},
     "b_pais_valencia": {"map": "pais_valencia", "from": 1993, "to": 2002, "scope": "ES", "territory_select": "ES:CCAA:10", "territory_index_status": "covered", "territory_index_ids": 2203},
@@ -328,6 +338,11 @@ def run_case(chrome: str, scenario: str, device: str, egif_config: dict | None =
             for key in ("province_select", "province_click", "province_sequence"):
                 if egif_config.get(key):
                     query[key] = egif_config[key]
+            for key in ("municipality_select", "municipality_click"):
+                if egif_config.get(key):
+                    query[key] = egif_config[key]
+            if egif_config.get("municipality_rapid"):
+                query["municipality_rapid"] = "1"
             if egif_config.get("territory_up"):
                 query["territory_up"] = "1"
             if egif_config.get("select_geometry_id"):
@@ -444,6 +459,12 @@ def validate_results(payload: dict) -> list[str]:
                 interaction = result.get("province_layer", {}).get("interaction", {})
                 if interaction.get("first_initial_requests") != interaction.get("final_initial_requests"):
                     errors.append(f"{label}: cambió provincia y volvió a pedir INITIAL de la misma CCAA")
+            if expected_egif.get("expected_municipality"):
+                municipality = result.get("municipality_layer", {})
+                if not municipality.get("loaded") or municipality.get("selected_municipality_id") != expected_egif["expected_municipality"]:
+                    errors.append(f"{label}: municipio BDLJE seleccionado inesperado: {municipality}")
+                elif not municipality.get("selected_bounds"):
+                    errors.append(f"{label}: municipio sin bounds 0 m")
             if "territory_index_status" in expected_egif:
                 index = result.get("esfire30_territory_index", {})
                 if index.get("status") != expected_egif["territory_index_status"]:
@@ -512,6 +533,8 @@ def main() -> int:
     parser.add_argument("--all-c2a-smokes", action="store_true")
     parser.add_argument("--c2a2-smoke", choices=tuple(C2A2_SMOKES), action="append")
     parser.add_argument("--all-c2a2-smokes", action="store_true")
+    parser.add_argument("--c2a3c-smoke", choices=tuple(C2A3C_SMOKES), action="append")
+    parser.add_argument("--all-c2a3c-smokes", action="store_true")
     parser.add_argument("--c2b2-smoke", choices=tuple(C2B2_SMOKES), action="append")
     parser.add_argument("--all-c2b2-smokes", action="store_true")
     parser.add_argument("--c2b2b2-smoke", choices=tuple(C2B2B2_SMOKES), action="append")
@@ -543,9 +566,10 @@ def main() -> int:
     requested_c1c2 = args.c1c2_smoke or (tuple(C1C2_SMOKES) if args.all_c1c2_smokes else ())
     requested_c2a = args.c2a_smoke or (tuple(C2A_SMOKES) if args.all_c2a_smokes else ())
     requested_c2a2 = args.c2a2_smoke or (tuple(C2A2_SMOKES) if args.all_c2a2_smokes else ())
+    requested_c2a3c = args.c2a3c_smoke or (tuple(C2A3C_SMOKES) if args.all_c2a3c_smokes else ())
     requested_c2b2 = args.c2b2_smoke or (tuple(C2B2_SMOKES) if args.all_c2b2_smokes else ())
     requested_c2b2b2 = args.c2b2b2_smoke or (tuple(C2B2B2_SMOKES) if args.all_c2b2b2_smokes else ())
-    scenarios = args.scenario or (SCENARIOS if args.all_smokes else (() if (requested_egif or requested_detail or requested_c1c or requested_c1c2 or requested_c2a or requested_c2a2 or requested_c2b2 or requested_c2b2b2) else ("spain",)))
+    scenarios = args.scenario or (SCENARIOS if args.all_smokes else (() if (requested_egif or requested_detail or requested_c1c or requested_c1c2 or requested_c2a or requested_c2a2 or requested_c2a3c or requested_c2b2 or requested_c2b2b2) else ("spain",)))
     devices = []
     if args.desktop or not args.mobile:
         devices.append("desktop")
@@ -586,6 +610,12 @@ def main() -> int:
         config = C2A2_SMOKES[name]
         c2a2_devices = ["mobile_390x844"] if config.get("mobile_only") else ["desktop"]
         for device in c2a2_devices:
+            print(f"{name}::{device}: ejecutando", flush=True)
+            rows.append(run_case(args.chrome, config["map"], device, config))
+    for name in requested_c2a3c:
+        config = C2A3C_SMOKES[name]
+        devices_for_case = ["mobile_390x844"] if config.get("mobile_only") else ["desktop"]
+        for device in devices_for_case:
             print(f"{name}::{device}: ejecutando", flush=True)
             rows.append(run_case(args.chrome, config["map"], device, config))
     for name in requested_c2b2:

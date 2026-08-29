@@ -10,7 +10,7 @@
     <main class="runtime-shell">
       <section id="map" aria-label="Mapa nacional experimental de perímetros ESFire30"></section>
       <aside class="panel" aria-label="Información del prototipo">
-        <p class="eyebrow">Prototipo aislado · ES-4C2A2</p>
+        <p class="eyebrow">Prototipo aislado · ES-4C2A3C</p>
         <h1>ESFire30 · España</h1>
         <p class="source-note">
           Perímetros derivados de teledetección Landsat (30 m), 1985–2021.
@@ -28,10 +28,13 @@
           <label id="province-scope-container" hidden>Provincia
             <select id="province-scope"></select>
           </label>
+          <label id="municipality-scope-container" hidden>Municipio
+            <select id="municipality-scope"></select>
+          </label>
         </fieldset>
         <nav id="territory-breadcrumb" class="territory-breadcrumb" aria-label="Navegación territorial"></nav>
         <p id="territory-status" class="source-note">Cargando límite administrativo oficial…</p>
-        <p class="source-note">El ámbito resalta límites oficiales, filtra EGIF administrativamente y muestra perímetros ESFire30 que intersectan el territorio.</p>
+        <p id="territory-semantics" class="source-note">El ámbito resalta límites oficiales, filtra EGIF administrativamente y muestra perímetros ESFire30 que intersectan el territorio.</p>
         <fieldset class="year-filter">
           <legend>Periodo mostrado</legend>
           <label>Desde <input id="from-year" type="number" min="1968" max="2023" value="1985"></label>

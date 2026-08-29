@@ -38,7 +38,7 @@ export function manifestSummary(manifest, fromYear, toYear) {
   };
 }
 
-export function summarizeInitialAssets(loadedAssets, fromYear, toYear, provinceId = null) {
+export function summarizeInitialAssets(loadedAssets, fromYear, toYear, provinceId = null, municipalityId = null) {
   const summary = {
     source_id: "egif",
     entity_label: "partes EGIF",
@@ -64,6 +64,7 @@ export function summarizeInitialAssets(loadedAssets, fromYear, toYear, provinceI
       const year = years[ordinal];
       if (year < fromYear || year > toYear) continue;
       if (provinceId && columns.province_id[ordinal] !== provinceId) continue;
+      if (municipalityId && columns.municipality_id[ordinal] !== municipalityId) continue;
       summary.records += 1;
       summary.annual[year] = (summary.annual[year] || 0) + 1;
       if (columns.is_gif_forest_ge_500_ha[ordinal] === true) summary.administrative_gif += 1;
@@ -160,7 +161,7 @@ export class EGIFInitialLoader {
     this.activeController = null;
   }
 
-  async loadScope({ territoryId = "ES", fromYear, toYear, provinceId = null }) {
+  async loadScope({ territoryId = "ES", fromYear, toYear, provinceId = null, municipalityId = null }) {
     const manifest = await this.loadManifest();
     const generation = ++this.generation;
     if (this.activeController) this.activeController.abort();
@@ -178,7 +179,7 @@ export class EGIFInitialLoader {
         // Solo para el runtime aislado. No se serializa ni se expone como
         // resultado de depuración: conserva las columnas y lookups cargados.
         loaded_assets: loadedAssets,
-        summary: summarizeInitialAssets(loadedAssets, fromYear, toYear, provinceId),
+        summary: summarizeInitialAssets(loadedAssets, fromYear, toYear, provinceId, municipalityId),
       };
     } catch (error) {
       if (generation !== this.generation || controller.signal.aborted || error.name === "AbortError") return { status: "stale" };

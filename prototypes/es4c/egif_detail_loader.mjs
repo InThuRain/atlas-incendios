@@ -56,24 +56,25 @@ export function selectedDetailRow(data, ordinal) {
   return row;
 }
 
-export function rowMatchesInitialScope(columns, ordinal, fromYear, toYear, provinceId = null) {
+export function rowMatchesInitialScope(columns, ordinal, fromYear, toYear, provinceId = null, municipalityId = null) {
   const year = columns.year[ordinal];
-  return year >= fromYear && year <= toYear && (!provinceId || columns.province_id[ordinal] === provinceId);
+  return year >= fromYear && year <= toYear && (!provinceId || columns.province_id[ordinal] === provinceId)
+    && (!municipalityId || columns.municipality_id[ordinal] === municipalityId);
 }
 
-export function recordMatchesInitialScope(loadedAssets, recordId, fromYear, toYear, provinceId = null) {
+export function recordMatchesInitialScope(loadedAssets, recordId, fromYear, toYear, provinceId = null, municipalityId = null) {
   const location = locateRecord(loadedAssets, recordId);
-  return Boolean(location && rowMatchesInitialScope(location.loaded.data.columns, location.ordinal, fromYear, toYear, provinceId));
+  return Boolean(location && rowMatchesInitialScope(location.loaded.data.columns, location.ordinal, fromYear, toYear, provinceId, municipalityId));
 }
 
-export function pageOfInitialRows(loadedAssets, fromYear, toYear, page, pageSize, provinceId = null) {
+export function pageOfInitialRows(loadedAssets, fromYear, toYear, page, pageSize, provinceId = null, municipalityId = null) {
   const start = Math.max(0, page) * pageSize;
   const rows = [];
   let total = 0;
   for (const loaded of loadedAssets || []) {
     const columns = loaded.data.columns;
     for (let ordinal = 0; ordinal < columns.record_id.length; ordinal += 1) {
-      if (!rowMatchesInitialScope(columns, ordinal, fromYear, toYear, provinceId)) continue;
+      if (!rowMatchesInitialScope(columns, ordinal, fromYear, toYear, provinceId, municipalityId)) continue;
       if (total >= start && rows.length < pageSize) {
         rows.push({ asset_id: loaded.asset.asset_id, ordinal, ...selectedInitialRow(loaded, ordinal) });
       }

@@ -35,6 +35,7 @@ export function createRuntimeState(overrides = {}) {
     territory_scope: "ES",
     autonomous_community_id: null,
     province_id: null,
+    municipality_id: null,
     esfire30_visible: true,
     egif_visible: true,
     selected_geometry_id: null,
@@ -66,6 +67,7 @@ export function reduceRuntimeState(state, event) {
     next.territory_scope = event.territory_id === "ES" ? "ES" : "autonomous_community";
     next.autonomous_community_id = event.territory_id === "ES" ? null : event.territory_id;
     next.province_id = null;
+    next.municipality_id = null;
   } else if (event.type === "set_province") {
     if (typeof event.province_id !== "string" || typeof event.autonomous_community_id !== "string") {
       throw new Error("Una provincia requiere su CCAA canónica");
@@ -73,6 +75,14 @@ export function reduceRuntimeState(state, event) {
     next.territory_scope = "province";
     next.autonomous_community_id = event.autonomous_community_id;
     next.province_id = event.province_id;
+    next.municipality_id = null;
+  } else if (event.type === "set_municipality") {
+    if (typeof event.municipality_id !== "string" || typeof event.autonomous_community_id !== "string"
+      || (event.province_id != null && typeof event.province_id !== "string")) throw new Error("Un municipio requiere padres canónicos");
+    next.territory_scope = "municipality";
+    next.autonomous_community_id = event.autonomous_community_id;
+    next.province_id = event.province_id || null;
+    next.municipality_id = event.municipality_id;
   } else if (event.type === "set_visibility") next[`${event.source_id}_visible`] = Boolean(event.visible);
   else if (event.type === "select_geometry") Object.assign(next, { selected_geometry_id: event.geometry_id, selected_geometry_year: event.year });
   else if (event.type === "select_egif_record") Object.assign(next, { selected_egif_record_id: event.record_id, selected_egif_year: event.year });

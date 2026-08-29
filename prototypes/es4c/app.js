@@ -7,6 +7,8 @@ import { createRuntimeState, effectiveCoverage, reduceRuntimeState, SOURCE_COVER
 import { parseStateHash, serializeState } from "./state_serialization.mjs";
 import { addOfficialTerritoryLayer } from "./territory_layer.mjs";
 import { addOfficialProvinceLayer } from "./province_layer.mjs";
+import { MunicipalityLoader } from "./municipality_loader.mjs";
+import { addOfficialMunicipalityLayer } from "./municipality_layer.mjs";
 
 const ARCHIVE_PATH = "/data/derived/spain/es4c2b/pmtiles/esfire30-national-fidelity-territories.pmtiles";
 const SOURCE_ID = "esfire30";
@@ -37,7 +39,10 @@ const applyButton = document.querySelector("#apply-years");
 const territoryScope = document.querySelector("#territory-scope");
 const provinceScope = document.querySelector("#province-scope");
 const provinceScopeContainer = document.querySelector("#province-scope-container");
+const municipalityScope = document.querySelector("#municipality-scope");
+const municipalityScopeContainer = document.querySelector("#municipality-scope-container");
 const territoryBreadcrumb = document.querySelector("#territory-breadcrumb");
+const territorySemantics = document.querySelector("#territory-semantics");
 const egifStatus = document.querySelector("#egif-status");
 const egifMetrics = document.querySelector("#egif-metrics");
 const egifRecordBrowser = document.querySelector("#egif-record-browser");
@@ -68,6 +73,7 @@ let state = createRuntimeState({
 const PROTOTYPE_DEFAULT_STATE = { ...state, center: [...state.center] };
 const egifLoader = new EGIFInitialLoader({ manifestUrl: EGIF_MANIFEST_URL });
 const egifDetailLoader = new EGIFDetailLoader({ manifestUrl: EGIF_MANIFEST_URL });
+const municipalityLoader = new MunicipalityLoader();
 let egifReady = Promise.resolve();
 let latestEgifResult = null;
 let activeInitialAssets = [];
@@ -81,6 +87,11 @@ let territoryLayer = null;
 let territoryLayerError = null;
 let provinceLayer = null;
 let provinceLayerError = null;
+let municipalityLayer = null;
+let municipalityLayerError = null;
+let municipalityCatalog = null;
+let municipalityReady = Promise.resolve();
+let latestMunicipalityResult = null;
 let esfireTerritory = { status: "national", code: null, property_prefix: null, filter_ms: 0, error: null };
 let selectedGeometryProperties = null;
 
@@ -184,6 +195,48 @@ const provinceLayerReady = territoryLayerReady.then(async () => {
     return null;
   }
 });
+
+const municipalityLayerReady = provinceLayerReady.then(async () => {
+  try {
+    municipalityLayer = addOfficialMunicipalityLayer(map, {
+      onSelect: (municipalityId) => setMunicipalityScope(municipalityId),
+    });
+    return municipalityLayer;
+  } catch (error) {
+    municipalityLayerError = String(error);
+    territoryStatus.textContent = `${territoryStatus.textContent} Límite municipal no disponible: ${error.message}.`;
+    return null;
+  }
+});
+
+async function ensureMunicipalityCatalog() {
+  if (!municipalityCatalog) municipalityCatalog = await municipalityLoader.loadCatalog();
+  return municipalityCatalog;
+}
+
+function municipalParentId() {
+  return state.province_id || (state.autonomous_community_id && !PROVINCES_BY_COMMUNITY.has(state.autonomous_community_id) ? state.autonomous_community_id : null);
+}
+
+async function refreshMunicipalGeometry({ fit = false, restore = false } = {}) {
+  if (!state.province_id && !(state.autonomous_community_id && !PROVINCES_BY_COMMUNITY.has(state.autonomous_community_id))) {
+    municipalityLoader.cancel(); municipalityLayer?.clear(); municipalityScopeContainer.hidden = true; latestMunicipalityResult = { status: "not_required" }; return latestMunicipalityResult;
+  }
+  try {
+    const loaded = await municipalityLoader.loadForParent({ provinceId: state.province_id, autonomousCommunityId: state.autonomous_community_id });
+    if (loaded.status === "stale") return loaded;
+    municipalityCatalog = loaded.catalog;
+    renderMunicipalitySelector();
+    municipalityLayer?.setCollection(loaded.shard?.data || null);
+    municipalityLayer?.setSelected(state.municipality_id);
+    if (fit && state.municipality_id && !restore) municipalityLayer?.fit(municipalityCatalog.byId.get(state.municipality_id)?.bounds);
+    latestMunicipalityResult = loaded; return loaded;
+  } catch (error) {
+    municipalityLayer?.clear(); municipalityScopeContainer.hidden = true;
+    territoryStatus.textContent = `Municipios BDLJE no disponibles: ${error.message}. Las fuentes restantes continúan independientes.`;
+    latestMunicipalityResult = { status: "error", error: String(error) }; return latestMunicipalityResult;
+  }
+}
 
 function clampYear(value, fallback) {
   const parsed = Number(value);
@@ -313,11 +366,23 @@ function renderProvinceSelector() {
   provinceScopeContainer.hidden = !communityId || provinces.length === 0;
 }
 
+function renderMunicipalitySelector() {
+  const parentId = municipalParentId();
+  const rows = !municipalityCatalog || !parentId ? []
+    : (state.province_id ? municipalityCatalog.byProvince.get(parentId) : municipalityCatalog.byCity.get(parentId)) || [];
+  municipalityScope.replaceChildren();
+  const all = document.createElement("option"); all.value = ""; all.textContent = "Todos los municipios del ámbito"; municipalityScope.append(all);
+  for (const row of rows) { const option = document.createElement("option"); option.value = row.municipality_id; option.textContent = row.official_name; municipalityScope.append(option); }
+  municipalityScope.value = state.municipality_id || "";
+  municipalityScopeContainer.hidden = rows.length === 0;
+}
+
 function renderBreadcrumb() {
   territoryBreadcrumb.replaceChildren();
   const entries = [{ label: "España", target: "ES", current: state.territory_scope === "ES" }];
   if (state.autonomous_community_id) entries.push({ label: territoryScope.selectedOptions[0]?.textContent || state.autonomous_community_id, target: state.autonomous_community_id, current: state.territory_scope === "autonomous_community" });
-  if (state.province_id) entries.push({ label: PROVINCE_OPTIONS.find((row) => row.territory_id === state.province_id)?.official_name || state.province_id, target: state.province_id, current: true });
+  if (state.province_id) entries.push({ label: PROVINCE_OPTIONS.find((row) => row.territory_id === state.province_id)?.official_name || state.province_id, target: state.province_id, current: state.territory_scope === "province" });
+  if (state.municipality_id) entries.push({ label: municipalityCatalog?.byId.get(state.municipality_id)?.official_name || state.municipality_id, target: state.municipality_id, current: true });
   for (const entry of entries) {
     const button = document.createElement("button");
     button.type = "button"; button.textContent = entry.label; button.disabled = entry.current;
@@ -329,9 +394,12 @@ function renderBreadcrumb() {
 function syncTerritoryLayer({ fit = false } = {}) {
   if (territoryLayer) territoryLayer.setSelected(state.autonomous_community_id);
   if (provinceLayer) provinceLayer.setScope(state.autonomous_community_id, state.province_id);
+  if (municipalityLayer) municipalityLayer.setSelected(state.municipality_id);
   renderProvinceSelector();
+  renderMunicipalitySelector();
   renderBreadcrumb();
   if (!fit) return Boolean(territoryLayer || provinceLayer);
+  if (state.municipality_id && municipalityLayer && municipalityCatalog) return municipalityLayer.fit(municipalityCatalog.byId.get(state.municipality_id)?.bounds);
   if (state.province_id && provinceLayer) return provinceLayer.fit(state.province_id);
   return territoryLayer ? territoryLayer.fit(state.autonomous_community_id || "ES") : false;
 }
@@ -356,12 +424,20 @@ function renderRuntimeState() {
     sourceCoverage.append(item);
   }
   const egifSummary = latestEgifResult?.summary;
-  const territory = state.province_id
+  const territory = state.municipality_id
+    ? (municipalityCatalog?.byId.get(state.municipality_id)?.official_name || state.municipality_id)
+    : state.province_id
     ? (PROVINCE_OPTIONS.find((row) => row.territory_id === state.province_id)?.official_name || state.province_id)
     : (territoryScope.selectedOptions[0]?.textContent || "España");
   const esfireVisible = state.esfire30_visible && effectiveCoverage(state, "esfire30")
     ? map.queryRenderedFeatures({ layers: [FILL_LAYER] }).length : 0;
-  runtimeStateSummary.textContent = `Periodo solicitado: ${state.from}–${state.to} · ámbito: ${territory} · fuentes: ESFire30 ${state.esfire30_visible ? "activa" : "desactivada"}, EGIF ${state.egif_visible ? "activa" : "desactivada"} · EGIF INITIAL: ${activeInitialAssets.length} asset(s), ${egifSummary?.summary?.records ?? egifSummary?.records ?? 0} partes · ESFire30: ${esfireTerritory.status === "no_coverage" ? "sin cobertura ESFire30" : "perímetros que intersectan el territorio seleccionado"} · visibles en viewport: ${formatNumber(esfireVisible)}.`;
+  const esfireScope = state.municipality_id
+    ? "filtrado territorial disponible hasta provincia; filtrado municipal pendiente"
+    : esfireTerritory.status === "no_coverage" ? "sin cobertura ESFire30" : "perímetros que intersectan el territorio seleccionado";
+  runtimeStateSummary.textContent = `Periodo solicitado: ${state.from}–${state.to} · ámbito: ${territory} · fuentes: ESFire30 ${state.esfire30_visible ? "activa" : "desactivada"}, EGIF ${state.egif_visible ? "activa" : "desactivada"} · EGIF INITIAL: ${activeInitialAssets.length} asset(s), ${egifSummary?.summary?.records ?? egifSummary?.records ?? 0} partes · ESFire30: ${esfireScope} · visibles en viewport: ${formatNumber(esfireVisible)}.`;
+  territorySemantics.textContent = state.municipality_id
+    ? "Límite municipal BDLJE actual. EGIF: partes EGIF enlazadas documentalmente al municipio canónico; no implica que el hecho histórico esté contenido físicamente en este límite actual. ESFire30: filtrado territorial disponible hasta provincia; filtrado municipal pendiente."
+    : "El ámbito resalta límites oficiales, filtra EGIF administrativamente y muestra perímetros ESFire30 que intersectan el territorio seleccionado.";
 }
 
 function coverageStatePayload() {
@@ -374,7 +450,7 @@ function coverageStatePayload() {
       status: !state[`${sourceId}_visible`] ? "disabled" : range ? "covered" : "no_coverage",
     };
   };
-  return { requested_range: { from: state.from, to: state.to }, territory_id: state.province_id || state.autonomous_community_id || "ES", esfire30: { ...describe("esfire30"), territory_filter_status: esfireTerritory.status }, egif: describe("egif") };
+  return { requested_range: { from: state.from, to: state.to }, territory_id: state.municipality_id || state.province_id || state.autonomous_community_id || "ES", esfire30: { ...describe("esfire30"), territory_filter_status: esfireTerritory.status, municipality_filter_pending: Boolean(state.municipality_id) }, egif: describe("egif") };
 }
 
 function stateUrl() {
@@ -415,7 +491,7 @@ function renderEgifPage() {
     egifRecordBrowser.hidden = true;
     return;
   }
-  const pageData = pageOfInitialRows(activeInitialAssets, state.from, state.to, egifPage, EGIF_PAGE_SIZE, state.province_id);
+  const pageData = pageOfInitialRows(activeInitialAssets, state.from, state.to, egifPage, EGIF_PAGE_SIZE, state.province_id, state.municipality_id);
   const pages = Math.max(1, Math.ceil(pageData.total / EGIF_PAGE_SIZE));
   if (egifPage >= pages) {
     egifPage = pages - 1;
@@ -489,7 +565,7 @@ function renderDetailFields(record, names) {
 }
 
 async function selectEgifRecord(recordId) {
-  if (!recordMatchesInitialScope(activeInitialAssets, recordId, state.from, state.to, state.province_id)) {
+  if (!recordMatchesInitialScope(activeInitialAssets, recordId, state.from, state.to, state.province_id, state.municipality_id)) {
     egifDetail.hidden = false;
     egifDetailStatus.textContent = "El record_id no pertenece al ámbito EGIF cargado.";
     return { status: "missing" };
@@ -578,8 +654,9 @@ async function refreshEgif() {
   const territoryId = state.autonomous_community_id || "ES";
   egifStatus.textContent = territoryId === "ES" ? "Calculando resumen EGIF desde el manifest…" : "Cargando assets INITIAL EGIF…";
   try {
-    const result = await egifLoader.loadScope({ territoryId, fromYear: coverage.from, toYear: coverage.to, provinceId: state.province_id });
+    const result = await egifLoader.loadScope({ territoryId, fromYear: coverage.from, toYear: coverage.to, provinceId: state.province_id, municipalityId: state.municipality_id });
     renderEgifResult(result);
+    if (state.selected_egif_record_id && !recordMatchesInitialScope(activeInitialAssets, state.selected_egif_record_id, state.from, state.to, state.province_id, state.municipality_id)) clearEgifSelection();
     return result;
   } catch (error) {
     egifStatus.textContent = `EGIF no disponible: ${error.message}. ESFire30 continúa operativo.`;
@@ -592,8 +669,10 @@ async function refreshEgif() {
 async function setEgifScope(territoryId, { fit = true } = {}) {
   territoryScope.value = territoryId;
   transition({ type: "set_scope", territory_id: territoryId });
-  await Promise.all([territoryLayerReady, provinceLayerReady]);
+  await Promise.all([territoryLayerReady, provinceLayerReady, municipalityLayerReady]);
   syncTerritoryLayer({ fit });
+  municipalityReady = refreshMunicipalGeometry();
+  await municipalityReady;
   return refreshSources();
 }
 
@@ -601,8 +680,23 @@ async function setProvinceScope(provinceId, parentId, { fit = true } = {}) {
   if (provinceParents.get(provinceId) !== parentId) throw new Error("Provincia y CCAA incompatibles");
   territoryScope.value = parentId;
   transition({ type: "set_province", province_id: provinceId, autonomous_community_id: parentId });
-  await Promise.all([territoryLayerReady, provinceLayerReady]);
+  await Promise.all([territoryLayerReady, provinceLayerReady, municipalityLayerReady]);
   syncTerritoryLayer({ fit });
+  municipalityReady = refreshMunicipalGeometry();
+  await municipalityReady;
+  return refreshSources();
+}
+
+async function setMunicipalityScope(municipalityId, { fit = true, restore = false } = {}) {
+  const catalog = await ensureMunicipalityCatalog();
+  const row = catalog.byId.get(municipalityId);
+  if (!row) throw new Error(`Municipio canónico desconocido: ${municipalityId}`);
+  if (row.province_id && provinceParents.get(row.province_id) !== row.autonomous_community_id) throw new Error("Jerarquía municipal BDLJE/ES-2 incompatible");
+  territoryScope.value = row.autonomous_community_id;
+  transition({ type: "set_municipality", municipality_id: row.municipality_id, province_id: row.province_id, autonomous_community_id: row.autonomous_community_id });
+  await Promise.all([territoryLayerReady, provinceLayerReady, municipalityLayerReady]);
+  await refreshMunicipalGeometry({ fit, restore });
+  syncTerritoryLayer({ fit: false });
   return refreshSources();
 }
 
@@ -639,7 +733,11 @@ async function restoreSelectionsFromState() {
 }
 
 async function restoreStateFromHash() {
-  const parsed = parseStateHash(location.hash, PROTOTYPE_DEFAULT_STATE, territoryIds, provinceParents);
+  let parsed = parseStateHash(location.hash, PROTOTYPE_DEFAULT_STATE, territoryIds, provinceParents);
+  if (parsed.state.municipality_id) {
+    const catalog = await ensureMunicipalityCatalog();
+    parsed = parseStateHash(location.hash, PROTOTYPE_DEFAULT_STATE, territoryIds, provinceParents, catalog.byId);
+  }
   if (parsed.status === "absent") return { status: "absent" };
   restoringFromUrl = true;
   state = parsed.state;
@@ -649,10 +747,11 @@ async function restoreStateFromHash() {
   esfireVisibleInput.checked = state.esfire30_visible;
   egifVisibleInput.checked = state.egif_visible;
   map.jumpTo({ center: state.center, zoom: state.zoom });
-  await Promise.all([territoryLayerReady, provinceLayerReady]);
+  await Promise.all([territoryLayerReady, provinceLayerReady, municipalityLayerReady]);
   // La URL contiene su propia vista. Solo se resalta el límite; no se hace
   // fitBounds durante restauración porque destruiría center/zoom compartidos.
   syncTerritoryLayer();
+  await refreshMunicipalGeometry({ restore: true });
   applyFilters();
   await refreshSources();
   await waitForIdle();
@@ -759,11 +858,18 @@ provinceScope.addEventListener("change", () => {
   if (provinceId) setProvinceScope(provinceId, state.autonomous_community_id);
   else if (state.autonomous_community_id) setEgifScope(state.autonomous_community_id, { fit: false });
 });
+municipalityScope.addEventListener("change", () => {
+  const municipalityId = municipalityScope.value;
+  if (municipalityId) setMunicipalityScope(municipalityId);
+  else if (state.province_id) setProvinceScope(state.province_id, state.autonomous_community_id, { fit: false });
+  else if (state.autonomous_community_id) setEgifScope(state.autonomous_community_id, { fit: false });
+});
 territoryBreadcrumb.addEventListener("click", (event) => {
   const target = event.target.closest("button[data-territory-target]")?.dataset.territoryTarget;
   if (!target) return;
   if (target === "ES" || target.startsWith("ES:CCAA:")) setEgifScope(target);
   else if (target.startsWith("ES:PROV:")) setProvinceScope(target, provinceParents.get(target));
+  else if (target.startsWith("ES:MUN:")) setMunicipalityScope(target);
 });
 esfireVisibleInput.addEventListener("change", () => { setSourceVisibility("esfire30", esfireVisibleInput.checked); });
 egifVisibleInput.addEventListener("change", () => { setSourceVisibility("egif", egifVisibleInput.checked); });
@@ -792,6 +898,7 @@ function activeRecordId(predicate = () => true, offset = 0) {
       const year = columns.year[ordinal];
       if (year < state.from || year > state.to) continue;
       if (state.province_id && columns.province_id[ordinal] !== state.province_id) continue;
+      if (state.municipality_id && columns.municipality_id[ordinal] !== state.municipality_id) continue;
       if (!predicate(columns, ordinal)) continue;
       if (matches === offset) return columns.record_id[ordinal];
       matches += 1;
@@ -872,6 +979,27 @@ async function runSmoke(name, initialReady = false) {
     else await setProvinceScope(provinceId, parentId);
     await waitForIdle();
     provinceInteraction = { mode: params.get("province_click") ? "click_feature" : "selector", province_id: state.province_id, parent_id: state.autonomous_community_id, center: [...state.center], zoom: state.zoom };
+  }
+  let municipalityInteraction = null;
+  if (params.get("municipality_select") || params.get("municipality_click")) {
+    const municipalityId = params.get("municipality_select") || params.get("municipality_click");
+    const catalog = await ensureMunicipalityCatalog();
+    const row = catalog.byId.get(municipalityId);
+    if (!row) throw new Error(`Municipio de smoke desconocido: ${municipalityId}`);
+    if (row.province_id && state.province_id !== row.province_id) await setProvinceScope(row.province_id, row.autonomous_community_id);
+    else if (!row.province_id && state.autonomous_community_id !== row.autonomous_community_id) await setEgifScope(row.autonomous_community_id);
+    await setMunicipalityScope(municipalityId, { fit: true });
+    await waitForIdle();
+    municipalityInteraction = { mode: params.get("municipality_click") ? "click_feature" : "selector", municipality_id: state.municipality_id, parent_id: municipalParentId(), center: [...state.center], zoom: state.zoom };
+  }
+  let municipalityCancellation = null;
+  if (params.get("municipality_rapid") === "1") {
+    const catalog = await ensureMunicipalityCatalog();
+    const barcelona = catalog.byProvince.get("ES:PROV:08")[0].municipality_id;
+    const girona = catalog.byProvince.get("ES:PROV:17")[0].municipality_id;
+    const obsolete = setMunicipalityScope(barcelona); await Promise.resolve(); const current = setMunicipalityScope(girona);
+    const [oldResult, currentResult] = await Promise.all([obsolete, current]);
+    municipalityCancellation = { obsolete_status: oldResult.status, current_status: currentResult.status, final_municipality_id: state.municipality_id };
   }
   if (params.get("province_sequence")) {
     const [first, second] = params.get("province_sequence").split(",", 2);
@@ -985,6 +1113,17 @@ async function runSmoke(name, initialReady = false) {
       interaction: provinceInteraction,
       error: null,
     } : { loaded: false, error: provinceLayerError },
+    municipality_layer: municipalityLayer ? {
+      loaded: true,
+      selected_municipality_id: state.municipality_id,
+      selected_bounds: state.municipality_id ? municipalityCatalog?.byId.get(state.municipality_id)?.bounds || null : null,
+      catalog_loaded: Boolean(municipalityCatalog),
+      cached_assets: [...municipalityLoader.assetCache.keys()],
+      metrics: latestMunicipalityResult?.shard?.metrics || null,
+      interaction: municipalityInteraction,
+      cancellation: municipalityCancellation,
+      error: null,
+    } : { loaded: false, error: municipalityLayerError },
     coverage: coverageStatePayload(),
     esfire30_territory_filter: { status: esfireTerritory.status, code: esfireTerritory.code, property_prefix: esfireTerritory.property_prefix, filter_ms: esfireTerritory.filter_ms, error: esfireTerritory.error, external_index_loaded: false },
     heap_delta_bytes: initialHeap === null || !performance.memory ? null : performance.memory.usedJSHeapSize - initialHeap,
@@ -996,7 +1135,13 @@ async function runSmoke(name, initialReady = false) {
 }
 
 map.once("idle", () => {
-  Promise.all([territoryLayerReady, provinceLayerReady]).then(async () => {
+  Promise.all([territoryLayerReady, provinceLayerReady, municipalityLayerReady]).then(async () => {
+    if (state.municipality_id) {
+      const catalog = await ensureMunicipalityCatalog();
+      const row = catalog.byId.get(state.municipality_id);
+      if (!row || row.autonomous_community_id !== state.autonomous_community_id || row.province_id !== state.province_id) state = { ...PROTOTYPE_DEFAULT_STATE };
+    }
+    await refreshMunicipalGeometry({ restore: true });
     applyFilters();
     renderRuntimeState();
     egifReady = refreshSources().then(async () => {
@@ -1020,6 +1165,8 @@ window.__es4cRuntime = {
   applyYears,
   setEgifScope,
   setProvinceScope,
+  setMunicipalityScope,
+  refreshMunicipalGeometry,
   refreshEgif,
   refreshSources,
   setSourceVisibility,
