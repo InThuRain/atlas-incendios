@@ -1,0 +1,1308 @@
+{
+  "baseline": {
+    "actual_relations": 242734,
+    "excess_ccaa": 1349,
+    "excess_province": 2389,
+    "excess_relations": 3738,
+    "formula_verified": true,
+    "one_ccaa_plus_one_province_per_geometry": 238996
+  },
+  "boundary_touches": {
+    "ccaa": 0,
+    "geometries_touch_only": 0,
+    "geometries_with_any": 0,
+    "maximum_touches_for_one_geometry": 0,
+    "province": 0,
+    "total": 0
+  },
+  "cardinality": {
+    "ccaa": {
+      "0": 0,
+      "1": 118155,
+      "2": 1337,
+      "3": 6,
+      "4+": 0,
+      "maximum": 3,
+      "multi_geometry_count": 1343
+    },
+    "province": {
+      "0": 0,
+      "1": 117132,
+      "2": 2343,
+      "3": 23,
+      "4+": 0,
+      "maximum": 3,
+      "multi_geometry_count": 2366
+    }
+  },
+  "compact_representation": {
+    "A_current_audit_jsonl": {
+      "gzip_bytes": 7547953,
+      "gzip_bytes_per_geometry": 63.163844,
+      "raw_bytes": 168450360,
+      "raw_bytes_per_geometry": 1409.650036
+    },
+    "B_geometry_to_all_territory_ids": {
+      "gzip_bytes": 348245,
+      "gzip_bytes_per_geometry": 2.914233,
+      "raw_bytes": 6224334,
+      "raw_bytes_per_geometry": 52.087349
+    },
+    "C_separate_ccaa_and_province_maps": {
+      "gzip_bytes": 649281,
+      "gzip_bytes_per_geometry": 5.433405,
+      "raw_bytes": 9293147,
+      "raw_bytes_per_geometry": 77.768222
+    },
+    "D_dictionary_encoded_territory_ids": {
+      "gzip_bytes": 318535,
+      "gzip_bytes_per_geometry": 2.665609,
+      "raw_bytes": 4142442,
+      "raw_bytes_per_geometry": 34.665367
+    },
+    "definition": "B–D contienen solo geometry_id y territory IDs necesarios para filtrado; excluyen área, fracción, QA y provenance de auditoría."
+  },
+  "coverage": {
+    "ccaa": [
+      {
+        "geometries_exclusive": 7664,
+        "geometries_intersecting": 7695,
+        "geometries_shared": 31,
+        "level": "ccaa",
+        "official_code": "01",
+        "official_name": "Andalucía",
+        "relations": 7695,
+        "territory_id": "ES:CCAA:01",
+        "territory_type": "autonomous_community"
+      },
+      {
+        "geometries_exclusive": 1720,
+        "geometries_intersecting": 1773,
+        "geometries_shared": 53,
+        "level": "ccaa",
+        "official_code": "02",
+        "official_name": "Aragón",
+        "relations": 1773,
+        "territory_id": "ES:CCAA:02",
+        "territory_type": "autonomous_community"
+      },
+      {
+        "geometries_exclusive": 13529,
+        "geometries_intersecting": 13846,
+        "geometries_shared": 317,
+        "level": "ccaa",
+        "official_code": "03",
+        "official_name": "Asturias, Principado de",
+        "relations": 13846,
+        "territory_id": "ES:CCAA:03",
+        "territory_type": "autonomous_community"
+      },
+      {
+        "geometries_exclusive": 0,
+        "geometries_intersecting": 0,
+        "geometries_shared": 0,
+        "level": "ccaa",
+        "official_code": "04",
+        "official_name": "Balears, Illes",
+        "relations": 0,
+        "territory_id": "ES:CCAA:04",
+        "territory_type": "autonomous_community"
+      },
+      {
+        "geometries_exclusive": 0,
+        "geometries_intersecting": 0,
+        "geometries_shared": 0,
+        "level": "ccaa",
+        "official_code": "05",
+        "official_name": "Canarias",
+        "relations": 0,
+        "territory_id": "ES:CCAA:05",
+        "territory_type": "autonomous_community"
+      },
+      {
+        "geometries_exclusive": 5906,
+        "geometries_intersecting": 6136,
+        "geometries_shared": 230,
+        "level": "ccaa",
+        "official_code": "06",
+        "official_name": "Cantabria",
+        "relations": 6136,
+        "territory_id": "ES:CCAA:06",
+        "territory_type": "autonomous_community"
+      },
+      {
+        "geometries_exclusive": 28772,
+        "geometries_intersecting": 29782,
+        "geometries_shared": 1010,
+        "level": "ccaa",
+        "official_code": "07",
+        "official_name": "Castilla y León",
+        "relations": 29782,
+        "territory_id": "ES:CCAA:07",
+        "territory_type": "autonomous_community"
+      },
+      {
+        "geometries_exclusive": 4595,
+        "geometries_intersecting": 4688,
+        "geometries_shared": 93,
+        "level": "ccaa",
+        "official_code": "08",
+        "official_name": "Castilla-La Mancha",
+        "relations": 4688,
+        "territory_id": "ES:CCAA:08",
+        "territory_type": "autonomous_community"
+      },
+      {
+        "geometries_exclusive": 3086,
+        "geometries_intersecting": 3097,
+        "geometries_shared": 11,
+        "level": "ccaa",
+        "official_code": "09",
+        "official_name": "Cataluña",
+        "relations": 3097,
+        "territory_id": "ES:CCAA:09",
+        "territory_type": "autonomous_community"
+      },
+      {
+        "geometries_exclusive": 2176,
+        "geometries_intersecting": 2203,
+        "geometries_shared": 27,
+        "level": "ccaa",
+        "official_code": "10",
+        "official_name": "Comunitat Valenciana",
+        "relations": 2203,
+        "territory_id": "ES:CCAA:10",
+        "territory_type": "autonomous_community"
+      },
+      {
+        "geometries_exclusive": 8080,
+        "geometries_intersecting": 8211,
+        "geometries_shared": 131,
+        "level": "ccaa",
+        "official_code": "11",
+        "official_name": "Extremadura",
+        "relations": 8211,
+        "territory_id": "ES:CCAA:11",
+        "territory_type": "autonomous_community"
+      },
+      {
+        "geometries_exclusive": 38112,
+        "geometries_intersecting": 38645,
+        "geometries_shared": 533,
+        "level": "ccaa",
+        "official_code": "12",
+        "official_name": "Galicia",
+        "relations": 38645,
+        "territory_id": "ES:CCAA:12",
+        "territory_type": "autonomous_community"
+      },
+      {
+        "geometries_exclusive": 823,
+        "geometries_intersecting": 892,
+        "geometries_shared": 69,
+        "level": "ccaa",
+        "official_code": "13",
+        "official_name": "Madrid, Comunidad de",
+        "relations": 892,
+        "territory_id": "ES:CCAA:13",
+        "territory_type": "autonomous_community"
+      },
+      {
+        "geometries_exclusive": 178,
+        "geometries_intersecting": 183,
+        "geometries_shared": 5,
+        "level": "ccaa",
+        "official_code": "14",
+        "official_name": "Murcia, Región de",
+        "relations": 183,
+        "territory_id": "ES:CCAA:14",
+        "territory_type": "autonomous_community"
+      },
+      {
+        "geometries_exclusive": 1257,
+        "geometries_intersecting": 1291,
+        "geometries_shared": 34,
+        "level": "ccaa",
+        "official_code": "15",
+        "official_name": "Navarra, Comunidad Foral de",
+        "relations": 1291,
+        "territory_id": "ES:CCAA:15",
+        "territory_type": "autonomous_community"
+      },
+      {
+        "geometries_exclusive": 1703,
+        "geometries_intersecting": 1804,
+        "geometries_shared": 101,
+        "level": "ccaa",
+        "official_code": "16",
+        "official_name": "País Vasco",
+        "relations": 1804,
+        "territory_id": "ES:CCAA:16",
+        "territory_type": "autonomous_community"
+      },
+      {
+        "geometries_exclusive": 554,
+        "geometries_intersecting": 601,
+        "geometries_shared": 47,
+        "level": "ccaa",
+        "official_code": "17",
+        "official_name": "Rioja, La",
+        "relations": 601,
+        "territory_id": "ES:CCAA:17",
+        "territory_type": "autonomous_community"
+      },
+      {
+        "geometries_exclusive": 0,
+        "geometries_intersecting": 0,
+        "geometries_shared": 0,
+        "level": "ccaa",
+        "official_code": "18",
+        "official_name": "Ceuta",
+        "relations": 0,
+        "territory_id": "ES:CCAA:18",
+        "territory_type": "autonomous_city"
+      },
+      {
+        "geometries_exclusive": 0,
+        "geometries_intersecting": 0,
+        "geometries_shared": 0,
+        "level": "ccaa",
+        "official_code": "19",
+        "official_name": "Melilla",
+        "relations": 0,
+        "territory_id": "ES:CCAA:19",
+        "territory_type": "autonomous_city"
+      }
+    ],
+    "province": [
+      {
+        "geometries_exclusive": 443,
+        "geometries_intersecting": 510,
+        "geometries_shared": 67,
+        "level": "province",
+        "official_code": "01",
+        "official_name": "Araba/Álava",
+        "relations": 510,
+        "territory_id": "ES:PROV:01",
+        "territory_type": "province"
+      },
+      {
+        "geometries_exclusive": 425,
+        "geometries_intersecting": 444,
+        "geometries_shared": 19,
+        "level": "province",
+        "official_code": "02",
+        "official_name": "Albacete",
+        "relations": 444,
+        "territory_id": "ES:PROV:02",
+        "territory_type": "province"
+      },
+      {
+        "geometries_exclusive": 431,
+        "geometries_intersecting": 468,
+        "geometries_shared": 37,
+        "level": "province",
+        "official_code": "03",
+        "official_name": "Alicante/Alacant",
+        "relations": 468,
+        "territory_id": "ES:PROV:03",
+        "territory_type": "province"
+      },
+      {
+        "geometries_exclusive": 401,
+        "geometries_intersecting": 409,
+        "geometries_shared": 8,
+        "level": "province",
+        "official_code": "04",
+        "official_name": "Almería",
+        "relations": 409,
+        "territory_id": "ES:PROV:04",
+        "territory_type": "province"
+      },
+      {
+        "geometries_exclusive": 1508,
+        "geometries_intersecting": 1585,
+        "geometries_shared": 77,
+        "level": "province",
+        "official_code": "05",
+        "official_name": "Ávila",
+        "relations": 1585,
+        "territory_id": "ES:PROV:05",
+        "territory_type": "province"
+      },
+      {
+        "geometries_exclusive": 3888,
+        "geometries_intersecting": 3968,
+        "geometries_shared": 80,
+        "level": "province",
+        "official_code": "06",
+        "official_name": "Badajoz",
+        "relations": 3968,
+        "territory_id": "ES:PROV:06",
+        "territory_type": "province"
+      },
+      {
+        "geometries_exclusive": 0,
+        "geometries_intersecting": 0,
+        "geometries_shared": 0,
+        "level": "province",
+        "official_code": "07",
+        "official_name": "Balears, Illes",
+        "relations": 0,
+        "territory_id": "ES:PROV:07",
+        "territory_type": "province"
+      },
+      {
+        "geometries_exclusive": 841,
+        "geometries_intersecting": 874,
+        "geometries_shared": 33,
+        "level": "province",
+        "official_code": "08",
+        "official_name": "Barcelona",
+        "relations": 874,
+        "territory_id": "ES:PROV:08",
+        "territory_type": "province"
+      },
+      {
+        "geometries_exclusive": 3556,
+        "geometries_intersecting": 3815,
+        "geometries_shared": 259,
+        "level": "province",
+        "official_code": "09",
+        "official_name": "Burgos",
+        "relations": 3815,
+        "territory_id": "ES:PROV:09",
+        "territory_type": "province"
+      },
+      {
+        "geometries_exclusive": 4148,
+        "geometries_intersecting": 4287,
+        "geometries_shared": 139,
+        "level": "province",
+        "official_code": "10",
+        "official_name": "Cáceres",
+        "relations": 4287,
+        "territory_id": "ES:PROV:10",
+        "territory_type": "province"
+      },
+      {
+        "geometries_exclusive": 957,
+        "geometries_intersecting": 972,
+        "geometries_shared": 15,
+        "level": "province",
+        "official_code": "11",
+        "official_name": "Cádiz",
+        "relations": 972,
+        "territory_id": "ES:PROV:11",
+        "territory_type": "province"
+      },
+      {
+        "geometries_exclusive": 810,
+        "geometries_intersecting": 854,
+        "geometries_shared": 44,
+        "level": "province",
+        "official_code": "12",
+        "official_name": "Castellón/Castelló",
+        "relations": 854,
+        "territory_id": "ES:PROV:12",
+        "territory_type": "province"
+      },
+      {
+        "geometries_exclusive": 1589,
+        "geometries_intersecting": 1626,
+        "geometries_shared": 37,
+        "level": "province",
+        "official_code": "13",
+        "official_name": "Ciudad Real",
+        "relations": 1626,
+        "territory_id": "ES:PROV:13",
+        "territory_type": "province"
+      },
+      {
+        "geometries_exclusive": 1128,
+        "geometries_intersecting": 1160,
+        "geometries_shared": 32,
+        "level": "province",
+        "official_code": "14",
+        "official_name": "Córdoba",
+        "relations": 1160,
+        "territory_id": "ES:PROV:14",
+        "territory_type": "province"
+      },
+      {
+        "geometries_exclusive": 7892,
+        "geometries_intersecting": 8025,
+        "geometries_shared": 133,
+        "level": "province",
+        "official_code": "15",
+        "official_name": "Coruña, A",
+        "relations": 8025,
+        "territory_id": "ES:PROV:15",
+        "territory_type": "province"
+      },
+      {
+        "geometries_exclusive": 650,
+        "geometries_intersecting": 673,
+        "geometries_shared": 23,
+        "level": "province",
+        "official_code": "16",
+        "official_name": "Cuenca",
+        "relations": 673,
+        "territory_id": "ES:PROV:16",
+        "territory_type": "province"
+      },
+      {
+        "geometries_exclusive": 543,
+        "geometries_intersecting": 564,
+        "geometries_shared": 21,
+        "level": "province",
+        "official_code": "17",
+        "official_name": "Girona",
+        "relations": 564,
+        "territory_id": "ES:PROV:17",
+        "territory_type": "province"
+      },
+      {
+        "geometries_exclusive": 663,
+        "geometries_intersecting": 677,
+        "geometries_shared": 14,
+        "level": "province",
+        "official_code": "18",
+        "official_name": "Granada",
+        "relations": 677,
+        "territory_id": "ES:PROV:18",
+        "territory_type": "province"
+      },
+      {
+        "geometries_exclusive": 1067,
+        "geometries_intersecting": 1103,
+        "geometries_shared": 36,
+        "level": "province",
+        "official_code": "19",
+        "official_name": "Guadalajara",
+        "relations": 1103,
+        "territory_id": "ES:PROV:19",
+        "territory_type": "province"
+      },
+      {
+        "geometries_exclusive": 412,
+        "geometries_intersecting": 456,
+        "geometries_shared": 44,
+        "level": "province",
+        "official_code": "20",
+        "official_name": "Gipuzkoa",
+        "relations": 456,
+        "territory_id": "ES:PROV:20",
+        "territory_type": "province"
+      },
+      {
+        "geometries_exclusive": 1386,
+        "geometries_intersecting": 1407,
+        "geometries_shared": 21,
+        "level": "province",
+        "official_code": "21",
+        "official_name": "Huelva",
+        "relations": 1407,
+        "territory_id": "ES:PROV:21",
+        "territory_type": "province"
+      },
+      {
+        "geometries_exclusive": 829,
+        "geometries_intersecting": 853,
+        "geometries_shared": 24,
+        "level": "province",
+        "official_code": "22",
+        "official_name": "Huesca",
+        "relations": 853,
+        "territory_id": "ES:PROV:22",
+        "territory_type": "province"
+      },
+      {
+        "geometries_exclusive": 861,
+        "geometries_intersecting": 870,
+        "geometries_shared": 9,
+        "level": "province",
+        "official_code": "23",
+        "official_name": "Jaén",
+        "relations": 870,
+        "territory_id": "ES:PROV:23",
+        "territory_type": "province"
+      },
+      {
+        "geometries_exclusive": 13076,
+        "geometries_intersecting": 13619,
+        "geometries_shared": 543,
+        "level": "province",
+        "official_code": "24",
+        "official_name": "León",
+        "relations": 13619,
+        "territory_id": "ES:PROV:24",
+        "territory_type": "province"
+      },
+      {
+        "geometries_exclusive": 966,
+        "geometries_intersecting": 1002,
+        "geometries_shared": 36,
+        "level": "province",
+        "official_code": "25",
+        "official_name": "Lleida",
+        "relations": 1002,
+        "territory_id": "ES:PROV:25",
+        "territory_type": "province"
+      },
+      {
+        "geometries_exclusive": 554,
+        "geometries_intersecting": 601,
+        "geometries_shared": 47,
+        "level": "province",
+        "official_code": "26",
+        "official_name": "Rioja, La",
+        "relations": 601,
+        "territory_id": "ES:PROV:26",
+        "territory_type": "province"
+      },
+      {
+        "geometries_exclusive": 8159,
+        "geometries_intersecting": 8744,
+        "geometries_shared": 585,
+        "level": "province",
+        "official_code": "27",
+        "official_name": "Lugo",
+        "relations": 8744,
+        "territory_id": "ES:PROV:27",
+        "territory_type": "province"
+      },
+      {
+        "geometries_exclusive": 823,
+        "geometries_intersecting": 892,
+        "geometries_shared": 69,
+        "level": "province",
+        "official_code": "28",
+        "official_name": "Madrid",
+        "relations": 892,
+        "territory_id": "ES:PROV:28",
+        "territory_type": "province"
+      },
+      {
+        "geometries_exclusive": 1026,
+        "geometries_intersecting": 1048,
+        "geometries_shared": 22,
+        "level": "province",
+        "official_code": "29",
+        "official_name": "Málaga",
+        "relations": 1048,
+        "territory_id": "ES:PROV:29",
+        "territory_type": "province"
+      },
+      {
+        "geometries_exclusive": 178,
+        "geometries_intersecting": 183,
+        "geometries_shared": 5,
+        "level": "province",
+        "official_code": "30",
+        "official_name": "Murcia",
+        "relations": 183,
+        "territory_id": "ES:PROV:30",
+        "territory_type": "province"
+      },
+      {
+        "geometries_exclusive": 1257,
+        "geometries_intersecting": 1291,
+        "geometries_shared": 34,
+        "level": "province",
+        "official_code": "31",
+        "official_name": "Navarra",
+        "relations": 1291,
+        "territory_id": "ES:PROV:31",
+        "territory_type": "province"
+      },
+      {
+        "geometries_exclusive": 15666,
+        "geometries_intersecting": 16265,
+        "geometries_shared": 599,
+        "level": "province",
+        "official_code": "32",
+        "official_name": "Ourense",
+        "relations": 16265,
+        "territory_id": "ES:PROV:32",
+        "territory_type": "province"
+      },
+      {
+        "geometries_exclusive": 13529,
+        "geometries_intersecting": 13846,
+        "geometries_shared": 317,
+        "level": "province",
+        "official_code": "33",
+        "official_name": "Asturias",
+        "relations": 13846,
+        "territory_id": "ES:PROV:33",
+        "territory_type": "province"
+      },
+      {
+        "geometries_exclusive": 1450,
+        "geometries_intersecting": 1542,
+        "geometries_shared": 92,
+        "level": "province",
+        "official_code": "34",
+        "official_name": "Palencia",
+        "relations": 1542,
+        "territory_id": "ES:PROV:34",
+        "territory_type": "province"
+      },
+      {
+        "geometries_exclusive": 0,
+        "geometries_intersecting": 0,
+        "geometries_shared": 0,
+        "level": "province",
+        "official_code": "35",
+        "official_name": "Palmas, Las",
+        "relations": 0,
+        "territory_id": "ES:PROV:35",
+        "territory_type": "province"
+      },
+      {
+        "geometries_exclusive": 5867,
+        "geometries_intersecting": 6148,
+        "geometries_shared": 281,
+        "level": "province",
+        "official_code": "36",
+        "official_name": "Pontevedra",
+        "relations": 6148,
+        "territory_id": "ES:PROV:36",
+        "territory_type": "province"
+      },
+      {
+        "geometries_exclusive": 1807,
+        "geometries_intersecting": 1906,
+        "geometries_shared": 99,
+        "level": "province",
+        "official_code": "37",
+        "official_name": "Salamanca",
+        "relations": 1906,
+        "territory_id": "ES:PROV:37",
+        "territory_type": "province"
+      },
+      {
+        "geometries_exclusive": 0,
+        "geometries_intersecting": 0,
+        "geometries_shared": 0,
+        "level": "province",
+        "official_code": "38",
+        "official_name": "Santa Cruz de Tenerife",
+        "relations": 0,
+        "territory_id": "ES:PROV:38",
+        "territory_type": "province"
+      },
+      {
+        "geometries_exclusive": 5906,
+        "geometries_intersecting": 6136,
+        "geometries_shared": 230,
+        "level": "province",
+        "official_code": "39",
+        "official_name": "Cantabria",
+        "relations": 6136,
+        "territory_id": "ES:PROV:39",
+        "territory_type": "province"
+      },
+      {
+        "geometries_exclusive": 485,
+        "geometries_intersecting": 508,
+        "geometries_shared": 23,
+        "level": "province",
+        "official_code": "40",
+        "official_name": "Segovia",
+        "relations": 508,
+        "territory_id": "ES:PROV:40",
+        "territory_type": "province"
+      },
+      {
+        "geometries_exclusive": 1179,
+        "geometries_intersecting": 1215,
+        "geometries_shared": 36,
+        "level": "province",
+        "official_code": "41",
+        "official_name": "Sevilla",
+        "relations": 1215,
+        "territory_id": "ES:PROV:41",
+        "territory_type": "province"
+      },
+      {
+        "geometries_exclusive": 420,
+        "geometries_intersecting": 433,
+        "geometries_shared": 13,
+        "level": "province",
+        "official_code": "42",
+        "official_name": "Soria",
+        "relations": 433,
+        "territory_id": "ES:PROV:42",
+        "territory_type": "province"
+      },
+      {
+        "geometries_exclusive": 684,
+        "geometries_intersecting": 709,
+        "geometries_shared": 25,
+        "level": "province",
+        "official_code": "43",
+        "official_name": "Tarragona",
+        "relations": 709,
+        "territory_id": "ES:PROV:43",
+        "territory_type": "province"
+      },
+      {
+        "geometries_exclusive": 348,
+        "geometries_intersecting": 376,
+        "geometries_shared": 28,
+        "level": "province",
+        "official_code": "44",
+        "official_name": "Teruel",
+        "relations": 376,
+        "territory_id": "ES:PROV:44",
+        "territory_type": "province"
+      },
+      {
+        "geometries_exclusive": 826,
+        "geometries_intersecting": 881,
+        "geometries_shared": 55,
+        "level": "province",
+        "official_code": "45",
+        "official_name": "Toledo",
+        "relations": 881,
+        "territory_id": "ES:PROV:45",
+        "territory_type": "province"
+      },
+      {
+        "geometries_exclusive": 872,
+        "geometries_intersecting": 945,
+        "geometries_shared": 73,
+        "level": "province",
+        "official_code": "46",
+        "official_name": "Valencia/València",
+        "relations": 945,
+        "territory_id": "ES:PROV:46",
+        "territory_type": "province"
+      },
+      {
+        "geometries_exclusive": 908,
+        "geometries_intersecting": 938,
+        "geometries_shared": 30,
+        "level": "province",
+        "official_code": "47",
+        "official_name": "Valladolid",
+        "relations": 938,
+        "territory_id": "ES:PROV:47",
+        "territory_type": "province"
+      },
+      {
+        "geometries_exclusive": 805,
+        "geometries_intersecting": 883,
+        "geometries_shared": 78,
+        "level": "province",
+        "official_code": "48",
+        "official_name": "Bizkaia",
+        "relations": 883,
+        "territory_id": "ES:PROV:48",
+        "territory_type": "province"
+      },
+      {
+        "geometries_exclusive": 5390,
+        "geometries_intersecting": 5612,
+        "geometries_shared": 222,
+        "level": "province",
+        "official_code": "49",
+        "official_name": "Zamora",
+        "relations": 5612,
+        "territory_id": "ES:PROV:49",
+        "territory_type": "province"
+      },
+      {
+        "geometries_exclusive": 523,
+        "geometries_intersecting": 564,
+        "geometries_shared": 41,
+        "level": "province",
+        "official_code": "50",
+        "official_name": "Zaragoza",
+        "relations": 564,
+        "territory_id": "ES:PROV:50",
+        "territory_type": "province"
+      }
+    ]
+  },
+  "dominance": {
+    "ccaa": {
+      ">90%": 148,
+      ">95%": 263,
+      ">99%": 273,
+      "multi_geometry_count": 1343,
+      "≤90%": 659
+    },
+    "province": {
+      ">90%": 266,
+      ">95%": 448,
+      ">99%": 449,
+      "multi_geometry_count": 2366,
+      "≤90%": 1203
+    }
+  },
+  "es3_reconciliation": {
+    "cross_ccaa": {
+      "classification": "EXPLAINED_DIFFERENCE",
+      "difference": 1,
+      "es3": 1342,
+      "es4c2b1a": 1343,
+      "explanation": "ES-3 calculó hits tras transformar BDLJE a EPSG:23030; C2B1A transforma geometrías con la operación ED50/WGS84 (41) y mide en EPSG:3035. Ambos usan el mismo snapshot y positivo-área, pero esta diferencia pequeña de topología/CRS debe conservarse y no forzarse."
+    },
+    "cross_province": {
+      "classification": "EXPLAINED_DIFFERENCE",
+      "difference": 2,
+      "es3": 2364,
+      "es4c2b1a": 2366,
+      "explanation": "ES-3 calculó hits tras transformar BDLJE a EPSG:23030; C2B1A transforma geometrías con la operación ED50/WGS84 (41) y mide en EPSG:3035. Ambos usan el mismo snapshot y positivo-área, pero esta diferencia pequeña de topología/CRS debe conservarse y no forzarse."
+    },
+    "es3_without_ccaa": 0,
+    "es3_without_province": 0
+  },
+  "extremes": {
+    "ccaa": [
+      {
+        "geometry_id": "esfire30:v1:1985:4358",
+        "territory_ids": [
+          "ES:CCAA:03",
+          "ES:CCAA:07",
+          "ES:CCAA:12"
+        ]
+      },
+      {
+        "geometry_id": "esfire30:v1:1989:1944",
+        "territory_ids": [
+          "ES:CCAA:03",
+          "ES:CCAA:07",
+          "ES:CCAA:12"
+        ]
+      },
+      {
+        "geometry_id": "esfire30:v1:1995:230",
+        "territory_ids": [
+          "ES:CCAA:07",
+          "ES:CCAA:08",
+          "ES:CCAA:13"
+        ]
+      },
+      {
+        "geometry_id": "esfire30:v1:1995:4422",
+        "territory_ids": [
+          "ES:CCAA:03",
+          "ES:CCAA:07",
+          "ES:CCAA:12"
+        ]
+      },
+      {
+        "geometry_id": "esfire30:v1:2000:2115",
+        "territory_ids": [
+          "ES:CCAA:03",
+          "ES:CCAA:07",
+          "ES:CCAA:12"
+        ]
+      },
+      {
+        "geometry_id": "esfire30:v1:2001:1134",
+        "territory_ids": [
+          "ES:CCAA:03",
+          "ES:CCAA:07",
+          "ES:CCAA:12"
+        ]
+      }
+    ],
+    "province": [
+      {
+        "geometry_id": "esfire30:v1:1985:1379",
+        "territory_ids": [
+          "ES:PROV:01",
+          "ES:PROV:09",
+          "ES:PROV:48"
+        ]
+      },
+      {
+        "geometry_id": "esfire30:v1:1985:3597",
+        "territory_ids": [
+          "ES:PROV:24",
+          "ES:PROV:27",
+          "ES:PROV:32"
+        ]
+      },
+      {
+        "geometry_id": "esfire30:v1:1985:4358",
+        "territory_ids": [
+          "ES:PROV:24",
+          "ES:PROV:27",
+          "ES:PROV:33"
+        ]
+      },
+      {
+        "geometry_id": "esfire30:v1:1985:8760",
+        "territory_ids": [
+          "ES:PROV:09",
+          "ES:PROV:34",
+          "ES:PROV:39"
+        ]
+      },
+      {
+        "geometry_id": "esfire30:v1:1988:4751",
+        "territory_ids": [
+          "ES:PROV:27",
+          "ES:PROV:32",
+          "ES:PROV:36"
+        ]
+      },
+      {
+        "geometry_id": "esfire30:v1:1989:1944",
+        "territory_ids": [
+          "ES:PROV:24",
+          "ES:PROV:27",
+          "ES:PROV:33"
+        ]
+      },
+      {
+        "geometry_id": "esfire30:v1:1989:3716",
+        "territory_ids": [
+          "ES:PROV:24",
+          "ES:PROV:27",
+          "ES:PROV:32"
+        ]
+      },
+      {
+        "geometry_id": "esfire30:v1:1989:9330",
+        "territory_ids": [
+          "ES:PROV:15",
+          "ES:PROV:27",
+          "ES:PROV:36"
+        ]
+      },
+      {
+        "geometry_id": "esfire30:v1:1993:101",
+        "territory_ids": [
+          "ES:PROV:12",
+          "ES:PROV:44",
+          "ES:PROV:46"
+        ]
+      },
+      {
+        "geometry_id": "esfire30:v1:1995:1713",
+        "territory_ids": [
+          "ES:PROV:27",
+          "ES:PROV:32",
+          "ES:PROV:36"
+        ]
+      },
+      {
+        "geometry_id": "esfire30:v1:1995:230",
+        "territory_ids": [
+          "ES:PROV:19",
+          "ES:PROV:28",
+          "ES:PROV:40"
+        ]
+      },
+      {
+        "geometry_id": "esfire30:v1:1995:2396",
+        "territory_ids": [
+          "ES:PROV:01",
+          "ES:PROV:09",
+          "ES:PROV:48"
+        ]
+      },
+      {
+        "geometry_id": "esfire30:v1:1995:4083",
+        "territory_ids": [
+          "ES:PROV:24",
+          "ES:PROV:27",
+          "ES:PROV:32"
+        ]
+      },
+      {
+        "geometry_id": "esfire30:v1:1995:4422",
+        "territory_ids": [
+          "ES:PROV:24",
+          "ES:PROV:27",
+          "ES:PROV:33"
+        ]
+      },
+      {
+        "geometry_id": "esfire30:v1:1998:3279",
+        "territory_ids": [
+          "ES:PROV:24",
+          "ES:PROV:27",
+          "ES:PROV:32"
+        ]
+      },
+      {
+        "geometry_id": "esfire30:v1:1998:3341",
+        "territory_ids": [
+          "ES:PROV:27",
+          "ES:PROV:32",
+          "ES:PROV:36"
+        ]
+      },
+      {
+        "geometry_id": "esfire30:v1:1999:1045",
+        "territory_ids": [
+          "ES:PROV:24",
+          "ES:PROV:32",
+          "ES:PROV:49"
+        ]
+      },
+      {
+        "geometry_id": "esfire30:v1:2000:2115",
+        "territory_ids": [
+          "ES:PROV:24",
+          "ES:PROV:27",
+          "ES:PROV:33"
+        ]
+      },
+      {
+        "geometry_id": "esfire30:v1:2001:1134",
+        "territory_ids": [
+          "ES:PROV:24",
+          "ES:PROV:27",
+          "ES:PROV:33"
+        ]
+      },
+      {
+        "geometry_id": "esfire30:v1:2005:1286",
+        "territory_ids": [
+          "ES:PROV:24",
+          "ES:PROV:32",
+          "ES:PROV:49"
+        ]
+      }
+    ]
+  },
+  "hierarchy": {
+    "coherent": 121887,
+    "examples": [],
+    "inconsistent": 0,
+    "province_relations": 121887
+  },
+  "input": {
+    "blocks": 37,
+    "es3_summary": "data/derived/spain/es3/results.json",
+    "geometry_count_expected": 119498,
+    "manifest": "data/derived/spain/es4c2b/esfire30_territory_relations/manifest.json",
+    "manifest_sha256": "969a5439f706147bb0f691056f4a55dda6653c814a7549c7b972bf0174415981",
+    "relations_raw_bytes": 168450360,
+    "territory_catalog": "data/territories/spain/territories-2026-01-01.json",
+    "touches_raw_bytes": 0
+  },
+  "integrity": {
+    "errors": [],
+    "valid": true
+  },
+  "relations": {
+    "ccaa": 120847,
+    "duplicate_examples": [],
+    "duplicate_logical_keys": 0,
+    "province": 121887,
+    "total": 242734,
+    "unique_geometry_ids": 119498
+  },
+  "report_sha256": "e5ba274c68df7ad9e9054b0d46bd1c5b34f2c73916f2af9fb10ad658a7ec27c9",
+  "runtime_implication": "El runtime solo necesita geometry_id → IDs CCAA/provincia para filtrar. Área, fracción, QA y provenance se mantienen en JSONL de auditoría fuera del payload web.",
+  "schema_version": "es4c2b1b-territory-relation-audit-v1",
+  "scope": "Audit only; no ESFire30 geometry was opened or intersected.",
+  "slivers": {
+    "buckets": {
+      "[0,1e-06)": 6,
+      "[0.0001,0.001)": 165,
+      "[0.001,0.01)": 506,
+      "[0.01,1]": 242001,
+      "[1e-05,0.0001)": 41,
+      "[1e-06,1e-05)": 15
+    },
+    "relation_count": 242734,
+    "smallest": [
+      {
+        "geometry_id": "esfire30:v1:1989:1858",
+        "intersection_area_m2": 0.031,
+        "intersection_fraction": 1.40574e-07,
+        "territory_id": "ES:CCAA:06",
+        "territory_type": "autonomous_community"
+      },
+      {
+        "geometry_id": "esfire30:v1:1989:1858",
+        "intersection_area_m2": 0.031,
+        "intersection_fraction": 1.40574e-07,
+        "territory_id": "ES:PROV:39",
+        "territory_type": "province"
+      },
+      {
+        "geometry_id": "esfire30:v1:2000:2115",
+        "intersection_area_m2": 2.817,
+        "intersection_fraction": 2.89792e-07,
+        "territory_id": "ES:CCAA:12",
+        "territory_type": "autonomous_community"
+      },
+      {
+        "geometry_id": "esfire30:v1:2000:2115",
+        "intersection_area_m2": 2.817,
+        "intersection_fraction": 2.89792e-07,
+        "territory_id": "ES:PROV:27",
+        "territory_type": "province"
+      },
+      {
+        "geometry_id": "esfire30:v1:2000:3403",
+        "intersection_area_m2": 0.108,
+        "intersection_fraction": 7.43445e-07,
+        "territory_id": "ES:CCAA:13",
+        "territory_type": "autonomous_community"
+      },
+      {
+        "geometry_id": "esfire30:v1:2000:3403",
+        "intersection_area_m2": 0.108,
+        "intersection_fraction": 7.43445e-07,
+        "territory_id": "ES:PROV:28",
+        "territory_type": "province"
+      },
+      {
+        "geometry_id": "esfire30:v1:2012:1407",
+        "intersection_area_m2": 0.141,
+        "intersection_fraction": 1.541535e-06,
+        "territory_id": "ES:CCAA:03",
+        "territory_type": "autonomous_community"
+      },
+      {
+        "geometry_id": "esfire30:v1:2012:1407",
+        "intersection_area_m2": 0.141,
+        "intersection_fraction": 1.541535e-06,
+        "territory_id": "ES:PROV:33",
+        "territory_type": "province"
+      },
+      {
+        "geometry_id": "esfire30:v1:2000:3682",
+        "intersection_area_m2": 0.363,
+        "intersection_fraction": 2.327808e-06,
+        "territory_id": "ES:PROV:09",
+        "territory_type": "province"
+      },
+      {
+        "geometry_id": "esfire30:v1:1990:1046",
+        "intersection_area_m2": 1.103,
+        "intersection_fraction": 2.44567e-06,
+        "territory_id": "ES:PROV:27",
+        "territory_type": "province"
+      },
+      {
+        "geometry_id": "esfire30:v1:1998:3341",
+        "intersection_area_m2": 9.686,
+        "intersection_fraction": 2.808042e-06,
+        "territory_id": "ES:PROV:32",
+        "territory_type": "province"
+      },
+      {
+        "geometry_id": "esfire30:v1:2001:1878",
+        "intersection_area_m2": 52.499,
+        "intersection_fraction": 3.237524e-06,
+        "territory_id": "ES:PROV:50",
+        "territory_type": "province"
+      },
+      {
+        "geometry_id": "esfire30:v1:1995:761",
+        "intersection_area_m2": 2.464,
+        "intersection_fraction": 4.7706e-06,
+        "territory_id": "ES:CCAA:07",
+        "territory_type": "autonomous_community"
+      },
+      {
+        "geometry_id": "esfire30:v1:1995:761",
+        "intersection_area_m2": 2.464,
+        "intersection_fraction": 4.7706e-06,
+        "territory_id": "ES:PROV:49",
+        "territory_type": "province"
+      },
+      {
+        "geometry_id": "esfire30:v1:2016:65",
+        "intersection_area_m2": 1.043,
+        "intersection_fraction": 4.814399e-06,
+        "territory_id": "ES:PROV:21",
+        "territory_type": "province"
+      },
+      {
+        "geometry_id": "esfire30:v1:1985:11113",
+        "intersection_area_m2": 25.918,
+        "intersection_fraction": 6.546892e-06,
+        "territory_id": "ES:CCAA:12",
+        "territory_type": "autonomous_community"
+      },
+      {
+        "geometry_id": "esfire30:v1:1985:11113",
+        "intersection_area_m2": 25.918,
+        "intersection_fraction": 6.546892e-06,
+        "territory_id": "ES:PROV:27",
+        "territory_type": "province"
+      },
+      {
+        "geometry_id": "esfire30:v1:2016:1568",
+        "intersection_area_m2": 0.43,
+        "intersection_fraction": 7.348749e-06,
+        "territory_id": "ES:PROV:42",
+        "territory_type": "province"
+      },
+      {
+        "geometry_id": "esfire30:v1:1996:2350",
+        "intersection_area_m2": 1.04,
+        "intersection_fraction": 7.669552e-06,
+        "territory_id": "ES:CCAA:12",
+        "territory_type": "autonomous_community"
+      },
+      {
+        "geometry_id": "esfire30:v1:1996:2350",
+        "intersection_area_m2": 1.04,
+        "intersection_fraction": 7.669552e-06,
+        "territory_id": "ES:PROV:27",
+        "territory_type": "province"
+      }
+    ],
+    "thresholds": [
+      1e-06,
+      1e-05,
+      0.0001,
+      0.001,
+      0.01
+    ]
+  },
+  "special_territories": {
+    "balears": {
+      "ccaa_id": "ES:CCAA:04",
+      "geometries": 0,
+      "geometries_also_intersecting_other_ccaa": 0,
+      "interpretation": "sin cobertura ESFire30: el inventario ES-1 describe el snapshot como mainland Spain; cero relaciones no significa cero incendios.",
+      "province_ids": [
+        "ES:PROV:07"
+      ],
+      "relations": 0
+    },
+    "canarias": {
+      "ccaa_id": "ES:CCAA:05",
+      "geometries": 0,
+      "interpretation": "ESFire30 no cubre Canarias; cero relaciones no significa cero incendios.",
+      "relations": 0
+    },
+    "ceuta": {
+      "ccaa_relations": 0,
+      "interpretation": "sin cobertura ESFire30: el inventario ES-1 describe el snapshot como mainland Spain; cero relaciones no significa cero incendios.",
+      "province_relations": 0,
+      "territory_id": "ES:CCAA:18",
+      "type": "autonomous_city"
+    },
+    "melilla": {
+      "ccaa_relations": 0,
+      "interpretation": "sin cobertura ESFire30: el inventario ES-1 describe el snapshot como mainland Spain; cero relaciones no significa cero incendios.",
+      "province_relations": 0,
+      "territory_id": "ES:CCAA:19",
+      "type": "autonomous_city"
+    }
+  },
+  "zero_relation": {
+    "classification": "none",
+    "zero_both": 0,
+    "zero_ccaa": 0,
+    "zero_province": 0
+  }
+}
