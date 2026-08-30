@@ -3,7 +3,7 @@ import { EGIFInitialLoader } from "./egif_initial_loader.mjs";
 import { EGIFDetailLoader, locateRecord, pageOfInitialRows, recordMatchesInitialScope } from "./egif_detail_loader.mjs";
 import { canonicalTerritoryName, TERRITORY_OPTIONS } from "./territory_catalog.mjs";
 import { PROVINCES_BY_COMMUNITY, PROVINCE_OPTIONS } from "./province_catalog.mjs";
-import { createRuntimeState, effectiveCoverage, reduceRuntimeState, SOURCE_COVERAGE } from "./runtime_state.mjs";
+import { createRuntimeState, effectiveCoverage, reduceRuntimeState, selectedTerritoryId, SOURCE_COVERAGE } from "./runtime_state.mjs";
 import { parseStateHash, serializeState } from "./state_serialization.mjs";
 import { addOfficialTerritoryLayer } from "./territory_layer.mjs";
 import { addOfficialProvinceLayer } from "./province_layer.mjs";
@@ -101,6 +101,23 @@ let latestMunicipalityResult = null;
 let esfireTerritory = { status: "national", code: null, property_prefix: null, geometry_ids: null, geometry_id_set: null, strategy: null, metrics: null, expression_bytes: 0, filter_ms: 0, error: null };
 let selectedGeometryProperties = null;
 let lastEsfireFilterStartedAt = null;
+// Estado de interfaz derivado, no serializado: las fuentes no comparten
+// errores, cachés ni ciclos de carga.
+const sourceLoadState = { egif: "idle", esfire30: "idle", municipality: "idle" };
+const sourceLoadGeneration = { egif: 0, esfire30: 0, municipality: 0 };
+
+function beginSourceLoad(sourceId) {
+  sourceLoadGeneration[sourceId] += 1;
+  sourceLoadState[sourceId] = "loading";
+  renderRuntimeState();
+  return sourceLoadGeneration[sourceId];
+}
+
+function finishSourceLoad(sourceId, generation, status) {
+  if (sourceLoadGeneration[sourceId] !== generation) return;
+  sourceLoadState[sourceId] = status;
+  renderRuntimeState();
+}
 
 for (const territory of TERRITORY_OPTIONS) {
   const option = document.createElement("option");
@@ -226,8 +243,9 @@ function municipalParentId() {
 }
 
 async function refreshMunicipalGeometry({ fit = false, restore = false } = {}) {
+  const generation = beginSourceLoad("municipality");
   if (!state.province_id && !(state.autonomous_community_id && !PROVINCES_BY_COMMUNITY.has(state.autonomous_community_id))) {
-    municipalityLoader.cancel(); municipalityLayer?.clear(); municipalityScopeContainer.hidden = true; latestMunicipalityResult = { status: "not_required" }; return latestMunicipalityResult;
+    municipalityLoader.cancel(); municipalityLayer?.clear(); municipalityScopeContainer.hidden = true; latestMunicipalityResult = { status: "not_required" }; finishSourceLoad("municipality", generation, "idle"); return latestMunicipalityResult;
   }
   try {
     const loaded = await municipalityLoader.loadForParent({ provinceId: state.province_id, autonomousCommunityId: state.autonomous_community_id });
@@ -237,11 +255,11 @@ async function refreshMunicipalGeometry({ fit = false, restore = false } = {}) {
     municipalityLayer?.setCollection(loaded.shard?.data || null);
     municipalityLayer?.setSelected(state.municipality_id);
     if (fit && state.municipality_id && !restore) municipalityLayer?.fit(municipalityCatalog.byId.get(state.municipality_id)?.bounds);
-    latestMunicipalityResult = loaded; return loaded;
+    latestMunicipalityResult = loaded; finishSourceLoad("municipality", generation, "ready"); return loaded;
   } catch (error) {
     municipalityLayer?.clear(); municipalityScopeContainer.hidden = true;
     territoryStatus.textContent = `Municipios BDLJE no disponibles: ${error.message}. Las fuentes restantes continúan independientes.`;
-    latestMunicipalityResult = { status: "error", error: String(error) }; return latestMunicipalityResult;
+    latestMunicipalityResult = { status: "error", error: String(error) }; finishSourceLoad("municipality", generation, "error"); return latestMunicipalityResult;
   }
 }
 
@@ -289,18 +307,19 @@ function applyFilters() {
 }
 
 async function refreshEsfireTerritoryFilter() {
+  const generation = beginSourceLoad("esfire30");
   const municipalityId = state.municipality_id;
   const territoryId = municipalityId ? (state.province_id || state.autonomous_community_id || "ES") : (state.province_id || state.autonomous_community_id || "ES");
   if (!state.esfire30_visible || !effectiveCoverage(state, "esfire30")) {
     municipalityEsfireIndexLoader.cancel();
     esfireTerritory = { status: "inactive", code: null, property_prefix: null, geometry_ids: null, geometry_id_set: null, strategy: null, metrics: null, expression_bytes: 0, filter_ms: 0, error: null };
-    applyFilters(); return esfireTerritory;
+    applyFilters(); finishSourceLoad("esfire30", generation, "idle"); return esfireTerritory;
   }
   if (municipalityId) {
     if (ESFIRE30_TERRITORY_OUT_OF_COVERAGE.has(territoryId)) {
       municipalityEsfireIndexLoader.cancel();
       esfireTerritory = { status: "no_coverage", code: null, property_prefix: null, geometry_ids: null, geometry_id_set: null, strategy: MUNICIPAL_INDEX_STRATEGY, metrics: null, expression_bytes: 0, filter_ms: 0, error: null };
-      applyFilters(); return esfireTerritory;
+      applyFilters(); finishSourceLoad("esfire30", generation, "ready"); return esfireTerritory;
     }
     const started = performance.now();
     try {
@@ -319,16 +338,16 @@ async function refreshEsfireTerritoryFilter() {
       // relación administrativa: sólo puede permanecer si figura en la lista
       // de intersección positiva del municipio actual.
       if (state.selected_geometry_id && !esfireTerritory.geometry_id_set.has(state.selected_geometry_id)) clearGeometrySelection();
-      return esfireTerritory;
+      finishSourceLoad("esfire30", generation, "ready"); return esfireTerritory;
     } catch (error) {
       esfireTerritory = { status: "error", code: null, property_prefix: null, geometry_ids: null, geometry_id_set: null, strategy: MUNICIPAL_INDEX_STRATEGY, metrics: null, expression_bytes: 0, filter_ms: 0, error: String(error) };
-      applyFilters(); return esfireTerritory;
+      applyFilters(); finishSourceLoad("esfire30", generation, "error"); return esfireTerritory;
     }
   }
   municipalityEsfireIndexLoader.cancel();
   if (territoryId === "ES") {
     esfireTerritory = { status: "national", code: null, property_prefix: null, geometry_ids: null, geometry_id_set: null, strategy: null, metrics: null, expression_bytes: 0, filter_ms: 0, error: null };
-    applyFilters(); return esfireTerritory;
+    applyFilters(); finishSourceLoad("esfire30", generation, "ready"); return esfireTerritory;
   }
   const encoded = territoryCode(territoryId);
   const started = performance.now();
@@ -339,7 +358,7 @@ async function refreshEsfireTerritoryFilter() {
   esfireTerritory.filter_ms = performance.now() - started;
   const current = selectedGeometryProperties || (state.selected_geometry_id ? findLoadedGeometry(state.selected_geometry_id)?.properties : null);
   if (state.selected_geometry_id && current && !featureMatchesTerritory(current)) clearGeometrySelection();
-  return esfireTerritory;
+  finishSourceLoad("esfire30", generation, esfireTerritory.status === "error" ? "error" : "ready"); return esfireTerritory;
 }
 
 async function applyYears() {
@@ -450,14 +469,15 @@ function sourceCoverageDescription(sourceId) {
   const source = SOURCE_COVERAGE[sourceId];
   const range = effectiveCoverage(state, sourceId);
   const visible = state[`${sourceId}_visible`];
-  if (!visible) return `${source.label}: desactivada`;
-  if (!range) return `${source.label}: sin cobertura para ${state.from}–${state.to}`;
+  const loading = sourceLoadState[sourceId] === "loading" ? " · cargando" : sourceLoadState[sourceId] === "error" ? " · error aislado" : "";
+  if (!visible) return `${source.label}: desactivada${loading}`;
+  if (!range) return `${source.label}: sin cobertura para ${state.from}–${state.to}${loading}`;
   const partial = range.from !== state.from || range.to !== state.to;
   const basic = `${source.label}: ${partial ? `cobertura efectiva ${range.from}–${range.to}` : `cobertura ${range.from}–${range.to}`}`;
-  if (sourceId === "esfire30" && esfireTerritory.status === "no_coverage") return `${basic} · sin cobertura ESFire30 para el territorio seleccionado`;
-  if (sourceId === "esfire30" && esfireTerritory.status === "municipality" && esfireTerritory.geometry_ids?.length === 0) return `${basic} · sin perímetros ESFire30 que intersecten este municipio para la cobertura disponible`;
-  if (sourceId === "esfire30" && esfireTerritory.status === "error") return `${basic} · índice municipal ESFire30 no disponible`;
-  return basic;
+  if (sourceId === "esfire30" && esfireTerritory.status === "no_coverage") return `${basic} · sin cobertura ESFire30 para el territorio seleccionado${loading}`;
+  if (sourceId === "esfire30" && esfireTerritory.status === "municipality" && esfireTerritory.geometry_ids?.length === 0) return `${basic} · sin perímetros ESFire30 que intersecten este municipio para la cobertura disponible${loading}`;
+  if (sourceId === "esfire30" && esfireTerritory.status === "error") return `${basic} · índice municipal ESFire30 no disponible${loading}`;
+  return `${basic}${loading}`;
 }
 
 function renderRuntimeState() {
@@ -481,7 +501,7 @@ function renderRuntimeState() {
     : esfireTerritory.status === "municipality" ? "perímetros que intersectan el territorio municipal actual"
     : "índice municipal ESFire30 cargando o no disponible"
     : esfireTerritory.status === "no_coverage" ? "sin cobertura ESFire30" : "perímetros que intersectan el territorio seleccionado";
-  runtimeStateSummary.textContent = `Periodo solicitado: ${state.from}–${state.to} · ámbito: ${territory} · fuentes: ESFire30 ${state.esfire30_visible ? "activa" : "desactivada"}, EGIF ${state.egif_visible ? "activa" : "desactivada"} · EGIF INITIAL: ${activeInitialAssets.length} asset(s), ${egifSummary?.summary?.records ?? egifSummary?.records ?? 0} partes · ESFire30: ${esfireScope} · visibles en viewport: ${formatNumber(esfireVisible)}.`;
+  runtimeStateSummary.textContent = `Periodo solicitado: ${state.from}–${state.to} · ámbito: ${territory} · fuentes: ESFire30 ${sourceLoadState.esfire30}, EGIF ${sourceLoadState.egif}, municipios ${sourceLoadState.municipality} · EGIF INITIAL: ${activeInitialAssets.length} asset(s), ${egifSummary?.summary?.records ?? egifSummary?.records ?? 0} partes · ESFire30: ${esfireScope} · visibles en viewport: ${formatNumber(esfireVisible)}.`;
   territorySemantics.textContent = state.municipality_id
     ? "Límite municipal BDLJE actual (snapshot 2026). EGIF: partes enlazadas documentalmente al municipio canónico; no implica contención física histórica. ESFire30 1985–2021: perímetros que intersectan este límite municipal actual; no son municipio EGIF, municipio histórico, origen ni punto de ignición."
     : "El ámbito resalta límites oficiales, filtra EGIF administrativamente y muestra perímetros ESFire30 que intersectan el territorio seleccionado.";
@@ -497,7 +517,7 @@ function coverageStatePayload() {
       status: !state[`${sourceId}_visible`] ? "disabled" : range ? "covered" : "no_coverage",
     };
   };
-  return { requested_range: { from: state.from, to: state.to }, territory_id: state.municipality_id || state.province_id || state.autonomous_community_id || "ES", esfire30: { ...describe("esfire30"), territory_filter_status: esfireTerritory.status, municipality_filter_pending: false, municipality_geometry_ids: esfireTerritory.geometry_ids?.length ?? null }, egif: describe("egif") };
+  return { requested_range: { from: state.from, to: state.to }, territory_id: selectedTerritoryId(state), source_load_state: { ...sourceLoadState }, esfire30: { ...describe("esfire30"), territory_filter_status: esfireTerritory.status, municipality_filter_pending: sourceLoadState.esfire30 === "loading" && Boolean(state.municipality_id), municipality_geometry_ids: esfireTerritory.geometry_ids?.length ?? null }, egif: describe("egif") };
 }
 
 function stateUrl() {
@@ -682,6 +702,7 @@ function renderEgifResult(result) {
 }
 
 async function refreshEgif() {
+  const generation = beginSourceLoad("egif");
   const coverage = effectiveCoverage(state, "egif");
   if (!state.egif_visible || !coverage) {
     egifLoader.cancel();
@@ -694,7 +715,7 @@ async function refreshEgif() {
       : "EGIF desactivado; no se cargan assets INITIAL.";
     latestEgifResult = { status: "inactive", kind: "no_coverage", summary: { records: 0, asset_count: 0 } };
     renderRuntimeState();
-    return latestEgifResult;
+    finishSourceLoad("egif", generation, "idle"); return latestEgifResult;
   }
   activeInitialAssets = [];
   egifRecordBrowser.hidden = true;
@@ -704,12 +725,12 @@ async function refreshEgif() {
     const result = await egifLoader.loadScope({ territoryId, fromYear: coverage.from, toYear: coverage.to, provinceId: state.province_id, municipalityId: state.municipality_id });
     renderEgifResult(result);
     if (state.selected_egif_record_id && !recordMatchesInitialScope(activeInitialAssets, state.selected_egif_record_id, state.from, state.to, state.province_id, state.municipality_id)) clearEgifSelection();
-    return result;
+    if (result.status !== "stale") finishSourceLoad("egif", generation, "ready"); return result;
   } catch (error) {
     egifStatus.textContent = `EGIF no disponible: ${error.message}. ESFire30 continúa operativo.`;
     latestEgifResult = { status: "error", error: String(error) };
     renderRuntimeState();
-    return latestEgifResult;
+    finishSourceLoad("egif", generation, "error"); return latestEgifResult;
   }
 }
 
@@ -1043,6 +1064,50 @@ async function runSmoke(name, initialReady = false) {
     await waitForIdle();
     municipalityInteraction = { mode: params.get("municipality_click") ? "click_feature" : "selector", municipality_id: state.municipality_id, parent_id: municipalParentId(), center: [...state.center], zoom: state.zoom, filter_to_idle_ms: lastEsfireFilterStartedAt == null ? null : performance.now() - lastEsfireFilterStartedAt };
   }
+  let consolidatedSelection = null;
+  if (params.get("c3a_select_both") === "1") {
+    // Las dos selecciones se provocan por rutas normales y se conservan como
+    // identidades independientes: una ficha EGIF no destaca un perímetro.
+    const recordId = activeRecordId();
+    const egif = recordId ? await selectEgifRecord(recordId) : { status: "missing_initial" };
+    const geometry = selectFirstRenderedFeature();
+    consolidatedSelection = {
+      egif_record_id: state.selected_egif_record_id,
+      geometry_id: state.selected_geometry_id,
+      egif_status: egif.status,
+      geometry,
+    };
+  }
+  let consolidatedRestore = null;
+  if (params.get("c3a_roundtrip") === "1") {
+    const before = serializeState(state);
+    history.replaceState({ prototype: "es4c", consolidation: true }, "", `${location.pathname}${location.search}${before}`);
+    await restoreStateFromHash();
+    await waitForIdle();
+    consolidatedRestore = {
+      hash: before,
+      center: [...state.center], zoom: state.zoom,
+      selected_geometry_id: state.selected_geometry_id,
+      selected_egif_record_id: state.selected_egif_record_id,
+    };
+  }
+  let consolidatedRapidTransition = null;
+  if (params.get("c3a_rapid_transition") === "1") {
+    // Las cargas se solapan a propósito. La última transición territorial es
+    // Elx y los loaders deben impedir que Galicia escriba resultados stale.
+    const galicia = setEgifScope("ES:CCAA:12"); await Promise.resolve();
+    const valenciana = setEgifScope("ES:CCAA:10"); await Promise.resolve();
+    const alacant = setProvinceScope("ES:PROV:03", "ES:CCAA:10"); await Promise.resolve();
+    const elx = setMunicipalityScope("ES:MUN:03065");
+    const results = await Promise.all([galicia, valenciana, alacant, elx]);
+    await waitForIdle();
+    consolidatedRapidTransition = {
+      results: results.map((value) => value?.status || null),
+      final_territory: selectedTerritoryId(state),
+      initial_assets: activeInitialAssets.map((asset) => asset.asset.asset_id),
+      municipality_index_parent_assets: [...municipalityEsfireIndexLoader.parentCache.keys()],
+    };
+  }
   let municipalityIndexSequence = null;
   if (params.get("municipality_sequence")) {
     const ids = params.get("municipality_sequence").split(",").filter(Boolean);
@@ -1200,6 +1265,7 @@ async function runSmoke(name, initialReady = false) {
       sequence: municipalityIndexSequence,
       selection_invalidation: municipalitySelectionInvalidation,
     },
+    consolidation: { selection: consolidatedSelection, restore: consolidatedRestore, rapid_transition: consolidatedRapidTransition },
     coverage: coverageStatePayload(),
     esfire30_territory_filter: {
       status: esfireTerritory.status, code: esfireTerritory.code, property_prefix: esfireTerritory.property_prefix,

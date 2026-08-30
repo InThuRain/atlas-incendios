@@ -161,6 +161,19 @@ C2B3B1_SMOKES = {
     "p_selection_invalidation": {"map": "spain", "from": 1985, "to": 2021, "scope": "ES", "municipality_select": "ES:MUN:33011", "municipality_selection_change": "ES:MUN:33001", "municipal_index": "parent", "municipal_ids": 1306, "selection_invalidation": True},
     "q_restore": {"map": "spain", "from": 1993, "to": 1993, "scope": "ES", "territory_restore": True, "state_hash": "#es4c-state-v1=eyJ2IjoiZXM0Yy1zdGF0ZS12MSIsIm1hcCI6eyJsYXQiOjM4LjE3OTEsImxvbiI6LTAuNzE4OTIsInoiOjExLjQ4fSwidGltZSI6eyJmcm9tIjoxOTkzLCJ0byI6MTk5M30sInRlcnJpdG9yeSI6eyJzY29wZSI6Im11bmljaXBhbGl0eSIsImF1dG9ub21vdXNfY29tbXVuaXR5X2lkIjoiRVM6Q0NBQToxMCIsInByb3ZpbmNlX2lkIjoiRVM6UFJPVjowMyIsIm11bmljaXBhbGl0eV9pZCI6IkVTOk1VTjowMzA2NSJ9LCJzb3VyY2VzIjp7ImVzZmlyZTMwIjp0cnVlLCJlZ2lmIjp0cnVlfSwic2VsZWN0aW9ucyI6eyJnZW9tZXRyeV9pZCI6ImVzZmlyZTMwOnYxOjE5OTM6Nzc3IiwiZWdpZl9yZWNvcmRfaWQiOm51bGx9fQ", "municipal_index": "parent", "municipal_ids": 6, "expect_geometry": False, "restore_geometry_id": "esfire30:v1:1993:777"},
 }
+C3A_SMOKES = {
+    "a_elx_end_to_end": {"map": "pais_valencia", "from": 1993, "to": 2002, "scope": "ES", "municipality_select": "ES:MUN:03065", "municipal_index": "parent", "municipal_ids": 6, "c3a_select_both": True, "c3a_roundtrip": True, "require_both_selections": True, "require_restore": True},
+    "b_galicia_ourense": {"map": "galicia", "from": 1993, "to": 2002, "scope": "ES", "municipality_select": "ES:MUN:32054", "municipal_index": "parent", "municipal_ids": 152},
+    "c_cangas": {"map": "spain", "from": 1985, "to": 2021, "scope": "ES", "municipality_select": "ES:MUN:33011", "municipal_index": "parent", "municipal_ids": 2610},
+    "d_canarias": {"map": "spain", "from": 1993, "to": 2002, "scope": "ES", "municipality_select": "ES:MUN:35016", "municipal_index": "parent", "expect_geometry": False, "esfire_status": "covered", "municipal_no_coverage": True},
+    "e_agost_zero_relations": {"map": "pais_valencia", "from": 1993, "to": 2002, "scope": "ES", "municipality_select": "ES:MUN:03002", "municipal_index": "parent", "municipal_ids": 0, "expect_geometry": False},
+    "f_rapid_galicia_to_elx": {"map": "spain", "from": 1993, "to": 2002, "scope": "ES", "c3a_rapid_transition": True, "expected_final_territory": "ES:MUN:03065", "municipal_index": "parent"},
+    # El smoke móvil de Elx comprueba navegación, filtros, panel y ficha EGIF;
+    # la selección ESFire30 móvil se verifica en Cangas, cuyo viewport tiene
+    # features renderizadas de forma reproducible.
+    "g_mobile_elx": {"map": "pais_valencia", "from": 1993, "to": 2002, "scope": "ES", "municipality_select": "ES:MUN:03065", "municipal_index": "parent", "municipal_ids": 6, "expect_geometry": False, "mobile_only": True},
+    "h_mobile_cangas": {"map": "spain", "from": 1985, "to": 2021, "scope": "ES", "municipality_select": "ES:MUN:33011", "municipal_index": "parent", "municipal_ids": 2610, "mobile_only": True},
+}
 
 
 def sha256(path: Path) -> str:
@@ -387,6 +400,12 @@ def run_case(chrome: str, scenario: str, device: str, egif_config: dict | None =
                 query["territory_up"] = "1"
             if egif_config.get("select_geometry_id"):
                 query["select_geometry_id"] = egif_config["select_geometry_id"]
+            if egif_config.get("c3a_select_both"):
+                query["c3a_select_both"] = "1"
+            if egif_config.get("c3a_roundtrip"):
+                query["c3a_roundtrip"] = "1"
+            if egif_config.get("c3a_rapid_transition"):
+                query["c3a_rapid_transition"] = "1"
         url = f"http://127.0.0.1:{server.server_port}/prototypes/es4c/index.html?{urlencode(query)}"
         if egif_config and egif_config.get("corrupt_hash"):
             url += egif_config["corrupt_hash"]
@@ -420,14 +439,16 @@ def validate_results(payload: dict) -> list[str]:
         label = f"{result.get('scenario')}::{result.get('device')}"
         if result.get("errors"):
             errors.append(f"{label}: {result['errors']}")
-        expect_geometry = result.get("expected_egif", {}).get("expect_geometry", True)
-        if expect_geometry and not result.get("selection", {}).get("geometry_id"):
+        expected_egif = result.get("expected_egif", {})
+        consolidated_geometry = (result.get("consolidation", {}).get("selection") or {}).get("geometry_id")
+        expect_geometry = expected_egif.get("expect_geometry", True)
+        if expect_geometry and not (result.get("selection", {}).get("geometry_id") or consolidated_geometry):
             errors.append(f"{label}: no se seleccionó geometry_id")
         # En alcance municipal, el smoke mueve el mapa al primer vértice que
         # devuelve una tesela; al siguiente zoom puede caer fuera de viewport
         # aunque el filtro, la selección y el geometry_id sean correctos. No
         # es una prueba de identidad ni una condición de C2B3B1.
-        require_stable_geometry = result.get("expected_egif", {}).get("expect_stable_geometry", True) and result.get("state", {}).get("territory_scope") != "municipality"
+        require_stable_geometry = expected_egif.get("expect_stable_geometry", True) and result.get("state", {}).get("territory_scope") != "municipality" and not expected_egif.get("c3a_select_both")
         if expect_geometry and require_stable_geometry and not result.get("selection", {}).get("stable_at_next_zoom"):
             errors.append(f"{label}: geometry_id no se mantuvo visible al siguiente zoom")
         stats = result.get("server_range_stats", {})
@@ -437,7 +458,6 @@ def validate_results(payload: dict) -> list[str]:
             errors.append(f"{label}: se descargó PMTiles completo")
         if any(status != 206 for status in stats.get("statuses", [])):
             errors.append(f"{label}: estados PMTiles distintos de 206")
-        expected_egif = result.get("expected_egif")
         if expected_egif:
             egif = result.get("egif", {})
             if expected_egif.get("egif_status") == "disabled" and egif.get("status") != "inactive":
@@ -446,7 +466,7 @@ def validate_results(payload: dict) -> list[str]:
                 errors.append(f"{label}: EGIF no completó: {egif}")
             elif "records" in expected_egif and egif.get("summary", {}).get("records") != expected_egif["records"]:
                 errors.append(f"{label}: recuento EGIF inesperado")
-            if not expected_egif.get("detail") and expected_egif.get("roundtrip") not in ("egif", "both") and stats.get("detail_requests") != 0:
+            if not expected_egif.get("detail") and not expected_egif.get("c3a_select_both") and expected_egif.get("roundtrip") not in ("egif", "both") and stats.get("detail_requests") != 0:
                 errors.append(f"{label}: DETAIL fue solicitado en C1B1")
             if "initial_requests" in expected_egif and stats.get("initial_requests") != expected_egif["initial_requests"]:
                 errors.append(f"{label}: assets INITIAL inesperados: {stats.get('initial_requests')}")
@@ -554,6 +574,19 @@ def validate_results(payload: dict) -> list[str]:
                         errors.append(f"{label}: selección ESFire30 no se invalidó al cambiar municipio")
                 if expected_egif.get("restore_geometry_id") and result.get("state", {}).get("selected_geometry_id") != expected_egif["restore_geometry_id"]:
                     errors.append(f"{label}: no restauró geometry_id municipal compatible")
+            if expected_egif.get("municipal_no_coverage") and result.get("esfire30_territory_filter", {}).get("status") != "no_coverage":
+                errors.append(f"{label}: municipio sin cobertura quedó como cero relaciones")
+            consolidation = result.get("consolidation", {})
+            if expected_egif.get("require_both_selections"):
+                selected = consolidation.get("selection") or {}
+                if not selected.get("geometry_id") or not selected.get("egif_record_id"):
+                    errors.append(f"{label}: no coexistieron selecciones EGIF/ESFire30")
+            if expected_egif.get("require_restore"):
+                restored = consolidation.get("restore") or {}
+                if not restored.get("selected_geometry_id") or not restored.get("selected_egif_record_id"):
+                    errors.append(f"{label}: restore consolidado no restauró ambas selecciones")
+            if expected_egif.get("expected_final_territory") and (consolidation.get("rapid_transition") or {}).get("final_territory") != expected_egif["expected_final_territory"]:
+                errors.append(f"{label}: transición rápida dejó ámbito stale")
             if expected_egif.get("detail"):
                 detail = result.get("egif_detail", {})
                 if not detail or detail.get("status") == "missing_initial":
@@ -611,6 +644,8 @@ def main() -> int:
     parser.add_argument("--all-c2b2b2-smokes", action="store_true")
     parser.add_argument("--c2b3b1-smoke", choices=tuple(C2B3B1_SMOKES), action="append")
     parser.add_argument("--all-c2b3b1-smokes", action="store_true")
+    parser.add_argument("--c3a-smoke", choices=tuple(C3A_SMOKES), action="append")
+    parser.add_argument("--all-c3a-smokes", action="store_true")
     parser.add_argument("--output", type=Path, default=ROOT / "prototypes/es4c/smoke-results.json")
     parser.add_argument("--check", action="store_true")
     parser.add_argument("--serve", action="store_true", help="sirve el prototipo interactivo local con HTTP Range")
@@ -642,7 +677,8 @@ def main() -> int:
     requested_c2b2 = args.c2b2_smoke or (tuple(C2B2_SMOKES) if args.all_c2b2_smokes else ())
     requested_c2b2b2 = args.c2b2b2_smoke or (tuple(C2B2B2_SMOKES) if args.all_c2b2b2_smokes else ())
     requested_c2b3b1 = args.c2b3b1_smoke or (tuple(C2B3B1_SMOKES) if args.all_c2b3b1_smokes else ())
-    scenarios = args.scenario or (SCENARIOS if args.all_smokes else (() if (requested_egif or requested_detail or requested_c1c or requested_c1c2 or requested_c2a or requested_c2a2 or requested_c2a3c or requested_c2b2 or requested_c2b2b2 or requested_c2b3b1) else ("spain",)))
+    requested_c3a = args.c3a_smoke or (tuple(C3A_SMOKES) if args.all_c3a_smokes else ())
+    scenarios = args.scenario or (SCENARIOS if args.all_smokes else (() if (requested_egif or requested_detail or requested_c1c or requested_c1c2 or requested_c2a or requested_c2a2 or requested_c2a3c or requested_c2b2 or requested_c2b2b2 or requested_c2b3b1 or requested_c3a) else ("spain",)))
     devices = []
     if args.desktop or not args.mobile:
         devices.append("desktop")
@@ -705,6 +741,12 @@ def main() -> int:
             rows.append(run_case(args.chrome, config["map"], device, config))
     for name in requested_c2b3b1:
         config = C2B3B1_SMOKES[name]
+        devices_for_case = ["mobile_390x844"] if config.get("mobile_only") else ["desktop"]
+        for device in devices_for_case:
+            print(f"{name}::{device}: ejecutando", flush=True)
+            rows.append(run_case(args.chrome, config["map"], device, config))
+    for name in requested_c3a:
+        config = C3A_SMOKES[name]
         devices_for_case = ["mobile_390x844"] if config.get("mobile_only") else ["desktop"]
         for device in devices_for_case:
             print(f"{name}::{device}: ejecutando", flush=True)

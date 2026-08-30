@@ -46,6 +46,11 @@ export function createRuntimeState(overrides = {}) {
   };
 }
 
+/** Devuelve el nivel territorial efectivo sin derivarlo de geometrías. */
+export function selectedTerritoryId(state) {
+  return state.municipality_id || state.province_id || state.autonomous_community_id || "ES";
+}
+
 function geometryStillVisible(state) {
   if (!state.selected_geometry_id) return true;
   if (!Number.isInteger(state.selected_geometry_year)) return true;
@@ -92,8 +97,13 @@ export function reduceRuntimeState(state, event) {
 
   if (!geometryStillVisible(next)) Object.assign(next, { selected_geometry_id: null, selected_geometry_year: null });
   if (!recordStillVisible(next)) Object.assign(next, { selected_egif_record_id: null, selected_egif_year: null });
+  // Un parte seleccionado es administrativo: cualquier cambio territorial
+  // invalida inmediatamente la ficha, antes de que el loader columnar termine
+  // de comprobar el nuevo ámbito. La selección ESFire30 se valida por su
+  // filtro espacial en el runtime, no por una relación con EGIF.
   if ((event.type === "set_scope" && state.autonomous_community_id !== next.autonomous_community_id)
-    || (event.type === "set_province" && state.province_id !== next.province_id)) {
+    || (event.type === "set_province" && state.province_id !== next.province_id)
+    || (event.type === "set_municipality" && state.municipality_id !== next.municipality_id)) {
     Object.assign(next, { selected_egif_record_id: null, selected_egif_year: null });
   }
   return next;
