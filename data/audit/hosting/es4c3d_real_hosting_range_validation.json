@@ -1,0 +1,322 @@
+{
+  "schema_version": "es4c3d-real-hosting-range-validation-v1",
+  "phase": "ES-4C3D",
+  "hosting": {
+    "stable_url": "https://github.com/InThuRain/atlas-incendios/releases/download/national-prototype-staging-es4c3d/esfire30-national-fidelity-territories.pmtiles",
+    "classification": "NOT_RECOMMENDED"
+  },
+  "asset": {
+    "local_path": "data/derived/spain/es4c2b/pmtiles/esfire30-national-fidelity-territories.pmtiles",
+    "bytes": 63052056,
+    "sha256": "3c6eb10ba146008cdabf36646d48a4c7a92c1c1357ad90679f6b5dce42013cfe",
+    "geometry_count": 119498
+  },
+  "head": {
+    "status": 200,
+    "url_final": "https://release-assets.githubusercontent.com/github-production-release-asset/1339316644/05ac12ef-67c3-4736-af38-9486474c0041",
+    "headers": {
+      "content-length": "63052056",
+      "content-type": "application/octet-stream",
+      "accept-ranges": "bytes",
+      "etag": "\"0x8DF0676C71229B3\"",
+      "last-modified": "Sun, 30 Aug 2026 09:12:12 GMT",
+      "age": "176",
+      "x-cache": "MISS, HIT",
+      "x-cache-hits": "0, 0"
+    },
+    "redirects": [
+      {
+        "status": 302,
+        "from": "https://github.com/InThuRain/atlas-incendios/releases/download/national-prototype-staging-es4c3d/esfire30-national-fidelity-territories.pmtiles",
+        "to": "https://release-assets.githubusercontent.com/github-production-release-asset/1339316644/05ac12ef-67c3-4736-af38-9486474c0041"
+      }
+    ],
+    "elapsed_ms": 2273.659
+  },
+  "range_tests": {
+    "one_byte": {
+      "requested_range": "bytes=0-0",
+      "status": 206,
+      "content_range": "bytes 0-0/63052056",
+      "content_length": "1",
+      "content_encoding": null,
+      "bytes_received": 1,
+      "byte_identical_to_local": true,
+      "passed": true,
+      "elapsed_ms": 447.118,
+      "headers": {
+        "content-length": "1",
+        "content-range": "bytes 0-0/63052056",
+        "content-type": "application/octet-stream",
+        "accept-ranges": "bytes",
+        "etag": "\"0x8DF0676C71229B3\"",
+        "last-modified": "Sun, 30 Aug 2026 09:12:12 GMT",
+        "age": "178",
+        "x-cache": "MISS, HIT",
+        "x-cache-hits": "0, 1"
+      },
+      "redirects": [
+        {
+          "status": 302,
+          "from": "https://github.com/InThuRain/atlas-incendios/releases/download/national-prototype-staging-es4c3d/esfire30-national-fidelity-territories.pmtiles",
+          "to": "https://release-assets.githubusercontent.com/github-production-release-asset/1339316644/05ac12ef-67c3-4736-af38-9486474c0041"
+        }
+      ],
+      "url_final": "https://release-assets.githubusercontent.com/github-production-release-asset/1339316644/05ac12ef-67c3-4736-af38-9486474c0041"
+    },
+    "initial": {
+      "requested_range": "bytes=0-16383",
+      "status": 206,
+      "content_range": "bytes 0-16383/63052056",
+      "content_length": "16384",
+      "content_encoding": null,
+      "bytes_received": 16384,
+      "byte_identical_to_local": true,
+      "passed": true,
+      "elapsed_ms": 246.26,
+      "headers": {
+        "content-length": "16384",
+        "content-range": "bytes 0-16383/63052056",
+        "content-type": "application/octet-stream",
+        "accept-ranges": "bytes",
+        "etag": "\"0x8DF0676C71229B3\"",
+        "last-modified": "Sun, 30 Aug 2026 09:12:12 GMT",
+        "age": "179",
+        "x-cache": "MISS, HIT",
+        "x-cache-hits": "0, 1"
+      },
+      "redirects": [
+        {
+          "status": 302,
+          "from": "https://github.com/InThuRain/atlas-incendios/releases/download/national-prototype-staging-es4c3d/esfire30-national-fidelity-territories.pmtiles",
+          "to": "https://release-assets.githubusercontent.com/github-production-release-asset/1339316644/05ac12ef-67c3-4736-af38-9486474c0041"
+        }
+      ],
+      "url_final": "https://release-assets.githubusercontent.com/github-production-release-asset/1339316644/05ac12ef-67c3-4736-af38-9486474c0041"
+    },
+    "middle": {
+      "requested_range": "bytes=1048576-1064959",
+      "status": 206,
+      "content_range": "bytes 1048576-1064959/63052056",
+      "content_length": "16384",
+      "content_encoding": null,
+      "bytes_received": 16384,
+      "byte_identical_to_local": true,
+      "passed": true,
+      "elapsed_ms": 251.617,
+      "headers": {
+        "content-length": "16384",
+        "content-range": "bytes 1048576-1064959/63052056",
+        "content-type": "application/octet-stream",
+        "accept-ranges": "bytes",
+        "etag": "\"0x8DF0676C71229B3\"",
+        "last-modified": "Sun, 30 Aug 2026 09:12:12 GMT",
+        "age": "179",
+        "x-cache": "MISS, HIT",
+        "x-cache-hits": "0, 1"
+      },
+      "redirects": [
+        {
+          "status": 302,
+          "from": "https://github.com/InThuRain/atlas-incendios/releases/download/national-prototype-staging-es4c3d/esfire30-national-fidelity-territories.pmtiles",
+          "to": "https://release-assets.githubusercontent.com/github-production-release-asset/1339316644/05ac12ef-67c3-4736-af38-9486474c0041"
+        }
+      ],
+      "url_final": "https://release-assets.githubusercontent.com/github-production-release-asset/1339316644/05ac12ef-67c3-4736-af38-9486474c0041"
+    },
+    "final": {
+      "requested_range": "bytes=63035672-63052055",
+      "status": 206,
+      "content_range": "bytes 63035672-63052055/63052056",
+      "content_length": "16384",
+      "content_encoding": null,
+      "bytes_received": 16384,
+      "byte_identical_to_local": true,
+      "passed": true,
+      "elapsed_ms": 256.001,
+      "headers": {
+        "content-length": "16384",
+        "content-range": "bytes 63035672-63052055/63052056",
+        "content-type": "application/octet-stream",
+        "accept-ranges": "bytes",
+        "etag": "\"0x8DF0676C71229B3\"",
+        "last-modified": "Sun, 30 Aug 2026 09:12:12 GMT",
+        "age": "1",
+        "x-cache": "MISS, HIT",
+        "x-cache-hits": "0, 1"
+      },
+      "redirects": [
+        {
+          "status": 302,
+          "from": "https://github.com/InThuRain/atlas-incendios/releases/download/national-prototype-staging-es4c3d/esfire30-national-fidelity-territories.pmtiles",
+          "to": "https://release-assets.githubusercontent.com/github-production-release-asset/1339316644/05ac12ef-67c3-4736-af38-9486474c0041"
+        }
+      ],
+      "url_final": "https://release-assets.githubusercontent.com/github-production-release-asset/1339316644/05ac12ef-67c3-4736-af38-9486474c0041"
+    },
+    "repeat_initial": {
+      "requested_range": "bytes=0-16383",
+      "status": 206,
+      "content_range": "bytes 0-16383/63052056",
+      "content_length": "16384",
+      "content_encoding": null,
+      "bytes_received": 16384,
+      "byte_identical_to_local": true,
+      "passed": true,
+      "elapsed_ms": 278.423,
+      "headers": {
+        "content-length": "16384",
+        "content-range": "bytes 0-16383/63052056",
+        "content-type": "application/octet-stream",
+        "accept-ranges": "bytes",
+        "etag": "\"0x8DF0676C71229B3\"",
+        "last-modified": "Sun, 30 Aug 2026 09:12:12 GMT",
+        "age": "179",
+        "x-cache": "MISS, HIT",
+        "x-cache-hits": "0, 1"
+      },
+      "redirects": [
+        {
+          "status": 302,
+          "from": "https://github.com/InThuRain/atlas-incendios/releases/download/national-prototype-staging-es4c3d/esfire30-national-fidelity-territories.pmtiles",
+          "to": "https://release-assets.githubusercontent.com/github-production-release-asset/1339316644/05ac12ef-67c3-4736-af38-9486474c0041"
+        }
+      ],
+      "url_final": "https://release-assets.githubusercontent.com/github-production-release-asset/1339316644/05ac12ef-67c3-4736-af38-9486474c0041"
+    }
+  },
+  "if_range": {
+    "requested_range": "bytes=16384-32767",
+    "status": 206,
+    "content_range": "bytes 16384-32767/63052056",
+    "content_length": "16384",
+    "content_encoding": null,
+    "bytes_received": 16384,
+    "byte_identical_to_local": true,
+    "passed": true,
+    "elapsed_ms": 233.737,
+    "headers": {
+      "content-length": "16384",
+      "content-range": "bytes 16384-32767/63052056",
+      "content-type": "application/octet-stream",
+      "accept-ranges": "bytes",
+      "etag": "\"0x8DF0676C71229B3\"",
+      "last-modified": "Sun, 30 Aug 2026 09:12:12 GMT",
+      "age": "180",
+      "x-cache": "MISS, HIT",
+      "x-cache-hits": "0, 1"
+    },
+    "redirects": [
+      {
+        "status": 302,
+        "from": "https://github.com/InThuRain/atlas-incendios/releases/download/national-prototype-staging-es4c3d/esfire30-national-fidelity-territories.pmtiles",
+        "to": "https://release-assets.githubusercontent.com/github-production-release-asset/1339316644/05ac12ef-67c3-4736-af38-9486474c0041"
+      }
+    ],
+    "url_final": "https://release-assets.githubusercontent.com/github-production-release-asset/1339316644/05ac12ef-67c3-4736-af38-9486474c0041"
+  },
+  "cors": {
+    "access_control_allow_origin": null,
+    "access_control_expose_headers": null
+  },
+  "cache_headers": {
+    "cache-control": null,
+    "etag": "\"0x8DF0676C71229B3\"",
+    "last-modified": "Sun, 30 Aug 2026 09:12:12 GMT",
+    "age": "179",
+    "x-cache": "MISS, HIT",
+    "x-cache-hits": "0, 1",
+    "cdn-cache-status": null
+  },
+  "browser_smokes": [
+    {
+      "scenario": "spain_cold",
+      "status": "FAIL",
+      "source_status": "error",
+      "errors": [
+        "TypeError: Failed to fetch"
+      ],
+      "remote_archive_url": "https://github.com/InThuRain/atlas-incendios/releases/download/national-prototype-staging-es4c3d/esfire30-national-fidelity-territories.pmtiles",
+      "range_requests_local": 0,
+      "full_pmtiles_requests_local": 0,
+      "resource_transfer_bytes": 0,
+      "resource_requests": 1,
+      "territory_filter": "error",
+      "municipality_geometry_ids": null
+    },
+    {
+      "scenario": "galicia",
+      "status": "FAIL",
+      "source_status": "ready",
+      "errors": [
+        "TypeError: Failed to fetch"
+      ],
+      "remote_archive_url": "https://github.com/InThuRain/atlas-incendios/releases/download/national-prototype-staging-es4c3d/esfire30-national-fidelity-territories.pmtiles",
+      "range_requests_local": 0,
+      "full_pmtiles_requests_local": 0,
+      "resource_transfer_bytes": 0,
+      "resource_requests": 1,
+      "territory_filter": "covered",
+      "municipality_geometry_ids": null
+    },
+    {
+      "scenario": "ourense",
+      "status": "FAIL",
+      "source_status": "ready",
+      "errors": [
+        "TypeError: Failed to fetch"
+      ],
+      "remote_archive_url": "https://github.com/InThuRain/atlas-incendios/releases/download/national-prototype-staging-es4c3d/esfire30-national-fidelity-territories.pmtiles",
+      "range_requests_local": 0,
+      "full_pmtiles_requests_local": 0,
+      "resource_transfer_bytes": 0,
+      "resource_requests": 1,
+      "territory_filter": "municipality",
+      "municipality_geometry_ids": 152
+    },
+    {
+      "scenario": "cangas",
+      "status": "FAIL",
+      "source_status": "ready",
+      "errors": [
+        "TypeError: Failed to fetch"
+      ],
+      "remote_archive_url": "https://github.com/InThuRain/atlas-incendios/releases/download/national-prototype-staging-es4c3d/esfire30-national-fidelity-territories.pmtiles",
+      "range_requests_local": 0,
+      "full_pmtiles_requests_local": 0,
+      "resource_transfer_bytes": 0,
+      "resource_requests": 1,
+      "territory_filter": "municipality",
+      "municipality_geometry_ids": 2610
+    },
+    {
+      "scenario": "elx",
+      "status": "FAIL",
+      "source_status": "ready",
+      "errors": [
+        "TypeError: Failed to fetch"
+      ],
+      "remote_archive_url": "https://github.com/InThuRain/atlas-incendios/releases/download/national-prototype-staging-es4c3d/esfire30-national-fidelity-territories.pmtiles",
+      "range_requests_local": 0,
+      "full_pmtiles_requests_local": 0,
+      "resource_transfer_bytes": 0,
+      "resource_requests": 1,
+      "territory_filter": "municipality",
+      "municipality_geometry_ids": 6
+    }
+  ],
+  "full_download_observed": false,
+  "environment": {
+    "python": "3.8.10",
+    "platform": "Linux-5.15.0-113-generic-x86_64-with-glibc2.29"
+  },
+  "failures": [
+    "cors_header",
+    "browser:spain_cold",
+    "browser:galicia",
+    "browser:ourense",
+    "browser:cangas",
+    "browser:elx"
+  ],
+  "status": "FAIL"
+}

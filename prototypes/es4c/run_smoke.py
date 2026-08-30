@@ -432,6 +432,8 @@ def run_case(chrome: str, scenario: str, device: str, egif_config: dict | None =
                 query["municipality_retry_id"] = egif_config["municipality_retry_id"]
             if egif_config.get("pmtiles_retry"):
                 query["pmtiles_retry"] = "1"
+            if egif_config.get("pmtiles_url"):
+                query["pmtiles_url"] = egif_config["pmtiles_url"]
             if egif_config.get("territory_up"):
                 query["territory_up"] = "1"
             if egif_config.get("select_geometry_id"):

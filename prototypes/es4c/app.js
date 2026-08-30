@@ -64,6 +64,12 @@ const copyStateLink = document.querySelector("#copy-state-link");
 const copyStateStatus = document.querySelector("#copy-state-status");
 const territoryStatus = document.querySelector("#territory-status");
 const params = new URLSearchParams(location.search);
+// Override efímero de diagnóstico ES-4C3D. Sólo admite HTTPS y no se guarda
+// en el estado ni modifica la URL/base del asset local del prototipo.
+const remotePmtilesUrl = params.get("pmtiles_url");
+const archiveUrl = /^https:\/\//.test(remotePmtilesUrl || "")
+  ? remotePmtilesUrl
+  : `${location.origin}${ARCHIVE_PATH}`;
 const startedAt = performance.now();
 const initialHeap = performance.memory?.usedJSHeapSize ?? null;
 const errors = [];
@@ -162,7 +168,7 @@ const map = new maplibregl.Map({
     sources: {
       [SOURCE_ID]: {
         type: "vector",
-        url: `pmtiles://${location.origin}${ARCHIVE_PATH}`,
+        url: `pmtiles://${archiveUrl}`,
       },
     },
     layers: [
@@ -1337,6 +1343,7 @@ async function runSmoke(name, initialReady = false) {
     prototype: "es4c1c2",
     scenario: name,
     archive: ARCHIVE_PATH,
+    archive_url: archiveUrl,
     source: "ESFire30",
     geometry_semantics: "documented_remote_sensing_perimeter",
     state: { ...state },
@@ -1465,4 +1472,5 @@ window.__es4cRuntime = {
   getEgifResult: () => latestEgifResult,
   runSmoke,
   ARCHIVE_PATH,
+  archiveUrl,
 };
