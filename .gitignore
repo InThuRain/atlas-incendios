@@ -94,3 +94,5 @@ prototypes/es4c/c2b3b1-*.json
 # Smokes de consolidación ES-4C3A: dependen de máquina, viewport y caché local.
 prototypes/es4c/c3a-*.json
 prototypes/es4c/c3b-acceptance-results.json
+# Reaceptación local ES-4C3C; contiene métricas dependientes de Chromium/caché.
+prototypes/es4c/c3c-*.json

@@ -234,6 +234,7 @@ class RangeState:
         self.municipal_index_requests = 0
         self.municipal_index_raw_bytes = 0
         self.injected_failures = []
+        self.consumed_fail_once = set()
 
     def record(self, is_range: bool, bytes_sent: int, status: int) -> None:
         with self.lock:
@@ -262,6 +263,13 @@ class RangeState:
         with self.lock:
             self.injected_failures.append({"path": path, "status": status})
 
+    def take_fail_once(self, marker: str) -> bool:
+        with self.lock:
+            if marker in self.consumed_fail_once:
+                return False
+            self.consumed_fail_once.add(marker)
+            return True
+
     def payload(self) -> dict:
         with self.lock:
             return {
@@ -282,6 +290,7 @@ class RangeState:
 class RangeRequestHandler(SimpleHTTPRequestHandler):
     range_state: RangeState
     fail_paths: tuple[str, ...] = ()
+    fail_once_paths: tuple[str, ...] = ()
 
     def log_message(self, format, *args):  # noqa: A003
         pass
@@ -296,7 +305,9 @@ class RangeRequestHandler(SimpleHTTPRequestHandler):
             self.wfile.write(body)
             return
         path = self.path.split("?", 1)[0]
-        if any(marker in path for marker in self.fail_paths):
+        always_fail = any(marker in path for marker in self.fail_paths)
+        once_marker = next((marker for marker in self.fail_once_paths if marker in path), None)
+        if always_fail or (once_marker and self.range_state.take_fail_once(once_marker)):
             self.range_state.record_injected_failure(path, 503)
             self.send_error(503, "Acceptance harness injected failure")
             return
@@ -361,12 +372,14 @@ class RangeRequestHandler(SimpleHTTPRequestHandler):
             return None
 
 
-def start_server(background: bool = True, fail_paths: tuple[str, ...] = ()) -> tuple[ThreadingHTTPServer, RangeState]:
+def start_server(background: bool = True, fail_paths: tuple[str, ...] = (), fail_once_paths: tuple[str, ...] = ()) -> tuple[ThreadingHTTPServer, RangeState]:
     state = RangeState()
     failure_markers = tuple(fail_paths)
+    failure_once_markers = tuple(fail_once_paths)
     class Handler(RangeRequestHandler):
         range_state = state
         fail_paths = failure_markers
+        fail_once_paths = failure_once_markers
     server = ThreadingHTTPServer(("127.0.0.1", 0), lambda *args, **kwargs: Handler(*args, directory=str(ROOT), **kwargs))
     if background:
         threading.Thread(target=server.serve_forever, daemon=True).start()
@@ -374,7 +387,10 @@ def start_server(background: bool = True, fail_paths: tuple[str, ...] = ()) -> t
 
 
 def run_case(chrome: str, scenario: str, device: str, egif_config: dict | None = None) -> dict:
-    server, state = start_server(fail_paths=tuple((egif_config or {}).get("fault_paths", ())) )
+    server, state = start_server(
+        fail_paths=tuple((egif_config or {}).get("fault_paths", ())),
+        fail_once_paths=tuple((egif_config or {}).get("fault_once_paths", ())),
+    )
     try:
         window = "390,844" if device == "mobile_390x844" else "1280,800"
         query = {"smoke": scenario}
@@ -410,6 +426,12 @@ def run_case(chrome: str, scenario: str, device: str, egif_config: dict | None =
                 query["municipality_selection_change"] = egif_config["municipality_selection_change"]
             if egif_config.get("municipality_rapid"):
                 query["municipality_rapid"] = "1"
+            if egif_config.get("municipality_retry"):
+                query["municipality_retry"] = "1"
+            if egif_config.get("municipality_retry_id"):
+                query["municipality_retry_id"] = egif_config["municipality_retry_id"]
+            if egif_config.get("pmtiles_retry"):
+                query["pmtiles_retry"] = "1"
             if egif_config.get("territory_up"):
                 query["territory_up"] = "1"
             if egif_config.get("select_geometry_id"):

@@ -8,6 +8,15 @@ HTTP Range local y viewport desktop 1280×800 / móvil emulado 390×844. Los
 fallos 503 se inyectan exclusivamente en el harness por ruta, sin alterar
 ficheros reales. Range local no equivale a hosting real.
 
+## Resolución posterior
+
+Esta matriz conserva la evidencia histórica de la aceptación inicial
+`ACCEPTED_WITH_REQUIRED_FIXES`: el resultado `fault_pmtiles` de ES-4C3B seguía
+siendo un fallo diagnóstico real. ES-4C3C corrigió BUG-01 y BUG-02 y ejecutó
+una reaceptación dirigida separada; véase
+`ES_4C3C_ACCEPTANCE_FIXES.md`. Esta adenda no modifica los resultados ni la
+clasificación que correspondían a la evidencia original.
+
 ## Matriz de aceptación
 
 | Scenario | Expected | Actual | PASS/FAIL | Evidence | Severity | Notes |

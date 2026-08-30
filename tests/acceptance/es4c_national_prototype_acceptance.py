@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Aceptación acotada ES-4C3B para el runtime aislado nacional.
+"""Aceptación acotada ES-4C3B/C3C para el runtime aislado nacional.
 
 No construye datos. Reutiliza el servidor Range y Chromium de los smokes, y
 puede inyectar respuestas 503 locales para comprobar aislamiento de fallos.
@@ -7,6 +7,7 @@ puede inyectar respuestas 503 locales para comprobar aislamiento de fallos.
 from __future__ import annotations
 
 import argparse
+import base64
 import importlib.util
 import json
 import platform
@@ -31,6 +32,19 @@ def config(from_year, to_year, scope="ES", **extra):
     return {"from": from_year, "to": to_year, "scope": scope, **extra}
 
 
+def municipality_state_hash(municipality_id="ES:MUN:03065"):
+    payload = {
+        "v": "es4c-state-v1",
+        "map": {"lat": 38.27, "lon": -0.7, "z": 9},
+        "time": {"from": 1993, "to": 2002},
+        "territory": {"scope": "municipality", "autonomous_community_id": "ES:CCAA:10", "province_id": "ES:PROV:03", "municipality_id": municipality_id},
+        "sources": {"esfire30": True, "egif": True},
+        "selections": {"geometry_id": None, "egif_record_id": None},
+    }
+    encoded = base64.urlsafe_b64encode(json.dumps(payload, separators=(",", ":")).encode("utf-8")).decode("ascii").rstrip("=")
+    return f"#es4c-state-v1={encoded}"
+
+
 SCENARIOS = [
     ("clean_spain", "spain", "desktop", config(1993, 2002, initial_requests=0, expect_esfire="national")),
     ("spain_1975", "spain", "desktop", config(1975, 1975, initial_requests=0, expect_esfire="inactive")),
@@ -51,8 +65,13 @@ SCENARIOS = [
     ("fault_egif_initial", "pais_valencia", "desktop", config(1993, 2002, municipality_select="ES:MUN:03065", fault_paths=("/initial.json",), expect_egif_error=True)),
     ("fault_detail", "pais_valencia", "desktop", config(1993, 2002, scope="ES:CCAA:10", detail="single", fault_paths=("/detail.json",), expect_detail_error=True)),
     ("fault_municipal_geojson", "pais_valencia", "desktop", config(1993, 2002, municipality_select="ES:MUN:03065", fault_paths=("/ES-PROV-03.geojson",), expect_municipal_error=True)),
+    ("fault_municipal_click", "pais_valencia", "desktop", config(1993, 2002, municipality_click="ES:MUN:03065", fault_paths=("/ES-PROV-03.geojson",), expect_municipal_error=True)),
+    ("fault_municipal_restore", "pais_valencia", "desktop", config(1993, 2002, state_hash=municipality_state_hash(), fault_paths=("/ES-PROV-03.geojson",), expect_municipal_error=True, expect_restore_parent=True)),
+    ("municipal_retry", "pais_valencia", "desktop", config(1993, 2002, municipality_retry=True, municipality_retry_id="ES:MUN:03065", fault_once_paths=("/ES-PROV-03.geojson",), expect_municipal_retry=True)),
     ("fault_municipal_index", "pais_valencia", "desktop", config(1993, 2002, municipality_select="ES:MUN:03065", municipal_index="parent", fault_paths=("/municipality-index/by-parent/ES-PROV-03.json",), expect_index_error=True)),
     ("fault_pmtiles", "spain", "desktop", config(1993, 2002, fault_paths=(".pmtiles",), expect_pmtiles_error=True)),
+    ("pmtiles_retry", "spain", "desktop", config(1993, 2002, pmtiles_retry=True, fault_once_paths=(".pmtiles",), expect_pmtiles_retry=True)),
+    ("back_forward_elx", "pais_valencia", "desktop", config(1993, 2002, municipality_select="ES:MUN:03065", history_test=True, expect_history=True)),
     ("mobile_elx", "pais_valencia", "mobile_390x844", config(1993, 2002, municipality_select="ES:MUN:03065", municipal_index="parent", expect_municipal_ids=6)),
     ("mobile_cangas", "spain", "mobile_390x844", config(1985, 2021, municipality_select="ES:MUN:33011", municipal_index="parent", expect_municipal_ids=2610, require_selection=True)),
 ]
@@ -74,6 +93,8 @@ def values(result):
 def validate(name, result, expected):
     data = values(result)
     errors = list(result.get("errors", []))
+    if expected.get("expect_pmtiles_error") or expected.get("expect_pmtiles_retry"):
+        errors = [error for error in errors if "Bad response code: 503" not in error]
     state, coverage, filt, egif, detail, network = data["state"], data["coverage"], data["filter"], data["egif"], data["detail"], data["network"]
     injected = bool(network.get("injected_failures"))
     if not injected:
@@ -116,6 +137,17 @@ def validate(name, result, expected):
         errors.append("fallo DETAIL no quedó localizado")
     if expected.get("expect_municipal_error") and data["municipality"].get("load_status") != "error":
         errors.append("fallo GeoJSON municipal no se registró")
+    if expected.get("expect_municipal_error"):
+        if state.get("territory_scope") != "province" or state.get("municipality_id") is not None:
+            errors.append("fallo GeoJSON dejó municipio confirmado")
+        if filt.get("status") != "covered" or coverage.get("source_load_state", {}).get("egif") != "ready":
+            errors.append("fallo GeoJSON no conservó fuentes del padre")
+    if expected.get("expect_restore_parent") and state.get("province_id") != "ES:PROV:03":
+        errors.append("restore municipal fallido no degradó al padre")
+    if expected.get("expect_municipal_retry"):
+        retry = result.get("municipality_retry") or {}
+        if retry.get("before", {}).get("scope") != "province" or retry.get("before", {}).get("first_status") != "error" or retry.get("after", {}).get("municipality_id") != "ES:MUN:03065" or retry.get("after", {}).get("load_status") != "complete":
+            errors.append("retry municipal no recuperó una transición válida")
     if expected.get("expect_index_error") and filt.get("status") != "error":
         errors.append("fallo índice municipal no se registró")
     if expected.get("expect_pmtiles_error"):
@@ -123,6 +155,14 @@ def validate(name, result, expected):
         # no solo contra el evento MapLibre, para detectar UI engañosa.
         if coverage.get("source_load_state", {}).get("esfire30") != "error":
             errors.append("PMTiles fallido no cambia ESFire30 a error")
+        if filt.get("status") != "error":
+            errors.append("PMTiles fallido no deja filtro ESFire30 en error")
+    if expected.get("expect_pmtiles_retry"):
+        retry = result.get("pmtiles_retry") or {}
+        if retry.get("before") != "error" or retry.get("after") != "ready" or retry.get("territory_status") != "national":
+            errors.append("PMTiles no recuperó error→loading→ready")
+    if expected.get("expect_history") and result.get("history_round_trip", {}).get("final_range") != {"from": 1993, "to": 2002}:
+        errors.append("back/forward no restauró el estado territorial")
     return errors
 
 
@@ -155,7 +195,7 @@ def main():
         previous = [row for row in previous if row.get("scenario") not in requested]
     payload = {
         "schema_version": 1,
-        "phase": "ES-4C3B",
+        "phase": "ES-4C3C",
         "environment": {"platform": platform.platform(), "python": platform.python_version(), "chrome": args.chrome},
         "runs": previous + runs,
     }
