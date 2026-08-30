@@ -233,6 +233,7 @@ class RangeState:
         self.detail_raw_bytes = 0
         self.municipal_index_requests = 0
         self.municipal_index_raw_bytes = 0
+        self.injected_failures = []
 
     def record(self, is_range: bool, bytes_sent: int, status: int) -> None:
         with self.lock:
@@ -257,6 +258,10 @@ class RangeState:
             self.municipal_index_requests += 1
             self.municipal_index_raw_bytes += bytes_sent
 
+    def record_injected_failure(self, path: str, status: int) -> None:
+        with self.lock:
+            self.injected_failures.append({"path": path, "status": status})
+
     def payload(self) -> dict:
         with self.lock:
             return {
@@ -270,11 +275,13 @@ class RangeState:
                 "detail_raw_bytes": self.detail_raw_bytes,
                 "municipal_index_requests": self.municipal_index_requests,
                 "municipal_index_raw_bytes": self.municipal_index_raw_bytes,
+                "injected_failures": list(self.injected_failures),
             }
 
 
 class RangeRequestHandler(SimpleHTTPRequestHandler):
     range_state: RangeState
+    fail_paths: tuple[str, ...] = ()
 
     def log_message(self, format, *args):  # noqa: A003
         pass
@@ -287,6 +294,11 @@ class RangeRequestHandler(SimpleHTTPRequestHandler):
             self.send_header("Content-Length", str(len(body)))
             self.end_headers()
             self.wfile.write(body)
+            return
+        path = self.path.split("?", 1)[0]
+        if any(marker in path for marker in self.fail_paths):
+            self.range_state.record_injected_failure(path, 503)
+            self.send_error(503, "Acceptance harness injected failure")
             return
         return super().do_GET()
 
@@ -349,10 +361,12 @@ class RangeRequestHandler(SimpleHTTPRequestHandler):
             return None
 
 
-def start_server(background: bool = True) -> tuple[ThreadingHTTPServer, RangeState]:
+def start_server(background: bool = True, fail_paths: tuple[str, ...] = ()) -> tuple[ThreadingHTTPServer, RangeState]:
     state = RangeState()
+    failure_markers = tuple(fail_paths)
     class Handler(RangeRequestHandler):
         range_state = state
+        fail_paths = failure_markers
     server = ThreadingHTTPServer(("127.0.0.1", 0), lambda *args, **kwargs: Handler(*args, directory=str(ROOT), **kwargs))
     if background:
         threading.Thread(target=server.serve_forever, daemon=True).start()
@@ -360,7 +374,7 @@ def start_server(background: bool = True) -> tuple[ThreadingHTTPServer, RangeSta
 
 
 def run_case(chrome: str, scenario: str, device: str, egif_config: dict | None = None) -> dict:
-    server, state = start_server()
+    server, state = start_server(fail_paths=tuple((egif_config or {}).get("fault_paths", ())) )
     try:
         window = "390,844" if device == "mobile_390x844" else "1280,800"
         query = {"smoke": scenario}

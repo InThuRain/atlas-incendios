@@ -1249,6 +1249,7 @@ async function runSmoke(name, initialReady = false) {
     } : { loaded: false, error: provinceLayerError },
     municipality_layer: municipalityLayer ? {
       loaded: true,
+      load_status: latestMunicipalityResult?.status || null,
       selected_municipality_id: state.municipality_id,
       selected_bounds: state.municipality_id ? municipalityCatalog?.byId.get(state.municipality_id)?.bounds || null : null,
       catalog_loaded: Boolean(municipalityCatalog),
