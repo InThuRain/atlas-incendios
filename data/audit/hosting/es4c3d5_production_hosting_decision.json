@@ -1,0 +1,63 @@
+{
+  "schema_version": "es4c3d5-production-hosting-decision-v1",
+  "phase": "ES-4C3D5",
+  "decision_date": "2026-08-31",
+  "candidates": {
+    "github_pages_same_origin": {
+      "technical_validation": "PASS",
+      "classification": ["RECOMMENDED_FOR_INITIAL_PRODUCTION"],
+      "economic_risk": "no_direct_variable_request_billing_model_for_this_deployment; GitHub Pages usage limits still apply",
+      "operational_complexity": "low"
+    },
+    "cloudflare_r2_custom_domain": {
+      "technical_validation": "R2_DEV_STAGING_PASS; CUSTOM_DOMAIN_NOT_VALIDATED",
+      "classification": ["VIABLE", "FUTURE_SCALING_OPTION"],
+      "economic_risk": "usage_based_storage_and_operations_after_free_tier; payment subscription required",
+      "operational_complexity": "higher"
+    },
+    "github_releases_cross_origin": {
+      "technical_validation": "RANGE_AND_INTEGRITY_PASS_BROWSER_CORS_FAIL",
+      "classification": ["NOT_RECOMMENDED_FOR_BROWSER_PMTILES"]
+    }
+  },
+  "technical_evidence": {
+    "github_pages_same_origin": "data/audit/hosting/es4c3d4_github_pages_same_origin_validation.json",
+    "cloudflare_r2_dev": "data/audit/hosting/es4c3d3_real_hosting_revalidation.json",
+    "asset": {"bytes": 63052056, "sha256": "3c6eb10ba146008cdabf36646d48a4c7a92c1c1357ad90679f6b5dce42013cfe"},
+    "pages_artifact_bytes": 147252605,
+    "pages_pmtiles_smoke_bytes": {"spain": 526207, "galicia": 2558448, "ourense": 2296073, "cangas": 1762175, "elx": 27141},
+    "pages_pmtiles_smoke_range_requests": {"spain": 6, "galicia": 6, "ourense": 8, "cangas": 8, "elx": 9},
+    "observed_session_order_of_magnitude_bytes": {"light": "about_0.5_MB", "normal": "about_1.7_to_2.6_MB", "heavy": "about_5.7_to_8.5_MB"}
+  },
+  "official_limits_consulted": {
+    "github_pages": {
+      "url": "https://docs.github.com/en/pages/getting-started-with-github-pages/github-pages-limits",
+      "consulted_on": "2026-08-31",
+      "published_site_limit": "1_GB",
+      "soft_bandwidth_limit": "100_GB_per_month",
+      "deployment_timeout": "10_minutes"
+    },
+    "cloudflare_r2": {
+      "url": "https://developers.cloudflare.com/r2/pricing/",
+      "consulted_on": "2026-08-31",
+      "standard_free_tier": {"storage": "10_GB_month", "class_a": "1_million_operations_per_month", "class_b": "10_million_operations_per_month", "egress": "free"},
+      "standard_overage": {"storage": "$0.015_per_GB_month", "class_a": "$4.50_per_million", "class_b": "$0.36_per_million", "egress": "free"}
+    }
+  },
+  "initial_production_hosting": "GITHUB_PAGES",
+  "fallback_hosting": "CLOUDFLARE_R2_CUSTOM_DOMAIN",
+  "url_strategy": "Resolve immutable PMTiles location from a versioned manifest or asset-base configuration; do not distribute hardcoded host URLs throughout runtime logic.",
+  "review_triggers": [
+    "measured GitHub Pages bandwidth approaches its documented soft limit",
+    "published artifact approaches its documented site-size limit or deployments become unreliable",
+    "multiple large national assets make Pages artifacts operationally cumbersome",
+    "production requires explicit cache-control, purge or domain controls unavailable in the selected Pages workflow",
+    "observed traffic or maintenance needs justify accepting R2 subscription and usage monitoring"
+  ],
+  "staging": {
+    "pages": "retain isolated technical staging repository temporarily; review housekeeping after production-hosting decision",
+    "r2": "retain r2.dev object only as technical staging evidence; do not treat it as production and review retention later"
+  },
+  "blockers": ["No technical hosting blocker for a future Pages-based production migration", "Production migration design remains intentionally unstarted"],
+  "next_phase": "ES-4D1_NATIONAL_PRODUCTION_MIGRATION_DESIGN"
+}
