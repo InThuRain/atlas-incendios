@@ -1,0 +1,137 @@
+{
+  "schema_version": "es4c3d2-hosting-delivery-redesign-v1",
+  "phase": "ES-4C3D2",
+  "tested_failure": {
+    "hosting": "GitHub Releases prerelease",
+    "url_pattern": "https://github.com/InThuRain/atlas-incendios/releases/download/national-prototype-staging-es4c3d/<asset>",
+    "range": "PASS",
+    "integrity": "PASS",
+    "cors": "FAIL",
+    "browser": "FAIL",
+    "classification": "NOT_RECOMMENDED_FOR_CROSS_ORIGIN_PMTILES"
+  },
+  "asset": {
+    "local_path": "data/derived/spain/es4c2b/pmtiles/esfire30-national-fidelity-territories.pmtiles",
+    "name": "esfire30-national-fidelity-territories.pmtiles",
+    "bytes": 63052056,
+    "sha256": "3c6eb10ba146008cdabf36646d48a4c7a92c1c1357ad90679f6b5dce42013cfe",
+    "geometry_count": 119498
+  },
+  "current_delivery": {
+    "atlas_origin": "https://inthurain.github.io",
+    "pages_base_path": "/atlas-incendios/",
+    "workflow": ".github/workflows/pages.yml",
+    "public_data_delivery": "GitHub Release public-data-v5 -> verified GitHub Actions build -> self-contained Pages artifact",
+    "current_site_bytes": 84200549,
+    "pages_with_pmtiles_bytes_estimate": 147252605,
+    "pages_with_pmtiles_mib_estimate": 140.431,
+    "pages_published_site_limit_bytes": 1000000000,
+    "pages_estimate_fraction_of_published_limit": 0.147253
+  },
+  "candidates": [
+    {
+      "id": "cloudflare_r2_public_development_url",
+      "range": "DOCUMENTED_CANDIDATE_REQUIRES_C3D3_PROOF",
+      "cors": "CONFIGURABLE",
+      "same_origin": false,
+      "cache": "r2.dev is development-only; no production cache validation",
+      "immutability": "SHA-addressed object key",
+      "deploy_complexity": "medium: external bucket, public dev URL and CORS policy",
+      "repo_impact": "none; binary remains outside Git",
+      "expected_browser_support": "high only after exact CORS/browser validation",
+      "staging_ease": "high: existing C3D auditor accepts a remote URL",
+      "production_fit": "high with a later R2 custom domain and cache policy",
+      "risks": [
+        "new external account/configuration",
+        "r2.dev is rate-limited and not a production endpoint",
+        "CORS must match the fixed local harness origin"
+      ]
+    },
+    {
+      "id": "github_pages_same_origin_staging",
+      "range": "UNKNOWN_REQUIRES_ISOLATED_PAGES_SMOKE",
+      "cors": "not required for same-origin PMTiles",
+      "same_origin": true,
+      "cache": "GitHub Pages headers and browser cache require real staging measurement",
+      "immutability": "immutable release input plus deployed artifact; public path requires manifest/version governance",
+      "deploy_complexity": "medium: isolated Pages repository/artifact and remote same-origin delivery harness",
+      "repo_impact": "none if workflow downloads and SHA-verifies the release asset into the Pages artifact",
+      "expected_browser_support": "unknown until Range and MapLibre are tested on staging",
+      "staging_ease": "medium: cannot reuse the local cross-origin browser smoke unchanged",
+      "production_fit": "viable for an initial low-to-moderate traffic deployment; soft 100 GB/month bandwidth limit is a scaling risk",
+      "risks": [
+        "Range is unverified on Pages",
+        "requires a separate staging Pages site/harness",
+        "published site and soft bandwidth limits constrain growth"
+      ]
+    }
+  ],
+  "preferred": {
+    "id": "cloudflare_r2_public_development_url",
+    "scope": "staging only",
+    "reason": "It directly exercises the already accepted local prototype and C3D auditor over cross-origin CORS, without deploying the national prototype or changing GitHub Pages."
+  },
+  "fallback": {
+    "id": "github_pages_same_origin_staging",
+    "reason": "It reuses the project's established verified-artifact deployment pattern and removes cross-origin CORS, but only after a separate real Range and browser smoke."
+  },
+  "r2_staging": {
+    "bucket": "atlas-incendios-es4c3d-staging",
+    "object_key": "esfire30-national-fidelity-territories.pmtiles",
+    "url": "https://pub-96622990cd314a1c8431ce65ec2c25ca.r2.dev/esfire30-national-fidelity-territories.pmtiles",
+    "url_pattern": "https://<public-development-url>/<object-key>",
+    "cors_policy_file": "benchmarks/es4c3d2/r2-cors-staging.json",
+    "cors_dashboard_policy_file": "benchmarks/es4c3d2/r2-cors-staging-dashboard.json",
+    "cache_control": {
+      "recommended_for_versioned_production_object": "public, max-age=31536000, immutable",
+      "observed_on_dashboard_staging_upload": null
+    },
+    "sha_gate": "required before upload",
+    "external_action_required": false,
+    "preflight": {
+      "tested_at": "2026-08-31T14:12:04Z",
+      "head_status": 200,
+      "head_content_length": 63052056,
+      "head_accept_ranges": "bytes",
+      "content_type": "application/octet-stream",
+      "range_0_0_status": 206,
+      "range_0_0_content_range": "bytes 0-0/63052056",
+      "access_control_allow_origin": "http://127.0.0.1:8765",
+      "access_control_expose_headers": [
+        "Accept-Ranges",
+        "Content-Range",
+        "Content-Length",
+        "ETag",
+        "Last-Modified",
+        "Content-Encoding",
+        "Cache-Control",
+        "Age",
+        "CF-Cache-Status"
+      ],
+      "etag": "\"6f45635b1c54780e05382587820599f8\"",
+      "last_modified": "Mon, 31 Aug 2026 14:08:01 GMT",
+      "cache_control": null,
+      "status": "READY_FOR_C3D3_NOT_FULLY_VALIDATED"
+    }
+  },
+  "local_cli_compatibility": {
+    "status": "BLOCKED",
+    "observed_glibc": "2.31",
+    "observed_node": "10.19.0",
+    "wrangler_failure": "current workerd requires GLIBC_2.32, GLIBC_2.33, GLIBC_2.34 and GLIBC_2.35",
+    "remote_mutation_observed": false,
+    "fallback": "Cloudflare Dashboard manual staging"
+  },
+  "next_validation": {
+    "phase": "ES-4C3D3_REAL_HOSTING_REVALIDATION",
+    "must_prove": [
+      "HEAD and deterministic Range slices return 206 and are byte-identical",
+      "CORS headers are emitted for the fixed local browser origin",
+      "MapLibre/PMTiles reaches ready in Spain, Galicia, Ourense, Cangas and Elx",
+      "reload/repeated navigation do not download the full 63052056-byte object"
+    ],
+    "harness_note": "Use a fixed local origin http://127.0.0.1:8765 for the remote browser run; C3D's random-port smoke must not be used against a narrowly scoped CORS policy unchanged."
+  },
+  "external_action_required": false,
+  "status": "STAGING_READY_FOR_REVALIDATION"
+}

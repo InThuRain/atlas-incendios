@@ -1,0 +1,36 @@
+{
+  "rules": [
+    {
+      "id": "es4c3d2-pmtiles-read",
+      "allowed": {
+        "origins": [
+          "http://127.0.0.1:8765",
+          "http://localhost:8765",
+          "https://inthurain.github.io"
+        ],
+        "methods": [
+          "GET",
+          "HEAD"
+        ],
+        "headers": [
+          "Range",
+          "If-Range",
+          "If-None-Match",
+          "If-Modified-Since"
+        ]
+      },
+      "exposeHeaders": [
+        "Accept-Ranges",
+        "Content-Range",
+        "Content-Length",
+        "ETag",
+        "Last-Modified",
+        "Content-Encoding",
+        "Cache-Control",
+        "Age",
+        "CF-Cache-Status"
+      ],
+      "maxAgeSeconds": 3600
+    }
+  ]
+}
