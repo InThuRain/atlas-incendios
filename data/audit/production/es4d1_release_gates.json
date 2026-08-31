@@ -1,0 +1,17 @@
+{
+  "schema_version": "es4d1-release-gates-v1",
+  "classification": "MIGRATION_DESIGN_READY_WITH_PARITY_GAPS",
+  "production_root_switch_authorized": false,
+  "gates": [
+    {"id": "architecture_parity", "status": "pending", "requires": ["national production shell", "ICV/EFFIS parity decision", "semantic and attribution matrix"]},
+    {"id": "production_frontend", "status": "pending", "requires": ["single asset manifest", "no diagnostic endpoint overrides", "production cleanup"]},
+    {"id": "staging", "status": "pending", "requires": ["permanent Pages preview", "accepted artifact"]},
+    {"id": "asset_integrity", "status": "pending", "requires": ["bytes/SHA gates", "immutable versioned paths", "artifact inventory"]},
+    {"id": "range_browser", "status": "evidence_passed_revalidate_on_final_endpoint", "requires": ["206 ranges", "no full download", "desktop and 390x844 browser smoke"]},
+    {"id": "permalinks", "status": "pending", "requires": ["GVA #v=1 compatibility", "es4c-state-v1 restore", "invalid URL fallback"]},
+    {"id": "rollback", "status": "pending", "requires": ["previous artifact", "manifest and commit retention", "rollback rehearsal"]},
+    {"id": "explicit_switch_authorization", "status": "not_requested", "requires": ["all previous gates passed"]}
+  ],
+  "rollback": "deploy the previous complete artifact; never retarget a mutable asset key",
+  "non_blocking_external": ["MITECO cause dictionary", "CCINIF publication permission", "historical municipalities", "EGIF municipality null resolution"]
+}

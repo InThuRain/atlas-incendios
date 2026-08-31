@@ -1,0 +1,30 @@
+{
+  "schema_version": "es4d1-feature-parity-v1",
+  "classification": "MIGRATION_DESIGN_READY_WITH_PARITY_GAPS",
+  "recommended_strategy": "B_new_national_application_reusing_es4c_modules",
+  "permalink": {
+    "public_gva": {"format": "#v=1", "status": "preserve_exactly_until_explicit_root_switch"},
+    "national": {"format": "#es4c-state-v1", "status": "retain_stable_for_national_preview"},
+    "decision": "two_explicit_formats_with_a_future_gva_compatibility_adapter"
+  },
+  "features": [
+    {"feature": "national territory CCAA/province/municipality", "gva_public": "partial_gva_only", "es4c": "accepted", "root_switch": "must_have"},
+    {"feature": "EGIF national INITIAL/detail lazy", "gva_public": "gva_1968_1992_single_asset", "es4c": "accepted", "root_switch": "must_have"},
+    {"feature": "ESFire30 national PMTiles territorial filtering", "gva_public": "gva_geojson_lod", "es4c": "accepted", "root_switch": "must_have"},
+    {"feature": "ICV official consolidated perimeters 1993-2024", "gva_public": "accepted_public", "es4c": "absent", "root_switch": "must_have_parity_gap"},
+    {"feature": "EFFIS provisional perimeters 2025-2026", "gva_public": "accepted_public", "es4c": "absent", "root_switch": "must_have_parity_gap"},
+    {"feature": "public GVA #v=1 permalink", "gva_public": "accepted_public", "es4c": "different_format", "root_switch": "must_have_parity_gap"},
+    {"feature": "minimum area/cause/GIF filters and histogram", "gva_public": "accepted_public", "es4c": "partial_or_debug", "root_switch": "should_have"},
+    {"feature": "point-history query", "gva_public": "accepted_public", "es4c": "absent", "root_switch": "should_have_product_decision"},
+    {"feature": "source-specific attribution and coverage", "gva_public": "accepted_public", "es4c": "partial", "root_switch": "must_have"},
+    {"feature": "CCINIF", "gva_public": "excluded", "es4c": "excluded", "root_switch": "out_of_scope_external_permission"},
+    {"feature": "canonical EGIF causes", "gva_public": "source_labels_only", "es4c": "unmapped_source_code", "root_switch": "out_of_scope_external_dictionary"}
+  ],
+  "semantic_contract": {
+    "egif": "partes administrativos",
+    "esfire30": "perimetros derivados de teledeteccion Landsat",
+    "esfire30_territory": "perimetros que intersectan el territorio seleccionado",
+    "municipality": "division administrativa actual BDLJE",
+    "forbidden": "never sum EGIF and ESFire30 as unique fires"
+  }
+}
