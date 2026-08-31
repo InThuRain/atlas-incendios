@@ -1,0 +1,24 @@
+{
+  "schema_version": "es4c3d4-github-pages-same-origin-validation-v1",
+  "phase": "ES-4C3D4",
+  "status": "PENDING_EXTERNAL_STAGING",
+  "asset": {
+    "bytes": 63052056,
+    "sha256": "3c6eb10ba146008cdabf36646d48a4c7a92c1c1357ad90679f6b5dce42013cfe"
+  },
+  "pages_public_reference": {
+    "url": "https://inthurain.github.io/atlas-incendios/",
+    "artifact_bytes": 84200549,
+    "artifact_plus_pmtiles_estimate_bytes": 147252605,
+    "status": "NOT_USED_BY_C3D4"
+  },
+  "proposed_staging": {
+    "repository": "InThuRain/atlas-incendios-es4c3d4-pages-staging",
+    "pages_source": "GitHub Actions",
+    "harness_path": "/es4c3d4/",
+    "pmtiles_path": "/data/esfire30-national-fidelity-territories.pmtiles",
+    "workflow_template": "benchmarks/es4c3d4/pages-staging-workflow.yml"
+  },
+  "r2_comparison_reference": "data/audit/hosting/es4c3d3_real_hosting_revalidation.json",
+  "next_phase": "ES-4C3D5_PRODUCTION_HOSTING_DECISION"
+}
