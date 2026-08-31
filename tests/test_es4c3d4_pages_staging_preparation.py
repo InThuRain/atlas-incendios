@@ -8,9 +8,9 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 
 class Es4c3d4PagesStagingPreparationTests(unittest.TestCase):
-    def test_pending_staging_never_targets_the_public_pages_site(self):
+    def test_completed_staging_never_targets_the_public_pages_site(self):
         payload = json.loads((ROOT / "data/audit/hosting/es4c3d4_github_pages_same_origin_validation.json").read_text())
-        self.assertEqual(payload["status"], "PENDING_EXTERNAL_STAGING")
+        self.assertEqual(payload["status"], "PASS")
         self.assertEqual(payload["pages_public_reference"]["status"], "NOT_USED_BY_C3D4")
         self.assertEqual(payload["asset"]["bytes"], 63052056)
 

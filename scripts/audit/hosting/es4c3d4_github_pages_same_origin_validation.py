@@ -152,6 +152,7 @@ def build(base_url: str, output: Path, chrome: str) -> dict[str, Any]:
     payload: dict[str, Any] = {
         "schema_version": "es4c3d4-github-pages-same-origin-validation-v1", "phase": "ES-4C3D4",
         "asset": asset, "endpoint": {"base_url": base_url, "pmtiles_url": url, "type": "github_pages_same_origin_staging"},
+        "pages_public_reference": {"url": "https://inthurain.github.io/atlas-incendios/", "status": "NOT_USED_BY_C3D4"},
         "head": head, "range_tests": ranges,
         "cors": {"required": False, "result": "NOT_REQUIRED_SAME_ORIGIN", "access_control_allow_origin": ranges["initial"]["headers"].get("access-control-allow-origin")},
         "browser_smokes": groups,

@@ -1,24 +1,591 @@
 {
   "schema_version": "es4c3d4-github-pages-same-origin-validation-v1",
   "phase": "ES-4C3D4",
-  "status": "PENDING_EXTERNAL_STAGING",
   "asset": {
+    "path": "data/derived/spain/es4c2b/pmtiles/esfire30-national-fidelity-territories.pmtiles",
     "bytes": 63052056,
-    "sha256": "3c6eb10ba146008cdabf36646d48a4c7a92c1c1357ad90679f6b5dce42013cfe"
+    "sha256": "3c6eb10ba146008cdabf36646d48a4c7a92c1c1357ad90679f6b5dce42013cfe",
+    "geometry_count": 119498
+  },
+  "endpoint": {
+    "base_url": "https://inthurain.github.io/atlas-incendios-es4c3d4-pages-staging/",
+    "pmtiles_url": "https://inthurain.github.io/atlas-incendios-es4c3d4-pages-staging/data/esfire30-national-fidelity-territories.pmtiles",
+    "type": "github_pages_same_origin_staging"
   },
   "pages_public_reference": {
     "url": "https://inthurain.github.io/atlas-incendios/",
-    "artifact_bytes": 84200549,
-    "artifact_plus_pmtiles_estimate_bytes": 147252605,
     "status": "NOT_USED_BY_C3D4"
   },
-  "proposed_staging": {
-    "repository": "InThuRain/atlas-incendios-es4c3d4-pages-staging",
-    "pages_source": "GitHub Actions",
-    "harness_path": "/es4c3d4/",
-    "pmtiles_path": "/data/esfire30-national-fidelity-territories.pmtiles",
-    "workflow_template": "benchmarks/es4c3d4/pages-staging-workflow.yml"
+  "head": {
+    "status": 200,
+    "url_final": "https://inthurain.github.io/atlas-incendios-es4c3d4-pages-staging/data/esfire30-national-fidelity-territories.pmtiles",
+    "headers": {
+      "content-length": "63052056",
+      "content-type": "application/octet-stream",
+      "accept-ranges": "bytes",
+      "cache-control": "max-age=600",
+      "etag": "\"6a95d31c-3c21918\"",
+      "last-modified": "Mon, 31 Aug 2026 19:16:44 GMT",
+      "age": "2",
+      "x-cache": "MISS",
+      "x-cache-hits": "0",
+      "access-control-allow-origin": "*"
+    },
+    "redirects": [],
+    "elapsed_ms": 1741.078
   },
-  "r2_comparison_reference": "data/audit/hosting/es4c3d3_real_hosting_revalidation.json",
-  "next_phase": "ES-4C3D5_PRODUCTION_HOSTING_DECISION"
+  "range_tests": {
+    "one_byte": {
+      "requested_range": "bytes=0-0",
+      "status": 206,
+      "content_range": "bytes 0-0/63052056",
+      "content_length": "1",
+      "bytes_received": 1,
+      "byte_identical_to_local": true,
+      "elapsed_ms": 68.044,
+      "headers": {
+        "content-length": "1",
+        "content-range": "bytes 0-0/63052056",
+        "content-type": "application/octet-stream",
+        "accept-ranges": "bytes",
+        "cache-control": "max-age=600",
+        "etag": "\"6a95d31c-3c21918\"",
+        "last-modified": "Mon, 31 Aug 2026 19:16:44 GMT",
+        "age": "2",
+        "x-cache": "HIT",
+        "x-cache-hits": "0",
+        "access-control-allow-origin": "*"
+      },
+      "passed": true
+    },
+    "initial": {
+      "requested_range": "bytes=0-16383",
+      "status": 206,
+      "content_range": "bytes 0-16383/63052056",
+      "content_length": "16384",
+      "bytes_received": 16384,
+      "byte_identical_to_local": true,
+      "elapsed_ms": 57.365,
+      "headers": {
+        "content-length": "16384",
+        "content-range": "bytes 0-16383/63052056",
+        "content-type": "application/octet-stream",
+        "accept-ranges": "bytes",
+        "cache-control": "max-age=600",
+        "etag": "\"6a95d31c-3c21918\"",
+        "last-modified": "Mon, 31 Aug 2026 19:16:44 GMT",
+        "age": "2",
+        "x-cache": "HIT",
+        "x-cache-hits": "0",
+        "access-control-allow-origin": "*"
+      },
+      "passed": true
+    },
+    "middle": {
+      "requested_range": "bytes=1048576-1064959",
+      "status": 206,
+      "content_range": "bytes 1048576-1064959/63052056",
+      "content_length": "16384",
+      "bytes_received": 16384,
+      "byte_identical_to_local": true,
+      "elapsed_ms": 54.684,
+      "headers": {
+        "content-length": "16384",
+        "content-range": "bytes 1048576-1064959/63052056",
+        "content-type": "application/octet-stream",
+        "accept-ranges": "bytes",
+        "cache-control": "max-age=600",
+        "etag": "\"6a95d31c-3c21918\"",
+        "last-modified": "Mon, 31 Aug 2026 19:16:44 GMT",
+        "age": "2",
+        "x-cache": "HIT",
+        "x-cache-hits": "0",
+        "access-control-allow-origin": "*"
+      },
+      "passed": true
+    },
+    "final": {
+      "requested_range": "bytes=63035672-63052055",
+      "status": 206,
+      "content_range": "bytes 63035672-63052055/63052056",
+      "content_length": "16384",
+      "bytes_received": 16384,
+      "byte_identical_to_local": true,
+      "elapsed_ms": 79.184,
+      "headers": {
+        "content-length": "16384",
+        "content-range": "bytes 63035672-63052055/63052056",
+        "content-type": "application/octet-stream",
+        "accept-ranges": "bytes",
+        "cache-control": "max-age=600",
+        "etag": "\"6a95d31c-3c21918\"",
+        "last-modified": "Mon, 31 Aug 2026 19:16:44 GMT",
+        "age": "2",
+        "x-cache": "HIT",
+        "x-cache-hits": "0",
+        "access-control-allow-origin": "*"
+      },
+      "passed": true
+    }
+  },
+  "cors": {
+    "required": false,
+    "result": "NOT_REQUIRED_SAME_ORIGIN",
+    "access_control_allow_origin": "*"
+  },
+  "browser_smokes": {
+    "main": [
+      {
+        "scenario": "spain",
+        "status": "PASS",
+        "source_status": "ready",
+        "rendered_features": 9227,
+        "selected_geometry_id": "esfire30:v1:2000:3640",
+        "browser_range_fetch": {
+          "status": 206,
+          "content_range": "bytes 0-0/63052056",
+          "bytes": 1
+        },
+        "map_ready_ms": 795.2,
+        "requests": 6,
+        "range_requests": 6,
+        "response_bytes_total": 526207,
+        "full_download_observed": false,
+        "statuses": [
+          206
+        ],
+        "content_range_samples": [
+          "bytes 0-16383/63052056",
+          "bytes 1549-9864/63052056",
+          "bytes 505100-626644/63052056",
+          "bytes 159895-505099/63052056"
+        ],
+        "territory_membership_count": null,
+        "errors": []
+      },
+      {
+        "scenario": "galicia",
+        "status": "PASS",
+        "source_status": "ready",
+        "rendered_features": 12026,
+        "selected_geometry_id": "esfire30:v1:1994:1848",
+        "browser_range_fetch": {
+          "status": 206,
+          "content_range": "bytes 0-0/63052056",
+          "bytes": 1
+        },
+        "map_ready_ms": 1475.1,
+        "requests": 6,
+        "range_requests": 6,
+        "response_bytes_total": 2558448,
+        "full_download_observed": false,
+        "statuses": [
+          206
+        ],
+        "content_range_samples": [
+          "bytes 0-16383/63052056",
+          "bytes 1549-9864/63052056",
+          "bytes 2422003-3847748/63052056",
+          "bytes 3847749-4093784/63052056"
+        ],
+        "territory_membership_count": null,
+        "errors": []
+      },
+      {
+        "scenario": "ourense",
+        "status": "PASS",
+        "source_status": "ready",
+        "rendered_features": 6207,
+        "selected_geometry_id": "esfire30:v1:1994:1848",
+        "browser_range_fetch": {
+          "status": 206,
+          "content_range": "bytes 0-0/63052056",
+          "bytes": 1
+        },
+        "map_ready_ms": 1482.6,
+        "requests": 8,
+        "range_requests": 8,
+        "response_bytes_total": 2296073,
+        "full_download_observed": false,
+        "statuses": [
+          206
+        ],
+        "content_range_samples": [
+          "bytes 0-16383/63052056",
+          "bytes 1549-9864/63052056",
+          "bytes 5209275-6457789/63052056",
+          "bytes 6805131-6855245/63052056"
+        ],
+        "territory_membership_count": null,
+        "errors": []
+      },
+      {
+        "scenario": "cangas",
+        "status": "PASS",
+        "source_status": "ready",
+        "rendered_features": 2683,
+        "selected_geometry_id": "esfire30:v1:1995:4440",
+        "browser_range_fetch": {
+          "status": 206,
+          "content_range": "bytes 0-0/63052056",
+          "bytes": 1
+        },
+        "map_ready_ms": 2656.4,
+        "requests": 8,
+        "range_requests": 8,
+        "response_bytes_total": 1762175,
+        "full_download_observed": false,
+        "statuses": [
+          206
+        ],
+        "content_range_samples": [
+          "bytes 0-16383/63052056",
+          "bytes 1549-9864/63052056",
+          "bytes 10013312-10239311/63052056",
+          "bytes 9417079-10013311/63052056"
+        ],
+        "territory_membership_count": 2610,
+        "errors": []
+      },
+      {
+        "scenario": "elx",
+        "status": "PASS",
+        "source_status": "ready",
+        "rendered_features": 2,
+        "selected_geometry_id": "esfire30:v1:1993:777",
+        "browser_range_fetch": {
+          "status": 206,
+          "content_range": "bytes 0-0/63052056",
+          "bytes": 1
+        },
+        "map_ready_ms": 816.4,
+        "requests": 9,
+        "range_requests": 9,
+        "response_bytes_total": 27141,
+        "full_download_observed": false,
+        "statuses": [
+          206
+        ],
+        "content_range_samples": [
+          "bytes 0-16383/63052056",
+          "bytes 1549-9864/63052056",
+          "bytes 19748489-19748766/63052056",
+          "bytes 19748946-19749395/63052056"
+        ],
+        "territory_membership_count": 6,
+        "errors": []
+      }
+    ],
+    "reload": [
+      {
+        "scenario": "reload_1_elx",
+        "status": "PASS",
+        "source_status": "ready",
+        "rendered_features": 2,
+        "selected_geometry_id": "esfire30:v1:1993:777",
+        "browser_range_fetch": {
+          "status": 206,
+          "content_range": "bytes 0-0/63052056",
+          "bytes": 1
+        },
+        "map_ready_ms": 640,
+        "requests": 9,
+        "range_requests": 9,
+        "response_bytes_total": 27141,
+        "full_download_observed": false,
+        "statuses": [
+          206
+        ],
+        "content_range_samples": [
+          "bytes 0-16383/63052056",
+          "bytes 1549-9864/63052056",
+          "bytes 19748489-19748766/63052056",
+          "bytes 19748946-19749395/63052056"
+        ],
+        "territory_membership_count": 6,
+        "errors": []
+      },
+      {
+        "scenario": "reload_2_elx",
+        "status": "PASS",
+        "source_status": "ready",
+        "rendered_features": 2,
+        "selected_geometry_id": "esfire30:v1:1993:777",
+        "browser_range_fetch": {
+          "status": 206,
+          "content_range": "bytes 0-0/63052056",
+          "bytes": 1
+        },
+        "map_ready_ms": 516.3,
+        "requests": 9,
+        "range_requests": 9,
+        "response_bytes_total": 27141,
+        "full_download_observed": false,
+        "statuses": [
+          206
+        ],
+        "content_range_samples": [
+          "bytes 0-16383/63052056",
+          "bytes 1549-9864/63052056",
+          "bytes 19748489-19748766/63052056",
+          "bytes 19748946-19749395/63052056"
+        ],
+        "territory_membership_count": 6,
+        "errors": []
+      }
+    ],
+    "territorial_repeat": [
+      {
+        "scenario": "territorial_repeat_1_spain",
+        "status": "PASS",
+        "source_status": "ready",
+        "rendered_features": 9227,
+        "selected_geometry_id": "esfire30:v1:2000:3640",
+        "browser_range_fetch": {
+          "status": 206,
+          "content_range": "bytes 0-0/63052056",
+          "bytes": 1
+        },
+        "map_ready_ms": 781.2,
+        "requests": 6,
+        "range_requests": 6,
+        "response_bytes_total": 526207,
+        "full_download_observed": false,
+        "statuses": [
+          206
+        ],
+        "content_range_samples": [
+          "bytes 0-16383/63052056",
+          "bytes 1549-9864/63052056",
+          "bytes 505100-626644/63052056",
+          "bytes 159895-505099/63052056"
+        ],
+        "territory_membership_count": null,
+        "errors": []
+      },
+      {
+        "scenario": "territorial_repeat_2_galicia",
+        "status": "PASS",
+        "source_status": "ready",
+        "rendered_features": 12026,
+        "selected_geometry_id": "esfire30:v1:1994:1848",
+        "browser_range_fetch": {
+          "status": 206,
+          "content_range": "bytes 0-0/63052056",
+          "bytes": 1
+        },
+        "map_ready_ms": 1464.5,
+        "requests": 6,
+        "range_requests": 6,
+        "response_bytes_total": 2558448,
+        "full_download_observed": false,
+        "statuses": [
+          206
+        ],
+        "content_range_samples": [
+          "bytes 0-16383/63052056",
+          "bytes 1549-9864/63052056",
+          "bytes 2422003-3847748/63052056",
+          "bytes 3847749-4093784/63052056"
+        ],
+        "territory_membership_count": null,
+        "errors": []
+      },
+      {
+        "scenario": "territorial_repeat_3_spain",
+        "status": "PASS",
+        "source_status": "ready",
+        "rendered_features": 9227,
+        "selected_geometry_id": "esfire30:v1:2000:3640",
+        "browser_range_fetch": {
+          "status": 206,
+          "content_range": "bytes 0-0/63052056",
+          "bytes": 1
+        },
+        "map_ready_ms": 744.5,
+        "requests": 6,
+        "range_requests": 6,
+        "response_bytes_total": 526207,
+        "full_download_observed": false,
+        "statuses": [
+          206
+        ],
+        "content_range_samples": [
+          "bytes 0-16383/63052056",
+          "bytes 1549-9864/63052056",
+          "bytes 505100-626644/63052056",
+          "bytes 159895-505099/63052056"
+        ],
+        "territory_membership_count": null,
+        "errors": []
+      },
+      {
+        "scenario": "territorial_repeat_4_galicia",
+        "status": "PASS",
+        "source_status": "ready",
+        "rendered_features": 12026,
+        "selected_geometry_id": "esfire30:v1:1994:1848",
+        "browser_range_fetch": {
+          "status": 206,
+          "content_range": "bytes 0-0/63052056",
+          "bytes": 1
+        },
+        "map_ready_ms": 1347.2,
+        "requests": 6,
+        "range_requests": 6,
+        "response_bytes_total": 2558448,
+        "full_download_observed": false,
+        "statuses": [
+          206
+        ],
+        "content_range_samples": [
+          "bytes 0-16383/63052056",
+          "bytes 1549-9864/63052056",
+          "bytes 2422003-3847748/63052056",
+          "bytes 3847749-4093784/63052056"
+        ],
+        "territory_membership_count": null,
+        "errors": []
+      }
+    ],
+    "mobile": [
+      {
+        "scenario": "mobile_elx",
+        "status": "PASS",
+        "source_status": "ready",
+        "rendered_features": 2,
+        "selected_geometry_id": "esfire30:v1:1993:777",
+        "browser_range_fetch": {
+          "status": 206,
+          "content_range": "bytes 0-0/63052056",
+          "bytes": 1
+        },
+        "map_ready_ms": 563.8,
+        "requests": 6,
+        "range_requests": 6,
+        "response_bytes_total": 26329,
+        "full_download_observed": false,
+        "statuses": [
+          206
+        ],
+        "content_range_samples": [
+          "bytes 0-16383/63052056",
+          "bytes 1549-9864/63052056",
+          "bytes 19748489-19748766/63052056",
+          "bytes 19748946-19749395/63052056"
+        ],
+        "territory_membership_count": 6,
+        "errors": []
+      },
+      {
+        "scenario": "mobile_cangas",
+        "status": "PASS",
+        "source_status": "ready",
+        "rendered_features": 2683,
+        "selected_geometry_id": "esfire30:v1:1995:4440",
+        "browser_range_fetch": {
+          "status": 206,
+          "content_range": "bytes 0-0/63052056",
+          "bytes": 1
+        },
+        "map_ready_ms": 1938.8,
+        "requests": 6,
+        "range_requests": 6,
+        "response_bytes_total": 1565645,
+        "full_download_observed": false,
+        "statuses": [
+          206
+        ],
+        "content_range_samples": [
+          "bytes 0-16383/63052056",
+          "bytes 1549-9864/63052056",
+          "bytes 10013312-10239311/63052056",
+          "bytes 9417079-10013311/63052056"
+        ],
+        "territory_membership_count": 2610,
+        "errors": []
+      }
+    ]
+  },
+  "pages_request_counts": {
+    "spain": {
+      "requests": 6,
+      "range_requests": 6,
+      "bytes": 526207
+    },
+    "galicia": {
+      "requests": 6,
+      "range_requests": 6,
+      "bytes": 2558448
+    },
+    "ourense": {
+      "requests": 8,
+      "range_requests": 8,
+      "bytes": 2296073
+    },
+    "cangas": {
+      "requests": 8,
+      "range_requests": 8,
+      "bytes": 1762175
+    },
+    "elx": {
+      "requests": 9,
+      "range_requests": 9,
+      "bytes": 27141
+    },
+    "reload_1_elx": {
+      "requests": 9,
+      "range_requests": 9,
+      "bytes": 27141
+    },
+    "reload_2_elx": {
+      "requests": 9,
+      "range_requests": 9,
+      "bytes": 27141
+    },
+    "territorial_repeat_1_spain": {
+      "requests": 6,
+      "range_requests": 6,
+      "bytes": 526207
+    },
+    "territorial_repeat_2_galicia": {
+      "requests": 6,
+      "range_requests": 6,
+      "bytes": 2558448
+    },
+    "territorial_repeat_3_spain": {
+      "requests": 6,
+      "range_requests": 6,
+      "bytes": 526207
+    },
+    "territorial_repeat_4_galicia": {
+      "requests": 6,
+      "range_requests": 6,
+      "bytes": 2558448
+    },
+    "mobile_elx": {
+      "requests": 6,
+      "range_requests": 6,
+      "bytes": 26329
+    },
+    "mobile_cangas": {
+      "requests": 6,
+      "range_requests": 6,
+      "bytes": 1565645
+    }
+  },
+  "full_download_observed": false,
+  "cdn_cache_validation": "NOT_VALIDATED_GITHUB_PAGES_STAGING",
+  "warnings": [
+    "GitHub Pages staging no equivale a una decisión de hosting de producción.",
+    "La ausencia de ACAO no es un fallo: PMTiles y el harness se sirven desde el mismo origin."
+  ],
+  "environment": {
+    "python": "3.8.10",
+    "platform": "Linux-5.15.0-113-generic-x86_64-with-glibc2.29",
+    "chrome": "/usr/bin/google-chrome"
+  },
+  "failures": [],
+  "status": "PASS",
+  "pages_same_origin_validation": "PASS"
 }
