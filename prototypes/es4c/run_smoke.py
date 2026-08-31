@@ -386,7 +386,7 @@ def start_server(background: bool = True, fail_paths: tuple[str, ...] = (), fail
     return server, state
 
 
-def build_case_url(port: int, scenario: str, egif_config: dict | None = None) -> str:
+def build_case_url(port: int, scenario: str, egif_config: dict | None = None, entry_path: str = "/prototypes/es4c/index.html") -> str:
     """Construye una URL de smoke; C3D3 fija explícitamente el puerto 8765."""
     query = {"smoke": scenario}
     if egif_config:
@@ -445,7 +445,7 @@ def build_case_url(port: int, scenario: str, egif_config: dict | None = None) ->
             query["c3a_roundtrip"] = "1"
         if egif_config.get("c3a_rapid_transition"):
             query["c3a_rapid_transition"] = "1"
-    url = f"http://127.0.0.1:{port}/prototypes/es4c/index.html?{urlencode(query)}"
+    url = f"http://127.0.0.1:{port}{entry_path}?{urlencode(query)}"
     if egif_config and egif_config.get("corrupt_hash"):
         url += egif_config["corrupt_hash"]
     if egif_config and egif_config.get("state_hash"):
@@ -453,7 +453,7 @@ def build_case_url(port: int, scenario: str, egif_config: dict | None = None) ->
     return url
 
 
-def run_case(chrome: str, scenario: str, device: str, egif_config: dict | None = None, server_port: int = 0) -> dict:
+def run_case(chrome: str, scenario: str, device: str, egif_config: dict | None = None, server_port: int = 0, entry_path: str = "/prototypes/es4c/index.html") -> dict:
     server, state = start_server(
         fail_paths=tuple((egif_config or {}).get("fault_paths", ())),
         fail_once_paths=tuple((egif_config or {}).get("fault_once_paths", ())),
@@ -461,11 +461,11 @@ def run_case(chrome: str, scenario: str, device: str, egif_config: dict | None =
     )
     try:
         window = "390,844" if device == "mobile_390x844" else "1280,800"
-        url = build_case_url(server.server_port, scenario, egif_config)
+        url = build_case_url(server.server_port, scenario, egif_config, entry_path)
         if egif_config and egif_config.get("roundtrip"):
             prepare_config = dict(egif_config)
             prepare_config["state_prepare"] = egif_config["roundtrip"]
-            prepare_url = build_case_url(server.server_port, scenario, prepare_config)
+            prepare_url = build_case_url(server.server_port, scenario, prepare_config, entry_path)
             prepared = run_page(chrome, prepare_url, window, timeout=120)
             serialized_hash = prepared.get("serialized_hash")
             if not serialized_hash:
@@ -484,7 +484,7 @@ def run_case(chrome: str, scenario: str, device: str, egif_config: dict | None =
         server.server_close()
 
 
-def run_case_sequence(chrome: str, cases: list[tuple[str, str, dict]], server_port: int = 0) -> list[dict]:
+def run_case_sequence(chrome: str, cases: list[tuple[str, str, dict]], server_port: int = 0, entry_path: str = "/prototypes/es4c/index.html") -> list[dict]:
     """Ejecuta smokes consecutivos con un único perfil Chromium efímero."""
     server, state = start_server(port=server_port)
     try:
@@ -493,8 +493,9 @@ def run_case_sequence(chrome: str, cases: list[tuple[str, str, dict]], server_po
         window = "390,844" if cases[0][1] == "mobile_390x844" else "1280,800"
         urls = []
         for index, (scenario, _device, config) in enumerate(cases):
-            separator = "&" if "?" in build_case_url(server.server_port, scenario, config) else "?"
-            urls.append(f"{build_case_url(server.server_port, scenario, config)}{separator}sequence_step={index}")
+            base_url = build_case_url(server.server_port, scenario, config, entry_path)
+            separator = "&" if "?" in base_url else "?"
+            urls.append(f"{base_url}{separator}sequence_step={index}")
         results = run_pages(chrome, urls, window, timeout=120)
         for result, (scenario, device, config) in zip(results, cases):
             result["server_range_stats"] = state.payload()
@@ -722,6 +723,7 @@ def main() -> int:
     parser.add_argument("--c3a-smoke", choices=tuple(C3A_SMOKES), action="append")
     parser.add_argument("--all-c3a-smokes", action="store_true")
     parser.add_argument("--output", type=Path, default=ROOT / "prototypes/es4c/smoke-results.json")
+    parser.add_argument("--entry-path", default="/prototypes/es4c/index.html", help="entrypoint HTML relativo al root servido; permite validar la extracción D2")
     parser.add_argument("--check", action="store_true")
     parser.add_argument("--serve", action="store_true", help="sirve el prototipo interactivo local con HTTP Range")
     args = parser.parse_args()
@@ -765,71 +767,71 @@ def main() -> int:
         egif_devices = ["mobile_390x844"] if config.get("mobile_only") else ["desktop"]
         for device in egif_devices:
             print(f"{name}::{device}: ejecutando", flush=True)
-            rows.append(run_case(args.chrome, config["map"], device, config))
+            rows.append(run_case(args.chrome, config["map"], device, config, entry_path=args.entry_path))
     for name in requested_detail:
         config = EGIF_DETAIL_SMOKES[name]
         detail_devices = ["mobile_390x844"] if config.get("mobile_only") else ["desktop"]
         for device in detail_devices:
             print(f"{name}::{device}: ejecutando", flush=True)
-            rows.append(run_case(args.chrome, config["map"], device, config))
+            rows.append(run_case(args.chrome, config["map"], device, config, entry_path=args.entry_path))
     for name in requested_c1c:
         config = C1C_SMOKES[name]
         c1c_devices = ["mobile_390x844"] if config.get("mobile_only") else ["desktop"]
         for device in c1c_devices:
             print(f"{name}::{device}: ejecutando", flush=True)
-            rows.append(run_case(args.chrome, config["map"], device, config))
+            rows.append(run_case(args.chrome, config["map"], device, config, entry_path=args.entry_path))
     for name in requested_c1c2:
         config = C1C2_SMOKES[name]
         c1c2_devices = ["mobile_390x844"] if config.get("mobile_only") else ["desktop"]
         for device in c1c2_devices:
             print(f"{name}::{device}: ejecutando", flush=True)
-            rows.append(run_case(args.chrome, config["map"], device, config))
+            rows.append(run_case(args.chrome, config["map"], device, config, entry_path=args.entry_path))
     for name in requested_c2a:
         config = C2A_SMOKES[name]
         c2a_devices = ["mobile_390x844"] if config.get("mobile_only") else ["desktop"]
         for device in c2a_devices:
             print(f"{name}::{device}: ejecutando", flush=True)
-            rows.append(run_case(args.chrome, config["map"], device, config))
+            rows.append(run_case(args.chrome, config["map"], device, config, entry_path=args.entry_path))
     for name in requested_c2a2:
         config = C2A2_SMOKES[name]
         c2a2_devices = ["mobile_390x844"] if config.get("mobile_only") else ["desktop"]
         for device in c2a2_devices:
             print(f"{name}::{device}: ejecutando", flush=True)
-            rows.append(run_case(args.chrome, config["map"], device, config))
+            rows.append(run_case(args.chrome, config["map"], device, config, entry_path=args.entry_path))
     for name in requested_c2a3c:
         config = C2A3C_SMOKES[name]
         devices_for_case = ["mobile_390x844"] if config.get("mobile_only") else ["desktop"]
         for device in devices_for_case:
             print(f"{name}::{device}: ejecutando", flush=True)
-            rows.append(run_case(args.chrome, config["map"], device, config))
+            rows.append(run_case(args.chrome, config["map"], device, config, entry_path=args.entry_path))
     for name in requested_c2b2:
         config = C2B2_SMOKES[name]
         devices_for_case = ["mobile_390x844"] if config.get("mobile_only") else ["desktop"]
         for device in devices_for_case:
             print(f"{name}::{device}: ejecutando", flush=True)
-            rows.append(run_case(args.chrome, config["map"], device, config))
+            rows.append(run_case(args.chrome, config["map"], device, config, entry_path=args.entry_path))
     for name in requested_c2b2b2:
         config = C2B2B2_SMOKES[name]
         devices_for_case = ["mobile_390x844"] if config.get("mobile_only") else ["desktop"]
         for device in devices_for_case:
             print(f"{name}::{device}: ejecutando", flush=True)
-            rows.append(run_case(args.chrome, config["map"], device, config))
+            rows.append(run_case(args.chrome, config["map"], device, config, entry_path=args.entry_path))
     for name in requested_c2b3b1:
         config = C2B3B1_SMOKES[name]
         devices_for_case = ["mobile_390x844"] if config.get("mobile_only") else ["desktop"]
         for device in devices_for_case:
             print(f"{name}::{device}: ejecutando", flush=True)
-            rows.append(run_case(args.chrome, config["map"], device, config))
+            rows.append(run_case(args.chrome, config["map"], device, config, entry_path=args.entry_path))
     for name in requested_c3a:
         config = C3A_SMOKES[name]
         devices_for_case = ["mobile_390x844"] if config.get("mobile_only") else ["desktop"]
         for device in devices_for_case:
             print(f"{name}::{device}: ejecutando", flush=True)
-            rows.append(run_case(args.chrome, config["map"], device, config))
+            rows.append(run_case(args.chrome, config["map"], device, config, entry_path=args.entry_path))
     for scenario in scenarios:
         for device in devices:
             print(f"{scenario}::{device}: ejecutando", flush=True)
-            rows.append(run_case(args.chrome, scenario, device))
+            rows.append(run_case(args.chrome, scenario, device, entry_path=args.entry_path))
     payload = {"schema_version": 1, "archive": archive, "runs": rows}
     errors = validate_results(payload)
     payload["valid"] = not errors

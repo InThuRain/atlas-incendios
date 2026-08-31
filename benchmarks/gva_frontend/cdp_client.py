@@ -188,7 +188,7 @@ def run_page(chrome, url, window_size, timeout=150, screenshot_path=None):
             client.command("Page.navigate", {"url": url})
             while True:
                 complete = client.evaluate(
-                    "document.querySelector('#debug-output')?.dataset.complete === 'true'"
+                    "document.querySelector('#debug-output, #runtime-test-output')?.dataset.complete === 'true'"
                 )
                 if complete:
                     break
@@ -196,7 +196,7 @@ def run_page(chrome, url, window_size, timeout=150, screenshot_path=None):
                     raise TimeoutError("Frontend benchmark did not complete")
                 time.sleep(0.05)
             text = client.evaluate(
-                "document.querySelector('#debug-output').textContent"
+                "document.querySelector('#debug-output, #runtime-test-output').textContent"
             )
             if screenshot_path:
                 # Let Leaflet Canvas and asynchronously loaded raster tiles
@@ -263,16 +263,16 @@ def run_pages(chrome, urls, window_size, timeout=150):
                 client.command("Page.navigate", {"url": url})
                 page_deadline = time.monotonic() + timeout
                 while True:
-                    marker_check = "true" if marker is None else "document.querySelector('#debug-output')?.textContent.includes({})".format(json.dumps('"sequence_step":"{}"'.format(marker)))
+                    marker_check = "true" if marker is None else "document.querySelector('#debug-output, #runtime-test-output')?.textContent.includes({})".format(json.dumps('"sequence_step":"{}"'.format(marker)))
                     complete = client.evaluate(
-                        "document.readyState === 'complete' && document.querySelector('#debug-output')?.dataset.complete === 'true' && ({})".format(marker_check)
+                        "document.readyState === 'complete' && document.querySelector('#debug-output, #runtime-test-output')?.dataset.complete === 'true' && ({})".format(marker_check)
                     )
                     if complete:
                         break
                     if time.monotonic() > page_deadline:
                         raise TimeoutError("Frontend benchmark did not complete")
                     time.sleep(0.05)
-                text = client.evaluate("document.querySelector('#debug-output').textContent")
+                text = client.evaluate("document.querySelector('#debug-output, #runtime-test-output').textContent")
                 results.append(json.loads(text))
             return results
         finally:

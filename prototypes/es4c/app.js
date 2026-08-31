@@ -1,4 +1,6 @@
-import { Protocol } from "/data/derived/spain/es3/tools/browser/pmtiles-4.3.0.mjs";
+const runtimeConfig = globalThis.__ATLAS_NATIONAL_RUNTIME_CONFIG__ || {};
+const protocolModuleUrl = runtimeConfig.pmtiles_protocol_module || "/data/derived/spain/es3/tools/browser/pmtiles-4.3.0.mjs";
+const { Protocol } = await import(protocolModuleUrl);
 import { EGIFInitialLoader } from "./egif_initial_loader.mjs";
 import { EGIFDetailLoader, locateRecord, pageOfInitialRows, recordMatchesInitialScope } from "./egif_detail_loader.mjs";
 import { canonicalTerritoryName, TERRITORY_OPTIONS } from "./territory_catalog.mjs";
@@ -11,7 +13,8 @@ import { MunicipalityLoader } from "./municipality_loader.mjs";
 import { addOfficialMunicipalityLayer } from "./municipality_layer.mjs";
 import { MunicipalityEsfireIndexLoader, municipalityFilterExpression } from "./municipality_esfire_index.mjs";
 
-const ARCHIVE_PATH = "/data/derived/spain/es4c2b/pmtiles/esfire30-national-fidelity-territories.pmtiles";
+const runtimeAssets = runtimeConfig.assets || {};
+const ARCHIVE_PATH = runtimeAssets.esfire30?.pmtiles?.path || "/data/derived/spain/es4c2b/pmtiles/esfire30-national-fidelity-territories.pmtiles";
 const SOURCE_ID = "esfire30";
 const SOURCE_LAYER = "esfire30";
 const FILL_LAYER = "esfire30-perimeters";
@@ -24,7 +27,7 @@ const ESFIRE30_TERRITORY_OUT_OF_COVERAGE = new Set([
   "ES:CCAA:04", "ES:CCAA:05", "ES:CCAA:18", "ES:CCAA:19",
   "ES:PROV:07", "ES:PROV:35", "ES:PROV:38",
 ]);
-const EGIF_MANIFEST_URL = "/data/web/spain/egif/2026-08-27/manifest.json";
+const EGIF_MANIFEST_URL = runtimeAssets.egif?.manifest?.path || "/data/web/spain/egif/2026-08-27/manifest.json";
 const DEFAULT_VIEW = { center: [-3.7, 40.3], zoom: 4 };
 const VIEWS = {
   spain: DEFAULT_VIEW,
@@ -32,7 +35,7 @@ const VIEWS = {
   pais_valencia: { center: [-0.7, 39.3], zoom: 8 },
 };
 
-const output = document.querySelector("#debug-output");
+const output = document.querySelector("#debug-output, #runtime-test-output");
 const selectionSummary = document.querySelector("#selection-summary");
 const fromInput = document.querySelector("#from-year");
 const toInput = document.querySelector("#to-year");
@@ -133,8 +136,14 @@ let state = createRuntimeState({
 const PROTOTYPE_DEFAULT_STATE = { ...state, center: [...state.center] };
 const egifLoader = new EGIFInitialLoader({ manifestUrl: EGIF_MANIFEST_URL });
 const egifDetailLoader = new EGIFDetailLoader({ manifestUrl: EGIF_MANIFEST_URL });
-const municipalityLoader = new MunicipalityLoader();
-const municipalityEsfireIndexLoader = new MunicipalityEsfireIndexLoader();
+const municipalityLoader = new MunicipalityLoader({
+  catalogUrl: runtimeAssets.municipalities?.catalog?.path,
+  shardsRoot: runtimeAssets.municipalities?.shards_root?.path,
+});
+const municipalityEsfireIndexLoader = new MunicipalityEsfireIndexLoader({
+  manifestUrl: runtimeAssets.esfire30_municipality_indexes?.manifest?.path,
+  root: runtimeAssets.esfire30_municipality_indexes?.root?.path,
+});
 // Sólo es un conmutador de laboratorio C2B3B1. La navegación normal usa el
 // shard del padre administrativo; los smokes comparan también el nacional.
 const MUNICIPAL_INDEX_STRATEGY = ["national", "parent"].includes(params.get("municipal_index_strategy"))

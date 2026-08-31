@@ -18,8 +18,8 @@ function boundsForFeature(feature) {
   return [[bounds[0], bounds[1]], [bounds[2], bounds[3]]];
 }
 
-export async function addOfficialProvinceLayer(map, { fetchImpl = globalThis.fetch.bind(globalThis), onSelect = () => {} } = {}) {
-  const response = await fetchImpl(PROVINCES_URL);
+export async function addOfficialProvinceLayer(map, { fetchImpl = globalThis.fetch.bind(globalThis), onSelect = () => {}, url = globalThis.__ATLAS_NATIONAL_RUNTIME_CONFIG__?.assets?.territories?.provinces?.path || PROVINCES_URL } = {}) {
+  const response = await fetchImpl(url);
   if (!response.ok) throw new Error(`Límites provinciales BDLJE no disponibles (${response.status})`);
   const collection = await response.json();
   const features = collection.features || [];

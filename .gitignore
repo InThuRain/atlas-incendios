@@ -1,6 +1,7 @@
 __pycache__/
 *.py[cod]
 .venv/
+build/national/
 
 # Snapshots raw reproducibles: mantener locales; la publicación usa derivados web.
 data/raw/gva/

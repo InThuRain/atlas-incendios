@@ -1,0 +1,75 @@
+{
+  "schema_version": "es4d2-frontend-extraction-v1",
+  "status": "PRODUCTION_FRONTEND_EXTRACTED",
+  "source_root": "prototypes/es4c",
+  "production_root": "src/national",
+  "artifact": {
+    "builder": "scripts/build_national_frontend.py",
+    "output": "build/national",
+    "git_ignored": true,
+    "large_assets_included": false,
+    "entrypoint": "index.html"
+  },
+  "promoted_modules": [
+    "app.js",
+    "runtime_state.mjs",
+    "state_serialization.mjs",
+    "egif_initial_loader.mjs",
+    "egif_detail_loader.mjs",
+    "territory_catalog.mjs",
+    "province_catalog.mjs",
+    "territory_layer.mjs",
+    "province_layer.mjs",
+    "municipality_loader.mjs",
+    "municipality_layer.mjs",
+    "municipality_esfire_index.mjs"
+  ],
+  "shared_runtime_status": "D2 shell/config extracted; listed ES-4C modules remain shared to avoid a functional rewrite",
+  "dev_only": [
+    "prototypes/es4c/index.html",
+    "prototypes/es4c/run_smoke.py",
+    "prototypes/es4c/esfire30_territory_index.mjs",
+    "prototypes/es4c/territory_pmtiles_sample.*"
+  ],
+  "removed_runtime_dependencies": [
+    "prototype HTML",
+    "prototype CSS",
+    "prototype bootstrap",
+    "debug panel visible",
+    "external CCAA/province geometry_id index for MapLibre filtering"
+  ],
+  "asset_config": {
+    "module": "src/national/asset-config.mjs",
+    "asset_base_url": true,
+    "pmtiles": {
+      "logical_path": "data/esfire30/v1/3c6eb10ba146008cdabf36646d48a4c7a92c1c1357ad90679f6b5dce42013cfe/esfire30-national-fidelity-territories.pmtiles",
+      "bytes": 63052056,
+      "sha256": "3c6eb10ba146008cdabf36646d48a4c7a92c1c1357ad90679f6b5dce42013cfe"
+    },
+    "host_specific_urls": false
+  },
+  "source_registry": ["egif", "esfire30", "bdlje"],
+  "tests": {
+    "static": 7,
+    "browser_smokes": 8,
+    "result": "PASS"
+  },
+  "parity_status": {
+    "spain_default": "PASS",
+    "elx_end_to_end": "PASS",
+    "galicia_ourense": "PASS",
+    "cangas": "PASS",
+    "canarias_no_coverage": "PASS",
+    "agost_zero_relations": "PASS",
+    "restore_double_selection": "PASS",
+    "cache_cancellation": "PASS",
+    "mobile_elx_cangas": "PASS"
+  },
+  "remaining_gaps": [
+    "ICV source parity",
+    "EFFIS source parity",
+    "GVA #v=1 compatibility adapter"
+  ],
+  "production_switch_ready": false,
+  "next_phase": "ES-4D3_GVA_SOURCE_PARITY_AND_COMPATIBILITY"
+}

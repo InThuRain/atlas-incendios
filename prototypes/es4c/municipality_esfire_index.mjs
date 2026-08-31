@@ -33,9 +33,9 @@ function abortError() {
 }
 
 export class MunicipalityEsfireIndexLoader {
-  constructor({ manifestUrl = MUNICIPALITY_ESFIRE_INDEX_MANIFEST_URL, fetchImpl = globalThis.fetch ? globalThis.fetch.bind(globalThis) : null, AbortControllerImpl = globalThis.AbortController } = {}) {
+  constructor({ manifestUrl = MUNICIPALITY_ESFIRE_INDEX_MANIFEST_URL, root = MUNICIPALITY_ESFIRE_INDEX_ROOT, fetchImpl = globalThis.fetch ? globalThis.fetch.bind(globalThis) : null, AbortControllerImpl = globalThis.AbortController } = {}) {
     if (!fetchImpl || !AbortControllerImpl) throw new Error("Faltan dependencias para el índice municipal ESFire30");
-    this.manifestUrl = manifestUrl; this.fetchImpl = fetchImpl; this.AbortControllerImpl = AbortControllerImpl;
+    this.root = root || MUNICIPALITY_ESFIRE_INDEX_ROOT; this.manifestUrl = manifestUrl || `${this.root}/manifest.json`; this.fetchImpl = fetchImpl; this.AbortControllerImpl = AbortControllerImpl;
     this.manifest = null; this.manifestPromise = null; this.national = null; this.parentCache = new Map();
     this.generation = 0; this.activeController = null;
   }

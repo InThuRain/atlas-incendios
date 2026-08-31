@@ -7,11 +7,11 @@
 export const MUNICIPALITY_CATALOG_URL = "/data/territories/spain/municipality_catalog_2026-08-29.json";
 export const MUNICIPALITY_SHARDS_ROOT = "/data/derived/spain/es4c2a3/municipalities";
 
-export function shardPathForAsset(assetId) {
+export function shardPathForAsset(assetId, root = MUNICIPALITY_SHARDS_ROOT) {
   if (typeof assetId !== "string" || !/^municipalities:ES:(PROV|CCAA):\d{2}$/.test(assetId)) {
     throw new Error(`asset_id municipal inválido: ${assetId}`);
   }
-  return `${MUNICIPALITY_SHARDS_ROOT}/${assetId.slice("municipalities:".length).replace(/:/g, "-")}.geojson`;
+  return `${root || MUNICIPALITY_SHARDS_ROOT}/${assetId.slice("municipalities:".length).replace(/:/g, "-")}.geojson`;
 }
 
 export function buildMunicipalityCatalog(payload) {
@@ -47,9 +47,9 @@ function abortError() {
 }
 
 export class MunicipalityLoader {
-  constructor({ catalogUrl = MUNICIPALITY_CATALOG_URL, fetchImpl = globalThis.fetch ? globalThis.fetch.bind(globalThis) : null, AbortControllerImpl = globalThis.AbortController } = {}) {
+  constructor({ catalogUrl = MUNICIPALITY_CATALOG_URL, shardsRoot = MUNICIPALITY_SHARDS_ROOT, fetchImpl = globalThis.fetch ? globalThis.fetch.bind(globalThis) : null, AbortControllerImpl = globalThis.AbortController } = {}) {
     if (!fetchImpl || !AbortControllerImpl) throw new Error("Faltan dependencias para cargar municipios");
-    this.catalogUrl = catalogUrl; this.fetchImpl = fetchImpl; this.AbortControllerImpl = AbortControllerImpl;
+    this.catalogUrl = catalogUrl || MUNICIPALITY_CATALOG_URL; this.shardsRoot = shardsRoot || MUNICIPALITY_SHARDS_ROOT; this.fetchImpl = fetchImpl; this.AbortControllerImpl = AbortControllerImpl;
     this.catalog = null; this.catalogPromise = null; this.assetCache = new Map();
     this.generation = 0; this.activeController = null;
   }
@@ -69,7 +69,7 @@ export class MunicipalityLoader {
   }
   async loadAsset(assetId, signal) {
     const cached = this.assetCache.get(assetId); if (cached) return { ...cached, metrics: { ...cached.metrics, cached: true } };
-    const { data, metrics } = await this.fetchJson(shardPathForAsset(assetId), signal);
+    const { data, metrics } = await this.fetchJson(shardPathForAsset(assetId, this.shardsRoot), signal);
     if (signal && signal.aborted) throw abortError();
     if (!Array.isArray(data && data.features) || data.features.some((feature) => !feature || !feature.properties || !feature.properties.municipality_id || !feature.geometry)) {
       throw new Error(`Shard municipal inválido: ${assetId}`);

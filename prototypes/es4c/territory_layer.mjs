@@ -21,8 +21,8 @@ export function boundsForFeature(feature) {
   return validBounds(bounds) ? [[bounds[0], bounds[1]], [bounds[2], bounds[3]]] : null;
 }
 
-export async function addOfficialTerritoryLayer(map, { fetchImpl = globalThis.fetch.bind(globalThis), onSelect = () => {} } = {}) {
-  const response = await fetchImpl(CCAA_TERRITORIES_URL);
+export async function addOfficialTerritoryLayer(map, { fetchImpl = globalThis.fetch.bind(globalThis), onSelect = () => {}, url = globalThis.__ATLAS_NATIONAL_RUNTIME_CONFIG__?.assets?.territories?.ccaa?.path || CCAA_TERRITORIES_URL } = {}) {
+  const response = await fetchImpl(url);
   if (!response.ok) throw new Error(`Límites BDLJE no disponibles (${response.status})`);
   const collection = await response.json();
   const features = collection.features || [];
