@@ -6,7 +6,12 @@ const assetUrl = new URL("../data/esfire30-national-fidelity-territories.pmtiles
 const output = document.querySelector("#debug-output");
 const status = document.querySelector("#status");
 const telemetry = [];
+const runtimeErrors = [];
 const baseFetch = window.fetch.bind(window);
+const startedAt = performance.now();
+
+window.addEventListener("error", (event) => runtimeErrors.push(String(event.error || event.message || "window error")));
+window.addEventListener("unhandledrejection", (event) => runtimeErrors.push(String(event.reason || "unhandled rejection")));
 
 function bytes(headers) {
   const range = headers.get("Content-Range")?.match(/^bytes\s+(\d+)-(\d+)\/(\d+)$/i);
@@ -37,15 +42,15 @@ const selected = CASES[scenario] || CASES.spain;
 async function territoryFilter() {
   if (selected.slots) {
     const [prefix, code] = selected.slots;
-    return ["any", ...[1, 2, 3].map((slot) => ["==", ["get", `${prefix}_${slot}`], code])];
+    return { expression: ["any", ...[1, 2, 3].map((slot) => ["==", ["get", `${prefix}_${slot}`], code])], membership_count: null };
   }
   if (selected.municipal) {
     const [path, municipalityId] = selected.municipal;
     const payload = await fetch(`./municipality-index/${path}`).then((response) => response.json());
     const ids = payload.municipalities[municipalityId] || [];
-    return ["in", ["get", "geometry_id"], ["literal", ids]];
+    return { expression: ["in", ["get", "geometry_id"], ["literal", ids]], membership_count: ids.length };
   }
-  return ["!=", ["get", "geometry_id"], "__none__"];
+  return { expression: ["!=", ["get", "geometry_id"], "__none__"], membership_count: null };
 }
 
 const directFetch = fetch(assetUrl, { headers: { Range: "bytes=0-0" }, cache: "no-store" })
@@ -60,12 +65,13 @@ const map = new maplibregl.Map({ container: "map", center: selected.center, zoom
 map.on("error", (event) => finish({ errors: [String(event.error || event.message || "MapLibre error")] }));
 map.on("load", async () => {
   try {
-    const filter = ["all", [">=", ["get", "year"], selected.year[0]], ["<=", ["get", "year"], selected.year[1]], await territoryFilter()];
+    const territory = await territoryFilter();
+    const filter = ["all", [">=", ["get", "year"], selected.year[0]], ["<=", ["get", "year"], selected.year[1]], territory.expression];
     map.setFilter("fires", filter);
     map.once("idle", () => {
       const features = map.queryRenderedFeatures({ layers: ["fires"] });
       const selection = selected.select ? features.find((feature) => feature.properties?.geometry_id === selected.select)?.properties?.geometry_id || null : features[0]?.properties?.geometry_id || null;
-      finish({ source_status: "ready", filter, rendered_features: features.length, selected_geometry_id: selection });
+      finish({ source_status: "ready", filter, territory_membership_count: territory.membership_count, rendered_features: features.length, selected_geometry_id: selection });
     });
   } catch (error) { finish({ errors: [String(error)] }); }
 });
@@ -75,6 +81,6 @@ function finish(extra) {
     requests: rows.length, range_requests: rows.filter((row) => row.status === 206 && row.range).length,
     bytes: rows.reduce((sum, row) => sum + (row.bytes || 0), 0),
     full_download_observed: rows.some((row) => row.status === 200 && (row.bytes || 0) >= 63052056), rows,
-  }, ...extra };
+  }, runtime_errors: runtimeErrors, map_ready_ms: Math.round((performance.now() - startedAt) * 1000) / 1000, ...extra };
   directFetch.then((value) => { result.browser_range_fetch = value; status.textContent = result.source_status || "error"; output.textContent = JSON.stringify(result); output.dataset.complete = "true"; });
 }
