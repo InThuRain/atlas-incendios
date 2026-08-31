@@ -40,8 +40,8 @@ export function canonicalPayload(state) {
       province_id: state.province_id || null,
       municipality_id: state.municipality_id || null,
     },
-    sources: { esfire30: Boolean(state.esfire30_visible), egif: Boolean(state.egif_visible) },
-    selections: { geometry_id: state.selected_geometry_id || null, egif_record_id: state.selected_egif_record_id || null },
+    sources: { esfire30: Boolean(state.esfire30_visible), egif: Boolean(state.egif_visible), icv: Boolean(state.icv_visible) },
+    selections: { geometry_id: state.selected_geometry_id || null, egif_record_id: state.selected_egif_record_id || null, icv_geometry_id: state.selected_icv_geometry_id || null },
   };
 }
 
@@ -58,7 +58,7 @@ export function parseStateHash(hash, defaults, territoryIds, provinceParents = n
   if (!payload || payload.v !== STATE_VERSION) return { status: "unknown_version", state: { ...defaults } };
   const time = payload.time || {};
   const validYears = Number.isInteger(time.from) && Number.isInteger(time.to)
-    && time.from >= 1968 && time.to <= 2023 && time.from <= time.to;
+    && time.from >= 1968 && time.to <= 2024 && time.from <= time.to;
   const map = payload.map || {};
   const validMap = typeof map.lat === "number" && Number.isFinite(map.lat) && map.lat >= -90 && map.lat <= 90
     && typeof map.lon === "number" && Number.isFinite(map.lon) && map.lon >= -180 && map.lon <= 180
@@ -90,10 +90,13 @@ export function parseStateHash(hash, defaults, territoryIds, provinceParents = n
     municipality_id: scope === "municipality" ? municipalityId : null,
     esfire30_visible: typeof sources.esfire30 === "boolean" ? sources.esfire30 : defaults.esfire30_visible,
     egif_visible: typeof sources.egif === "boolean" ? sources.egif : defaults.egif_visible,
+    icv_visible: typeof sources.icv === "boolean" ? sources.icv : defaults.icv_visible,
     selected_geometry_id: validId(selections.geometry_id, /^esfire30:/),
     selected_egif_record_id: validId(selections.egif_record_id, /^egif-record:\d+$/),
+    selected_icv_geometry_id: validId(selections.icv_geometry_id, /^gva:geometry:/),
     selected_geometry_year: null,
     selected_egif_year: null,
+    selected_icv_geometry_year: null,
   };
   return { status: "complete", state };
 }

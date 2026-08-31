@@ -1,0 +1,62 @@
+{
+  "schema_version": "es4d3a-gva-icv-source-parity-v1",
+  "status": "PASS",
+  "source": {
+    "id": "icv",
+    "label": "ICV / Generalitat Valenciana",
+    "coverage": { "from": 1993, "to": 2024, "territory_ids": ["ES:CCAA:10"] },
+    "quality": "A_official_vector",
+    "license": "CC BY 4.0",
+    "manifest": "data/web/gva/manifest.json",
+    "fires": "data/web/gva/fires.json",
+    "provenance": "data/web/gva/provenance.json"
+  },
+  "reconciliation": {
+    "source_records": 13738,
+    "geometries": 13739,
+    "control_record": {
+      "fire_id": "gva:pif-cv:2024AL0005",
+      "geometry_ids": ["gva:geometry:2024:121:13587", "gva:geometry:2024:121:13606"]
+    }
+  },
+  "delivery": {
+    "partition": "province × temporal_block × LOD",
+    "geometry_assets": 36,
+    "fires_bytes": 7657862,
+    "fires_gzip_bytes": 572844,
+    "geometry_raw_bytes_all_lods": 66837327,
+    "geometry_gzip_bytes_all_lods": 11030673,
+    "levels": {
+      "overview": { "assets": 12, "features": 13739, "raw_bytes": 18254380, "gzip_bytes": 2484912 },
+      "regional": { "assets": 12, "features": 13739, "raw_bytes": 20439278, "gzip_bytes": 3214762 },
+      "local": { "assets": 12, "features": 13739, "raw_bytes": 28143669, "gzip_bytes": 5330999 }
+    },
+    "province_crosswalk": { "ES:PROV:03": "alicante", "ES:PROV:12": "castellon", "ES:PROV:46": "valencia" }
+  },
+  "municipality_filter": {
+    "classification": "A_documented_administrative_filter",
+    "field": "fires[].municipality_id",
+    "canonical_mapping": "ES:MUN:<INE5>",
+    "not_a_spatial_intersection": true
+  },
+  "runtime": {
+    "separate_map_source": "icv",
+    "separate_selection": "selected_icv_geometry_id",
+    "default_visible": true,
+    "state_version": "es4c-state-v1",
+    "state_change": "additive icv visibility and optional ICV geometry selection"
+  },
+  "directed_smokes": {
+    "gva_1975": "PASS: ICV no_coverage",
+    "gva_1988": "PASS: ICV no_coverage; EGIF and ESFire30 covered",
+    "gva_1995": "PASS: three independent sources",
+    "gva_2024_multi_geometry": "PASS: 2024AL0005 has one record and two geometries",
+    "elx": "PASS: documented municipality filter; zero matching ICV perimeters for the selected year is not source absence",
+    "galicia_1995": "PASS: no ICV request / no_territory_coverage",
+    "icv_error": "PASS: simulated 503 isolated from EGIF and ESFire30",
+    "mobile_gva": "PASS: 390x844"
+  },
+  "remaining": ["EFFIS", "GVA_PERMALINK_V1"],
+  "production_switch_ready": false,
+  "next_phase": "ES-4D3B_GVA_EFFIS_SOURCE_PARITY"
+}

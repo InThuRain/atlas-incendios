@@ -27,6 +27,12 @@ export const LOCAL_ASSET_CONFIG = Object.freeze({
       },
     },
     egif: { manifest: { logical_id: "egif-national-web-manifest-2026-08-27", path: "/data/web/spain/egif/2026-08-27/manifest.json", required: true } },
+    // ICV reutiliza exactamente el bundle público valenciano ya validado.
+    // El loader resuelve desde su manifest los shards provincia × bloque × LOD.
+    icv: {
+      manifest: { logical_id: "gva-icv-public-manifest", path: "/data/web/gva/manifest.json", required: true },
+      asset_base_url: { path: "/", required: true },
+    },
     territories: {
       ccaa: { path: "/data/derived/spain/es4c2a/ccaa.geojson", required: true },
       provinces: { path: "/data/derived/spain/es4c2a/provinces.geojson", required: true },

@@ -14,6 +14,13 @@ export const NATIONAL_SOURCE_REGISTRY = Object.freeze({
     attribution: "ESFire30 Causes, Ochoa, Chuvieco, Rodrigues y Franquesa (2026), versión v1, CC BY 4.0, DOI 10.5281/zenodo.18449006.",
     runtime_module: "sources/esfire30", default_visible: true,
   },
+  icv: {
+    id: "icv", label: "ICV / Generalitat Valenciana", coverage: { from: 1993, to: 2024 },
+    territory_coverage: ["ES:CCAA:10"], entity_label: "incendios y perímetros oficiales valencianos",
+    geometry_semantics: "perímetros oficiales de Generalitat; un parte fuente puede tener varias geometrías",
+    attribution: "Incendios forestales de la Comunitat Valenciana (1993–2024) CC BY 4.0, Generalitat. Datos transformados para su visualización mediante reproyección, selección de atributos, particionado y simplificación geométrica.",
+    runtime_module: "sources/icv", default_visible: true,
+  },
   bdlje: {
     id: "bdlje", label: "BDLJE / IGN-CNIG", coverage: null,
     entity_label: "límites administrativos actuales", geometry_semantics: "división administrativa actual",

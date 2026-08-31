@@ -152,9 +152,9 @@ EXPECTED_RECORDS = 646887
 
 EXPECTED_GEOMETRIES = 119498
 
-PHASE = ES-4D2
+PHASE = ES-4D3A
 
-STATUS = DONE (frontend nacional extraído en src/national con artifact estático local; no se modificó producción ni staging).
+STATUS = DONE (ICV 1993–2024 integrado como fuente nacional independiente con GeoJSON lazy por provincia × bloque × LOD; no se modificó producción ni staging).
 
 CURRENT_HOSTING = GITHUB_RELEASES (download evidence) + R2 R2.DEV (technical staging)
 
@@ -196,7 +196,7 @@ PMTILES_PATH = data/derived/spain/es4c2b/pmtiles/esfire30-national-fidelity-terr
 
 PROTOTYPE_PATH = prototypes/es4c/
 
-RESULTS_PATH = ES_4D2_NATIONAL_PRODUCTION_FRONTEND_EXTRACTION.md; data/audit/production/es4d2_frontend_extraction.json
+RESULTS_PATH = ES_4D3A_GVA_ICV_SOURCE_PARITY.md; data/audit/production/es4d3a_gva_icv_source_parity.json
 
 PAGES_SAME_ORIGIN_VALIDATION = PASS
 R2_DEV_STAGING_VALIDATION = PASS
@@ -205,9 +205,11 @@ CDN_CACHE_VALIDATION = NOT_VALIDATED
 FULL_DOWNLOAD_OBSERVED = false
 MIGRATION_DESIGN_STATUS = MIGRATION_DESIGN_READY_WITH_PARITY_GAPS
 PRODUCTION_FRONTEND_STATUS = PRODUCTION_FRONTEND_EXTRACTED
-PRODUCTION_SWITCH_READY = false (ICV missing; EFFIS missing; GVA #v=1 compatibility adapter missing)
+ICV_PARITY_STATUS = PASS
+PRODUCTION_SWITCH_READY = false (EFFIS missing; GVA #v=1 compatibility adapter missing)
 PRODUCTION_ROOT_SWITCH_AUTHORIZED = false
 INITIAL_PRODUCTION_HOSTING = GITHUB_PAGES
 FALLBACK_HOSTING = CLOUDFLARE_R2_CUSTOM_DOMAIN
 PAGES_SAME_ORIGIN_VALIDATION = PASS
-NEXT_PHASE = ES-4D3_GVA_SOURCE_PARITY_AND_COMPATIBILITY
+REMAINING_GAPS = EFFIS,GVA_PERMALINK_V1
+NEXT_PHASE = ES-4D3B_GVA_EFFIS_SOURCE_PARITY

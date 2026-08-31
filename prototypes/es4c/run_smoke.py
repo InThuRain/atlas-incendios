@@ -439,12 +439,16 @@ def build_case_url(port: int, scenario: str, egif_config: dict | None = None, en
             query["territory_up"] = "1"
         if egif_config.get("select_geometry_id"):
             query["select_geometry_id"] = egif_config["select_geometry_id"]
+        if egif_config.get("select_icv_geometry_id"):
+            query["select_icv_geometry_id"] = egif_config["select_icv_geometry_id"]
         if egif_config.get("c3a_select_both"):
             query["c3a_select_both"] = "1"
         if egif_config.get("c3a_roundtrip"):
             query["c3a_roundtrip"] = "1"
         if egif_config.get("c3a_rapid_transition"):
             query["c3a_rapid_transition"] = "1"
+        if egif_config.get("icv_rapid"):
+            query["icv_rapid"] = "1"
     url = f"http://127.0.0.1:{port}{entry_path}?{urlencode(query)}"
     if egif_config and egif_config.get("corrupt_hash"):
         url += egif_config["corrupt_hash"]
