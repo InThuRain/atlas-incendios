@@ -1,4 +1,4 @@
-import { Protocol } from "./vendor/pmtiles-4.3.0.mjs";
+const { Protocol } = window.pmtiles;
 
 const params = new URLSearchParams(location.search);
 const scenario = params.get("smoke") || "spain";

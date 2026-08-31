@@ -10,8 +10,9 @@ deployment.
 ## Artifact preparado
 
 `scripts/build_es4c3d4_pages_staging.py` parte del artifact público actual y
-añade un harness aislado en `/es4c3d4/`, los vendor MapLibre/PMTiles, los tres
-shards municipales estrictamente necesarios (03, 32 y 33) y el PMTiles bajo
+añade un harness aislado en `/es4c3d4/`, los bundles autocontenidos MapLibre y
+PMTiles descargados en CI con versión/SHA fijados, dos fixtures municipales
+exactos de smoke (Elx y Cangas del Narcea) y el PMTiles bajo
 `/data/esfire30-national-fidelity-territories.pmtiles`.
 
 Antes de copiar el binario, el builder aborta salvo que mida 63.052.056 B y
@@ -23,8 +24,9 @@ El site público de referencia mide 84.200.549 B. Sólo con el PMTiles sumaría
 tamaño real, que incluye el pequeño harness y sus vendors.
 
 El harness usa una URL relativa same-origin, aplica exactamente los filtros
-MVT CCAA/provincia y emplea el índice municipal por padre para Cangas del
-Narcea (2.610 IDs) y Elx (6 IDs). No carga EGIF ni modifica el runtime normal.
+MVT CCAA/provincia y emplea fixtures extraídos de los índices municipales
+provinciales auditados para Cangas del Narcea (2.610 IDs) y Elx (6 IDs). No
+carga EGIF ni modifica el runtime normal.
 
 ## Acción externa requerida
 

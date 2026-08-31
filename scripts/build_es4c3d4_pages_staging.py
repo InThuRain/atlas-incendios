@@ -20,8 +20,7 @@ ROOT = Path(__file__).resolve().parents[1]
 EXPECTED_BYTES = 63052056
 EXPECTED_SHA256 = "3c6eb10ba146008cdabf36646d48a4c7a92c1c1357ad90679f6b5dce42013cfe"
 HARNESS = ROOT / "benchmarks/es4c3d4/harness"
-VENDOR = ROOT / "data/derived/spain/es3/tools/browser"
-MUNICIPAL_INDEX = ROOT / "data/derived/spain/es4c2b/runtime/municipality-index/by-parent"
+FIXTURES = ROOT / "benchmarks/es4c3d4/fixtures/municipality-index"
 
 
 def sha256(path: Path) -> str:
@@ -41,15 +40,16 @@ def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--public-site", type=Path, required=True)
     parser.add_argument("--pmtiles", type=Path, required=True)
+    parser.add_argument("--vendor-dir", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
     args = parser.parse_args()
-    public_site, pmtiles, output = args.public_site.resolve(), args.pmtiles.resolve(), args.output.resolve()
+    public_site, pmtiles, vendor, output = args.public_site.resolve(), args.pmtiles.resolve(), args.vendor_dir.resolve(), args.output.resolve()
     if not public_site.is_dir():
         raise SystemExit("No existe el artifact público de partida")
     if not pmtiles.is_file() or pmtiles.stat().st_size != EXPECTED_BYTES or sha256(pmtiles) != EXPECTED_SHA256:
         raise SystemExit("PMTiles rechazado por tamaño o SHA-256")
-    required = [HARNESS / "index.html", HARNESS / "app.js", VENDOR / "maplibre-gl-5.16.0.js", VENDOR / "pmtiles-4.3.0.mjs"]
-    required += [MUNICIPAL_INDEX / f"ES-PROV-{code}.json" for code in ("03", "32", "33")]
+    required = [HARNESS / "index.html", HARNESS / "app.js", vendor / "maplibre-gl-5.16.0.js", vendor / "pmtiles-4.3.0.js"]
+    required += [FIXTURES / f"ES-PROV-{code}.json" for code in ("03", "33")]
     if any(not path.is_file() for path in required):
         raise SystemExit("Faltan assets locales del harness C3D4")
     output.parent.mkdir(parents=True, exist_ok=True)
@@ -58,10 +58,10 @@ def main() -> int:
         shutil.copytree(public_site, staged)
         harness = staged / "es4c3d4"
         shutil.copytree(HARNESS, harness)
-        copy(VENDOR / "maplibre-gl-5.16.0.js", harness / "vendor/maplibre-gl-5.16.0.js")
-        copy(VENDOR / "pmtiles-4.3.0.mjs", harness / "vendor/pmtiles-4.3.0.mjs")
-        for code in ("03", "32", "33"):
-            copy(MUNICIPAL_INDEX / f"ES-PROV-{code}.json", harness / f"municipality-index/ES-PROV-{code}.json")
+        copy(vendor / "maplibre-gl-5.16.0.js", harness / "vendor/maplibre-gl-5.16.0.js")
+        copy(vendor / "pmtiles-4.3.0.js", harness / "vendor/pmtiles-4.3.0.js")
+        for code in ("03", "33"):
+            copy(FIXTURES / f"ES-PROV-{code}.json", harness / f"municipality-index/ES-PROV-{code}.json")
         pmtiles_target = staged / "data/esfire30-national-fidelity-territories.pmtiles"
         copy(pmtiles, pmtiles_target)
         files = [path for path in staged.rglob("*") if path.is_file()]

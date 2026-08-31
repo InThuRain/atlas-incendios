@@ -19,6 +19,8 @@ class Es4c3d4PagesStagingPreparationTests(unittest.TestCase):
         self.assertIn("source_ref", workflow)
         self.assertIn("63052056", workflow)
         self.assertIn("3c6eb10ba146008cdabf36646d48a4c7a92c1c1357ad90679f6b5dce42013cfe", workflow)
+        self.assertIn("maplibre-gl@5.16.0", workflow)
+        self.assertIn("pmtiles@4.3.0", workflow)
         self.assertIn("actions/deploy-pages@v4", workflow)
 
     def test_builder_keeps_pmtiles_out_of_git_and_uses_relative_harness_asset(self):
@@ -26,8 +28,18 @@ class Es4c3d4PagesStagingPreparationTests(unittest.TestCase):
         harness = (ROOT / "benchmarks/es4c3d4/harness/app.js").read_text()
         self.assertIn("PMTiles rechazado por tamaño o SHA-256", builder)
         self.assertIn('new URL("../data/esfire30-national-fidelity-territories.pmtiles", location.href)', harness)
+        self.assertIn("window.pmtiles", harness)
         self.assertIn('"ES:MUN:33011"', harness)
         self.assertIn('"ES:MUN:03065"', harness)
+
+    def test_municipal_fixtures_preserve_the_two_smoke_memberships(self):
+        fixtures = ROOT / "benchmarks/es4c3d4/fixtures/municipality-index"
+        elx = json.loads((fixtures / "ES-PROV-03.json").read_text())
+        cangas = json.loads((fixtures / "ES-PROV-33.json").read_text())
+        self.assertEqual(elx["scope"], "single_municipality_fixture")
+        self.assertEqual(len(elx["municipalities"]["ES:MUN:03065"]), 6)
+        self.assertEqual(cangas["scope"], "single_municipality_fixture")
+        self.assertEqual(len(cangas["municipalities"]["ES:MUN:33011"]), 2610)
 
 if __name__ == "__main__":
     unittest.main()
