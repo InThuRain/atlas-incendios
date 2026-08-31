@@ -23,7 +23,7 @@ BASELINE_EXPECTED_SHA256 = "92f0f081131932075f54a89d86fc8aa7e5879d56ca4d7177c645
 ARCHIVE_MANIFEST = ROOT / "data/derived/spain/es4c2b/pmtiles/esfire30-national-fidelity-territories-manifest.json"
 ARCHIVE = ROOT / "data/derived/spain/es4c2b/pmtiles/esfire30-national-fidelity-territories.pmtiles"
 sys.path.insert(0, str(ROOT / "benchmarks/gva_frontend"))
-from cdp_client import run_page  # noqa: E402
+from cdp_client import run_page, run_pages  # noqa: E402
 
 SCENARIOS = ("spain", "galicia", "pais_valencia")
 EGIF_SMOKES = {
@@ -372,7 +372,7 @@ class RangeRequestHandler(SimpleHTTPRequestHandler):
             return None
 
 
-def start_server(background: bool = True, fail_paths: tuple[str, ...] = (), fail_once_paths: tuple[str, ...] = ()) -> tuple[ThreadingHTTPServer, RangeState]:
+def start_server(background: bool = True, fail_paths: tuple[str, ...] = (), fail_once_paths: tuple[str, ...] = (), port: int = 0) -> tuple[ThreadingHTTPServer, RangeState]:
     state = RangeState()
     failure_markers = tuple(fail_paths)
     failure_once_markers = tuple(fail_once_paths)
@@ -380,79 +380,92 @@ def start_server(background: bool = True, fail_paths: tuple[str, ...] = (), fail
         range_state = state
         fail_paths = failure_markers
         fail_once_paths = failure_once_markers
-    server = ThreadingHTTPServer(("127.0.0.1", 0), lambda *args, **kwargs: Handler(*args, directory=str(ROOT), **kwargs))
+    server = ThreadingHTTPServer(("127.0.0.1", port), lambda *args, **kwargs: Handler(*args, directory=str(ROOT), **kwargs))
     if background:
         threading.Thread(target=server.serve_forever, daemon=True).start()
     return server, state
 
 
-def run_case(chrome: str, scenario: str, device: str, egif_config: dict | None = None) -> dict:
+def build_case_url(port: int, scenario: str, egif_config: dict | None = None) -> str:
+    """Construye una URL de smoke; C3D3 fija explícitamente el puerto 8765."""
+    query = {"smoke": scenario}
+    if egif_config:
+        query.update({"from": egif_config["from"], "to": egif_config["to"], "egif_scope": egif_config["scope"]})
+        if egif_config.get("rapid"):
+            query["egif_rapid"] = "1"
+        if egif_config.get("detail"):
+            query["egif_detail"] = egif_config["detail"]
+        if egif_config.get("source_toggle"):
+            query["source_toggle"] = egif_config["source_toggle"]
+        if egif_config.get("range_rapid"):
+            query["range_rapid"] = "1"
+        if egif_config.get("history_test"):
+            query["history_test"] = "1"
+        if egif_config.get("territory_select"):
+            query["territory_select"] = egif_config["territory_select"]
+        if egif_config.get("territory_click"):
+            query["territory_click"] = egif_config["territory_click"]
+        if egif_config.get("territory_restore"):
+            query["territory_restore"] = "1"
+        for key in ("province_select", "province_click", "province_sequence"):
+            if egif_config.get(key):
+                query[key] = egif_config[key]
+        for key in ("municipality_select", "municipality_click"):
+            if egif_config.get(key):
+                query[key] = egif_config[key]
+        if egif_config.get("municipal_index"):
+            query["municipal_index_strategy"] = egif_config["municipal_index"]
+        if egif_config.get("municipality_sequence"):
+            query["municipality_sequence"] = egif_config["municipality_sequence"]
+        if egif_config.get("municipality_selection_change"):
+            query["municipality_selection_change"] = egif_config["municipality_selection_change"]
+        if egif_config.get("municipality_rapid"):
+            query["municipality_rapid"] = "1"
+        if egif_config.get("municipality_retry"):
+            query["municipality_retry"] = "1"
+        if egif_config.get("municipality_retry_id"):
+            query["municipality_retry_id"] = egif_config["municipality_retry_id"]
+        if egif_config.get("pmtiles_retry"):
+            query["pmtiles_retry"] = "1"
+        if egif_config.get("pmtiles_url"):
+            query["pmtiles_url"] = egif_config["pmtiles_url"]
+        if egif_config.get("pmtiles_telemetry"):
+            query["pmtiles_telemetry"] = "1"
+        if egif_config.get("browser_range_fetch"):
+            query["browser_range_fetch"] = "1"
+        if egif_config.get("state_prepare"):
+            query["state_prepare"] = egif_config["state_prepare"]
+        if egif_config.get("territory_up"):
+            query["territory_up"] = "1"
+        if egif_config.get("select_geometry_id"):
+            query["select_geometry_id"] = egif_config["select_geometry_id"]
+        if egif_config.get("c3a_select_both"):
+            query["c3a_select_both"] = "1"
+        if egif_config.get("c3a_roundtrip"):
+            query["c3a_roundtrip"] = "1"
+        if egif_config.get("c3a_rapid_transition"):
+            query["c3a_rapid_transition"] = "1"
+    url = f"http://127.0.0.1:{port}/prototypes/es4c/index.html?{urlencode(query)}"
+    if egif_config and egif_config.get("corrupt_hash"):
+        url += egif_config["corrupt_hash"]
+    if egif_config and egif_config.get("state_hash"):
+        url += egif_config["state_hash"]
+    return url
+
+
+def run_case(chrome: str, scenario: str, device: str, egif_config: dict | None = None, server_port: int = 0) -> dict:
     server, state = start_server(
         fail_paths=tuple((egif_config or {}).get("fault_paths", ())),
         fail_once_paths=tuple((egif_config or {}).get("fault_once_paths", ())),
+        port=server_port,
     )
     try:
         window = "390,844" if device == "mobile_390x844" else "1280,800"
-        query = {"smoke": scenario}
-        if egif_config:
-            query.update({"from": egif_config["from"], "to": egif_config["to"], "egif_scope": egif_config["scope"]})
-            if egif_config.get("rapid"):
-                query["egif_rapid"] = "1"
-            if egif_config.get("detail"):
-                query["egif_detail"] = egif_config["detail"]
-            if egif_config.get("source_toggle"):
-                query["source_toggle"] = egif_config["source_toggle"]
-            if egif_config.get("range_rapid"):
-                query["range_rapid"] = "1"
-            if egif_config.get("history_test"):
-                query["history_test"] = "1"
-            if egif_config.get("territory_select"):
-                query["territory_select"] = egif_config["territory_select"]
-            if egif_config.get("territory_click"):
-                query["territory_click"] = egif_config["territory_click"]
-            if egif_config.get("territory_restore"):
-                query["territory_restore"] = "1"
-            for key in ("province_select", "province_click", "province_sequence"):
-                if egif_config.get(key):
-                    query[key] = egif_config[key]
-            for key in ("municipality_select", "municipality_click"):
-                if egif_config.get(key):
-                    query[key] = egif_config[key]
-            if egif_config.get("municipal_index"):
-                query["municipal_index_strategy"] = egif_config["municipal_index"]
-            if egif_config.get("municipality_sequence"):
-                query["municipality_sequence"] = egif_config["municipality_sequence"]
-            if egif_config.get("municipality_selection_change"):
-                query["municipality_selection_change"] = egif_config["municipality_selection_change"]
-            if egif_config.get("municipality_rapid"):
-                query["municipality_rapid"] = "1"
-            if egif_config.get("municipality_retry"):
-                query["municipality_retry"] = "1"
-            if egif_config.get("municipality_retry_id"):
-                query["municipality_retry_id"] = egif_config["municipality_retry_id"]
-            if egif_config.get("pmtiles_retry"):
-                query["pmtiles_retry"] = "1"
-            if egif_config.get("pmtiles_url"):
-                query["pmtiles_url"] = egif_config["pmtiles_url"]
-            if egif_config.get("territory_up"):
-                query["territory_up"] = "1"
-            if egif_config.get("select_geometry_id"):
-                query["select_geometry_id"] = egif_config["select_geometry_id"]
-            if egif_config.get("c3a_select_both"):
-                query["c3a_select_both"] = "1"
-            if egif_config.get("c3a_roundtrip"):
-                query["c3a_roundtrip"] = "1"
-            if egif_config.get("c3a_rapid_transition"):
-                query["c3a_rapid_transition"] = "1"
-        url = f"http://127.0.0.1:{server.server_port}/prototypes/es4c/index.html?{urlencode(query)}"
-        if egif_config and egif_config.get("corrupt_hash"):
-            url += egif_config["corrupt_hash"]
-        if egif_config and egif_config.get("state_hash"):
-            url += egif_config["state_hash"]
+        url = build_case_url(server.server_port, scenario, egif_config)
         if egif_config and egif_config.get("roundtrip"):
-            prepare_query = dict(query)
-            prepare_query["state_prepare"] = egif_config["roundtrip"]
-            prepare_url = f"http://127.0.0.1:{server.server_port}/prototypes/es4c/index.html?{urlencode(prepare_query)}"
+            prepare_config = dict(egif_config)
+            prepare_config["state_prepare"] = egif_config["roundtrip"]
+            prepare_url = build_case_url(server.server_port, scenario, prepare_config)
             prepared = run_page(chrome, prepare_url, window, timeout=120)
             serialized_hash = prepared.get("serialized_hash")
             if not serialized_hash:
@@ -466,6 +479,30 @@ def run_case(chrome: str, scenario: str, device: str, egif_config: dict | None =
         if egif_config:
             result["expected_egif"] = egif_config
         return result
+    finally:
+        server.shutdown()
+        server.server_close()
+
+
+def run_case_sequence(chrome: str, cases: list[tuple[str, str, dict]], server_port: int = 0) -> list[dict]:
+    """Ejecuta smokes consecutivos con un único perfil Chromium efímero."""
+    server, state = start_server(port=server_port)
+    try:
+        if not cases:
+            return []
+        window = "390,844" if cases[0][1] == "mobile_390x844" else "1280,800"
+        urls = []
+        for index, (scenario, _device, config) in enumerate(cases):
+            separator = "&" if "?" in build_case_url(server.server_port, scenario, config) else "?"
+            urls.append(f"{build_case_url(server.server_port, scenario, config)}{separator}sequence_step={index}")
+        results = run_pages(chrome, urls, window, timeout=120)
+        for result, (scenario, device, config) in zip(results, cases):
+            result["server_range_stats"] = state.payload()
+            result["device"] = device
+            result["expected_egif"] = config
+            result["sequence_profile"] = "shared_ephemeral_chromium"
+            result["scenario"] = scenario
+        return results
     finally:
         server.shutdown()
         server.server_close()

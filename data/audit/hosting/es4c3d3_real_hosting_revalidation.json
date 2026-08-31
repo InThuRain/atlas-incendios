@@ -1,0 +1,594 @@
+{
+  "schema_version": "es4c3d3-real-hosting-revalidation-v1",
+  "phase": "ES-4C3D3",
+  "asset": {
+    "local_path": "data/derived/spain/es4c2b/pmtiles/esfire30-national-fidelity-territories.pmtiles",
+    "bytes": 63052056,
+    "sha256": "3c6eb10ba146008cdabf36646d48a4c7a92c1c1357ad90679f6b5dce42013cfe",
+    "geometry_count": 119498
+  },
+  "endpoint": {
+    "url": "https://pub-96622990cd314a1c8431ce65ec2c25ca.r2.dev/esfire30-national-fidelity-territories.pmtiles",
+    "type": "cloudflare_r2_dev_staging",
+    "origin": "http://127.0.0.1:8765"
+  },
+  "head": {
+    "status": 200,
+    "url_final": "https://pub-96622990cd314a1c8431ce65ec2c25ca.r2.dev/esfire30-national-fidelity-territories.pmtiles",
+    "headers": {
+      "content-length": "63052056",
+      "content-type": "application/octet-stream",
+      "accept-ranges": "bytes",
+      "etag": "\"6f45635b1c54780e05382587820599f8\"",
+      "last-modified": "Mon, 31 Aug 2026 14:08:01 GMT",
+      "access-control-allow-origin": "http://127.0.0.1:8765",
+      "access-control-expose-headers": "Accept-Ranges,Content-Range,Content-Length,ETag,Last-Modified,Content-Encoding,Cache-Control,Age,CF-Cache-Status"
+    },
+    "redirects": [],
+    "elapsed_ms": 197.361
+  },
+  "range_tests": {
+    "one_byte": {
+      "requested_range": "bytes=0-0",
+      "status": 206,
+      "content_range": "bytes 0-0/63052056",
+      "content_length": "1",
+      "bytes_received": 1,
+      "byte_identical_to_local": true,
+      "headers": {
+        "content-length": "1",
+        "content-range": "bytes 0-0/63052056",
+        "content-type": "application/octet-stream",
+        "accept-ranges": "bytes",
+        "etag": "\"6f45635b1c54780e05382587820599f8\"",
+        "last-modified": "Mon, 31 Aug 2026 14:08:01 GMT",
+        "access-control-allow-origin": "http://127.0.0.1:8765",
+        "access-control-expose-headers": "Accept-Ranges,Content-Range,Content-Length,ETag,Last-Modified,Content-Encoding,Cache-Control,Age,CF-Cache-Status"
+      },
+      "elapsed_ms": 158.804,
+      "passed": true
+    },
+    "initial": {
+      "requested_range": "bytes=0-16383",
+      "status": 206,
+      "content_range": "bytes 0-16383/63052056",
+      "content_length": "16384",
+      "bytes_received": 16384,
+      "byte_identical_to_local": true,
+      "headers": {
+        "content-length": "16384",
+        "content-range": "bytes 0-16383/63052056",
+        "content-type": "application/octet-stream",
+        "accept-ranges": "bytes",
+        "etag": "\"6f45635b1c54780e05382587820599f8\"",
+        "last-modified": "Mon, 31 Aug 2026 14:08:01 GMT",
+        "access-control-allow-origin": "http://127.0.0.1:8765",
+        "access-control-expose-headers": "Accept-Ranges,Content-Range,Content-Length,ETag,Last-Modified,Content-Encoding,Cache-Control,Age,CF-Cache-Status"
+      },
+      "elapsed_ms": 245.242,
+      "passed": true
+    },
+    "middle": {
+      "requested_range": "bytes=1048576-1064959",
+      "status": 206,
+      "content_range": "bytes 1048576-1064959/63052056",
+      "content_length": "16384",
+      "bytes_received": 16384,
+      "byte_identical_to_local": true,
+      "headers": {
+        "content-length": "16384",
+        "content-range": "bytes 1048576-1064959/63052056",
+        "content-type": "application/octet-stream",
+        "accept-ranges": "bytes",
+        "etag": "\"6f45635b1c54780e05382587820599f8\"",
+        "last-modified": "Mon, 31 Aug 2026 14:08:01 GMT",
+        "access-control-allow-origin": "http://127.0.0.1:8765",
+        "access-control-expose-headers": "Accept-Ranges,Content-Range,Content-Length,ETag,Last-Modified,Content-Encoding,Cache-Control,Age,CF-Cache-Status"
+      },
+      "elapsed_ms": 142.251,
+      "passed": true
+    },
+    "final": {
+      "requested_range": "bytes=63035672-63052055",
+      "status": 206,
+      "content_range": "bytes 63035672-63052055/63052056",
+      "content_length": "16384",
+      "bytes_received": 16384,
+      "byte_identical_to_local": true,
+      "headers": {
+        "content-length": "16384",
+        "content-range": "bytes 63035672-63052055/63052056",
+        "content-type": "application/octet-stream",
+        "accept-ranges": "bytes",
+        "etag": "\"6f45635b1c54780e05382587820599f8\"",
+        "last-modified": "Mon, 31 Aug 2026 14:08:01 GMT",
+        "access-control-allow-origin": "http://127.0.0.1:8765",
+        "access-control-expose-headers": "Accept-Ranges,Content-Range,Content-Length,ETag,Last-Modified,Content-Encoding,Cache-Control,Age,CF-Cache-Status"
+      },
+      "elapsed_ms": 143.676,
+      "passed": true
+    }
+  },
+  "cors": {
+    "access_control_allow_origin": "http://127.0.0.1:8765",
+    "access_control_expose_headers": "Accept-Ranges,Content-Range,Content-Length,ETag,Last-Modified,Content-Encoding,Cache-Control,Age,CF-Cache-Status"
+  },
+  "browser_fetch": {
+    "result": {
+      "status": 206,
+      "content_range": "bytes 0-0/63052056",
+      "content_length": "1",
+      "bytes": 1,
+      "first_byte": 80
+    },
+    "passed": true
+  },
+  "browser_smokes": {
+    "main": [
+      {
+        "scenario": "spain_cold",
+        "status": "PASS",
+        "source_status": "ready",
+        "errors": [],
+        "browser_range_fetch": {
+          "status": 206,
+          "content_range": "bytes 0-0/63052056",
+          "content_length": "1",
+          "bytes": 1,
+          "first_byte": 80
+        },
+        "territory_filter": "national",
+        "municipality_geometry_ids": null,
+        "selected_geometry_id": "esfire30:v1:2000:3640",
+        "selected_egif_record_id": null,
+        "heap_delta_bytes": 197607075,
+        "map_errors": [],
+        "r2_request_count": 11,
+        "r2_range_request_count": 11,
+        "r2_response_bytes_total": 1817016,
+        "statuses": [
+          206
+        ],
+        "content_range_samples": [
+          "bytes 0-0/63052056",
+          "bytes 0-16383/63052056",
+          "bytes 1549-9864/63052056",
+          "bytes 505100-626644/63052056"
+        ],
+        "full_download_observed": false,
+        "request_errors": [],
+        "aborted_requests": 0
+      },
+      {
+        "scenario": "galicia",
+        "status": "PASS",
+        "source_status": "ready",
+        "errors": [],
+        "browser_range_fetch": null,
+        "territory_filter": "covered",
+        "municipality_geometry_ids": null,
+        "selected_geometry_id": "esfire30:v1:1994:1848",
+        "selected_egif_record_id": null,
+        "heap_delta_bytes": 136623280,
+        "map_errors": [],
+        "r2_request_count": 18,
+        "r2_range_request_count": 18,
+        "r2_response_bytes_total": 5673313,
+        "statuses": [
+          206
+        ],
+        "content_range_samples": [
+          "bytes 0-16383/63052056",
+          "bytes 1549-9864/63052056",
+          "bytes 505100-626644/63052056",
+          "bytes 159895-505099/63052056"
+        ],
+        "full_download_observed": false,
+        "request_errors": [],
+        "aborted_requests": 0
+      },
+      {
+        "scenario": "ourense",
+        "status": "PASS",
+        "source_status": "ready",
+        "errors": [],
+        "browser_range_fetch": null,
+        "territory_filter": "covered",
+        "municipality_geometry_ids": null,
+        "selected_geometry_id": "esfire30:v1:1994:1848",
+        "selected_egif_record_id": null,
+        "heap_delta_bytes": 175716735,
+        "map_errors": [],
+        "r2_request_count": 30,
+        "r2_range_request_count": 25,
+        "r2_response_bytes_total": 8512165,
+        "statuses": [
+          206,
+          null
+        ],
+        "content_range_samples": [
+          "bytes 0-16383/63052056",
+          "bytes 1549-9864/63052056",
+          "bytes 505100-626644/63052056",
+          "bytes 159895-505099/63052056"
+        ],
+        "full_download_observed": false,
+        "request_errors": [],
+        "aborted_requests": 5
+      },
+      {
+        "scenario": "cangas",
+        "status": "PASS",
+        "source_status": "ready",
+        "errors": [],
+        "browser_range_fetch": null,
+        "territory_filter": "municipality",
+        "municipality_geometry_ids": 2610,
+        "selected_geometry_id": "esfire30:v1:1995:4440",
+        "selected_egif_record_id": null,
+        "heap_delta_bytes": 92932973,
+        "map_errors": [],
+        "r2_request_count": 22,
+        "r2_range_request_count": 19,
+        "r2_response_bytes_total": 2373938,
+        "statuses": [
+          206,
+          null
+        ],
+        "content_range_samples": [
+          "bytes 0-16383/63052056",
+          "bytes 1549-9864/63052056",
+          "bytes 505100-626644/63052056",
+          "bytes 159895-505099/63052056"
+        ],
+        "full_download_observed": false,
+        "request_errors": [],
+        "aborted_requests": 3
+      },
+      {
+        "scenario": "elx",
+        "status": "PASS",
+        "source_status": "ready",
+        "errors": [],
+        "browser_range_fetch": null,
+        "territory_filter": "municipality",
+        "municipality_geometry_ids": 6,
+        "selected_geometry_id": "esfire30:v1:1993:777",
+        "selected_egif_record_id": "egif-record:1993030119",
+        "heap_delta_bytes": 69859556,
+        "map_errors": [],
+        "r2_request_count": 26,
+        "r2_range_request_count": 22,
+        "r2_response_bytes_total": 761464,
+        "statuses": [
+          206,
+          null
+        ],
+        "content_range_samples": [
+          "bytes 0-16383/63052056",
+          "bytes 1549-9864/63052056",
+          "bytes 505100-626644/63052056",
+          "bytes 159895-505099/63052056"
+        ],
+        "full_download_observed": false,
+        "request_errors": [],
+        "aborted_requests": 4
+      }
+    ],
+    "reload": [
+      {
+        "scenario": "reload_elx_first",
+        "status": "PASS",
+        "source_status": "ready",
+        "errors": [],
+        "browser_range_fetch": null,
+        "territory_filter": "municipality",
+        "municipality_geometry_ids": 6,
+        "selected_geometry_id": "esfire30:v1:1993:777",
+        "selected_egif_record_id": null,
+        "heap_delta_bytes": 92215993,
+        "map_errors": [],
+        "r2_request_count": 24,
+        "r2_range_request_count": 19,
+        "r2_response_bytes_total": 2217306,
+        "statuses": [
+          206,
+          null
+        ],
+        "content_range_samples": [
+          "bytes 0-16383/63052056",
+          "bytes 1549-9864/63052056",
+          "bytes 505100-626644/63052056",
+          "bytes 159895-505099/63052056"
+        ],
+        "full_download_observed": false,
+        "request_errors": [],
+        "aborted_requests": 5
+      },
+      {
+        "scenario": "reload_elx_second",
+        "status": "PASS",
+        "source_status": "ready",
+        "errors": [],
+        "browser_range_fetch": null,
+        "territory_filter": "municipality",
+        "municipality_geometry_ids": 6,
+        "selected_geometry_id": "esfire30:v1:1993:777",
+        "selected_egif_record_id": null,
+        "heap_delta_bytes": 61975025,
+        "map_errors": [],
+        "r2_request_count": 24,
+        "r2_range_request_count": 20,
+        "r2_response_bytes_total": 2218518,
+        "statuses": [
+          206,
+          null
+        ],
+        "content_range_samples": [
+          "bytes 0-16383/63052056",
+          "bytes 1549-9864/63052056",
+          "bytes 505100-626644/63052056",
+          "bytes 159895-505099/63052056"
+        ],
+        "full_download_observed": false,
+        "request_errors": [],
+        "aborted_requests": 4
+      }
+    ],
+    "territorial_repeat": [
+      {
+        "scenario": "repeat_spain_1",
+        "status": "PASS",
+        "source_status": "ready",
+        "errors": [],
+        "browser_range_fetch": null,
+        "territory_filter": "national",
+        "municipality_geometry_ids": null,
+        "selected_geometry_id": "esfire30:v1:2000:3640",
+        "selected_egif_record_id": null,
+        "heap_delta_bytes": 192384168,
+        "map_errors": [],
+        "r2_request_count": 10,
+        "r2_range_request_count": 10,
+        "r2_response_bytes_total": 1817015,
+        "statuses": [
+          206
+        ],
+        "content_range_samples": [
+          "bytes 0-16383/63052056",
+          "bytes 1549-9864/63052056",
+          "bytes 505100-626644/63052056",
+          "bytes 159895-505099/63052056"
+        ],
+        "full_download_observed": false,
+        "request_errors": [],
+        "aborted_requests": 0
+      },
+      {
+        "scenario": "repeat_galicia_1",
+        "status": "PASS",
+        "source_status": "ready",
+        "errors": [],
+        "browser_range_fetch": null,
+        "territory_filter": "covered",
+        "municipality_geometry_ids": null,
+        "selected_geometry_id": "esfire30:v1:1996:2057",
+        "selected_egif_record_id": null,
+        "heap_delta_bytes": 170738271,
+        "map_errors": [],
+        "r2_request_count": 19,
+        "r2_range_request_count": 19,
+        "r2_response_bytes_total": 4244690,
+        "statuses": [
+          206
+        ],
+        "content_range_samples": [
+          "bytes 0-16383/63052056",
+          "bytes 1549-9864/63052056",
+          "bytes 505100-626644/63052056",
+          "bytes 159895-505099/63052056"
+        ],
+        "full_download_observed": false,
+        "request_errors": [],
+        "aborted_requests": 0
+      },
+      {
+        "scenario": "repeat_spain_2",
+        "status": "PASS",
+        "source_status": "ready",
+        "errors": [],
+        "browser_range_fetch": null,
+        "territory_filter": "national",
+        "municipality_geometry_ids": null,
+        "selected_geometry_id": "esfire30:v1:2000:3640",
+        "selected_egif_record_id": null,
+        "heap_delta_bytes": 252805642,
+        "map_errors": [],
+        "r2_request_count": 10,
+        "r2_range_request_count": 10,
+        "r2_response_bytes_total": 1817015,
+        "statuses": [
+          206
+        ],
+        "content_range_samples": [
+          "bytes 0-16383/63052056",
+          "bytes 1549-9864/63052056",
+          "bytes 505100-626644/63052056",
+          "bytes 159895-505099/63052056"
+        ],
+        "full_download_observed": false,
+        "request_errors": [],
+        "aborted_requests": 0
+      },
+      {
+        "scenario": "repeat_galicia_2",
+        "status": "PASS",
+        "source_status": "ready",
+        "errors": [],
+        "browser_range_fetch": null,
+        "territory_filter": "covered",
+        "municipality_geometry_ids": null,
+        "selected_geometry_id": "esfire30:v1:1996:2057",
+        "selected_egif_record_id": null,
+        "heap_delta_bytes": -207720577,
+        "map_errors": [],
+        "r2_request_count": 19,
+        "r2_range_request_count": 19,
+        "r2_response_bytes_total": 4244690,
+        "statuses": [
+          206
+        ],
+        "content_range_samples": [
+          "bytes 0-16383/63052056",
+          "bytes 1549-9864/63052056",
+          "bytes 505100-626644/63052056",
+          "bytes 159895-505099/63052056"
+        ],
+        "full_download_observed": false,
+        "request_errors": [],
+        "aborted_requests": 0
+      }
+    ],
+    "mobile": [
+      {
+        "scenario": "mobile_elx",
+        "status": "PASS",
+        "source_status": "ready",
+        "errors": [],
+        "browser_range_fetch": null,
+        "territory_filter": "municipality",
+        "municipality_geometry_ids": 6,
+        "selected_geometry_id": null,
+        "selected_egif_record_id": null,
+        "heap_delta_bytes": 42513517,
+        "map_errors": [],
+        "r2_request_count": 17,
+        "r2_range_request_count": 15,
+        "r2_response_bytes_total": 714369,
+        "statuses": [
+          206,
+          null
+        ],
+        "content_range_samples": [
+          "bytes 0-16383/63052056",
+          "bytes 1549-9864/63052056",
+          "bytes 505100-626644/63052056",
+          "bytes 159895-505099/63052056"
+        ],
+        "full_download_observed": false,
+        "request_errors": [],
+        "aborted_requests": 2
+      },
+      {
+        "scenario": "mobile_cangas",
+        "status": "PASS",
+        "source_status": "ready",
+        "errors": [],
+        "browser_range_fetch": null,
+        "territory_filter": "municipality",
+        "municipality_geometry_ids": 2610,
+        "selected_geometry_id": "esfire30:v1:1995:4440",
+        "selected_egif_record_id": null,
+        "heap_delta_bytes": 92491834,
+        "map_errors": [],
+        "r2_request_count": 16,
+        "r2_range_request_count": 16,
+        "r2_response_bytes_total": 3181225,
+        "statuses": [
+          206
+        ],
+        "content_range_samples": [
+          "bytes 0-16383/63052056",
+          "bytes 1549-9864/63052056",
+          "bytes 505100-626644/63052056",
+          "bytes 159895-505099/63052056"
+        ],
+        "full_download_observed": false,
+        "request_errors": [],
+        "aborted_requests": 0
+      }
+    ]
+  },
+  "r2_request_counts": {
+    "spain_cold": {
+      "requests": 11,
+      "range_requests": 11,
+      "bytes": 1817016
+    },
+    "galicia": {
+      "requests": 18,
+      "range_requests": 18,
+      "bytes": 5673313
+    },
+    "ourense": {
+      "requests": 30,
+      "range_requests": 25,
+      "bytes": 8512165
+    },
+    "cangas": {
+      "requests": 22,
+      "range_requests": 19,
+      "bytes": 2373938
+    },
+    "elx": {
+      "requests": 26,
+      "range_requests": 22,
+      "bytes": 761464
+    },
+    "reload_elx_first": {
+      "requests": 24,
+      "range_requests": 19,
+      "bytes": 2217306
+    },
+    "reload_elx_second": {
+      "requests": 24,
+      "range_requests": 20,
+      "bytes": 2218518
+    },
+    "repeat_spain_1": {
+      "requests": 10,
+      "range_requests": 10,
+      "bytes": 1817015
+    },
+    "repeat_galicia_1": {
+      "requests": 19,
+      "range_requests": 19,
+      "bytes": 4244690
+    },
+    "repeat_spain_2": {
+      "requests": 10,
+      "range_requests": 10,
+      "bytes": 1817015
+    },
+    "repeat_galicia_2": {
+      "requests": 19,
+      "range_requests": 19,
+      "bytes": 4244690
+    },
+    "mobile_elx": {
+      "requests": 17,
+      "range_requests": 15,
+      "bytes": 714369
+    },
+    "mobile_cangas": {
+      "requests": 16,
+      "range_requests": 16,
+      "bytes": 3181225
+    }
+  },
+  "full_download_observed": false,
+  "cdn_cache_validation": "NOT_APPLICABLE_R2_DEV",
+  "warnings": [
+    "STAGING_WARNING: el objeto r2.dev no expone Cache-Control; no bloquea Range/CORS/browser.",
+    "R2_DEV_CDN_CACHE_VALIDATION=NOT_APPLICABLE: r2.dev no valida la caché CDN de producción."
+  ],
+  "environment": {
+    "python": "3.8.10",
+    "platform": "Linux-5.15.0-113-generic-x86_64-with-glibc2.29",
+    "chrome": "/usr/bin/google-chrome"
+  },
+  "failures": [],
+  "status": "PASS",
+  "r2_dev_staging_validation": "PASS",
+  "real_browser_range_cors": "PASS"
+}

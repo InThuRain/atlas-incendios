@@ -70,6 +70,58 @@ const remotePmtilesUrl = params.get("pmtiles_url");
 const archiveUrl = /^https:\/\//.test(remotePmtilesUrl || "")
   ? remotePmtilesUrl
   : `${location.origin}${ARCHIVE_PATH}`;
+// Instrumentación efímera C3D3. Envuelve fetch sólo cuando el harness la
+// solicita; no participa en el runtime normal ni altera las respuestas que
+// consume PMTiles. Permite contabilizar los Range reales del navegador incluso
+// si Resource Timing no expone tamaños cross-origin.
+const remotePmtilesTelemetryEnabled = params.get("pmtiles_telemetry") === "1";
+const remotePmtilesRequests = [];
+function responseBytes(headers) {
+  const range = headers.get("Content-Range");
+  const match = range?.match(/^bytes\s+(\d+)-(\d+)\/(\d+)$/i);
+  if (match) return Number(match[2]) - Number(match[1]) + 1;
+  const length = Number(headers.get("Content-Length"));
+  return Number.isFinite(length) ? length : null;
+}
+function requestRange(input, init) {
+  const headers = new Headers(input instanceof Request ? input.headers : undefined);
+  if (init?.headers) new Headers(init.headers).forEach((value, key) => headers.set(key, value));
+  return headers.get("Range");
+}
+if (remotePmtilesTelemetryEnabled) {
+  const baseFetch = window.fetch.bind(window);
+  window.fetch = async (input, init) => {
+    const requestUrl = typeof input === "string" ? input : input?.url;
+    const tracked = requestUrl === archiveUrl;
+    const started = performance.now();
+    try {
+      const response = await baseFetch(input, init);
+      if (tracked) {
+        const bytes = responseBytes(response.headers);
+        remotePmtilesRequests.push({
+          method: init?.method || (input instanceof Request ? input.method : "GET"),
+          range: requestRange(input, init), status: response.status,
+          content_range: response.headers.get("Content-Range"),
+          content_length: response.headers.get("Content-Length"),
+          response_bytes: bytes, elapsed_ms: performance.now() - started,
+        });
+      }
+      return response;
+    } catch (error) {
+      if (tracked) {
+        const aborted = error?.name === "AbortError";
+        remotePmtilesRequests.push({ method: init?.method || "GET", range: requestRange(input, init), status: null, content_range: null, content_length: null, response_bytes: null, elapsed_ms: performance.now() - started, aborted, error: aborted ? null : String(error) });
+      }
+      throw error;
+    }
+  };
+}
+const browserRangeFetch = params.get("browser_range_fetch") === "1"
+  ? window.fetch(archiveUrl, { headers: { Range: "bytes=0-0" }, cache: "no-store" }).then(async (response) => {
+    const body = new Uint8Array(await response.arrayBuffer());
+    return { status: response.status, content_range: response.headers.get("Content-Range"), content_length: response.headers.get("Content-Length"), bytes: body.length, first_byte: body[0] ?? null };
+  }).catch((error) => ({ error: String(error) }))
+  : Promise.resolve(null);
 const startedAt = performance.now();
 const initialHeap = performance.memory?.usedJSHeapSize ?? null;
 const errors = [];
@@ -984,6 +1036,17 @@ async function rangeStats() {
   return response.ok ? response.json() : { unavailable: true, status: response.status };
 }
 
+function remotePmtilesStats() {
+  const rows = remotePmtilesRequests.map((row) => ({ ...row }));
+  return {
+    requests: rows.length,
+    range_requests: rows.filter((row) => row.range && row.status === 206).length,
+    response_bytes: rows.reduce((sum, row) => sum + (Number.isFinite(row.response_bytes) ? row.response_bytes : 0), 0),
+    full_download_observed: rows.some((row) => row.method === "GET" && row.status === 200 && (row.response_bytes || 0) >= 63052056),
+    rows,
+  };
+}
+
 function resources() {
   const rows = performance.getEntriesByType("resource").filter((entry) => entry.name.includes(".pmtiles"));
   return {
@@ -1342,12 +1405,15 @@ async function runSmoke(name, initialReady = false) {
   const result = {
     prototype: "es4c1c2",
     scenario: name,
+    sequence_step: params.get("sequence_step"),
     archive: ARCHIVE_PATH,
     archive_url: archiveUrl,
     source: "ESFire30",
     geometry_semantics: "documented_remote_sensing_perimeter",
     state: { ...state },
     initial,
+    browser_range_fetch: await browserRangeFetch,
+    remote_pmtiles: remotePmtilesStats(),
     after_navigation: afterNavigation,
     after_selection: { range: await rangeStats(), resources: resources() },
     selection: { ...selection, stable_at_next_zoom: stableAtNextZoom, territory_slots: selectedTerritorySlots() },

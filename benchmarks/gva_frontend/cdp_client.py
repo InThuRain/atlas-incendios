@@ -10,7 +10,7 @@ import subprocess
 import tempfile
 import time
 import urllib.request
-from urllib.parse import urlparse
+from urllib.parse import parse_qs, urlparse
 
 
 class WebSocket:
@@ -220,4 +220,68 @@ def run_page(chrome, url, window_size, timeout=150, screenshot_path=None):
                 process.wait(timeout=5)
             # Chrome helpers can finish flushing the temporary profile a few
             # milliseconds after the browser process exits.
+            time.sleep(0.25)
+
+
+def run_pages(chrome, urls, window_size, timeout=150):
+    """Navega varias URLs dentro del mismo perfil efímero de Chromium.
+
+    Se usa sólo por harnesses de delivery para observar una recarga/navegación
+    repetida con la caché del navegador aún disponible. No persiste perfil ni
+    modifica el navegador del usuario.
+    """
+    with tempfile.TemporaryDirectory(prefix="atlas-cdp-") as profile:
+        process = subprocess.Popen(
+            [
+                chrome, "--headless", "--no-sandbox", "--disable-gpu",
+                "--enable-precise-memory-info", "--remote-debugging-port=0",
+                "--remote-allow-origins=*", "--user-data-dir=" + profile,
+                "--window-size=" + window_size, "about:blank",
+            ], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,
+        )
+        client = None
+        try:
+            port_file = os.path.join(profile, "DevToolsActivePort")
+            deadline = time.monotonic() + timeout
+            while not os.path.exists(port_file):
+                if process.poll() is not None:
+                    raise RuntimeError("Chrome exited before opening DevTools")
+                if time.monotonic() > deadline:
+                    raise TimeoutError("Chrome DevTools port was not created")
+                time.sleep(0.05)
+            with open(port_file, "r", encoding="utf-8") as handle:
+                port = int(handle.readline().strip())
+            with urllib.request.urlopen("http://127.0.0.1:{}/json/list".format(port), timeout=5) as response:
+                targets = json.load(response)
+            page = next(target for target in targets if target["type"] == "page")
+            client = CDPClient(page["webSocketDebuggerUrl"])
+            client.command("Page.enable")
+            client.command("Runtime.enable")
+            results = []
+            for url in urls:
+                marker = parse_qs(urlparse(url).query).get("sequence_step", [None])[0]
+                client.command("Page.navigate", {"url": url})
+                page_deadline = time.monotonic() + timeout
+                while True:
+                    marker_check = "true" if marker is None else "document.querySelector('#debug-output')?.textContent.includes({})".format(json.dumps('"sequence_step":"{}"'.format(marker)))
+                    complete = client.evaluate(
+                        "document.readyState === 'complete' && document.querySelector('#debug-output')?.dataset.complete === 'true' && ({})".format(marker_check)
+                    )
+                    if complete:
+                        break
+                    if time.monotonic() > page_deadline:
+                        raise TimeoutError("Frontend benchmark did not complete")
+                    time.sleep(0.05)
+                text = client.evaluate("document.querySelector('#debug-output').textContent")
+                results.append(json.loads(text))
+            return results
+        finally:
+            if client:
+                client.close()
+            process.terminate()
+            try:
+                process.wait(timeout=5)
+            except subprocess.TimeoutExpired:
+                process.kill()
+                process.wait(timeout=5)
             time.sleep(0.25)
