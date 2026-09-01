@@ -32,6 +32,11 @@ function abortError() {
   return error;
 }
 
+function runtimeUrl(path) {
+  if (/^https?:\/\//.test(path || "")) return path;
+  return new URL(String(path).replace(/^\/+/, ""), new URL(".", globalThis.location?.href || "http://invalid.invalid/")).href;
+}
+
 export class MunicipalityEsfireIndexLoader {
   constructor({ manifestUrl = MUNICIPALITY_ESFIRE_INDEX_MANIFEST_URL, root = MUNICIPALITY_ESFIRE_INDEX_ROOT, fetchImpl = globalThis.fetch ? globalThis.fetch.bind(globalThis) : null, AbortControllerImpl = globalThis.AbortController } = {}) {
     if (!fetchImpl || !AbortControllerImpl) throw new Error("Faltan dependencias para el índice municipal ESFire30");
@@ -61,7 +66,7 @@ export class MunicipalityEsfireIndexLoader {
   }
   async loadNational() {
     if (this.national) return { ...this.national, metrics: { ...this.national.metrics, cached: true } };
-    const manifest = await this.loadManifest(); const loaded = await this.fetchJson(`/${manifest.national.path}`, undefined);
+    const manifest = await this.loadManifest(); const loaded = await this.fetchJson(runtimeUrl(manifest.national.path), undefined);
     const index = buildMunicipalityIndex(loaded.data);
     if (index.scope !== "national") throw new Error("Índice nacional municipal inesperado");
     this.national = { index, metrics: loaded.metrics, asset_id: "national" };
@@ -72,7 +77,7 @@ export class MunicipalityEsfireIndexLoader {
     if (cached) return { ...cached, metrics: { ...cached.metrics, cached: true } };
     const manifest = await this.loadManifest(); const descriptor = manifest.parents.get(parentId);
     if (!descriptor) return { index: { scope: "parent", parent_id: parentId, municipalityIds: new Map() }, metrics: { raw_bytes: 0, fetch_ms: 0, parse_ms: 0, cached: true }, asset_id: parentId };
-    const loaded = await this.fetchJson(`/${descriptor.path}`, signal);
+    const loaded = await this.fetchJson(runtimeUrl(descriptor.path), signal);
     if (signal && signal.aborted) throw abortError();
     const index = buildMunicipalityIndex(loaded.data);
     if (index.scope !== "parent" || index.parent_id !== parentId) throw new Error("Índice provincial municipal inesperado");

@@ -219,3 +219,33 @@ FALLBACK_HOSTING = CLOUDFLARE_R2_CUSTOM_DOMAIN
 PAGES_SAME_ORIGIN_VALIDATION = PASS
 REMAINING_GAPS = D4_PRODUCTION_STAGING_ACCEPTANCE
 NEXT_PHASE = ES-4D4_NATIONAL_PRODUCTION_STAGING
+
+PHASE = ES-4D4A
+
+STATUS = DONE (artifact nacional estático autocontenido ensamblado, integridad y 11 smokes locales correctos); PENDING (despliegue y aceptación remota exclusivamente en ES-4D4B).
+
+STAGING_ARTIFACT_STATUS = READY_FOR_REMOTE_STAGING
+
+ARTIFACT_PATH = build/national-pages-staging/
+
+ARTIFACT_FILE_COUNT = 349
+
+ARTIFACT_BYTES = 500449810
+
+ARTIFACT_FINGERPRINT = bbf98006852762c89f1f6ca69093fccdbb1d09fe7fd2de09c15bacf83ff44ee8
+
+ARTIFACT_MANIFEST = build/national-pages-staging/asset-manifest.json
+
+RESULTS_PATH = ES_4D4A_NATIONAL_PRODUCTION_STAGING_ARTIFACT.md; data/audit/production/es4d4a_staging_artifact.json
+
+NEXT_COMMAND = python3 scripts/build_national_pages_artifact.py --output build/national-pages-staging
+
+NEXT_CHECK_COMMAND = python3 scripts/build_national_pages_artifact.py --check --output build/national-pages-staging
+
+STAGING_REPO_CANDIDATE = InThuRain/atlas-incendios-es4c3d4-pages-staging
+
+PRODUCTION_SWITCH_READY = false
+
+PRODUCTION_ROOT_SWITCH_AUTHORIZED = false
+
+NEXT_PHASE = ES-4D4B_NATIONAL_PRODUCTION_STAGING_DEPLOYMENT_ACCEPTANCE

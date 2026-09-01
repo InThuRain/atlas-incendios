@@ -22,10 +22,11 @@ assert.strictEqual(config.pmtiles_protocol_module, "/national-preview/data/deriv
 assert.strictEqual(PMTILES_BYTES, 63052056);
 assert.strictEqual(config.assets.esfire30.pmtiles.sha256, PMTILES_SHA256);
 assert.ok(PMTILES_PRODUCTION_PATH.includes(PMTILES_SHA256));
-assert.deepStrictEqual(Object.keys(NATIONAL_SOURCE_REGISTRY).sort(), ["bdlje", "egif", "esfire30"]);
+assert.deepStrictEqual(Object.keys(NATIONAL_SOURCE_REGISTRY).sort(), ["bdlje", "effis", "egif", "esfire30", "icv"]);
 assert.strictEqual(sourceFor("egif").coverage.from, 1968);
 assert.strictEqual(sourceFor("esfire30").coverage.to, 2021);
-assert.throws(() => sourceFor("icv"));
+assert.strictEqual(sourceFor("icv").coverage.to, 2024);
+assert.strictEqual(sourceFor("effis").coverage.from, 2025);
 console.log(JSON.stringify({valid:true, base:LOCAL_ASSET_CONFIG.asset_base_url}));
 '''
 
@@ -65,8 +66,11 @@ class ES4D2NationalFrontendExtractionTests(unittest.TestCase):
             manifest = json.loads((output / "asset-manifest.json").read_text(encoding="utf-8"))
         self.assertFalse(manifest["large_assets_included"])
         self.assertEqual(manifest["logical_asset_config"]["assets"]["esfire30"]["pmtiles"]["bytes"], 63052056)
-        self.assertTrue(manifest["logical_asset_config"]["assets"]["esfire30"]["pmtiles"]["path"].startswith("/data/esfire30/v1/"))
+        # D4A reutiliza este frontend bajo un base path de Pages: los paths
+        # runtime son relativos y no codifican el nombre de ningún repositorio.
+        self.assertTrue(manifest["logical_asset_config"]["assets"]["esfire30"]["pmtiles"]["path"].startswith("data/esfire30/v1/"))
         self.assertIn("runtime/app.js", {entry["path"] for entry in manifest["files"]})
+        self.assertIn("vendor/node_modules/fflate/index.js", {entry["path"] for entry in manifest["files"]})
 
 
 if __name__ == "__main__":

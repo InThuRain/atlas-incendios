@@ -13,7 +13,7 @@ export const EFFIS_PROVINCE_BY_ID = Object.freeze({
 
 function rootUrl(base) {
   if (/^https?:\/\//.test(base || "")) return base;
-  return new URL(String(base || "/"), globalThis.location?.origin || "http://localhost").href;
+  return new URL(String(base || "/"), globalThis.location?.href || "http://invalid.invalid/").href;
 }
 
 export class EffisLoader {

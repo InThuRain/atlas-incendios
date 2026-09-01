@@ -39,7 +39,13 @@ RUNTIME_FILES = (
     "effis_loader.mjs",
     "compat_gva_v1.mjs",
 )
-VENDOR_FILES = ("maplibre-gl-5.16.0.js", "pmtiles-4.3.0.mjs")
+# PMTiles 4.3.0 conserva una importación ESM relativa a fflate. Se entrega
+# junto al módulo PMTiles para que el artifact sea realmente autocontenido.
+VENDOR_FILES = (
+    "maplibre-gl-5.16.0.js",
+    "pmtiles-4.3.0.mjs",
+    "node_modules/fflate/index.js",
+)
 
 
 def sha256(path: Path) -> str:
@@ -52,37 +58,44 @@ def sha256(path: Path) -> str:
 
 def production_config() -> dict:
     return {
-        "asset_base_url": "/",
+        # Todas las rutas del artifact son relativas al directorio que contiene
+        # index.html. Así el mismo árbol funciona bajo un repo Pages y bajo la
+        # raíz de un dominio, sin conocer ninguno de los dos nombres.
+        "asset_base_url": "./",
         "runtime_entry": "./runtime/app.js",
         "maplibre_script": "./vendor/maplibre-gl-5.16.0.js",
         "pmtiles_protocol_module": "../vendor/pmtiles-4.3.0.mjs",
         "assets": {
             "esfire30": {"pmtiles": {
                 "logical_id": "esfire30-national-fidelity-territories",
-                "path": f"/data/esfire30/v1/{PMTILES_SHA256}/esfire30-national-fidelity-territories.pmtiles",
+                "path": f"data/esfire30/v1/{PMTILES_SHA256}/esfire30-national-fidelity-territories.pmtiles",
                 "bytes": PMTILES_BYTES,
                 "sha256": PMTILES_SHA256,
                 "source": "ESFire30 v1",
                 "required": True,
             }},
-            "egif": {"manifest": {"logical_id": "egif-national-web-manifest-2026-08-27", "path": "/data/egif/v1/2026-08-27/manifest.json", "required": True}},
+            "egif": {"manifest": {"logical_id": "egif-national-web-manifest-2026-08-27", "path": "data/egif/v1/2026-08-27/manifest.json", "required": True}},
             "icv": {
-                "manifest": {"logical_id": "gva-icv-public-manifest", "path": "/data/web/gva/manifest.json", "required": True},
-                "asset_base_url": {"path": "/", "required": True},
+                "manifest": {"logical_id": "gva-icv-public-manifest", "path": "data/web/gva/manifest.json", "required": True},
+                "asset_base_url": {"path": "./", "required": True},
             },
             "effis": {
-                "manifest": {"logical_id": "gva-recent-effis-public-manifest", "path": "/data/web/gva/manifest.json", "required": True},
-                "asset_base_url": {"path": "/", "required": True},
+                "manifest": {"logical_id": "gva-recent-effis-public-manifest", "path": "data/web/gva/manifest.json", "required": True},
+                "asset_base_url": {"path": "./", "required": True},
             },
             "territories": {
-                "ccaa": {"path": "/data/territories/spain/v1/ccaa.geojson", "required": True},
-                "provinces": {"path": "/data/territories/spain/v1/provinces.geojson", "required": True},
+                "ccaa": {"path": "data/territories/spain/v1/ccaa.geojson", "required": True},
+                "provinces": {"path": "data/territories/spain/v1/provinces.geojson", "required": True},
+                "catalog": {"path": "data/territories/spain/territories-2026-01-01.json", "required": True},
             },
             "municipalities": {
-                "catalog": {"path": "/data/territories/spain/v1/municipality-catalog.json", "required": False},
-                "shards_root": {"path": "/data/territories/spain/v1/municipalities", "required": False},
+                "catalog": {"path": "data/territories/spain/v1/municipality-catalog.json", "required": True},
+                "shards_root": {"path": "data/territories/spain/v1/municipalities", "required": True},
             },
-            "esfire30_municipality_indexes": {"root": {"path": "/data/esfire30/v1/municipality-index", "required": False}},
+            "esfire30_municipality_indexes": {
+                "root": {"path": "data/esfire30/v1/municipality-index", "required": True},
+                "manifest": {"path": "data/esfire30/v1/municipality-index/manifest.json", "required": True},
+            },
         },
     }
 
@@ -142,7 +155,9 @@ def build(output: Path) -> dict:
                 path.unlink()
         (staging / "vendor").mkdir()
         for name in VENDOR_FILES:
-            shutil.copy2(VENDOR / name, staging / "vendor" / name)
+            target = staging / "vendor" / name
+            target.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copy2(VENDOR / name, target)
         config = production_config()
         manifest = artifact_manifest(staging, config)
         (staging / "asset-manifest.json").write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")

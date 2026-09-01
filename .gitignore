@@ -77,6 +77,11 @@ data/web/gva/
 # snapshots locales y nunca deben entrar por accidente en Git.
 data/web/spain/
 
+# Artifact completo autocontenido de staging nacional ES-4D4A. Se construye
+# localmente a partir de assets ya aprobados y nunca se versiona en Git.
+build/national-pages-staging/
+build/national-pages-staging-repro/
+
 # Dependencias locales de los benchmarks JavaScript.
 benchmarks/gva_web/node_modules/
 

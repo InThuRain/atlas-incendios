@@ -16,7 +16,8 @@ export const TERRITORY_OPTIONS = [
 
 // La ficha pide el nombre canónico solamente tras una selección. Se lee el
 // snapshot ES-2 bajo demanda y nunca forma parte de INITIAL EGIF.
-const TERRITORY_SNAPSHOT_URL = "/data/territories/spain/territories-2026-01-01.json";
+const TERRITORY_SNAPSHOT_URL = globalThis.__ATLAS_NATIONAL_RUNTIME_CONFIG__?.assets?.territories?.catalog?.path
+  || "/data/territories/spain/territories-2026-01-01.json";
 let territoryLookupPromise = null;
 
 export async function loadTerritoryLookup(fetchImpl = globalThis.fetch.bind(globalThis)) {

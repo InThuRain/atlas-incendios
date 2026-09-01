@@ -1,4 +1,7 @@
 const runtimeConfig = globalThis.__ATLAS_NATIONAL_RUNTIME_CONFIG__ || {};
+function runtimeUrl(path) {
+  return new URL(String(path), new URL(".", globalThis.location.href)).toString();
+}
 const protocolModuleUrl = runtimeConfig.pmtiles_protocol_module || "/data/derived/spain/es3/tools/browser/pmtiles-4.3.0.mjs";
 const { Protocol } = await import(protocolModuleUrl);
 import { EGIFInitialLoader } from "./egif_initial_loader.mjs";
@@ -25,14 +28,14 @@ const SELECTED_LAYER = "esfire30-selected";
 const YEAR_MIN = 1968;
 // ICV se activa únicamente desde src/national/asset-config.mjs. El
 // prototipo histórico conserva por tanto su tope 2023.
-const ICV_MANIFEST_URL = runtimeAssets.icv?.manifest?.path || null;
-const ICV_ASSET_BASE_URL = runtimeAssets.icv?.asset_base_url?.path || runtimeConfig.asset_base_url || "/";
+const ICV_MANIFEST_URL = runtimeAssets.icv?.manifest?.path ? runtimeUrl(runtimeAssets.icv.manifest.path) : null;
+const ICV_ASSET_BASE_URL = runtimeUrl(runtimeAssets.icv?.asset_base_url?.path || runtimeConfig.asset_base_url || "./");
 const ICV_ENABLED = Boolean(ICV_MANIFEST_URL);
 const ICV_SOURCE_ID = "icv";
 const ICV_FILL_LAYER = "icv-perimeters";
 const ICV_SELECTED_LAYER = "icv-selected";
-const EFFIS_MANIFEST_URL = runtimeAssets.effis?.manifest?.path || null;
-const EFFIS_ASSET_BASE_URL = runtimeAssets.effis?.asset_base_url?.path || runtimeConfig.asset_base_url || "/";
+const EFFIS_MANIFEST_URL = runtimeAssets.effis?.manifest?.path ? runtimeUrl(runtimeAssets.effis.manifest.path) : null;
+const EFFIS_ASSET_BASE_URL = runtimeUrl(runtimeAssets.effis?.asset_base_url?.path || runtimeConfig.asset_base_url || "./");
 const EFFIS_ENABLED = Boolean(EFFIS_MANIFEST_URL);
 const EFFIS_SOURCE_ID = "effis";
 const EFFIS_FILL_LAYER = "effis-perimeters";
@@ -44,7 +47,7 @@ const ESFIRE30_TERRITORY_OUT_OF_COVERAGE = new Set([
   "ES:CCAA:04", "ES:CCAA:05", "ES:CCAA:18", "ES:CCAA:19",
   "ES:PROV:07", "ES:PROV:35", "ES:PROV:38",
 ]);
-const EGIF_MANIFEST_URL = runtimeAssets.egif?.manifest?.path || "/data/web/spain/egif/2026-08-27/manifest.json";
+const EGIF_MANIFEST_URL = runtimeUrl(runtimeAssets.egif?.manifest?.path || "/data/web/spain/egif/2026-08-27/manifest.json");
 const DEFAULT_VIEW = { center: [-3.7, 40.3], zoom: 4 };
 const VIEWS = {
   spain: DEFAULT_VIEW,
@@ -97,7 +100,7 @@ const params = new URLSearchParams(location.search);
 const remotePmtilesUrl = params.get("pmtiles_url");
 const archiveUrl = /^https:\/\//.test(remotePmtilesUrl || "")
   ? remotePmtilesUrl
-  : `${location.origin}${ARCHIVE_PATH}`;
+  : runtimeUrl(ARCHIVE_PATH);
 // Instrumentación efímera C3D3. Envuelve fetch sólo cuando el harness la
 // solicita; no participa en el runtime normal ni altera las respuestas que
 // consume PMTiles. Permite contabilizar los Range reales del navegador incluso

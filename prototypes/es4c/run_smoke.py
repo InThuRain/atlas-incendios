@@ -233,6 +233,7 @@ class RangeState:
         self.detail_raw_bytes = 0
         self.municipal_index_requests = 0
         self.municipal_index_raw_bytes = 0
+        self.request_paths = []
         self.injected_failures = []
         self.consumed_fail_once = set()
 
@@ -263,6 +264,10 @@ class RangeState:
         with self.lock:
             self.injected_failures.append({"path": path, "status": status})
 
+    def record_path(self, path: str) -> None:
+        with self.lock:
+            self.request_paths.append(path)
+
     def take_fail_once(self, marker: str) -> bool:
         with self.lock:
             if marker in self.consumed_fail_once:
@@ -283,6 +288,7 @@ class RangeState:
                 "detail_raw_bytes": self.detail_raw_bytes,
                 "municipal_index_requests": self.municipal_index_requests,
                 "municipal_index_raw_bytes": self.municipal_index_raw_bytes,
+                "request_paths": list(self.request_paths),
                 "injected_failures": list(self.injected_failures),
             }
 
@@ -305,6 +311,7 @@ class RangeRequestHandler(SimpleHTTPRequestHandler):
             self.wfile.write(body)
             return
         path = self.path.split("?", 1)[0]
+        self.range_state.record_path(path)
         always_fail = any(marker in path for marker in self.fail_paths)
         once_marker = next((marker for marker in self.fail_once_paths if marker in path), None)
         if always_fail or (once_marker and self.range_state.take_fail_once(once_marker)):
@@ -372,7 +379,7 @@ class RangeRequestHandler(SimpleHTTPRequestHandler):
             return None
 
 
-def start_server(background: bool = True, fail_paths: tuple[str, ...] = (), fail_once_paths: tuple[str, ...] = (), port: int = 0) -> tuple[ThreadingHTTPServer, RangeState]:
+def start_server(background: bool = True, fail_paths: tuple[str, ...] = (), fail_once_paths: tuple[str, ...] = (), port: int = 0, root: Path = ROOT) -> tuple[ThreadingHTTPServer, RangeState]:
     state = RangeState()
     failure_markers = tuple(fail_paths)
     failure_once_markers = tuple(fail_once_paths)
@@ -380,7 +387,12 @@ def start_server(background: bool = True, fail_paths: tuple[str, ...] = (), fail
         range_state = state
         fail_paths = failure_markers
         fail_once_paths = failure_once_markers
-    server = ThreadingHTTPServer(("127.0.0.1", port), lambda *args, **kwargs: Handler(*args, directory=str(ROOT), **kwargs))
+    server = ThreadingHTTPServer(("127.0.0.1", port), lambda *args, **kwargs: Handler(*args, directory=str(root), **kwargs))
+    # Un navegador puede cancelar una transferencia al cerrar su perfil justo
+    # después de que el runtime haya publicado el resultado del smoke. Esas
+    # conexiones no deben bloquear la recogida de evidencias del harness.
+    server.daemon_threads = True
+    server.block_on_close = False
     if background:
         threading.Thread(target=server.serve_forever, daemon=True).start()
     return server, state
@@ -465,11 +477,11 @@ def build_case_url(port: int, scenario: str, egif_config: dict | None = None, en
     return url
 
 
-def run_case(chrome: str, scenario: str, device: str, egif_config: dict | None = None, server_port: int = 0, entry_path: str = "/prototypes/es4c/index.html") -> dict:
+def run_case(chrome: str, scenario: str, device: str, egif_config: dict | None = None, server_port: int = 0, entry_path: str = "/prototypes/es4c/index.html", server_root: Path = ROOT) -> dict:
     server, state = start_server(
         fail_paths=tuple((egif_config or {}).get("fault_paths", ())),
         fail_once_paths=tuple((egif_config or {}).get("fault_once_paths", ())),
-        port=server_port,
+        port=server_port, root=server_root,
     )
     try:
         window = "390,844" if device == "mobile_390x844" else "1280,800"
@@ -496,9 +508,9 @@ def run_case(chrome: str, scenario: str, device: str, egif_config: dict | None =
         server.server_close()
 
 
-def run_case_sequence(chrome: str, cases: list[tuple[str, str, dict]], server_port: int = 0, entry_path: str = "/prototypes/es4c/index.html") -> list[dict]:
+def run_case_sequence(chrome: str, cases: list[tuple[str, str, dict]], server_port: int = 0, entry_path: str = "/prototypes/es4c/index.html", server_root: Path = ROOT) -> list[dict]:
     """Ejecuta smokes consecutivos con un único perfil Chromium efímero."""
-    server, state = start_server(port=server_port)
+    server, state = start_server(port=server_port, root=server_root)
     try:
         if not cases:
             return []
