@@ -249,3 +249,27 @@ PRODUCTION_SWITCH_READY = false
 PRODUCTION_ROOT_SWITCH_AUTHORIZED = false
 
 NEXT_PHASE = ES-4D4B_NATIONAL_PRODUCTION_STAGING_DEPLOYMENT_ACCEPTANCE
+
+PHASE = ES-4D4B
+
+STATUS = BLOCKED_ARTIFACT_IDENTITY_MISMATCH (el workflow staging verificó el SHA de transporte y se detuvo antes de upload/deploy: manifest D4A declara 500449810 B, árbol extraído 500449871 B).
+
+PRE_DEPLOY_STAGING_COMMIT = d8e6f84cfeb9597dc0f4327f427912b97ae93c3e
+
+STAGING_WORKFLOW_COMMIT = f58eb3f778ccd953c00a127e5d1b6bc8e9d9bde6
+
+STAGING_DEPLOYMENT_RUN = 33516317541
+
+STAGING_DEPLOYMENT_STATUS = FAIL (PAGES_ARTIFACT / ARTIFACT_IDENTITY_MISMATCH; no upload-pages-artifact ni deploy-pages)
+
+REMOTE_ACCEPTANCE_STATUS = NOT_RUN
+
+NATIONAL_RELEASE_CANDIDATE = NOT_READY
+
+PRODUCTION_SWITCH_READY = false
+
+PRODUCTION_ROOT_SWITCH_AUTHORIZED = false
+
+RESULTS_PATH = ES_4D4B_NATIONAL_PRODUCTION_STAGING_ACCEPTANCE.md; data/audit/production/es4d4b_national_production_staging_acceptance.json
+
+NEXT_PHASE = ES-4D4B_CONTINUE (requiere decisión explícita para reabrir ES-4D4A, corregir el cálculo estable del manifest y aprobar un nuevo artifact).

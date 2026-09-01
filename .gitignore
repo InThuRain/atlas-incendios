@@ -81,6 +81,7 @@ data/web/spain/
 # localmente a partir de assets ya aprobados y nunca se versiona en Git.
 build/national-pages-staging/
 build/national-pages-staging-repro/
+build/national-pages-staging-d4a.tar.gz
 
 # Dependencias locales de los benchmarks JavaScript.
 benchmarks/gva_web/node_modules/
