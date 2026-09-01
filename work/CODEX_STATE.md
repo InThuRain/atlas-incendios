@@ -273,3 +273,43 @@ PRODUCTION_ROOT_SWITCH_AUTHORIZED = false
 RESULTS_PATH = ES_4D4B_NATIONAL_PRODUCTION_STAGING_ACCEPTANCE.md; data/audit/production/es4d4b_national_production_staging_acceptance.json
 
 NEXT_PHASE = ES-4D4B_CONTINUE (requiere decisión explícita para reabrir ES-4D4A, corregir el cálculo estable del manifest y aprobar un nuevo artifact).
+
+PHASE = ES-4D4A1
+
+STATUS = DONE (ARTIFACT_IDENTITY_FIX_STATUS = PASS; contrato físico/payload separado, dos builds limpios idénticos y gate local D4B PASS).
+
+ORIGINAL_D4A_IDENTITY = declared 500449810 B; observed physical 500449871 B; delta +61 B; fingerprint bbf98006852762c89f1f6ca69093fccdbb1d09fe7fd2de09c15bacf83ff44ee8.
+
+ROOT_CAUSE = asset-manifest.json was counted after first 148052-B serialization, then rewritten to 148113 B with final bookkeeping fields without recalculating the physical total; only this metadata path was affected.
+
+ARTIFACT_PATH = build/national-pages-staging/
+
+SITE_FILE_COUNT = 350
+
+SITE_TOTAL_BYTES = 500450914
+
+PAYLOAD_FILE_COUNT = 348
+
+PAYLOAD_TOTAL_BYTES = 500301758
+
+PAYLOAD_FINGERPRINT = bbf98006852762c89f1f6ca69093fccdbb1d09fe7fd2de09c15bacf83ff44ee8
+
+ASSET_MANIFEST_SHA256 = c2c57a70130fd2e4527ac6a50ebb1c86e73bb667d6c5c5940f9b015b9823aceb
+
+PMTILES_BYTES = 63052056
+
+PMTILES_SHA256 = 3c6eb10ba146008cdabf36646d48a4c7a92c1c1357ad90679f6b5dce42013cfe
+
+STAGING_ARTIFACT_STATUS = READY_FOR_REMOTE_STAGING
+
+REMOTE_ACCEPTANCE_STATUS = NOT_RUN
+
+PRODUCTION_SWITCH_READY = false
+
+RESULTS_PATH = ES_4D4A_NATIONAL_PRODUCTION_STAGING_ARTIFACT.md; data/audit/production/es4d4a1_artifact_identity_fix.json
+
+NEXT_COMMAND = python3 scripts/build_national_pages_artifact.py --output build/national-pages-staging
+
+NEXT_CHECK_COMMAND = python3 scripts/build_national_pages_artifact.py --check --output build/national-pages-staging
+
+NEXT_PHASE = ES-4D4B_CONTINUE

@@ -30,6 +30,13 @@ class ES4D4ANationalStagingArtifactTests(unittest.TestCase):
             '{"2025": 9, "2026": 16}',
             "significant_duplicate_assets",
             "external_runtime_dependencies",
+            "site-identity.json",
+            "payload_file_count",
+            "payload_total_bytes",
+            "payload_fingerprint",
+            "verify_identity",
+            "physical_inventory",
+            "local_d4b_gate",
         ):
             self.assertIn(required, source)
 
@@ -44,6 +51,7 @@ class ES4D4ANationalStagingArtifactTests(unittest.TestCase):
         source = CHECKER.read_text(encoding="utf-8")
         for required in (
             "artifact.check",
+            "site_total_bytes",
             "FORBIDDEN_REQUEST_PREFIXES",
             "PMTiles full download",
             "gva_2024",

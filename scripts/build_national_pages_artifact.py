@@ -33,6 +33,9 @@ MUNICIPALITY_CATALOG_SOURCE = ROOT / "data/territories/spain/municipality_catalo
 MUNICIPALITY_SHARDS_SOURCE = ROOT / "data/derived/spain/es4c2a3/municipalities"
 MUNICIPALITY_INDEX_SOURCE = ROOT / "data/derived/spain/es4c2b/runtime/municipality-index"
 FORBIDDEN_RUNTIME_STRINGS = ("/home/dani/", "file://", "127.0.0.1", "localhost", "r2.dev", "atlas-incendios-es4c3d4-pages-staging", "national-prototype-staging", "release-assets.githubusercontent.com", "/releases/download")
+PAYLOAD_MANIFEST_PATH = Path("asset-manifest.json")
+SITE_IDENTITY_PATH = Path("site-identity.json")
+SITE_METADATA_PATHS = {PAYLOAD_MANIFEST_PATH.as_posix(), SITE_IDENTITY_PATH.as_posix()}
 
 
 class MissingStagingInput(FileNotFoundError):
@@ -185,27 +188,83 @@ def inventory(output: Path, records: list[dict], inputs: dict) -> dict:
     for row in rows:
         family = families[row["family"]]
         family["files"] += 1; family["raw_bytes"] += row["bytes"]
-    total_bytes = sum(row["bytes"] for row in rows) + (output / "asset-manifest.json").stat().st_size if (output / "asset-manifest.json").exists() else sum(row["bytes"] for row in rows)
+    payload_total_bytes = sum(row["bytes"] for row in rows)
     fingerprint_input = "".join(f"{row['path']}\t{row['bytes']}\t{row['sha256']}\n" for row in rows).encode("utf-8")
     duplicates = defaultdict(list)
     for row in rows:
         if row["bytes"] >= 1024 * 1024:
             duplicates[row["sha256"]].append(row["path"])
     return {
-        "schema_version": "es4d4a-national-pages-artifact-v1",
+        "schema_version": "es4d4a-national-pages-artifact-v2",
         "artifact": "national-pages-staging",
         "entrypoint": "index.html",
-        "file_count_excluding_manifest": len(rows),
-        "total_bytes_excluding_manifest": sum(row["bytes"] for row in rows),
+        "identity_contract": {
+            "payload_scope": "all deployable files except asset-manifest.json and site-identity.json",
+            "site_scope": "all physical deployable files, including both identity metadata files",
+            "site_identity_path": SITE_IDENTITY_PATH.as_posix(),
+            "site_metadata_paths": sorted(SITE_METADATA_PATHS),
+        },
+        "payload_file_count": len(rows),
+        "payload_total_bytes": payload_total_bytes,
         "files": rows,
         "families": {key: value for key, value in sorted(families.items())},
         "largest_files": sorted(rows, key=lambda row: (-row["bytes"], row["path"]))[:20],
         "significant_duplicate_assets": [paths for paths in duplicates.values() if len(paths) > 1],
         "pmtiles": {"runtime_path": PMTILES_DESTINATION.as_posix(), "bytes": frontend.PMTILES_BYTES, "sha256": frontend.PMTILES_SHA256},
         "inputs": inputs,
-        "fingerprint": {"algorithm": "sha256(sorted path + TAB + bytes + TAB + sha256 + LF; excludes asset-manifest.json)", "sha256": hashlib.sha256(fingerprint_input).hexdigest()},
+        "payload_fingerprint": {
+            "algorithm": "sha256(sorted path + TAB + bytes + TAB + sha256 + LF; excludes identity metadata)",
+            "sha256": hashlib.sha256(fingerprint_input).hexdigest(),
+        },
         "external_runtime_dependencies": [],
         "staging_repo_candidate": "InThuRain/atlas-incendios-es4c3d4-pages-staging",
+    }
+
+
+def canonical_json(payload: dict) -> bytes:
+    return (json.dumps(payload, ensure_ascii=False, sort_keys=True, separators=(",", ":")) + "\n").encode("utf-8")
+
+
+def write_identity_metadata(staging: Path, manifest: dict) -> dict:
+    """Write non-circular payload and whole-site identity metadata.
+
+    The payload manifest deliberately does not list either identity metadata
+    file.  The site identity uses a fixed-width decimal total, so its own
+    bytes are included without an iterative/self-hashing fixed point.
+    """
+    manifest_path = staging / PAYLOAD_MANIFEST_PATH
+    manifest_path.write_bytes(canonical_json(manifest))
+    manifest_sha256 = sha256(manifest_path)
+    site_file_count = manifest["payload_file_count"] + len(SITE_METADATA_PATHS)
+    identity = {
+        "schema_version": "es4d4a-site-identity-v1",
+        "identity_scope": "all physical deployable files, including identity metadata",
+        "site_file_count": site_file_count,
+        # Keeping this fixed-width makes the final serialized size independent
+        # of the value it carries; it is a decimal byte count, not an ID.
+        "site_total_bytes": "00000000000000000000",
+        "payload_file_count": manifest["payload_file_count"],
+        "payload_total_bytes": manifest["payload_total_bytes"],
+        "payload_fingerprint": manifest["payload_fingerprint"],
+        "asset_manifest": {"path": PAYLOAD_MANIFEST_PATH.as_posix(), "sha256": manifest_sha256},
+        "pmtiles": manifest["pmtiles"],
+    }
+    identity_path = staging / SITE_IDENTITY_PATH
+    provisional = canonical_json(identity)
+    site_total_bytes = manifest["payload_total_bytes"] + manifest_path.stat().st_size + len(provisional)
+    identity["site_total_bytes"] = f"{site_total_bytes:020d}"
+    final = canonical_json(identity)
+    if len(final) != len(provisional):
+        raise RuntimeError("site-identity serialization changed fixed-width size")
+    identity_path.write_bytes(final)
+    return {
+        "site_file_count": site_file_count,
+        "site_total_bytes": site_total_bytes,
+        "payload_file_count": manifest["payload_file_count"],
+        "payload_total_bytes": manifest["payload_total_bytes"],
+        "payload_fingerprint": manifest["payload_fingerprint"]["sha256"],
+        "manifest_sha256": manifest_sha256,
+        "site_identity_sha256": sha256(identity_path),
     }
 
 
@@ -232,17 +291,11 @@ def build(output: Path) -> dict:
         # Registra todos los ficheros ya presentes y no añade datos de desarrollo.
         add_frontend_records(staging, files)
         manifest = inventory(staging, files, inputs)
-        manifest_path = staging / "asset-manifest.json"
-        manifest_path.write_text(json.dumps(manifest, ensure_ascii=False, sort_keys=True, separators=(",", ":")) + "\n", encoding="utf-8")
-        final_files = [path for path in staging.rglob("*") if path.is_file()]
-        manifest["file_count"] = len(final_files)
-        manifest["total_bytes"] = sum(path.stat().st_size for path in final_files)
-        manifest["total_mib"] = round(manifest["total_bytes"] / (1024 * 1024), 3)
-        manifest_path.write_text(json.dumps(manifest, ensure_ascii=False, sort_keys=True, separators=(",", ":")) + "\n", encoding="utf-8")
+        identity = write_identity_metadata(staging, manifest)
         if output.exists():
             shutil.rmtree(output)
         shutil.move(str(staging), str(output))
-    return {"valid": True, "output": label(output), "file_count": manifest["file_count"], "total_bytes": manifest["total_bytes"], "fingerprint": manifest["fingerprint"]["sha256"]}
+    return {"valid": True, "output": label(output), **identity}
 
 
 def label(path: Path) -> str:
@@ -252,27 +305,54 @@ def label(path: Path) -> str:
         return str(path)
 
 
-def check(output: Path) -> dict:
-    manifest_path = output / "asset-manifest.json"
+def verify_identity(output: Path) -> dict:
+    manifest_path = output / PAYLOAD_MANIFEST_PATH
     if not manifest_path.is_file():
         return {"valid": False, "failures": ["No existe asset-manifest.json"]}
     manifest = read_json(manifest_path)
+    identity_path = output / SITE_IDENTITY_PATH
+    if not identity_path.is_file():
+        return {"valid": False, "failures": ["No existe site-identity.json"]}
+    identity = read_json(identity_path)
     failures = []
     expected_paths = set()
     for row in manifest.get("files", []):
         path = output / row.get("path", "")
+        if row.get("path") in expected_paths:
+            failures.append(f"manifest: duplicate path:{row.get('path')}")
         expected_paths.add(row.get("path"))
         if not path.is_file() or path.stat().st_size != row.get("bytes") or sha256(path) != row.get("sha256"):
             failures.append(f"integrity:{row.get('path')}")
-    actual_paths = {path.relative_to(output).as_posix() for path in output.rglob("*") if path.is_file() and path.name != "asset-manifest.json"}
-    if actual_paths != expected_paths:
+    actual_paths = {path.relative_to(output).as_posix() for path in output.rglob("*") if path.is_file() and not path.is_symlink()}
+    if actual_paths != expected_paths | SITE_METADATA_PATHS:
         failures.append("inventory: files no reconciliados")
+    actual_file_count = len(actual_paths)
+    actual_total_bytes = sum((output / relative).stat().st_size for relative in actual_paths)
+    fingerprint_input = "".join(
+        f"{row['path']}\t{row['bytes']}\t{row['sha256']}\n" for row in sorted(manifest.get("files", []), key=lambda row: row["path"])
+    ).encode("utf-8")
+    if identity.get("schema_version") != "es4d4a-site-identity-v1":
+        failures.append("identity: schema")
+    if identity.get("site_file_count") != actual_file_count:
+        failures.append("identity: site_file_count")
+    if identity.get("site_total_bytes") != f"{actual_total_bytes:020d}":
+        failures.append("identity: site_total_bytes")
+    if manifest.get("payload_file_count") != len(expected_paths):
+        failures.append("manifest: payload_file_count")
+    if manifest.get("payload_total_bytes") != sum(row.get("bytes", 0) for row in manifest.get("files", [])):
+        failures.append("manifest: payload_total_bytes")
+    if manifest.get("payload_fingerprint", {}).get("sha256") != hashlib.sha256(fingerprint_input).hexdigest():
+        failures.append("manifest: payload_fingerprint")
+    if identity.get("payload_file_count") != manifest.get("payload_file_count") or identity.get("payload_total_bytes") != manifest.get("payload_total_bytes") or identity.get("payload_fingerprint", {}).get("sha256") != manifest.get("payload_fingerprint", {}).get("sha256"):
+        failures.append("identity: payload contract")
+    if identity.get("asset_manifest", {}).get("path") != PAYLOAD_MANIFEST_PATH.as_posix() or identity.get("asset_manifest", {}).get("sha256") != sha256(manifest_path):
+        failures.append("identity: asset manifest sha256")
     pmtiles = output / manifest.get("pmtiles", {}).get("runtime_path", "")
     if not pmtiles.is_file() or pmtiles.stat().st_size != frontend.PMTILES_BYTES or sha256(pmtiles) != frontend.PMTILES_SHA256:
         failures.append("pmtiles: bytes/SHA")
     for path in output.rglob("*"):
         relative = path.relative_to(output).as_posix() if path.is_file() else ""
-        if not path.is_file() or relative == "asset-manifest.json" or relative.startswith("vendor/") or path.suffix.lower() not in {".html", ".js", ".mjs", ".json", ".css"}:
+        if not path.is_file() or relative in SITE_METADATA_PATHS or relative.startswith("vendor/") or path.suffix.lower() not in {".html", ".js", ".mjs", ".json", ".css"}:
             continue
         text = path.read_text(encoding="utf-8", errors="replace")
         for forbidden in FORBIDDEN_RUNTIME_STRINGS:
@@ -280,16 +360,147 @@ def check(output: Path) -> dict:
                 failures.append(f"forbidden:{path.relative_to(output)}:{forbidden}")
     if any("/.spool/" in path or path.startswith(".spool/") for path in actual_paths):
         failures.append("egif: spool incluido")
-    return {"valid": not failures, "failures": sorted(set(failures)), "output": label(output), "file_count": manifest.get("file_count"), "total_bytes": manifest.get("total_bytes"), "fingerprint": manifest.get("fingerprint", {}).get("sha256")}
+    return {
+        "valid": not failures,
+        "failures": sorted(set(failures)),
+        "output": label(output),
+        "site_file_count": actual_file_count,
+        "site_total_bytes": actual_total_bytes,
+        "payload_file_count": manifest.get("payload_file_count"),
+        "payload_total_bytes": manifest.get("payload_total_bytes"),
+        "payload_fingerprint": manifest.get("payload_fingerprint", {}).get("sha256"),
+        "manifest_sha256": sha256(manifest_path),
+        "site_identity_sha256": sha256(identity_path),
+    }
+
+
+def check(output: Path) -> dict:
+    return verify_identity(output)
+
+
+def physical_inventory(output: Path) -> list[dict]:
+    rows = []
+    for path in sorted(output.rglob("*")):
+        if path.is_file() and not path.is_symlink():
+            rows.append({
+                "relative_path": path.relative_to(output).as_posix(),
+                "size_bytes": path.stat().st_size,
+                "sha256": sha256(path),
+            })
+    return rows
+
+
+def identity_audit(output: Path, baseline: Path | None = None, repro_artifact: Path | None = None) -> dict:
+    """Create the independent physical audit consumed before a D4B upload."""
+    checked = verify_identity(output)
+    manifest = read_json(output / PAYLOAD_MANIFEST_PATH)
+    rows = physical_inventory(output)
+    physical_paths = {row["relative_path"] for row in rows}
+    payload_paths = {row["path"] for row in manifest.get("files", [])}
+    comparison = None
+    if baseline:
+        baseline_manifest = read_json(baseline / PAYLOAD_MANIFEST_PATH)
+        before = {row["path"]: (row["bytes"], row["sha256"]) for row in baseline_manifest.get("files", [])}
+        after = {row["path"]: (row["bytes"], row["sha256"]) for row in manifest.get("files", [])}
+        baseline_files = physical_inventory(baseline)
+        baseline_payload_total = sum(bytes_ for bytes_, _ in before.values())
+        baseline_declared_total = baseline_manifest.get("total_bytes")
+        baseline_final_manifest_bytes = (baseline / PAYLOAD_MANIFEST_PATH).stat().st_size
+        comparison = {
+            "baseline_artifact": label(baseline),
+            "baseline_payload_file_count": len(before),
+            "baseline_payload_total_bytes": baseline_payload_total,
+            "changed_payload_assets": sorted(path for path in set(before) | set(after) if before.get(path) != after.get(path)),
+            "pmtiles_unchanged": before.get(PMTILES_DESTINATION.as_posix()) == after.get(PMTILES_DESTINATION.as_posix()),
+            "original_declared_total_bytes": baseline_declared_total,
+            "original_observed_physical_total_bytes": sum(row["size_bytes"] for row in baseline_files),
+            "original_delta_bytes": sum(row["size_bytes"] for row in baseline_files) - baseline_declared_total,
+            "affected_paths": [PAYLOAD_MANIFEST_PATH.as_posix()],
+            "asset_manifest_first_serialization_bytes": baseline_declared_total - baseline_payload_total,
+            "asset_manifest_final_serialization_bytes": baseline_final_manifest_bytes,
+            "root_cause": "The v1 builder counted asset-manifest.json after its first serialization, then rewrote that same file with final file_count/total_bytes/total_mib fields without recalculating the physical total.",
+            "why_payload_fingerprint_matched": "The v1 fingerprint was calculated from the 348 payload rows and deliberately excluded asset-manifest.json, so changing only its final serialization could not change that fingerprint.",
+        }
+    reproducible = None
+    if repro_artifact:
+        repro = verify_identity(repro_artifact)
+        reproducible_fields = ("site_file_count", "site_total_bytes", "payload_file_count", "payload_total_bytes", "payload_fingerprint", "manifest_sha256", "site_identity_sha256")
+        matches = {field: checked.get(field) == repro.get(field) for field in reproducible_fields}
+        reproducible = {
+            "artifact": label(repro_artifact),
+            "identity": repro,
+            "matches": matches,
+            "status": "PASS" if checked.get("valid") and repro.get("valid") and all(matches.values()) else "FAIL",
+        }
+    audit_status = "PASS" if checked.get("valid") and (reproducible is None or reproducible["status"] == "PASS") else "FAIL"
+    return {
+        "phase": "ES-4D4A1",
+        "status": audit_status,
+        "identity_contract": {
+            "before": {
+                "manifest_file_count": "ambiguous: final physical file count while manifest self was excluded from files",
+                "manifest_total_bytes": "ambiguous: calculated using an earlier asset-manifest serialization",
+                "fingerprint": "payload records only; asset-manifest.json excluded",
+            },
+            "after": {
+                "site_file_count": "all physical deployable files, including asset-manifest.json and site-identity.json",
+                "site_total_bytes": "exact sum of all physical deployable files",
+                "payload_file_count": "files enumerated and hashed in asset-manifest.json; excludes the two identity metadata files",
+                "payload_total_bytes": "sum of files enumerated in asset-manifest.json",
+                "payload_fingerprint": "sorted payload path + bytes + SHA-256 rows; excludes identity metadata",
+            },
+        },
+        "physical_inventory": rows,
+        "physical_file_count": len(rows),
+        "physical_total_bytes": sum(row["size_bytes"] for row in rows),
+        "manifest_inventory": {
+            "payload_file_count": manifest.get("payload_file_count"),
+            "payload_total_bytes": manifest.get("payload_total_bytes"),
+            "represented_paths": sorted(payload_paths),
+            "in_both": sorted(physical_paths & payload_paths),
+            "physical_only": sorted(physical_paths - payload_paths),
+            "manifest_only": sorted(payload_paths - physical_paths),
+            "deliberately_excluded_metadata": sorted(SITE_METADATA_PATHS),
+        },
+        "site_identity": read_json(output / SITE_IDENTITY_PATH),
+        "site_file_count": checked.get("site_file_count"),
+        "site_total_bytes": checked.get("site_total_bytes"),
+        "payload_file_count": checked.get("payload_file_count"),
+        "payload_total_bytes": checked.get("payload_total_bytes"),
+        "payload_fingerprint": checked.get("payload_fingerprint"),
+        "manifest_sha256": checked.get("manifest_sha256"),
+        "independent_checker": checked,
+        "local_d4b_gate": {
+            "status": "PASS" if checked.get("valid") else "FAIL",
+            "checks": [
+                "physical paths equal payload paths plus declared identity metadata",
+                "physical site file count and bytes equal site-identity.json",
+                "every payload size and SHA-256 equals asset-manifest.json",
+                "payload fingerprint recomputes",
+                "asset-manifest SHA-256 equals site-identity.json",
+                "PMTiles bytes and SHA-256 equal the closed contract",
+            ],
+        },
+        "dataset_runtime_asset_comparison": comparison,
+        "reproducible": reproducible,
+    }
 
 
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT)
     parser.add_argument("--check", action="store_true")
+    parser.add_argument("--identity-audit", type=Path, help="Escribe inventario físico y simulación independiente del gate D4B.")
+    parser.add_argument("--baseline", type=Path, help="Artifact anterior para comprobar que payload/runtime assets no cambiaron.")
+    parser.add_argument("--repro-artifact", type=Path, help="Segundo artifact limpio para registrar reproducibilidad completa.")
     args = parser.parse_args()
     try:
         result = check(args.output) if args.check else build(args.output)
+        if result.get("valid") and args.identity_audit:
+            audit = identity_audit(args.output, args.baseline, args.repro_artifact)
+            args.identity_audit.parent.mkdir(parents=True, exist_ok=True)
+            args.identity_audit.write_bytes(canonical_json(audit))
+            result["identity_audit"] = label(args.identity_audit)
     except MissingStagingInput as error:
         result = {"valid": False, "status": "BLOCKED_MISSING_INPUT", "failures": [str(error)]}
     print(json.dumps(result, ensure_ascii=False, sort_keys=True))

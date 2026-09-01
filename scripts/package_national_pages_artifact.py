@@ -20,13 +20,6 @@ import build_national_pages_artifact as artifact
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_ARTIFACT = ROOT / "build/national-pages-staging"
 DEFAULT_OUTPUT = ROOT / "build/national-pages-staging-d4a.tar.gz"
-EXPECTED = {
-    "file_count": 349,
-    "total_bytes": 500449810,
-    "fingerprint": "bbf98006852762c89f1f6ca69093fccdbb1d09fe7fd2de09c15bacf83ff44ee8",
-}
-
-
 def sha256(path: Path) -> str:
     digest = hashlib.sha256()
     with path.open("rb") as source:
@@ -36,22 +29,16 @@ def sha256(path: Path) -> str:
 
 
 def verify_contract(root: Path) -> dict:
-    checked = artifact.check(root)
+    checked = artifact.verify_identity(root)
     if not checked.get("valid"):
         raise RuntimeError("ARTIFACT_IDENTITY_MISMATCH: " + ", ".join(checked["failures"]))
     manifest = json.loads((root / "asset-manifest.json").read_text(encoding="utf-8"))
-    actual = {
-        "file_count": manifest.get("file_count"),
-        "total_bytes": manifest.get("total_bytes"),
-        "fingerprint": manifest.get("fingerprint", {}).get("sha256"),
-    }
-    if actual != EXPECTED:
-        raise RuntimeError(f"ARTIFACT_IDENTITY_MISMATCH: expected={EXPECTED} actual={actual}")
-    return manifest
+    return {"manifest": manifest, "identity": checked}
 
 
 def package(root: Path, output: Path) -> dict:
-    manifest = verify_contract(root)
+    verified = verify_contract(root)
+    manifest = verified["manifest"]
     output.parent.mkdir(parents=True, exist_ok=True)
     with output.open("wb") as destination:
         with gzip.GzipFile(filename="", mode="wb", fileobj=destination, mtime=0) as compressed:
@@ -70,7 +57,10 @@ def package(root: Path, output: Path) -> dict:
         "output": artifact.label(output),
         "bytes": output.stat().st_size,
         "sha256": sha256(output),
-        "artifact_fingerprint": manifest["fingerprint"]["sha256"],
+        "payload_fingerprint": manifest["payload_fingerprint"]["sha256"],
+        "site_file_count": verified["identity"]["site_file_count"],
+        "site_total_bytes": verified["identity"]["site_total_bytes"],
+        "manifest_sha256": verified["identity"]["manifest_sha256"],
     }
 
 

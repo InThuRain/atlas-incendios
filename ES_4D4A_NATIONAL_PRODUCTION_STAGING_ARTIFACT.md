@@ -1,6 +1,53 @@
 # ES-4D4A — Artifact nacional de staging/producción
 
-## Resultado
+## Corrección ES-4D4A1 — contrato de identidad físico
+
+La identidad original D4A no debe reutilizarse para desplegar. El intento D4B
+registrado en `ab31782` descubrió correctamente que el árbol extraído tenía
+`500.449.871 B`, mientras el manifest declaraba `500.449.810 B`. La diferencia
+exacta de 61 B procede exclusivamente de `asset-manifest.json`: la primera
+serialización medía 148.052 B y se incluyó al calcular el total; después el
+builder reescribió ese mismo fichero con `file_count`, `total_bytes` y
+`total_mib`, y la serialización final pasó a 148.113 B sin recalcular el total.
+
+La huella anterior `bbf980…44ee8` seguía coincidiendo porque era una huella de
+los 348 assets de payload y excluía deliberadamente `asset-manifest.json`; por
+ello no detectaba un cambio únicamente en ese metadata. No cambió ningún
+dataset ni asset runtime: la comparación exacta de los 348 path/tamaño/SHA da
+`changed_payload_assets = []` y el PMTiles conserva 63.052.056 B / SHA-256
+`3c6eb10ba146008cdabf36646d48a4c7a92c1c1357ad90679f6b5dce42013cfe`.
+
+El contrato corregido separa dos conceptos:
+
+| Propiedad | Definición corregida | Valor D4A1 |
+| --- | --- | ---: |
+| `SITE_FILE_COUNT` | Todos los ficheros físicos desplegables, incluidos ambos metadata de identidad | 350 |
+| `SITE_TOTAL_BYTES` | Suma exacta de todos esos ficheros físicos | 500.450.914 B |
+| `PAYLOAD_FILE_COUNT` | Assets enumerados y hasheados en `asset-manifest.json`; excluye metadata de identidad | 348 |
+| `PAYLOAD_TOTAL_BYTES` | Suma de esos assets enumerados | 500.301.758 B |
+| `PAYLOAD_FINGERPRINT` | SHA-256 de filas ordenadas `path<TAB>bytes<TAB>sha256<LF>` de payload | `bbf98006852762c89f1f6ca69093fccdbb1d09fe7fd2de09c15bacf83ff44ee8` |
+| `ASSET_MANIFEST_SHA256` | SHA-256 del manifest de payload final | `c2c57a70130fd2e4527ac6a50ebb1c86e73bb667d6c5c5940f9b015b9823aceb` |
+
+`asset-manifest.json` enumera solo payload. El nuevo `site-identity.json`
+declara el contrato del site físico, enlaza el SHA del payload manifest y usa
+`site_total_bytes` como string decimal de ancho fijo: así su tamaño no cambia
+al escribir el total y no se requiere un fixed point ni un hash propio. La
+auditoría física exige exactamente `payload paths + asset-manifest.json +
+site-identity.json`, recalcula tamaños y hashes y rechaza cualquier path extra,
+faltante o duplicado.
+
+Dos builds limpios produjeron la misma identidad completa, incluido el SHA del
+manifest y de `site-identity.json`. La evidencia con el inventario físico
+ordenado de los 350 archivos está en
+`data/audit/production/es4d4a1_artifact_identity_fix.json`. El gate local que
+usará D4B —inventario físico, hashes de payload, huella, SHA del manifest y
+PMTiles— da `ARTIFACT_IDENTITY = PASS`.
+
+La tabla y el texto históricos que siguen describen la identidad original D4A
+y se conservan como evidencia del defecto detectado; no sustituyen el contrato
+D4A1 anterior.
+
+## Resultado histórico D4A original (sustituido por D4A1)
 
 El ensamblado local reproducible ha producido un árbol estático autocontenido
 para la futura aceptación remota, sin desplegarlo ni modificar ningún sitio
@@ -126,10 +173,12 @@ La evidencia completa está en
 
 ## Handoff a ES-4D4B
 
-`STAGING_ARTIFACT_STATUS = READY_FOR_REMOTE_STAGING`.
+Con la corrección D4A1, `STAGING_ARTIFACT_STATUS = READY_FOR_REMOTE_STAGING`.
+El intento D4B fallido sigue siendo evidencia histórica y no se sobrescribe.
 
 D4B debe consumir exactamente `build/national-pages-staging/` y verificar su
-`asset-manifest.json`/huella antes de transferirlo. El candidato de repositorio
+`asset-manifest.json`, `site-identity.json` y la huella de payload antes de
+transferirlo. El candidato de repositorio
 de staging es `InThuRain/atlas-incendios-es4c3d4-pages-staging`; esta fase no
 lo ha tocado. La única acción externa pendiente es su despliegue de staging y
 la aceptación real de GitHub Pages. `PRODUCTION_SWITCH_READY = false`.

@@ -103,13 +103,15 @@ def run(artifact_root: Path, chrome: str) -> dict:
         "phase": "ES-4D4A",
         "status": "PASS" if not all_failures else "FAIL",
         "artifact_root": artifact.label(artifact_root),
-        "file_count": manifest["file_count"],
-        "total_bytes": manifest["total_bytes"],
+        "site_file_count": static["site_file_count"],
+        "site_total_bytes": static["site_total_bytes"],
+        "payload_file_count": manifest["payload_file_count"],
+        "payload_total_bytes": manifest["payload_total_bytes"],
         "families": manifest["families"],
         "largest_files": manifest["largest_files"],
         "pmtiles": manifest["pmtiles"],
         "manifest": "asset-manifest.json",
-        "fingerprint": manifest["fingerprint"],
+        "payload_fingerprint": manifest["payload_fingerprint"],
         "external_runtime_dependencies": manifest["external_runtime_dependencies"],
         "unexpected_external_data_requests": [],
         "reproducible": None,
@@ -143,23 +145,25 @@ def main() -> int:
             # Los smokes viven ya en esta evidencia; sincronizar sus metadatos
             # con el manifest final tras una segunda construcción no vuelve a
             # ejecutar Chromium ni mezcla fingerprints de artifacts distintos.
-            for key in ("artifact_root", "file_count", "total_bytes", "families", "largest_files", "pmtiles", "manifest", "fingerprint", "external_runtime_dependencies"):
+            for key in ("artifact_root", "site_file_count", "site_total_bytes", "payload_file_count", "payload_total_bytes", "families", "largest_files", "pmtiles", "manifest", "payload_fingerprint", "external_runtime_dependencies"):
                 if key == "artifact_root":
                     payload[key] = artifact.label(args.artifact)
                 elif key == "manifest":
                     payload[key] = "asset-manifest.json"
                 else:
-                    payload[key] = primary_manifest.get(key, payload.get(key))
+                    payload[key] = primary_manifest.get(key, primary.get(key, payload.get(key)))
         matches = {
-            "file_count": primary_manifest.get("file_count") == secondary_manifest.get("file_count"),
-            "total_bytes": primary_manifest.get("total_bytes") == secondary_manifest.get("total_bytes"),
-            "fingerprint": primary_manifest.get("fingerprint", {}).get("sha256") == secondary_manifest.get("fingerprint", {}).get("sha256"),
+            "site_file_count": primary.get("site_file_count") == secondary.get("site_file_count"),
+            "site_total_bytes": primary.get("site_total_bytes") == secondary.get("site_total_bytes"),
+            "payload_fingerprint": primary_manifest.get("payload_fingerprint", {}).get("sha256") == secondary_manifest.get("payload_fingerprint", {}).get("sha256"),
+            "manifest_sha256": primary.get("manifest_sha256") == secondary.get("manifest_sha256"),
         }
         payload["reproducible"] = {
             "status": "PASS" if primary.get("valid") and secondary.get("valid") and all(matches.values()) else "FAIL",
             "comparison_artifact": artifact.label(args.repro_artifact),
             "matches": matches,
-            "fingerprint": secondary_manifest.get("fingerprint", {}).get("sha256"),
+            "payload_fingerprint": secondary_manifest.get("payload_fingerprint", {}).get("sha256"),
+            "manifest_sha256": secondary.get("manifest_sha256"),
         }
         if payload["reproducible"]["status"] != "PASS":
             payload["status"] = "FAIL"
