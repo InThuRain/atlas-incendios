@@ -1,0 +1,159 @@
+{
+  "schema_version": "es4e2-information-hierarchy-v1",
+  "phase": "ES-4E2",
+  "product_direction": "GVA-readable experience on the accepted national runtime",
+  "levels": {
+    "PRIMARY": [
+      "Human territory name and breadcrumb",
+      "Requested period",
+      "Map with cartographic context, current boundary and human legend",
+      "Source-typed counts and magnitudes",
+      "One source and metric per histogram series",
+      "Context-applicable filters",
+      "Source-specific highlights",
+      "Human-first selected-item card",
+      "Share"
+    ],
+    "SECONDARY": [
+      "Breakdown of applicable independent sources",
+      "Change analysis source or complementary map layer",
+      "Effective coverage and partial-coverage explanations",
+      "Administrative GIF and source-limited filters",
+      "Known and unknown value counts",
+      "Current municipality boundary warning",
+      "EFFIS provisional snapshot warning",
+      "Isolated recoverable source errors"
+    ],
+    "ADVANCED": [
+      "Complete source toggles",
+      "Detailed coverage regimes",
+      "record_id, geometry_id and source codes",
+      "Geometry semantics and quality",
+      "Method, transformations, provenance, licence and attribution",
+      "Documented 1:N geometry cardinality"
+    ],
+    "DEVELOPMENT_ONLY": [
+      "idle and ready labels",
+      "INITIAL and DETAIL names",
+      "asset and shard counts",
+      "loader generations",
+      "features loaded or visible in viewport as a KPI",
+      "raw runtime diagnostic state"
+    ]
+  },
+  "recommended_view": {
+    "territorial_context": "BDLJE always provides current administrative context",
+    "egif": "Show administrative information whenever 1968–2023 intersects, without implying geometry",
+    "geometry_source_rules": [
+      {
+        "territory": "outside_gva",
+        "period": "1985-2021 intersection",
+        "primary_geometry_source": "esfire30"
+      },
+      {
+        "territory": "gva",
+        "period": "1985-1992",
+        "primary_geometry_source": "esfire30"
+      },
+      {
+        "territory": "gva",
+        "period": "1993-2024",
+        "primary_geometry_source": "icv"
+      },
+      {
+        "territory": "gva",
+        "period": "2025-2026",
+        "primary_geometry_source": "effis"
+      }
+    ],
+    "overlapping_gva_rule": "ICV is recommended for 1993–2024; ESFire30 1993–2021 is complementary and off by default, without entity linking.",
+    "multi_regime_range": "Use ESFire30 for 1985–1992, ICV for 1993–2024 and EFFIS for 2025–2026; keep each source distinct in legend and cards."
+  },
+  "desktop": {
+    "header": ["brand", "territory breadcrumb", "period", "share"],
+    "map_share_of_width": "two thirds to three quarters",
+    "explorer_width_css_px": "360-440",
+    "explorer_order": ["summary", "histogram", "filters", "highlights or selected detail", "collapsed sources and methodology"],
+    "map_persistent": true,
+    "panel_overlays_map": false
+  },
+  "mobile_390x844": {
+    "order": ["compact territory/period/share header", "map", "summary", "histogram", "filter drawer", "results", "collapsed sources and methodology"],
+    "map_viewport_height": "approximately 38-45 percent",
+    "initial_form_covers_map": false,
+    "selected_detail": "minimizable bottom sheet",
+    "minimum_touch_target_css_px": 44
+  },
+  "territory": {
+    "hierarchy": ["Spain", "autonomous community", "province", "municipality"],
+    "primary_ids_visible": false,
+    "explicit_change": "fit official administrative bounds",
+    "url_restore": "preserve serialized center and zoom",
+    "municipality_warning": "Los límites corresponden a la división administrativa actual."
+  },
+  "period": {
+    "global_range": [1968, 2026],
+    "modes": ["single year", "inclusive range"],
+    "controls": ["histogram click", "histogram brush", "manual from/to", "full period reset"],
+    "coverage_changes_requested_period": false
+  },
+  "histogram": {
+    "design": "SOURCE_METRIC_TABS_ONE_SERIES_AT_A_TIME",
+    "tabs": ["Registros EGIF", "Incendios ICV", "Perímetros Landsat", "Perímetros provisionales EFFIS"],
+    "stacked_or_summed": false,
+    "zero_and_no_coverage_distinct": true,
+    "primary_default_order": ["GVA wholly 1993-2024 -> ICV", "GVA wholly 2025-2026 -> EFFIS", "otherwise EGIF if covered", "otherwise recommended geometry source"],
+    "interactions": ["click year", "drag inclusive range", "keyboard range", "tooltip with source, entity type, territory and filters"]
+  },
+  "source_panel": {
+    "public_label": "Fuentes y metodología",
+    "default_collapsed": true,
+    "contains": ["active sources", "visibility", "coverage", "what each source represents", "provisional warnings", "method", "provenance", "licence"],
+    "does_not_contain": ["internal loader diagnostics as normal UI"]
+  },
+  "human_card_order": [
+    "date or year and human place",
+    "element type and source",
+    "start/end dates",
+    "municipality, province and place",
+    "semantic area label and value",
+    "safe cause",
+    "documented GIF",
+    "relevant warning",
+    "provider line",
+    "collapsed More about these data"
+  ],
+  "missing_field_policy": {
+    "raw_null_visible": false,
+    "id_used_as_human_fallback": false,
+    "optional_absent_field": "omit",
+    "informatively_relevant_absence": "show a human unavailable message",
+    "geometry_source_without_cause": "omit cause; explain source scope in methodology",
+    "unresolved_egif_municipality": "Municipio no resuelto en la normalización"
+  },
+  "public_state_copy": {
+    "idle": null,
+    "ready": null,
+    "loading_records": "Cargando registros…",
+    "loading_perimeters": "Cargando perímetros…",
+    "error": "No hemos podido cargar {data_type}. El resto del Atlas sigue disponible.",
+    "no_coverage": "No disponemos de {data_type} para este periodo.",
+    "not_integrated": "Esta fuente todavía no está disponible en este territorio.",
+    "zero_filtered": "No hay resultados que cumplan estos filtros.",
+    "zero_relations": "No hay perímetros de esta fuente que intersecten el territorio en el periodo seleccionado."
+  },
+  "map": {
+    "renderer_preserved": "MapLibre",
+    "required_context": ["coast", "place names", "main roads", "current administrative boundaries"],
+    "style": "light and restrained",
+    "selection_not_color_only": true,
+    "attribution_always_visible": true,
+    "provider_decision": "implementation/hosting gate before product staging; E2 does not contract a provider"
+  },
+  "legend": {
+    "shows_only_drawn_layers": true,
+    "items": ["current territory boundary", "ICV official perimeter", "ESFire30 Landsat perimeter", "EFFIS provisional perimeter", "time encoding when active", "selected item"],
+    "egif_geometry_symbol": false,
+    "technical_statuses_visible": false
+  }
+}

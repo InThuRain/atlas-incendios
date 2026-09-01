@@ -1,0 +1,159 @@
+{
+  "schema_version": "es4e2-feature-priorities-v1",
+  "phase": "ES-4E2",
+  "P0": [
+    {
+      "feature_id": "human_shell",
+      "label": "Human-first desktop and mobile shell",
+      "work_type": "UX_ONLY+FRONTEND_LOGIC",
+      "acceptance": "Map, territory, period and summary appear before methodology on desktop and 390x844."
+    },
+    {
+      "feature_id": "recommended_view",
+      "label": "Contextual recommended source presentation",
+      "work_type": "FRONTEND_LOGIC",
+      "acceptance": "Users do not have to choose datasets at entry; source priority never links entities."
+    },
+    {
+      "feature_id": "territory_period_share",
+      "label": "Visible territory, period and Share",
+      "work_type": "UX_ONLY+FRONTEND_LOGIC",
+      "acceptance": "Spain to municipality, single year/range and copy/reload/back-forward remain coherent."
+    },
+    {
+      "feature_id": "basemap_legend",
+      "label": "Cartographic context and human legend",
+      "work_type": "UX_ONLY+FRONTEND_LOGIC",
+      "acceptance": "Place names, boundaries and source symbology are understandable without opening methodology."
+    },
+    {
+      "feature_id": "typed_summary",
+      "label": "Source-typed summary cards",
+      "work_type": "FRONTEND_LOGIC+SMALL_DERIVED_DATA",
+      "acceptance": "No cross-source total; territory, period and filter semantics are explicit."
+    },
+    {
+      "feature_id": "histogram",
+      "label": "Single-source metric tabs histogram",
+      "work_type": "FRONTEND_LOGIC+SMALL_DERIVED_DATA",
+      "acceptance": "Year/range selection works and no series stacks or sums sources."
+    },
+    {
+      "feature_id": "context_filters",
+      "label": "Source-aware area, GIF and safe-cause filters",
+      "work_type": "FRONTEND_LOGIC",
+      "acceptance": "Every filter names source/metric, affects the coordinated views and is removed explicitly when invalid."
+    },
+    {
+      "feature_id": "human_cards",
+      "label": "Human-first EGIF, ESFire30, ICV and EFFIS cards",
+      "work_type": "UX_ONLY+FRONTEND_LOGIC",
+      "acceptance": "Date/place/magnitude/cause precede IDs; missing values and source semantics are correct."
+    },
+    {
+      "feature_id": "progressive_methodology",
+      "label": "Collapsed Sources and methodology",
+      "work_type": "UX_ONLY+FRONTEND_LOGIC",
+      "acceptance": "Provenance and controls remain discoverable but runtime diagnostics leave the public first level."
+    },
+    {
+      "feature_id": "public_states",
+      "label": "Human loading, error, coverage and zero messages",
+      "work_type": "UX_ONLY+FRONTEND_LOGIC",
+      "acceptance": "Zero, no coverage, not integrated and error are distinct; errors remain isolated."
+    },
+    {
+      "feature_id": "filter_state_serialization",
+      "label": "Serialize analysis source and filters",
+      "work_type": "FRONTEND_LOGIC",
+      "acceptance": "New links restore filters and selections; old national and GVA v1 links remain valid."
+    },
+    {
+      "feature_id": "esfire30_territorial_counts",
+      "label": "Small ESFire30 annual territorial count derivative",
+      "work_type": "SMALL_DERIVED_DATA+DATA_PIPELINE_CHANGE",
+      "acceptance": "Counts reconcile with closed relations and never use viewport features; no new spatial intersection."
+    },
+    {
+      "feature_id": "accessibility_mobile",
+      "label": "Basic accessibility and usable mobile flow",
+      "work_type": "UX_ONLY+FRONTEND_LOGIC",
+      "acceptance": "Keyboard, focus, labels, non-color encoding and 44px touch targets meet the E2 contract."
+    },
+    {
+      "feature_id": "preserve_runtime",
+      "label": "Preserve all national runtime invariants",
+      "work_type": "FRONTEND_LOGIC",
+      "acceptance": "Lazy loading, PMTiles Range, caches, cancellation, identity and error isolation do not regress."
+    }
+  ],
+  "P1": [
+    {
+      "feature_id": "all_source_highlights",
+      "label": "Top-N highlights for every safe magnitude",
+      "work_type": "FRONTEND_LOGIC+SMALL_DERIVED_DATA"
+    },
+    {
+      "feature_id": "compact_first_paint_summaries",
+      "label": "Compact EGIF and ICV summaries before large record assets",
+      "work_type": "SMALL_DERIVED_DATA+DATA_PIPELINE_CHANGE"
+    },
+    {
+      "feature_id": "esfire30_area",
+      "label": "ESFire30 mapped-area summaries, rankings and min-area filter",
+      "work_type": "SMALL_DERIVED_DATA+DATA_PIPELINE_CHANGE"
+    },
+    {
+      "feature_id": "known_unknown_detail",
+      "label": "Expanded known/unknown and historical coverage explanations",
+      "work_type": "UX_ONLY+FRONTEND_LOGIC"
+    },
+    {
+      "feature_id": "complementary_source_comparison",
+      "label": "Refined visual comparison of independent complementary sources",
+      "work_type": "UX_ONLY+FRONTEND_LOGIC"
+    },
+    {
+      "feature_id": "full_results_experience",
+      "label": "Complete paginated or virtualized results experience",
+      "work_type": "FRONTEND_LOGIC"
+    }
+  ],
+  "P2": [
+    {
+      "feature_id": "additional_temporal_views",
+      "label": "Additional non-merging temporal visualizations",
+      "work_type": "UX_ONLY+FRONTEND_LOGIC"
+    },
+    {
+      "feature_id": "advanced_view_preferences",
+      "label": "Persisted advanced-view preferences",
+      "work_type": "FRONTEND_LOGIC"
+    },
+    {
+      "feature_id": "side_by_side_series",
+      "label": "Explicit side-by-side comparison of two independent series",
+      "work_type": "UX_ONLY+FRONTEND_LOGIC"
+    },
+    {
+      "feature_id": "editorial_polish",
+      "label": "Nonessential transitions, annotations and editorial polish",
+      "work_type": "UX_ONLY"
+    },
+    {
+      "feature_id": "egif_canonical_causes",
+      "label": "Canonical national EGIF cause exploration",
+      "work_type": "BLOCKED_EXTERNAL",
+      "dependency": "Approved MITECO ontology and mapping contract"
+    }
+  ],
+  "root_switch_gate": {
+    "d5_status": "PAUSED_FOR_PRODUCT_RECONCILIATION",
+    "required_before_reconsideration": [
+      "P0 implemented and specifically tested in ES-4E3",
+      "Product staging acceptance in ES-4E4",
+      "No regression of the national capability preservation contract"
+    ]
+  },
+  "next_phase": "ES-4E3_NATIONAL_UX_IMPLEMENTATION"
+}

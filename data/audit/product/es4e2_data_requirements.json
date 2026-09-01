@@ -1,0 +1,203 @@
+{
+  "schema_version": "es4e2-data-requirements-v1",
+  "phase": "ES-4E2",
+  "constraints": {
+    "new_spatial_intersections": false,
+    "pmtiles_rebuild": false,
+    "cross_source_linking": false,
+    "frontend_full_national_geometry_scan": false,
+    "small_deterministic_derivatives_allowed_in_e3": true
+  },
+  "observed_inputs": {
+    "egif_manifest": {
+      "path": "build/national-pages-staging/data/egif/v1/2026-08-27/manifest.json",
+      "records": 646887,
+      "assets": 88,
+      "coverage": [1968, 2023],
+      "useful_fields": ["scan_blocks.records_selected", "assets.year_spools.record_count", "record_count", "temporal_blocks"]
+    },
+    "icv_records": {
+      "path": "build/national-pages-staging/data/web/gva/fires.json",
+      "bytes": 7657862,
+      "records": 13738,
+      "coverage": [1993, 2024],
+      "useful_fields": ["fire_id", "year", "start_date", "end_date", "municipality_id", "province", "place_name", "reported_forest_area_ha", "cause_code", "cause_label", "geometry_ids"]
+    },
+    "effis": {
+      "manifest": "build/national-pages-staging/data/web/gva/manifest.json",
+      "coverage": [2025, 2026],
+      "features": 25,
+      "useful_fields": ["feature_count", "mapped_area_ha", "year", "date", "final_date", "province_key", "municipality_id", "snapshot acquired_at"]
+    },
+    "esfire30_pmtiles": {
+      "path": "build/national-pages-staging/data/esfire30/v1/3c6eb10ba146008cdabf36646d48a4c7a92c1c1357ad90679f6b5dce42013cfe/esfire30-national-fidelity-territories.pmtiles",
+      "coverage": [1985, 2021],
+      "geometry_count": 119498,
+      "runtime_properties": ["geometry_id", "year", "ccaa_1", "ccaa_2", "ccaa_3", "prov_1", "prov_2", "prov_3"],
+      "not_present": ["mapped_area_ha", "territorial total counts"]
+    },
+    "esfire30_municipality_index": {
+      "path": "build/national-pages-staging/data/esfire30/v1/municipality-index/manifest.json",
+      "strategy": "province-parent shards",
+      "useful_fields": ["municipality_id to geometry_id list"],
+      "not_present": ["year per membership", "area per geometry"]
+    }
+  },
+  "histogram_readiness": [
+    {
+      "source": "egif",
+      "status": "READY",
+      "spain": "scan_blocks already provide annual record counts",
+      "ccaa": "asset year_spools already provide annual record counts",
+      "province_municipality": "aggregate year column from the CCAA INITIAL already required by current load policy",
+      "heavy_geometry_required": false
+    },
+    {
+      "source": "icv",
+      "status": "DERIVABLE_CHEAPLY",
+      "current_method": "aggregate year and fire_id from existing non-geometry fires.json",
+      "preferred_e3_method": "publish a compact annual/territorial summary so first paint does not require parsing 7.66 MB",
+      "heavy_geometry_required": false
+    },
+    {
+      "source": "effis",
+      "status": "READY",
+      "gva": "manifest coverage/assets provide annual counts and area",
+      "province_municipality": "aggregate the existing 25 features after the small applicable asset loads",
+      "heavy_geometry_required": false
+    },
+    {
+      "source": "esfire30",
+      "status": "NEEDS_NEW_DERIVED_ASSET",
+      "reason": "MapLibre/PMTiles only exposes loaded tiles; viewport features cannot be used as territorial totals.",
+      "method": "aggregate existing closed geometry-year and positive-area territory memberships into year by territory counts",
+      "new_intersection_required": false,
+      "heavy_geometry_required_in_browser": false
+    }
+  ],
+  "summary_readiness": [
+    {
+      "feature": "egif_count",
+      "status": "READY",
+      "source": "manifest for Spain/CCAA; INITIAL for deeper scope"
+    },
+    {
+      "feature": "egif_declared_area_known_unknown",
+      "status": "READY_AFTER_EXISTING_INITIAL",
+      "source": "columnar INITIAL",
+      "small_derivative": "recommended for Spain/CCAA first paint"
+    },
+    {
+      "feature": "egif_gif",
+      "status": "READY_AFTER_EXISTING_INITIAL",
+      "source": "is_gif_forest_ge_500_ha",
+      "small_derivative": "recommended for Spain/CCAA first paint"
+    },
+    {
+      "feature": "egif_cause_counts",
+      "status": "BLOCKED_EXTERNAL",
+      "reason": "National canonical cause is not approved; source codes alone do not define a public ontology."
+    },
+    {
+      "feature": "icv_count_area_gif_cause",
+      "status": "DERIVABLE_CHEAPLY",
+      "source": "fires.json",
+      "small_derivative": "recommended for first paint"
+    },
+    {
+      "feature": "effis_count_area",
+      "status": "READY",
+      "source": "manifest and small annual GeoJSON assets"
+    },
+    {
+      "feature": "esfire30_count",
+      "status": "NEEDS_NEW_DERIVED_ASSET",
+      "source": "closed territory/municipality relations plus stable geometry year"
+    },
+    {
+      "feature": "esfire30_area_and_highlights",
+      "status": "NEW_PIPELINE_WORK",
+      "reason": "National PMTiles intentionally omits area; use canonical geometry attributes in an audit/summary derivative, never visible tile features."
+    }
+  ],
+  "required_small_derivative": {
+    "logical_id": "national-ux-summary-v1",
+    "purpose": "Source-separated summary, histogram and highlight inputs without browser-wide scans",
+    "grain": ["source_id", "territory_id", "year", "entity_type"],
+    "fields": [
+      "count",
+      "magnitude_sum_when_documented",
+      "known_value_count",
+      "unknown_value_count",
+      "gif_count_when_documented",
+      "approved_cause_counts_when_documented",
+      "top_source_entity_ids_by_approved_metric",
+      "coverage_or_snapshot"
+    ],
+    "forbidden_fields": [
+      "geometry",
+      "cross_source_total",
+      "cross_source_link",
+      "inferred cause",
+      "inferred GIF",
+      "viewport count"
+    ],
+    "delivery": {
+      "national_and_ccaa": "one compact entrypoint or source assets",
+      "province_and_municipality": "province-parent shards where existing loaded data is insufficient",
+      "manifest": true,
+      "checksums": true,
+      "deterministic": true
+    }
+  },
+  "work_by_category": {
+    "UX_ONLY": [
+      "information hierarchy and layout",
+      "public copy and missing-field policy",
+      "legend and progressive methodology",
+      "human coverage/zero/error states"
+    ],
+    "FRONTEND_LOGIC": [
+      "recommended source resolver",
+      "histogram tabs and brush",
+      "source-metric filter state",
+      "coordinated summary/map/highlights",
+      "human detail renderer",
+      "permalink extension and legacy compatibility",
+      "mobile drawers and accessibility"
+    ],
+    "SMALL_DERIVED_DATA": [
+      "ESFire30 annual territorial counts",
+      "EGIF national/CCAA known-area and GIF summaries",
+      "compact ICV annual/territorial summary",
+      "source-specific top-N lists",
+      "province-sharded municipality summaries only where needed"
+    ],
+    "DATA_PIPELINE_CHANGE": [
+      "deterministic resumable/checkable national-ux-summary-v1 builder",
+      "join stable source IDs to existing year and territory membership without spatial recalculation",
+      "derive ESFire30 mapped-area summary from canonical source when P1 is implemented",
+      "include derived assets in a future E3/E4 artifact"
+    ],
+    "BLOCKED_EXTERNAL": [
+      "MITECO national cause ontology",
+      "CCINIF publication permission",
+      "historical municipality geometries and equivalences",
+      "documentary resolution of 71490 null EGIF municipality IDs",
+      "canonical cross-source episode/link model"
+    ]
+  },
+  "examples_verified_from_existing_data": {
+    "spain_1975_egif_records": 4128,
+    "spain_1995_egif_records": 25557,
+    "gva_1995_egif_records": 467,
+    "gva_1995_icv_fire_records": 467,
+    "gva_2024_icv_fire_records": 472,
+    "gva_2026_effis_perimeters": 16,
+    "elx_2025_effis_perimeters": 1,
+    "canarias_1995_egif_records": 56,
+    "warning": "Equal counts do not imply matching entities."
+  },
+  "external_blockers_block_e3_globally": false,
+  "next_phase": "ES-4E3_NATIONAL_UX_IMPLEMENTATION"
+}

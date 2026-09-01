@@ -369,3 +369,29 @@ RECOMMENDED_PRODUCT_DIRECTION = recuperar sustancialmente el layout, la jerarqu�
 RESULTS_PATH = ES_4E1_GVA_NATIONAL_UX_PRODUCT_AUDIT.md; data/audit/product/es4e1_gva_national_ux_product_audit.json
 
 NEXT_PHASE = ES-4E2_NATIONAL_UX_REDESIGN_SPEC
+
+PHASE = ES-4E2
+
+STATUS = DONE (especificación de producto nacional cerrada; sin cambios de runtime, HTML/CSS/JS, datos, staging ni producción).
+
+UX_REDESIGN_SPEC_STATUS = READY_FOR_IMPLEMENTATION
+
+ROOT_SWITCH_UX_STATUS = NEEDS_RECONCILIATION
+
+D5_STATUS = PAUSED_FOR_PRODUCT_RECONCILIATION
+
+TECHNICAL_RELEASE_CANDIDATE = PASS
+
+PRODUCT_RELEASE_CANDIDATE = false
+
+TECHNICAL_BASELINE = D4B staging congelado
+
+PRODUCT_DIRECTION = recuperar layout, legibilidad y flujo GVA sobre el runtime nacional, con métricas tipadas y fuentes independientes.
+
+HISTOGRAM_DESIGN = pestañas por métrica/fuente; una serie visible cada vez; nunca suma ni apila fuentes.
+
+P0_DATA_REQUIREMENT = national-ux-summary-v1 pequeño y determinista, especialmente conteos anuales ESFire30 por territorio; sin nuevas intersecciones ni rebuild PMTiles.
+
+RESULTS_PATH = ES_4E2_NATIONAL_UX_REDESIGN_SPEC.md; data/audit/product/es4e2_metric_contracts.json; data/audit/product/es4e2_information_hierarchy.json; data/audit/product/es4e2_feature_priorities.json; data/audit/product/es4e2_data_requirements.json
+
+NEXT_PHASE = ES-4E3_NATIONAL_UX_IMPLEMENTATION
