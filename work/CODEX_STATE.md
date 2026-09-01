@@ -347,3 +347,25 @@ FULL_PMTILES_DOWNLOAD_OBSERVED = false
 RESULTS_PATH = ES_4D4B_NATIONAL_PRODUCTION_STAGING_ACCEPTANCE.md; data/audit/production/es4d4b_national_production_staging_acceptance.json
 
 NEXT_PHASE = ES-4D5_ROOT_SWITCH_DECISION
+
+PHASE = ES-4E1
+
+STATUS = DONE (auditoría comparativa de producto GVA vs staging nacional completada; sin cambios de runtime, producción, staging ni datos).
+
+D5_STATUS = PAUSED_FOR_PRODUCT_RECONCILIATION
+
+ROOT_SWITCH_UX_STATUS = BLOCKED_BY_MAJOR_PRODUCT_REGRESSIONS
+
+TECHNICAL_RELEASE_CANDIDATE = PASS
+
+PRODUCT_RELEASE_CANDIDATE = false
+
+GVA_ROLE = PRODUCT_REFERENCE_AND_CURRENT_PRODUCTION
+
+NATIONAL_STAGING_ROLE = TECHNICAL_BASELINE
+
+RECOMMENDED_PRODUCT_DIRECTION = recuperar sustancialmente el layout, la jerarquía y el flujo exploratorio GVA sobre el runtime nacional, preservando su arquitectura y la separación semántica de fuentes.
+
+RESULTS_PATH = ES_4E1_GVA_NATIONAL_UX_PRODUCT_AUDIT.md; data/audit/product/es4e1_gva_national_ux_product_audit.json
+
+NEXT_PHASE = ES-4E2_NATIONAL_UX_REDESIGN_SPEC

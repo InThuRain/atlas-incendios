@@ -1,0 +1,432 @@
+{
+  "schema_version": "es4e1-product-audit-v1",
+  "phase": "ES-4E1",
+  "observed_at": "2026-09-01",
+  "applications": {
+    "gva": {
+      "url": "https://inthurain.github.io/atlas-incendios/",
+      "role": "PRODUCT_REFERENCE_AND_CURRENT_PRODUCTION"
+    },
+    "national": {
+      "url": "https://inthurain.github.io/atlas-incendios-es4c3d4-pages-staging/",
+      "role": "TECHNICAL_BASELINE"
+    }
+  },
+  "observation": {
+    "desktop_viewport": [1440, 1000],
+    "mobile_viewport": [390, 844],
+    "real_browser": "Chromium",
+    "real_interactions": [
+      "GVA: select 2022 from the histogram",
+      "GVA: set minimum area to 500 hectares",
+      "National: navigate Spain > País Valencià > Alacant > Elx",
+      "Both: open the shared ICV fixture 2024AL0005"
+    ],
+    "runtime_modified": false,
+    "screenshots_committed": false
+  },
+  "decision": {
+    "root_switch_ux_status": "BLOCKED_BY_MAJOR_PRODUCT_REGRESSIONS",
+    "d5_status": "PAUSED_FOR_PRODUCT_RECONCILIATION",
+    "technical_release_candidate": "PASS",
+    "product_release_candidate": false,
+    "recommended_product_direction": "Recover substantially the GVA layout, information hierarchy and exploratory flow on top of the national runtime, without rolling back its architecture or merging sources."
+  },
+  "user_tasks": [
+    {
+      "id": "year",
+      "task": "See the fires for one year",
+      "gva": "EASY",
+      "national": "ACCEPTABLE",
+      "reason": "GVA offers histogram selection and sliders; national requires entering the year twice and applying it."
+    },
+    {
+      "id": "count",
+      "task": "Know how many there are",
+      "gva": "EASY",
+      "national": "DIFFICULT",
+      "reason": "GVA shows source-separated metrics; national exposes manifest, loaded and viewport values in technical summaries."
+    },
+    {
+      "id": "area",
+      "task": "See affected area",
+      "gva": "EASY",
+      "national": "DIFFICULT",
+      "reason": "GVA shows explicitly typed totals by source; national mainly exposes known EGIF forest area below Spain scope."
+    },
+    {
+      "id": "large_fires",
+      "task": "Identify large fires",
+      "gva": "EASY",
+      "national": "NOT_AVAILABLE",
+      "reason": "GVA has area filtering, GIF and highlighted results; national has no equivalent product flow."
+    },
+    {
+      "id": "causes",
+      "task": "See causes",
+      "gva": "EASY",
+      "national": "NOT_AVAILABLE",
+      "reason": "GVA filters and displays causes; national does not expose cause exploration and omitted an available ICV cause in the observed detail."
+    },
+    {
+      "id": "timeline",
+      "task": "Understand temporal evolution",
+      "gva": "EASY",
+      "national": "DIFFICULT",
+      "reason": "GVA has an interactive multi-source histogram; national has a long EGIF text distribution only where INITIAL is loaded."
+    },
+    {
+      "id": "detail",
+      "task": "Select a fire and understand its detail",
+      "gva": "EASY",
+      "national": "DIFFICULT",
+      "reason": "National selection is robust but puts technical identity before date, place, area and cause."
+    },
+    {
+      "id": "minimum_area",
+      "task": "Filter by area",
+      "gva": "EASY",
+      "national": "NOT_AVAILABLE",
+      "reason": "No national control exists."
+    },
+    {
+      "id": "gif",
+      "task": "Filter administrative GIF",
+      "gva": "EASY",
+      "national": "NOT_AVAILABLE",
+      "reason": "The EGIF value exists but is not an exploratory filter."
+    },
+    {
+      "id": "territory",
+      "task": "Navigate to province or municipality",
+      "gva": "ACCEPTABLE",
+      "national": "EASY",
+      "reason": "National adds official Spain to CCAA to province to municipality navigation, bounds, breadcrumb and serialized state."
+    },
+    {
+      "id": "period",
+      "task": "Change period",
+      "gva": "EASY",
+      "national": "ACCEPTABLE",
+      "reason": "GVA combines sliders and histogram; national uses numeric inputs and an Apply button."
+    },
+    {
+      "id": "map_meaning",
+      "task": "Understand what is shown on the map",
+      "gva": "EASY",
+      "national": "DIFFICULT",
+      "reason": "GVA has a labelled basemap and visible legend; national lacks equivalent immediate cartographic context."
+    },
+    {
+      "id": "provenance",
+      "task": "Know where the data comes from",
+      "gva": "ACCEPTABLE",
+      "national": "EASY",
+      "reason": "National provenance is more rigorous, but occupies too much primary attention."
+    },
+    {
+      "id": "share",
+      "task": "Share the current state",
+      "gva": "EASY",
+      "national": "ACCEPTABLE",
+      "reason": "National serializes more state and accepts legacy links, but the action is less prominent."
+    }
+  ],
+  "first_screen": {
+    "gva": {
+      "map": "Dominant labelled basemap with visible legend",
+      "primary_information": [
+        "territory",
+        "period",
+        "municipality",
+        "minimum area",
+        "cause",
+        "GIF",
+        "interactive histogram"
+      ],
+      "assessment": "Human questions are visible before technical detail."
+    },
+    "national": {
+      "map": "Unlabelled neutral background with national geometries and no equivalent public legend",
+      "primary_information": [
+        "three territory selectors",
+        "two year fields and Apply",
+        "four source toggles",
+        "territorial methodology text",
+        "source runtime status"
+      ],
+      "assessment": "Runtime control and diagnostics displace the human overview."
+    }
+  },
+  "observed_metrics": {
+    "gva_initial": {
+      "egif_parts": 9175,
+      "egif_known_forest_area_ha": 445726.3,
+      "egif_gif": 180,
+      "esfire30_perimeters": 710,
+      "esfire30_mapped_area_ha": 127083.78,
+      "icv_fire_records": 13738,
+      "icv_perimeters": 13739,
+      "icv_declared_area_ha": 337433.37,
+      "icv_gif": 74,
+      "effis_perimeters": 25,
+      "effis_mapped_area_ha": 10963.0
+    },
+    "gva_2022": {
+      "icv_fire_records": 292,
+      "icv_perimeters": 292,
+      "icv_declared_area_ha": 30113.78,
+      "icv_gif": 4
+    },
+    "gva_2022_min_500_ha": {
+      "icv_fire_records": 4,
+      "icv_perimeters": 4,
+      "icv_declared_area_ha": 29491.9,
+      "icv_gif": 4
+    },
+    "national_spain_1985_2021": {
+      "egif_parts_manifest": 554384,
+      "egif_initial_assets": 0,
+      "esfire30_features_visible_in_viewport": 31541,
+      "warning": "Viewport features are not a territorial total."
+    },
+    "national_elx_1985_2021": {
+      "egif_parts": 178,
+      "egif_initial_assets": 4,
+      "egif_known_forest_area_ha": 260.95,
+      "egif_records_with_known_forest_area": 178,
+      "egif_records_with_resolved_municipality": 178,
+      "esfire30_features_visible_in_viewport": 12,
+      "icv_records": 157
+    }
+  },
+  "gva_strengths": [
+    "Immediate historical overview and understandable map",
+    "Actionable temporal histogram",
+    "Minimum area, cause and GIF filters",
+    "Source-separated metrics with immediate filter feedback",
+    "Human-first detail card",
+    "Highlighted large results",
+    "Basemap, legend and temporal symbology",
+    "Prominent sharing and mostly public language"
+  ],
+  "national_strengths": [
+    "Official Spain to CCAA to province to municipality navigation",
+    "Progressive national loading architecture",
+    "Rigorous separation of records, geometries, identities and sources",
+    "Explicit temporal and territorial coverage",
+    "National ESFire30 territorial filters",
+    "Columnar EGIF with lazy DETAIL",
+    "Complete serialized state, restore and legacy v1 compatibility",
+    "Cancellation, cache, isolated errors and provenance",
+    "Correct treatment of partial data and territories outside source coverage"
+  ],
+  "product_regressions": [
+    {
+      "severity": "MAJOR",
+      "id": "missing_human_overview",
+      "description": "No human overview of counts, typed areas and large fires."
+    },
+    {
+      "severity": "MAJOR",
+      "id": "missing_exploration",
+      "description": "Histogram, minimum area, GIF and cause exploration are absent."
+    },
+    {
+      "severity": "MAJOR",
+      "id": "map_context",
+      "description": "The national map lacks the basemap, place names and clear public legend of GVA."
+    },
+    {
+      "severity": "MAJOR",
+      "id": "technical_detail",
+      "description": "The detail card prioritizes IDs and geometry semantics and can omit useful available information."
+    },
+    {
+      "severity": "MAJOR",
+      "id": "source_panel_dominance",
+      "description": "Dataset and runtime states dominate the first screen."
+    },
+    {
+      "severity": "MAJOR",
+      "id": "mobile_map_hidden",
+      "description": "On 390 by 844 the initial form occupies nearly the entire viewport before the map."
+    },
+    {
+      "severity": "MODERATE",
+      "id": "time_context",
+      "description": "Period changes are less direct and lack visual historical context."
+    },
+    {
+      "severity": "MODERATE",
+      "id": "annual_text",
+      "description": "The annual EGIF distribution is difficult to scan as long text."
+    },
+    {
+      "severity": "MODERATE",
+      "id": "viewport_count",
+      "description": "Features visible in viewport competes with meaningful territorial counts."
+    },
+    {
+      "severity": "MINOR",
+      "id": "prototype_appearance",
+      "description": "The product retains a form and debug prototype appearance."
+    }
+  ],
+  "feature_matrix": [
+    ["overview", "strong", "technical", "GVA", "CRITICAL", "Recreate with separated national metrics"],
+    ["count", "by source", "fragmented", "GVA", "CRITICAL", "Semantic cards by source and context"],
+    ["area", "by source", "partial EGIF UI", "GVA", "HIGH", "Keep declared and mapped magnitudes separate"],
+    ["histogram", "interactive", "absent", "GVA", "CRITICAL", "Restore as primary navigation"],
+    ["minimum_area", "available", "absent", "GVA", "HIGH", "Contextual filter over valid source magnitude"],
+    ["GIF", "filter", "data without filter", "GVA", "HIGH", "Secondary source-aware control"],
+    ["cause", "filter and detail", "not explorable", "GVA", "HIGH", "Expose only documented source-specific values"],
+    ["territory", "GVA levels", "Spain to municipality", "NATIONAL", "CRITICAL", "Preserve completely"],
+    ["time", "sliders and histogram", "numeric inputs", "GVA", "HIGH", "Combine national range with histogram"],
+    ["map", "basemap and legend", "geometry without context", "GVA", "CRITICAL", "Restore restrained basemap and legend"],
+    ["record_detail", "human-first", "technical-first", "GVA", "CRITICAL", "Human card with expandable technical detail"],
+    ["source_detail", "accessible", "dominant", "COMBINED", "HIGH", "Short source line and advanced panel"],
+    ["methodology", "secondary", "prominent", "COMBINED", "MEDIUM", "Progressive disclosure"],
+    ["coverage", "broad", "precise", "NATIONAL", "HIGH", "Preserve logic and simplify wording"],
+    ["permalink", "simple", "complete and legacy", "NATIONAL", "HIGH", "Preserve engine and promote Share"],
+    ["mobile", "map first", "panel first", "GVA", "HIGH", "Map and summary before collapsible controls"],
+    ["attribution", "complete", "complete", "TIE", "REQUIRED", "Preserve"]
+  ],
+  "technical_language": [
+    {
+      "current": "coverage / sin cobertura",
+      "public": "No disponemos de este tipo de dato para este periodo",
+      "level": "SECONDARY"
+    },
+    {
+      "current": "not integrated",
+      "public": "Esta fuente todavía no está disponible aquí",
+      "level": "SECONDARY"
+    },
+    {
+      "current": "ready / idle / loading",
+      "public": "Hide idle and ready; translate loading and errors",
+      "level": "DEBUG_LIKE"
+    },
+    {
+      "current": "INITIAL / DETAIL / asset / shard",
+      "public": "Do not expose in primary product UI",
+      "level": "DEBUG_LIKE"
+    },
+    {
+      "current": "source_record / geometry_id / geometry semantics",
+      "public": "Show only under source and methodology details",
+      "level": "ADVANCED"
+    }
+  ],
+  "information_hierarchy": {
+    "primary": [
+      "territory and period",
+      "map with cartographic context and legend",
+      "human, explicitly typed metrics",
+      "histogram or timeline",
+      "applicable exploratory filters",
+      "short list of relevant or large results",
+      "human-first selected-item card",
+      "share"
+    ],
+    "secondary": [
+      "detailed territory selector and breadcrumb",
+      "source breakdown of counts and areas",
+      "human explanation of unavailable coverage",
+      "source-limited filters such as GIF",
+      "complementary or alternative sources",
+      "provisional and historical-boundary notices"
+    ],
+    "advanced": [
+      "individual dataset toggles",
+      "source and geometry identifiers",
+      "complete geometry quality and semantics",
+      "technical coverage, licence, transformations and provenance",
+      "loader, asset, shard, INITIAL and DETAIL diagnostics"
+    ]
+  },
+  "data_constraints": {
+    "available_nationally": [
+      "current administrative territory and navigation",
+      "requested period and source coverage",
+      "EGIF part and administrative GIF counts",
+      "known and unknown EGIF forest area",
+      "EGIF annual distribution",
+      "ESFire30 perimeter year and territorial intersections",
+      "selection, identity, provenance, permalink and attribution"
+    ],
+    "partially_available": [
+      "area: declared EGIF and ICV versus mapped ESFire30 and EFFIS",
+      "exact date, municipality, place and cause",
+      "administrative GIF",
+      "identified fire counts versus administrative parts and perimeters",
+      "ICV and EFFIS outside their documented regional coverage"
+    ],
+    "available_only_gva_in_current_experience": [
+      "interactive multi-source histogram",
+      "public minimum area, cause and GIF filters",
+      "source-separated overview",
+      "highlighted large-result list",
+      "human ICV detail with cause",
+      "integrated labelled basemap and legend"
+    ],
+    "blocked_by_data": [
+      "canonical national cause ontology pending MITECO",
+      "canonical cross-source fire episode",
+      "automatic EGIF to geometry-source equivalence",
+      "historical municipality geometry",
+      "resolution of 71490 EGIF records with null municipality",
+      "one combined national fire or burned-area total across incompatible magnitudes"
+    ]
+  },
+  "language_policy": {
+    "egif": "incendios registrados or partes administrativos EGIF, depending on context",
+    "esfire30": "perímetros disponibles o perímetros derivados de teledetección Landsat",
+    "icv": "incendios oficiales ICV only under its documented source contract",
+    "cross_source_total": "PROHIBITED",
+    "rule": "Use familiar public wording together with a precise type and source; never imply a merged cross-source episode."
+  },
+  "human_card_model": {
+    "primary_order": [
+      "date or year",
+      "place",
+      "area with magnitude type",
+      "cause when documented",
+      "administrative GIF when documented",
+      "short source and element-type line"
+    ],
+    "secondary": [
+      "coverage or quality warning",
+      "complementary source elements kept independent"
+    ],
+    "advanced": [
+      "record and geometry IDs",
+      "geometry semantics",
+      "method, licence and full provenance"
+    ],
+    "canonical_episode_created": false
+  },
+  "conceptual_wireframe": [
+    "HEADER: atlas title, territory, period, Share",
+    "MAIN: labelled map, administrative boundary and legend beside a compact human summary",
+    "TIMELINE: source-separated histogram controlling year or range",
+    "FILTERS: applicable area, large-fire and documented-cause controls",
+    "RESULTS: short highlighted or relevant list",
+    "DETAIL: human-first card for the selected independent element",
+    "COLLAPSED: sources, coverage and methodology"
+  ],
+  "e2_scope": [
+    "Public information model and vocabulary for primary, secondary and advanced levels",
+    "Semantic contract for every card and count without cross-source totals",
+    "Histogram series and interaction contract",
+    "Per-source and per-context area, GIF and cause filter contracts",
+    "Visually unified human card without creating a fused entity",
+    "Desktop and mobile layout plus territorial navigation",
+    "Recommended default view and advanced source controls",
+    "Public wording for coverage, loading and errors",
+    "Wireframes and priority user flows",
+    "Acceptance criteria traceable to available, partial and blocked data"
+  ],
+  "next_phase": "ES-4E2_NATIONAL_UX_REDESIGN_SPEC"
+}
