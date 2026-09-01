@@ -14,6 +14,7 @@ import { addOfficialMunicipalityLayer } from "./municipality_layer.mjs";
 import { MunicipalityEsfireIndexLoader, municipalityFilterExpression } from "./municipality_esfire_index.mjs";
 import { IcvLoader, icvLevelForZoom, icvProvincesForScope } from "./icv_loader.mjs";
 import { EffisLoader, effisIntegratedTerritory } from "./effis_loader.mjs";
+import { adaptLegacyGvaV1State, dispatchStateHash, parseLegacyGvaV1State } from "../../src/national/compat/gva-v1.mjs";
 
 const runtimeAssets = runtimeConfig.assets || {};
 const ARCHIVE_PATH = runtimeAssets.esfire30?.pmtiles?.path || "/data/derived/spain/es4c2b/pmtiles/esfire30-national-fidelity-territories.pmtiles";
@@ -237,8 +238,19 @@ if (requestedTerritory && [...territoryScope.options].some((option) => option.va
   territoryScope.value = requestedTerritory;
   state = reduceRuntimeState(state, { type: "set_scope", territory_id: requestedTerritory });
 }
-const restoredHash = parseStateHash(location.hash, PROTOTYPE_DEFAULT_STATE, territoryIds, provinceParents);
-if (restoredHash.status !== "absent") state = restoredHash.state;
+const incomingHashFormat = dispatchStateHash(location.hash);
+const parsedLegacyHash = incomingHashFormat === "gva_v1" ? parseLegacyGvaV1State(location.hash) : null;
+const restoredHash = incomingHashFormat === "national_v1"
+  ? parseStateHash(location.hash, PROTOTYPE_DEFAULT_STATE, territoryIds, provinceParents)
+  : parsedLegacyHash?.status === "complete"
+  ? adaptLegacyGvaV1State(parsedLegacyHash.state, PROTOTYPE_DEFAULT_STATE, { territoryIds, provinceParents })
+  : { status: incomingHashFormat === "absent" ? "absent" : "invalid", state: { ...PROTOTYPE_DEFAULT_STATE } };
+// Un #v=1 se conserva tal cual durante su restauración. La primera
+// interacción que modifica el estado crea una entrada nacional v1; Copy Link
+// siempre produce v1 pero no reescribe por sí solo el hash de entrada.
+let legacyHashActive = incomingHashFormat === "gva_v1" && parsedLegacyHash?.status === "complete";
+let legacyRestoreMapMovePending = false;
+if (restoredHash.status !== "absent" && restoredHash.status !== "invalid") state = restoredHash.state;
 fromInput.value = String(state.from);
 toInput.value = String(state.to);
 territoryScope.value = state.autonomous_community_id || "ES";
@@ -549,9 +561,9 @@ function transition(event) {
   state = reduceRuntimeState(state, event);
   if (previous.selected_geometry_id && !state.selected_geometry_id) clearGeometrySelection(false);
   if (previous.selected_egif_record_id && !state.selected_egif_record_id) clearEgifSelection(false);
-  if (previous.selected_icv_geometry_id && !state.selected_icv_geometry_id) clearIcvSelection(false);
+  if ((previous.selected_icv_geometry_id || previous.selected_icv_record_id) && !(state.selected_icv_geometry_id || state.selected_icv_record_id)) clearIcvSelection(false);
   if (previous.selected_effis_geometry_id && !state.selected_effis_geometry_id) clearEffisSelection(false);
-  replaceStateUrl();
+  replaceStateUrl({ promoteLegacy: true });
   return state;
 }
 
@@ -684,8 +696,14 @@ function stateUrl() {
   return `${location.origin}${location.pathname}${location.search}${serializeState(state)}`;
 }
 
-function replaceStateUrl() {
+function replaceStateUrl({ promoteLegacy = false } = {}) {
   if (!stateHydrated || restoringFromUrl) return;
+  if (legacyHashActive) {
+    if (!promoteLegacy) return;
+    legacyHashActive = false;
+    history.pushState({ prototype: "es4c", version: 1, migrated_from: "gva-v1" }, "", `${location.pathname}${location.search}${serializeState(state)}`);
+    return;
+  }
   history.replaceState({ prototype: "es4c", version: 1 }, "", `${location.pathname}${location.search}${serializeState(state)}`);
 }
 
@@ -940,7 +958,7 @@ function renderIcvDetail(feature) {
 function selectIcvFeature(feature) {
   const geometryId = feature?.properties?.geometry_id;
   if (!geometryId) return null;
-  transition({ type: "select_icv_geometry", geometry_id: String(geometryId), year: Number(feature.properties.year) });
+  transition({ type: "select_icv_geometry", geometry_id: String(geometryId), year: Number(feature.properties.year), record_id: String(feature.properties.fire_id || "") });
   map.setFilter(ICV_SELECTED_LAYER, ["==", ["get", "geometry_id"], String(geometryId)]);
   renderIcvDetail(feature);
   return state.selected_icv_geometry_id;
@@ -948,6 +966,21 @@ function selectIcvFeature(feature) {
 
 function findLoadedIcvGeometry(geometryId) {
   return latestIcvResult.features?.find((feature) => String(feature.properties?.geometry_id) === geometryId) || null;
+}
+
+function selectIcvRecord(recordId) {
+  const fire = latestIcvResult.fires_by_id?.get(recordId);
+  if (!fire) return null;
+  transition({ type: "select_icv_record", record_id: fire.fire_id });
+  map.setFilter(ICV_SELECTED_LAYER, ["==", ["get", "geometry_id"], "__none__"]);
+  if (icvDetail && icvDetailFields && icvSelectionSummary) {
+    const rows = [["Fuente", "ICV / Generalitat Valenciana · source record"], ["Fire/source record", fire.fire_id], ["Número PIF CV", fire.num_pif_cv || "No disponible"], ["Año", fire.year], ["Provincia declarada", fire.province || "No disponible"], ["Municipio declarado", fire.municipality_name || "No disponible"], ["Geometrías documentadas", Array.isArray(fire.geometry_ids) ? fire.geometry_ids.length : "No disponible"]];
+    icvDetailFields.replaceChildren();
+    for (const [label, value] of rows) { const term = document.createElement("dt"); term.textContent = label; const definition = document.createElement("dd"); definition.textContent = String(value); icvDetailFields.append(term, definition); }
+    icvDetail.hidden = false;
+    icvSelectionSummary.textContent = `source record: ${fire.fire_id} · ${Array.isArray(fire.geometry_ids) ? fire.geometry_ids.length : "?"} geometría(s) documentada(s); no se elige una geometría arbitrariamente.`;
+  }
+  return state.selected_icv_record_id;
 }
 
 async function refreshIcv() {
@@ -966,6 +999,7 @@ async function refreshIcv() {
     if (result.status === "stale" || sourceLoadGeneration.icv !== generation || state.autonomous_community_id !== "ES:CCAA:10") return { status: "stale" };
     latestIcvResult = result; icvLoadedLevel = level; setIcvCollection(result.features);
     if (state.selected_icv_geometry_id && !findLoadedIcvGeometry(state.selected_icv_geometry_id)) clearIcvSelection();
+    else if (state.selected_icv_record_id && !result.fires_by_id?.has(state.selected_icv_record_id)) clearIcvSelection();
     finishSourceLoad("icv", generation, "ready"); return result;
   } catch (error) {
     setIcvCollection(); clearIcvSelection(false);
@@ -1132,6 +1166,10 @@ async function restoreSelectionsFromState() {
       ? findLoadedIcvGeometry(state.selected_icv_geometry_id) : null;
     if (geometry) selectIcvFeature(geometry);
     else clearIcvSelection();
+  } else if (state.selected_icv_record_id) {
+    const record = state.icv_visible && effectiveCoverage(state, "icv") && state.autonomous_community_id === "ES:CCAA:10"
+      ? selectIcvRecord(state.selected_icv_record_id) : null;
+    if (!record) clearIcvSelection();
   }
   if (state.selected_effis_geometry_id) {
     const geometry = state.effis_visible && effectiveCoverage(state, "effis") && effisIntegratedTerritory(state)
@@ -1141,18 +1179,30 @@ async function restoreSelectionsFromState() {
 }
 
 async function restoreStateFromHash() {
-  let parsed = parseStateHash(location.hash, PROTOTYPE_DEFAULT_STATE, territoryIds, provinceParents);
-  if (parsed.state.municipality_id) {
+  const format = dispatchStateHash(location.hash);
+  let parsed;
+  let legacy = null;
+  if (format === "gva_v1") {
+    legacy = parseLegacyGvaV1State(location.hash);
+    if (legacy.status === "complete") {
+      const catalog = await ensureMunicipalityCatalog();
+      parsed = adaptLegacyGvaV1State(legacy.state, PROTOTYPE_DEFAULT_STATE, { territoryIds, provinceParents, municipalityParents: catalog.byId });
+    } else parsed = { status: legacy.status, state: { ...PROTOTYPE_DEFAULT_STATE } };
+  } else if (format === "national_v1") parsed = parseStateHash(location.hash, PROTOTYPE_DEFAULT_STATE, territoryIds, provinceParents);
+  else parsed = { status: format === "absent" ? "absent" : "invalid", state: { ...PROTOTYPE_DEFAULT_STATE } };
+  if (parsed.state.municipality_id && !legacy) {
     const catalog = await ensureMunicipalityCatalog();
     parsed = parseStateHash(location.hash, PROTOTYPE_DEFAULT_STATE, territoryIds, provinceParents, catalog.byId);
   }
   if (parsed.status === "absent") return { status: "absent" };
+  legacyHashActive = format === "gva_v1" && parsed.status === "complete";
   restoringFromUrl = true;
   const requestedState = parsed.state;
   const requestedSelections = {
     geometry_id: requestedState.selected_geometry_id,
     egif_record_id: requestedState.selected_egif_record_id,
     icv_geometry_id: requestedState.selected_icv_geometry_id,
+    icv_record_id: requestedState.selected_icv_record_id,
     effis_geometry_id: requestedState.selected_effis_geometry_id,
   };
   // Una URL municipal se restaura primero en su padre válido. La transición
@@ -1165,6 +1215,7 @@ async function restoreStateFromHash() {
       selected_geometry_id: null,
       selected_egif_record_id: null,
       selected_icv_geometry_id: null,
+      selected_icv_record_id: null,
       selected_effis_geometry_id: null,
     }
     : requestedState;
@@ -1175,6 +1226,7 @@ async function restoreStateFromHash() {
   egifVisibleInput.checked = state.egif_visible;
   if (icvVisibleInput) icvVisibleInput.checked = state.icv_visible;
   if (effisVisibleInput) effisVisibleInput.checked = state.effis_visible;
+  legacyRestoreMapMovePending = legacyHashActive;
   map.jumpTo({ center: state.center, zoom: state.zoom });
   await Promise.all([territoryLayerReady, provinceLayerReady, municipalityLayerReady]);
   // La URL contiene su propia vista. Solo se resalta el límite; no se hace
@@ -1192,6 +1244,7 @@ async function restoreStateFromHash() {
     selected_geometry_id: requestedSelections.geometry_id,
     selected_egif_record_id: requestedSelections.egif_record_id,
     selected_icv_geometry_id: requestedSelections.icv_geometry_id,
+    selected_icv_record_id: requestedSelections.icv_record_id,
     selected_effis_geometry_id: requestedSelections.effis_geometry_id,
   };
   applyFilters();
@@ -1296,6 +1349,10 @@ function persistView() {
   const center = map.getCenter();
   state.center = [center.lng, center.lat];
   state.zoom = map.getZoom();
+  if (legacyHashActive && legacyRestoreMapMovePending) {
+    legacyRestoreMapMovePending = false;
+    return;
+  }
   replaceStateUrl();
 }
 
@@ -1443,6 +1500,20 @@ async function prepareStateRoundTrip(mode, name) {
 
 async function runSmoke(name, initialReady = false) {
   if (!initialReady) await waitForIdle();
+  const legacyInput = legacyHashActive ? location.hash : null;
+  let legacyCopy = null;
+  if (params.get("legacy_copy") === "1") legacyCopy = await copyCurrentStateLink();
+  let legacyHistory = null;
+  if (params.get("legacy_interaction") === "1" && legacyHashActive) {
+    // Cambio explícito de toggle: promueve el enlace al formato nacional y
+    // conserva una entrada para volver al hash #v=1 mediante Back.
+    await setSourceVisibility("icv", state.icv_visible);
+    const nativeHash = location.hash;
+    history.back(); await new Promise((resolve) => setTimeout(resolve, 220)); await waitForIdle();
+    const backHash = location.hash;
+    history.forward(); await new Promise((resolve) => setTimeout(resolve, 220)); await waitForIdle();
+    legacyHistory = { legacy_hash: legacyInput, native_hash: nativeHash, back_hash: backHash, forward_hash: location.hash, final_format: dispatchStateHash(location.hash) };
+  }
   const preparedRoundTrip = params.get("state_prepare")
     ? await prepareStateRoundTrip(params.get("state_prepare"), name) : null;
   let cancellation = null;
@@ -1690,6 +1761,10 @@ async function runSmoke(name, initialReady = false) {
     prototype: "es4c1c2",
     scenario: name,
     sequence_step: params.get("sequence_step"),
+    input_hash_format: incomingHashFormat,
+    legacy_hash_active: legacyHashActive,
+    legacy_copy: legacyCopy,
+    legacy_history: legacyHistory,
     archive: ARCHIVE_PATH,
     archive_url: archiveUrl,
     source: "ESFire30",

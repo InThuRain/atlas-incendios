@@ -1,0 +1,14 @@
+{
+  "schema_version": "es4d3c-gva-final-parity-v1",
+  "classification": "GVA_COMPATIBILITY_PASS",
+  "features": [
+    {"feature": "ICV official consolidated perimeters 1993-2024", "gva_current": "accepted_public", "national_d3c": "PASS", "parity": "PASS", "action": "none"},
+    {"feature": "EFFIS provisional perimeters 2025-2026", "gva_current": "accepted_public", "national_d3c": "PASS", "parity": "PASS", "action": "explicit_snapshot_refresh_only"},
+    {"feature": "public GVA #v=1 permalink", "gva_current": "accepted_public", "national_d3c": "input_compatibility", "parity": "PASS", "action": "native_v1_for_new_links"},
+    {"feature": "map/source/selection/attribution", "gva_current": "accepted_public", "national_d3c": "accepted", "parity": "PASS_WITH_ACCEPTABLE_DIFFERENCES", "action": "do_not_recreate_leaflet_ui"},
+    {"feature": "minimum area/cause/GIF filters and histogram", "gva_current": "accepted_public", "national_d3c": "not_mapped", "parity": "OUT_OF_MUST_HAVE_SCOPE", "action": "future_product_decision"}
+  ],
+  "must_have_parity_gaps": [],
+  "gva_parity_ready_for_staging": true,
+  "production_switch_ready": false
+}

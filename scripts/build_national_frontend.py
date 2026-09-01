@@ -18,6 +18,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 SOURCE = ROOT / "src/national"
 RUNTIME = ROOT / "prototypes/es4c"
+NATIONAL_COMPAT = SOURCE / "compat/gva-v1.mjs"
 VENDOR = ROOT / "data/derived/spain/es3/tools/browser"
 PMTILES_SHA256 = "3c6eb10ba146008cdabf36646d48a4c7a92c1c1357ad90679f6b5dce42013cfe"
 PMTILES_BYTES = 63052056
@@ -36,6 +37,7 @@ RUNTIME_FILES = (
     "municipality_esfire_index.mjs",
     "icv_loader.mjs",
     "effis_loader.mjs",
+    "compat_gva_v1.mjs",
 )
 VENDOR_FILES = ("maplibre-gl-5.16.0.js", "pmtiles-4.3.0.mjs")
 
@@ -113,7 +115,7 @@ def artifact_manifest(output: Path, config: dict) -> dict:
 
 
 def build(output: Path) -> dict:
-    required = [SOURCE / "index.html", SOURCE / "bootstrap.js", SOURCE / "styles.css", *[RUNTIME / name for name in RUNTIME_FILES], *[VENDOR / name for name in VENDOR_FILES]]
+    required = [SOURCE / "index.html", SOURCE / "bootstrap.js", SOURCE / "styles.css", NATIONAL_COMPAT, *[RUNTIME / name for name in RUNTIME_FILES if name != "compat_gva_v1.mjs"], *[VENDOR / name for name in VENDOR_FILES]]
     missing = [str(path.relative_to(ROOT)) for path in required if not path.is_file()]
     if missing:
         raise FileNotFoundError("Faltan inputs del artifact: " + ", ".join(missing))
@@ -126,6 +128,13 @@ def build(output: Path) -> dict:
             shutil.copy2(SOURCE / name, staging / name)
         (staging / "runtime-config.js").write_text(runtime_config_module(production_config()), encoding="utf-8")
         shutil.copytree(RUNTIME, staging / "runtime", ignore=shutil.ignore_patterns("*.json", "*.html", "*.css", "run_*.py", "*sample*", "__pycache__"))
+        # El código fuente del adapter vive en src/national; el artifact lo
+        # copia junto al runtime compartido y ajusta sólo su import relativo.
+        shutil.copy2(NATIONAL_COMPAT, staging / "runtime" / "compat_gva_v1.mjs")
+        app_path = staging / "runtime" / "app.js"
+        app_path.write_text(app_path.read_text(encoding="utf-8").replace(
+            'from "../../src/national/compat/gva-v1.mjs"', 'from "./compat_gva_v1.mjs"'
+        ), encoding="utf-8")
         # Solo los módulos consumidos por app.js se conservan; evitar que el
         # artifact transporte harnesses o diagnósticos del prototipo.
         for path in (staging / "runtime").iterdir():

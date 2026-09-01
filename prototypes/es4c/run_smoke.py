@@ -453,6 +453,10 @@ def build_case_url(port: int, scenario: str, egif_config: dict | None = None, en
             query["icv_rapid"] = "1"
         if egif_config.get("effis_rapid"):
             query["effis_rapid"] = "1"
+        if egif_config.get("legacy_copy"):
+            query["legacy_copy"] = "1"
+        if egif_config.get("legacy_interaction"):
+            query["legacy_interaction"] = "1"
     url = f"http://127.0.0.1:{port}{entry_path}?{urlencode(query)}"
     if egif_config and egif_config.get("corrupt_hash"):
         url += egif_config["corrupt_hash"]

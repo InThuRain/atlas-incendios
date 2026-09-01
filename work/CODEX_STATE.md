@@ -152,9 +152,9 @@ EXPECTED_RECORDS = 646887
 
 EXPECTED_GEOMETRIES = 119498
 
-PHASE = ES-4D3B
+PHASE = ES-4D3C
 
-STATUS = DONE (EFFIS GVA 2025–2026 integrado como fuente satelital provisional independiente, perezosa y limitada explícitamente a `ES:CCAA:10`; no se modificó producción ni staging).
+STATUS = DONE (adapter aislado de permalink público GVA `#v=1`, fixtures, aceptación dirigida ICV/EFFIS y restore legacy↔native; no se modificó producción ni staging).
 
 CURRENT_HOSTING = GITHUB_RELEASES (download evidence) + R2 R2.DEV (technical staging)
 
@@ -168,7 +168,7 @@ PREFERRED_HOSTING = GITHUB_PAGES (same-origin; asset inmutable incorporado media
 
 FALLBACK_HOSTING = CLOUDFLARE_R2_CUSTOM_DOMAIN (futuro; no creado ni validado en producción)
 
-NEXT_EXTERNAL_ACTION = Iniciar únicamente ES-4D3 para paridad ICV/EFFIS y adapter compatible con #v=1; no autorizar cambio de raíz antes de esos gates.
+NEXT_EXTERNAL_ACTION = Iniciar únicamente ES-4D4_NATIONAL_PRODUCTION_STAGING; no autorizar cambio de raíz hasta completar su staging y aceptación explícita.
 
 NEXT_COMMAND = python3 scripts/build_national_frontend.py --output build/national
 
@@ -196,7 +196,7 @@ PMTILES_PATH = data/derived/spain/es4c2b/pmtiles/esfire30-national-fidelity-terr
 
 PROTOTYPE_PATH = prototypes/es4c/
 
-RESULTS_PATH = ES_4D3B_GVA_EFFIS_SOURCE_PARITY.md; data/audit/production/es4d3b_gva_effis_source_parity.json
+RESULTS_PATH = ES_4D3C_GVA_PERMALINK_COMPATIBILITY.md; data/audit/production/es4d3c_gva_permalink_compatibility.json; data/audit/production/es4d3c_gva_final_parity.json
 
 PAGES_SAME_ORIGIN_VALIDATION = PASS
 R2_DEV_STAGING_VALIDATION = PASS
@@ -208,10 +208,14 @@ PRODUCTION_FRONTEND_STATUS = PRODUCTION_FRONTEND_EXTRACTED
 ICV_PARITY_STATUS = PASS
 EFFIS_PARITY_STATUS = PASS
 GLOBAL_TIME_RANGE = 1968–2026
-PRODUCTION_SWITCH_READY = false (GVA #v=1 compatibility adapter missing)
+GVA_PERMALINK_V1 = PASS
+GVA_COMPATIBILITY_STATUS = PASS
+GVA_PARITY_READY_FOR_STAGING = true
+MUST_HAVE_PARITY_GAPS = []
+PRODUCTION_SWITCH_READY = false (D4 production staging + acceptance pendiente)
 PRODUCTION_ROOT_SWITCH_AUTHORIZED = false
 INITIAL_PRODUCTION_HOSTING = GITHUB_PAGES
 FALLBACK_HOSTING = CLOUDFLARE_R2_CUSTOM_DOMAIN
 PAGES_SAME_ORIGIN_VALIDATION = PASS
-REMAINING_GAPS = GVA_PERMALINK_V1
-NEXT_PHASE = ES-4D3C_GVA_PERMALINK_COMPATIBILITY
+REMAINING_GAPS = D4_PRODUCTION_STAGING_ACCEPTANCE
+NEXT_PHASE = ES-4D4_NATIONAL_PRODUCTION_STAGING

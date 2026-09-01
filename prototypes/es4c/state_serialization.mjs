@@ -41,7 +41,7 @@ export function canonicalPayload(state) {
       municipality_id: state.municipality_id || null,
     },
     sources: { esfire30: Boolean(state.esfire30_visible), egif: Boolean(state.egif_visible), icv: Boolean(state.icv_visible), effis: Boolean(state.effis_visible) },
-    selections: { geometry_id: state.selected_geometry_id || null, egif_record_id: state.selected_egif_record_id || null, icv_geometry_id: state.selected_icv_geometry_id || null, effis_geometry_id: state.selected_effis_geometry_id || null },
+    selections: { geometry_id: state.selected_geometry_id || null, egif_record_id: state.selected_egif_record_id || null, icv_geometry_id: state.selected_icv_geometry_id || null, icv_record_id: state.selected_icv_record_id || null, effis_geometry_id: state.selected_effis_geometry_id || null },
   };
 }
 
@@ -95,6 +95,7 @@ export function parseStateHash(hash, defaults, territoryIds, provinceParents = n
     selected_geometry_id: validId(selections.geometry_id, /^esfire30:/),
     selected_egif_record_id: validId(selections.egif_record_id, /^egif-record:\d+$/),
     selected_icv_geometry_id: validId(selections.icv_geometry_id, /^gva:geometry:/),
+    selected_icv_record_id: validId(selections.icv_record_id, /^gva:pif-cv:/),
     selected_effis_geometry_id: validId(selections.effis_geometry_id, /^effis:rda:/),
     selected_geometry_year: null,
     selected_egif_year: null,

@@ -1,0 +1,19 @@
+{
+  "phase": "ES-4D3C",
+  "status": "PASS",
+  "legacy_format": "#v=1 URLSearchParams defined by js/url-state.js",
+  "native_format": "#es4c-state-v1",
+  "adapter": "src/national/compat/gva-v1.mjs",
+  "dispatch": {"national_v1": "parseStateHash", "gva_v1": "parseLegacyGvaV1State + adaptLegacyGvaV1State", "unknown": "safe_fallback"},
+  "direct_fields": ["lat", "lng", "from", "to", "geometry"],
+  "adapted_fields": ["z", "src", "province", "municipality", "entity"],
+  "ignored_safe": ["min_area", "gif", "cause", "sigif"],
+  "fixtures": "tests/fixtures/gva_permalink_v1.json",
+  "icv_multi_geometry_policy": "record-only selection preserved; never choose one geometry arbitrarily",
+  "legacy_hash_rewrite": "preserved on restore; promoted to native only after explicit state interaction",
+  "copy_link_format": "#es4c-state-v1",
+  "gva_permalink_v1": "PASS",
+  "gva_parity_ready_for_staging": true,
+  "production_switch_ready": false,
+  "next_phase": "ES-4D4_NATIONAL_PRODUCTION_STAGING"
+}
