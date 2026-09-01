@@ -1,76 +1,111 @@
-# ES-4D4B — Aceptación de staging nacional
+# ES-4D4B — Despliegue y aceptación remota del staging nacional
 
-## Estado
+## Resultado
 
-`STAGING_DEPLOYMENT_STATUS = FAIL` y
-`REMOTE_ACCEPTANCE_STATUS = NOT_RUN`.
+`D4B_ATTEMPT_2 = PASS`. El staging nacional se publicó exclusivamente en
+<https://inthurain.github.io/atlas-incendios-es4c3d4-pages-staging/>. La raíz
+pública de producción no se modificó.
 
-El despliegue se detuvo de forma intencional antes de crear el artifact Pages
-o cambiar el contenido servido. El motivo es
-`ARTIFACT_IDENTITY_MISMATCH` en el contrato de tamaño del artifact D4A.
+| Contrato D4A1 | Valor local, runner y remoto |
+| --- | --- |
+| Ficheros físicos | 350 |
+| Bytes físicos | 500.450.914 |
+| Ficheros / bytes de payload | 348 / 500.301.758 |
+| Payload fingerprint | `bbf98006852762c89f1f6ca69093fccdbb1d09fe7fd2de09c15bacf83ff44ee8` |
+| SHA `asset-manifest.json` | `c2c57a70130fd2e4527ac6a50ebb1c86e73bb667d6c5c5940f9b015b9823aceb` |
+| SHA `site-identity.json` | `df9b4206eea460942717705559a9705a9fae7fc3039436c199e09118a2019401` |
 
-| Campo | Esperado/aprobado | Observado al extraer |
-| --- | ---: | ---: |
-| Ficheros | 349 | 349 |
-| Bytes declarados en manifest | 500.449.810 | — |
-| Bytes físicos | 500.449.810 | 500.449.871 |
-| Diferencia | 0 | +61 |
-| Content fingerprint | `bbf980…44ee8` | `bbf980…44ee8` |
+## Historia de los intentos
 
-La huella de contenidos coincide porque, por diseño D4A, excluye
-`asset-manifest.json`. Los 61 B aparecen al reescribir el propio manifest con
-sus campos finales: el builder calculó `total_bytes` antes de su última
-serialización. Por tanto la propiedad declarada no representa el árbol físico
-que Pages recibiría. No se ha corregido ni reconstruido silenciosamente el
-artifact congelado.
+### Intento 1 — `FAIL_ARTIFACT_IDENTITY`
 
-## Auditoría de staging y rollback
+- Commit fuente `ab31782`; workflow
+  [33516317541](https://github.com/InThuRain/atlas-incendios-es4c3d4-pages-staging/actions/runs/33516317541).
+- El gate observó 349 ficheros y `500449871` B frente a `500449810` B
+  declarados: +61 B tras la serialización final del manifest.
+- Se detuvo antes de `upload-pages-artifact` y `deploy-pages`: no hubo deploy
+  ni aceptación browser atribuible a ese artifact.
 
-- Repositorio permitido: `InThuRain/atlas-incendios-es4c3d4-pages-staging`.
-- URL de staging existente: <https://inthurain.github.io/atlas-incendios-es4c3d4-pages-staging/>.
-- `PRE_DEPLOY_STAGING_COMMIT`: `d8e6f84cfeb9597dc0f4327f427912b97ae93c3e`.
-- Workflow previo: `.github/workflows/pages-staging.yml`, última ejecución
-  correcta `33429628113`.
-- Pages del repositorio staging sigue configurado como `workflow`.
-- La raíz pública <https://inthurain.github.io/atlas-incendios/> no se ha
-  tocado ni se ha desplegado.
+### Intento 2 — `PASS`
 
-## Mecanismo probado
+- Corrección D4A1: `a7c3c4d`.
+- Commit de workflow del repo staging:
+  `99b38f409e6affc219a15b2b37cfd48bfd83b706`.
+- Workflow
+  [33525357443](https://github.com/InThuRain/atlas-incendios-es4c3d4-pages-staging/actions/runs/33525357443)
+  comprobó en el runner los 350 ficheros, 500.450.914 B, payload fingerprint y
+  ambos SHA antes del upload.
+- Upload: 15 s (15:22:51–15:23:06 UTC); deploy: 17 s
+  (15:23:14–15:23:31 UTC); workflow completo: 54 s
+  (15:22:39–15:23:33 UTC).
 
-Se añadió solamente al repo staging el commit
-`f58eb3f778ccd953c00a127e5d1b6bc8e9d9bde6`
-(`Deploy approved national staging artifact`), con un workflow oficial Pages:
+## Entrega Pages y PMTiles
 
-`download package → SHA transport → extract → content contract →
-configure-pages → upload-pages-artifact → deploy-pages`.
+La raíz de staging sirve directamente el `index.html` nacional. Los metadatos
+remotos son byte-idénticos a D4A1 y se validó una muestra de frontend, EGIF,
+límites, geometría/índice municipal, ICV, EFFIS y PMTiles contra el manifest.
+Todas se resuelven bajo el origin de staging:
+`UNEXPECTED_EXTERNAL_DATA_DOMAINS = []`.
 
-El paquete temporal, marcado como prerelease de staging, no entra en Git:
+PMTiles territorial:
 
-- release/tag: `es4d4a-national-pages-artifact`;
-- asset: `national-pages-staging-d4a.tar.gz`;
-- bytes: 136.809.234;
-- SHA-256: `52ca395bc0ef9fa5dadec3f62f3b145c36dd6e1560900d80758d4cb9df810ab5`.
+- `HEAD 200`, `Content-Length: 63052056`, `Accept-Ranges: bytes`,
+  `Content-Type: application/octet-stream`.
+- `bytes=0-0`, `0-16383`, `1048576-1064959` y `63035672-63052055` dieron
+  `206`, `Content-Range` correcto e identidad byte a byte frente al local.
+- `FULL_PMTILES_DOWNLOAD_OBSERVED = false` en todos los smokes; las lecturas
+  funcionales fueron Range `206`.
 
-La descarga y el SHA de transporte pasaron. La ejecución
-[`33516317541`](https://github.com/InThuRain/atlas-incendios-es4c3d4-pages-staging/actions/runs/33516317541)
-falló en la validación del contrato de contenido, antes de upload/deploy.
-No hay un nuevo deployment remoto ni browser acceptance que atribuir al
-artifact D4A.
+Las cabeceras observadas para HTML, JS, JSON, GeoJSON y PMTiles incluyen
+`Cache-Control: max-age=600`, `ETag`, `Last-Modified` y `Accept-Ranges` cuando
+aplica. Son observación de staging, no una política de caché de producción.
 
-## Lo que no se ejecutó
+## Aceptación Chromium
 
-Quedan `NOT_RUN`: HEAD/Range remoto, smokes España/Galicia/Cangas/GVA/Elx,
-permalinks, 2024AL0005, recarga, móvil, cabeceras de caché y auditoría de
-dominios. Ejecutarlos contra el staging anterior no demostraría el artifact
-D4A y sería evidencia inválida.
+Todos los escenarios pasaron sin CORS, errores PMTiles, excepciones no
+controladas ni 404 inesperados. Los bytes son solamente respuestas PMTiles
+Range observadas en cada perfil; no son el tamaño del asset ni consumo de
+producción.
 
-## Acción necesaria
+| Escenario | Resultado | Range / bytes PMTiles |
+| --- | --- | ---: |
+| España 1968–2026 | resumen EGIF y ESFire30 navegable | 11 / 1.817.016 B |
+| Galicia | EGIF y filtro CCAA ESFire30 | 19 / 5.673.314 B |
+| Ourense | filtro provincial | 25 / 7.263.651 B |
+| Cangas del Narcea | índice municipal, 2.610 IDs, sin hang | 23 / 3.163.989 B |
+| GVA 1995 | EGIF, ESFire30 e ICV; EFFIS sin cobertura temporal | 19 / 327.494 B |
+| GVA 2024 | ICV; EGIF/ESFire30/EFFIS sin cobertura temporal | 18 / 258.804 B |
+| Elx / GVA 2025 | EFFIS: un perímetro snapshot | 22 / 241.238 B |
+| GVA 2026 | EFFIS snapshot `20260819T174426Z`, 16 geometrías | 16 / 739.924 B |
+| Alacant | filtros ESFire30/ICV/EFFIS coherentes | 24 / 817.255 B |
+| Permalink nacional Elx | 6 IDs municipales ESFire30 | 7 / 25.586 B |
+| Canarias | ausencia de cobertura ESFire30/ICV/EFFIS, no cero | 7 / 526.208 B |
+| Elx móvil 390×844 | mapa, estado de fuentes y permalink utilizables | 14 / 156.349 B |
 
-No puede continuar D4B con el artifact congelado. Hace falta una decisión
-explícita para reabrir **ES-4D4A** y corregir el cálculo estable de
-`asset-manifest.json`, reconstruir localmente, volver a aprobar los nuevos
-bytes/package SHA y revalidar identidad. Solo después podrá relanzarse el
-workflow D4B y realizar la aceptación real.
+`2024AL0005` conserva un source record y dos geometrías: geometry-specific
+restaura la indicada; record-only conserva únicamente el record y no elige una
+geometría arbitraria. Los fixtures `#v=1` de GVA/Elx se restauran sin rewrite
+automático. Tras interacción explícita pasan a `#es4c-state-v1`; Back vuelve
+al legacy y Forward al nacional. Copy Link usa el formato nacional (fallback
+headless permitido). Un permalink nacional directo restaura territorio,
+fuentes y selección.
 
-El release asset y el workflow de staging se conservan como evidencia y como
-mecanismo reproducible; no se borran en esta fase.
+Se verificaron además recarga de Elx 2025 y España → Galicia → España →
+Galicia en un perfil Chromium efímero: no hubo estado stale, errores ni
+descarga completa. Es diagnóstico de browser/runtime cache, no validación CDN.
+
+## Límites y siguiente paso
+
+- `PRODUCTION_ROOT_INTACT = true`: solo `HEAD` a
+  <https://inthurain.github.io/atlas-incendios/>; no se desplegó ni cambió.
+- `STAGING_DEPLOYMENT_STATUS = PASS`.
+- `REMOTE_ACCEPTANCE_STATUS = PASS`.
+- `NATIONAL_RELEASE_CANDIDATE = READY_FOR_ROOT_DECISION`.
+- `PRODUCTION_SWITCH_READY = false`.
+
+Warnings no bloqueantes: TTL observado de 600 s y ausencia de decisión sobre
+operación/cache de producción. La siguiente fase permitida es
+**ES-4D5_ROOT_SWITCH_DECISION**; requiere una decisión explícita y no autoriza
+el cambio del root por sí misma.
+
+Evidencia: `data/audit/production/es4d4b_national_production_staging_acceptance.json`.

@@ -313,3 +313,37 @@ NEXT_COMMAND = python3 scripts/build_national_pages_artifact.py --output build/n
 NEXT_CHECK_COMMAND = python3 scripts/build_national_pages_artifact.py --check --output build/national-pages-staging
 
 NEXT_PHASE = ES-4D4B_CONTINUE
+
+PHASE = ES-4D4B
+
+STATUS = DONE (D4B_ATTEMPT_1 = FAIL_IDENTITY_GATE conservado; D4B_ATTEMPT_2 = PASS con GitHub Pages staging y aceptación remota).
+
+D4A1_IDENTITY = PASS
+
+D4B_ATTEMPT_1 = FAIL_IDENTITY_GATE (workflow 33516317541; no upload/deploy)
+
+D4B_ATTEMPT_2 = PASS (workflow 33525357443)
+
+STAGING_REPO = InThuRain/atlas-incendios-es4c3d4-pages-staging
+
+STAGING_WORKFLOW_COMMIT = 99b38f409e6affc219a15b2b37cfd48bfd83b706
+
+STAGING_URL = https://inthurain.github.io/atlas-incendios-es4c3d4-pages-staging/
+
+STAGING_DEPLOYMENT_STATUS = PASS
+
+REMOTE_ACCEPTANCE_STATUS = PASS
+
+NATIONAL_RELEASE_CANDIDATE = READY_FOR_ROOT_DECISION
+
+PRODUCTION_ROOT_INTACT = true
+
+PRODUCTION_SWITCH_READY = false
+
+PRODUCTION_ROOT_SWITCH_AUTHORIZED = false
+
+FULL_PMTILES_DOWNLOAD_OBSERVED = false
+
+RESULTS_PATH = ES_4D4B_NATIONAL_PRODUCTION_STAGING_ACCEPTANCE.md; data/audit/production/es4d4b_national_production_staging_acceptance.json
+
+NEXT_PHASE = ES-4D5_ROOT_SWITCH_DECISION
