@@ -1,0 +1,123 @@
+{
+  "schema_version": 1,
+  "phase": "ES-4E3A",
+  "layout": {
+    "desktop": {
+      "viewport_css_px": [1440, 757],
+      "header_height_css_px": 68,
+      "map_width_css_px": 1022.40625,
+      "panel_width_css_px": 417.59375,
+      "map_width_fraction": 0.71000434,
+      "panel_width_fraction": 0.28999566,
+      "panel_overlays_map": false,
+      "scroll_owner": "explorer_panel"
+    },
+    "mobile": {
+      "emulated_viewport_css_px": [390, 844],
+      "header_bottom_css_px": 58.4375,
+      "map_top_css_px": 58.4375,
+      "map_bottom_css_px": 412.90625,
+      "map_height_css_px": 354.46875,
+      "map_height_fraction": 0.4200,
+      "map_in_first_viewport": true,
+      "sources_in_first_viewport": false
+    },
+    "order": ["territory_period", "summary", "timeline", "filters", "results_detail", "sources_methodology"]
+  },
+  "recommended_view": {
+    "outside_gva_1985_2021": "esfire30",
+    "outside_esfire30_coverage": "egif_without_geometry_when_available",
+    "gva_1985_1992": "esfire30",
+    "gva_1993_2024": "icv",
+    "gva_2025_2026": "effis",
+    "gva_multi_regime": "separate_applicable_sources",
+    "serialized_state_is_preserved": true,
+    "manual_source_choice_disables_automatic_recommendation": true,
+    "cross_source_linking": false,
+    "cross_source_totals": false
+  },
+  "human_messages": {
+    "no_coverage": "Disponemos de registros administrativos, pero no de perímetros cartografiados para este territorio y periodo.",
+    "zero_relations": "No hay perímetros Landsat que intersecten este territorio en el periodo seleccionado.",
+    "error": "No se han podido cargar estos datos. El resto del Atlas sigue disponible.",
+    "partial_coverage_preserves_requested_range": true,
+    "primary_internal_terms_exposed": []
+  },
+  "source_panel": {
+    "element": "details",
+    "initially_open": false,
+    "toggles_preserved": ["esfire30", "egif", "icv", "effis"],
+    "attributions_preserved": true,
+    "runtime_diagnostics_visible": false
+  },
+  "legend": {
+    "only_drawn_layers": true,
+    "administrative_boundary": true,
+    "esfire30": "Perímetros Landsat",
+    "icv": "Perímetros oficiales",
+    "effis": "Perímetros satelitales provisionales",
+    "egif_has_map_symbol": false
+  },
+  "desktop_smokes": {
+    "spain_default": {"status": "PASS", "recommended": "esfire30", "egif_records": 554384},
+    "galicia_1995": {"status": "PASS", "recommended": "esfire30", "egif_records": 15254},
+    "gva_1995": {"status": "PASS", "recommended": "icv", "egif_records": 467},
+    "gva_2024": {"status": "PASS", "recommended": "icv"},
+    "gva_2026": {"status": "PASS", "recommended": "effis"},
+    "elx_2025": {"status": "PASS", "recommended": "effis"},
+    "spain_1975": {"status": "PASS", "egif_records": 4128, "geometry_coverage": false},
+    "canarias_1995": {"status": "PASS", "egif_records": 56, "esfire30_coverage": false},
+    "agost_zero": {"status": "PASS", "covered_zero_relations": true}
+  },
+  "mobile_smokes": {
+    "viewport": "390x844_emulated",
+    "spain": "PASS",
+    "elx_2025": "PASS"
+  },
+  "permalink_smokes": {
+    "gva_v1_elx_effis_2025": {"status": "PASS", "selection_restored": "effis:rda:285361:f05085eba622a5bb"},
+    "es4c_state_v1_elx_1993": {"status": "PASS", "selection_restored": "esfire30:v1:1993:777"},
+    "serializer_changed": false
+  },
+  "runtime_regressions": {
+    "observed": false,
+    "chromium_runs": 13,
+    "runtime_errors": 0,
+    "full_pmtiles_downloads": 0,
+    "range_statuses": [206],
+    "prototype_modified": false,
+    "staging_modified": false,
+    "production_gva_modified": false
+  },
+  "comparison": [
+    {"criterion": "first_viewport", "gva": "strong", "d4b_national": "technical_panel_dominant", "e3a_local": "header_map_context", "status": "IMPROVED_MATCH"},
+    {"criterion": "map_prominence", "gva": "strong", "d4b_national": "overlay", "e3a_local": "71_percent_desktop", "status": "PASS"},
+    {"criterion": "territory", "gva": "regional", "d4b_national": "national", "e3a_local": "national_human_names", "status": "NATIONAL_BETTER"},
+    {"criterion": "period", "gva": "histogram_supported", "d4b_national": "inputs_only", "e3a_local": "primary_inputs_histogram_slot", "status": "PARTIAL"},
+    {"criterion": "source_complexity", "gva": "low", "d4b_national": "dominant", "e3a_local": "collapsed_contextual", "status": "PASS"},
+    {"criterion": "coverage_language", "gva": "implicit", "d4b_national": "technical", "e3a_local": "human_zero_vs_absence", "status": "PASS"},
+    {"criterion": "mobile_hierarchy", "gva": "map_first", "d4b_national": "map_hidden", "e3a_local": "map_42_percent_height", "status": "PASS"},
+    {"criterion": "detail_readability", "gva": "human", "d4b_national": "ids_first", "e3a_local": "progressive_basic", "status": "PARTIAL_E3C"},
+    {"criterion": "basemap", "gva": "osm_context", "d4b_national": "none", "e3a_local": "no_new_provider", "status": "BASEMAP_GAP_FOR_E3B_OR_E3C"}
+  ],
+  "remaining_e3b": [
+    "national-ux-summary-v1",
+    "typed cross-territory source summaries without cross-source totals",
+    "functional source-specific histogram",
+    "temporal interactions and source metric tabs"
+  ],
+  "remaining_e3c": [
+    "safe source-specific minimum-area filters",
+    "GIF and interpreted cause filters",
+    "highlights and rankings",
+    "complete human detail-card contract",
+    "basemap provider decision if still in scope"
+  ],
+  "status": {
+    "product_shell": "PASS",
+    "technical_runtime_regression": false,
+    "product_release_candidate": false,
+    "d5": "PAUSED_FOR_PRODUCT_RECONCILIATION",
+    "next_phase": "ES-4E3B_NATIONAL_METRICS_HISTOGRAM"
+  }
+}

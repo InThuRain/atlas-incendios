@@ -395,3 +395,27 @@ P0_DATA_REQUIREMENT = national-ux-summary-v1 pequeño y determinista, especialme
 RESULTS_PATH = ES_4E2_NATIONAL_UX_REDESIGN_SPEC.md; data/audit/product/es4e2_metric_contracts.json; data/audit/product/es4e2_information_hierarchy.json; data/audit/product/es4e2_feature_priorities.json; data/audit/product/es4e2_data_requirements.json
 
 NEXT_PHASE = ES-4E3_NATIONAL_UX_IMPLEMENTATION
+
+PHASE = ES-4E3A
+
+STATUS = DONE (shell nacional orientada a producto implementada localmente; mapa dominante, jerarquía humana, vista recomendada, metodología plegada y runtime técnico preservado).
+
+PRODUCT_SHELL_STATUS = PASS
+
+TECHNICAL_RUNTIME_REGRESSION = false
+
+PRODUCT_RELEASE_CANDIDATE = false
+
+D5_STATUS = PAUSED_FOR_PRODUCT_RECONCILIATION
+
+TECHNICAL_BASELINE = D4B staging congelado y no modificado
+
+BASEMAP_GAP_FOR_E3B_OR_E3C = no existe basemap local aprobado; E3A no incorpora proveedor externo
+
+CHROMIUM_SMOKES = 13 directed PASS; desktop + exact 390x844 mobile; #v=1 + #es4c-state-v1 PASS
+
+TARGETED_TESTS = 12 PASS (E3A shell + D2 extraction + D3C permalink compatibility)
+
+RESULTS_PATH = ES_4E3A_NATIONAL_PRODUCT_SHELL.md; data/audit/product/es4e3a_national_product_shell.json
+
+NEXT_PHASE = ES-4E3B_NATIONAL_METRICS_HISTOGRAM

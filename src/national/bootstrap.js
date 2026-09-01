@@ -17,6 +17,8 @@ async function bootstrap() {
   // En D2 se mantiene el runtime ES-4C como módulo compartido y congelado:
   // el nuevo entrypoint no depende de su HTML ni de su bootstrap experimental.
   await import(new URL(config.runtime_entry, import.meta.url));
+  const { initNationalProductShell } = await import("./product-shell.mjs");
+  initNationalProductShell(globalThis.__es4cRuntime);
 }
 
 bootstrap().catch((error) => {

@@ -46,6 +46,13 @@ VENDOR_FILES = (
     "pmtiles-4.3.0.mjs",
     "node_modules/fflate/index.js",
 )
+FRONTEND_FILES = (
+    "index.html",
+    "bootstrap.js",
+    "styles.css",
+    "product-shell.mjs",
+    "source-registry.mjs",
+)
 
 
 def sha256(path: Path) -> str:
@@ -128,7 +135,7 @@ def artifact_manifest(output: Path, config: dict) -> dict:
 
 
 def build(output: Path) -> dict:
-    required = [SOURCE / "index.html", SOURCE / "bootstrap.js", SOURCE / "styles.css", NATIONAL_COMPAT, *[RUNTIME / name for name in RUNTIME_FILES if name != "compat_gva_v1.mjs"], *[VENDOR / name for name in VENDOR_FILES]]
+    required = [*[SOURCE / name for name in FRONTEND_FILES], NATIONAL_COMPAT, *[RUNTIME / name for name in RUNTIME_FILES if name != "compat_gva_v1.mjs"], *[VENDOR / name for name in VENDOR_FILES]]
     missing = [str(path.relative_to(ROOT)) for path in required if not path.is_file()]
     if missing:
         raise FileNotFoundError("Faltan inputs del artifact: " + ", ".join(missing))
@@ -137,7 +144,7 @@ def build(output: Path) -> dict:
     with tempfile.TemporaryDirectory(prefix="national-frontend-", dir=str(output.parent)) as directory:
         staging = Path(directory) / "national"
         staging.mkdir()
-        for name in ("index.html", "bootstrap.js", "styles.css"):
+        for name in FRONTEND_FILES:
             shutil.copy2(SOURCE / name, staging / name)
         (staging / "runtime-config.js").write_text(runtime_config_module(production_config()), encoding="utf-8")
         shutil.copytree(RUNTIME, staging / "runtime", ignore=shutil.ignore_patterns("*.json", "*.html", "*.css", "run_*.py", "*sample*", "__pycache__"))
