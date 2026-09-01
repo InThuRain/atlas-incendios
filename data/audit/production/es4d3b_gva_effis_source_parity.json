@@ -1,0 +1,25 @@
+{
+  "phase": "ES-4D3B",
+  "status": "PASS",
+  "source": {
+    "manifest": "data/web/gva/manifest.json",
+    "snapshot_id": "20260819T174426Z",
+    "acquired_at": "2026-08-19T17:44:26.023443Z",
+    "label": "European Forest Fire Information System (EFFIS) / Copernicus EMS",
+    "entity_type": "provisional_satellite_perimeter",
+    "source_status": "provisional_satellite",
+    "geometry_quality": "B_provisional_satellite",
+    "attribution": "European Union, Copernicus EMS / EFFIS (CC BY 4.0); selección espacial y reducción de atributos realizadas por el Atlas",
+    "methodology_url": "https://effis.jrc.ec.europa.eu/about-effis/technical-background/rapid-damage-assessment"
+  },
+  "assets": [
+    {"year": 2025, "path": "data/web/gva/recent/effis/2025.geojson", "features": 9, "raw_bytes": 37756, "gzip_bytes": 11120, "sha256": "afd7c30131d1c9829867b31633b4e5a0135df613722a1e72204c54af15a699c5"},
+    {"year": 2026, "path": "data/web/gva/recent/effis/2026.geojson", "features": 16, "raw_bytes": 218475, "gzip_bytes": 66631, "sha256": "cd0e1f6f06220b673a5293787c5a9206b117a79d34295e1b934f58c87a3e7619"}
+  ],
+  "coverage": {"global_range": [1968, 2026], "effis_snapshot_range": [2025, 2026], "integrated_territory_ids": ["ES:CCAA:10"], "outside_integrated_scope_status": "not_integrated_for_territory"},
+  "policy": {"province_filter": "documented_snapshot_attribute: province_key", "municipality_filter": "documented_snapshot_attribute: ES:MUN:<municipality_id>", "spatial_intersection_recomputed": false, "automatic_refresh": false, "deduplication_or_links": false},
+  "validation": {"static_tests": 17, "frontend_check": "PASS", "chromium_smokes": 12, "error_isolation": "PASS", "restore": "PASS", "mobile_390x844": "PASS"},
+  "production_switch_ready": false,
+  "remaining_gap": "GVA_PERMALINK_V1",
+  "next_phase": "ES-4D3C_GVA_PERMALINK_COMPATIBILITY"
+}

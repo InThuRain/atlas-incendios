@@ -35,6 +35,7 @@ RUNTIME_FILES = (
     "municipality_layer.mjs",
     "municipality_esfire_index.mjs",
     "icv_loader.mjs",
+    "effis_loader.mjs",
 )
 VENDOR_FILES = ("maplibre-gl-5.16.0.js", "pmtiles-4.3.0.mjs")
 
@@ -65,6 +66,10 @@ def production_config() -> dict:
             "egif": {"manifest": {"logical_id": "egif-national-web-manifest-2026-08-27", "path": "/data/egif/v1/2026-08-27/manifest.json", "required": True}},
             "icv": {
                 "manifest": {"logical_id": "gva-icv-public-manifest", "path": "/data/web/gva/manifest.json", "required": True},
+                "asset_base_url": {"path": "/", "required": True},
+            },
+            "effis": {
+                "manifest": {"logical_id": "gva-recent-effis-public-manifest", "path": "/data/web/gva/manifest.json", "required": True},
                 "asset_base_url": {"path": "/", "required": True},
             },
             "territories": {

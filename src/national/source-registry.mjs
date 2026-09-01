@@ -21,6 +21,13 @@ export const NATIONAL_SOURCE_REGISTRY = Object.freeze({
     attribution: "Incendios forestales de la Comunitat Valenciana (1993–2024) CC BY 4.0, Generalitat. Datos transformados para su visualización mediante reproyección, selección de atributos, particionado y simplificación geométrica.",
     runtime_module: "sources/icv", default_visible: true,
   },
+  effis: {
+    id: "effis", label: "EFFIS / Copernicus EMS", coverage: { from: 2025, to: 2026 },
+    territory_coverage: ["ES:CCAA:10"], entity_label: "perímetros satelitales provisionales integrados",
+    geometry_semantics: "perímetros satelitales provisionales EFFIS; no son perímetros oficiales ICV",
+    attribution: "European Union, Copernicus EMS / EFFIS (CC BY 4.0); selección espacial y reducción de atributos realizadas por el Atlas",
+    runtime_module: "sources/effis", default_visible: true,
+  },
   bdlje: {
     id: "bdlje", label: "BDLJE / IGN-CNIG", coverage: null,
     entity_label: "límites administrativos actuales", geometry_semantics: "división administrativa actual",

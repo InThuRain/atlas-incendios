@@ -33,6 +33,10 @@ export const LOCAL_ASSET_CONFIG = Object.freeze({
       manifest: { logical_id: "gva-icv-public-manifest", path: "/data/web/gva/manifest.json", required: true },
       asset_base_url: { path: "/", required: true },
     },
+    effis: {
+      manifest: { logical_id: "gva-recent-effis-public-manifest", path: "/data/web/gva/manifest.json", required: true },
+      asset_base_url: { path: "/", required: true },
+    },
     territories: {
       ccaa: { path: "/data/derived/spain/es4c2a/ccaa.geojson", required: true },
       provinces: { path: "/data/derived/spain/es4c2a/provinces.geojson", required: true },

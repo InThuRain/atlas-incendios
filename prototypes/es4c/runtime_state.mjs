@@ -8,6 +8,7 @@ export const SOURCE_COVERAGE = {
   egif: { from: 1968, to: 2023, label: "EGIF · 1968–2023", entity_label: "partes administrativos" },
   esfire30: { from: 1985, to: 2021, label: "ESFire30 · 1985–2021", entity_label: "perímetros Landsat" },
   icv: { from: 1993, to: 2024, label: "ICV · 1993–2024", entity_label: "perímetros oficiales valencianos" },
+  effis: { from: 2025, to: 2026, label: "EFFIS · 2025–2026", entity_label: "perímetros satelitales provisionales integrados" },
 };
 
 export function intersectCoverage(range, coverage) {
@@ -40,12 +41,15 @@ export function createRuntimeState(overrides = {}) {
     esfire30_visible: true,
     egif_visible: true,
     icv_visible: false,
+    effis_visible: false,
     selected_geometry_id: null,
     selected_geometry_year: null,
     selected_egif_record_id: null,
     selected_egif_year: null,
     selected_icv_geometry_id: null,
     selected_icv_geometry_year: null,
+    selected_effis_geometry_id: null,
+    selected_effis_geometry_year: null,
     ...overrides,
   };
 }
@@ -77,6 +81,14 @@ function icvGeometryStillVisible(state) {
   return state.selected_icv_geometry_year >= range.from && state.selected_icv_geometry_year <= range.to;
 }
 
+function effisGeometryStillVisible(state) {
+  if (!state.selected_effis_geometry_id) return true;
+  const range = effectiveCoverage(state, "effis");
+  if (!range || state.autonomous_community_id !== "ES:CCAA:10") return false;
+  if (!Number.isInteger(state.selected_effis_geometry_year)) return true;
+  return state.selected_effis_geometry_year >= range.from && state.selected_effis_geometry_year <= range.to;
+}
+
 export function reduceRuntimeState(state, event) {
   let next = { ...state };
   if (event.type === "set_range") Object.assign(next, normalizeRange(event.from, event.to));
@@ -104,14 +116,17 @@ export function reduceRuntimeState(state, event) {
   else if (event.type === "select_geometry") Object.assign(next, { selected_geometry_id: event.geometry_id, selected_geometry_year: event.year });
   else if (event.type === "select_egif_record") Object.assign(next, { selected_egif_record_id: event.record_id, selected_egif_year: event.year });
   else if (event.type === "select_icv_geometry") Object.assign(next, { selected_icv_geometry_id: event.geometry_id, selected_icv_geometry_year: event.year });
+  else if (event.type === "select_effis_geometry") Object.assign(next, { selected_effis_geometry_id: event.geometry_id, selected_effis_geometry_year: event.year });
   else if (event.type === "clear_egif_selection") Object.assign(next, { selected_egif_record_id: null, selected_egif_year: null });
   else if (event.type === "clear_icv_geometry_selection") Object.assign(next, { selected_icv_geometry_id: null, selected_icv_geometry_year: null });
+  else if (event.type === "clear_effis_geometry_selection") Object.assign(next, { selected_effis_geometry_id: null, selected_effis_geometry_year: null });
   else if (event.type === "clear_geometry_selection") Object.assign(next, { selected_geometry_id: null, selected_geometry_year: null });
   else throw new Error(`Evento de estado desconocido: ${event.type}`);
 
   if (!geometryStillVisible(next)) Object.assign(next, { selected_geometry_id: null, selected_geometry_year: null });
   if (!recordStillVisible(next)) Object.assign(next, { selected_egif_record_id: null, selected_egif_year: null });
   if (!icvGeometryStillVisible(next)) Object.assign(next, { selected_icv_geometry_id: null, selected_icv_geometry_year: null });
+  if (!effisGeometryStillVisible(next)) Object.assign(next, { selected_effis_geometry_id: null, selected_effis_geometry_year: null });
   // Un parte seleccionado es administrativo: cualquier cambio territorial
   // invalida inmediatamente la ficha, antes de que el loader columnar termine
   // de comprobar el nuevo ámbito. La selección ESFire30 se valida por su
@@ -119,7 +134,7 @@ export function reduceRuntimeState(state, event) {
   if ((event.type === "set_scope" && state.autonomous_community_id !== next.autonomous_community_id)
     || (event.type === "set_province" && state.province_id !== next.province_id)
     || (event.type === "set_municipality" && state.municipality_id !== next.municipality_id)) {
-    Object.assign(next, { selected_egif_record_id: null, selected_egif_year: null, selected_icv_geometry_id: null, selected_icv_geometry_year: null });
+    Object.assign(next, { selected_egif_record_id: null, selected_egif_year: null, selected_icv_geometry_id: null, selected_icv_geometry_year: null, selected_effis_geometry_id: null, selected_effis_geometry_year: null });
   }
   return next;
 }

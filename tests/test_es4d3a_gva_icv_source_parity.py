@@ -57,11 +57,13 @@ class GvaIcvSourceParityTests(unittest.TestCase):
         self.assertIn("selected_icv_geometry_id", source)
         self.assertIn('type === "select_icv_geometry"', source)
 
-    def test_serialization_is_additive_v1_and_accepts_2024(self):
+    def test_serialization_is_additive_v1_and_keeps_icv_2024_compatible(self):
         source = SERIALIZER.read_text(encoding="utf-8")
         self.assertIn('icv: Boolean(state.icv_visible)', source)
         self.assertIn("icv_geometry_id", source)
-        self.assertIn("time.to <= 2024", source)
+        # D3B extiende el rango global a 2026 para EFFIS; ICV conserva su
+        # cobertura propia 1993–2024 en el registro de fuentes.
+        self.assertIn("time.to <= 2026", source)
         self.assertIn('STATE_VERSION = "es4c-state-v1"', source)
 
     def test_runtime_uses_isolated_geojson_source(self):
