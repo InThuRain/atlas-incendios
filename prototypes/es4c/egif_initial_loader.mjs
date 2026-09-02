@@ -174,6 +174,13 @@ export class EGIFInitialLoader {
     return loaded;
   }
 
+  async loadAssetById(assetId) {
+    const manifest = await this.loadManifest();
+    const asset = manifest.assets.find((row) => row.asset_id === assetId && row.source_id === "egif" && row.status === "complete");
+    if (!asset) throw new Error(`Asset INITIAL EGIF desconocido: ${assetId}`);
+    return this.loadAsset(asset);
+  }
+
   cancel() {
     this.generation += 1;
     if (this.activeController) this.activeController.abort();

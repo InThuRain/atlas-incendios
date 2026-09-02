@@ -26,6 +26,7 @@ RUNTIME_FILES = (
     "app.js",
     "egif_initial_loader.mjs",
     "egif_detail_loader.mjs",
+    "egif_highlights_loader.mjs",
     "territory_catalog.mjs",
     "province_catalog.mjs",
     "runtime_state.mjs",
@@ -56,6 +57,7 @@ FRONTEND_FILES = (
     "metrics-histogram.mjs",
     "safe-filters.mjs",
     "human-details.mjs",
+    "highlights.mjs",
     "source-registry.mjs",
 )
 
@@ -113,6 +115,14 @@ def production_config() -> dict:
                     "logical_id": "national-ux-summary-v1",
                     "path": "data/summary/national-ux-summary-v1/manifest.json",
                     "schema_version": "national-ux-summary-v1",
+                    "required": True,
+                },
+            },
+            "highlights": {
+                "manifest": {
+                    "logical_id": "national-highlights-v1",
+                    "path": "data/highlights/national-highlights-v1/manifest.json",
+                    "schema_version": "national-highlights-v1",
                     "required": True,
                 },
             },
@@ -210,6 +220,9 @@ def check(output: Path) -> dict:
     summary = config.get("assets", {}).get("ux_summary", {}).get("manifest", {})
     if summary.get("schema_version") != "national-ux-summary-v1" or summary.get("path", "").startswith(("http://", "https://", "/home/")):
         failures.append("logical UX summary config")
+    highlights = config.get("assets", {}).get("highlights", {}).get("manifest", {})
+    if highlights.get("schema_version") != "national-highlights-v1" or highlights.get("path", "").startswith(("http://", "https://", "/home/")):
+        failures.append("logical highlights config")
     try:
         output_label = str(output.relative_to(ROOT))
     except ValueError:

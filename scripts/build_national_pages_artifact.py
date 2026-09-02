@@ -32,6 +32,7 @@ PROVINCES_SOURCE = ROOT / "data/derived/spain/es4c2a/provinces.geojson"
 MUNICIPALITY_CATALOG_SOURCE = ROOT / "data/territories/spain/municipality_catalog_2026-08-29.json"
 MUNICIPALITY_SHARDS_SOURCE = ROOT / "data/derived/spain/es4c2a3/municipalities"
 MUNICIPALITY_INDEX_SOURCE = ROOT / "data/derived/spain/es4c2b/runtime/municipality-index"
+HIGHLIGHTS_SOURCE = ROOT / "data/derived/spain/national-highlights-v1"
 FORBIDDEN_RUNTIME_STRINGS = ("/home/dani/", "file://", "127.0.0.1", "localhost", "r2.dev", "atlas-incendios-es4c3d4-pages-staging", "national-prototype-staging", "release-assets.githubusercontent.com", "/releases/download")
 PAYLOAD_MANIFEST_PATH = Path("asset-manifest.json")
 SITE_IDENTITY_PATH = Path("site-identity.json")
@@ -157,6 +158,17 @@ def copy_municipality_indexes(output: Path, files: list[dict]) -> dict:
     target.write_text(json.dumps(staged, ensure_ascii=False, sort_keys=True, separators=(",", ":")) + "\n", encoding="utf-8")
     files.append({"path": (destination_root / "manifest.json").as_posix(), "family": "municipality_indexes", "logical_id": "esfire30:municipality-index:manifest", "source": "ESFire30 municipality inverse index v1 (paths relocated)"})
     return {"parent_shards": len(by_parent), "national_included": True, "municipalities_with_geometry_ids": source_manifest.get("reconciliation", {}).get("municipalities_with_geometry_ids")}
+
+
+def copy_highlights(output: Path, files: list[dict]) -> dict:
+    manifest = read_json(HIGHLIGHTS_SOURCE / "manifest.json")
+    if manifest.get("schema_version") != "national-highlights-v1" or len(manifest.get("assets", [])) != 1:
+        raise MissingStagingInput("MISSING_STAGING_INPUT: manifest de destacados nacionales inválido")
+    destination = Path("data/highlights/national-highlights-v1")
+    copy_file(HIGHLIGHTS_SOURCE / "manifest.json", output, destination / "manifest.json", "highlights", "highlights:manifest", "National highlights v1", files)
+    descriptor = manifest["assets"][0]
+    copy_file(HIGHLIGHTS_SOURCE / descriptor["path"], output, destination / descriptor["path"], "highlights", "highlights:egif", "National highlights v1", files)
+    return {"assets": 1, "source": "egif", "bytes": descriptor.get("bytes")}
 
 
 def add_frontend_records(output: Path, files: list[dict]) -> None:
@@ -287,6 +299,7 @@ def build(output: Path) -> dict:
             "territories": copy_territories(staging, files),
             "municipality_indexes": copy_municipality_indexes(staging, files),
             "gva_sources": copy_gva_sources(staging, files),
+            "highlights": copy_highlights(staging, files),
         }
         # Registra todos los ficheros ya presentes y no añade datos de desarrollo.
         add_frontend_records(staging, files)

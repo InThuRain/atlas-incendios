@@ -1,0 +1,237 @@
+{
+  "phase": "ES-4E3C2",
+  "date": "2026-09-02",
+  "highlights": {
+    "status": "PASS",
+    "initial_visible": 5,
+    "maximum_visible": 10,
+    "cross_source_ranking": false,
+    "semantic_list": true,
+    "real_buttons": true,
+    "human_labels": true,
+    "detail_lazy": true,
+    "esfire30_status": "DEFERRED_NO_SAFE_RANKING_METRIC"
+  },
+  "ranking_metrics": {
+    "egif": {
+      "entity_type": "administrative_source_record",
+      "metric_id": "egif_declared_forest_area_ha",
+      "ordering": "reported_forest_area_ha_desc_record_id_asc",
+      "unit": "ha",
+      "null_policy": "excluded_not_zero"
+    },
+    "icv": {
+      "entity_type": "official_fire_source_record",
+      "metric_id": "icv_declared_forest_area_ha",
+      "ordering": "reported_forest_area_ha_desc_fire_id_asc",
+      "unit": "ha",
+      "deduplicate_by": "fire_id"
+    },
+    "effis": {
+      "entity_type": "provisional_satellite_perimeter",
+      "metric_id": "effis_mapped_area_ha",
+      "ordering": "mapped_area_ha_desc_geometry_id_asc",
+      "unit": "ha",
+      "snapshot": "2026-08-19",
+      "provisional": true
+    },
+    "esfire30": {
+      "entity_type": "landsat_remote_sensing_perimeter",
+      "metric_id": null,
+      "status": "DEFERRED_NO_SAFE_RANKING_METRIC"
+    }
+  },
+  "source_semantics": {
+    "egif": "partes administrativos sin geometría individual fiable",
+    "icv": "incendios oficiales documentados; un registro puede tener varias geometrías",
+    "effis": "perímetros satelitales provisionales, no incendios oficiales",
+    "esfire30": "perímetros derivados de teledetección Landsat"
+  },
+  "filter_interaction": {
+    "source_aware": true,
+    "territory_aware": true,
+    "period_aware": true,
+    "other_source_filters_applied": false,
+    "gva_1995_icv_min_500_result_count": 1,
+    "exactness": "runtime exact outside Spain; annual deterministic candidate index exact for approved EGIF filters in Spain"
+  },
+  "derived_data": {
+    "added": true,
+    "schema_version": "national-highlights-v1",
+    "path": "data/derived/spain/national-highlights-v1",
+    "manifest_bytes": 794,
+    "payload_bytes": 343708,
+    "payload_gzip_bytes": 17011,
+    "payload_sha256": "c09a92afd184ee46cca0e417a2a9ae3e0b5fc8b193c0b54bb9201f6f02197059",
+    "records_scanned": 646887,
+    "records_with_known_forest_area": 646887,
+    "years": 56,
+    "default_initial_assets_loaded": 0,
+    "contains_detail": false,
+    "contains_geometry": false,
+    "contains_cross_source_links": false
+  },
+  "map_context": {
+    "implemented": true,
+    "same_origin": true,
+    "external_requests": 0,
+    "coastline": "BDLJE CCAA polygon exterior",
+    "territory_name_overlay": true,
+    "administrative_hierarchy": true,
+    "selected_territory_emphasized": true,
+    "fire_layers_remain_primary": true,
+    "local_context_sufficient": false,
+    "reason_not_sufficient": "No accepted positioned label points, roads or relief are locally available; the overlay names the active scope but does not replace geographic labels in the map.",
+    "roads_status": "P1_OPTIONAL",
+    "labels_status": "ACTIVE_TERRITORY_NAME_ONLY_NO_DOCUMENTED_LABEL_POINTS",
+    "basemap_status": "PENDING_USER_DECISION"
+  },
+  "available_local_assets": [
+    {
+      "path": "data/derived/spain/es4c2a/ccaa.geojson",
+      "features": 19,
+      "bytes": 8211747,
+      "gzip_bytes_diagnostic": 2661897,
+      "use": "land/coastline, CCAA context, selection and bounds"
+    },
+    {
+      "path": "data/derived/spain/es4c2a/provinces.geojson",
+      "features": 50,
+      "bytes": 10781436,
+      "gzip_bytes_diagnostic": 3552872,
+      "use": "province context under selected CCAA, selection and bounds"
+    },
+    {
+      "path": "data/derived/spain/es4c2a3/municipalities",
+      "logical_municipalities": 8132,
+      "shards": 52,
+      "bytes_total": 146199037,
+      "delivery": "lazy by parent province/autonomous city"
+    },
+    {
+      "path": "data/territories/spain/territories-2026-01-01.json",
+      "bytes": 3726695,
+      "gzip_bytes_diagnostic": 155435,
+      "use": "canonical names and IDs; not a label-point dataset"
+    }
+  ],
+  "basemap_options": [
+    {
+      "option": "Protomaps self-hosted PMTiles extract",
+      "license": "OpenStreetMap-derived Produced Work under ODbL obligations; software/style asset licenses must also be retained",
+      "attribution": "OpenStreetMap and Protomaps attribution according to the chosen style/assets",
+      "cost_free_tier": "open tooling; hosting/storage/bandwidth borne by the project",
+      "usage_limits": "those of the selected same-origin host",
+      "external_dependency": "none at runtime when self-hosted",
+      "privacy": "project-controlled",
+      "cors_cache": "same-origin and project-controlled",
+      "offline_self_host": true,
+      "estimated_asset_impact": "UNKNOWN_MUST_MEASURE_SPAIN_EXTRACT; potentially material against the current approximately 501 MB artifact",
+      "recommendation": "PREFERRED_CANDIDATE_TO_MEASURE_NOT_APPROVED"
+    },
+    {
+      "option": "OpenFreeMap public instance",
+      "license": "OpenMapTiles/OpenStreetMap data terms",
+      "attribution": "OpenFreeMap © OpenMapTiles Data from OpenStreetMap",
+      "cost_free_tier": "public service declares free use without request/view limits",
+      "usage_limits": "no declared numeric limit and no SLA",
+      "external_dependency": "public third-party CDN",
+      "privacy": "anonymous logs; temporary IP logging may occur for security incidents",
+      "cors_cache": "browser-oriented public CDN; must be validated with the Atlas",
+      "offline_self_host": true,
+      "estimated_asset_impact": "near-zero Pages payload if external",
+      "recommendation": "LOW_COST_EXTERNAL_TRIAL_CANDIDATE_NOT_APPROVED"
+    },
+    {
+      "option": "MapTiler Cloud",
+      "license": "provider terms and required map attribution",
+      "attribution": "according to selected MapTiler map/style and data sources",
+      "cost_free_tier": "Free $0, 5000 sessions/month and 100000 requests/month for noncommercial/testing; Flex $30/month at audit date",
+      "usage_limits": "free service pauses at limit; paid overages apply",
+      "external_dependency": "managed third-party service and public API key",
+      "privacy": "external requests; policy and operational review required",
+      "cors_cache": "managed CDN/browser API; key restrictions available",
+      "offline_self_host": false,
+      "estimated_asset_impact": "near-zero Pages payload if external",
+      "recommendation": "MANAGED_OPTION_NOT_APPROVED"
+    }
+  ],
+  "license": {
+    "local_context": "CC BY 4.0",
+    "new_external_license_accepted": false
+  },
+  "attribution": {
+    "local_context": "Obra derivada de BDLJE CC-BY 4.0 ign.es",
+    "visible_in_methodology": true,
+    "compact_map_line_desktop": true,
+    "mobile_map_line_hidden_to_preserve_map": true
+  },
+  "performance": {
+    "benchmark": false,
+    "spain_highlight_index_requests": 2,
+    "spain_highlight_index_response_bytes_uncompressed": 344502,
+    "duplicate_concurrent_fetches": false,
+    "icv_additional_requests": 0,
+    "effis_additional_requests": 0,
+    "context_new_assets": 0,
+    "detail_load_policy": "only after explicit selection",
+    "heap_bytes_observed_min": 47569527,
+    "heap_bytes_observed_max": 205682611,
+    "heap_interpretation": "diagnostic only"
+  },
+  "desktop": {
+    "status": "PASS",
+    "product_flow": "territory/period -> summary -> timeline -> filter -> highlight -> human detail -> map -> share",
+    "gva_1995_sources_distinguishable": true,
+    "technical_ids_in_highlights": false
+  },
+  "mobile": {
+    "viewport": "390x844 emulated",
+    "status": "PASS",
+    "map_height_px_observed": 354.46875,
+    "initial_highlight_limit": 5,
+    "touch_buttons": true,
+    "source_methodology_secondary": true
+  },
+  "directed_scenarios": [
+    "Spain 1995 EGIF",
+    "Galicia 1995 EGIF",
+    "GVA 1995 ICV",
+    "GVA 2024 ICV",
+    "GVA 2026 EFFIS",
+    "Elx 2025 EFFIS",
+    "GVA 1995 ICV >=500 ha",
+    "Ourense map context",
+    "Canarias map context",
+    "Elx mobile"
+  ],
+  "tests": {
+    "javascript_assertions": 7,
+    "python_tests": 3,
+    "frontend_build_check": "PASS",
+    "chromium_smokes": 10,
+    "chromium_failures": 0,
+    "final_spain_cache_recheck": "PASS",
+    "full_suite_run": false,
+    "pages_or_staging_run": false
+  },
+  "product_comparison": {
+    "gva": "strong immediate map context and exploration reference",
+    "d4b": "technically complete but source/debug-heavy",
+    "e3a": "human-first shell and dominant map",
+    "e3b2": "typed summary and annual evolution",
+    "e3c1": "safe source filters and human detail cards",
+    "e3c2": "safe source-specific discovery plus improved local administrative context; basemap gap remains"
+  },
+  "status": {
+    "highlights_status": "PASS",
+    "product_polish_status": "PASS",
+    "local_context_sufficient": false,
+    "basemap_status": "PENDING_USER_DECISION",
+    "histogram_brush_status": "DEFERRED_P1",
+    "technical_runtime_regression": false,
+    "product_release_candidate": false,
+    "d5_status": "PAUSED_FOR_PRODUCT_RECONCILIATION",
+    "next_phase": "ES-4E3C2_BASEMAP_DECISION"
+  }
+}

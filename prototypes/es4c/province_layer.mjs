@@ -26,10 +26,11 @@ export async function addOfficialProvinceLayer(map, { fetchImpl = globalThis.fet
   const byId = new Map(features.map((feature) => [feature.properties ? feature.properties.territory_id : null, feature]));
   if (byId.size !== 50) throw new Error(`Derivado BDLJE provincial inválido: ${byId.size} provincias lógicas`);
   map.addSource(PROVINCE_SOURCE_ID, { type: "geojson", data: collection });
+  const fireLayer = map.getLayer("esfire30-perimeters") ? "esfire30-perimeters" : undefined;
   map.addLayer({ id: PROVINCE_FILL_LAYER, type: "fill", source: PROVINCE_SOURCE_ID,
-    filter: ["==", ["get", "parent_id"], "__none__"], paint: { "fill-color": "#f0b34d", "fill-opacity": .025 } });
+    filter: ["==", ["get", "parent_id"], "__none__"], paint: { "fill-color": "#e8e1cd", "fill-opacity": .12 } }, fireLayer);
   map.addLayer({ id: PROVINCE_LINE_LAYER, type: "line", source: PROVINCE_SOURCE_ID,
-    filter: ["==", ["get", "parent_id"], "__none__"], paint: { "line-color": "#9b6b13", "line-width": 1.05, "line-opacity": .82 } });
+    filter: ["==", ["get", "parent_id"], "__none__"], paint: { "line-color": "#87775b", "line-width": ["interpolate", ["linear"], ["zoom"], 5, .55, 10, 1.1], "line-opacity": .65 } }, fireLayer);
   map.addLayer({ id: PROVINCE_SELECTED_LAYER, type: "line", source: PROVINCE_SOURCE_ID,
     filter: ["==", ["get", "territory_id"], "__none__"], paint: { "line-color": "#d15318", "line-width": 3.6, "line-opacity": 1 } });
   map.on("mouseenter", PROVINCE_FILL_LAYER, () => { map.getCanvas().style.cursor = "pointer"; });

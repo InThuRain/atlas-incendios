@@ -3,6 +3,7 @@ import { NationalUxSummaryLoader } from "./ux-summary-loader.mjs";
 import { createMetricsHistogramUi } from "./metrics-histogram.mjs";
 import { createSafeFiltersUi } from "./safe-filters.mjs";
 import { createHumanDetailsUi } from "./human-details.mjs";
+import { createHighlightsUi } from "./highlights.mjs";
 
 const GVA_ID = "ES:CCAA:10";
 const ESFIRE30_NO_TERRITORY_COVERAGE = new Set([
@@ -183,12 +184,14 @@ function syncDetailsAccessibility(runtime) {
   if (runtime.map && runtime.map.resize) runtime.map.resize();
 }
 
-function syncPublicUi(runtime, metricsUi = null, filtersUi = null, detailsUi = null) {
+function syncPublicUi(runtime, metricsUi = null, filtersUi = null, detailsUi = null, highlightsUi = null) {
   const state = runtime.getState();
   const territory = currentTerritoryName();
   const period = state.from === state.to ? String(state.from) : `${state.from}–${state.to}`;
   document.querySelector("#header-territory").textContent = territory;
   document.querySelector("#header-period").textContent = period;
+  const mapContext = document.querySelector("#map-context-territory");
+  if (mapContext) mapContext.textContent = territory;
   document.querySelector("#municipality-current-note").hidden = !state.municipality_id;
   const view = recommendedView(state);
   document.querySelector("#recommended-view-title").textContent = view.title;
@@ -204,6 +207,7 @@ function syncPublicUi(runtime, metricsUi = null, filtersUi = null, detailsUi = n
   const territoryInternal = territoryStatus ? territoryStatus.textContent : "";
   document.querySelector("#territory-public-status").textContent = publicRuntimeMessage(territoryInternal);
   if (metricsUi) metricsUi.update(state, view);
+  highlightsUi?.update();
   filtersUi?.render();
   buildLegend(state, view);
   if (detailsUi) detailsUi.sync(); else syncSelections();
@@ -232,12 +236,14 @@ export function initNationalProductShell(runtime = globalThis.__es4cRuntime, con
   if (!runtime) throw new Error("El runtime nacional no está disponible");
   const summaryManifest = config && config.assets && config.assets.ux_summary && config.assets.ux_summary.manifest && config.assets.ux_summary.manifest.path;
   const summaryLoader = new NationalUxSummaryLoader({ manifestUrl: summaryManifest });
-  const metricsUi = createMetricsHistogramUi({ runtime, loader: summaryLoader });
+  let highlightsUi = null;
+  const metricsUi = createMetricsHistogramUi({ runtime, loader: summaryLoader, onSeriesChange: () => highlightsUi?.update({ force: true }) });
   let detailsUi = null;
   let filtersUi = null;
-  const syncAll = () => syncPublicUi(runtime, metricsUi, filtersUi, detailsUi);
+  const syncAll = () => syncPublicUi(runtime, metricsUi, filtersUi, detailsUi, highlightsUi);
   detailsUi = createHumanDetailsUi({ runtime });
   filtersUi = createSafeFiltersUi({ runtime, onChange: async () => { await metricsUi.update(runtime.getState(), recommendedView(runtime.getState()), { force: true }); syncAll(); } });
+  highlightsUi = createHighlightsUi({ runtime, getSelectedMetric: () => metricsUi.getState().selected_series_id });
   const initialUrlHadState = location.hash.length > 1;
   let sourceChoiceIsManual = initialUrlHadState;
   let recommendationGeneration = 0;
@@ -281,8 +287,9 @@ export function initNationalProductShell(runtime = globalThis.__es4cRuntime, con
     metrics: metricsUi,
     filters: filtersUi,
     details: detailsUi,
+    highlights: highlightsUi,
     sourceChoiceIsManual: () => sourceChoiceIsManual,
-    destroy: () => { observer.disconnect(); metricsUi.destroy(); },
+    destroy: () => { observer.disconnect(); metricsUi.destroy(); highlightsUi.destroy(); },
   };
   return globalThis.__nationalProductShell;
 }

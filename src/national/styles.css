@@ -27,6 +27,10 @@ button:focus-visible, input:focus-visible, select:focus-visible, summary:focus-v
 
 .map-region { position: relative; grid-column: 1; min-width: 0; min-height: 0; overflow: hidden; background: var(--map-water); }
 #map { position: absolute; inset: 0; width: 100%; height: 100%; background: linear-gradient(150deg, var(--map-land), var(--map-water)); }
+.map-context { position: absolute; z-index: 2; top: .7rem; left: .8rem; max-width: min(24rem, calc(100% - 5rem)); margin: 0; padding: .42rem .58rem; border: 1px solid rgb(84 105 92 / .2); border-radius: .4rem; background: rgb(255 255 255 / .88); box-shadow: 0 1px 7px rgb(0 0 0 / .09); color: #35453b; backdrop-filter: blur(4px); }
+.map-context strong, .map-context span { display: block; }
+.map-context strong { font-size: .78rem; }
+.map-context span { margin-top: .08rem; color: var(--muted); font-size: .62rem; }
 .map-legend { position: absolute; z-index: 2; left: .8rem; bottom: .8rem; width: min(17rem, calc(100% - 5rem)); padding: .55rem .65rem; border: 1px solid rgb(84 105 92 / .25); border-radius: .45rem; background: rgb(255 255 255 / .93); box-shadow: 0 2px 10px rgb(0 0 0 / .12); backdrop-filter: blur(4px); }
 .map-legend h2 { margin: 0 0 .35rem; font-size: .78rem; }
 .map-legend ul { display: grid; gap: .28rem; margin: 0; padding: 0; list-style: none; }
@@ -106,6 +110,19 @@ p { line-height: 1.45; }
 .filter-actions { display: flex; gap: .45rem; margin-top: .65rem; }
 .filter-status { min-height: 1.15rem; margin: .5rem 0 0; color: var(--muted); font-size: .74rem; }
 .filter-empty { margin: 0; color: var(--muted); font-size: .78rem; }
+.highlights-contract, .highlights-status { margin: 0; color: var(--muted); font-size: .72rem; }
+.highlights-status { min-height: 1.1rem; margin-top: .25rem; }
+.highlights-list { display: grid; gap: .4rem; margin: .55rem 0 0; padding: 0; list-style: none; counter-reset: highlights; }
+.highlight-item { counter-increment: highlights; }
+.highlight-button { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: .12rem .55rem; width: 100%; min-height: 3.1rem; padding: .5rem .6rem .5rem 2rem; border: 1px solid var(--line); border-left: 3px solid #65766b; border-radius: .4rem; color: var(--ink); background: #fff; text-align: left; }
+.highlight-button::before { content: counter(highlights); position: absolute; top: .62rem; left: .62rem; color: #77847c; font-size: .68rem; font-weight: 800; }
+.highlight-button:hover { border-color: #8ca094; background: #f7faf8; }
+.highlight-item--icv .highlight-button { border-left-color: #2d714f; }
+.highlight-item--effis .highlight-button { border-left-color: #684c9b; border-left-style: dashed; }
+.highlight-primary { min-width: 0; overflow-wrap: anywhere; font-size: .76rem; font-weight: 700; line-height: 1.3; }
+.highlight-measure { grid-row: 1 / span 2; grid-column: 2; align-self: center; color: var(--forest-dark); font-size: .84rem; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.highlight-source { color: var(--muted); font-size: .65rem; }
+.highlights-more { width: 100%; margin-top: .45rem; min-height: 2.35rem; border: 1px solid #b9c8be; border-radius: .35rem; color: var(--forest-dark); background: #f7faf8; font-size: .74rem; font-weight: 750; }
 .histogram-panel { padding: .68rem; border: 1px solid var(--line); border-radius: .45rem; background: #fafbfa; }
 .histogram-tabs { display: flex; flex-wrap: wrap; gap: .3rem; }
 .histogram-tab { min-height: 2.25rem; padding: .35rem .52rem; border: 1px solid #b7c5bc; border-radius: 999px; color: #3b4b42; background: #fff; font-size: .7rem; font-weight: 700; }
@@ -174,6 +191,8 @@ p { line-height: 1.45; }
   .copy-status { top: 3.25rem; right: .5rem; }
   .map-region { grid-row: 2; grid-column: 1; min-height: 20rem; height: 42vh; border-bottom: 1px solid var(--line); }
   .map-legend { left: .45rem; bottom: .45rem; width: min(15rem, calc(100% - 4.5rem)); padding: .42rem .5rem; }
+  .map-context { top: .45rem; left: .45rem; max-width: calc(100% - 4.5rem); padding: .35rem .45rem; }
+  .map-context span { display: none; }
   .map-legend h2 { display: none; }
   .map-legend li { font-size: .65rem; }
   .explorer-panel { grid-row: 3; grid-column: 1; overflow: visible; padding: .85rem .75rem 2rem; border-left: 0; }
@@ -184,6 +203,7 @@ p { line-height: 1.45; }
   .record-lookup { grid-template-columns: 1fr; }
   .human-metrics, .human-detail-fields { grid-template-columns: 1fr; gap: .05rem; }
   .human-metrics dd, .human-detail-fields dd { margin-bottom: .45rem; max-width: none; text-align: left; }
+  .highlight-button { min-height: 3.25rem; }
   .filter-panel { position: fixed; z-index: 20; right: 0; bottom: 0; left: 0; max-height: min(78vh, 42rem); margin: 0; padding: .85rem; overflow-y: auto; border-radius: .8rem .8rem 0 0; box-shadow: 0 -8px 28px rgb(0 0 0 / .2); }
   .human-detail.selection:not([hidden]), #egif-detail:not([hidden]) { border-left: 4px solid var(--forest); }
   #egif-detail:not([hidden]), #icv-detail:not([hidden]), #effis-detail:not([hidden]), [data-detail-card="esfire30"][data-has-selection="true"] {

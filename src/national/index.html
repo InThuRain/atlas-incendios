@@ -21,6 +21,7 @@
 
       <section class="map-region" aria-label="Exploración cartográfica">
         <div id="map" aria-label="Mapa nacional de perímetros de incendios disponibles"></div>
+        <p class="map-context" aria-live="polite"><strong id="map-context-territory">España</strong><span>Costa y límites administrativos actuales · BDLJE/IGN</span></p>
         <aside class="map-legend" aria-labelledby="map-legend-title">
           <h2 id="map-legend-title">Leyenda</h2>
           <ul id="user-map-legend"></ul>
@@ -98,6 +99,15 @@
             </form>
             <p id="filter-status" class="filter-status" aria-live="polite"></p>
           </section>
+        </section>
+
+        <section id="highlights-slot" class="product-slot highlights-section" aria-labelledby="highlights-title" data-status="loading">
+          <div class="section-heading"><div><span class="section-kicker">Descubrir</span><h2 id="highlights-title">Destacados del periodo</h2></div></div>
+          <p id="highlights-contract" class="highlights-contract"></p>
+          <p id="highlights-status" class="highlights-status" aria-live="polite">Preparando destacados…</p>
+          <ol id="highlights-list" class="highlights-list"></ol>
+          <button id="highlights-more" class="highlights-more" type="button" hidden>Ver más</button>
+          <p class="independence-note">Cada lista pertenece a una sola fuente y usa una única magnitud documentada.</p>
         </section>
 
         <section class="results-section" aria-labelledby="results-title">

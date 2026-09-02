@@ -235,7 +235,7 @@ function yearLabel(row, presentation, territoryName) {
   return `${row.year}: ${value}${presentation.unit === "ha" ? "" : ` ${noun}`}. Fuente: ${presentation.sourceLabel}. ${territoryName}.`;
 }
 
-export function createMetricsHistogramUi({ runtime, loader }) {
+export function createMetricsHistogramUi({ runtime, loader, onSeriesChange = () => {} }) {
   const cardsNode = document.querySelector("#summary-cards");
   const statusNode = document.querySelector("#summary-loading-status");
   const secondary = document.querySelector("#summary-secondary-metrics");
@@ -316,13 +316,14 @@ export function createMetricsHistogramUi({ runtime, loader }) {
       button.type = "button"; button.setAttribute("role", "tab");
       button.setAttribute("aria-selected", String(row.id === selectedSeriesId));
       button.dataset.metricId = row.id;
-      button.addEventListener("click", () => { selectedSeriesId = row.id; explicitSeries = true; renderHistogram(territory, runtime.getState()); });
+      button.addEventListener("click", () => { selectedSeriesId = row.id; explicitSeries = true; renderHistogram(territory, runtime.getState()); onSeriesChange(selectedSeriesId); });
       tabsNode.append(button);
     }
     chartNode.replaceChildren(); ticksNode.replaceChildren(); tableBody.replaceChildren();
     if (!selectedSeriesId) {
       histogramStatus.textContent = "No disponemos de una serie anual para este territorio.";
       timelineSlot.dataset.status = "no-data";
+      onSeriesChange(null);
       return;
     }
     const presentation = METRIC_PRESENTATION[selectedSeriesId];
@@ -357,6 +358,7 @@ export function createMetricsHistogramUi({ runtime, loader }) {
       ? `${presentation.tab} · ${presentation.sourceLabel}. El filtro activo no se aplica a esta serie porque no puede calcularse exactamente.`
       : `${presentation.tab} · ${presentation.sourceLabel}${mode === "EXACT_RUNTIME" || mode === "EXACT_DERIVED" ? " · filtrado exacto" : ""}. Una barra por año; el sombreado indica ${state.from === state.to ? state.from : `${state.from}–${state.to}`}.`;
     timelineSlot.dataset.status = "ready";
+    onSeriesChange(selectedSeriesId);
   }
 
   async function update(state, view = null, { force = false } = {}) {
@@ -400,7 +402,7 @@ export function createMetricsHistogramUi({ runtime, loader }) {
   return {
     update,
     getState: () => ({ selected_series_id: selectedSeriesId, explicit_series: explicitSeries, result: current, telemetry: { ...loader.telemetry } }),
-    selectSeries(metricId) { selectedSeriesId = metricId; explicitSeries = true; if (current && current.territory) renderHistogram(current.territory, runtime.getState()); },
+    selectSeries(metricId) { selectedSeriesId = metricId; explicitSeries = true; if (current && current.territory) renderHistogram(current.territory, runtime.getState()); onSeriesChange(selectedSeriesId); },
     destroy() { loader.cancel(); updateGeneration += 1; },
   };
 }

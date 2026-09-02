@@ -88,6 +88,23 @@ export function pageOfInitialRows(loadedAssets, fromYear, toYear, page, pageSize
   return { page: Math.max(0, page), page_size: pageSize, total, rows };
 }
 
+export function topInitialRows(loadedAssets, fromYear, toYear, limit = 10, provinceId = null, municipalityId = null, filters = []) {
+  const rows = [];
+  for (const loaded of loadedAssets || []) {
+    const columns = loaded.data.columns;
+    for (let ordinal = 0; ordinal < columns.record_id.length; ordinal += 1) {
+      if (!rowMatchesInitialScope(columns, ordinal, fromYear, toYear, provinceId, municipalityId, filters)) continue;
+      const area = valueAt(columns, "reported_forest_area_ha", ordinal);
+      // Desconocido no participa en un ranking de superficie y jamás se
+      // convierte en cero. Cero conocido sí es un valor documentado.
+      if (typeof area !== "number" || !Number.isFinite(area)) continue;
+      rows.push({ asset_id: loaded.asset.asset_id, ordinal, ...selectedInitialRow(loaded, ordinal) });
+    }
+  }
+  return rows.sort((left, right) => right.reported_forest_area_ha - left.reported_forest_area_ha || left.record_id.localeCompare(right.record_id))
+    .slice(0, Math.min(10, Math.max(1, Number(limit) || 10)));
+}
+
 export class EGIFDetailLoader {
   constructor({ manifestUrl, fetchImpl = globalThis.fetch ? globalThis.fetch.bind(globalThis) : null, AbortControllerImpl = globalThis.AbortController } = {}) {
     if (!manifestUrl || !fetchImpl || !AbortControllerImpl) throw new Error("Faltan dependencias DETAIL EGIF");

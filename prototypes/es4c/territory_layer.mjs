@@ -29,18 +29,19 @@ export async function addOfficialTerritoryLayer(map, { fetchImpl = globalThis.fe
   const byId = new Map(features.map((feature) => [feature.properties ? feature.properties.territory_id : null, feature]));
   if (byId.size !== 19) throw new Error(`Derivado BDLJE inválido: ${byId.size} territorios lógicos`);
   map.addSource(CCAA_SOURCE_ID, { type: "geojson", data: collection });
+  const fireLayer = map.getLayer("esfire30-perimeters") ? "esfire30-perimeters" : undefined;
   map.addLayer({
     id: CCAA_FILL_LAYER,
     type: "fill",
     source: CCAA_SOURCE_ID,
-    paint: { "fill-color": "#32735d", "fill-opacity": 0.035 },
-  });
+    paint: { "fill-color": "#f3f5ef", "fill-opacity": 0.78 },
+  }, fireLayer);
   map.addLayer({
     id: CCAA_LINE_LAYER,
     type: "line",
     source: CCAA_SOURCE_ID,
-    paint: { "line-color": "#366052", "line-width": 1.15, "line-opacity": 0.78 },
-  });
+    paint: { "line-color": "#5e7467", "line-width": ["interpolate", ["linear"], ["zoom"], 3, .65, 7, 1.15], "line-opacity": 0.72 },
+  }, fireLayer);
   map.addLayer({
     id: CCAA_SELECTED_LAYER,
     type: "line",

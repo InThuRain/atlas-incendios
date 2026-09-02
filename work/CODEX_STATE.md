@@ -523,3 +523,41 @@ D5_STATUS = PAUSED_FOR_PRODUCT_RECONCILIATION
 RESULTS_PATH = ES_4E3C1_NATIONAL_SAFE_FILTERS_HUMAN_DETAILS.md; data/audit/product/es4e3c1_national_safe_filters_human_details.json
 
 NEXT_PHASE = ES-4E3C2_NATIONAL_HIGHLIGHTS_MAP_POLISH
+
+PHASE = ES-4E3C2
+
+STATUS = DONE (destacados source-aware y pulido cartográfico local completados; el mapa mejora con BDLJE, pero la decisión de mapa base/topónimos sigue abierta).
+
+HIGHLIGHTS_STATUS = PASS
+
+PRODUCT_POLISH_STATUS = PASS
+
+ESFIRE30_HIGHLIGHTS_STATUS = DEFERRED_NO_SAFE_RANKING_METRIC
+
+HIGHLIGHTS_DERIVED = data/derived/spain/national-highlights-v1/ (manifest 794 B; EGIF payload 343708 B raw / 17011 B gzip; 646887 registros fuente comprobados; sin DETAIL ni geometría).
+
+MAP_CONTEXT = BDLJE same-origin reutilizado; costa/fondo/límites bajo incendios, selección territorial enfatizada y nombre del ámbito visible; sin nuevo asset cartográfico.
+
+LOCAL_CONTEXT_SUFFICIENT = false
+
+BASEMAP_STATUS = PENDING_USER_DECISION
+
+ROADS_STATUS = P1_OPTIONAL
+
+HISTOGRAM_BRUSH_STATUS = DEFERRED_P1
+
+BASEMAP_OPTIONS_AUDITED = Protomaps PMTiles autoalojado; OpenFreeMap público; MapTiler Cloud. Ninguno seleccionado ni incorporado.
+
+CHROMIUM_SMOKES = 10/10 directed PASS + Spain final cache/detail recheck PASS; desktop + exact 390x844 mobile.
+
+TARGETED_TESTS = 7 JS assertions + 3 Python tests + national frontend build/check PASS
+
+TECHNICAL_RUNTIME_REGRESSION = false
+
+PRODUCT_RELEASE_CANDIDATE = false
+
+D5_STATUS = PAUSED_FOR_PRODUCT_RECONCILIATION
+
+RESULTS_PATH = ES_4E3C2_NATIONAL_HIGHLIGHTS_MAP_POLISH.md; data/audit/product/es4e3c2_national_highlights_map_polish.json
+
+NEXT_PHASE = ES-4E3C2_BASEMAP_DECISION

@@ -53,6 +53,13 @@ export const LOCAL_ASSET_CONFIG = Object.freeze({
         required: true,
       },
     },
+    highlights: {
+      manifest: {
+        logical_id: "national-highlights-v1",
+        path: "/data/derived/spain/national-highlights-v1/manifest.json",
+        required: true,
+      },
+    },
   },
 });
 
