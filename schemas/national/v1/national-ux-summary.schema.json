@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://atlas-incendios.example/schemas/national/v1/national-ux-summary.schema.json",
+  "title": "national-ux-summary-v1 asset",
+  "type": "object",
+  "required": ["schema_version", "dataset_version", "scope", "territories"],
+  "properties": {
+    "schema_version": {"const": "national-ux-summary-v1"},
+    "dataset_version": {"type": "string"},
+    "scope": {"enum": ["territory", "municipalities_by_parent"]},
+    "parent_id": {"type": "string"},
+    "territories": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["territory", "source_summaries"],
+        "properties": {
+          "territory": {
+            "type": "object",
+            "required": ["territory_id", "territory_type", "official_name", "parent_id"]
+          },
+          "source_summaries": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["source_id", "entity_type", "coverage", "year_axis", "metrics"],
+              "properties": {
+                "source_id": {"enum": ["egif", "esfire30", "icv", "effis"]},
+                "coverage": {
+                  "type": "object",
+                  "required": ["from", "to", "status"],
+                  "properties": {
+                    "from": {"type": "integer"},
+                    "to": {"type": "integer"},
+                    "status": {"enum": ["available", "no_source_coverage"]}
+                  }
+                },
+                "metrics": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "required": ["metric_id", "unit", "values"],
+                    "properties": {
+                      "metric_id": {"type": "string"},
+                      "unit": {"type": "string"},
+                      "values": {"type": "array", "items": {"type": ["number", "null"]}}
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

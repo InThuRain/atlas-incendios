@@ -419,3 +419,37 @@ TARGETED_TESTS = 12 PASS (E3A shell + D2 extraction + D3C permalink compatibilit
 RESULTS_PATH = ES_4E3A_NATIONAL_PRODUCT_SHELL.md; data/audit/product/es4e3a_national_product_shell.json
 
 NEXT_PHASE = ES-4E3B_NATIONAL_METRICS_HISTOGRAM
+
+PHASE = ES-4E3B1
+
+STATUS = DONE (`national-ux-summary-v1` determinista construido exclusivamente desde derivados aceptados; 122 payloads + manifest, series anuales tipadas por fuente y territorio, sin cambios de UI/runtime/artifact D4B).
+
+UX_SUMMARY_STATUS = PASS
+
+HISTOGRAM_DATA_STATUS = READY_FOR_UI
+
+OUTPUT_ROOT = data/derived/spain/national-ux-summary-v1/
+
+OUTPUT_PHYSICAL_FILE_COUNT = 123
+
+OUTPUT_BYTES = 17255181
+
+OUTPUT_GZIP_BYTES = 930003
+
+OUTPUT_FINGERPRINT = 2546247b68ef8e27fed3334cf5fb4a027056f094e36420213080c431bfb850e4
+
+SOURCE_RECONCILIATION = EGIF 646887; ESFire30 119498; ICV 13738 records / 13739 geometries; EFFIS 2025=9 / 2026=16
+
+DEFERRED_METRICS = ESFire30 mapped area (no territorial sum safe); EGIF canonical causes (MITECO ontology); highlights/top-N (E3C)
+
+PRODUCT_RELEASE_CANDIDATE = false
+
+D5_STATUS = PAUSED_FOR_PRODUCT_RECONCILIATION
+
+NEXT_COMMAND = python3 scripts/build_national_ux_summary.py
+
+NEXT_CHECK_COMMAND = python3 scripts/build_national_ux_summary.py --check
+
+RESULTS_PATH = ES_4E3B1_NATIONAL_UX_SUMMARY_DERIVED_DATA.md; data/audit/product/es4e3b1_national_ux_summary.json
+
+NEXT_PHASE = ES-4E3B2_NATIONAL_METRICS_HISTOGRAM_UI
