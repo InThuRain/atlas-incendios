@@ -1,4 +1,6 @@
 import { NATIONAL_SOURCE_REGISTRY } from "./source-registry.mjs";
+import { NationalUxSummaryLoader } from "./ux-summary-loader.mjs";
+import { createMetricsHistogramUi } from "./metrics-histogram.mjs";
 
 const GVA_ID = "ES:CCAA:10";
 const ESFIRE30_NO_TERRITORY_COVERAGE = new Set([
@@ -131,39 +133,6 @@ function buildLegend(state, view) {
   }
 }
 
-function syncSummary(runtime, state) {
-  const status = document.querySelector("#egif-human-status");
-  const metrics = document.querySelector("#egif-human-metrics");
-  const cards = document.querySelector("#summary-cards");
-  if (!status || !metrics || !cards) return;
-  const result = runtime.getEgifResult ? runtime.getEgifResult() : null;
-  cards.replaceChildren(); metrics.replaceChildren(); metrics.hidden = true;
-  if (!state.egif_visible) { status.textContent = "Los registros administrativos están ocultos."; return; }
-  if (!overlaps(state.from, state.to, NATIONAL_SOURCE_REGISTRY.egif.coverage)) { status.textContent = "No disponemos de registros EGIF para este periodo."; return; }
-  if (!result) { status.textContent = "Cargando registros administrativos…"; return; }
-  if (result.status === "error") { status.textContent = "No se han podido cargar los registros administrativos. El mapa sigue disponible."; return; }
-  const summary = result.summary || {};
-  const records = Number(summary.records);
-  if (summary.records == null || !Number.isFinite(records)) { status.textContent = "Cargando registros administrativos…"; return; }
-  status.textContent = `${formatNumber(records)} registros administrativos de incendios en el periodo seleccionado.`;
-  const countCard = document.createElement("article"); countCard.className = "summary-card";
-  const count = document.createElement("strong"); count.textContent = formatNumber(records);
-  const countLabel = document.createElement("span"); countLabel.textContent = "Registros administrativos · EGIF";
-  countCard.append(count, countLabel); cards.append(countCard);
-  const known = Number(summary.records_with_known_forest_area);
-  const area = Number(summary.known_forest_area_sum);
-  if (Number.isFinite(known) && known > 0 && Number.isFinite(area)) {
-    const areaCard = document.createElement("article"); areaCard.className = "summary-card";
-    const areaValue = document.createElement("strong"); areaValue.textContent = `${formatNumber(area, 2)} ha`;
-    const areaLabel = document.createElement("span"); areaLabel.textContent = "Superficie forestal declarada conocida · EGIF";
-    areaCard.append(areaValue, areaLabel); cards.append(areaCard);
-    appendMetric(metrics, "Registros con superficie conocida", `${formatNumber(known)} de ${formatNumber(records)}`);
-  }
-  const gif = Number(summary.administrative_gif);
-  if (summary.administrative_gif != null && Number.isFinite(gif)) appendMetric(metrics, "Grandes incendios administrativos (GIF)", formatNumber(gif));
-  if (metrics.children.length) metrics.hidden = false;
-}
-
 const HUMAN_FIELD_PATTERNS = [
   /^año$/i, /^fecha de inicio$/i, /^fecha de extinción$/i, /^fecha effis$/i, /^fecha final effis$/i,
   /^ccaa$/i, /^provincia/i, /^municipio$/i, /^municipio declarado/i, /^paraje/i,
@@ -212,7 +181,7 @@ function syncDetailsAccessibility(runtime) {
   if (runtime.map && runtime.map.resize) runtime.map.resize();
 }
 
-function syncPublicUi(runtime) {
+function syncPublicUi(runtime, metricsUi = null) {
   const state = runtime.getState();
   const territory = currentTerritoryName();
   const period = state.from === state.to ? String(state.from) : `${state.from}–${state.to}`;
@@ -232,7 +201,7 @@ function syncPublicUi(runtime) {
   const territoryStatus = document.querySelector("#territory-status");
   const territoryInternal = territoryStatus ? territoryStatus.textContent : "";
   document.querySelector("#territory-public-status").textContent = publicRuntimeMessage(territoryInternal);
-  syncSummary(runtime, state);
+  if (metricsUi) metricsUi.update(state, view);
   buildLegend(state, view);
   syncSelections();
 }
@@ -256,8 +225,11 @@ function waitUntil(predicate, timeoutMs = 30000) {
   });
 }
 
-export function initNationalProductShell(runtime = globalThis.__es4cRuntime) {
+export function initNationalProductShell(runtime = globalThis.__es4cRuntime, config = globalThis.__ATLAS_NATIONAL_RUNTIME_CONFIG__) {
   if (!runtime) throw new Error("El runtime nacional no está disponible");
+  const summaryManifest = config && config.assets && config.assets.ux_summary && config.assets.ux_summary.manifest && config.assets.ux_summary.manifest.path;
+  const summaryLoader = new NationalUxSummaryLoader({ manifestUrl: summaryManifest });
+  const metricsUi = createMetricsHistogramUi({ runtime, loader: summaryLoader });
   const initialUrlHadState = location.hash.length > 1;
   let sourceChoiceIsManual = initialUrlHadState;
   let recommendationGeneration = 0;
@@ -267,7 +239,7 @@ export function initNationalProductShell(runtime = globalThis.__es4cRuntime) {
     setTimeout(async () => {
       if (generation !== recommendationGeneration || sourceChoiceIsManual) return;
       await applyRecommendedVisibility(runtime);
-      syncPublicUi(runtime);
+      syncPublicUi(runtime, metricsUi);
     }, 30);
   };
 
@@ -279,27 +251,28 @@ export function initNationalProductShell(runtime = globalThis.__es4cRuntime) {
   if (applyYears) applyYears.addEventListener("click", scheduleRecommendation);
   document.querySelectorAll("details").forEach((details) => details.addEventListener("toggle", () => syncDetailsAccessibility(runtime)));
   window.addEventListener("resize", () => { if (runtime.map && runtime.map.resize) runtime.map.resize(); });
-  window.addEventListener("hashchange", () => { sourceChoiceIsManual = true; setTimeout(() => syncPublicUi(runtime), 50); });
-  window.addEventListener("popstate", () => { sourceChoiceIsManual = true; setTimeout(() => syncPublicUi(runtime), 50); });
+  window.addEventListener("hashchange", () => { sourceChoiceIsManual = true; setTimeout(() => syncPublicUi(runtime, metricsUi), 50); });
+  window.addEventListener("popstate", () => { sourceChoiceIsManual = true; setTimeout(() => syncPublicUi(runtime, metricsUi), 50); });
 
   const watched = ["#source-coverage", "#runtime-state-summary", "#egif-status", "#egif-detail-fields", "#icv-detail-fields", "#effis-detail-fields", "#selection-summary"]
     .map((selector) => document.querySelector(selector)).filter(Boolean);
-  const observer = new MutationObserver(() => syncPublicUi(runtime));
+  const observer = new MutationObserver(() => syncPublicUi(runtime, metricsUi));
   watched.forEach((node) => observer.observe(node, { childList: true, subtree: true, characterData: true }));
   syncDetailsAccessibility(runtime);
-  syncPublicUi(runtime);
+  syncPublicUi(runtime, metricsUi);
 
   if (!initialUrlHadState) {
     waitUntil(() => location.hash.startsWith("#es4c-state-v1=")).then(() => {
       scheduleRecommendation();
-      syncPublicUi(runtime);
+      syncPublicUi(runtime, metricsUi);
     });
   }
   globalThis.__nationalProductShell = {
     recommendedView: () => recommendedView(runtime.getState()),
-    sync: () => syncPublicUi(runtime),
+    sync: () => syncPublicUi(runtime, metricsUi),
+    metrics: metricsUi,
     sourceChoiceIsManual: () => sourceChoiceIsManual,
-    destroy: () => observer.disconnect(),
+    destroy: () => { observer.disconnect(); metricsUi.destroy(); },
   };
   return globalThis.__nationalProductShell;
 }

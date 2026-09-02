@@ -1,0 +1,126 @@
+{
+  "phase": "ES-4E3B2",
+  "summary_contract": {
+    "schema_version": "national-ux-summary-v1",
+    "fingerprint": "2546247b68ef8e27fed3334cf5fb4a027056f094e36420213080c431bfb850e4",
+    "modified": false
+  },
+  "loader": {
+    "manifest_driven": true,
+    "policy": {
+      "spain": "national.json",
+      "autonomous_community": "one CCAA payload",
+      "province": "one province payload",
+      "municipality": "one parent province/autonomous-city shard"
+    },
+    "cache": "completed payload by manifest path",
+    "cancellation": "AbortController plus generation token",
+    "error_isolation": true,
+    "all_payloads_loaded_at_start": false
+  },
+  "metric_cards": {
+    "maximum_primary": 4,
+    "cross_source_total": false,
+    "ordering": "recommended source count, other applicable source counts, then safe areas",
+    "secondary": ["egif_administrative_gif_count", "icv_gif_count", "icv_perimeter_count", "known/unknown surface coverage"]
+  },
+  "histogram": {
+    "implementation": "accessible DOM/CSS",
+    "single_visible_series": true,
+    "global_axis": [1968, 2026],
+    "years": 59,
+    "stacked_sources": false,
+    "year_click": "from=to=year through runtime.applyYears",
+    "drag_range": "P1_NOT_IMPLEMENTED",
+    "external_period_sync": true,
+    "explicit_series_preserved_while_available": true,
+    "invalid_series_fallback": "deterministic",
+    "series_serialized": false
+  },
+  "series": [
+    "egif_record_count",
+    "egif_declared_forest_area_ha",
+    "esfire30_perimeter_count",
+    "icv_fire_record_count",
+    "icv_declared_forest_area_ha",
+    "effis_perimeter_count",
+    "effis_mapped_area_ha"
+  ],
+  "human_labels": {
+    "internal_metric_ids_visible": false,
+    "source_always_shown": true,
+    "spanish_number_grouping": true,
+    "effis_2026_snapshot_warning": true
+  },
+  "zero_vs_missing": {
+    "covered_zero": "zero",
+    "outside_coverage": "gap",
+    "no_source_coverage": "no card and human availability message",
+    "unknown_surface_is_zero": false
+  },
+  "territory_behavior": {
+    "spain": "national payload",
+    "galicia": "CCAA payload",
+    "ourense": "province payload",
+    "elx": "ES-PROV-03 municipality shard",
+    "cangas_del_narcea": "ES-PROV-33 municipality shard"
+  },
+  "time_behavior": {
+    "same_source_metric_years_may_sum": true,
+    "cross_source_sum": false,
+    "requested_range_preserved": true,
+    "gap_is_not_zero": true
+  },
+  "accessibility": {
+    "tablist": true,
+    "keyboard_year_buttons": true,
+    "aria_labels": true,
+    "live_tooltip": true,
+    "annual_table_alternative": true,
+    "range_not_color_only": true
+  },
+  "mobile": {
+    "viewport": "390x844 emulated",
+    "scenarios": ["Spain 1995", "Elx 2025"],
+    "map_first_viewport": true,
+    "horizontal_histogram_scroll_required": false,
+    "status": "PASS"
+  },
+  "smokes": {
+    "count": 13,
+    "desktop": 11,
+    "mobile": 2,
+    "status": "PASS",
+    "scenarios": ["Spain 1968-2026", "Spain 1975", "Spain 1995", "Galicia 1995", "Ourense 1995", "GVA 1995", "GVA 2024", "GVA 2026", "Elx 2025", "Cangas del Narcea", "Canarias 1995", "mobile Spain 1995", "mobile Elx 2025"],
+    "year_click": "PASS",
+    "source_switch": "PASS",
+    "copy_link": "PASS_WITH_HEADLESS_FALLBACK",
+    "runtime_errors": 0
+  },
+  "performance": {
+    "diagnostic_only": true,
+    "summary_visible_ms": {"min": 1731.04, "median": 2524.30, "max": 7221.32},
+    "includes_runtime_and_source_initialization": true,
+    "final_payload_gzip_bytes": {"min": 911, "max": 19932},
+    "manifest_raw_bytes": 80149,
+    "all_summary_payloads_downloaded": false
+  },
+  "product_comparison": {
+    "overview_gap_vs_gva": "SUBSTANTIALLY_CLOSED",
+    "counts": "SOURCE_TYPED_AND_VISIBLE",
+    "surface": "SAFE_SOURCE_SPECIFIC_METRICS_VISIBLE",
+    "timeline": "FUNCTIONAL_SINGLE_SERIES",
+    "technical_noise": "SECONDARY",
+    "remaining": ["filters", "highlights", "final human cards", "basemap"]
+  },
+  "status": {
+    "metrics_ui": "PASS",
+    "histogram_ui": "PASS",
+    "product_overview": "PASS",
+    "technical_runtime_regression": false,
+    "product_release_candidate": false,
+    "d5": "PAUSED_FOR_PRODUCT_RECONCILIATION",
+    "basemap_gap": true,
+    "next_phase": "ES-4E3C_NATIONAL_FILTERS_HIGHLIGHTS_DETAILS"
+  }
+}

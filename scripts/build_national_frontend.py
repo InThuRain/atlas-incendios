@@ -51,6 +51,8 @@ FRONTEND_FILES = (
     "bootstrap.js",
     "styles.css",
     "product-shell.mjs",
+    "ux-summary-loader.mjs",
+    "metrics-histogram.mjs",
     "source-registry.mjs",
 )
 
@@ -102,6 +104,14 @@ def production_config() -> dict:
             "esfire30_municipality_indexes": {
                 "root": {"path": "data/esfire30/v1/municipality-index", "required": True},
                 "manifest": {"path": "data/esfire30/v1/municipality-index/manifest.json", "required": True},
+            },
+            "ux_summary": {
+                "manifest": {
+                    "logical_id": "national-ux-summary-v1",
+                    "path": "data/summary/national-ux-summary-v1/manifest.json",
+                    "schema_version": "national-ux-summary-v1",
+                    "required": True,
+                },
             },
         },
     }
@@ -194,6 +204,9 @@ def check(output: Path) -> dict:
         failures.append("logical PMTiles config")
     if pmtiles.get("path", "").startswith(("http://", "https://")):
         failures.append("PMTiles host-specific path")
+    summary = config.get("assets", {}).get("ux_summary", {}).get("manifest", {})
+    if summary.get("schema_version") != "national-ux-summary-v1" or summary.get("path", "").startswith(("http://", "https://", "/home/")):
+        failures.append("logical UX summary config")
     try:
         output_label = str(output.relative_to(ROOT))
     except ValueError:

@@ -67,6 +67,15 @@ p { line-height: 1.45; }
 .summary-card { min-width: 0; padding: .72rem; border: 1px solid var(--line); border-radius: .45rem; background: #fff; }
 .summary-card strong { display: block; font-size: 1.25rem; font-variant-numeric: tabular-nums; line-height: 1.15; }
 .summary-card span { display: block; margin-top: .22rem; color: var(--muted); font-size: .74rem; line-height: 1.3; }
+.summary-card__source { display: block; margin-top: .38rem; color: var(--forest-dark); font-size: .66rem; font-weight: 750; }
+.summary-card--icv { border-top: 3px solid #2d714f; }
+.summary-card--esfire30 { border-top: 3px solid #9a6428; }
+.summary-card--effis { border-top: 3px dashed #684c9b; }
+.summary-card--egif { border-top: 3px solid #65766b; }
+.summary-status { margin: .5rem 0 0; color: var(--muted); font-size: .75rem; }
+.summary-more-data { margin-top: .6rem; border: 1px solid var(--line); border-radius: .4rem; background: #fafbfa; }
+.summary-more-data > summary { min-height: 2.75rem; display: flex; align-items: center; padding: .5rem .65rem; color: var(--forest-dark); font-size: .78rem; font-weight: 750; }
+.summary-more-data > dl { margin: 0; padding: 0 .65rem .65rem; }
 .source-tag { display: inline-block; margin-left: .2rem; padding: .12rem .32rem; border-radius: .25rem; color: #355343; background: #e9f1eb; font-size: .63rem; letter-spacing: .04em; vertical-align: .08rem; }
 .egif-summary { margin-top: .75rem; padding: .75rem; border: 1px solid var(--line); border-radius: .45rem; }
 .egif-summary p { margin-bottom: .45rem; }
@@ -78,6 +87,26 @@ p { line-height: 1.45; }
 .provisional-note { padding: .5rem; border-left: 3px solid #8a6eb0; background: #f4f0f8; }
 
 .slot-surface { min-height: 4rem; display: grid; place-items: center; padding: .8rem; border: 1px dashed #b7c3bb; border-radius: .45rem; color: var(--muted); background: #fafbfa; font-size: .82rem; text-align: center; }
+.histogram-panel { padding: .68rem; border: 1px solid var(--line); border-radius: .45rem; background: #fafbfa; }
+.histogram-tabs { display: flex; flex-wrap: wrap; gap: .3rem; }
+.histogram-tab { min-height: 2.25rem; padding: .35rem .52rem; border: 1px solid #b7c5bc; border-radius: 999px; color: #3b4b42; background: #fff; font-size: .7rem; font-weight: 700; }
+.histogram-tab[aria-selected="true"] { border-color: var(--forest); color: #fff; background: var(--forest); }
+.histogram-status { margin: .55rem 0 .35rem; color: var(--muted); font-size: .72rem; }
+.histogram-plot { position: relative; }
+.histogram-chart { display: grid; grid-template-columns: repeat(59, minmax(0, 1fr)); align-items: end; gap: 1px; height: 9rem; padding: .35rem .2rem 0; border-bottom: 1px solid #87958c; background: repeating-linear-gradient(to top, transparent 0, transparent calc(25% - 1px), #e3e8e4 25%); }
+.histogram-bar { position: relative; align-self: stretch; min-width: 0; min-height: 0; height: 100%; padding: 0; border: 0; border-radius: 1px 1px 0 0; background: transparent; }
+.histogram-bar::after { content: ""; position: absolute; right: 0; bottom: 0; left: 0; height: var(--bar-size); min-height: 0; border-radius: 1px 1px 0 0; background: #567765; }
+.histogram-bar--zero::after { height: 2px; background: #567765; }
+.histogram-bar--gap, .histogram-bar--unknown { background: repeating-linear-gradient(135deg, transparent 0 3px, rgb(115 127 120 / .16) 3px 5px); }
+.histogram-bar.is-in-range { box-shadow: inset 0 0 0 1px #1d5a43; background-color: rgb(50 111 79 / .1); }
+.histogram-bar:hover::after, .histogram-bar:focus-visible::after { background: #b86428; }
+.histogram-bar:focus-visible { z-index: 2; outline-width: 2px; outline-offset: 0; }
+.histogram-ticks { display: grid; grid-template-columns: repeat(59, minmax(0, 1fr)); min-height: 1.25rem; color: var(--muted); font-size: .56rem; }
+.histogram-ticks span { overflow: visible; white-space: nowrap; transform: translateX(-.15rem); }
+.histogram-tooltip { display: block; min-height: 2.6rem; margin-top: .25rem; padding: .38rem .48rem; border-radius: .3rem; color: #35453b; background: #edf2ee; font-size: .72rem; line-height: 1.35; }
+.histogram-table-details { margin-top: .35rem; font-size: .72rem; }
+.histogram-table-details > summary { min-height: 2.25rem; display: flex; align-items: center; color: var(--forest-dark); font-weight: 700; }
+.histogram-table-details .record-table-wrap { max-height: 13rem; }
 .egif-record-browser, .human-detail { padding: .75rem; border: 1px solid var(--line); border-radius: .45rem; background: #fff; }
 .results-section > section + section { margin-top: .75rem; }
 .inline-tool, .more-data { margin: .55rem 0; border: 1px solid var(--line); border-radius: .35rem; background: #fafbfa; }
@@ -127,6 +156,8 @@ p { line-height: 1.45; }
   .map-legend li { font-size: .65rem; }
   .explorer-panel { grid-row: 3; grid-column: 1; overflow: visible; padding: .85rem .75rem 2rem; border-left: 0; }
   .summary-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .histogram-chart { height: 7.5rem; }
+  .histogram-tab { flex: 1 1 44%; }
   .scope-filter, .year-filter { padding: .55rem; }
   .record-lookup { grid-template-columns: 1fr; }
   .human-metrics, .human-detail-fields { grid-template-columns: 1fr; gap: .05rem; }

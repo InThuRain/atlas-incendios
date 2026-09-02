@@ -453,3 +453,35 @@ NEXT_CHECK_COMMAND = python3 scripts/build_national_ux_summary.py --check
 RESULTS_PATH = ES_4E3B1_NATIONAL_UX_SUMMARY_DERIVED_DATA.md; data/audit/product/es4e3b1_national_ux_summary.json
 
 NEXT_PHASE = ES-4E3B2_NATIONAL_METRICS_HISTOGRAM_UI
+
+PHASE = ES-4E3B2
+
+STATUS = DONE (national-ux-summary-v1 integrado de forma lazy; tarjetas humanas tipadas e histograma anual funcional de una sola serie; sin filtros, destacados, ficha final ni basemap nuevo).
+
+METRICS_UI_STATUS = PASS
+
+HISTOGRAM_UI_STATUS = PASS
+
+PRODUCT_OVERVIEW_STATUS = PASS
+
+SUMMARY_LOAD_POLICY = Spain national.json; CCAA one CCAA payload; province one province payload; municipality one parent shard.
+
+SUMMARY_CACHE_CANCELLATION = completed assets cached by manifest path; AbortController + generation token; error isolated from map/runtime.
+
+HISTOGRAM_INTERACTION = one source/metric at a time; global 1968-2026 axis; click year updates canonical from/to; drag range deferred P1.
+
+CHROMIUM_SMOKES = 13/13 PASS (11 desktop + Spain/Elx exact 390x844 mobile; year click, source switch and copy-link fallback included).
+
+TARGETED_TESTS = 5 PASS
+
+TECHNICAL_RUNTIME_REGRESSION = false
+
+BASEMAP_GAP = no approved local basemap; unchanged and deferred.
+
+PRODUCT_RELEASE_CANDIDATE = false
+
+D5_STATUS = PAUSED_FOR_PRODUCT_RECONCILIATION
+
+RESULTS_PATH = ES_4E3B2_NATIONAL_METRICS_HISTOGRAM_UI.md; data/audit/product/es4e3b2_national_metrics_histogram_ui.json
+
+NEXT_PHASE = ES-4E3C_NATIONAL_FILTERS_HIGHLIGHTS_DETAILS

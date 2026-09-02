@@ -18,7 +18,7 @@ async function bootstrap() {
   // el nuevo entrypoint no depende de su HTML ni de su bootstrap experimental.
   await import(new URL(config.runtime_entry, import.meta.url));
   const { initNationalProductShell } = await import("./product-shell.mjs");
-  initNationalProductShell(globalThis.__es4cRuntime);
+  initNationalProductShell(globalThis.__es4cRuntime, config);
 }
 
 bootstrap().catch((error) => {

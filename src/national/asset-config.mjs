@@ -46,6 +46,13 @@ export const LOCAL_ASSET_CONFIG = Object.freeze({
       shards_root: { path: "/data/derived/spain/es4c2a3/municipalities", required: false },
     },
     esfire30_municipality_indexes: { root: { path: "/data/derived/spain/es4c2b/runtime/municipality-index", required: false } },
+    ux_summary: {
+      manifest: {
+        logical_id: "national-ux-summary-v1",
+        path: "/data/derived/spain/national-ux-summary-v1/manifest.json",
+        required: true,
+      },
+    },
   },
 });
 

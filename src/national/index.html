@@ -55,12 +55,16 @@
             <p id="recommended-view-copy">Preparando las fuentes adecuadas para este territorio y periodo…</p>
           </div>
           <div id="summary-cards" class="summary-cards" aria-live="polite"></div>
+          <p id="summary-loading-status" class="summary-status" aria-live="polite">Cargando el resumen de este territorio…</p>
           <p id="human-coverage-message" class="public-message" aria-live="polite"></p>
 
-          <div class="egif-summary" aria-live="polite">
-            <h3>Registros administrativos de incendios <span class="source-tag">EGIF</span></h3>
+          <details id="summary-more-data" class="summary-more-data" hidden>
+            <summary>Más datos del periodo</summary>
+            <dl id="summary-secondary-metrics" class="human-metrics"></dl>
+          </details>
+          <div class="egif-summary" aria-live="polite" hidden>
             <p id="egif-human-status">Preparando los registros disponibles…</p>
-            <dl id="egif-human-metrics" class="human-metrics" hidden></dl>
+            <dl id="egif-human-metrics" class="human-metrics"></dl>
             <p class="independence-note">Los registros administrativos y los perímetros cartografiados son conjuntos independientes: no se suman ni implican una correspondencia automática.</p>
             <div class="runtime-diagnostics" hidden aria-hidden="true">
               <p id="egif-status">Preparando resumen…</p><dl id="egif-metrics" hidden></dl>
@@ -70,7 +74,16 @@
 
         <section id="timeline-slot" class="product-slot" aria-labelledby="timeline-title" data-status="awaiting-data">
           <div class="section-heading"><div><span class="section-kicker">Evolución</span><h2 id="timeline-title">A lo largo del tiempo</h2></div></div>
-          <div id="timeline-source-slot" class="slot-surface" role="status">La serie temporal aún no está disponible para esta vista.</div>
+          <div id="timeline-source-slot" class="histogram-panel">
+            <div id="histogram-series-tabs" class="histogram-tabs" role="tablist" aria-label="Métrica y fuente de la evolución anual"></div>
+            <p id="histogram-status" class="histogram-status" aria-live="polite">Cargando la evolución anual…</p>
+            <div class="histogram-plot" aria-labelledby="timeline-title histogram-status">
+              <div id="histogram-chart" class="histogram-chart"></div>
+              <div id="histogram-ticks" class="histogram-ticks" aria-hidden="true"></div>
+            </div>
+            <output id="histogram-tooltip" class="histogram-tooltip" aria-live="polite">Selecciona o enfoca un año para consultar su valor.</output>
+            <details class="histogram-table-details"><summary>Ver datos anuales en tabla</summary><div class="record-table-wrap"><table><thead><tr><th>Año</th><th>Valor y fuente</th></tr></thead><tbody id="histogram-data-body"></tbody></table></div></details>
+          </div>
         </section>
 
         <section id="filters-slot" class="product-slot" aria-labelledby="filters-title" data-status="awaiting-contract">
