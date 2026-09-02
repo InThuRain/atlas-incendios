@@ -37,6 +37,7 @@ RUNTIME_FILES = (
     "municipality_esfire_index.mjs",
     "icv_loader.mjs",
     "effis_loader.mjs",
+    "source_filters.mjs",
     "compat_gva_v1.mjs",
 )
 # PMTiles 4.3.0 conserva una importación ESM relativa a fflate. Se entrega
@@ -53,6 +54,8 @@ FRONTEND_FILES = (
     "product-shell.mjs",
     "ux-summary-loader.mjs",
     "metrics-histogram.mjs",
+    "safe-filters.mjs",
+    "human-details.mjs",
     "source-registry.mjs",
 )
 

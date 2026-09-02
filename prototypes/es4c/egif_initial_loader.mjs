@@ -1,3 +1,5 @@
+import { canonicalFilters, filterStateKey, recordMatchesSourceFilters } from "./source_filters.mjs";
+
 /**
  * Cargador columnar INITIAL para el laboratorio ES-4C.
  *
@@ -18,7 +20,7 @@ export function assetsForScope(manifest, territoryId, fromYear, toYear) {
     .sort((left, right) => left.from_year - right.from_year || left.asset_id.localeCompare(right.asset_id));
 }
 
-export function manifestSummary(manifest, fromYear, toYear) {
+export function manifestSummary(manifest, fromYear, toYear, filters = []) {
   const assets = manifest.assets.filter((asset) => asset.source_id === "egif" && asset.status === "complete"
     && asset.from_year <= toYear && asset.to_year >= fromYear);
   let records = 0;
@@ -35,10 +37,13 @@ export function manifestSummary(manifest, fromYear, toYear) {
     asset_count: assets.length,
     blocks: blocksIntersecting(manifest.temporal_blocks, fromYear, toYear),
     note: "Resumen de manifest: España no materializa INITIAL en esta fase.",
+    filters: canonicalFilters(filters),
+    filter_key: filterStateKey(filters),
+    filtered_summary_mode: filters.length ? "UNFILTERED_WITH_EXPLICIT_LABEL" : "EXACT_DERIVED",
   };
 }
 
-export function summarizeInitialAssets(loadedAssets, fromYear, toYear, provinceId = null, municipalityId = null) {
+export function summarizeInitialAssets(loadedAssets, fromYear, toYear, provinceId = null, municipalityId = null, filters = []) {
   const summary = {
     source_id: "egif",
     entity_label: "partes EGIF",
@@ -50,6 +55,7 @@ export function summarizeInitialAssets(loadedAssets, fromYear, toYear, provinceI
     municipality_resolved: 0,
     municipality_unresolved: 0,
     annual: {},
+    annual_metrics: {},
     asset_count: loadedAssets.length,
     lookup_entries: 0,
     raw_bytes: 0,
@@ -65,9 +71,16 @@ export function summarizeInitialAssets(loadedAssets, fromYear, toYear, provinceI
       if (year < fromYear || year > toYear) continue;
       if (provinceId && columns.province_id[ordinal] !== provinceId) continue;
       if (municipalityId && columns.municipality_id[ordinal] !== municipalityId) continue;
+      const row = {
+        reported_forest_area_ha: columns.reported_forest_area_ha[ordinal],
+        is_gif_forest_ge_500_ha: columns.is_gif_forest_ge_500_ha[ordinal],
+      };
+      if (!recordMatchesSourceFilters("egif", row, filters)) continue;
       summary.records += 1;
       summary.annual[year] = (summary.annual[year] || 0) + 1;
-      if (columns.is_gif_forest_ge_500_ha[ordinal] === true) summary.administrative_gif += 1;
+      const annual = summary.annual_metrics[year] || { records: 0, administrative_gif: 0, known_forest_area_sum: 0, known_forest_area: 0, unknown_forest_area: 0 };
+      annual.records += 1;
+      if (columns.is_gif_forest_ge_500_ha[ordinal] === true) { summary.administrative_gif += 1; annual.administrative_gif += 1; }
       if (columns.municipality_id[ordinal] == null) summary.municipality_unresolved += 1;
       else summary.municipality_resolved += 1;
       const forestArea = columns.reported_forest_area_ha[ordinal];
@@ -75,7 +88,10 @@ export function summarizeInitialAssets(loadedAssets, fromYear, toYear, provinceI
         // Cero es una observación conocida; null/unknown no se convierte en 0.
         summary.known_forest_area_sum += forestArea;
         summary.records_with_known_forest_area += 1;
-      } else summary.records_with_unknown_forest_area += 1;
+        annual.known_forest_area_sum += forestArea;
+        annual.known_forest_area += 1;
+      } else { summary.records_with_unknown_forest_area += 1; annual.unknown_forest_area += 1; }
+      summary.annual_metrics[year] = annual;
     }
     summary.lookup_entries += loaded.lookup.size;
     summary.raw_bytes += loaded.metrics.raw_bytes;
@@ -83,6 +99,9 @@ export function summarizeInitialAssets(loadedAssets, fromYear, toYear, provinceI
     summary.fetch_ms += loaded.metrics.fetch_ms;
     summary.parse_ms += loaded.metrics.parse_ms;
   }
+  summary.filters = canonicalFilters(filters);
+  summary.filter_key = filterStateKey(filters);
+  summary.filtered_summary_mode = "EXACT_RUNTIME";
   return summary;
 }
 
@@ -161,11 +180,11 @@ export class EGIFInitialLoader {
     this.activeController = null;
   }
 
-  async loadScope({ territoryId = "ES", fromYear, toYear, provinceId = null, municipalityId = null }) {
+  async loadScope({ territoryId = "ES", fromYear, toYear, provinceId = null, municipalityId = null, filters = [] }) {
     const manifest = await this.loadManifest();
     const generation = ++this.generation;
     if (this.activeController) this.activeController.abort();
-    if (territoryId === "ES") return { status: "complete", kind: "manifest_summary", summary: manifestSummary(manifest, fromYear, toYear) };
+    if (territoryId === "ES") return { status: "complete", kind: "manifest_summary", summary: manifestSummary(manifest, fromYear, toYear, filters) };
     const controller = new this.AbortControllerImpl();
     this.activeController = controller;
     const assets = assetsForScope(manifest, territoryId, fromYear, toYear);
@@ -179,7 +198,7 @@ export class EGIFInitialLoader {
         // Solo para el runtime aislado. No se serializa ni se expone como
         // resultado de depuración: conserva las columnas y lookups cargados.
         loaded_assets: loadedAssets,
-        summary: summarizeInitialAssets(loadedAssets, fromYear, toYear, provinceId, municipalityId),
+        summary: summarizeInitialAssets(loadedAssets, fromYear, toYear, provinceId, municipalityId, filters),
       };
     } catch (error) {
       if (generation !== this.generation || controller.signal.aborted || error.name === "AbortError") return { status: "stale" };

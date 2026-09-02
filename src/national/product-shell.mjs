@@ -1,6 +1,8 @@
 import { NATIONAL_SOURCE_REGISTRY } from "./source-registry.mjs";
 import { NationalUxSummaryLoader } from "./ux-summary-loader.mjs";
 import { createMetricsHistogramUi } from "./metrics-histogram.mjs";
+import { createSafeFiltersUi } from "./safe-filters.mjs";
+import { createHumanDetailsUi } from "./human-details.mjs";
 
 const GVA_ID = "ES:CCAA:10";
 const ESFIRE30_NO_TERRITORY_COVERAGE = new Set([
@@ -181,7 +183,7 @@ function syncDetailsAccessibility(runtime) {
   if (runtime.map && runtime.map.resize) runtime.map.resize();
 }
 
-function syncPublicUi(runtime, metricsUi = null) {
+function syncPublicUi(runtime, metricsUi = null, filtersUi = null, detailsUi = null) {
   const state = runtime.getState();
   const territory = currentTerritoryName();
   const period = state.from === state.to ? String(state.from) : `${state.from}–${state.to}`;
@@ -202,8 +204,9 @@ function syncPublicUi(runtime, metricsUi = null) {
   const territoryInternal = territoryStatus ? territoryStatus.textContent : "";
   document.querySelector("#territory-public-status").textContent = publicRuntimeMessage(territoryInternal);
   if (metricsUi) metricsUi.update(state, view);
+  filtersUi?.render();
   buildLegend(state, view);
-  syncSelections();
+  if (detailsUi) detailsUi.sync(); else syncSelections();
 }
 
 async function applyRecommendedVisibility(runtime) {
@@ -230,6 +233,11 @@ export function initNationalProductShell(runtime = globalThis.__es4cRuntime, con
   const summaryManifest = config && config.assets && config.assets.ux_summary && config.assets.ux_summary.manifest && config.assets.ux_summary.manifest.path;
   const summaryLoader = new NationalUxSummaryLoader({ manifestUrl: summaryManifest });
   const metricsUi = createMetricsHistogramUi({ runtime, loader: summaryLoader });
+  let detailsUi = null;
+  let filtersUi = null;
+  const syncAll = () => syncPublicUi(runtime, metricsUi, filtersUi, detailsUi);
+  detailsUi = createHumanDetailsUi({ runtime });
+  filtersUi = createSafeFiltersUi({ runtime, onChange: async () => { await metricsUi.update(runtime.getState(), recommendedView(runtime.getState()), { force: true }); syncAll(); } });
   const initialUrlHadState = location.hash.length > 1;
   let sourceChoiceIsManual = initialUrlHadState;
   let recommendationGeneration = 0;
@@ -239,7 +247,7 @@ export function initNationalProductShell(runtime = globalThis.__es4cRuntime, con
     setTimeout(async () => {
       if (generation !== recommendationGeneration || sourceChoiceIsManual) return;
       await applyRecommendedVisibility(runtime);
-      syncPublicUi(runtime, metricsUi);
+      syncAll();
     }, 30);
   };
 
@@ -251,26 +259,28 @@ export function initNationalProductShell(runtime = globalThis.__es4cRuntime, con
   if (applyYears) applyYears.addEventListener("click", scheduleRecommendation);
   document.querySelectorAll("details").forEach((details) => details.addEventListener("toggle", () => syncDetailsAccessibility(runtime)));
   window.addEventListener("resize", () => { if (runtime.map && runtime.map.resize) runtime.map.resize(); });
-  window.addEventListener("hashchange", () => { sourceChoiceIsManual = true; setTimeout(() => syncPublicUi(runtime, metricsUi), 50); });
-  window.addEventListener("popstate", () => { sourceChoiceIsManual = true; setTimeout(() => syncPublicUi(runtime, metricsUi), 50); });
+  window.addEventListener("hashchange", () => { sourceChoiceIsManual = true; setTimeout(syncAll, 50); });
+  window.addEventListener("popstate", () => { sourceChoiceIsManual = true; setTimeout(syncAll, 50); });
 
   const watched = ["#source-coverage", "#runtime-state-summary", "#egif-status", "#egif-detail-fields", "#icv-detail-fields", "#effis-detail-fields", "#selection-summary"]
     .map((selector) => document.querySelector(selector)).filter(Boolean);
-  const observer = new MutationObserver(() => syncPublicUi(runtime, metricsUi));
+  const observer = new MutationObserver(syncAll);
   watched.forEach((node) => observer.observe(node, { childList: true, subtree: true, characterData: true }));
   syncDetailsAccessibility(runtime);
-  syncPublicUi(runtime, metricsUi);
+  syncAll();
 
   if (!initialUrlHadState) {
     waitUntil(() => location.hash.startsWith("#es4c-state-v1=")).then(() => {
       scheduleRecommendation();
-      syncPublicUi(runtime, metricsUi);
+      syncAll();
     });
   }
   globalThis.__nationalProductShell = {
     recommendedView: () => recommendedView(runtime.getState()),
-    sync: () => syncPublicUi(runtime, metricsUi),
+    sync: syncAll,
     metrics: metricsUi,
+    filters: filtersUi,
+    details: detailsUi,
     sourceChoiceIsManual: () => sourceChoiceIsManual,
     destroy: () => { observer.disconnect(); metricsUi.destroy(); },
   };

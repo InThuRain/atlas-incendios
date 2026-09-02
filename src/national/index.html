@@ -87,8 +87,17 @@
         </section>
 
         <section id="filters-slot" class="product-slot" aria-labelledby="filters-title" data-status="awaiting-contract">
-          <div class="section-heading"><div><span class="section-kicker">Afinar</span><h2 id="filters-title">Filtros</h2></div></div>
-          <div id="filter-controls-slot" class="slot-surface">No hay filtros adicionales disponibles para esta vista.</div>
+          <div class="section-heading"><div><span class="section-kicker">Afinar</span><h2 id="filters-title">Filtros por fuente</h2></div><button id="open-filters" class="filter-open" type="button" aria-expanded="false" aria-controls="filter-panel">Filtros</button></div>
+          <div id="active-filter-chips" class="filter-chips" aria-label="Filtros activos"></div>
+          <p class="independence-note">Cada filtro modifica únicamente los datos de la fuente indicada.</p>
+          <section id="filter-panel" class="filter-panel" aria-labelledby="filter-panel-title" hidden tabindex="-1">
+            <header><h3 id="filter-panel-title">Afinar resultados</h3><button id="close-filters" type="button" aria-label="Cerrar filtros">Cerrar</button></header>
+            <form id="safe-filter-form">
+              <div id="safe-filter-groups"></div>
+              <div class="filter-actions"><button class="filter-apply" type="submit">Aplicar filtros</button><button id="clear-filters" type="button" hidden>Limpiar filtros</button></div>
+            </form>
+            <p id="filter-status" class="filter-status" aria-live="polite"></p>
+          </section>
         </section>
 
         <section class="results-section" aria-labelledby="results-title">
@@ -101,32 +110,31 @@
               <summary>Buscar por identificador</summary>
               <form id="egif-record-lookup" class="record-lookup"><label>Identificador del registro <input id="egif-record-id" type="search" placeholder="egif-record:…" autocomplete="off"></label><button type="submit">Abrir ficha</button></form>
             </details>
-            <div class="record-table-wrap"><table><thead><tr><th>Año</th><th>Registro</th><th>Provincia</th><th>Municipio</th><th>Sup. forestal</th><th>GIF</th></tr></thead><tbody id="egif-record-rows"></tbody></table></div>
+            <div class="record-table-wrap"><table><thead><tr><th>Año</th><th>Ficha</th><th>Superficie forestal</th><th>GIF</th></tr></thead><tbody id="egif-record-rows"></tbody></table></div>
             <nav class="record-pagination" aria-label="Paginación de registros EGIF"><button id="egif-page-previous" type="button">Anterior</button><span id="egif-page-status"></span><button id="egif-page-next" type="button">Siguiente</button></nav>
           </section>
 
-          <section id="egif-detail" class="human-detail" hidden aria-live="polite">
-            <h3>Registro administrativo <span class="source-tag">EGIF</span></h3>
-            <dl id="egif-human-detail-fields" class="human-detail-fields"></dl>
+          <section id="egif-detail" class="human-detail" data-detail-card="egif" hidden aria-live="polite">
+            <header class="detail-header"><h3 tabindex="-1">Registro de incendio <span class="source-tag">EGIF</span></h3><div><button type="button" data-detail-minimize aria-expanded="true">Minimizar</button><button type="button" data-detail-close="egif">Cerrar</button></div></header>
+            <div class="detail-human-body"><dl id="egif-human-detail-fields" class="human-detail-fields"></dl><p id="egif-human-note" class="source-note"></p></div>
             <details class="more-data"><summary>Más sobre estos datos</summary><p id="egif-detail-status">Selecciona un registro para cargar su información.</p><dl id="egif-detail-fields"></dl></details>
           </section>
 
-          <section class="human-detail selection" aria-live="polite">
-            <h3>Perímetro Landsat <span class="source-tag">ESFire30</span></h3>
-            <p id="selection-human-summary">Pulsa o toca un perímetro para conocer su año y procedencia.</p>
+          <section class="human-detail selection" data-detail-card="esfire30" aria-live="polite">
+            <header class="detail-header"><h3 tabindex="-1">Perímetro Landsat <span class="source-tag">ESFire30</span></h3><div><button type="button" data-detail-minimize aria-expanded="true">Minimizar</button><button type="button" data-detail-close="esfire30">Cerrar</button></div></header>
+            <div class="detail-human-body"><p id="selection-human-summary">Pulsa o toca un perímetro para conocer su año y procedencia.</p><dl id="selection-human-detail-fields" class="human-detail-fields"></dl></div>
             <details class="more-data"><summary>Más sobre estos datos</summary><p id="selection-summary">Pulsa o toca un perímetro para inspeccionarlo.</p></details>
           </section>
 
-          <section id="icv-detail" class="human-detail selection" hidden aria-live="polite">
-            <h3>Incendio oficial documentado <span class="source-tag">ICV</span></h3>
-            <dl id="icv-human-detail-fields" class="human-detail-fields"></dl>
+          <section id="icv-detail" class="human-detail selection" data-detail-card="icv" hidden aria-live="polite">
+            <header class="detail-header"><h3 tabindex="-1">Incendio oficial documentado <span class="source-tag">ICV</span></h3><div><button type="button" data-detail-minimize aria-expanded="true">Minimizar</button><button type="button" data-detail-close="icv">Cerrar</button></div></header>
+            <div class="detail-human-body"><dl id="icv-human-detail-fields" class="human-detail-fields"></dl><p id="icv-human-note" class="source-note"></p></div>
             <details class="more-data"><summary>Más sobre estos datos</summary><p id="icv-selection-summary">Pulsa o toca un perímetro oficial valenciano para inspeccionarlo.</p><dl id="icv-detail-fields"></dl></details>
           </section>
 
-          <section id="effis-detail" class="human-detail selection" hidden aria-live="polite">
-            <h3>Perímetro satelital provisional <span class="source-tag">EFFIS</span></h3>
-            <dl id="effis-human-detail-fields" class="human-detail-fields"></dl>
-            <p class="provisional-note">Datos provisionales; no representan el cierre anual.</p>
+          <section id="effis-detail" class="human-detail selection" data-detail-card="effis" hidden aria-live="polite">
+            <header class="detail-header"><h3 tabindex="-1">Perímetro satelital provisional <span class="source-tag">EFFIS</span></h3><div><button type="button" data-detail-minimize aria-expanded="true">Minimizar</button><button type="button" data-detail-close="effis">Cerrar</button></div></header>
+            <div class="detail-human-body"><dl id="effis-human-detail-fields" class="human-detail-fields"></dl><p class="provisional-note">Datos provisionales; no representan el cierre anual.</p></div>
             <details class="more-data"><summary>Más sobre estos datos</summary><p id="effis-selection-summary">Pulsa o toca un perímetro satelital provisional para inspeccionarlo.</p><dl id="effis-detail-fields"></dl></details>
           </section>
         </section>

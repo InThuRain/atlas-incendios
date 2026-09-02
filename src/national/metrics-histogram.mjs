@@ -24,6 +24,76 @@ function sourceSummary(territory, sourceId) {
   return territory && Array.isArray(territory.source_summaries) ? territory.source_summaries.find((row) => row.source_id === sourceId) || null : null;
 }
 
+function filterKey(filters = []) {
+  return JSON.stringify([...filters].sort((left, right) => left.filter_id.localeCompare(right.filter_id)));
+}
+
+function replaceAnnualMetric(summary, metricId, annual, valueField, knownField = null, unknownField = null, exactRange = null) {
+  const metric = (summary.metrics || []).find((row) => row.metric_id === metricId);
+  if (!metric) return;
+  metric.values = metric.values.map((_value, index) => {
+    const year = summary.year_axis.from + index;
+    if (exactRange && (year < exactRange.from || year > exactRange.to)) return null;
+    return Number((annual[year] && annual[year][valueField]) || 0);
+  });
+  if (knownField && Array.isArray(metric.known_value_count)) metric.known_value_count = metric.known_value_count.map((_value, index) => {
+    const year = summary.year_axis.from + index;
+    return exactRange && (year < exactRange.from || year > exactRange.to) ? null : Number((annual[year] && annual[year][knownField]) || 0);
+  });
+  if (unknownField && Array.isArray(metric.unknown_value_count)) metric.unknown_value_count = metric.unknown_value_count.map((_value, index) => {
+    const year = summary.year_axis.from + index;
+    return exactRange && (year < exactRange.from || year > exactRange.to) ? null : Number((annual[year] && annual[year][unknownField]) || 0);
+  });
+}
+
+/** Aplica sólo agregados exactos ya calculados por los loaders de cada fuente. */
+export function applyRuntimeFiltersToTerritory(territory, state, runtime) {
+  const clone = JSON.parse(JSON.stringify(territory));
+  const filters = state.filters || [];
+  for (const summary of clone.source_summaries || []) {
+    const sourceFilters = filters.filter((row) => row.source === summary.source_id);
+    summary.filtered_summary_mode = sourceFilters.length ? "HIDE_WHILE_FILTERED" : "NOT_FILTERED";
+    if (!sourceFilters.length) continue;
+    let result = null;
+    if (summary.source_id === "egif") result = runtime.getEgifResult ? runtime.getEgifResult() : null;
+    if (summary.source_id === "icv") result = runtime.getIcvResult ? runtime.getIcvResult() : null;
+    if (summary.source_id === "effis") result = runtime.getEffisResult ? runtime.getEffisResult() : null;
+    const sameFilters = result && filterKey(result.filters || (result.summary && result.summary.filters) || []) === filterKey(sourceFilters);
+    if (summary.source_id === "egif" && state.territory_scope === "ES") {
+      const ids = new Set(sourceFilters.map((row) => `${row.filter_id}:${row.value}`));
+      const exactGifEquivalent = [...ids].every((id) => id === "egif_gif:true" || id === "egif_min_area:500");
+      if (exactGifEquivalent) {
+        const count = summary.metrics.find((row) => row.metric_id === "egif_record_count");
+        const gif = summary.metrics.find((row) => row.metric_id === "egif_administrative_gif_count");
+        if (count && gif) count.values = [...gif.values];
+        summary.metrics = summary.metrics.filter((row) => row.metric_id !== "egif_declared_forest_area_ha");
+        summary.filtered_summary_mode = "EXACT_DERIVED";
+      }
+      continue;
+    }
+    if (!sameFilters || result.status !== "complete") continue;
+    if (summary.source_id === "egif" && result.kind === "initial_assets") {
+      const annual = result.summary.annual_metrics || {};
+      const range = { from: Number(state.from), to: Number(state.to) };
+      replaceAnnualMetric(summary, "egif_record_count", annual, "records", null, null, range);
+      replaceAnnualMetric(summary, "egif_administrative_gif_count", annual, "administrative_gif", null, null, range);
+      replaceAnnualMetric(summary, "egif_declared_forest_area_ha", annual, "known_forest_area_sum", "known_forest_area", "unknown_forest_area", range);
+      summary.filtered_summary_mode = "EXACT_RUNTIME";
+    } else if (summary.source_id === "icv") {
+      replaceAnnualMetric(summary, "icv_fire_record_count", result.annual || {}, "records");
+      replaceAnnualMetric(summary, "icv_perimeter_count", result.annual || {}, "geometries");
+      replaceAnnualMetric(summary, "icv_declared_forest_area_ha", result.annual || {}, "declared_forest_area_sum", "known_area", "unknown_area");
+      replaceAnnualMetric(summary, "icv_gif_count", result.annual || {}, "gif");
+      summary.filtered_summary_mode = "EXACT_RUNTIME";
+    } else if (summary.source_id === "effis") {
+      replaceAnnualMetric(summary, "effis_perimeter_count", result.annual || {}, "geometries");
+      replaceAnnualMetric(summary, "effis_mapped_area_ha", result.annual || {}, "mapped_area_sum", "known_area", "unknown_area");
+      summary.filtered_summary_mode = "EXACT_RUNTIME";
+    }
+  }
+  return clone;
+}
+
 function metricRow(territory, metricId) {
   const presentation = METRIC_PRESENTATION[metricId];
   const summary = presentation ? sourceSummary(territory, presentation.source) : null;
@@ -132,7 +202,8 @@ export function metricCards(territory, state, recommendedSource) {
   for (const source of [...new Set(sourceOrder)]) {
     const metricId = countMetric[source];
     const aggregate = aggregateMetric(territory, metricId, state.from, state.to);
-    if (aggregate.status !== "available") continue;
+    const summary = sourceSummary(territory, source);
+    if (aggregate.status !== "available" || (summary && summary.filtered_summary_mode === "HIDE_WHILE_FILTERED")) continue;
     const presentation = METRIC_PRESENTATION[metricId];
     cards.push({ ...aggregate, label: presentation.card, source_label: presentation.sourceLabel });
     if (cards.length === 4) return cards;
@@ -141,7 +212,8 @@ export function metricCards(territory, state, recommendedSource) {
     if (!areaMetric[source]) continue;
     const metricId = areaMetric[source];
     const aggregate = aggregateMetric(territory, metricId, state.from, state.to);
-    if (aggregate.status !== "available") continue;
+    const summary = sourceSummary(territory, source);
+    if (aggregate.status !== "available" || (summary && summary.filtered_summary_mode === "HIDE_WHILE_FILTERED")) continue;
     const presentation = METRIC_PRESENTATION[metricId];
     cards.push({ ...aggregate, label: presentation.card, source_label: presentation.sourceLabel });
     if (cards.length === 4) return cards;
@@ -219,7 +291,13 @@ export function createMetricsHistogramUi({ runtime, loader }) {
       : "Los registros EGIF no están disponibles para este territorio y periodo.";
     renderSecondary(territory, state);
     const includes2026Effis = cards.some((card) => card.source_id === "effis") && Number(state.to) >= 2026;
-    statusNode.textContent = includes2026Effis
+    const filteredModes = (territory.source_summaries || []).filter((row) => row.filtered_summary_mode && row.filtered_summary_mode !== "NOT_FILTERED");
+    const filteredZero = cards.some((card) => card.value === 0 && filteredModes.some((row) => row.source_id === card.source_id && (row.filtered_summary_mode === "EXACT_RUNTIME" || row.filtered_summary_mode === "EXACT_DERIVED")));
+    statusNode.textContent = filteredZero
+      ? "No hay resultados que cumplan estos filtros en la fuente indicada. Las demás fuentes permanecen independientes."
+      : filteredModes.some((row) => row.filtered_summary_mode === "HIDE_WHILE_FILTERED")
+      ? "Una métrica filtrada se oculta porque el resumen no puede calcularla exactamente en este ámbito. Las demás fuentes no cambian."
+      : filteredModes.length ? "Resultados filtrados únicamente en la fuente indicada; las fuentes no se suman ni se enlazan." : includes2026Effis
       ? "Datos EFFIS 2026 correspondientes al snapshot de 19/08/2026; no representan el cierre anual."
       : cards.length ? "Cada cifra corresponde a la fuente indicada; no se suman fuentes distintas." : "No hay métricas disponibles para este territorio y periodo.";
   }
@@ -273,13 +351,17 @@ export function createMetricsHistogramUi({ runtime, loader }) {
     }
     const tickYears = new Set([1968, 1980, 1990, 2000, 2010, 2020, 2026]);
     for (let year = GLOBAL_FROM; year <= GLOBAL_TO; year += 1) ticksNode.append(element("span", tickYears.has(year) ? "is-labelled" : null, tickYears.has(year) ? String(year) : ""));
-    histogramStatus.textContent = `${presentation.tab} · ${presentation.sourceLabel}. Una barra por año; el sombreado indica ${state.from === state.to ? state.from : `${state.from}–${state.to}`}.`;
+    const selectedSourceSummary = sourceSummary(territory, presentation.source);
+    const mode = selectedSourceSummary && selectedSourceSummary.filtered_summary_mode;
+    histogramStatus.textContent = mode === "HIDE_WHILE_FILTERED"
+      ? `${presentation.tab} · ${presentation.sourceLabel}. El filtro activo no se aplica a esta serie porque no puede calcularse exactamente.`
+      : `${presentation.tab} · ${presentation.sourceLabel}${mode === "EXACT_RUNTIME" || mode === "EXACT_DERIVED" ? " · filtrado exacto" : ""}. Una barra por año; el sombreado indica ${state.from === state.to ? state.from : `${state.from}–${state.to}`}.`;
     timelineSlot.dataset.status = "ready";
   }
 
   async function update(state, view = null, { force = false } = {}) {
     const territoryId = state.municipality_id || state.province_id || state.autonomous_community_id || "ES";
-    const key = `${territoryId}|${state.from}|${state.to}|${state.egif_visible}|${state.esfire30_visible}|${state.icv_visible}|${state.effis_visible}`;
+    const key = `${territoryId}|${state.from}|${state.to}|${state.egif_visible}|${state.esfire30_visible}|${state.icv_visible}|${state.effis_visible}|${filterKey(state.filters || [])}`;
     if (!force && pendingKey === key) return;
     pendingKey = key;
     const generation = ++updateGeneration;
@@ -306,11 +388,12 @@ export function createMetricsHistogramUi({ runtime, loader }) {
       }
       lastTerritoryId = territoryId;
     }
-    current = result;
-    const defaultId = defaultSeriesId(state, availableSeries(result.territory));
+    const effectiveTerritory = applyRuntimeFiltersToTerritory(result.territory, state, runtime);
+    current = { ...result, territory: effectiveTerritory };
+    const defaultId = defaultSeriesId(state, availableSeries(effectiveTerritory));
     const fallbackView = { primary: defaultId ? defaultId.split("_")[0] : "egif" };
-    renderCards(result.territory, state, view || fallbackView);
-    renderHistogram(result.territory, state);
+    renderCards(effectiveTerritory, state, view || fallbackView);
+    renderHistogram(effectiveTerritory, state);
     pendingKey = null;
   }
 

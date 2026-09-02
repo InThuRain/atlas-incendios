@@ -17,6 +17,7 @@ import { addOfficialMunicipalityLayer } from "./municipality_layer.mjs";
 import { MunicipalityEsfireIndexLoader, municipalityFilterExpression } from "./municipality_esfire_index.mjs";
 import { IcvLoader, icvLevelForZoom, icvProvincesForScope } from "./icv_loader.mjs";
 import { EffisLoader, effisIntegratedTerritory } from "./effis_loader.mjs";
+import { applicableFilterContracts, canonicalFilters, documentedIcvGif, filtersForSource } from "./source_filters.mjs";
 import { adaptLegacyGvaV1State, dispatchStateHash, parseLegacyGvaV1State } from "../../src/national/compat/gva-v1.mjs";
 
 const runtimeAssets = runtimeConfig.assets || {};
@@ -205,6 +206,7 @@ let municipalityTransitionGeneration = 0;
 let esfireTerritory = { status: "national", code: null, property_prefix: null, geometry_ids: null, geometry_id_set: null, strategy: null, metrics: null, expression_bytes: 0, filter_ms: 0, error: null };
 let selectedGeometryProperties = null;
 let lastEsfireFilterStartedAt = null;
+let filterNotice = "";
 // Un error de transporte del PMTiles no equivale a falta de cobertura ni a
 // cero relaciones. Sólo un reintento explícito por interacción puede despejarlo.
 let esfireTransportError = null;
@@ -548,7 +550,7 @@ function clearEgifSelection(updateState = true) {
   if (updateState) state = reduceRuntimeState(state, { type: "clear_egif_selection" });
   egifDetailLoader.clearSelection();
   egifDetail.hidden = true;
-  egifDetailStatus.textContent = "Selecciona una parte para cargar DETAIL.";
+  egifDetailStatus.textContent = "Selecciona un registro para cargar su información ampliada.";
   egifDetailFields.replaceChildren();
 }
 
@@ -562,12 +564,48 @@ function clearGeometrySelection(updateState = true) {
 function transition(event) {
   const previous = state;
   state = reduceRuntimeState(state, event);
+  const previousFilterIds = new Set((previous.filters || []).map((row) => row.filter_id));
+  const nextFilterIds = new Set((state.filters || []).map((row) => row.filter_id));
+  const removedContextually = [...previousFilterIds].filter((id) => !nextFilterIds.has(id));
+  if (!["remove_filter", "clear_filters"].includes(event.type) && removedContextually.length) {
+    filterNotice = removedContextually.length === 1
+      ? "Se ha retirado un filtro porque ya no está disponible en este territorio, periodo o fuente."
+      : "Se han retirado filtros que ya no están disponibles en este territorio, periodo o fuente.";
+  } else if (["set_filter", "remove_filter", "clear_filters"].includes(event.type)) filterNotice = "";
   if (previous.selected_geometry_id && !state.selected_geometry_id) clearGeometrySelection(false);
   if (previous.selected_egif_record_id && !state.selected_egif_record_id) clearEgifSelection(false);
   if ((previous.selected_icv_geometry_id || previous.selected_icv_record_id) && !(state.selected_icv_geometry_id || state.selected_icv_record_id)) clearIcvSelection(false);
   if (previous.selected_effis_geometry_id && !state.selected_effis_geometry_id) clearEffisSelection(false);
   replaceStateUrl({ promoteLegacy: true });
   return state;
+}
+
+async function setAnalysisFilter(filter) {
+  transition({ type: "set_filter", filter });
+  await refreshSources();
+  return { status: "complete", filters: canonicalFilters(state.filters) };
+}
+
+async function removeAnalysisFilter(filterId) {
+  transition({ type: "remove_filter", filter_id: filterId });
+  await refreshSources();
+  return { status: "complete", filters: canonicalFilters(state.filters) };
+}
+
+async function clearAnalysisFilters() {
+  transition({ type: "clear_filters" });
+  await refreshSources();
+  return { status: "complete", filters: [] };
+}
+
+function clearSourceSelection(sourceId) {
+  if (sourceId === "egif") clearEgifSelection();
+  else if (sourceId === "esfire30") clearGeometrySelection();
+  else if (sourceId === "icv") clearIcvSelection();
+  else if (sourceId === "effis") clearEffisSelection();
+  else return false;
+  replaceStateUrl({ promoteLegacy: true });
+  return true;
 }
 
 function renderProvinceSelector() {
@@ -739,7 +777,7 @@ function renderEgifPage() {
     egifRecordBrowser.hidden = true;
     return;
   }
-  const pageData = pageOfInitialRows(activeInitialAssets, state.from, state.to, egifPage, EGIF_PAGE_SIZE, state.province_id, state.municipality_id);
+  const pageData = pageOfInitialRows(activeInitialAssets, state.from, state.to, egifPage, EGIF_PAGE_SIZE, state.province_id, state.municipality_id, state.filters);
   const pages = Math.max(1, Math.ceil(pageData.total / EGIF_PAGE_SIZE));
   if (egifPage >= pages) {
     egifPage = pages - 1;
@@ -747,14 +785,7 @@ function renderEgifPage() {
   }
   for (const row of pageData.rows) {
     const tr = document.createElement("tr");
-    const values = [
-      String(row.year),
-      row.record_id,
-      row.province_id || "No disponible",
-      row.municipality_id || "No resuelto",
-      formatOptionalArea(row.reported_forest_area_ha),
-      row.is_gif_forest_ge_500_ha === true ? "Sí" : row.is_gif_forest_ge_500_ha === false ? "No" : "No det.",
-    ];
+    const values = [String(row.year), "Ver ficha", formatOptionalArea(row.reported_forest_area_ha), row.is_gif_forest_ge_500_ha === true ? "Sí" : "No"];
     values.forEach((value, index) => {
       const cell = document.createElement("td");
       if (index === 1) {
@@ -762,6 +793,7 @@ function renderEgifPage() {
         button.type = "button";
         button.textContent = value;
         button.dataset.recordId = row.record_id;
+        button.setAttribute("aria-label", `Ver ficha del registro administrativo de ${row.year}`);
         cell.append(button);
       } else cell.textContent = value;
       tr.append(cell);
@@ -780,7 +812,7 @@ function renderDetailFields(record, names) {
     ? (names.municipality || record.municipality_id)
     : "Municipio no resuelto en la normalización";
   const rows = [
-    ["Record ID", record.record_id],
+    ["Identificador técnico", record.record_id],
     ["ID fuente / Número de parte", record.source_record_id || "No disponible"],
     ["Fuente", "EGIF · parte administrativo"],
     ["Año", record.year],
@@ -813,7 +845,7 @@ function renderDetailFields(record, names) {
 }
 
 async function selectEgifRecord(recordId) {
-  if (!recordMatchesInitialScope(activeInitialAssets, recordId, state.from, state.to, state.province_id, state.municipality_id)) {
+  if (!recordMatchesInitialScope(activeInitialAssets, recordId, state.from, state.to, state.province_id, state.municipality_id, state.filters)) {
     egifDetail.hidden = false;
     egifDetailStatus.textContent = "El record_id no pertenece al ámbito EGIF cargado.";
     return { status: "missing" };
@@ -821,7 +853,7 @@ async function selectEgifRecord(recordId) {
   const initialLocation = locateRecord(activeInitialAssets, recordId);
   transition({ type: "select_egif_record", record_id: recordId, year: initialLocation.loaded.data.columns.year[initialLocation.ordinal] });
   egifDetail.hidden = false;
-  egifDetailStatus.textContent = "Cargando DETAIL EGIF solo para la parte seleccionada…";
+  egifDetailStatus.textContent = "Cargando la información ampliada del registro seleccionado…";
   egifDetailFields.replaceChildren();
   const heapBefore = performance.memory?.usedJSHeapSize ?? null;
   try {
@@ -835,12 +867,12 @@ async function selectEgifRecord(recordId) {
     if (state.selected_egif_record_id !== recordId) return { status: "stale" };
     renderDetailFields(result.record, { autonomous_community, province, municipality });
     const heapAfter = performance.memory?.usedJSHeapSize ?? null;
-    egifDetailStatus.textContent = `DETAIL cargado para ${recordId}${result.metrics.cached ? " desde caché de sesión" : ""}.`;
+    egifDetailStatus.textContent = `Información ampliada disponible${result.metrics.cached ? " desde la caché de esta sesión" : ""}.`;
     return { ...result, heap_delta_bytes: heapBefore === null || heapAfter === null ? null : heapAfter - heapBefore };
   } catch (error) {
     if (error.name === "AbortError") return { status: "stale" };
     if (state.selected_egif_record_id === recordId) {
-      egifDetailStatus.textContent = `No se pudo cargar DETAIL EGIF: ${error.message}. INITIAL y ESFire30 continúan disponibles.`;
+      egifDetailStatus.textContent = `No se pudo cargar la información ampliada: ${error.message}. El mapa y la lista continúan disponibles.`;
     }
     return { status: "error", error: String(error) };
   }
@@ -903,9 +935,9 @@ async function refreshEgif() {
   const territoryId = state.autonomous_community_id || "ES";
   egifStatus.textContent = territoryId === "ES" ? "Calculando resumen EGIF desde el manifest…" : "Cargando assets INITIAL EGIF…";
   try {
-    const result = await egifLoader.loadScope({ territoryId, fromYear: coverage.from, toYear: coverage.to, provinceId: state.province_id, municipalityId: state.municipality_id });
+    const result = await egifLoader.loadScope({ territoryId, fromYear: coverage.from, toYear: coverage.to, provinceId: state.province_id, municipalityId: state.municipality_id, filters: filtersForSource(state.filters, "egif") });
     renderEgifResult(result);
-    if (state.selected_egif_record_id && !recordMatchesInitialScope(activeInitialAssets, state.selected_egif_record_id, state.from, state.to, state.province_id, state.municipality_id)) clearEgifSelection();
+    if (state.selected_egif_record_id && !recordMatchesInitialScope(activeInitialAssets, state.selected_egif_record_id, state.from, state.to, state.province_id, state.municipality_id, state.filters)) clearEgifSelection();
     if (result.status !== "stale") finishSourceLoad("egif", generation, "ready"); return result;
   } catch (error) {
     egifStatus.textContent = `EGIF no disponible: ${error.message}. ESFire30 continúa operativo.`;
@@ -932,10 +964,11 @@ function renderIcvDetail(feature) {
   if (!icvDetail || !icvDetailFields || !icvSelectionSummary) return;
   const properties = feature.properties || {};
   const fire = latestIcvResult.fires_by_id?.get(properties.fire_id);
-  const rows = [
+    const gif = documentedIcvGif(fire);
+    const rows = [
     ["Fuente", "ICV / Generalitat Valenciana · perímetro oficial"],
-    ["Geometry ID", properties.geometry_id],
-    ["Fire/source record", properties.fire_id],
+    ["Identificador de geometría", properties.geometry_id],
+    ["Identificador del registro", properties.fire_id],
     ["Número PIF CV", fire?.num_pif_cv || properties.source_record_id || "No disponible"],
     ["Año", fire?.year ?? properties.year],
     ["Fecha de inicio", fire?.start_date || "No disponible"],
@@ -945,6 +978,9 @@ function renderIcvDetail(feature) {
     ["Municipio administrativo ICV", properties.municipality_id || "No disponible"],
     ["Paraje", fire?.place_name || "No disponible"],
     ["Superficie forestal declarada", formatOptionalArea(fire?.reported_forest_area_ha)],
+    ["Causa documentada", fire?.cause_label || "No disponible"],
+    ["Código de causa", fire?.cause_code || "No disponible"],
+    ["GIF", gif === true ? "Sí · criterio documentado ICV ≥500 ha" : gif === false ? "No · criterio documentado ICV ≥500 ha" : "No disponible"],
     ["Calidad geométrica", "A · vector oficial"],
     ["Geometrías de este source record", Array.isArray(fire?.geometry_ids) ? fire.geometry_ids.length : "No disponible"],
   ];
@@ -973,11 +1009,12 @@ function findLoadedIcvGeometry(geometryId) {
 
 function selectIcvRecord(recordId) {
   const fire = latestIcvResult.fires_by_id?.get(recordId);
-  if (!fire) return null;
+  if (!fire || (latestIcvResult.active_fire_ids && !latestIcvResult.active_fire_ids.has(recordId))) return null;
   transition({ type: "select_icv_record", record_id: fire.fire_id });
   map.setFilter(ICV_SELECTED_LAYER, ["==", ["get", "geometry_id"], "__none__"]);
   if (icvDetail && icvDetailFields && icvSelectionSummary) {
-    const rows = [["Fuente", "ICV / Generalitat Valenciana · source record"], ["Fire/source record", fire.fire_id], ["Número PIF CV", fire.num_pif_cv || "No disponible"], ["Año", fire.year], ["Provincia declarada", fire.province || "No disponible"], ["Municipio declarado", fire.municipality_name || "No disponible"], ["Geometrías documentadas", Array.isArray(fire.geometry_ids) ? fire.geometry_ids.length : "No disponible"]];
+    const gif = documentedIcvGif(fire);
+    const rows = [["Fuente", "ICV / Generalitat Valenciana · registro administrativo"], ["Identificador del registro", fire.fire_id], ["Número PIF CV", fire.num_pif_cv || "No disponible"], ["Año", fire.year], ["Fecha de inicio", fire.start_date || "No disponible"], ["Fecha de extinción", fire.end_date || "No disponible"], ["Provincia declarada", fire.province || "No disponible"], ["Municipio declarado", fire.municipality_name || "No disponible"], ["Paraje", fire.place_name || "No disponible"], ["Superficie forestal declarada", formatOptionalArea(fire.reported_forest_area_ha)], ["Causa documentada", fire.cause_label || "No disponible"], ["Código de causa", fire.cause_code || "No disponible"], ["GIF", gif === true ? "Sí · criterio documentado ICV ≥500 ha" : gif === false ? "No · criterio documentado ICV ≥500 ha" : "No disponible"], ["Geometrías documentadas", Array.isArray(fire.geometry_ids) ? fire.geometry_ids.length : "No disponible"]];
     icvDetailFields.replaceChildren();
     for (const [label, value] of rows) { const term = document.createElement("dt"); term.textContent = label; const definition = document.createElement("dd"); definition.textContent = String(value); icvDetailFields.append(term, definition); }
     icvDetail.hidden = false;
@@ -998,11 +1035,11 @@ async function refreshIcv() {
   }
   try {
     const level = icvLevelForZoom(map.getZoom());
-    const result = await icvLoader.loadScope({ provinces, fromYear: coverage.from, toYear: coverage.to, level, municipalityId: state.municipality_id });
+    const result = await icvLoader.loadScope({ provinces, fromYear: coverage.from, toYear: coverage.to, level, municipalityId: state.municipality_id, filters: filtersForSource(state.filters, "icv") });
     if (result.status === "stale" || sourceLoadGeneration.icv !== generation || state.autonomous_community_id !== "ES:CCAA:10") return { status: "stale" };
     latestIcvResult = result; icvLoadedLevel = level; setIcvCollection(result.features);
     if (state.selected_icv_geometry_id && !findLoadedIcvGeometry(state.selected_icv_geometry_id)) clearIcvSelection();
-    else if (state.selected_icv_record_id && !result.fires_by_id?.has(state.selected_icv_record_id)) clearIcvSelection();
+    else if (state.selected_icv_record_id && !result.active_fire_ids?.has(state.selected_icv_record_id)) clearIcvSelection();
     finishSourceLoad("icv", generation, "ready"); return result;
   } catch (error) {
     setIcvCollection(); clearIcvSelection(false);
@@ -1033,7 +1070,7 @@ function selectEffisFeature(feature) {
   transition({ type: "select_effis_geometry", geometry_id: String(properties.geometry_id), year: Number(properties.year) });
   map.setFilter(EFFIS_SELECTED_LAYER, ["==", ["get", "geometry_id"], String(properties.geometry_id)]);
   if (effisDetail && effisDetailFields && effisSelectionSummary) {
-    const rows = [["Fuente", "EFFIS / Copernicus EMS · perímetro satelital provisional"], ["geometry_id", properties.geometry_id], ["ID EFFIS", properties.effis_id], ["Año", properties.year], ["Fecha EFFIS", properties.date || "No disponible"], ["Fecha final EFFIS", properties.final_date || "No disponible"], ["Provincia declarada", properties.province || "No disponible"], ["Municipio/commune declarado", properties.municipality_name || "No disponible"], ["Superficie cartografiada", formatOptionalArea(properties.mapped_area_ha)], ["Calidad geométrica", "B · teledetección provisional"], ["Snapshot", properties.acquired_at || "No disponible"]];
+    const rows = [["Fuente", "EFFIS / Copernicus EMS · perímetro satelital provisional"], ["Identificador de geometría", properties.geometry_id], ["ID EFFIS", properties.effis_id], ["Año", properties.year], ["Fecha EFFIS", properties.date || "No disponible"], ["Fecha final EFFIS", properties.final_date || "No disponible"], ["Provincia declarada", properties.province || "No disponible"], ["Municipio/commune declarado", properties.municipality_name || "No disponible"], ["Superficie cartografiada", formatOptionalArea(properties.mapped_area_ha)], ["Calidad geométrica", "B · teledetección provisional"], ["Snapshot", properties.acquired_at || "No disponible"]];
     effisDetailFields.replaceChildren();
     for (const [label, value] of rows) { const term = document.createElement("dt"); term.textContent = label; const definition = document.createElement("dd"); definition.textContent = value == null ? "No disponible" : String(value); effisDetailFields.append(term, definition); }
     effisDetail.hidden = false;
@@ -1052,7 +1089,7 @@ async function refreshEffis() {
     finishSourceLoad("effis", generation, "idle"); return latestEffisResult;
   }
   try {
-    const result = await effisLoader.loadScope({ fromYear: coverage.from, toYear: coverage.to, provinceId: state.province_id, municipalityId: state.municipality_id });
+    const result = await effisLoader.loadScope({ fromYear: coverage.from, toYear: coverage.to, provinceId: state.province_id, municipalityId: state.municipality_id, filters: filtersForSource(state.filters, "effis") });
     if (result.status === "stale" || sourceLoadGeneration.effis !== generation || !effisIntegratedTerritory(state)) return { status: "stale" };
     latestEffisResult = result; setEffisCollection(result.features);
     if (state.selected_effis_geometry_id && !findLoadedEffisGeometry(state.selected_effis_geometry_id)) clearEffisSelection();
@@ -1910,8 +1947,15 @@ window.__es4cRuntime = {
   refreshEffis,
   refreshSources,
   setSourceVisibility,
+  setAnalysisFilter,
+  removeAnalysisFilter,
+  clearAnalysisFilters,
+  getFilterContracts: () => applicableFilterContracts(state).map((row) => ({ ...row })),
+  getFilterNotice: () => filterNotice,
+  clearSourceSelection,
   selectEgifRecord,
   selectIcvFeature,
+  selectIcvRecord,
   selectEffisFeature,
   findLoadedIcvGeometry,
   serializeState: () => serializeState(state),
@@ -1919,6 +1963,8 @@ window.__es4cRuntime = {
   copyCurrentStateLink,
   territoryLayerReady,
   getEgifResult: () => latestEgifResult,
+  getIcvResult: () => latestIcvResult,
+  getEffisResult: () => latestEffisResult,
   runSmoke,
   ARCHIVE_PATH,
   archiveUrl,

@@ -13,6 +13,7 @@ export const GVA_V1_PROVINCES = Object.freeze({
   valencia: "ES:PROV:46",
 });
 export const GVA_V1_SOURCES = Object.freeze(["egif", "esfire30", "icv", "sigif", "effis"]);
+const ICV_CAUSE_CODES = new Set(["lightning", "intentional", "negligence", "negligence_and_accidental", "rekindle", "other", "under_investigation", "unknown"]);
 
 function finiteNumber(value) {
   if (value === null || value === "") return null;
@@ -75,6 +76,22 @@ function selectionPatch(legacy) {
   return {};
 }
 
+function exactLegacyFilters(legacy) {
+  const filters = [];
+  const sources = Array.isArray(legacy.sources) ? legacy.sources : [];
+  const onlySource = sources.length === 1 ? sources[0] : null;
+  const minimum = Number(legacy.minimumArea);
+  if (Number.isFinite(minimum) && minimum > 0) {
+    if (onlySource === "egif") filters.push({ filter_id: "egif_min_area", filter_type: "min_value", source: "egif", metric_id: "egif_declared_forest_area_ha", value: minimum, unit: "ha" });
+    if (onlySource === "icv") filters.push({ filter_id: "icv_min_area", filter_type: "min_value", source: "icv", metric_id: "icv_declared_forest_area_ha", value: minimum, unit: "ha" });
+    if (onlySource === "effis") filters.push({ filter_id: "effis_min_area", filter_type: "min_value", source: "effis", metric_id: "effis_mapped_area_ha", value: minimum, unit: "ha" });
+  }
+  if (legacy.gifOnly === true && onlySource === "egif") filters.push({ filter_id: "egif_gif", filter_type: "flag", source: "egif", metric_id: "egif_administrative_gif_count", value: true, unit: null });
+  if (legacy.gifOnly === true && onlySource === "icv") filters.push({ filter_id: "icv_gif", filter_type: "flag", source: "icv", metric_id: "icv_gif_count", value: true, unit: null });
+  if (legacy.cause && onlySource === "icv" && ICV_CAUSE_CODES.has(legacy.cause)) filters.push({ filter_id: "icv_cause", filter_type: "enum", source: "icv", metric_id: "icv_cause_distribution", value: legacy.cause, unit: null });
+  return filters.sort((left, right) => left.filter_id.localeCompare(right.filter_id));
+}
+
 /** Adapta estado legacy a invariantes nacionales sin inferencias espaciales. */
 export function adaptLegacyGvaV1State(legacy, defaults, {
   territoryIds = new Set(), provinceParents = new Map(), municipalityParents = new Map(),
@@ -103,13 +120,22 @@ export function adaptLegacyGvaV1State(legacy, defaults, {
     state.icv_visible = legacy.sources.includes("icv");
     state.effis_visible = legacy.sources.includes("effis");
   }
+  state.filters = exactLegacyFilters(legacy);
   Object.assign(state, selectionPatch(legacy));
+  const mappedFilterIds = new Set(state.filters.map((row) => row.filter_id));
+  const filterMapping = {
+    minimumArea: legacy.minimumArea === undefined || Number(legacy.minimumArea) === 0 ? "NO_OP_EXACT"
+      : mappedFilterIds.has("egif_min_area") || mappedFilterIds.has("icv_min_area") || mappedFilterIds.has("effis_min_area") ? "MAPPED_EXACTLY" : "IGNORED_SAFE",
+    gifOnly: legacy.gifOnly !== true ? "NO_OP_EXACT" : mappedFilterIds.has("egif_gif") || mappedFilterIds.has("icv_gif") ? "MAPPED_EXACTLY" : "IGNORED_SAFE",
+    cause: legacy.cause === undefined ? "ABSENT" : mappedFilterIds.has("icv_cause") ? "MAPPED_EXACTLY" : "IGNORED_SAFE",
+  };
   return {
     status: "complete",
     state,
     mapping: {
       sources: legacy.sources ? { icv: legacy.sources.includes("icv"), effis: legacy.sources.includes("effis"), sigif: legacy.sources.includes("sigif") ? "ignored_safe" : null } : "national_defaults",
-      ignored: ["minimumArea", "gifOnly", "cause"].filter((key) => legacy[key] !== undefined),
+      filters: filterMapping,
+      ignored: Object.entries(filterMapping).filter(([, value]) => value === "IGNORED_SAFE").map(([key]) => key),
       selection: state.selected_icv_geometry_id ? "icv_geometry_direct" : state.selected_icv_record_id ? "icv_record_preserved" : state.selected_effis_geometry_id ? "effis_geometry_direct" : state.selected_egif_record_id ? "egif_record_direct" : null,
     },
   };

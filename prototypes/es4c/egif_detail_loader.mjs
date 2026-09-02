@@ -1,3 +1,5 @@
+import { recordMatchesSourceFilters } from "./source_filters.mjs";
+
 /**
  * Resolución perezosa de DETAIL para un único parte EGIF del prototipo ES-4C.
  *
@@ -56,25 +58,27 @@ export function selectedDetailRow(data, ordinal) {
   return row;
 }
 
-export function rowMatchesInitialScope(columns, ordinal, fromYear, toYear, provinceId = null, municipalityId = null) {
+export function rowMatchesInitialScope(columns, ordinal, fromYear, toYear, provinceId = null, municipalityId = null, filters = []) {
   const year = columns.year[ordinal];
+  const row = { reported_forest_area_ha: valueAt(columns, "reported_forest_area_ha", ordinal), is_gif_forest_ge_500_ha: valueAt(columns, "is_gif_forest_ge_500_ha", ordinal) };
   return year >= fromYear && year <= toYear && (!provinceId || columns.province_id[ordinal] === provinceId)
-    && (!municipalityId || columns.municipality_id[ordinal] === municipalityId);
+    && (!municipalityId || columns.municipality_id[ordinal] === municipalityId)
+    && recordMatchesSourceFilters("egif", row, filters);
 }
 
-export function recordMatchesInitialScope(loadedAssets, recordId, fromYear, toYear, provinceId = null, municipalityId = null) {
+export function recordMatchesInitialScope(loadedAssets, recordId, fromYear, toYear, provinceId = null, municipalityId = null, filters = []) {
   const location = locateRecord(loadedAssets, recordId);
-  return Boolean(location && rowMatchesInitialScope(location.loaded.data.columns, location.ordinal, fromYear, toYear, provinceId, municipalityId));
+  return Boolean(location && rowMatchesInitialScope(location.loaded.data.columns, location.ordinal, fromYear, toYear, provinceId, municipalityId, filters));
 }
 
-export function pageOfInitialRows(loadedAssets, fromYear, toYear, page, pageSize, provinceId = null, municipalityId = null) {
+export function pageOfInitialRows(loadedAssets, fromYear, toYear, page, pageSize, provinceId = null, municipalityId = null, filters = []) {
   const start = Math.max(0, page) * pageSize;
   const rows = [];
   let total = 0;
   for (const loaded of loadedAssets || []) {
     const columns = loaded.data.columns;
     for (let ordinal = 0; ordinal < columns.record_id.length; ordinal += 1) {
-      if (!rowMatchesInitialScope(columns, ordinal, fromYear, toYear, provinceId, municipalityId)) continue;
+      if (!rowMatchesInitialScope(columns, ordinal, fromYear, toYear, provinceId, municipalityId, filters)) continue;
       if (total >= start && rows.length < pageSize) {
         rows.push({ asset_id: loaded.asset.asset_id, ordinal, ...selectedInitialRow(loaded, ordinal) });
       }

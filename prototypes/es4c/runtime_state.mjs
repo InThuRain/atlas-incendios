@@ -1,3 +1,5 @@
+import { canonicalFilters, removeFilter, retainApplicableFilters, upsertFilter } from "./source_filters.mjs";
+
 /** Estado y cobertura explícitos del prototipo nacional ES-4C.
  *
  * No serializa permalinks ni conoce datos: coordina fuentes con semánticas
@@ -51,7 +53,9 @@ export function createRuntimeState(overrides = {}) {
     selected_icv_record_id: null,
     selected_effis_geometry_id: null,
     selected_effis_geometry_year: null,
+    filters: [],
     ...overrides,
+    filters: canonicalFilters(overrides.filters || []),
   };
 }
 
@@ -123,7 +127,12 @@ export function reduceRuntimeState(state, event) {
   else if (event.type === "clear_icv_geometry_selection") Object.assign(next, { selected_icv_geometry_id: null, selected_icv_geometry_year: null, selected_icv_record_id: null });
   else if (event.type === "clear_effis_geometry_selection") Object.assign(next, { selected_effis_geometry_id: null, selected_effis_geometry_year: null });
   else if (event.type === "clear_geometry_selection") Object.assign(next, { selected_geometry_id: null, selected_geometry_year: null });
+  else if (event.type === "set_filter") next.filters = upsertFilter(next.filters, event.filter);
+  else if (event.type === "remove_filter") next.filters = removeFilter(next.filters, event.filter_id);
+  else if (event.type === "clear_filters") next.filters = [];
   else throw new Error(`Evento de estado desconocido: ${event.type}`);
+
+  next.filters = retainApplicableFilters(next);
 
   if (!geometryStillVisible(next)) Object.assign(next, { selected_geometry_id: null, selected_geometry_year: null });
   if (!recordStillVisible(next)) Object.assign(next, { selected_egif_record_id: null, selected_egif_year: null });

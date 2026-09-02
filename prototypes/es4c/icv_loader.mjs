@@ -1,3 +1,5 @@
+import { canonicalFilters, documentedIcvGif, filterStateKey, recordMatchesSourceFilters } from "./source_filters.mjs";
+
 /** Loader ICV para el runtime nacional.
  *
  * Reutiliza el manifest público GVA v5: registros separados de perímetros,
@@ -14,6 +16,7 @@ export const ICV_PROVINCE_BY_ID = Object.freeze({
   "ES:PROV:12": "castellon",
   "ES:PROV:46": "valencia",
 });
+const ICV_KEY_BY_PROVINCE = Object.freeze({ "Alicante/Alacant": "alicante", "Castellón/Castelló": "castellon", "Valencia/València": "valencia" });
 
 function abortError() {
   return new DOMException("Carga ICV sustituida por un estado posterior", "AbortError");
@@ -109,7 +112,7 @@ export class IcvLoader {
     return loaded;
   }
 
-  async loadScope({ provinces, fromYear, toYear, level, municipalityId = null }) {
+  async loadScope({ provinces, fromYear, toYear, level, municipalityId = null, filters = [] }) {
     const generation = ++this.generation;
     this.activeController?.abort();
     const controller = new this.AbortControllerImpl();
@@ -117,18 +120,42 @@ export class IcvLoader {
     try {
       const manifest = await this.ensureManifest(controller.signal);
       const firesById = await this.ensureFires(manifest, controller.signal);
+      const normalizedFilters = canonicalFilters(filters);
       const assets = this.assetsFor(manifest, { provinces, fromYear, toYear, level });
       const loaded = await Promise.all(assets.map((asset) => this.loadAsset(asset, firesById, controller.signal)));
       if (generation !== this.generation || controller.signal.aborted) return { status: "stale" };
-      let features = loaded.flatMap((item) => item.features).filter((feature) => feature.properties.year >= fromYear && feature.properties.year <= toYear);
-      // Es un filtro documental por municipality_id declarado en ICV, no un
-      // spatial join contra BDLJE ni una afirmación histórica del límite.
-      if (municipalityId) features = features.filter((feature) => feature.properties.municipality_id === municipalityId);
+      const territoryFires = [...firesById.values()].filter((fire) => provinces.includes(ICV_KEY_BY_PROVINCE[fire.province])
+        && (!municipalityId || normalizeMunicipalityId(fire.municipality_id) === municipalityId));
+      const filteredAllYears = territoryFires.filter((fire) => recordMatchesSourceFilters("icv", fire, normalizedFilters));
+      const activeFires = filteredAllYears.filter((fire) => fire.year >= fromYear && fire.year <= toYear);
+      const activeFireIds = new Set(activeFires.map((fire) => fire.fire_id));
+      let features = loaded.flatMap((item) => item.features).filter((feature) => activeFireIds.has(feature.properties.fire_id));
+      const annual = {};
+      for (const fire of filteredAllYears) {
+        const slot = annual[fire.year] || { records: 0, geometries: 0, declared_forest_area_sum: 0, known_area: 0, unknown_area: 0, gif: 0 };
+        slot.records += 1;
+        slot.geometries += Array.isArray(fire.geometry_ids) ? fire.geometry_ids.length : 0;
+        if (typeof fire.reported_forest_area_ha === "number" && Number.isFinite(fire.reported_forest_area_ha)) { slot.declared_forest_area_sum += fire.reported_forest_area_ha; slot.known_area += 1; }
+        else slot.unknown_area += 1;
+        if (documentedIcvGif(fire) === true) slot.gif += 1;
+        annual[fire.year] = slot;
+      }
+      const areaKnown = activeFires.filter((fire) => typeof fire.reported_forest_area_ha === "number" && Number.isFinite(fire.reported_forest_area_ha));
       const targetFire = features.filter((feature) => feature.properties.fire_id === "gva:pif-cv:2024AL0005");
       return {
         status: "complete", manifest, assets, loaded, features,
-        fires_by_id: firesById,
-        metrics: { assets: assets.length, cached_assets: loaded.filter((item) => item.metrics.cached).length, records: new Set(features.map((feature) => feature.properties.fire_id)).size, geometries: features.length, target_2024AL0005_geometries: targetFire.length },
+        fires_by_id: firesById, active_fire_ids: activeFireIds,
+        filters: normalizedFilters, filter_key: filterStateKey(normalizedFilters), filtered_summary_mode: "EXACT_RUNTIME",
+        annual,
+        metrics: {
+          assets: assets.length, cached_assets: loaded.filter((item) => item.metrics.cached).length,
+          records: activeFires.length,
+          geometries: activeFires.reduce((sum, fire) => sum + (Array.isArray(fire.geometry_ids) ? fire.geometry_ids.length : 0), 0),
+          declared_forest_area_sum: areaKnown.reduce((sum, fire) => sum + fire.reported_forest_area_ha, 0),
+          known_area: areaKnown.length, unknown_area: activeFires.length - areaKnown.length,
+          gif: activeFires.filter((fire) => documentedIcvGif(fire) === true).length,
+          target_2024AL0005_geometries: targetFire.length,
+        },
       };
     } catch (error) {
       if (error?.name === "AbortError" || generation !== this.generation) return { status: "stale" };

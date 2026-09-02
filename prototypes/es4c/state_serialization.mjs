@@ -1,3 +1,5 @@
+import { canonicalFilters, retainApplicableFilters } from "./source_filters.mjs";
+
 /** Hash versionado, exclusivo del prototipo ES-4C. */
 
 export const STATE_VERSION = "es4c-state-v1";
@@ -41,6 +43,7 @@ export function canonicalPayload(state) {
       municipality_id: state.municipality_id || null,
     },
     sources: { esfire30: Boolean(state.esfire30_visible), egif: Boolean(state.egif_visible), icv: Boolean(state.icv_visible), effis: Boolean(state.effis_visible) },
+    analysis: { filters: canonicalFilters(state.filters || []) },
     selections: { geometry_id: state.selected_geometry_id || null, egif_record_id: state.selected_egif_record_id || null, icv_geometry_id: state.selected_icv_geometry_id || null, icv_record_id: state.selected_icv_record_id || null, effis_geometry_id: state.selected_effis_geometry_id || null },
   };
 }
@@ -101,6 +104,8 @@ export function parseStateHash(hash, defaults, territoryIds, provinceParents = n
     selected_egif_year: null,
     selected_icv_geometry_year: null,
     selected_effis_geometry_year: null,
+    filters: canonicalFilters((payload.analysis || {}).filters || []),
   };
+  state.filters = retainApplicableFilters(state);
   return { status: "complete", state };
 }

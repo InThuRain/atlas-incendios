@@ -485,3 +485,41 @@ D5_STATUS = PAUSED_FOR_PRODUCT_RECONCILIATION
 RESULTS_PATH = ES_4E3B2_NATIONAL_METRICS_HISTOGRAM_UI.md; data/audit/product/es4e3b2_national_metrics_histogram_ui.json
 
 NEXT_PHASE = ES-4E3C_NATIONAL_FILTERS_HIGHLIGHTS_DETAILS
+
+PHASE = ES-4E3C1
+
+STATUS = DONE (filtros seguros tipados por fuente, estado/permalink aditivo y cuatro fichas humanas con detalle técnico plegado; sin nuevos datos, relaciones, PMTiles ni staging).
+
+SAFE_FILTERS_STATUS = PASS
+
+HUMAN_DETAIL_STATUS = PASS
+
+FILTER_STATE_STATUS = PASS
+
+FILTERS = EGIF minimum declared forest area + administrative GIF; ICV minimum declared forest area + documented GIF criterion + approved cause; EFFIS minimum mapped perimeter area; ESFire30 none.
+
+ESFIRE30_AREA_FILTER_STATUS = DEFERRED_NO_SAFE_TERRITORIAL_AREA
+
+EGIF_CAUSE_FILTER_STATUS = DEFERRED_PENDING_ONTOLOGY
+
+FILTERED_SUMMARY = EXACT_RUNTIME for loaded EGIF/ICV/EFFIS; EXACT_DERIVED for Spain EGIF GIF or exact 500 ha; otherwise HIDE_WHILE_FILTERED / explicit unfiltered histogram.
+
+FILTER_STATE = canonical runtime filters[]; serialized additively as es4c-state-v1 analysis.filters; contextual invalidation by territory/time/source.
+
+CHROMIUM_SMOKES = 14/14 PASS (12 desktop + 2 exact 390x844; filter independence, zero/no-data, invalidation, four source cards, 2024AL0005 1:N and filter permalink reload/back-forward).
+
+TARGETED_TESTS = 5 PASS
+
+HISTOGRAM_BRUSH_STATUS = DEFERRED_P1
+
+BASEMAP_GAP = OPEN_NO_APPROVED_LOCAL_PROVIDER
+
+TECHNICAL_RUNTIME_REGRESSION = false
+
+PRODUCT_RELEASE_CANDIDATE = false
+
+D5_STATUS = PAUSED_FOR_PRODUCT_RECONCILIATION
+
+RESULTS_PATH = ES_4E3C1_NATIONAL_SAFE_FILTERS_HUMAN_DETAILS.md; data/audit/product/es4e3c1_national_safe_filters_human_details.json
+
+NEXT_PHASE = ES-4E3C2_NATIONAL_HIGHLIGHTS_MAP_POLISH

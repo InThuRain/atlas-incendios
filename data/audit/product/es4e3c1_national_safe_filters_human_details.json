@@ -1,0 +1,151 @@
+{
+  "phase": "ES-4E3C1",
+  "filters": {
+    "presets_ha": [10, 100, 500, 1000],
+    "custom_positive_value": true,
+    "chips": true,
+    "clear_individual": true,
+    "clear_all": true,
+    "esfire30_area_filter_status": "DEFERRED_NO_SAFE_TERRITORIAL_AREA",
+    "egif_cause_filter_status": "DEFERRED_PENDING_ONTOLOGY"
+  },
+  "source_applicability": {
+    "egif": ["egif_min_area", "egif_gif"],
+    "icv": ["icv_min_area", "icv_gif", "icv_cause"],
+    "effis": ["effis_min_area"],
+    "esfire30": []
+  },
+  "state": {
+    "model": "canonical runtime state filters[]",
+    "filter_fields": ["filter_id", "filter_type", "source", "metric_id", "value", "unit"],
+    "canonical_order": "filter_id ascending",
+    "contextual_invalidation": "territory, time coverage and source visibility",
+    "parallel_state": false
+  },
+  "permalink": {
+    "format": "es4c-state-v1",
+    "field": "analysis.filters",
+    "change": "backwards-compatible additive field",
+    "old_hash_default": "no filters",
+    "copy_reload_back_forward": "PASS_DIRECTED_CHROMIUM_SMOKE"
+  },
+  "legacy_mapping": {
+    "policy": "exact only when legacy src identifies exactly one compatible source",
+    "min_area": {
+      "egif_only": "MAPPED_EXACTLY",
+      "icv_only": "MAPPED_EXACTLY",
+      "effis_only": "MAPPED_EXACTLY",
+      "zero": "NO_OP_EXACT",
+      "ambiguous_or_unsupported": "IGNORED_SAFE"
+    },
+    "gif": {
+      "egif_only": "MAPPED_EXACTLY",
+      "icv_only": "MAPPED_EXACTLY",
+      "false": "NO_OP_EXACT",
+      "ambiguous_or_unsupported": "IGNORED_SAFE"
+    },
+    "cause": {
+      "icv_only_approved_code": "MAPPED_EXACTLY",
+      "ambiguous_or_unsupported": "IGNORED_SAFE"
+    }
+  },
+  "filtered_metrics": {
+    "egif_ccaa_province_municipality": "EXACT_RUNTIME from loaded INITIAL columns",
+    "egif_spain_gif_or_min_500": "EXACT_DERIVED from administrative GIF annual metric",
+    "egif_spain_other_combinations": "HIDE_WHILE_FILTERED cards; histogram unfiltered with explicit label",
+    "icv": "EXACT_RUNTIME from existing fires.json",
+    "effis": "EXACT_RUNTIME from 25-feature snapshot",
+    "unknown_area_is_zero": false,
+    "unknown_area_excluded_by_positive_minimum": true,
+    "cross_source_total": false
+  },
+  "source_independence": {
+    "map_filtering": "only ICV and EFFIS geometry collections belonging to the filter source change; EGIF has no feature geometry",
+    "esfire30_affected_by_record_filters": false,
+    "cross_source_linking": false,
+    "smoke_status": "PASS"
+  },
+  "human_cards": {
+    "order": ["human type", "date", "place", "magnitude", "cause", "GIF", "notice", "source", "technical details"],
+    "egif": "human record card; unresolved municipality note; no perimeter claim; cause code only advanced",
+    "esfire30": "Landsat perimeter; year and contextual territory; no unsupported area",
+    "icv": "dates, place, declared area, approved cause, documented GIF criterion and 1:N note",
+    "effis": "dates, place, mapped area, snapshot and provisional warning",
+    "technical_details_default": "closed",
+    "null_optional_fields": "hidden",
+    "primary_internal_ids": false
+  },
+  "multi_geometry": {
+    "control": "gva:pif-cv:2024AL0005",
+    "fire_records": 1,
+    "geometries": 2,
+    "status": "PASS_NO_1_TO_1_INFERENCE"
+  },
+  "mobile": {
+    "viewport": "390x844 emulated",
+    "filters": "bottom sheet, active count, close after apply",
+    "detail": "bottom sheet, minimizable and closable",
+    "status": "PASS"
+  },
+  "accessibility": {
+    "filters": ["explicit labels", "fieldsets and legends", "aria-expanded", "live status", "removable chips", "keyboard controls"],
+    "details": ["focusable headings", "keyboard/list focus handoff", "no map-pointer focus stealing", "text labels in addition to color"]
+  },
+  "errors": {
+    "filter_message": "No se han podido aplicar estos filtros. El mapa y las demás fuentes siguen disponibles.",
+    "source_isolation": true,
+    "runtime_errors_in_smokes": 0
+  },
+  "directed_smokes": {
+    "status": "PASS",
+    "count": 14,
+    "desktop": 12,
+    "mobile": 2,
+    "observations": {
+      "spain_1995_egif_min_500": 26,
+      "galicia_1995_egif_gif": 4,
+      "gva_1995_icv_min_100": 5,
+      "gva_1995_icv_lightning": 75,
+      "gva_1995_icv_negligence_zero": 0,
+      "gva_2024_icv_records": 472,
+      "elx_2025_effis_min_0_01": 1
+    },
+    "cards": ["EGIF", "ESFire30", "ICV", "EFFIS"],
+    "permalink_reload_back_forward": "PASS",
+    "contextual_invalidation": "PASS",
+    "canarias_no_esfire30_coverage": "PASS"
+  },
+  "performance": {
+    "classification": "diagnostic_only",
+    "national_egif_initial_loaded": false,
+    "egif_detail_still_lazy": true,
+    "icv_reuses_existing_fires_asset": true,
+    "effis_filter_max_source_features": 25,
+    "full_pmtiles_download_added": false,
+    "new_dataset": false
+  },
+  "deferred": {
+    "histogram_brush_status": "DEFERRED_P1",
+    "basemap_gap": "OPEN_NO_APPROVED_LOCAL_PROVIDER",
+    "highlights_top_n": "ES-4E3C2",
+    "egif_canonical_causes": "BLOCKED_MITECO_ONTOLOGY",
+    "esfire30_safe_area": "NOT_AVAILABLE_IN_CURRENT_TERRITORIAL_TILE_CONTRACT",
+    "filtered_metric_gap": "Spain EGIF arbitrary min-area/filter combinations need a small derived aggregate if E3C2 requires visible exact cards"
+  },
+  "product_comparison": {
+    "gva": "human filters and cards established the product reference",
+    "d4b": "technical controls and details dominated",
+    "e3a": "human shell and progressive methodology",
+    "e3b2": "source-typed overview and annual histogram",
+    "e3c1": "source-aware filters and final human cards, with technical detail collapsed"
+  },
+  "status": {
+    "safe_filters": "PASS",
+    "human_detail": "PASS",
+    "filter_state": "PASS",
+    "technical_runtime_regression": false,
+    "product_release_candidate": false,
+    "d5": "PAUSED_FOR_PRODUCT_RECONCILIATION",
+    "next_phase": "ES-4E3C2_NATIONAL_HIGHLIGHTS_MAP_POLISH"
+  }
+}
