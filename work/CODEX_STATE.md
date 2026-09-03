@@ -561,3 +561,43 @@ D5_STATUS = PAUSED_FOR_PRODUCT_RECONCILIATION
 RESULTS_PATH = ES_4E3C2_NATIONAL_HIGHLIGHTS_MAP_POLISH.md; data/audit/product/es4e3c2_national_highlights_map_polish.json
 
 NEXT_PHASE = ES-4E3C2_BASEMAP_DECISION
+
+PHASE = ES-4E3C2_BASEMAP_DECISION
+
+STATUS = DONE (Protomaps self-hosted z12 evaluado en harness aislado; contexto visual suficiente, Range 206, cero dominios runtime externos y cabida física conservadora en Pages; no integrado ni desplegado).
+
+BASEMAP_RECOMMENDATION = ADOPT_PROTOMAPS_Z12
+
+BASEMAP_STATUS = CANDIDATE_VALIDATED
+
+PROTOMAPS_ADOPTION = NOT_AUTHORIZED_YET
+
+Z12_VISUAL_QUALITY = SUFFICIENT
+
+Z12_PMTILES_BYTES = 293324998
+
+Z12_COMPLETE_BASEMAP_BYTES = 293411976
+
+Z12_SHA256 = 72bb270ff6fc18ccba3042834f9a9eb72901c243e7dec88b3ebb63eaafaeb729
+
+Z13_STATUS = NOT_TESTED (z12 suficiente)
+
+CURRENT_E3_PRE_BASEMAP_PROJECTED_SITE_BYTES = 518188315
+
+PROJECTED_SITE_BYTES_WITH_Z12 = 811600291
+
+PAGES_BYTES_REMAINING = 188399709 (cuenta física conservadora respecto a 1000000000 B)
+
+RUNTIME_NETWORK = all candidate PMTiles requests HTTP 206; full downloads 0; external runtime domains 0; one 76044 B glyph range per clean session.
+
+VISUAL_RESULT = topónimos/costa/agua/carreteras restauran contexto nacional, municipal y rural; incendios mantienen protagonismo; Elx y Cangas son suficientes con z12 sobrezoomed.
+
+LICENSE = OSM-derived Protomaps Produced Work ODbL + visible OSM attribution; basemaps code BSD-3-Clause; visual style CC0; Noto glyph SIL OFL; BDLJE CC-BY 4.0.
+
+PRODUCT_RELEASE_CANDIDATE = false
+
+D5_STATUS = PAUSED_FOR_PRODUCT_RECONCILIATION
+
+RESULTS_PATH = ES_4E3C2_BASEMAP_DECISION.md; data/audit/product/es4e3c2_basemap_decision.json
+
+NEXT_PHASE = ES-4E3C2_BASEMAP_INTEGRATION (solo tras aprobación humana)

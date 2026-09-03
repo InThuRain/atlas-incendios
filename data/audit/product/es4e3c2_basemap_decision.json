@@ -1,0 +1,217 @@
+{
+  "schema_version": "es4e3c2-basemap-decision-v1",
+  "phase": "ES-4E3C2_BASEMAP_DECISION",
+  "generated_at": "2026-09-03",
+  "decision_authorization": "AUTHORIZE_BOUNDED_PROTOMAPS_SELF_HOSTED_EVALUATION",
+  "source_build": {
+    "id": "20260902.pmtiles",
+    "url": "https://build.protomaps.com/20260902.pmtiles",
+    "published_bytes": 137702823565,
+    "uploaded_at": "2026-09-02T09:05:48.758Z",
+    "planet_downloaded": false
+  },
+  "source_identity": {
+    "tileset": "Protomaps Basemap",
+    "tileset_schema_version": "4.15.2",
+    "published_blake3": "0f7860f75647583b49cd22fc344298023b501892d8d8f2c8466337072d0c1062",
+    "published_md5_base64": "2g4/86Ho38Zp2gZd7e9N1Q==",
+    "osm_replication_time": "2026-09-02T04:00:00Z",
+    "planetiler_version": "0.10.2",
+    "planetiler_git_hash": "0e5588c4a6e8c29a270a33afe8df62027d889604",
+    "style_package": "@protomaps/basemaps@5.7.2",
+    "style_package_git_head": "3ea8293a28131c3dc63f1bb20827bdb8a76df06f",
+    "style_package_sha1": "06c0ba62e4317c84d31e54e7e5f4ee20947d22b0",
+    "basemaps_assets_commit": "028c18f713baecad011301ff7a69acc39bcc2ae7"
+  },
+  "region": {
+    "path": "data/derived/spain/es4c2a/ccaa.geojson",
+    "source": "accepted BDLJE CCAA/current autonomous cities FeatureCollection",
+    "logical_territories": 19,
+    "includes": ["Península", "Illes Balears", "Canarias", "Ceuta", "Melilla"],
+    "bytes": 8211747,
+    "sha256": "86fa15441605a0a95784fde45d1feffb302b6defc79b44665a64e02e5805535d",
+    "bbox_used": false
+  },
+  "zoom_candidates": {
+    "z12": {
+      "tested": true,
+      "visual_quality": "SUFFICIENT"
+    },
+    "z13": {
+      "tested": false,
+      "reason": "z12 resolves national, regional, municipal and rural context; additional extraction is not justified"
+    }
+  },
+  "pmtiles": {
+    "path": "build/es4e3c2-basemap/protomaps-spain-z12.pmtiles",
+    "git_ignored": true,
+    "bytes": 293324998,
+    "sha256": "72bb270ff6fc18ccba3042834f9a9eb72901c243e7dec88b3ebb63eaafaeb729",
+    "minzoom": 0,
+    "maxzoom": 12,
+    "tile_type": "mvt",
+    "tile_compression": "gzip",
+    "bounds": [-18.1611787, 27.6377231, 4.327784, 43.7923795],
+    "verify": "PASS",
+    "extract_command": "data/derived/spain/es3/tools/pmtiles-bin/pmtiles extract https://build.protomaps.com/20260902.pmtiles build/es4e3c2-basemap/protomaps-spain-z12.pmtiles --region=data/derived/spain/es4c2a/ccaa.geojson --maxzoom=12 --download-threads=4",
+    "dry_run": {
+      "tiles": 13228,
+      "requests": 79,
+      "estimated_transfer_mb": 308,
+      "estimated_archive_mb": 293,
+      "duration_seconds": 10.831,
+      "max_rss_kib": 68148
+    },
+    "actual_extract_duration": null,
+    "actual_extract_duration_note": "not preserved by executor rollover; extraction was not repeated solely to recover telemetry"
+  },
+  "style": {
+    "path": "benchmarks/es4e3c2_basemap/candidate.mjs",
+    "bytes": 6560,
+    "sha256": "6a6e64c3e4dae23650fe209213b444bcbcf79a8bb8c65822301c72c6198f262e",
+    "layer_count": 11,
+    "subset": ["earth", "landcover", "natural landuse", "water", "rivers", "major roads", "minor roads", "region labels", "locality labels", "road labels"],
+    "excluded": ["POI", "individual buildings", "shops", "tourist icons", "road shields"],
+    "language_strategy": "name (local) then name:es then name:en",
+    "layer_order": ["Protomaps context", "BDLJE territory", "fire geometries", "selection/highlight"]
+  },
+  "glyphs": {
+    "fontstack": "Noto Sans Regular",
+    "ranges_required": ["0-255"],
+    "files": [
+      {
+        "path": "fonts/Noto Sans Regular/0-255.pbf",
+        "bytes": 76044,
+        "sha256": "62c6d49b15fa836eb6aa45e259c7ca6762f44b011b09e47776efbe4a6db1b397"
+      },
+      {
+        "path": "fonts/OFL.txt",
+        "bytes": 4374,
+        "sha256": "7713cfc8e3c36d5ec4aa3d6cffe7500a1b3310f8a86d914b8ea09c2a9dee7c2d"
+      }
+    ],
+    "total_bytes": 80418
+  },
+  "sprites": {
+    "required": false,
+    "bytes": 0,
+    "requests_observed": 0
+  },
+  "complete_self_hosted_basemap_bytes": 293411976,
+  "licenses": {
+    "tiles": "OpenStreetMap-derived Protomaps Basemap Produced Work under ODbL; visible OpenStreetMap attribution required",
+    "style_code": "BSD-3-Clause",
+    "visual_style": "CC0",
+    "glyph_font": "SIL Open Font License (OFL)",
+    "sprites": "not used",
+    "administrative_boundaries": "BDLJE CC-BY 4.0"
+  },
+  "attribution": {
+    "proposal": "Protomaps · © OpenStreetMap contributors · Obra derivada de BDLJE CC-BY 4.0 ign.es",
+    "visible_required": true
+  },
+  "visual_review": {
+    "screenshots_root": "build/es4e3c2-basemap/comparisons/",
+    "screenshots_git_ignored": true,
+    "criteria": {
+      "GEOGRAPHIC_ORIENTATION": "BETTER",
+      "TOPONYM_USEFULNESS": "BETTER",
+      "ROAD_CONTEXT": "BETTER",
+      "FIRE_CONTRAST": "SIMILAR",
+      "VISUAL_NOISE": "SIMILAR",
+      "MUNICIPAL_CONTEXT": "BETTER",
+      "MOBILE_READABILITY": "BETTER"
+    },
+    "cases": {
+      "spain": "coast, surrounding geography, cities and major roads restore national orientation",
+      "gva_1995": "ICV and ESFire30 remain distinct and prominent over useful road/toponym context",
+      "elx": "localities, coast, water and roads are sufficient at z12 overzoom",
+      "ourense": "rural roads and settlements improve interpretation of a dense fire view",
+      "cangas_del_narcea": "rural/mountain context is sufficient without street-level detail",
+      "canarias": "island names, coast and water restore orientation; ESFire30 coverage semantics unchanged"
+    }
+  },
+  "network": {
+    "results_path": "build/es4e3c2-basemap/results.json",
+    "directed_runs": 15,
+    "navigation_sequences": 2,
+    "status": "PASS",
+    "all_pmtiles_requests_http_206": true,
+    "full_downloads": 0,
+    "external_runtime_domains": [],
+    "cold": {
+      "spain": {"range_requests": 6, "pmtiles_bytes": 263919, "glyph_requests": 1, "glyph_bytes": 76044, "elapsed_ms": 4210.8},
+      "galicia": {"range_requests": 10, "pmtiles_bytes": 582568, "glyph_requests": 1, "glyph_bytes": 76044, "elapsed_ms": 5252.85},
+      "ourense": {"range_requests": 12, "pmtiles_bytes": 949273, "glyph_requests": 1, "glyph_bytes": 76044, "elapsed_ms": 5278.76},
+      "gva_1995": {"range_requests": 10, "pmtiles_bytes": 520989, "glyph_requests": 1, "glyph_bytes": 76044, "elapsed_ms": 4754.99},
+      "elx": {"range_requests": 16, "pmtiles_bytes": 862700, "glyph_requests": 1, "glyph_bytes": 76044, "elapsed_ms": 5078.52},
+      "cangas": {"range_requests": 14, "pmtiles_bytes": 1141082, "glyph_requests": 1, "glyph_bytes": 76044, "elapsed_ms": 6461.77},
+      "canarias": {"range_requests": 9, "pmtiles_bytes": 304755, "glyph_requests": 1, "glyph_bytes": 76044, "elapsed_ms": 4314.09}
+    },
+    "navigation": {
+      "spain_to_galicia": {"additional_range_requests": 4, "additional_pmtiles_bytes": 318649, "additional_glyph_bytes": 0},
+      "galicia_to_ourense": {"additional_range_requests": 6, "additional_pmtiles_bytes": 685354, "additional_glyph_bytes": 0},
+      "spain_galicia_ourense_total_pmtiles_bytes": 1267922,
+      "spain_to_gva": {"additional_range_requests": 4, "additional_pmtiles_bytes": 257070, "additional_glyph_bytes": 0},
+      "gva_to_alacant": {"additional_range_requests": 6, "additional_pmtiles_bytes": 388096, "additional_glyph_bytes": 0},
+      "alacant_to_elx": {"additional_range_requests": 4, "additional_pmtiles_bytes": 210685, "additional_glyph_bytes": 0},
+      "spain_gva_alacant_elx_total_pmtiles_bytes": 1119770
+    }
+  },
+  "mobile": {
+    "viewport": "390x844 emulated",
+    "spain": {"pmtiles_bytes": 263919, "glyph_bytes": 76044, "labels_rendered": 11, "errors": 0},
+    "elx": {"pmtiles_bytes": 849533, "glyph_bytes": 76044, "labels_rendered": 12, "errors": 0},
+    "result": "PASS",
+    "cpu_or_network_emulated": false
+  },
+  "current_site_size": {
+    "fresh_e3_artifact_without_summary_bytes": 500933134,
+    "national_ux_summary_v1_bytes": 17255181,
+    "current_e3_pre_basemap_projected_site_bytes": 518188315,
+    "accounting": "physical/raw bytes; highlights are already present in the rebuilt artifact and summary is added exactly once"
+  },
+  "projected_site_sizes": {
+    "pages_limit_bytes_used_for_conservative_accounting": 1000000000,
+    "z12_complete_basemap_bytes": 293411976,
+    "with_z12_bytes": 811600291,
+    "z12_pages_bytes_remaining": 188399709,
+    "z13": "NOT_TESTED"
+  },
+  "privacy": {
+    "same_origin_capable": true,
+    "api_key": false,
+    "external_runtime_requests_observed": 0
+  },
+  "operation": {
+    "provider_api_billing": false,
+    "unlimited_free_claimed": false,
+    "costs": ["GitHub Pages site size", "GitHub Pages bandwidth", "approximately 293 MB additional deployment payload"],
+    "update_policy": "pinned immutable snapshot; manual review at most annually or after materially relevant road/toponym changes",
+    "basemap_is_historical": false
+  },
+  "decision_matrix": [
+    {"option": "BDLJE_ONLY", "visual_quality": "INSUFFICIENT_CONTEXT", "self_hosted": true, "runtime_external": false, "raw_bytes_added": 0, "projected_pages_total": 518188315, "privacy": "HIGH", "operational_risk": "LOW", "recommendation": "DOES_NOT_RESOLVE_BASEMAP_GAP"},
+    {"option": "PROTOMAPS_Z12", "visual_quality": "SUFFICIENT", "self_hosted": true, "runtime_external": false, "raw_bytes_added": 293411976, "projected_pages_total": 811600291, "privacy": "HIGH", "operational_risk": "MEDIUM", "recommendation": "ADOPT_AFTER_HUMAN_APPROVAL"},
+    {"option": "OPENFREEMAP", "visual_quality": "NOT_EVALUATED", "self_hosted": false, "runtime_external": true, "recommendation": "FALLBACK_EXTERNAL_NO_SLA"},
+    {"option": "MAPTILER", "visual_quality": "NOT_EVALUATED", "self_hosted": false, "runtime_external": true, "recommendation": "FALLBACK_MANAGED_SERVICE"}
+  ],
+  "fallbacks": {
+    "openfreemap": "FALLBACK_EXTERNAL_NO_SLA",
+    "maptiler": "FALLBACK_MANAGED_SERVICE"
+  },
+  "recommendation": "ADOPT_PROTOMAPS_Z12",
+  "status": {
+    "basemap_status": "CANDIDATE_VALIDATED",
+    "protomaps_adoption": "NOT_AUTHORIZED_YET",
+    "product_release_candidate": false,
+    "d5_status": "PAUSED_FOR_PRODUCT_RECONCILIATION",
+    "next_phase": "ES-4E3C2_BASEMAP_INTEGRATION"
+  },
+  "limitations": [
+    "actual extraction duration was not preserved and the 293 MB extraction was not repeated only for telemetry",
+    "local diagnostic timings are not an SLA",
+    "Pages remote artifact with this basemap was not built or deployed",
+    "font coverage was validated on directed Spanish scenarios, not every global Unicode label"
+  ]
+}

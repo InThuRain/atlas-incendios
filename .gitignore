@@ -86,6 +86,11 @@ build/national-pages-staging-d4a1-repro/
 build/national-pages-staging-d4a.tar.gz
 build/national-pages-staging-d4a1.tar.gz
 
+# Evaluación local acotada del mapa base Protomaps ES-4E3C2. El PMTiles,
+# glyphs, capturas y artifacts proyectados son reproducibles pero demasiado
+# grandes o dependientes de la máquina para entrar en Git.
+build/es4e3c2-basemap/
+
 # Dependencias locales de los benchmarks JavaScript.
 benchmarks/gva_web/node_modules/
 
