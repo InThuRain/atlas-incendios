@@ -116,6 +116,11 @@ class RangeHandler(SimpleHTTPRequestHandler):
 
     def copyfile(self, source, output):
         remaining = getattr(self, "remaining", None)
+        if remaining is None:
+            try:
+                return super().copyfile(source, output)
+            except (BrokenPipeError, ConnectionResetError):
+                return None
         try:
             while remaining:
                 block = source.read(min(64 * 1024, remaining))

@@ -20,7 +20,11 @@ import build_national_frontend as frontend
 
 
 ROOT = Path(__file__).resolve().parents[1]
-DEFAULT_OUTPUT = ROOT / "build/national-pages-staging"
+TECHNICAL_OUTPUT = ROOT / "build/national-pages-staging"
+PRODUCT_OUTPUT = ROOT / "build/national-product-staging"
+DEFAULT_OUTPUT = PRODUCT_OUTPUT
+APPROVED_SOURCE_COMMIT = "ab5d6c17891dcb05a54c85c5c3a1809d0325ba5a"
+PRODUCT_PROFILE = "product"
 PMTILES_SOURCE = ROOT / "data/derived/spain/es4c2b/pmtiles/esfire30-national-fidelity-territories.pmtiles"
 PMTILES_DESTINATION = Path("data/esfire30/v1") / frontend.PMTILES_SHA256 / PMTILES_SOURCE.name
 EGIF_SOURCE = ROOT / "data/web/spain/egif/2026-08-27"
@@ -37,15 +41,17 @@ SUMMARY_SOURCE = ROOT / "data/derived/spain/national-ux-summary-v1"
 BASEMAP_MANIFEST_SOURCE = frontend.BASEMAP_MANIFEST_PATH
 BASEMAP_SOURCE = ROOT / frontend.BASEMAP_MANIFEST["pmtiles"]["source_path"]
 BASEMAP_DESTINATION = Path(frontend.BASEMAP_MANIFEST["pmtiles"]["runtime_path"])
-BASEMAP_GLYPH_SOURCE = ROOT / frontend.BASEMAP_MANIFEST["glyphs"]["source_path"]
-BASEMAP_GLYPH_DESTINATION = Path(frontend.BASEMAP_MANIFEST["glyphs"]["runtime_template"].replace("{fontstack}", frontend.BASEMAP_MANIFEST["glyphs"]["fontstack"]).replace("{range}", frontend.BASEMAP_MANIFEST["glyphs"]["range"]))
 BASEMAP_LICENSE_SOURCE = ROOT / frontend.BASEMAP_MANIFEST["glyphs"]["license_source_path"]
 BASEMAP_LICENSE_DESTINATION = Path(frontend.BASEMAP_MANIFEST["glyphs"]["license_runtime_path"])
 BASEMAP_MANIFEST_DESTINATION = BASEMAP_DESTINATION.parent / "manifest.json"
-FORBIDDEN_RUNTIME_STRINGS = ("/home/dani/", "file://", "127.0.0.1", "localhost", "r2.dev", "atlas-incendios-es4c3d4-pages-staging", "national-prototype-staging", "release-assets.githubusercontent.com", "/releases/download")
+FORBIDDEN_RUNTIME_STRINGS = ("/home/dani/", "file://", "/src/", "/prototypes/", "/data/derived/", "/work/", "127.0.0.1", "localhost", "r2.dev", "atlas-incendios-es4c3d4-pages-staging", "national-prototype-staging", "release-assets.githubusercontent.com", "/releases/download")
 PAYLOAD_MANIFEST_PATH = Path("asset-manifest.json")
 SITE_IDENTITY_PATH = Path("site-identity.json")
 SITE_METADATA_PATHS = {PAYLOAD_MANIFEST_PATH.as_posix(), SITE_IDENTITY_PATH.as_posix()}
+SUMMARY_FINGERPRINT = "2546247b68ef8e27fed3334cf5fb4a027056f094e36420213080c431bfb850e4"
+SUMMARY_MANIFEST_SHA256 = "b09e69648b6b2dee03265f12a00624de72d4006301b04d796889c1bf151a8e7b"
+HIGHLIGHTS_MANIFEST_SHA256 = "578cddd7a3d341d0fd7aa72382b7159c603724155798309fc338a515fdc2762a"
+HIGHLIGHTS_ASSET_SHA256 = "c09a92afd184ee46cca0e417a2a9ae3e0b5fc8b193c0b54bb9201f6f02197059"
 
 
 class MissingStagingInput(FileNotFoundError):
@@ -170,47 +176,70 @@ def copy_municipality_indexes(output: Path, files: list[dict]) -> dict:
 
 
 def copy_highlights(output: Path, files: list[dict]) -> dict:
-    manifest = read_json(HIGHLIGHTS_SOURCE / "manifest.json")
+    manifest_path = HIGHLIGHTS_SOURCE / "manifest.json"
+    manifest = read_json(manifest_path)
     if manifest.get("schema_version") != "national-highlights-v1" or len(manifest.get("assets", [])) != 1:
         raise MissingStagingInput("MISSING_STAGING_INPUT: manifest de destacados nacionales inválido")
+    if sha256(manifest_path) != HIGHLIGHTS_MANIFEST_SHA256:
+        raise MissingStagingInput("MISSING_STAGING_INPUT: manifest de destacados no coincide con su identidad aprobada")
     destination = Path("data/highlights/national-highlights-v1")
-    copy_file(HIGHLIGHTS_SOURCE / "manifest.json", output, destination / "manifest.json", "highlights", "highlights:manifest", "National highlights v1", files)
+    copy_file(manifest_path, output, destination / "manifest.json", "highlights", "highlights:manifest", "National highlights v1", files)
     descriptor = manifest["assets"][0]
+    if descriptor.get("sha256") != HIGHLIGHTS_ASSET_SHA256 or sha256(HIGHLIGHTS_SOURCE / descriptor["path"]) != HIGHLIGHTS_ASSET_SHA256:
+        raise MissingStagingInput("MISSING_STAGING_INPUT: asset de destacados no coincide con su identidad aprobada")
     copy_file(HIGHLIGHTS_SOURCE / descriptor["path"], output, destination / descriptor["path"], "highlights", "highlights:egif", "National highlights v1", files)
-    return {"assets": 1, "source": "egif", "bytes": descriptor.get("bytes")}
+    return {"assets": 1, "source": "egif", "bytes": descriptor.get("bytes"), "manifest_sha256": HIGHLIGHTS_MANIFEST_SHA256, "asset_sha256": HIGHLIGHTS_ASSET_SHA256}
 
 
 def copy_summary(output: Path, files: list[dict]) -> dict:
-    manifest = read_json(SUMMARY_SOURCE / "manifest.json")
-    if manifest.get("schema_version") != "national-ux-summary-v1" or manifest.get("payload_file_count") != 122:
+    manifest_path = SUMMARY_SOURCE / "manifest.json"
+    manifest = read_json(manifest_path)
+    if (
+        manifest.get("schema_version") != "national-ux-summary-v1"
+        or manifest.get("payload_file_count") != 122
+        or manifest.get("fingerprint") != SUMMARY_FINGERPRINT
+        or sha256(manifest_path) != SUMMARY_MANIFEST_SHA256
+    ):
         raise MissingStagingInput("MISSING_STAGING_INPUT: manifest de resumen nacional inválido")
     destination = Path("data/summary/national-ux-summary-v1")
     source_files = sorted(path for path in SUMMARY_SOURCE.rglob("*.json") if path.is_file())
     for source in source_files:
         relative = source.relative_to(SUMMARY_SOURCE)
         copy_file(source, output, destination / relative, "summary", f"summary:{relative.as_posix()}", "National UX summary v1", files)
-    return {"payload_files": manifest["payload_file_count"], "runtime_files": len(source_files), "payload_bytes": manifest.get("payload_bytes")}
+    return {
+        "payload_files": manifest["payload_file_count"],
+        "runtime_files": len(source_files),
+        "payload_bytes": manifest.get("payload_bytes"),
+        "fingerprint": SUMMARY_FINGERPRINT,
+        "manifest_sha256": SUMMARY_MANIFEST_SHA256,
+    }
 
 
 def copy_basemap(output: Path, files: list[dict]) -> dict:
     contract = frontend.BASEMAP_MANIFEST
-    checks = (
+    glyph_descriptors = contract["glyphs"]["files"]
+    checks = [
         (BASEMAP_SOURCE, contract["pmtiles"]["bytes"], contract["pmtiles"]["sha256"], "PMTiles"),
-        (BASEMAP_GLYPH_SOURCE, contract["glyphs"]["bytes"], contract["glyphs"]["sha256"], "glyph"),
         (BASEMAP_LICENSE_SOURCE, contract["glyphs"]["license_bytes"], contract["glyphs"]["license_sha256"], "OFL"),
-    )
+    ]
+    checks.extend((ROOT / descriptor["source_path"], descriptor["bytes"], descriptor["sha256"], f'glyph {descriptor["range"]}') for descriptor in glyph_descriptors)
     for source, expected_bytes, expected_sha, label_ in checks:
         require_file(source)
         if source.stat().st_size != expected_bytes or sha256(source) != expected_sha:
             raise MissingStagingInput(f"MISSING_STAGING_INPUT: basemap {label_} no coincide con bytes/SHA contractual")
-    copy_file(BASEMAP_SOURCE, output, BASEMAP_DESTINATION, "basemap", "basemap:protomaps-20260902-z12", "Protomaps 20260902 z12 regional extract", files)
-    copy_file(BASEMAP_GLYPH_SOURCE, output, BASEMAP_GLYPH_DESTINATION, "basemap", "basemap:glyph:Noto-Sans-Regular:0-255", "Noto Sans Regular glyph", files)
-    copy_file(BASEMAP_LICENSE_SOURCE, output, BASEMAP_LICENSE_DESTINATION, "basemap", "basemap:glyph-license:OFL", "Noto SIL OFL", files)
-    copy_file(BASEMAP_MANIFEST_SOURCE, output, BASEMAP_MANIFEST_DESTINATION, "basemap", "basemap:manifest", "National basemap manifest v1", files)
+    copy_file(BASEMAP_SOURCE, output, BASEMAP_DESTINATION, "protomaps_basemap_pmtiles", "protomaps_basemap_pmtiles", "Protomaps 20260902 z12 regional extract", files)
+    glyph_rows = []
+    for descriptor in glyph_descriptors:
+        destination = Path(contract["glyphs"]["runtime_template"].replace("{fontstack}", contract["glyphs"]["fontstack"]).replace("{range}", descriptor["range"]))
+        source = ROOT / descriptor["source_path"]
+        copy_file(source, output, destination, "basemap_support", f'basemap:glyph:Noto-Sans-Regular:{descriptor["range"]}', "Noto Sans Regular glyph", files)
+        glyph_rows.append({"range": descriptor["range"], "runtime_path": destination.as_posix(), "bytes": descriptor["bytes"], "sha256": descriptor["sha256"]})
+    copy_file(BASEMAP_LICENSE_SOURCE, output, BASEMAP_LICENSE_DESTINATION, "basemap_support", "basemap:glyph-license:OFL", "Noto SIL OFL", files)
+    copy_file(BASEMAP_MANIFEST_SOURCE, output, BASEMAP_MANIFEST_DESTINATION, "basemap_support", "basemap:manifest", "National basemap manifest v1", files)
     return {
         "version": contract["basemap_version"],
         "pmtiles": {"runtime_path": BASEMAP_DESTINATION.as_posix(), "bytes": contract["pmtiles"]["bytes"], "sha256": contract["pmtiles"]["sha256"]},
-        "glyph": {"runtime_path": BASEMAP_GLYPH_DESTINATION.as_posix(), "bytes": contract["glyphs"]["bytes"], "sha256": contract["glyphs"]["sha256"]},
+        "glyphs": {"fontstack": contract["glyphs"]["fontstack"], "file_count": len(glyph_rows), "total_bytes": sum(row["bytes"] for row in glyph_rows), "files": glyph_rows},
         "runtime_external_domains": [],
     }
 
@@ -223,7 +252,7 @@ def add_frontend_records(output: Path, files: list[dict]) -> None:
                 files.append({"path": relative, "family": "frontend" if not relative.startswith("vendor/") else "other", "logical_id": f"frontend:{relative}", "source": "src/national + shared runtime"})
 
 
-def inventory(output: Path, records: list[dict], inputs: dict) -> dict:
+def inventory(output: Path, records: list[dict], inputs: dict, profile: str) -> dict:
     rows = []
     for record in sorted(records, key=lambda item: item["path"]):
         path = output / record["path"]
@@ -252,7 +281,9 @@ def inventory(output: Path, records: list[dict], inputs: dict) -> dict:
             duplicates[row["sha256"]].append(row["path"])
     return {
         "schema_version": "es4d4a-national-pages-artifact-v2",
-        "artifact": "national-pages-staging",
+        "artifact": "national-product-staging" if profile == PRODUCT_PROFILE else "national-pages-staging",
+        "profile": profile,
+        "source_commit": APPROVED_SOURCE_COMMIT,
         "entrypoint": "index.html",
         "identity_contract": {
             "payload_scope": "all deployable files except asset-manifest.json and site-identity.json",
@@ -266,7 +297,12 @@ def inventory(output: Path, records: list[dict], inputs: dict) -> dict:
         "families": {key: value for key, value in sorted(families.items())},
         "largest_files": sorted(rows, key=lambda row: (-row["bytes"], row["path"]))[:20],
         "significant_duplicate_assets": [paths for paths in duplicates.values() if len(paths) > 1],
+        # `pmtiles` remains as a D4-compatible alias for the fire archive.
         "pmtiles": {"runtime_path": PMTILES_DESTINATION.as_posix(), "bytes": frontend.PMTILES_BYTES, "sha256": frontend.PMTILES_SHA256},
+        "pmtiles_assets": {
+            "esfire30_fire_pmtiles": {"logical_id": "esfire30_fire_pmtiles", "runtime_path": PMTILES_DESTINATION.as_posix(), "bytes": frontend.PMTILES_BYTES, "sha256": frontend.PMTILES_SHA256},
+            "protomaps_basemap_pmtiles": {"logical_id": "protomaps_basemap_pmtiles", **inputs["basemap"]["pmtiles"]},
+        },
         "basemap": inputs.get("basemap"),
         "inputs": inputs,
         "payload_fingerprint": {
@@ -274,7 +310,7 @@ def inventory(output: Path, records: list[dict], inputs: dict) -> dict:
             "sha256": hashlib.sha256(fingerprint_input).hexdigest(),
         },
         "external_runtime_dependencies": [],
-        "staging_repo_candidate": "InThuRain/atlas-incendios-es4c3d4-pages-staging",
+        "runtime_external_data_domains": [],
     }
 
 
@@ -305,6 +341,7 @@ def write_identity_metadata(staging: Path, manifest: dict) -> dict:
         "payload_fingerprint": manifest["payload_fingerprint"],
         "asset_manifest": {"path": PAYLOAD_MANIFEST_PATH.as_posix(), "sha256": manifest_sha256},
         "pmtiles": manifest["pmtiles"],
+        "pmtiles_assets": manifest.get("pmtiles_assets", {}),
     }
     identity_path = staging / SITE_IDENTITY_PATH
     provisional = canonical_json(identity)
@@ -325,7 +362,7 @@ def write_identity_metadata(staging: Path, manifest: dict) -> dict:
     }
 
 
-def build(output: Path) -> dict:
+def build(output: Path, profile: str = PRODUCT_PROFILE) -> dict:
     require_file(PMTILES_SOURCE)
     if PMTILES_SOURCE.stat().st_size != frontend.PMTILES_BYTES or sha256(PMTILES_SOURCE) != frontend.PMTILES_SHA256:
         raise MissingStagingInput("MISSING_STAGING_INPUT: PMTiles nacional no coincide con bytes/SHA contractual")
@@ -337,7 +374,7 @@ def build(output: Path) -> dict:
         (staging / ".nojekyll").write_text("", encoding="utf-8")
         files: list[dict] = []
         add_frontend_records(staging, files)
-        copy_file(PMTILES_SOURCE, staging, PMTILES_DESTINATION, "pmtiles", "esfire30:national-fidelity-territories", "ESFire30 v1 territorial PMTiles", files)
+        copy_file(PMTILES_SOURCE, staging, PMTILES_DESTINATION, "esfire30_fire_pmtiles", "esfire30_fire_pmtiles", "ESFire30 v1 territorial PMTiles", files)
         inputs = {
             "pmtiles": {"source": str(PMTILES_SOURCE.relative_to(ROOT)), "bytes": frontend.PMTILES_BYTES, "sha256": frontend.PMTILES_SHA256},
             "basemap": copy_basemap(staging, files),
@@ -350,7 +387,7 @@ def build(output: Path) -> dict:
         }
         # Registra todos los ficheros ya presentes y no añade datos de desarrollo.
         add_frontend_records(staging, files)
-        manifest = inventory(staging, files, inputs)
+        manifest = inventory(staging, files, inputs, profile)
         identity = write_identity_metadata(staging, manifest)
         if output.exists():
             shutil.rmtree(output)
@@ -414,6 +451,11 @@ def verify_identity(output: Path) -> dict:
     basemap = output / basemap_contract.get("runtime_path", "")
     if not basemap.is_file() or basemap.stat().st_size != frontend.BASEMAP_BYTES or sha256(basemap) != frontend.BASEMAP_SHA256:
         failures.append("basemap: bytes/SHA")
+    pmtiles_assets = manifest.get("pmtiles_assets", {})
+    if set(pmtiles_assets) != {"esfire30_fire_pmtiles", "protomaps_basemap_pmtiles"}:
+        failures.append("pmtiles: logical identities")
+    if identity.get("pmtiles_assets") != pmtiles_assets:
+        failures.append("identity: pmtiles assets")
     for path in output.rglob("*"):
         relative = path.relative_to(output).as_posix() if path.is_file() else ""
         if not path.is_file() or relative in SITE_METADATA_PATHS or relative.startswith("vendor/") or path.suffix.lower() not in {".html", ".js", ".mjs", ".json", ".css"}:
@@ -498,7 +540,7 @@ def identity_audit(output: Path, baseline: Path | None = None, repro_artifact: P
         }
     audit_status = "PASS" if checked.get("valid") and (reproducible is None or reproducible["status"] == "PASS") else "FAIL"
     return {
-        "phase": "ES-4D4A1",
+        "phase": "ES-4E3D1" if manifest.get("profile") == PRODUCT_PROFILE else "ES-4D4A1",
         "status": audit_status,
         "identity_contract": {
             "before": {
@@ -552,16 +594,18 @@ def identity_audit(output: Path, baseline: Path | None = None, repro_artifact: P
 
 def main() -> int:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT)
+    parser.add_argument("--profile", choices=("product", "technical"), default=PRODUCT_PROFILE)
+    parser.add_argument("--output", type=Path)
     parser.add_argument("--check", action="store_true")
     parser.add_argument("--identity-audit", type=Path, help="Escribe inventario físico y simulación independiente del gate D4B.")
     parser.add_argument("--baseline", type=Path, help="Artifact anterior para comprobar que payload/runtime assets no cambiaron.")
     parser.add_argument("--repro-artifact", type=Path, help="Segundo artifact limpio para registrar reproducibilidad completa.")
     args = parser.parse_args()
+    output = args.output or (PRODUCT_OUTPUT if args.profile == PRODUCT_PROFILE else TECHNICAL_OUTPUT)
     try:
-        result = check(args.output) if args.check else build(args.output)
+        result = check(output) if args.check else build(output, profile=args.profile)
         if result.get("valid") and args.identity_audit:
-            audit = identity_audit(args.output, args.baseline, args.repro_artifact)
+            audit = identity_audit(output, args.baseline, args.repro_artifact)
             args.identity_audit.parent.mkdir(parents=True, exist_ok=True)
             args.identity_audit.write_bytes(canonical_json(audit))
             result["identity_audit"] = label(args.identity_audit)

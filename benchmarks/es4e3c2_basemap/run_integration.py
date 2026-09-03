@@ -23,7 +23,7 @@ import run as evaluation  # noqa: E402
 BUILDER = ROOT / "scripts/build_national_frontend.py"
 CONTRACT = json.loads((ROOT / "config/national-basemap-protomaps-20260902-z12.json").read_text(encoding="utf-8"))
 BASEMAP = ROOT / CONTRACT["pmtiles"]["source_path"]
-GLYPH = ROOT / CONTRACT["glyphs"]["source_path"]
+GLYPHS = [(descriptor, ROOT / descriptor["source_path"]) for descriptor in CONTRACT["glyphs"]["files"]]
 OUTPUT = ROOT / "build/es4e3c2-basemap/integration-results.json"
 
 SCENARIOS = {
@@ -58,9 +58,10 @@ def build_site(directory: Path, include_basemap: bool) -> Path:
         archive = site / CONTRACT["pmtiles"]["runtime_path"]
         archive.parent.mkdir(parents=True)
         archive.symlink_to(BASEMAP)
-        glyph = site / CONTRACT["glyphs"]["runtime_template"].replace("{fontstack}", CONTRACT["glyphs"]["fontstack"]).replace("{range}", CONTRACT["glyphs"]["range"])
-        glyph.parent.mkdir(parents=True)
-        glyph.symlink_to(GLYPH)
+        for descriptor, source in GLYPHS:
+            glyph = site / CONTRACT["glyphs"]["runtime_template"].replace("{fontstack}", CONTRACT["glyphs"]["fontstack"]).replace("{range}", descriptor["range"])
+            glyph.parent.mkdir(parents=True, exist_ok=True)
+            glyph.symlink_to(source)
     return site
 
 
@@ -148,7 +149,8 @@ def validate(payload: dict) -> list[str]:
             failures.append(f"{name}: Range basemap")
         if network["esfire30"]["requests"] and (network["esfire30"]["requests"] != network["esfire30"]["range_requests"] or network["esfire30"]["full_download"]):
             failures.append(f"{name}: Range ESFire30")
-        if network["glyphs"]["requests"] != 1 or network["glyphs"]["statuses"] != [200]:
+        expected_glyph_paths = {f'/{CONTRACT["glyphs"]["runtime_template"].replace("{fontstack}", CONTRACT["glyphs"]["fontstack"]).replace("{range}", descriptor["range"]).replace(" ", "%20")}' for descriptor, _source in GLYPHS}
+        if network["glyphs"]["requests"] < 1 or network["glyphs"]["statuses"] != [200] or not set(network["glyphs"]["paths"]).issubset(expected_glyph_paths):
             failures.append(f"{name}: glyph")
         if row["external_runtime_domains"] or row["runtime_errors"] or row["bootstrap_error"]:
             failures.append(f"{name}: runtime/external error")

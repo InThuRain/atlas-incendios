@@ -91,6 +91,12 @@ build/national-pages-staging-d4a1.tar.gz
 # grandes o dependientes de la máquina para entrar en Git.
 build/es4e3c2-basemap/
 
+# Artifact completo de producto E3D1 y su segunda construcción reproducible.
+build/national-product-staging/
+build/national-product-staging-repro/
+build/national-product-frontend-check/
+build/es4e3d1/
+
 # Dependencias locales de los benchmarks JavaScript.
 benchmarks/gva_web/node_modules/
 

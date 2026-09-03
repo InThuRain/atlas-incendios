@@ -18,8 +18,11 @@ class BasemapIntegrationTests(unittest.TestCase):
         contract = json.loads(CONTRACT_PATH.read_text(encoding="utf-8"))
         self.assertEqual(contract["pmtiles"]["bytes"], 293324998)
         self.assertEqual(contract["pmtiles"]["sha256"], "72bb270ff6fc18ccba3042834f9a9eb72901c243e7dec88b3ebb63eaafaeb729")
-        self.assertEqual(contract["glyphs"]["bytes"], 76044)
-        self.assertEqual(contract["glyphs"]["sha256"], "62c6d49b15fa836eb6aa45e259c7ca6762f44b011b09e47776efbe4a6db1b397")
+        self.assertEqual(contract["glyphs"]["file_count"], 9)
+        self.assertEqual(contract["glyphs"]["total_bytes"], 909374)
+        self.assertEqual(contract["glyphs"]["files"][0]["bytes"], 76044)
+        self.assertEqual(contract["glyphs"]["files"][0]["sha256"], "62c6d49b15fa836eb6aa45e259c7ca6762f44b011b09e47776efbe4a6db1b397")
+        self.assertEqual(contract["glyphs"]["source_commit"], "028c18f713baecad011301ff7a69acc39bcc2ae7")
         self.assertEqual(contract["glyphs"]["license_bytes"], 4374)
         self.assertEqual(contract["style"]["sprites"], [])
         self.assertEqual(contract["runtime_external_domains"], [])
@@ -66,7 +69,7 @@ class BasemapIntegrationTests(unittest.TestCase):
         assembly = (ROOT / "scripts/build_national_pages_artifact.py").read_text(encoding="utf-8")
         self.assertIn("copy_basemap", assembly)
         self.assertIn("copy_summary", assembly)
-        self.assertIn('"basemap", "basemap:protomaps-20260902-z12"', assembly)
+        self.assertIn('"protomaps_basemap_pmtiles", "protomaps_basemap_pmtiles"', assembly)
 
 
 if __name__ == "__main__":

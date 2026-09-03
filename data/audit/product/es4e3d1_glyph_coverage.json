@@ -1,0 +1,46 @@
+{
+  "phase": "ES-4E3D1_GLYPH_FIX",
+  "status": "PASS",
+  "fontstack": "Noto Sans Regular",
+  "discovery_method": "ACCEPTANCE_MATRIX_COMPLETE",
+  "coverage_claim": "Bounded completeness for the documented Spanish territorial and zoom acceptance matrix; not universal Unicode coverage.",
+  "source": {
+    "repository": "https://github.com/protomaps/basemaps-assets",
+    "commit": "028c18f713baecad011301ff7a69acc39bcc2ae7",
+    "url_template": "https://raw.githubusercontent.com/protomaps/basemaps-assets/028c18f713baecad011301ff7a69acc39bcc2ae7/fonts/Noto%20Sans%20Regular/{range}.pbf",
+    "license": "SIL OFL 1.1"
+  },
+  "requested_ranges": ["0-255.pbf", "256-511.pbf", "512-767.pbf", "768-1023.pbf", "1024-1279.pbf", "1536-1791.pbf", "7680-7935.pbf", "8192-8447.pbf", "11520-11775.pbf"],
+  "bundled_ranges": ["0-255.pbf", "256-511.pbf", "512-767.pbf", "768-1023.pbf", "1024-1279.pbf", "1536-1791.pbf", "7680-7935.pbf", "8192-8447.pbf", "11520-11775.pbf"],
+  "files": [
+    {"range": "0-255", "bytes": 76044, "sha256": "62c6d49b15fa836eb6aa45e259c7ca6762f44b011b09e47776efbe4a6db1b397"},
+    {"range": "256-511", "bytes": 127726, "sha256": "2eca7561f9f566bcacfda5dd04fb5880baec1328ec0f5484678289a13994de8a"},
+    {"range": "512-767", "bytes": 94728, "sha256": "6abc80badad0e823e228ab739515be257c8b33bc68bb077dd873030e9b2d143a"},
+    {"range": "768-1023", "bytes": 77034, "sha256": "537ccbee79180f4f8b3f6d2bdd27df979260ce1a0358c40d7aa7db505d9b03aa"},
+    {"range": "1024-1279", "bytes": 125320, "sha256": "302231023f7048d9694a7b3f3b737c8bc378f5af0175aed5bb4f2f3b6188919a"},
+    {"range": "1536-1791", "bytes": 110716, "sha256": "f46850e6574d817d58d96b91196739c77c1b570a7b4f992ff1380d2b4d5d631f"},
+    {"range": "7680-7935", "bytes": 135449, "sha256": "b9100ec886dff647198802c41d1ca6df9e6f82325179d8d71e3d377b5fe8682e"},
+    {"range": "8192-8447", "bytes": 64220, "sha256": "8ea977a587352fe31b4159ffdbc9a40be79056f2472017c742ea1e4a931864b9"},
+    {"range": "11520-11775", "bytes": 98137, "sha256": "59d1bc7f5596128a7ffb6ce801a784d3c2dbf8c9f0736fca85a38cb634a8b6e7"}
+  ],
+  "file_count": 9,
+  "total_bytes": 909374,
+  "before": {"file_count": 1, "total_bytes": 76044},
+  "delta_bytes": 833330,
+  "matrix": {
+    "contexts": 16,
+    "zooms": [5, 7, 9, 12, 14],
+    "views_per_run": 80,
+    "runs": 2,
+    "territories": ["spain", "galicia", "asturias", "cantabria", "pais_vasco", "navarra", "catalunya", "comunitat_valenciana", "illes_balears", "andalucia", "ceuta", "melilla", "canarias", "interior_madrid_toledo", "interior_castilla_leon", "interior_aragon"],
+    "run_1_requested_ranges": ["0-255.pbf", "256-511.pbf", "512-767.pbf", "768-1023.pbf", "1024-1279.pbf", "1536-1791.pbf", "7680-7935.pbf", "8192-8447.pbf", "11520-11775.pbf"],
+    "run_2_requested_ranges": ["0-255.pbf", "256-511.pbf", "512-767.pbf", "768-1023.pbf", "1024-1279.pbf", "1536-1791.pbf", "7680-7935.pbf", "8192-8447.pbf", "11520-11775.pbf"]
+  },
+  "unexpected_requests": [],
+  "glyph_404_count": 0,
+  "glyph_unbundled_range_count": 0,
+  "range_discovery_stable": true,
+  "same_origin": true,
+  "runtime_external_font_domains": [],
+  "sprites": []
+}

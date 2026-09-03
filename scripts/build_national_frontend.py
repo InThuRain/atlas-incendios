@@ -65,6 +65,16 @@ FRONTEND_FILES = (
     "source-registry.mjs",
     "basemap-context.mjs",
 )
+STAGED_RUNTIME_REPLACEMENTS = {
+    '"/data/derived/spain/es3/tools/browser/pmtiles-4.3.0.mjs"': '"../vendor/pmtiles-4.3.0.mjs"',
+    '"/data/derived/spain/es4c2b/pmtiles/esfire30-national-fidelity-territories.pmtiles"': f'"data/esfire30/v1/{PMTILES_SHA256}/esfire30-national-fidelity-territories.pmtiles"',
+    '"/data/web/spain/egif/2026-08-27/manifest.json"': '"data/egif/v1/2026-08-27/manifest.json"',
+    '"/data/derived/spain/es4c2a/ccaa.geojson"': '"data/territories/spain/v1/ccaa.geojson"',
+    '"/data/derived/spain/es4c2a/provinces.geojson"': '"data/territories/spain/v1/provinces.geojson"',
+    '"/data/territories/spain/municipality_catalog_2026-08-29.json"': '"data/territories/spain/v1/municipality-catalog.json"',
+    '"/data/derived/spain/es4c2a3/municipalities"': '"data/territories/spain/v1/municipalities"',
+    '"/data/derived/spain/es4c2b/runtime/municipality-index"': '"data/esfire30/v1/municipality-index"',
+}
 
 
 def sha256(path: Path) -> str:
@@ -100,9 +110,9 @@ def production_config() -> dict:
                 "glyphs": {
                     "fontstack": BASEMAP_MANIFEST["glyphs"]["fontstack"],
                     "template": BASEMAP_MANIFEST["glyphs"]["runtime_template"],
-                    "range": BASEMAP_MANIFEST["glyphs"]["range"],
-                    "bytes": BASEMAP_MANIFEST["glyphs"]["bytes"],
-                    "sha256": BASEMAP_MANIFEST["glyphs"]["sha256"],
+                    "ranges": [item["range"] for item in BASEMAP_MANIFEST["glyphs"]["files"]],
+                    "file_count": BASEMAP_MANIFEST["glyphs"]["file_count"],
+                    "total_bytes": BASEMAP_MANIFEST["glyphs"]["total_bytes"],
                     "required": False,
                 },
                 "manifest": {
@@ -211,6 +221,15 @@ def build(output: Path) -> dict:
         app_path.write_text(app_path.read_text(encoding="utf-8").replace(
             'from "../../src/national/compat/gva-v1.mjs"', 'from "./compat_gva_v1.mjs"'
         ), encoding="utf-8")
+        # Los defaults del prototipo no deben sobrevivir como posibles
+        # fallbacks fuera del artifact, aunque runtime-config.js los sustituya.
+        for runtime_path in sorted((staging / "runtime").iterdir()):
+            if not runtime_path.is_file() or runtime_path.suffix not in {".js", ".mjs"}:
+                continue
+            text = runtime_path.read_text(encoding="utf-8")
+            for before, after in STAGED_RUNTIME_REPLACEMENTS.items():
+                text = text.replace(before, after)
+            runtime_path.write_text(text, encoding="utf-8")
         # Solo los módulos consumidos por app.js se conservan; evitar que el
         # artifact transporte harnesses o diagnósticos del prototipo.
         for path in (staging / "runtime").iterdir():

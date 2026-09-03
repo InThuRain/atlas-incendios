@@ -31,11 +31,15 @@ def contract() -> dict:
 
 
 def source_checks(payload: dict) -> list[tuple[Path, int, str, str]]:
-    return [
+    checks = [
         (ROOT / payload["pmtiles"]["source_path"], payload["pmtiles"]["bytes"], payload["pmtiles"]["sha256"], "pmtiles"),
-        (ROOT / payload["glyphs"]["source_path"], payload["glyphs"]["bytes"], payload["glyphs"]["sha256"], "glyph"),
-        (ROOT / payload["glyphs"]["license_source_path"], payload["glyphs"]["license_bytes"], payload["glyphs"]["license_sha256"], "font_license"),
     ]
+    checks.extend(
+        (ROOT / descriptor["source_path"], descriptor["bytes"], descriptor["sha256"], f'glyph:{descriptor["range"]}')
+        for descriptor in payload["glyphs"]["files"]
+    )
+    checks.append((ROOT / payload["glyphs"]["license_source_path"], payload["glyphs"]["license_bytes"], payload["glyphs"]["license_sha256"], "font_license"))
+    return checks
 
 
 def verify_sources(payload: dict) -> dict:
@@ -64,8 +68,8 @@ def prepare(output: Path, payload: dict) -> dict:
         for source, _, _, role in source_checks(payload):
             if role == "pmtiles":
                 destination = staging / Path(payload["pmtiles"]["runtime_path"]).name
-            elif role == "glyph":
-                destination = staging / "fonts" / payload["glyphs"]["fontstack"] / f'{payload["glyphs"]["range"]}.pbf'
+            elif role.startswith("glyph:"):
+                destination = staging / "fonts" / payload["glyphs"]["fontstack"] / f'{role.split(":", 1)[1]}.pbf'
             else:
                 destination = staging / "fonts" / "OFL.txt"
             destination.parent.mkdir(parents=True, exist_ok=True)

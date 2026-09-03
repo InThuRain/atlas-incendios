@@ -1,0 +1,53 @@
+{
+  "phase": "ES-4E3D1",
+  "source_commit": "ab5d6c17891dcb05a54c85c5c3a1809d0325ba5a",
+  "build_command": "python3 scripts/build_national_pages_artifact.py --profile product --output build/national-product-staging",
+  "attempts": {
+    "attempt_1": {
+      "status": "BLOCKED_GLYPH_COVERAGE",
+      "reason": "Chromium requested seven glyph ranges not bundled by the one-range artifact.",
+      "site_identity": {"file_count": 489, "total_bytes": 811665494, "sha256": "5bdfaa23d771c7b0accef5d58cf25a64cef82b63d6f1652bb1bd8fb6f17561be"},
+      "payload_identity": {"file_count": 487, "total_bytes": 811455504, "fingerprint": "a9bb511c353c5dff8104239572b88d2c2ed2755436abdbadc664790eb4ffa2cf", "asset_manifest_sha256": "f6d1e3b2945f979e6515ca5881bb9aae528f4ddcceaec2e6912adc87346286db"},
+      "pages_remaining_bytes": 188334506,
+      "glyphs": {
+        "file_count": 1,
+        "total_bytes": 76044,
+        "bundled_ranges": ["0-255.pbf"],
+        "additional_ranges_requested": ["256-511.pbf", "512-767.pbf", "768-1023.pbf", "1024-1279.pbf", "1536-1791.pbf", "7680-7935.pbf", "11520-11775.pbf"]
+      }
+    },
+    "attempt_2": {
+      "status": "READY_FOR_LOCAL_ACCEPTANCE",
+      "site_identity": {"file_count": 497, "total_bytes": 812510441, "sha256": "f5e80a728f45057692f36ba41f76900c9d00b9c962cedc4eb591e29e813da04e"},
+      "payload_identity": {"file_count": 495, "total_bytes": 812291384, "fingerprint": "10582ec0dc896654006c2162ea66e2fd7710790c477bb072bfb2473c51b18df3", "asset_manifest_sha256": "377b565548b6ff1376acde99e0cae458eb2b72d704c39587990126a0e69cf96e"},
+      "pages_remaining_bytes": 187489559,
+      "artifact_delta_bytes": 844947,
+      "glyphs": {"file_count": 9, "total_bytes": 909374, "delta_bytes": 833330, "coverage_status": "PASS", "range_discovery_stable": true, "glyph_404_count": 0, "glyph_unbundled_range_count": 0}
+    }
+  },
+  "site_identity": {"file_count": 497, "total_bytes": 812510441, "sha256": "f5e80a728f45057692f36ba41f76900c9d00b9c962cedc4eb591e29e813da04e"},
+  "payload_identity": {"file_count": 495, "total_bytes": 812291384, "fingerprint": "10582ec0dc896654006c2162ea66e2fd7710790c477bb072bfb2473c51b18df3", "asset_manifest_sha256": "377b565548b6ff1376acde99e0cae458eb2b72d704c39587990126a0e69cf96e"},
+  "input_identities": {
+    "protomaps_basemap_pmtiles": {"bytes": 293324998, "sha256": "72bb270ff6fc18ccba3042834f9a9eb72901c243e7dec88b3ebb63eaafaeb729"},
+    "esfire30_fire_pmtiles": {"bytes": 63052056, "sha256": "3c6eb10ba146008cdabf36646d48a4c7a92c1c1357ad90679f6b5dce42013cfe"},
+    "national_ux_summary_v1": {"fingerprint": "2546247b68ef8e27fed3334cf5fb4a027056f094e36420213080c431bfb850e4", "manifest_sha256": "b09e69648b6b2dee03265f12a00624de72d4006301b04d796889c1bf151a8e7b"},
+    "national_highlights_v1": {"manifest_sha256": "578cddd7a3d341d0fd7aa72382b7159c603724155798309fc338a515fdc2762a", "asset_sha256": "c09a92afd184ee46cca0e417a2a9ae3e0b5fc8b193c0b54bb9201f6f02197059"}
+  },
+  "glyphs": {
+    "fontstack": "Noto Sans Regular",
+    "discovery_method": "ACCEPTANCE_MATRIX_COMPLETE",
+    "bundled_ranges": ["0-255.pbf", "256-511.pbf", "512-767.pbf", "768-1023.pbf", "1024-1279.pbf", "1536-1791.pbf", "7680-7935.pbf", "8192-8447.pbf", "11520-11775.pbf"],
+    "file_count": 9,
+    "total_bytes": 909374,
+    "range_discovery_stable": true,
+    "glyph_404_count": 0,
+    "glyph_unbundled_range_count": 0,
+    "evidence": "data/audit/product/es4e3d1_glyph_coverage.json"
+  },
+  "self_contained": {"status": "PASS", "served_as_isolated_docroot": true, "runtime_external_data_domains": [], "source_tree_fallbacks": 0},
+  "pmtiles": {"verify": "PASS", "range": "PASS", "full_download_observed": false},
+  "reproducibility": {"status": "PASS", "builds": 2, "clean_outputs": true, "independent_checker": "PASS", "matching_fields": ["site_file_count", "site_total_bytes", "payload_file_count", "payload_total_bytes", "payload_fingerprint", "asset_manifest_sha256", "site_identity_sha256"]},
+  "packaging_smokes": {"overall": "PASS", "quick_smokes": 7, "glyph_contexts": 8, "root": "PASS", "spain": "PASS", "gva_1995": "PASS", "elx_1993_2002": "PASS", "mobile_spain_390_844": "PASS", "mobile_elx_390_844": "PASS", "mobile_asturias_390_844": "PASS", "fallback_bdlje_only": "PASS", "runtime_errors": 0, "external_runtime_domains": 0},
+  "pages_capacity": {"limit_bytes": 1000000000, "actual_bytes": 812510441, "remaining_bytes": 187489559, "status": "LIMITED_BUT_ACCEPTABLE"},
+  "status": {"product_artifact_status": "READY_FOR_LOCAL_ACCEPTANCE", "artifact_identity_status": "PASS", "glyph_coverage_status": "PASS", "pages_capacity_status": "LIMITED_BUT_ACCEPTABLE", "product_release_candidate": false, "d5_status": "PAUSED_FOR_PRODUCT_RECONCILIATION", "next_phase": "ES-4E3D2_NATIONAL_PRODUCT_LOCAL_ACCEPTANCE"}
+}

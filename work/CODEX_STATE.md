@@ -651,3 +651,135 @@ D5_STATUS = PAUSED_FOR_PRODUCT_RECONCILIATION
 RESULTS_PATH = ES_4E3C2_BASEMAP_INTEGRATION.md; data/audit/product/es4e3c2_basemap_integration.json
 
 NEXT_PHASE = ES-4E3D_NATIONAL_PRODUCT_LOCAL_ACCEPTANCE
+
+PHASE = ES-4E3D1
+
+STATUS = BLOCKED_GLYPH_COVERAGE (artifact completo, autocontenido, reproducible y con identidad física válida; Chromium solicita rangos Noto Sans no incluidos, por lo que no puede pasar a aceptación E3D2).
+
+PRODUCT_ARTIFACT_STATUS = BLOCKED_GLYPH_COVERAGE
+
+ARTIFACT_IDENTITY_STATUS = PASS
+
+GLYPH_COVERAGE_STATUS = INCOMPLETE
+
+GLYPH_INCLUDED = Noto Sans Regular/0-255.pbf (76044 B; SHA-256 62c6d49b15fa836eb6aa45e259c7ca6762f44b011b09e47776efbe4a6db1b397)
+
+GLYPH_ADDITIONAL_RANGES_REQUESTED = 256-511.pbf; 512-767.pbf; 768-1023.pbf; 1024-1279.pbf; 1536-1791.pbf; 7680-7935.pbf (Asturias); 11520-11775.pbf
+
+ARTIFACT_PATH = build/national-product-staging/
+
+PAYLOAD_FILE_COUNT = 487
+
+PAYLOAD_TOTAL_BYTES = 811455504
+
+PAYLOAD_FINGERPRINT = a9bb511c353c5dff8104239572b88d2c2ed2755436abdbadc664790eb4ffa2cf
+
+ASSET_MANIFEST_SHA256 = f6d1e3b2945f979e6515ca5881bb9aae528f4ddcceaec2e6912adc87346286db
+
+SITE_FILE_COUNT = 489
+
+SITE_TOTAL_BYTES = 811665494
+
+SITE_IDENTITY_SHA256 = 5bdfaa23d771c7b0accef5d58cf25a64cef82b63d6f1652bb1bd8fb6f17561be
+
+PAGES_BYTES_REMAINING = 188334506
+
+PAGES_CAPACITY_STATUS = LIMITED_BUT_ACCEPTABLE
+
+REPRODUCIBILITY = PASS (dos outputs limpios; siete magnitudes de identidad idénticas)
+
+SELF_CONTAINED = PASS
+
+RUNTIME_EXTERNAL_DOMAINS = []
+
+PMTILES_RANGE = PASS (Protomaps + ESFire30; 0-0, initial, middle y final HTTP 206; bytes idénticos; sin descarga completa)
+
+PACKAGING_SMOKES = root/Spain/GVA 1995/Elx/mobile PASS; BDLJE-only fallback PASS; global BLOCKED solo por glyph coverage.
+
+PRODUCT_RELEASE_CANDIDATE = false
+
+D5_STATUS = PAUSED_FOR_PRODUCT_RECONCILIATION
+
+RESULTS_PATH = ES_4E3D1_NATIONAL_PRODUCT_ARTIFACT.md; data/audit/product/es4e3d1_national_product_artifact.json
+
+NEXT_COMMAND = definir y autorizar adquisición verificable de los rangos glyph necesarios; no descargar automáticamente
+
+NEXT_CHECK_COMMAND = reejecutar benchmarks/es4e3d1/run_packaging_smoke.py tras incorporar glyphs autorizados
+
+NEXT_PHASE = ES-4E3D1_GLYPH_FIX
+
+PHASE = ES-4E3D1
+
+STATUS = DONE (ATTEMPT_1 = BLOCKED_GLYPH_COVERAGE preservado; ATTEMPT_2 = READY_FOR_LOCAL_ACCEPTANCE).
+
+ATTEMPT_1 = BLOCKED_GLYPH_COVERAGE; SITE 489 files / 811665494 B / SHA 5bdfaa23d771c7b0accef5d58cf25a64cef82b63d6f1652bb1bd8fb6f17561be; PAYLOAD 487 files / 811455504 B / fingerprint a9bb511c353c5dff8104239572b88d2c2ed2755436abdbadc664790eb4ffa2cf.
+
+ATTEMPT_2 = READY_FOR_LOCAL_ACCEPTANCE; glyph fix reproducible y matriz estable.
+
+PRODUCT_ARTIFACT_STATUS = READY_FOR_LOCAL_ACCEPTANCE
+
+ARTIFACT_IDENTITY_STATUS = PASS
+
+GLYPH_COVERAGE_STATUS = PASS
+
+GLYPH_RANGE_DISCOVERY_STABLE = true
+
+GLYPH_DISCOVERY_METHOD = ACCEPTANCE_MATRIX_COMPLETE (16 contextos × 5 zooms × 2 ejecuciones; no implica cobertura Unicode universal).
+
+GLYPH_FONTSTACK = Noto Sans Regular
+
+GLYPH_SOURCE = protomaps/basemaps-assets@028c18f713baecad011301ff7a69acc39bcc2ae7; SIL OFL 1.1.
+
+GLYPH_RANGES = 0-255; 256-511; 512-767; 768-1023; 1024-1279; 1536-1791; 7680-7935; 8192-8447; 11520-11775
+
+GLYPH_FILE_COUNT = 9
+
+GLYPH_TOTAL_BYTES = 909374
+
+GLYPH_DELTA_BYTES = 833330 (desde 1 file / 76044 B).
+
+GLYPH_404_COUNT = 0
+
+GLYPH_UNBUNDLED_RANGE_COUNT = 0
+
+ARTIFACT_PATH = build/national-product-staging/
+
+PAYLOAD_FILE_COUNT = 495
+
+PAYLOAD_TOTAL_BYTES = 812291384
+
+PAYLOAD_FINGERPRINT = 10582ec0dc896654006c2162ea66e2fd7710790c477bb072bfb2473c51b18df3
+
+ASSET_MANIFEST_SHA256 = 377b565548b6ff1376acde99e0cae458eb2b72d704c39587990126a0e69cf96e
+
+SITE_FILE_COUNT = 497
+
+SITE_TOTAL_BYTES = 812510441
+
+SITE_IDENTITY_SHA256 = f5e80a728f45057692f36ba41f76900c9d00b9c962cedc4eb591e29e813da04e
+
+ARTIFACT_DELTA_FROM_ATTEMPT_1_BYTES = 844947
+
+PAGES_BYTES_REMAINING = 187489559
+
+PAGES_CAPACITY_STATUS = LIMITED_BUT_ACCEPTABLE
+
+REPRODUCIBILITY = PASS (dos outputs limpios; siete magnitudes de identidad idénticas).
+
+CHECKER = PASS (inventario físico, manifest, fingerprint, site identity, inputs y 9 glyph ranges).
+
+SELF_CONTAINED = PASS
+
+RUNTIME_EXTERNAL_DOMAINS = []
+
+PMTILES_RANGE = PASS (Protomaps + ESFire30; 0-0, initial, middle y final HTTP 206; bytes idénticos; sin descarga completa).
+
+PACKAGING_SMOKES = 7 quick PASS (root, Spain, GVA 1995, Elx, mobile Spain, mobile Elx, mobile Asturias); 8 contextos glyph PASS; BDLJE-only fallback PASS; 0 runtime errors.
+
+PRODUCT_RELEASE_CANDIDATE = false
+
+D5_STATUS = PAUSED_FOR_PRODUCT_RECONCILIATION
+
+RESULTS_PATH = ES_4E3D1_NATIONAL_PRODUCT_ARTIFACT.md; data/audit/product/es4e3d1_national_product_artifact.json; data/audit/product/es4e3d1_glyph_coverage.json
+
+NEXT_PHASE = ES-4E3D2_NATIONAL_PRODUCT_LOCAL_ACCEPTANCE
