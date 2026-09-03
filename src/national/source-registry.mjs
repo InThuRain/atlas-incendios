@@ -1,6 +1,13 @@
 /** Registro pequeño y extensible de las fuentes presentes en D2. */
 
 export const NATIONAL_SOURCE_REGISTRY = Object.freeze({
+  protomaps: {
+    id: "protomaps", label: "Protomaps / OpenStreetMap", coverage: null,
+    role: "cartographic_context", wildfire_source: false,
+    entity_label: "contexto cartográfico", geometry_semantics: "orientación y referencia visual; no documenta incendios",
+    attribution: "Protomaps · © OpenStreetMap contributors.",
+    runtime_module: "basemap-context", default_visible: true,
+  },
   egif: {
     id: "egif", label: "EGIF / MITECO", coverage: { from: 1968, to: 2023 },
     entity_label: "partes administrativos", geometry_semantics: "sin geometría individual fiable",

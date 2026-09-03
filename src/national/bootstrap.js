@@ -19,6 +19,13 @@ async function bootstrap() {
   await import(new URL(config.runtime_entry, import.meta.url));
   const { initNationalProductShell } = await import("./product-shell.mjs");
   initNationalProductShell(globalThis.__es4cRuntime, config);
+  // El mapa base es contexto opcional. Su propio controlador degrada a BDLJE
+  // y nunca impide iniciar shell, métricas o fuentes de incendios.
+  import("./basemap-context.mjs")
+    .then(({ initNationalBasemap }) => initNationalBasemap(globalThis.__es4cRuntime, config))
+    .catch((error) => {
+      globalThis.__atlasBasemapContext = { status: "fallback_bdlje_only", fallback: "bdlje_only", errors: [String(error)] };
+    });
 }
 
 bootstrap().catch((error) => {

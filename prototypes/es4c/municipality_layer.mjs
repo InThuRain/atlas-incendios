@@ -11,7 +11,7 @@ export function addOfficialMunicipalityLayer(map, { onSelect = () => {} } = {}) 
   const fireLayer = map.getLayer("esfire30-perimeters") ? "esfire30-perimeters" : undefined;
   map.addLayer({ id: MUNICIPALITY_FILL_LAYER, type: "fill", source: MUNICIPALITY_SOURCE_ID, paint: { "fill-color": "#dcebea", "fill-opacity": 0.08 } }, fireLayer);
   map.addLayer({ id: MUNICIPALITY_LINE_LAYER, type: "line", source: MUNICIPALITY_SOURCE_ID, paint: { "line-color": "#587a78", "line-width": ["interpolate", ["linear"], ["zoom"], 7, .4, 12, .9], "line-opacity": 0.6 } }, fireLayer);
-  map.addLayer({ id: MUNICIPALITY_SELECTED_LAYER, type: "line", source: MUNICIPALITY_SOURCE_ID, filter: ["==", ["get", "municipality_id"], "__none__"], paint: { "line-color": "#004d61", "line-width": 3.5, "line-opacity": 1 } });
+  map.addLayer({ id: MUNICIPALITY_SELECTED_LAYER, type: "line", source: MUNICIPALITY_SOURCE_ID, filter: ["==", ["get", "municipality_id"], "__none__"], paint: { "line-color": "#004d61", "line-width": 3.5, "line-opacity": 1 } }, fireLayer);
   map.on("mouseenter", MUNICIPALITY_FILL_LAYER, () => { map.getCanvas().style.cursor = "pointer"; });
   map.on("mouseleave", MUNICIPALITY_FILL_LAYER, () => { map.getCanvas().style.cursor = ""; });
   map.on("click", MUNICIPALITY_FILL_LAYER, (event) => { const id = event.features?.[0]?.properties?.municipality_id; if (id) onSelect(String(id)); });

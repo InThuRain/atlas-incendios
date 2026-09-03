@@ -48,7 +48,7 @@ export async function addOfficialTerritoryLayer(map, { fetchImpl = globalThis.fe
     source: CCAA_SOURCE_ID,
     filter: ["==", ["get", "territory_id"], "__none__"],
     paint: { "line-color": "#075e8e", "line-width": 3.4, "line-opacity": 1 },
-  });
+  }, fireLayer);
   map.on("mouseenter", CCAA_FILL_LAYER, () => { map.getCanvas().style.cursor = "pointer"; });
   map.on("mouseleave", CCAA_FILL_LAYER, () => { map.getCanvas().style.cursor = ""; });
   const selectFromFeature = (feature) => {

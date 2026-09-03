@@ -1,0 +1,164 @@
+{
+  "schema_version": "es4e3c2-basemap-integration-v1",
+  "phase": "ES-4E3C2_BASEMAP_INTEGRATION",
+  "candidate_identity": {
+    "source_build": "20260902.pmtiles",
+    "source_blake3": "0f7860f75647583b49cd22fc344298023b501892d8d8f2c8466337072d0c1062",
+    "region_sha256": "86fa15441605a0a95784fde45d1feffb302b6defc79b44665a64e02e5805535d",
+    "maxzoom": 12,
+    "pmtiles_bytes": 293324998,
+    "pmtiles_sha256": "72bb270ff6fc18ccba3042834f9a9eb72901c243e7dec88b3ebb63eaafaeb729",
+    "pmtiles_verify": "PASS",
+    "vector_schema": "4.15.2",
+    "style_reference": "@protomaps/basemaps@5.7.2"
+  },
+  "paths": {
+    "source": "build/es4e3c2-basemap/protomaps-spain-z12.pmtiles",
+    "manifest": "config/national-basemap-protomaps-20260902-z12.json",
+    "immutable_runtime": "data/basemap/protomaps/20260902-z12/72bb270ff6fc18ccba3042834f9a9eb72901c243e7dec88b3ebb63eaafaeb729/basemap.pmtiles"
+  },
+  "config": {
+    "central": "src/national/asset-config.mjs",
+    "base_path_aware": true,
+    "frontend_large_assets_included": false,
+    "full_assembly_contract_updated": true,
+    "full_artifact_generated": false,
+    "large_file_in_git": false
+  },
+  "style": {
+    "contract": "ATLAS_CONTEXT_STYLE",
+    "layer_count": 11,
+    "contents": ["land", "landcover", "natural_context", "water", "rivers", "major_roads", "minor_roads", "regions", "localities", "road_names"],
+    "excluded": ["poi", "buildings", "commerce", "road_shields", "icons", "detailed_landuse"],
+    "language_strategy": ["name", "name:es", "name:en"],
+    "bdlje_role": "canonical_administrative_authority",
+    "layer_order": ["protomaps_context", "bdlje_context", "selected_territory", "fire_geometries", "selected_fire_geometry"]
+  },
+  "glyphs": {
+    "fontstack": "Noto Sans Regular",
+    "range": "0-255",
+    "bytes": 76044,
+    "sha256": "62c6d49b15fa836eb6aa45e259c7ca6762f44b011b09e47776efbe4a6db1b397",
+    "license_bytes": 4374,
+    "license_sha256": "7713cfc8e3c36d5ec4aa3d6cffe7500a1b3310f8a86d914b8ea09c2a9dee7c2d",
+    "requests_per_clean_smoke": 1,
+    "http_statuses": [200],
+    "errors_404": 0,
+    "same_origin": true
+  },
+  "sprites": {"used": false, "count": 0, "bytes": 0},
+  "licenses": {
+    "openstreetmap_data": "ODbL-1.0",
+    "protomaps_code": "BSD-3-Clause",
+    "visual_style": "CC0-1.0",
+    "noto": "OFL-1.1",
+    "bdlje": "CC-BY-4.0"
+  },
+  "attribution": {
+    "visible": "Protomaps · © OpenStreetMap contributors · Obra derivada de BDLJE CC-BY 4.0 ign.es",
+    "accessible_links": true
+  },
+  "same_origin": true,
+  "api_keys_required": false,
+  "runtime_external_domains": [],
+  "range": {
+    "all_basemap_requests_http_206": true,
+    "all_esfire30_requests_http_206": true,
+    "full_basemap_download": false,
+    "full_esfire30_download": false,
+    "scenarios": {
+      "spain": {"basemap_requests": 6, "basemap_bytes": 263919, "esfire30_requests": 6, "esfire30_bytes": 526207},
+      "galicia": {"basemap_requests": 10, "basemap_bytes": 582568, "esfire30_requests": 10, "esfire30_bytes": 2343832},
+      "ourense": {"basemap_requests": 12, "basemap_bytes": 949273, "esfire30_requests": 12, "esfire30_bytes": 2116544},
+      "cangas": {"basemap_requests": 14, "basemap_bytes": 1141082, "esfire30_requests": 14, "esfire30_bytes": 3135688},
+      "gva_1995": {"basemap_requests": 10, "basemap_bytes": 520989, "esfire30_requests": 10, "esfire30_bytes": 1507261},
+      "elx_1993_2002": {"basemap_requests": 16, "basemap_bytes": 862700, "esfire30_requests": 16, "esfire30_bytes": 663763},
+      "canarias": {"basemap_requests": 9, "basemap_bytes": 304755, "esfire30_requests": 6, "esfire30_bytes": 526207},
+      "mobile_spain": {"basemap_requests": 6, "basemap_bytes": 263919, "esfire30_requests": 6, "esfire30_bytes": 526207},
+      "mobile_elx": {"basemap_requests": 14, "basemap_bytes": 849533, "esfire30_requests": 14, "esfire30_bytes": 756842}
+    }
+  },
+  "network": {
+    "telemetry_separated_by_pmtiles_role": true,
+    "browser_errors": 0,
+    "runtime_errors": 0,
+    "external_requests": 0
+  },
+  "fallback": {
+    "fault": "basemap_pmtiles_404",
+    "status": "fallback_bdlje_only",
+    "bdlje_available": true,
+    "esfire30_available": true,
+    "shell_available": true,
+    "runtime_errors": 0
+  },
+  "visual_smokes": [
+    {"scenario": "Spain", "context": "PASS", "labels": 35, "roads": "PASS", "fire_contrast": "PASS", "bdlje": "PASS", "status": "PASS"},
+    {"scenario": "Galicia", "context": "PASS", "labels": 65, "roads": "PASS", "fire_contrast": "PASS", "bdlje": "PASS", "status": "PASS"},
+    {"scenario": "Ourense", "context": "PASS", "labels": 26, "roads": "PASS", "fire_contrast": "PASS", "bdlje": "PASS", "status": "PASS"},
+    {"scenario": "Cangas", "context": "PASS", "labels": 2, "roads": "PASS_Z12_OVERZOOM", "fire_contrast": "PASS", "bdlje": "PASS", "status": "PASS"},
+    {"scenario": "GVA_1995", "context": "PASS", "labels": 9, "roads": "PASS", "fire_contrast": "PASS_ICV_AND_ESFIRE30", "bdlje": "PASS", "status": "PASS"},
+    {"scenario": "Elx", "context": "PASS", "labels": 14, "roads": "PASS", "fire_contrast": "PASS", "bdlje": "PASS", "status": "PASS"},
+    {"scenario": "Canarias", "context": "PASS", "labels": 11, "roads": "PASS", "fire_contrast": "NOT_APPLICABLE_NO_ESFIRE30_COVERAGE", "bdlje": "PASS", "status": "PASS"},
+    {"scenario": "mobile", "context": "PASS", "labels": "11_spain_9_elx", "roads": "PASS", "fire_contrast": "PASS", "bdlje": "PASS", "status": "PASS"}
+  ],
+  "mobile": {
+    "viewport": "390x844 emulated",
+    "scenarios": ["Spain", "Elx"],
+    "map_immediate": true,
+    "pan_zoom": "PASS",
+    "labels": "PASS",
+    "cards_filters_details": "PASS",
+    "status": "PASS"
+  },
+  "regressions": {
+    "esfire30_pmtiles": false,
+    "filters": false,
+    "histogram": false,
+    "highlights": false,
+    "permalink": false,
+    "source_semantics": false,
+    "technical_runtime": false
+  },
+  "projected_site": {
+    "accounting": "physical/raw projection using the same accepted E3 baseline method; no gzip",
+    "pages_limit_bytes": 1000000000,
+    "reference_e3_artifact_bytes": 500933134,
+    "old_frontend_payload_bytes": 1450252,
+    "integrated_frontend_payload_bytes": 1462555,
+    "frontend_delta_bytes": 12303,
+    "national_ux_summary_bytes": 17255181,
+    "basemap_delivery_bytes": 293407886,
+    "current_product_projected_site_bytes": 811608504,
+    "pages_remaining_bytes": 188391496,
+    "capacity_status": "LIMITED_BUT_ACCEPTABLE",
+    "size_gate": "PASS"
+  },
+  "product_comparison": {
+    "gva": "regional product reference with clear contextual map",
+    "d4b": "technical national runtime; insufficient human context",
+    "e3a": "human shell; insufficient map context",
+    "e3b2": "summary and histogram; insufficient map context",
+    "e3c1": "safe filters and human cards; insufficient map context",
+    "e3c2_bdlje": "highlights and official boundaries; orientation still insufficient",
+    "e3c2_protomaps_integrated": "national, insular, urban and rural context sufficient while preserving all E3 product functions"
+  },
+  "remaining_gaps": [
+    "E3D full local product acceptance",
+    "full artifact assembly and deployment not performed",
+    "hosting Range validation deferred",
+    "glyph coverage intentionally limited to validated 0-255 range",
+    "histogram brush deferred P1",
+    "EGIF cause filter deferred pending ontology",
+    "no z13, relief, sprites, POI or additional fontstacks"
+  ],
+  "status": {
+    "basemap_integration_status": "PASS",
+    "basemap_status": "PASS_PROTOMAPS_Z12",
+    "map_context_status": "PASS",
+    "technical_runtime_regression": false,
+    "product_release_candidate": false,
+    "d5_status": "PAUSED_FOR_PRODUCT_RECONCILIATION",
+    "next_phase": "ES-4E3D_NATIONAL_PRODUCT_LOCAL_ACCEPTANCE"
+  }
+}

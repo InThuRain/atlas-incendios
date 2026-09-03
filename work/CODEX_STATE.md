@@ -601,3 +601,53 @@ D5_STATUS = PAUSED_FOR_PRODUCT_RECONCILIATION
 RESULTS_PATH = ES_4E3C2_BASEMAP_DECISION.md; data/audit/product/es4e3c2_basemap_decision.json
 
 NEXT_PHASE = ES-4E3C2_BASEMAP_INTEGRATION (solo tras aprobación humana)
+
+PHASE = ES-4E3C2_BASEMAP_INTEGRATION
+
+STATUS = DONE (candidato Protomaps z12 exacto integrado productivamente en local; same-origin, Range y fallback BDLJE-only validados; sin staging ni producción).
+
+BASEMAP_INTEGRATION_STATUS = PASS
+
+BASEMAP_STATUS = PASS_PROTOMAPS_Z12
+
+MAP_CONTEXT_STATUS = PASS
+
+BASEMAP_VERSION = protomaps-20260902-z12
+
+BASEMAP_SOURCE = build/es4e3c2-basemap/protomaps-spain-z12.pmtiles (derived/ignored; 293324998 B; SHA-256 72bb270ff6fc18ccba3042834f9a9eb72901c243e7dec88b3ebb63eaafaeb729; pmtiles verify PASS).
+
+BASEMAP_RUNTIME_PATH = data/basemap/protomaps/20260902-z12/72bb270ff6fc18ccba3042834f9a9eb72901c243e7dec88b3ebb63eaafaeb729/basemap.pmtiles
+
+BASEMAP_MANIFEST = config/national-basemap-protomaps-20260902-z12.json
+
+GLYPH = Noto Sans Regular/0-255.pbf (76044 B; SHA-256 62c6d49b15fa836eb6aa45e259c7ca6762f44b011b09e47776efbe4a6db1b397; 1 request/clean smoke; 0 404).
+
+SPRITES = none
+
+RUNTIME_EXTERNAL_DOMAINS = []
+
+API_KEYS_REQUIRED = false
+
+BDLJE_ROLE = canonical administrative authority; Protomaps is cartographic context only.
+
+LAYER_ORDER = Protomaps context -> BDLJE context -> selected territory -> fire geometries -> selected fire geometry.
+
+CHROMIUM_SMOKES = 9/9 directed PASS (Spain, Galicia, Ourense, Cangas, GVA 1995, Elx, Canarias, mobile Spain, mobile Elx) + basemap 404 fallback PASS.
+
+RANGE = all Protomaps and ESFire30 PMTiles functional requests HTTP 206; full downloads false; telemetry separated by PMTiles role.
+
+CURRENT_PRODUCT_PROJECTED_SITE_BYTES = 811608504
+
+PAGES_BYTES_REMAINING = 188391496 (raw projection against 1000000000 B).
+
+PAGES_CAPACITY_STATUS = LIMITED_BUT_ACCEPTABLE
+
+TECHNICAL_RUNTIME_REGRESSION = false
+
+PRODUCT_RELEASE_CANDIDATE = false
+
+D5_STATUS = PAUSED_FOR_PRODUCT_RECONCILIATION
+
+RESULTS_PATH = ES_4E3C2_BASEMAP_INTEGRATION.md; data/audit/product/es4e3c2_basemap_integration.json
+
+NEXT_PHASE = ES-4E3D_NATIONAL_PRODUCT_LOCAL_ACCEPTANCE

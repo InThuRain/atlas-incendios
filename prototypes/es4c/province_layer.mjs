@@ -32,7 +32,7 @@ export async function addOfficialProvinceLayer(map, { fetchImpl = globalThis.fet
   map.addLayer({ id: PROVINCE_LINE_LAYER, type: "line", source: PROVINCE_SOURCE_ID,
     filter: ["==", ["get", "parent_id"], "__none__"], paint: { "line-color": "#87775b", "line-width": ["interpolate", ["linear"], ["zoom"], 5, .55, 10, 1.1], "line-opacity": .65 } }, fireLayer);
   map.addLayer({ id: PROVINCE_SELECTED_LAYER, type: "line", source: PROVINCE_SOURCE_ID,
-    filter: ["==", ["get", "territory_id"], "__none__"], paint: { "line-color": "#d15318", "line-width": 3.6, "line-opacity": 1 } });
+    filter: ["==", ["get", "territory_id"], "__none__"], paint: { "line-color": "#d15318", "line-width": 3.6, "line-opacity": 1 } }, fireLayer);
   map.on("mouseenter", PROVINCE_FILL_LAYER, () => { map.getCanvas().style.cursor = "pointer"; });
   map.on("mouseleave", PROVINCE_FILL_LAYER, () => { map.getCanvas().style.cursor = ""; });
   const selectFromFeature = (feature) => {

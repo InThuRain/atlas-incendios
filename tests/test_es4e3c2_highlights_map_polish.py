@@ -36,7 +36,8 @@ class HighlightsMapPolishTests(unittest.TestCase):
         layers = "\n".join((ROOT / path).read_text(encoding="utf-8") for path in (
             "prototypes/es4c/territory_layer.mjs", "prototypes/es4c/province_layer.mjs", "prototypes/es4c/municipality_layer.mjs"
         ))
-        self.assertIn("Costa y límites administrativos actuales", html)
+        self.assertIn("Contexto Protomaps/OSM", html)
+        self.assertIn("límites administrativos BDLJE/IGN", html)
         self.assertIn("map-context", css)
         self.assertIn('map.getLayer("esfire30-perimeters")', layers)
         self.assertNotIn("tiles.openstreetmap.org", html + css + layers)

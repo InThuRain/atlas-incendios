@@ -1,0 +1,52 @@
+{
+  "schema_version": "national-basemap-manifest-v1",
+  "basemap_version": "protomaps-20260902-z12",
+  "role": "cartographic_context",
+  "source": {
+    "build": "20260902.pmtiles",
+    "url": "https://build.protomaps.com/20260902.pmtiles",
+    "blake3": "0f7860f75647583b49cd22fc344298023b501892d8d8f2c8466337072d0c1062",
+    "extraction_region_sha256": "86fa15441605a0a95784fde45d1feffb302b6defc79b44665a64e02e5805535d",
+    "extract_command": "data/derived/spain/es3/tools/pmtiles-bin/pmtiles extract https://build.protomaps.com/20260902.pmtiles build/es4e3c2-basemap/protomaps-spain-z12.pmtiles --bbox=-19.25,27.45,4.75,44.25 --maxzoom=12"
+  },
+  "maxzoom": 12,
+  "pmtiles": {
+    "source_path": "build/es4e3c2-basemap/protomaps-spain-z12.pmtiles",
+    "runtime_path": "data/basemap/protomaps/20260902-z12/72bb270ff6fc18ccba3042834f9a9eb72901c243e7dec88b3ebb63eaafaeb729/basemap.pmtiles",
+    "bytes": 293324998,
+    "sha256": "72bb270ff6fc18ccba3042834f9a9eb72901c243e7dec88b3ebb63eaafaeb729"
+  },
+  "vector_schema": {
+    "name": "Protomaps Basemap",
+    "version": "4.15.2"
+  },
+  "style": {
+    "contract": "ATLAS_CONTEXT_STYLE",
+    "reference_package": "@protomaps/basemaps@5.7.2",
+    "reference_license": "CC0-1.0",
+    "sprites": []
+  },
+  "glyphs": {
+    "fontstack": "Noto Sans Regular",
+    "range": "0-255",
+    "source_path": "build/es4e3c2-basemap/fonts/Noto Sans Regular/0-255.pbf",
+    "runtime_template": "data/basemap/protomaps/20260902-z12/72bb270ff6fc18ccba3042834f9a9eb72901c243e7dec88b3ebb63eaafaeb729/fonts/{fontstack}/{range}.pbf",
+    "bytes": 76044,
+    "sha256": "62c6d49b15fa836eb6aa45e259c7ca6762f44b011b09e47776efbe4a6db1b397",
+    "license_source_path": "build/es4e3c2-basemap/fonts/OFL.txt",
+    "license_runtime_path": "data/basemap/protomaps/20260902-z12/72bb270ff6fc18ccba3042834f9a9eb72901c243e7dec88b3ebb63eaafaeb729/fonts/OFL.txt",
+    "license_bytes": 4374,
+    "license_sha256": "7713cfc8e3c36d5ec4aa3d6cffe7500a1b3310f8a86d914b8ea09c2a9dee7c2d"
+  },
+  "licenses": {
+    "openstreetmap_data": "ODbL-1.0",
+    "protomaps_code": "BSD-3-Clause",
+    "visual_style": "CC0-1.0",
+    "noto_font": "OFL-1.1",
+    "bdlje_boundaries": "CC-BY-4.0"
+  },
+  "attribution": "Protomaps · © OpenStreetMap contributors · Obra derivada de BDLJE CC-BY 4.0 ign.es",
+  "runtime_external_domains": [],
+  "api_keys_required": false,
+  "update_policy": "Revisión manual, como máximo anual o cuando exista una razón cartográfica relevante."
+}

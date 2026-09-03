@@ -33,6 +33,15 @@ MUNICIPALITY_CATALOG_SOURCE = ROOT / "data/territories/spain/municipality_catalo
 MUNICIPALITY_SHARDS_SOURCE = ROOT / "data/derived/spain/es4c2a3/municipalities"
 MUNICIPALITY_INDEX_SOURCE = ROOT / "data/derived/spain/es4c2b/runtime/municipality-index"
 HIGHLIGHTS_SOURCE = ROOT / "data/derived/spain/national-highlights-v1"
+SUMMARY_SOURCE = ROOT / "data/derived/spain/national-ux-summary-v1"
+BASEMAP_MANIFEST_SOURCE = frontend.BASEMAP_MANIFEST_PATH
+BASEMAP_SOURCE = ROOT / frontend.BASEMAP_MANIFEST["pmtiles"]["source_path"]
+BASEMAP_DESTINATION = Path(frontend.BASEMAP_MANIFEST["pmtiles"]["runtime_path"])
+BASEMAP_GLYPH_SOURCE = ROOT / frontend.BASEMAP_MANIFEST["glyphs"]["source_path"]
+BASEMAP_GLYPH_DESTINATION = Path(frontend.BASEMAP_MANIFEST["glyphs"]["runtime_template"].replace("{fontstack}", frontend.BASEMAP_MANIFEST["glyphs"]["fontstack"]).replace("{range}", frontend.BASEMAP_MANIFEST["glyphs"]["range"]))
+BASEMAP_LICENSE_SOURCE = ROOT / frontend.BASEMAP_MANIFEST["glyphs"]["license_source_path"]
+BASEMAP_LICENSE_DESTINATION = Path(frontend.BASEMAP_MANIFEST["glyphs"]["license_runtime_path"])
+BASEMAP_MANIFEST_DESTINATION = BASEMAP_DESTINATION.parent / "manifest.json"
 FORBIDDEN_RUNTIME_STRINGS = ("/home/dani/", "file://", "127.0.0.1", "localhost", "r2.dev", "atlas-incendios-es4c3d4-pages-staging", "national-prototype-staging", "release-assets.githubusercontent.com", "/releases/download")
 PAYLOAD_MANIFEST_PATH = Path("asset-manifest.json")
 SITE_IDENTITY_PATH = Path("site-identity.json")
@@ -171,6 +180,41 @@ def copy_highlights(output: Path, files: list[dict]) -> dict:
     return {"assets": 1, "source": "egif", "bytes": descriptor.get("bytes")}
 
 
+def copy_summary(output: Path, files: list[dict]) -> dict:
+    manifest = read_json(SUMMARY_SOURCE / "manifest.json")
+    if manifest.get("schema_version") != "national-ux-summary-v1" or manifest.get("payload_file_count") != 122:
+        raise MissingStagingInput("MISSING_STAGING_INPUT: manifest de resumen nacional inválido")
+    destination = Path("data/summary/national-ux-summary-v1")
+    source_files = sorted(path for path in SUMMARY_SOURCE.rglob("*.json") if path.is_file())
+    for source in source_files:
+        relative = source.relative_to(SUMMARY_SOURCE)
+        copy_file(source, output, destination / relative, "summary", f"summary:{relative.as_posix()}", "National UX summary v1", files)
+    return {"payload_files": manifest["payload_file_count"], "runtime_files": len(source_files), "payload_bytes": manifest.get("payload_bytes")}
+
+
+def copy_basemap(output: Path, files: list[dict]) -> dict:
+    contract = frontend.BASEMAP_MANIFEST
+    checks = (
+        (BASEMAP_SOURCE, contract["pmtiles"]["bytes"], contract["pmtiles"]["sha256"], "PMTiles"),
+        (BASEMAP_GLYPH_SOURCE, contract["glyphs"]["bytes"], contract["glyphs"]["sha256"], "glyph"),
+        (BASEMAP_LICENSE_SOURCE, contract["glyphs"]["license_bytes"], contract["glyphs"]["license_sha256"], "OFL"),
+    )
+    for source, expected_bytes, expected_sha, label_ in checks:
+        require_file(source)
+        if source.stat().st_size != expected_bytes or sha256(source) != expected_sha:
+            raise MissingStagingInput(f"MISSING_STAGING_INPUT: basemap {label_} no coincide con bytes/SHA contractual")
+    copy_file(BASEMAP_SOURCE, output, BASEMAP_DESTINATION, "basemap", "basemap:protomaps-20260902-z12", "Protomaps 20260902 z12 regional extract", files)
+    copy_file(BASEMAP_GLYPH_SOURCE, output, BASEMAP_GLYPH_DESTINATION, "basemap", "basemap:glyph:Noto-Sans-Regular:0-255", "Noto Sans Regular glyph", files)
+    copy_file(BASEMAP_LICENSE_SOURCE, output, BASEMAP_LICENSE_DESTINATION, "basemap", "basemap:glyph-license:OFL", "Noto SIL OFL", files)
+    copy_file(BASEMAP_MANIFEST_SOURCE, output, BASEMAP_MANIFEST_DESTINATION, "basemap", "basemap:manifest", "National basemap manifest v1", files)
+    return {
+        "version": contract["basemap_version"],
+        "pmtiles": {"runtime_path": BASEMAP_DESTINATION.as_posix(), "bytes": contract["pmtiles"]["bytes"], "sha256": contract["pmtiles"]["sha256"]},
+        "glyph": {"runtime_path": BASEMAP_GLYPH_DESTINATION.as_posix(), "bytes": contract["glyphs"]["bytes"], "sha256": contract["glyphs"]["sha256"]},
+        "runtime_external_domains": [],
+    }
+
+
 def add_frontend_records(output: Path, files: list[dict]) -> None:
     for path in sorted(output.rglob("*")):
         if path.is_file() and path.relative_to(output).as_posix() != "asset-manifest.json":
@@ -223,6 +267,7 @@ def inventory(output: Path, records: list[dict], inputs: dict) -> dict:
         "largest_files": sorted(rows, key=lambda row: (-row["bytes"], row["path"]))[:20],
         "significant_duplicate_assets": [paths for paths in duplicates.values() if len(paths) > 1],
         "pmtiles": {"runtime_path": PMTILES_DESTINATION.as_posix(), "bytes": frontend.PMTILES_BYTES, "sha256": frontend.PMTILES_SHA256},
+        "basemap": inputs.get("basemap"),
         "inputs": inputs,
         "payload_fingerprint": {
             "algorithm": "sha256(sorted path + TAB + bytes + TAB + sha256 + LF; excludes identity metadata)",
@@ -295,11 +340,13 @@ def build(output: Path) -> dict:
         copy_file(PMTILES_SOURCE, staging, PMTILES_DESTINATION, "pmtiles", "esfire30:national-fidelity-territories", "ESFire30 v1 territorial PMTiles", files)
         inputs = {
             "pmtiles": {"source": str(PMTILES_SOURCE.relative_to(ROOT)), "bytes": frontend.PMTILES_BYTES, "sha256": frontend.PMTILES_SHA256},
+            "basemap": copy_basemap(staging, files),
             "egif": copy_egif(staging, files),
             "territories": copy_territories(staging, files),
             "municipality_indexes": copy_municipality_indexes(staging, files),
             "gva_sources": copy_gva_sources(staging, files),
             "highlights": copy_highlights(staging, files),
+            "summary": copy_summary(staging, files),
         }
         # Registra todos los ficheros ya presentes y no añade datos de desarrollo.
         add_frontend_records(staging, files)
@@ -363,6 +410,10 @@ def verify_identity(output: Path) -> dict:
     pmtiles = output / manifest.get("pmtiles", {}).get("runtime_path", "")
     if not pmtiles.is_file() or pmtiles.stat().st_size != frontend.PMTILES_BYTES or sha256(pmtiles) != frontend.PMTILES_SHA256:
         failures.append("pmtiles: bytes/SHA")
+    basemap_contract = manifest.get("basemap", {}).get("pmtiles", {})
+    basemap = output / basemap_contract.get("runtime_path", "")
+    if not basemap.is_file() or basemap.stat().st_size != frontend.BASEMAP_BYTES or sha256(basemap) != frontend.BASEMAP_SHA256:
+        failures.append("basemap: bytes/SHA")
     for path in output.rglob("*"):
         relative = path.relative_to(output).as_posix() if path.is_file() else ""
         if not path.is_file() or relative in SITE_METADATA_PATHS or relative.startswith("vendor/") or path.suffix.lower() not in {".html", ".js", ".mjs", ".json", ".css"}:

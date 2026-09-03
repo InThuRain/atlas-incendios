@@ -22,7 +22,9 @@ assert.strictEqual(config.pmtiles_protocol_module, "/national-preview/data/deriv
 assert.strictEqual(PMTILES_BYTES, 63052056);
 assert.strictEqual(config.assets.esfire30.pmtiles.sha256, PMTILES_SHA256);
 assert.ok(PMTILES_PRODUCTION_PATH.includes(PMTILES_SHA256));
-assert.deepStrictEqual(Object.keys(NATIONAL_SOURCE_REGISTRY).sort(), ["bdlje", "effis", "egif", "esfire30", "icv"]);
+assert.deepStrictEqual(Object.keys(NATIONAL_SOURCE_REGISTRY).sort(), ["bdlje", "effis", "egif", "esfire30", "icv", "protomaps"]);
+assert.strictEqual(sourceFor("protomaps").role, "cartographic_context");
+assert.strictEqual(sourceFor("protomaps").wildfire_source, false);
 assert.strictEqual(sourceFor("egif").coverage.from, 1968);
 assert.strictEqual(sourceFor("esfire30").coverage.to, 2021);
 assert.strictEqual(sourceFor("icv").coverage.to, 2024);

@@ -8,6 +8,10 @@
 export const PMTILES_SHA256 = "3c6eb10ba146008cdabf36646d48a4c7a92c1c1357ad90679f6b5dce42013cfe";
 export const PMTILES_BYTES = 63052056;
 export const PMTILES_PRODUCTION_PATH = `data/esfire30/v1/${PMTILES_SHA256}/esfire30-national-fidelity-territories.pmtiles`;
+export const BASEMAP_SHA256 = "72bb270ff6fc18ccba3042834f9a9eb72901c243e7dec88b3ebb63eaafaeb729";
+export const BASEMAP_BYTES = 293324998;
+export const BASEMAP_VERSION = "protomaps-20260902-z12";
+export const BASEMAP_PRODUCTION_ROOT = `data/basemap/protomaps/20260902-z12/${BASEMAP_SHA256}`;
 
 export const LOCAL_ASSET_CONFIG = Object.freeze({
   asset_base_url: "/",
@@ -15,6 +19,37 @@ export const LOCAL_ASSET_CONFIG = Object.freeze({
   maplibre_script: "/data/derived/spain/es3/tools/browser/maplibre-gl-5.16.0.js",
   pmtiles_protocol_module: "/data/derived/spain/es3/tools/browser/pmtiles-4.3.0.mjs",
   assets: {
+    basemap: {
+      enabled: true,
+      role: "cartographic_context",
+      source_id: "protomaps-context",
+      version: BASEMAP_VERSION,
+      pmtiles: {
+        logical_id: BASEMAP_VERSION,
+        path: "/build/es4e3c2-basemap/protomaps-spain-z12.pmtiles",
+        production_path: `/${BASEMAP_PRODUCTION_ROOT}/basemap.pmtiles`,
+        bytes: BASEMAP_BYTES,
+        sha256: BASEMAP_SHA256,
+        required: false,
+      },
+      glyphs: {
+        fontstack: "Noto Sans Regular",
+        template: "/build/es4e3c2-basemap/fonts/{fontstack}/{range}.pbf",
+        production_template: `/${BASEMAP_PRODUCTION_ROOT}/fonts/{fontstack}/{range}.pbf`,
+        range: "0-255",
+        bytes: 76044,
+        sha256: "62c6d49b15fa836eb6aa45e259c7ca6762f44b011b09e47776efbe4a6db1b397",
+        required: false,
+      },
+      manifest: {
+        path: "/config/national-basemap-protomaps-20260902-z12.json",
+        production_path: `/${BASEMAP_PRODUCTION_ROOT}/manifest.json`,
+        required: false,
+      },
+      attribution: "Protomaps · © OpenStreetMap contributors · Obra derivada de BDLJE CC-BY 4.0 ign.es",
+      runtime_external_domains: [],
+      api_keys_required: false,
+    },
     esfire30: {
       pmtiles: {
         logical_id: "esfire30-national-fidelity-territories",
@@ -74,7 +109,7 @@ function resolveNode(node, base) {
   if (!node || typeof node !== "object") return node;
   const resolved = {};
   for (const [key, value] of Object.entries(node)) {
-    resolved[key] = key === "path" && typeof value === "string" ? join(base, value) : resolveNode(value, base);
+    resolved[key] = (key === "path" || key === "template") && typeof value === "string" ? join(base, value) : resolveNode(value, base);
   }
   return resolved;
 }

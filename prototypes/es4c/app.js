@@ -24,6 +24,9 @@ import { adaptLegacyGvaV1State, dispatchStateHash, parseLegacyGvaV1State } from 
 const runtimeAssets = runtimeConfig.assets || {};
 const ARCHIVE_PATH = runtimeAssets.esfire30?.pmtiles?.path || "/data/derived/spain/es4c2b/pmtiles/esfire30-national-fidelity-territories.pmtiles";
 const SOURCE_ID = "esfire30";
+const BASEMAP_SOURCE_ID = runtimeAssets.basemap?.source_id || "protomaps-context";
+const BASEMAP_ARCHIVE_URL = runtimeAssets.basemap?.pmtiles?.path ? runtimeUrl(runtimeAssets.basemap.pmtiles.path) : null;
+const BASEMAP_GLYPHS_TEMPLATE = runtimeAssets.basemap?.glyphs?.template || null;
 const SOURCE_LAYER = "esfire30";
 const FILL_LAYER = "esfire30-perimeters";
 const SELECTED_LAYER = "esfire30-selected";
@@ -281,6 +284,7 @@ const map = new maplibregl.Map({
   attributionControl: false,
   style: {
     version: 8,
+    ...(BASEMAP_GLYPHS_TEMPLATE ? { glyphs: BASEMAP_GLYPHS_TEMPLATE } : {}),
     sources: {
       [SOURCE_ID]: {
         type: "vector",
@@ -1472,10 +1476,17 @@ function persistView() {
 
 function isEsfireTransportError(event) {
   const message = String(event?.error || event?.message || "");
-  return event?.sourceId === SOURCE_ID
-    || message.includes(".pmtiles")
-    || message.includes("Bad response code")
-    || message.includes("PMTiles");
+  if (event?.sourceId) return event.sourceId === SOURCE_ID;
+  return message.includes(archiveUrl) || message.includes(ARCHIVE_PATH.split("/").at(-1));
+}
+
+function isBasemapTransportError(event) {
+  if (event?.sourceId) return event.sourceId === BASEMAP_SOURCE_ID;
+  const message = String(event?.error || event?.message || "");
+  return Boolean(BASEMAP_ARCHIVE_URL && message.includes(BASEMAP_ARCHIVE_URL))
+    || message.includes("/data/basemap/protomaps/")
+    || message.includes("Noto%20Sans%20Regular")
+    || message.includes("Noto Sans Regular");
 }
 
 function markEsfireTransportError(event) {
@@ -1504,6 +1515,10 @@ map.on("mouseleave", ICV_FILL_LAYER, () => { map.getCanvas().style.cursor = ""; 
 map.on("mouseenter", EFFIS_FILL_LAYER, () => { map.getCanvas().style.cursor = "pointer"; });
 map.on("mouseleave", EFFIS_FILL_LAYER, () => { map.getCanvas().style.cursor = ""; });
 map.on("error", (event) => {
+  // El controlador productivo del mapa base registra el fallo y degrada a
+  // BDLJE-only. No contaminar por ello el estado de ESFire30 ni el error
+  // general del runtime de incendios.
+  if (isBasemapTransportError(event)) return;
   errors.push(String(event?.error || "MapLibre error"));
   mapErrorEvents.push({ source_id: event?.sourceId || null, message: String(event?.error || event?.message || "MapLibre error") });
   markEsfireTransportError(event);

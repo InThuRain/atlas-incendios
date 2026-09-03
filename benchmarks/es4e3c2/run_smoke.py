@@ -134,7 +134,7 @@ def validate(runs: list[dict]) -> list[str]:
     expected = {"spain_1995_egif": "egif", "galicia_1995_egif": "egif", "gva_1995_icv": "icv", "gva_2024_icv": "icv", "gva_2026_effis": "effis", "elx_2025_effis": "effis", "gva_1995_icv_500": "icv"}
     for row in runs:
         if row.get("errors") or row.get("bootstrap"): failures.append(f"{row['scenario']}: errores de runtime")
-        if row["layer_order"]["ccaa"] < 0 or row["layer_order"]["ccaa"] >= row["layer_order"]["fire"] or row["layer_order"]["selected"] <= row["layer_order"]["fire"]: failures.append(f"{row['scenario']}: jerarquía cartográfica")
+        if row["layer_order"]["ccaa"] < 0 or row["layer_order"]["ccaa"] >= row["layer_order"]["fire"] or row["layer_order"]["selected"] >= row["layer_order"]["fire"]: failures.append(f"{row['scenario']}: jerarquía cartográfica")
         if not (row.get("map_context") or "").strip(): failures.append(f"{row['scenario']}: contexto territorial ausente")
         if row.get("device") != "mobile" and "BDLJE" not in (row.get("map_context") or ""): failures.append(f"{row['scenario']}: atribución contextual BDLJE ausente")
     for name, source in expected.items():

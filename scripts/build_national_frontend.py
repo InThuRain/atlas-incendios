@@ -22,6 +22,10 @@ NATIONAL_COMPAT = SOURCE / "compat/gva-v1.mjs"
 VENDOR = ROOT / "data/derived/spain/es3/tools/browser"
 PMTILES_SHA256 = "3c6eb10ba146008cdabf36646d48a4c7a92c1c1357ad90679f6b5dce42013cfe"
 PMTILES_BYTES = 63052056
+BASEMAP_MANIFEST_PATH = ROOT / "config/national-basemap-protomaps-20260902-z12.json"
+BASEMAP_MANIFEST = json.loads(BASEMAP_MANIFEST_PATH.read_text(encoding="utf-8"))
+BASEMAP_SHA256 = BASEMAP_MANIFEST["pmtiles"]["sha256"]
+BASEMAP_BYTES = BASEMAP_MANIFEST["pmtiles"]["bytes"]
 RUNTIME_FILES = (
     "app.js",
     "egif_initial_loader.mjs",
@@ -59,6 +63,7 @@ FRONTEND_FILES = (
     "human-details.mjs",
     "highlights.mjs",
     "source-registry.mjs",
+    "basemap-context.mjs",
 )
 
 
@@ -80,6 +85,34 @@ def production_config() -> dict:
         "maplibre_script": "./vendor/maplibre-gl-5.16.0.js",
         "pmtiles_protocol_module": "../vendor/pmtiles-4.3.0.mjs",
         "assets": {
+            "basemap": {
+                "enabled": True,
+                "role": "cartographic_context",
+                "source_id": "protomaps-context",
+                "version": BASEMAP_MANIFEST["basemap_version"],
+                "pmtiles": {
+                    "logical_id": BASEMAP_MANIFEST["basemap_version"],
+                    "path": BASEMAP_MANIFEST["pmtiles"]["runtime_path"],
+                    "bytes": BASEMAP_BYTES,
+                    "sha256": BASEMAP_SHA256,
+                    "required": False,
+                },
+                "glyphs": {
+                    "fontstack": BASEMAP_MANIFEST["glyphs"]["fontstack"],
+                    "template": BASEMAP_MANIFEST["glyphs"]["runtime_template"],
+                    "range": BASEMAP_MANIFEST["glyphs"]["range"],
+                    "bytes": BASEMAP_MANIFEST["glyphs"]["bytes"],
+                    "sha256": BASEMAP_MANIFEST["glyphs"]["sha256"],
+                    "required": False,
+                },
+                "manifest": {
+                    "path": str(Path(BASEMAP_MANIFEST["pmtiles"]["runtime_path"]).parent / "manifest.json"),
+                    "required": False,
+                },
+                "attribution": BASEMAP_MANIFEST["attribution"],
+                "runtime_external_domains": [],
+                "api_keys_required": False,
+            },
             "esfire30": {"pmtiles": {
                 "logical_id": "esfire30-national-fidelity-territories",
                 "path": f"data/esfire30/v1/{PMTILES_SHA256}/esfire30-national-fidelity-territories.pmtiles",
@@ -217,6 +250,14 @@ def check(output: Path) -> dict:
         failures.append("logical PMTiles config")
     if pmtiles.get("path", "").startswith(("http://", "https://")):
         failures.append("PMTiles host-specific path")
+    basemap = config.get("assets", {}).get("basemap", {})
+    basemap_pmtiles = basemap.get("pmtiles", {})
+    if basemap_pmtiles.get("sha256") != BASEMAP_SHA256 or basemap_pmtiles.get("bytes") != BASEMAP_BYTES:
+        failures.append("logical basemap PMTiles config")
+    if basemap_pmtiles.get("path", "").startswith(("http://", "https://", "/home/")):
+        failures.append("basemap host-specific path")
+    if basemap.get("runtime_external_domains") != [] or basemap.get("api_keys_required") is not False:
+        failures.append("basemap external runtime contract")
     summary = config.get("assets", {}).get("ux_summary", {}).get("manifest", {})
     if summary.get("schema_version") != "national-ux-summary-v1" or summary.get("path", "").startswith(("http://", "https://", "/home/")):
         failures.append("logical UX summary config")
