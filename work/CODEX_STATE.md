@@ -783,3 +783,39 @@ D5_STATUS = PAUSED_FOR_PRODUCT_RECONCILIATION
 RESULTS_PATH = ES_4E3D1_NATIONAL_PRODUCT_ARTIFACT.md; data/audit/product/es4e3d1_national_product_artifact.json; data/audit/product/es4e3d1_glyph_coverage.json
 
 NEXT_PHASE = ES-4E3D2_NATIONAL_PRODUCT_LOCAL_ACCEPTANCE
+
+PHASE = ES-4E3D2
+
+STATUS = DONE (aceptación local de producto sobre el artifact E3D1 aislado; recorridos humanos, métricas, histograma, filtros, destacados, fichas, enlaces, móvil, Range y fallos controlados validados).
+
+ARTIFACT_PATH = build/national-product-staging/
+
+ARTIFACT_IDENTITY_STATUS = PASS (497 ficheros; 812510441 B; payload fingerprint 10582ec0dc896654006c2162ea66e2fd7710790c477bb072bfb2473c51b18df3; manifest SHA-256 377b565548b6ff1376acde99e0cae458eb2b72d704c39587990126a0e69cf96e; site identity SHA-256 f5e80a728f45057692f36ba41f76900c9d00b9c962cedc4eb591e29e813da04e).
+
+PRODUCT_LOCAL_ACCEPTANCE = PASS_WITH_MINOR_GAPS
+
+BLOCKERS = 0
+
+E1_REGRESSIONS = A overview RESOLVED; B histogram RESOLVED; C filters RESOLVED; D map context RESOLVED; E human detail RESOLVED; F runtime dominance RESOLVED; G mobile hierarchy RESOLVED.
+
+HISTOGRAM_BRUSH_STATUS = DEFERRED_P1_NOT_BLOCKER
+
+MOBILE_PRODUCT_FEEL = ACCEPTABLE (map first; filters/detail/share usable; dense annual bars remain a touch-target P1).
+
+PMTILES_RANGE = PASS (Protomaps + ESFire30; Range-only in directed sessions; no full download).
+
+GLYPH_404_COUNT = 0
+
+RUNTIME_UNEXPECTED_ERRORS = 0
+
+PRODUCT_RELEASE_CANDIDATE = READY_FOR_REMOTE_PRODUCT_STAGING
+
+D5_STATUS = PAUSED_FOR_PRODUCT_RECONCILIATION
+
+RESULTS_PATH = ES_4E3D2_NATIONAL_PRODUCT_LOCAL_ACCEPTANCE.md; data/audit/product/es4e3d2_national_product_local_acceptance.json
+
+PAGES_BYTES_REMAINING = 187489559
+
+PAGES_CAPACITY_STATUS = LIMITED_BUT_ACCEPTABLE
+
+NEXT_PHASE = ES-4E4_NATIONAL_PRODUCT_STAGING

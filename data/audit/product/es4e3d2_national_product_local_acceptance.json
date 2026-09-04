@@ -1,0 +1,315 @@
+{
+  "phase": "ES-4E3D2",
+  "date": "2026-09-04",
+  "artifact_identity": {
+    "status": "PASS",
+    "path": "build/national-product-staging/",
+    "served_as_isolated_docroot": true,
+    "site_file_count": 497,
+    "site_total_bytes": 812510441,
+    "payload_file_count": 495,
+    "payload_total_bytes": 812291384,
+    "payload_fingerprint": "10582ec0dc896654006c2162ea66e2fd7710790c477bb072bfb2473c51b18df3",
+    "asset_manifest_sha256": "377b565548b6ff1376acde99e0cae458eb2b72d704c39587990126a0e69cf96e",
+    "site_identity_sha256": "f5e80a728f45057692f36ba41f76900c9d00b9c962cedc4eb591e29e813da04e"
+  },
+  "journeys": {
+    "spain_full_1968_2026": {
+      "status": "PASS",
+      "cards": {"esfire30_perimeters": 119498, "egif_records": 646887, "egif_known_forest_area_ha": 8230839},
+      "cross_source_total": false,
+      "initial_histogram_series": "egif_record_count"
+    },
+    "spain_1975": {
+      "status": "PASS",
+      "cards": {"egif_records": 4128, "egif_known_forest_area_ha": 180137},
+      "esfire30": "not_available_for_period_not_zero"
+    },
+    "spain_1995": {
+      "status": "PASS",
+      "cards": {"esfire30_perimeters": 5035, "egif_records": 25557, "egif_known_forest_area_ha": 141082}
+    },
+    "galicia_1995": {
+      "status": "PASS",
+      "cards": {"esfire30_perimeters": 1989, "egif_records": 15254, "egif_known_forest_area_ha": 46670},
+      "egif_highlight": "1995 · Laza · Ourense · 2029 ha"
+    },
+    "ourense_1995": {
+      "status": "PASS",
+      "cards": {"esfire30_perimeters": 746, "egif_records": 3605, "egif_known_forest_area_ha": 18207},
+      "territory_updates_coherent": true
+    },
+    "cangas_del_narcea_1985_2021": {
+      "status": "PASS",
+      "esfire30_related_geometry_ids": 2610,
+      "egif_records": 3044,
+      "egif_known_forest_area_ha": 47392,
+      "worded_as_fires": false
+    },
+    "gva_1995": {
+      "status": "PASS",
+      "cards": {"icv_fires": 467, "egif_records": 467, "esfire30_perimeters": 25, "icv_known_forest_area_ha": 2220},
+      "recommended_primary_source": "icv",
+      "sources_not_merged": true
+    },
+    "gva_1995_icv_min_500": {
+      "status": "PASS",
+      "icv_result_count": 1,
+      "first_result": "13/07/1995 · Sella · Alicante/Alacant · 502 ha",
+      "other_sources_filtered": false
+    },
+    "gva_2024": {
+      "status": "PASS",
+      "cards": {"icv_fires": 472, "icv_known_forest_area_ha": 1428},
+      "recommended_primary_source": "icv"
+    },
+    "icv_2024al0005": {
+      "status": "PASS",
+      "fire_records": 1,
+      "documented_perimeters": 2,
+      "record_only_chooses_geometry": false,
+      "geometry_selection_exact": true,
+      "human_fields": ["start_date", "extinction_date", "municipality", "province", "place", "reported_forest_area", "cause", "administrative_gif", "documented_perimeter_count"]
+    },
+    "gva_2026": {
+      "status": "PASS",
+      "cards": {"effis_provisional_perimeters": 16, "effis_mapped_area_ha": 10265},
+      "snapshot": "2026-08-19",
+      "annual_closure_claimed": false
+    },
+    "elx_2025": {
+      "status": "PASS",
+      "cards": {"effis_provisional_perimeters": 1, "effis_mapped_area_ha": 7},
+      "highlight_and_detail": true,
+      "copy_link": true
+    },
+    "canarias_1995": {
+      "status": "PASS",
+      "cards": {"egif_records": 56, "egif_known_forest_area_ha": 3631},
+      "esfire30": "not_available_for_territory_not_zero"
+    }
+  },
+  "desktop": {
+    "status": "PASS",
+    "first_impression": "PASS",
+    "map_dominates": true,
+    "territory_and_period_obvious": true,
+    "typed_metrics_without_methodology": true,
+    "methodology_initially_collapsed": true,
+    "visible_internal_vocabulary": []
+  },
+  "mobile": {
+    "viewport": "390x844 emulated",
+    "status": "ACCEPTABLE",
+    "tested": ["Spain 1995", "GVA 1995 filters", "Elx 2025 detail/share"],
+    "map_first": true,
+    "territory_controls_usable": true,
+    "filter_sheet_usable": true,
+    "detail_sheet_minimizable": true,
+    "share_usable": true,
+    "minor_gap": "The 59 individual annual bars are approximately 4.7 px wide and are not comfortable touch targets; From/To controls and the accessible table remain available."
+  },
+  "map": {
+    "status": "PASS",
+    "protomaps_context": true,
+    "bdlje_boundaries": true,
+    "place_names": true,
+    "roads": true,
+    "selected_territory_emphasis": true,
+    "legend": true,
+    "fire_layers_primary": true,
+    "glyph_404_count": 0,
+    "unbundled_glyph_range_count": 0
+  },
+  "metrics": {
+    "status": "PASS",
+    "typed_by_source": true,
+    "cross_source_total": false,
+    "null_area_is_zero": false,
+    "source_specific_units": true
+  },
+  "histogram": {
+    "status": "PASS_WITH_MINOR_GAP",
+    "years": 59,
+    "initial_series_contextual": true,
+    "series_switch": true,
+    "gaps_distinct_from_zero": true,
+    "tooltips": true,
+    "year_click": true,
+    "range_highlight": true,
+    "territory_updates": true,
+    "accessible_table_rows": 59,
+    "brush_status": "DEFERRED_P1_NOT_BLOCKER",
+    "mobile_bar_target_gap": true
+  },
+  "filters": {
+    "status": "PASS",
+    "tested": ["EGIF minimum area", "EGIF administrative GIF", "ICV minimum area", "ICV GIF via approved contract", "ICV cause", "EFFIS minimum mapped area"],
+    "icv_gif_1995": {"records": 1, "known_forest_area_ha": 502, "other_sources_filtered": false},
+    "source_aware": true,
+    "territory_and_period_aware": true,
+    "gva_to_galicia_invalidation": "PASS_HUMAN_MESSAGE",
+    "zero_result_copy": "No hay resultados que cumplan estos filtros en la fuente indicada. Las demás fuentes permanecen independientes.",
+    "zero_confused_with_no_data": false
+  },
+  "highlights": {
+    "status": "PASS",
+    "egif": "PASS",
+    "icv": "PASS",
+    "effis": "PASS",
+    "esfire30": "DEFERRED_NO_SAFE_RANKING_METRIC",
+    "cross_source_ranking": false,
+    "maximum_visible": 5,
+    "technical_ids_visible": false
+  },
+  "details": {
+    "status": "PASS",
+    "egif": "Human administrative record; date, territory, declared area and administrative GIF; no invented geometry.",
+    "esfire30": "Explicit Landsat perimeter; not an administrative fire or official perimeter.",
+    "icv": "Human official-fire card with date, place, area, cause, GIF and 1:N perimeter explanation.",
+    "effis": "Human provisional satellite-perimeter card with date, place, mapped area and snapshot warning.",
+    "methodology_progressive": true
+  },
+  "sources": {
+    "status": "PASS",
+    "primary_exploration_requires_panel": false,
+    "panel_initially_collapsed": true,
+    "toggles_available": true,
+    "provenance_and_licenses_available": true,
+    "internal_terms_outside_advanced": []
+  },
+  "permalinks": {
+    "status": "PASS",
+    "format": "es4c-state-v1",
+    "complex_state": ["territory", "period", "source_visibility", "source_specific_filter", "ICV_record_selection", "map"],
+    "copy_link_fallback": true,
+    "fresh_browser_profile_restore": true,
+    "reload_restore": true,
+    "back_forward": true
+  },
+  "legacy": {
+    "status": "PASS",
+    "fixtures": ["GVA 1995 historical", "Elx 2025 EFFIS"],
+    "input_format": "gva_v1",
+    "promotes_to_native_after_interaction": true,
+    "back_restores_legacy_hash": true,
+    "forward_restores_native_hash": true,
+    "note": "The supplied Elx fixture carries min_area=10 while the selected EFFIS perimeter is 7 ha; selection invalidation after promotion is therefore correct and is not an arbitrary restore failure."
+  },
+  "accessibility": {
+    "status": "PASS_WITH_MINOR_GAP",
+    "keyboard_focus_visible": true,
+    "focus_outline": "3px solid",
+    "unnamed_visible_controls": 0,
+    "histogram_alternative_table": true,
+    "filter_labels": true,
+    "buttons_and_collapsibles_named": true,
+    "detail_live_region": true,
+    "mobile_touch_gap": "dense annual bars"
+  },
+  "errors": {
+    "status": "PASS",
+    "summary_failure": {"shell_survives": true, "map_survives": true, "human_message": "No se ha podido cargar el resumen de este territorio."},
+    "basemap_failure": {"reused_from": "ES-4E3D1", "fallback": "BDLJE_ONLY", "shell_survives": true, "esfire30_survives": true},
+    "egif_detail_failure": {"shell_survives": true, "map_survives": true, "initial_list_survives": true, "human_message": "El mapa y la lista continúan disponibles."},
+    "unexpected_console_or_runtime_errors": 0
+  },
+  "network": {
+    "status": "PASS",
+    "diagnostic_scenarios": {
+      "spain": {"elapsed_ms": 4552.81, "heap_bytes": 65756982, "basemap_range_requests": 6, "basemap_bytes": 263919, "esfire30_range_requests": 6, "esfire30_bytes": 526207},
+      "galicia": {"elapsed_ms": 6002.85, "heap_bytes": 138038496, "basemap_range_requests": 10, "basemap_bytes": 582568, "esfire30_range_requests": 10, "esfire30_bytes": 2343832},
+      "cangas": {"elapsed_ms": 7203.29, "heap_bytes": 173527153, "basemap_range_requests": 14, "basemap_bytes": 1141082, "esfire30_range_requests": 14, "esfire30_bytes": 3135688},
+      "elx": {"elapsed_ms": 8273.75, "heap_bytes": 198376852, "basemap_range_requests": 16, "basemap_bytes": 862700, "esfire30_range_requests": 16, "esfire30_bytes": 663763}
+    },
+    "summary_telemetry": {
+      "spain_full": {"requests": 2, "response_bytes": 83450, "cache_hits": 7, "stale": 0},
+      "galicia_1995": {"requests": 2, "response_bytes": 83261, "cache_hits": 7, "stale": 1},
+      "elx_2025": {"requests": 7, "response_bytes": 587138, "cache_hits": 6, "stale": 3}
+    },
+    "highlight_telemetry": {
+      "spain_1995_egif": {"requests": 2, "response_bytes": 344502},
+      "galicia_1995_egif": {"additional_requests": 0, "additional_bytes": 0},
+      "elx_2025_effis": {"additional_requests": 0, "additional_bytes": 0}
+    },
+    "protomaps_range_only": true,
+    "esfire30_range_only": true,
+    "full_pmtiles_download_observed": false,
+    "runtime_external_domains": [],
+    "interpretation": "Cold, isolated diagnostic sessions; not contractual performance budgets and not directly comparable between viewports or cache states."
+  },
+  "e1_regression_closure": {
+    "A_absence_of_human_overview": "RESOLVED",
+    "B_no_histogram": "RESOLVED",
+    "C_no_useful_filters": "RESOLVED",
+    "D_map_without_context": "RESOLVED",
+    "E_technical_detail_cards": "RESOLVED",
+    "F_runtime_states_dominating_ui": "RESOLVED",
+    "G_bad_mobile_hierarchy": "RESOLVED"
+  },
+  "remaining_gaps": {
+    "BLOCKER": [],
+    "P1_POST_RELEASE": [
+      "Histogram range brush remains deferred; year click and From/To controls cover the core task.",
+      "Improve mobile selection of individual histogram years/touch targets.",
+      "Consider reducing cold feedback time for heavy municipal/EGIF journeys such as Cangas; current loading states prevent a false hang."
+    ],
+    "P2_FUTURE": [
+      "Optional richer z13 context, relief and points of interest.",
+      "A safe ESFire30 ranking remains unavailable and is intentionally not invented.",
+      "Further cosmetic spacing and header truncation polish on narrow screens."
+    ],
+    "EXTERNAL_BLOCKED": [
+      "National EGIF cause ontology awaits authoritative MITECO/ADCIF documentation.",
+      "CCINIF publication awaits permission.",
+      "Historical municipality geometry/mapping is not available in the current-territory dataset."
+    ]
+  },
+  "product_comparison": {
+    "reference": "https://inthurain.github.io/atlas-incendios/",
+    "reference_observation": "single non-intensive desktop observation on 2026-09-04 plus E1 structured baseline",
+    "gva_strengths_retained": ["map-first exploration", "typed source counts", "histogram", "source-aware filters", "highlights", "human detail", "share"],
+    "national_strengths_added": ["Spain to municipality navigation", "national period", "current official boundaries", "coverage semantics", "multiple independent sources", "complete native state", "legacy GVA input", "fault isolation"],
+    "human_product_matrix": [
+      {"criterion": "first impression", "gva": "strong", "d4b_technical": "weak", "e3_product": "strong", "status": "PASS"},
+      {"criterion": "map/context", "gva": "strong", "d4b_technical": "weak", "e3_product": "strong", "status": "PASS"},
+      {"criterion": "territory navigation", "gva": "regional", "d4b_technical": "strong", "e3_product": "strongest", "status": "PASS"},
+      {"criterion": "time exploration", "gva": "strong", "d4b_technical": "weak", "e3_product": "strong_without_brush", "status": "MINOR_GAP"},
+      {"criterion": "summary", "gva": "strong", "d4b_technical": "debug_like", "e3_product": "strong_typed", "status": "PASS"},
+      {"criterion": "histogram", "gva": "strong", "d4b_technical": "absent", "e3_product": "strong", "status": "PASS"},
+      {"criterion": "filters", "gva": "strong_regional", "d4b_technical": "absent", "e3_product": "strong_source_aware", "status": "PASS"},
+      {"criterion": "highlights", "gva": "strong", "d4b_technical": "absent", "e3_product": "strong_safe_sources", "status": "PASS"},
+      {"criterion": "detail", "gva": "human", "d4b_technical": "technical", "e3_product": "human_progressive", "status": "PASS"},
+      {"criterion": "source clarity", "gva": "good", "d4b_technical": "dominant", "e3_product": "clear_secondary", "status": "PASS"},
+      {"criterion": "methodology", "gva": "secondary", "d4b_technical": "dominant", "e3_product": "progressive", "status": "PASS"},
+      {"criterion": "permalink", "gva": "simple", "d4b_technical": "complete", "e3_product": "complete_and_legacy", "status": "PASS"},
+      {"criterion": "mobile", "gva": "good", "d4b_technical": "poor_hierarchy", "e3_product": "acceptable", "status": "MINOR_GAP"},
+      {"criterion": "technical noise", "gva": "low", "d4b_technical": "high", "e3_product": "low", "status": "PASS"}
+    ],
+    "judgment": "The national candidate now offers a comparably understandable exploratory flow while preserving substantially stronger territorial and semantic capabilities."
+  },
+  "decision": {
+    "product_local_acceptance": "PASS_WITH_MINOR_GAPS",
+    "blockers": 0,
+    "product_release_candidate": "READY_FOR_REMOTE_PRODUCT_STAGING",
+    "ready_for_production": false,
+    "d5_status": "PAUSED_FOR_PRODUCT_RECONCILIATION",
+    "next_phase": "ES-4E4_NATIONAL_PRODUCT_STAGING"
+  },
+  "status": {
+    "chromium_directed_groups": 9,
+    "metrics_journeys": 13,
+    "filter_detail_journeys": 14,
+    "highlight_journeys": 10,
+    "network_journeys": 4,
+    "legacy_fixtures": 2,
+    "accessibility_viewports": 3,
+    "fault_injections": 3,
+    "raw_evidence": "build/es4e3d2/product-acceptance-raw.json (local, ignored)",
+    "harness_check": "PASS",
+    "full_suite_run": false,
+    "runtime_modified": false,
+    "datasets_modified": false,
+    "deployment_modified": false
+  }
+}

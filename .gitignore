@@ -96,6 +96,9 @@ build/national-product-staging/
 build/national-product-staging-repro/
 build/national-product-frontend-check/
 build/es4e3d1/
+# Evidencia Chromium cruda de aceptación E3D2; el agregado estable vive en
+# data/audit/product/ y estas trazas dependen de máquina, caché y viewport.
+build/es4e3d2/
 
 # Dependencias locales de los benchmarks JavaScript.
 benchmarks/gva_web/node_modules/
