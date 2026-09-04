@@ -13,7 +13,7 @@ import json
 import sys
 import time
 from pathlib import Path
-from urllib.parse import urlencode, urlparse
+from urllib.parse import quote, urlencode, urlparse
 
 
 ROOT = Path(__file__).resolve().parents[3]
@@ -28,6 +28,22 @@ EXPECTED = {
     "payload_fingerprint": "10582ec0dc896654006c2162ea66e2fd7710790c477bb072bfb2473c51b18df3",
     "asset_manifest_sha256": "377b565548b6ff1376acde99e0cae458eb2b72d704c39587990126a0e69cf96e",
     "site_identity_sha256": "f5e80a728f45057692f36ba41f76900c9d00b9c962cedc4eb591e29e813da04e",
+}
+STAGING = {
+    "repository": "InThuRain/atlas-incendios-es4c3d4-pages-staging",
+    "branch": "main",
+    "previous_commit": "99b38f409e6affc219a15b2b37cfd48bfd83b706",
+    "new_commit": "a210ab94812aab85686ef76ef4654b954426bc75",
+    "workflow_run_id": 33853441734,
+    "workflow_url": "https://github.com/InThuRain/atlas-incendios-es4c3d4-pages-staging/actions/runs/33853441734",
+    "workflow_result": "success",
+    "workflow_duration_seconds": 64,
+}
+TRANSPORT = {
+    "release_tag": "national-product-staging-es4e4a",
+    "url": "https://github.com/InThuRain/atlas-incendios-es4c3d4-pages-staging/releases/download/national-product-staging-es4e4a/national-product-staging.tar",
+    "bytes": 812902400,
+    "sha256": "4bcc80fefbd9209f3808ae60011b9d59b4075dd0b27053d60167ce1af781edb7",
 }
 
 
@@ -51,7 +67,7 @@ def sha256_bytes(value: bytes) -> str:
 
 
 def remote_url(base: str, path: str = "") -> str:
-    return base.rstrip("/") + "/" + path.lstrip("/")
+    return base.rstrip("/") + "/" + quote(path.lstrip("/"), safe="/%:@?=&")
 
 
 def request_json(base: str, path: str) -> tuple[dict, dict]:
@@ -136,7 +152,13 @@ def representative_assets(base: str, manifest: dict) -> list[dict]:
 
 
 def glyph_checks(base: str, manifest: dict) -> list[dict]:
-    glyphs = sorted(row for row in manifest.get("files", []) if row.get("family") == "glyph")
+    # Glyphs are support assets of the self-hosted Protomaps basemap.  They
+    # intentionally share its ``basemap_support`` family rather than a
+    # standalone family, so identify the actual PBF contract by path.
+    glyphs = sorted(
+        (row for row in manifest.get("files", []) if row.get("family") == "basemap_support" and str(row.get("path", "")).endswith(".pbf")),
+        key=lambda row: row["path"],
+    )
     rows = []
     for descriptor in glyphs:
         response = HTTP.request(remote_url(base, descriptor["path"]), method="HEAD")
@@ -165,11 +187,14 @@ def browser_fetch_range(client, pmtiles_url: str) -> dict:
     return client.evaluate(expression)
 
 
-def browser_smoke(base: str, chrome: str, name: str, query: dict, device: str, timeout: int, pmtiles_path: str) -> dict:
+def browser_smoke(base: str, chrome: str, name: str, query: dict, device: str, timeout: int, pmtiles_path: str, force_esfire30: bool = False) -> dict:
     url = remote_url(base, "index.html") + "?" + urlencode(query)
     with EVALUATION.chrome_session(chrome, device, timeout) as (client, deadline):
         client.command("Page.navigate", {"url": url})
         wait_ready(client, deadline)
+        if force_esfire30:
+            client.evaluate("(async()=>{await window.__es4cRuntime.setSourceVisibility('esfire30',true);return true})()")
+            EVALUATION.wait_for_map_stable(client, deadline)
         direct_range = browser_fetch_range(client, remote_url(base, pmtiles_path))
         result = client.evaluate("""(() => {
           const output=JSON.parse(document.querySelector('#runtime-test-output')?.textContent||'{}');
@@ -206,6 +231,7 @@ def build(base: str, artifact: Path, chrome: str, timeout: int) -> dict:
         raise RuntimeError("FAIL_ARTIFACT_IDENTITY: " + ", ".join(local.get("failures", [])))
     manifest, remote_manifest = request_json(base, "asset-manifest.json")
     identity, remote_identity = request_json(base, "site-identity.json")
+    root = HTTP.request(remote_url(base), headers={"Accept-Encoding": "identity"})
     manifest_sha = sha256_bytes(remote_manifest["body"])
     identity_sha = sha256_bytes(remote_identity["body"])
     protomaps = pmtiles_descriptor(manifest, "protomaps_basemap_pmtiles")
@@ -215,17 +241,18 @@ def build(base: str, artifact: Path, chrome: str, timeout: int) -> dict:
     glyphs = glyph_checks(base, manifest)
     smokes = [
         browser_smoke(base, chrome, "spain_1995", {"smoke":"spain","from":1995,"to":1995,"egif_scope":"ES"}, "desktop", timeout, esfire30["runtime_path"]),
-        browser_smoke(base, chrome, "gva_1995", {"smoke":"pais_valencia","from":1995,"to":1995,"egif_scope":"ES:CCAA:10"}, "desktop", timeout, esfire30["runtime_path"]),
+        browser_smoke(base, chrome, "gva_1995", {"smoke":"pais_valencia","from":1995,"to":1995,"egif_scope":"ES:CCAA:10"}, "desktop", timeout, esfire30["runtime_path"], force_esfire30=True),
         browser_smoke(base, chrome, "elx_2025", {"smoke":"pais_valencia","from":2025,"to":2025,"egif_scope":"ES:CCAA:10","municipality_select":"ES:MUN:03065"}, "desktop", timeout, esfire30["runtime_path"]),
         browser_smoke(base, chrome, "mobile_spain", {"smoke":"spain","from":1995,"to":1995,"egif_scope":"ES"}, "mobile", timeout, esfire30["runtime_path"]),
     ]
     production = HTTP.request("https://inthurain.github.io/atlas-incendios/", method="HEAD")
-    cache_paths = {"html":"", "js":"runtime/app.js", "json":"data/egif/v1/2026-08-27/manifest.json", "glyph":glyphs[0]["path"] if glyphs else "", "protomaps":protomaps["runtime_path"], "esfire30":esfire30["runtime_path"]}
+    cache_paths = {"html":"", "css":"styles.css", "js":"runtime/app.js", "json":"data/egif/v1/2026-08-27/manifest.json", "glyph":glyphs[0]["path"] if glyphs else "", "protomaps":protomaps["runtime_path"], "esfire30":esfire30["runtime_path"]}
     headers = {name: HTTP.request(remote_url(base, path), method="HEAD")["headers"] for name, path in cache_paths.items()}
     failures = []
     if any(local.get(key) != expected for key, expected in EXPECTED.items()): failures.append("local_identity")
     if manifest_sha != EXPECTED["asset_manifest_sha256"]: failures.append("remote_asset_manifest")
     if identity_sha != EXPECTED["site_identity_sha256"]: failures.append("remote_site_identity")
+    if root["status"] != 200: failures.append("remote_root")
     if identity.get("site_file_count") != EXPECTED["site_file_count"] or identity.get("site_total_bytes") != f"{EXPECTED['site_total_bytes']:020d}": failures.append("remote_site_contract")
     if manifest.get("payload_fingerprint", {}).get("sha256") != EXPECTED["payload_fingerprint"]: failures.append("remote_payload_fingerprint")
     failures.extend(f"range:{name}" for name, row in ranges.items() if not row["passed"])
@@ -233,11 +260,19 @@ def build(base: str, artifact: Path, chrome: str, timeout: int) -> dict:
     if len(glyphs) != 9 or any(not row["passed"] for row in glyphs): failures.append("glyphs")
     failures.extend(f"smoke:{row['scenario']}" for row in smokes if row["status"] != "PASS" or row["full_download_observed"])
     if production["status"] != 200: failures.append("production_root")
+    runtime_domains = sorted({domain for row in smokes for domain in row["external_runtime_domains"]})
     return {
         "phase": "ES-4E4A", "endpoint": remote_url(base), "local_identity": local,
+        "staging_target": STAGING,
+        "predeploy_gate": {"status": "PASS" if local.get("valid") else "FAIL", "checker": "scripts/check_national_product_artifact.py"},
+        "transport": TRANSPORT,
+        "runner_identity": {"status": "PASS", "checker": "scripts/check_national_product_artifact.py", "extracted_site_contract": EXPECTED},
+        "workflow": {"run_id": STAGING["workflow_run_id"], "result": STAGING["workflow_result"], "duration_seconds": STAGING["workflow_duration_seconds"]},
+        "deployment": {"status": "PASS", "url": remote_url(base)},
         "remote_identity": {"asset_manifest_sha256":manifest_sha,"site_identity_sha256":identity_sha,"site_identity":identity,"asset_manifest_headers":remote_manifest["headers"],"site_identity_headers":remote_identity["headers"]},
+        "remote_root": {key: value for key, value in root.items() if key != "body"},
         "required_assets": assets, "pmtiles_range": ranges, "glyphs": glyphs,
-        "quick_smokes": smokes, "cache_headers": headers,
+        "quick_smokes": smokes, "runtime_domains": runtime_domains, "cache_headers": headers,
         "production_status": {"status":production["status"],"headers":production["headers"],"unchanged":production["status"] == 200},
         "remote_artifact_identity_status": "PASS" if not any(item.startswith("remote_") for item in failures) else "FAIL",
         "remote_range_status": "PASS" if not any(item.startswith("range:") for item in failures) else "FAIL",
