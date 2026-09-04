@@ -33,9 +33,9 @@
           "cache-control": "max-age=600",
           "etag": "\"6a9a80f2-1290c\"",
           "last-modified": "Fri, 04 Sep 2026 08:27:30 GMT",
-          "age": "150",
+          "age": "378",
           "x-cache": "HIT",
-          "x-cache-hits": "1",
+          "x-cache-hits": "0",
           "access-control-allow-origin": "*"
         },
         "passed": true
@@ -50,9 +50,9 @@
           "cache-control": "max-age=600",
           "etag": "\"6a9a80f2-1e988\"",
           "last-modified": "Fri, 04 Sep 2026 08:27:30 GMT",
-          "age": "150",
+          "age": "377",
           "x-cache": "HIT",
-          "x-cache-hits": "1",
+          "x-cache-hits": "0",
           "access-control-allow-origin": "*"
         },
         "passed": true
@@ -67,9 +67,9 @@
           "cache-control": "max-age=600",
           "etag": "\"6a9a80f2-17f59\"",
           "last-modified": "Fri, 04 Sep 2026 08:27:30 GMT",
-          "age": "150",
+          "age": "377",
           "x-cache": "HIT",
-          "x-cache-hits": "1",
+          "x-cache-hits": "0",
           "access-control-allow-origin": "*"
         },
         "passed": true
@@ -84,9 +84,9 @@
           "cache-control": "max-age=600",
           "etag": "\"6a9a80f2-1b07c\"",
           "last-modified": "Fri, 04 Sep 2026 08:27:30 GMT",
-          "age": "150",
+          "age": "377",
           "x-cache": "HIT",
-          "x-cache-hits": "1",
+          "x-cache-hits": "0",
           "access-control-allow-origin": "*"
         },
         "passed": true
@@ -101,9 +101,9 @@
           "cache-control": "max-age=600",
           "etag": "\"6a9a80f2-1f2ee\"",
           "last-modified": "Fri, 04 Sep 2026 08:27:30 GMT",
-          "age": "150",
+          "age": "377",
           "x-cache": "HIT",
-          "x-cache-hits": "1",
+          "x-cache-hits": "0",
           "access-control-allow-origin": "*"
         },
         "passed": true
@@ -118,9 +118,9 @@
           "cache-control": "max-age=600",
           "etag": "\"6a9a80f2-17208\"",
           "last-modified": "Fri, 04 Sep 2026 08:27:30 GMT",
-          "age": "150",
+          "age": "377",
           "x-cache": "HIT",
-          "x-cache-hits": "1",
+          "x-cache-hits": "0",
           "access-control-allow-origin": "*"
         },
         "passed": true
@@ -135,9 +135,9 @@
           "cache-control": "max-age=600",
           "etag": "\"6a9a80f2-12cea\"",
           "last-modified": "Fri, 04 Sep 2026 08:27:30 GMT",
-          "age": "150",
+          "age": "377",
           "x-cache": "HIT",
-          "x-cache-hits": "1",
+          "x-cache-hits": "0",
           "access-control-allow-origin": "*"
         },
         "passed": true
@@ -152,7 +152,7 @@
           "cache-control": "max-age=600",
           "etag": "\"6a9a80f2-21119\"",
           "last-modified": "Fri, 04 Sep 2026 08:27:30 GMT",
-          "age": "149",
+          "age": "377",
           "x-cache": "HIT",
           "x-cache-hits": "1",
           "access-control-allow-origin": "*"
@@ -169,9 +169,9 @@
           "cache-control": "max-age=600",
           "etag": "\"6a9a80f2-fadc\"",
           "last-modified": "Fri, 04 Sep 2026 08:27:30 GMT",
-          "age": "149",
+          "age": "377",
           "x-cache": "HIT",
-          "x-cache-hits": "1",
+          "x-cache-hits": "0",
           "access-control-allow-origin": "*"
         },
         "passed": true
@@ -179,6 +179,1082 @@
     ],
     "passed": true
   },
+  "remote_identity": {
+    "actual": {
+      "site_file_count": 497,
+      "site_total_bytes": 812510441,
+      "payload_file_count": 495,
+      "payload_total_bytes": 812291384,
+      "payload_fingerprint": "10582ec0dc896654006c2162ea66e2fd7710790c477bb072bfb2473c51b18df3",
+      "asset_manifest_sha256": "377b565548b6ff1376acde99e0cae458eb2b72d704c39587990126a0e69cf96e",
+      "site_identity_sha256": "f5e80a728f45057692f36ba41f76900c9d00b9c962cedc4eb591e29e813da04e"
+    },
+    "expected": {
+      "site_file_count": 497,
+      "site_total_bytes": 812510441,
+      "payload_file_count": 495,
+      "payload_total_bytes": 812291384,
+      "payload_fingerprint": "10582ec0dc896654006c2162ea66e2fd7710790c477bb072bfb2473c51b18df3",
+      "asset_manifest_sha256": "377b565548b6ff1376acde99e0cae458eb2b72d704c39587990126a0e69cf96e",
+      "site_identity_sha256": "f5e80a728f45057692f36ba41f76900c9d00b9c962cedc4eb591e29e813da04e"
+    },
+    "glyphs": [
+      {
+        "path": "data/basemap/protomaps/20260902-z12/72bb270ff6fc18ccba3042834f9a9eb72901c243e7dec88b3ebb63eaafaeb729/fonts/Noto Sans Regular/0-255.pbf",
+        "status": 200,
+        "headers": {
+          "content-length": "76044",
+          "content-type": "application/octet-stream",
+          "accept-ranges": "bytes",
+          "cache-control": "max-age=600",
+          "etag": "\"6a9a80f2-1290c\"",
+          "last-modified": "Fri, 04 Sep 2026 08:27:30 GMT",
+          "age": "378",
+          "x-cache": "HIT",
+          "x-cache-hits": "0",
+          "access-control-allow-origin": "*"
+        },
+        "passed": true
+      },
+      {
+        "path": "data/basemap/protomaps/20260902-z12/72bb270ff6fc18ccba3042834f9a9eb72901c243e7dec88b3ebb63eaafaeb729/fonts/Noto Sans Regular/1024-1279.pbf",
+        "status": 200,
+        "headers": {
+          "content-length": "125320",
+          "content-type": "application/octet-stream",
+          "accept-ranges": "bytes",
+          "cache-control": "max-age=600",
+          "etag": "\"6a9a80f2-1e988\"",
+          "last-modified": "Fri, 04 Sep 2026 08:27:30 GMT",
+          "age": "377",
+          "x-cache": "HIT",
+          "x-cache-hits": "0",
+          "access-control-allow-origin": "*"
+        },
+        "passed": true
+      },
+      {
+        "path": "data/basemap/protomaps/20260902-z12/72bb270ff6fc18ccba3042834f9a9eb72901c243e7dec88b3ebb63eaafaeb729/fonts/Noto Sans Regular/11520-11775.pbf",
+        "status": 200,
+        "headers": {
+          "content-length": "98137",
+          "content-type": "application/octet-stream",
+          "accept-ranges": "bytes",
+          "cache-control": "max-age=600",
+          "etag": "\"6a9a80f2-17f59\"",
+          "last-modified": "Fri, 04 Sep 2026 08:27:30 GMT",
+          "age": "377",
+          "x-cache": "HIT",
+          "x-cache-hits": "0",
+          "access-control-allow-origin": "*"
+        },
+        "passed": true
+      },
+      {
+        "path": "data/basemap/protomaps/20260902-z12/72bb270ff6fc18ccba3042834f9a9eb72901c243e7dec88b3ebb63eaafaeb729/fonts/Noto Sans Regular/1536-1791.pbf",
+        "status": 200,
+        "headers": {
+          "content-length": "110716",
+          "content-type": "application/octet-stream",
+          "accept-ranges": "bytes",
+          "cache-control": "max-age=600",
+          "etag": "\"6a9a80f2-1b07c\"",
+          "last-modified": "Fri, 04 Sep 2026 08:27:30 GMT",
+          "age": "377",
+          "x-cache": "HIT",
+          "x-cache-hits": "0",
+          "access-control-allow-origin": "*"
+        },
+        "passed": true
+      },
+      {
+        "path": "data/basemap/protomaps/20260902-z12/72bb270ff6fc18ccba3042834f9a9eb72901c243e7dec88b3ebb63eaafaeb729/fonts/Noto Sans Regular/256-511.pbf",
+        "status": 200,
+        "headers": {
+          "content-length": "127726",
+          "content-type": "application/octet-stream",
+          "accept-ranges": "bytes",
+          "cache-control": "max-age=600",
+          "etag": "\"6a9a80f2-1f2ee\"",
+          "last-modified": "Fri, 04 Sep 2026 08:27:30 GMT",
+          "age": "377",
+          "x-cache": "HIT",
+          "x-cache-hits": "0",
+          "access-control-allow-origin": "*"
+        },
+        "passed": true
+      },
+      {
+        "path": "data/basemap/protomaps/20260902-z12/72bb270ff6fc18ccba3042834f9a9eb72901c243e7dec88b3ebb63eaafaeb729/fonts/Noto Sans Regular/512-767.pbf",
+        "status": 200,
+        "headers": {
+          "content-length": "94728",
+          "content-type": "application/octet-stream",
+          "accept-ranges": "bytes",
+          "cache-control": "max-age=600",
+          "etag": "\"6a9a80f2-17208\"",
+          "last-modified": "Fri, 04 Sep 2026 08:27:30 GMT",
+          "age": "377",
+          "x-cache": "HIT",
+          "x-cache-hits": "0",
+          "access-control-allow-origin": "*"
+        },
+        "passed": true
+      },
+      {
+        "path": "data/basemap/protomaps/20260902-z12/72bb270ff6fc18ccba3042834f9a9eb72901c243e7dec88b3ebb63eaafaeb729/fonts/Noto Sans Regular/768-1023.pbf",
+        "status": 200,
+        "headers": {
+          "content-length": "77034",
+          "content-type": "application/octet-stream",
+          "accept-ranges": "bytes",
+          "cache-control": "max-age=600",
+          "etag": "\"6a9a80f2-12cea\"",
+          "last-modified": "Fri, 04 Sep 2026 08:27:30 GMT",
+          "age": "377",
+          "x-cache": "HIT",
+          "x-cache-hits": "0",
+          "access-control-allow-origin": "*"
+        },
+        "passed": true
+      },
+      {
+        "path": "data/basemap/protomaps/20260902-z12/72bb270ff6fc18ccba3042834f9a9eb72901c243e7dec88b3ebb63eaafaeb729/fonts/Noto Sans Regular/7680-7935.pbf",
+        "status": 200,
+        "headers": {
+          "content-length": "135449",
+          "content-type": "application/octet-stream",
+          "accept-ranges": "bytes",
+          "cache-control": "max-age=600",
+          "etag": "\"6a9a80f2-21119\"",
+          "last-modified": "Fri, 04 Sep 2026 08:27:30 GMT",
+          "age": "377",
+          "x-cache": "HIT",
+          "x-cache-hits": "1",
+          "access-control-allow-origin": "*"
+        },
+        "passed": true
+      },
+      {
+        "path": "data/basemap/protomaps/20260902-z12/72bb270ff6fc18ccba3042834f9a9eb72901c243e7dec88b3ebb63eaafaeb729/fonts/Noto Sans Regular/8192-8447.pbf",
+        "status": 200,
+        "headers": {
+          "content-length": "64220",
+          "content-type": "application/octet-stream",
+          "accept-ranges": "bytes",
+          "cache-control": "max-age=600",
+          "etag": "\"6a9a80f2-fadc\"",
+          "last-modified": "Fri, 04 Sep 2026 08:27:30 GMT",
+          "age": "377",
+          "x-cache": "HIT",
+          "x-cache-hits": "0",
+          "access-control-allow-origin": "*"
+        },
+        "passed": true
+      }
+    ],
+    "passed": true
+  },
+  "cold_load": [
+    {
+      "scenario": "spain_cold",
+      "ready_ms": 5475.7,
+      "passed": true,
+      "network": {
+        "families": {
+          "frontend": {
+            "requests": 6,
+            "bytes": 327628,
+            "statuses": [
+              200
+            ],
+            "range_206": 0
+          },
+          "other": {
+            "requests": 29,
+            "bytes": 90953,
+            "statuses": [
+              200,
+              404
+            ],
+            "range_206": 0
+          },
+          "esfire30_pmtiles": {
+            "requests": 10,
+            "bytes": 1811399,
+            "statuses": [
+              206
+            ],
+            "range_206": 10
+          },
+          "summary": {
+            "requests": 2,
+            "bytes": 21103,
+            "statuses": [
+              200
+            ],
+            "range_206": 0
+          },
+          "highlights": {
+            "requests": 2,
+            "bytes": 20200,
+            "statuses": [
+              200
+            ],
+            "range_206": 0
+          },
+          "territories": {
+            "requests": 2,
+            "bytes": 6295978,
+            "statuses": [
+              200
+            ],
+            "range_206": 0
+          },
+          "protomaps_pmtiles": {
+            "requests": 10,
+            "bytes": 496979,
+            "statuses": [
+              206
+            ],
+            "range_206": 10
+          },
+          "glyphs": {
+            "requests": 7,
+            "bytes": 401591,
+            "statuses": [
+              200
+            ],
+            "range_206": 0
+          },
+          "egif": {
+            "requests": 1,
+            "bytes": 300164,
+            "statuses": [
+              200
+            ],
+            "range_206": 0
+          }
+        },
+        "full_pmtiles_download_observed": false,
+        "full_pmtiles_candidates": []
+      },
+      "source_status": "complete",
+      "heap": 111009173
+    },
+    {
+      "scenario": "galicia",
+      "ready_ms": 11263.02,
+      "passed": true,
+      "network": {
+        "families": {
+          "frontend": {
+            "requests": 6,
+            "bytes": 327628,
+            "statuses": [
+              200
+            ],
+            "range_206": 0
+          },
+          "other": {
+            "requests": 29,
+            "bytes": 90953,
+            "statuses": [
+              200,
+              404
+            ],
+            "range_206": 0
+          },
+          "esfire30_pmtiles": {
+            "requests": 18,
+            "bytes": 5670097,
+            "statuses": [
+              206
+            ],
+            "range_206": 18
+          },
+          "summary": {
+            "requests": 2,
+            "bytes": 20996,
+            "statuses": [
+              200
+            ],
+            "range_206": 0
+          },
+          "territories": {
+            "requests": 3,
+            "bytes": 6474291,
+            "statuses": [
+              200
+            ],
+            "range_206": 0
+          },
+          "protomaps_pmtiles": {
+            "requests": 18,
+            "bytes": 1299772,
+            "statuses": [
+              206
+            ],
+            "range_206": 18
+          },
+          "glyphs": {
+            "requests": 7,
+            "bytes": 401591,
+            "statuses": [
+              200
+            ],
+            "range_206": 0
+          },
+          "egif": {
+            "requests": 2,
+            "bytes": 917720,
+            "statuses": [
+              200
+            ],
+            "range_206": 0
+          }
+        },
+        "full_pmtiles_download_observed": false,
+        "full_pmtiles_candidates": []
+      },
+      "source_status": "complete",
+      "heap": 176115820
+    },
+    {
+      "scenario": "ourense",
+      "ready_ms": 8868.88,
+      "passed": true,
+      "network": {
+        "families": {
+          "frontend": {
+            "requests": 6,
+            "bytes": 327628,
+            "statuses": [
+              200
+            ],
+            "range_206": 0
+          },
+          "other": {
+            "requests": 29,
+            "bytes": 90953,
+            "statuses": [
+              200,
+              404
+            ],
+            "range_206": 0
+          },
+          "esfire30_pmtiles": {
+            "requests": 24,
+            "bytes": 7262234,
+            "statuses": [
+              206
+            ],
+            "range_206": 24
+          },
+          "summary": {
+            "requests": 5,
+            "bytes": 22443,
+            "statuses": [
+              200
+            ],
+            "range_206": 0
+          },
+          "territories": {
+            "requests": 5,
+            "bytes": 7143134,
+            "statuses": [
+              200
+            ],
+            "range_206": 0
+          },
+          "protomaps_pmtiles": {
+            "requests": 24,
+            "bytes": 1986926,
+            "statuses": [
+              206
+            ],
+            "range_206": 24
+          },
+          "glyphs": {
+            "requests": 7,
+            "bytes": 401591,
+            "statuses": [
+              200
+            ],
+            "range_206": 0
+          },
+          "egif": {
+            "requests": 2,
+            "bytes": 917720,
+            "statuses": [
+              200
+            ],
+            "range_206": 0
+          }
+        },
+        "full_pmtiles_download_observed": false,
+        "full_pmtiles_candidates": []
+      },
+      "source_status": "complete",
+      "heap": 169505724
+    },
+    {
+      "scenario": "cangas",
+      "ready_ms": 10475.05,
+      "passed": true,
+      "network": {
+        "families": {
+          "frontend": {
+            "requests": 6,
+            "bytes": 327628,
+            "statuses": [
+              200
+            ],
+            "range_206": 0
+          },
+          "other": {
+            "requests": 31,
+            "bytes": 145686,
+            "statuses": [
+              200,
+              404
+            ],
+            "range_206": 0
+          },
+          "esfire30_pmtiles": {
+            "requests": 18,
+            "bytes": 3332074,
+            "statuses": [
+              206
+            ],
+            "range_206": 18
+          },
+          "summary": {
+            "requests": 6,
+            "bytes": 40187,
+            "statuses": [
+              200
+            ],
+            "range_206": 0
+          },
+          "territories": {
+            "requests": 5,
+            "bytes": 7718441,
+            "statuses": [
+              200
+            ],
+            "range_206": 0
+          },
+          "protomaps_pmtiles": {
+            "requests": 18,
+            "bytes": 1276658,
+            "statuses": [
+              206
+            ],
+            "range_206": 18
+          },
+          "glyphs": {
+            "requests": 8,
+            "bytes": 454528,
+            "statuses": [
+              200
+            ],
+            "range_206": 0
+          },
+          "egif": {
+            "requests": 5,
+            "bytes": 626765,
+            "statuses": [
+              200
+            ],
+            "range_206": 0
+          }
+        },
+        "full_pmtiles_download_observed": false,
+        "full_pmtiles_candidates": []
+      },
+      "source_status": "complete",
+      "heap": 164234684
+    },
+    {
+      "scenario": "elx",
+      "ready_ms": 6719.98,
+      "passed": true,
+      "network": {
+        "families": {
+          "frontend": {
+            "requests": 6,
+            "bytes": 327628,
+            "statuses": [
+              200
+            ],
+            "range_206": 0
+          },
+          "other": {
+            "requests": 29,
+            "bytes": 90953,
+            "statuses": [
+              200,
+              404
+            ],
+            "range_206": 0
+          },
+          "esfire30_pmtiles": {
+            "requests": 24,
+            "bytes": 738636,
+            "statuses": [
+              206
+            ],
+            "range_206": 24
+          },
+          "summary": {
+            "requests": 4,
+            "bytes": 44790,
+            "statuses": [
+              200
+            ],
+            "range_206": 0
+          },
+          "territories": {
+            "requests": 4,
+            "bytes": 7405256,
+            "statuses": [
+              200
+            ],
+            "range_206": 0
+          },
+          "protomaps_pmtiles": {
+            "requests": 25,
+            "bytes": 1091144,
+            "statuses": [
+              206
+            ],
+            "range_206": 25
+          },
+          "glyphs": {
+            "requests": 7,
+            "bytes": 401591,
+            "statuses": [
+              200
+            ],
+            "range_206": 0
+          },
+          "gva": {
+            "requests": 2,
+            "bytes": 20683,
+            "statuses": [
+              200
+            ],
+            "range_206": 0
+          }
+        },
+        "full_pmtiles_download_observed": false,
+        "full_pmtiles_candidates": []
+      },
+      "source_status": "complete",
+      "heap": 78539907
+    }
+  ],
+  "journeys": [
+    {
+      "scenario": "spain_full",
+      "cards": [
+        "119.498\nPerímetros derivados de imágenes Landsat\nFuente: ESFire30",
+        "646.887\nRegistros administrativos de incendios\nFuente: EGIF",
+        "8.230.839 ha\nSuperficie forestal declarada conocida\nFuente: EGIF"
+      ],
+      "summary_status": "Cada cifra corresponde a la fuente indicada; no se suman fuentes distintas.",
+      "selected_series": "egif_record_count",
+      "summary_visible_ms": 6586.247770999762,
+      "years": {
+        "1975": {
+          "status": "value",
+          "label": "1975: 4.128 registros. Fuente: EGIF. España.",
+          "in_range": true
+        },
+        "1995": {
+          "status": "value",
+          "label": "1995: 25.557 registros. Fuente: EGIF. España.",
+          "in_range": true
+        },
+        "2024": {
+          "status": "gap",
+          "label": "2024: no disponemos de este tipo de dato para este año. EGIF.",
+          "in_range": true
+        },
+        "2025": {
+          "status": "gap",
+          "label": "2025: no disponemos de este tipo de dato para este año. EGIF.",
+          "in_range": true
+        },
+        "2026": {
+          "status": "gap",
+          "label": "2026: no disponemos de este tipo de dato para este año. EGIF.",
+          "in_range": true
+        }
+      },
+      "year_click": {
+        "from": 1995,
+        "to": 1995,
+        "highlight": true
+      }
+    },
+    {
+      "scenario": "spain_1975",
+      "cards": [
+        "4.128\nRegistros administrativos de incendios\nFuente: EGIF",
+        "180.137 ha\nSuperficie forestal declarada conocida\nFuente: EGIF"
+      ],
+      "summary_status": "Cada cifra corresponde a la fuente indicada; no se suman fuentes distintas.",
+      "selected_series": "egif_record_count",
+      "summary_visible_ms": 2762.0948309995583,
+      "years": {
+        "1975": {
+          "status": "value",
+          "label": "1975: 4.128 registros. Fuente: EGIF. España.",
+          "in_range": true
+        },
+        "1995": {
+          "status": "value",
+          "label": "1995: 25.557 registros. Fuente: EGIF. España.",
+          "in_range": false
+        },
+        "2024": {
+          "status": "gap",
+          "label": "2024: no disponemos de este tipo de dato para este año. EGIF.",
+          "in_range": false
+        },
+        "2025": {
+          "status": "gap",
+          "label": "2025: no disponemos de este tipo de dato para este año. EGIF.",
+          "in_range": false
+        },
+        "2026": {
+          "status": "gap",
+          "label": "2026: no disponemos de este tipo de dato para este año. EGIF.",
+          "in_range": false
+        }
+      }
+    },
+    {
+      "scenario": "spain_1995",
+      "cards": [
+        "5.035\nPerímetros derivados de imágenes Landsat\nFuente: ESFire30",
+        "25.557\nRegistros administrativos de incendios\nFuente: EGIF",
+        "141.082 ha\nSuperficie forestal declarada conocida\nFuente: EGIF"
+      ],
+      "summary_status": "Cada cifra corresponde a la fuente indicada; no se suman fuentes distintas.",
+      "selected_series": "egif_record_count",
+      "summary_visible_ms": 4351.710390001244,
+      "years": {
+        "1975": {
+          "status": "value",
+          "label": "1975: 4.128 registros. Fuente: EGIF. España.",
+          "in_range": false
+        },
+        "1995": {
+          "status": "value",
+          "label": "1995: 25.557 registros. Fuente: EGIF. España.",
+          "in_range": true
+        },
+        "2024": {
+          "status": "gap",
+          "label": "2024: no disponemos de este tipo de dato para este año. EGIF.",
+          "in_range": false
+        },
+        "2025": {
+          "status": "gap",
+          "label": "2025: no disponemos de este tipo de dato para este año. EGIF.",
+          "in_range": false
+        },
+        "2026": {
+          "status": "gap",
+          "label": "2026: no disponemos de este tipo de dato para este año. EGIF.",
+          "in_range": false
+        }
+      }
+    },
+    {
+      "scenario": "galicia_1995",
+      "cards": [
+        "1.989\nPerímetros derivados de imágenes Landsat\nFuente: ESFire30",
+        "15.254\nRegistros administrativos de incendios\nFuente: EGIF",
+        "46.670 ha\nSuperficie forestal declarada conocida\nFuente: EGIF"
+      ],
+      "summary_status": "Cada cifra corresponde a la fuente indicada; no se suman fuentes distintas.",
+      "selected_series": "egif_record_count",
+      "summary_visible_ms": 6064.743992999865,
+      "years": {
+        "1975": {
+          "status": "value",
+          "label": "1975: 1.920 registros. Fuente: EGIF. Galicia.",
+          "in_range": false
+        },
+        "1995": {
+          "status": "value",
+          "label": "1995: 15.254 registros. Fuente: EGIF. Galicia.",
+          "in_range": true
+        },
+        "2024": {
+          "status": "gap",
+          "label": "2024: no disponemos de este tipo de dato para este año. EGIF.",
+          "in_range": false
+        },
+        "2025": {
+          "status": "gap",
+          "label": "2025: no disponemos de este tipo de dato para este año. EGIF.",
+          "in_range": false
+        },
+        "2026": {
+          "status": "gap",
+          "label": "2026: no disponemos de este tipo de dato para este año. EGIF.",
+          "in_range": false
+        }
+      }
+    },
+    {
+      "scenario": "ourense_1995",
+      "cards": [
+        "746\nPerímetros derivados de imágenes Landsat\nFuente: ESFire30",
+        "3.605\nRegistros administrativos de incendios\nFuente: EGIF",
+        "18.207 ha\nSuperficie forestal declarada conocida\nFuente: EGIF"
+      ],
+      "summary_status": "Cada cifra corresponde a la fuente indicada; no se suman fuentes distintas.",
+      "selected_series": "egif_record_count",
+      "summary_visible_ms": 7819.977292001568,
+      "years": {
+        "1975": {
+          "status": "value",
+          "label": "1975: 282 registros. Fuente: EGIF. Ourense.",
+          "in_range": false
+        },
+        "1995": {
+          "status": "value",
+          "label": "1995: 3.605 registros. Fuente: EGIF. Ourense.",
+          "in_range": true
+        },
+        "2024": {
+          "status": "gap",
+          "label": "2024: no disponemos de este tipo de dato para este año. EGIF.",
+          "in_range": false
+        },
+        "2025": {
+          "status": "gap",
+          "label": "2025: no disponemos de este tipo de dato para este año. EGIF.",
+          "in_range": false
+        },
+        "2026": {
+          "status": "gap",
+          "label": "2026: no disponemos de este tipo de dato para este año. EGIF.",
+          "in_range": false
+        }
+      }
+    },
+    {
+      "scenario": "gva_1995",
+      "cards": [
+        "467\nIncendios oficiales documentados\nFuente: ICV",
+        "467\nRegistros administrativos de incendios\nFuente: EGIF",
+        "25\nPerímetros derivados de imágenes Landsat\nFuente: ESFire30",
+        "2.220 ha\nSuperficie forestal declarada conocida\nFuente: ICV"
+      ],
+      "summary_status": "Cada cifra corresponde a la fuente indicada; no se suman fuentes distintas.",
+      "selected_series": "icv_fire_record_count",
+      "summary_visible_ms": 4575.368112997239,
+      "years": {
+        "1975": {
+          "status": "gap",
+          "label": "1975: no disponemos de este tipo de dato para este año. ICV.",
+          "in_range": false
+        },
+        "1995": {
+          "status": "value",
+          "label": "1995: 467 incendios documentados. Fuente: ICV. Comunitat Valenciana.",
+          "in_range": true
+        },
+        "2024": {
+          "status": "value",
+          "label": "2024: 472 incendios documentados. Fuente: ICV. Comunitat Valenciana.",
+          "in_range": false
+        },
+        "2025": {
+          "status": "gap",
+          "label": "2025: no disponemos de este tipo de dato para este año. ICV.",
+          "in_range": false
+        },
+        "2026": {
+          "status": "gap",
+          "label": "2026: no disponemos de este tipo de dato para este año. ICV.",
+          "in_range": false
+        }
+      },
+      "series_switch": {
+        "selected": "esfire30_perimeter_count",
+        "aria": "true"
+      }
+    },
+    {
+      "scenario": "gva_2024",
+      "cards": [
+        "472\nIncendios oficiales documentados\nFuente: ICV",
+        "1.428 ha\nSuperficie forestal declarada conocida\nFuente: ICV"
+      ],
+      "summary_status": "Cada cifra corresponde a la fuente indicada; no se suman fuentes distintas.",
+      "selected_series": "icv_fire_record_count",
+      "summary_visible_ms": 3771.650120997947,
+      "years": {
+        "1975": {
+          "status": "gap",
+          "label": "1975: no disponemos de este tipo de dato para este año. ICV.",
+          "in_range": false
+        },
+        "1995": {
+          "status": "value",
+          "label": "1995: 467 incendios documentados. Fuente: ICV. Comunitat Valenciana.",
+          "in_range": false
+        },
+        "2024": {
+          "status": "value",
+          "label": "2024: 472 incendios documentados. Fuente: ICV. Comunitat Valenciana.",
+          "in_range": true
+        },
+        "2025": {
+          "status": "gap",
+          "label": "2025: no disponemos de este tipo de dato para este año. ICV.",
+          "in_range": false
+        },
+        "2026": {
+          "status": "gap",
+          "label": "2026: no disponemos de este tipo de dato para este año. ICV.",
+          "in_range": false
+        }
+      }
+    },
+    {
+      "scenario": "gva_2026",
+      "cards": [
+        "16\nPerímetros satelitales provisionales\nFuente: EFFIS",
+        "10.265 ha\nÁrea del perímetro satelital provisional\nFuente: EFFIS"
+      ],
+      "summary_status": "Datos EFFIS 2026 correspondientes al snapshot de 19/08/2026; no representan el cierre anual.",
+      "selected_series": "effis_perimeter_count",
+      "summary_visible_ms": 4042.9376119973313,
+      "years": {
+        "1975": {
+          "status": "gap",
+          "label": "1975: no disponemos de este tipo de dato para este año. EFFIS.",
+          "in_range": false
+        },
+        "1995": {
+          "status": "gap",
+          "label": "1995: no disponemos de este tipo de dato para este año. EFFIS.",
+          "in_range": false
+        },
+        "2024": {
+          "status": "gap",
+          "label": "2024: no disponemos de este tipo de dato para este año. EFFIS.",
+          "in_range": false
+        },
+        "2025": {
+          "status": "value",
+          "label": "2025: 9 perímetros provisionales. Fuente: EFFIS. Comunitat Valenciana.",
+          "in_range": false
+        },
+        "2026": {
+          "status": "value",
+          "label": "2026: 16 perímetros provisionales. Fuente: EFFIS. Comunitat Valenciana.",
+          "in_range": true
+        }
+      }
+    },
+    {
+      "scenario": "elx_2025",
+      "cards": [
+        "1\nPerímetros satelitales provisionales\nFuente: EFFIS",
+        "7 ha\nÁrea del perímetro satelital provisional\nFuente: EFFIS"
+      ],
+      "summary_status": "Cada cifra corresponde a la fuente indicada; no se suman fuentes distintas.",
+      "selected_series": "effis_perimeter_count",
+      "summary_visible_ms": 5252.428167001199,
+      "years": {
+        "1975": {
+          "status": "gap",
+          "label": "1975: no disponemos de este tipo de dato para este año. EFFIS.",
+          "in_range": false
+        },
+        "1995": {
+          "status": "gap",
+          "label": "1995: no disponemos de este tipo de dato para este año. EFFIS.",
+          "in_range": false
+        },
+        "2024": {
+          "status": "gap",
+          "label": "2024: no disponemos de este tipo de dato para este año. EFFIS.",
+          "in_range": false
+        },
+        "2025": {
+          "status": "value",
+          "label": "2025: 1 perímetro provisional. Fuente: EFFIS. Elx/Elche.",
+          "in_range": true
+        },
+        "2026": {
+          "status": "zero",
+          "label": "2026: 0 perímetros provisionales. Fuente: EFFIS. Elx/Elche.",
+          "in_range": false
+        }
+      }
+    },
+    {
+      "scenario": "cangas",
+      "cards": [
+        "2.610\nPerímetros derivados de imágenes Landsat\nFuente: ESFire30",
+        "3.044\nRegistros administrativos de incendios\nFuente: EGIF",
+        "47.392 ha\nSuperficie forestal declarada conocida\nFuente: EGIF"
+      ],
+      "summary_status": "Cada cifra corresponde a la fuente indicada; no se suman fuentes distintas.",
+      "selected_series": "egif_record_count",
+      "summary_visible_ms": 9196.74049400055,
+      "years": {
+        "1975": {
+          "status": "zero",
+          "label": "1975: 0 registros. Fuente: EGIF. Cangas del Narcea.",
+          "in_range": false
+        },
+        "1995": {
+          "status": "value",
+          "label": "1995: 164 registros. Fuente: EGIF. Cangas del Narcea.",
+          "in_range": true
+        },
+        "2024": {
+          "status": "gap",
+          "label": "2024: no disponemos de este tipo de dato para este año. EGIF.",
+          "in_range": false
+        },
+        "2025": {
+          "status": "gap",
+          "label": "2025: no disponemos de este tipo de dato para este año. EGIF.",
+          "in_range": false
+        },
+        "2026": {
+          "status": "gap",
+          "label": "2026: no disponemos de este tipo de dato para este año. EGIF.",
+          "in_range": false
+        }
+      }
+    },
+    {
+      "scenario": "canarias_1995",
+      "cards": [
+        "56\nRegistros administrativos de incendios\nFuente: EGIF",
+        "3.631 ha\nSuperficie forestal declarada conocida\nFuente: EGIF"
+      ],
+      "summary_status": "Cada cifra corresponde a la fuente indicada; no se suman fuentes distintas.",
+      "selected_series": "egif_record_count",
+      "summary_visible_ms": 3121.6716670023743,
+      "years": {
+        "1975": {
+          "status": "value",
+          "label": "1975: 71 registros. Fuente: EGIF. Canarias.",
+          "in_range": false
+        },
+        "1995": {
+          "status": "value",
+          "label": "1995: 56 registros. Fuente: EGIF. Canarias.",
+          "in_range": true
+        },
+        "2024": {
+          "status": "gap",
+          "label": "2024: no disponemos de este tipo de dato para este año. EGIF.",
+          "in_range": false
+        },
+        "2025": {
+          "status": "gap",
+          "label": "2025: no disponemos de este tipo de dato para este año. EGIF.",
+          "in_range": false
+        },
+        "2026": {
+          "status": "gap",
+          "label": "2026: no disponemos de este tipo de dato para este año. EGIF.",
+          "in_range": false
+        }
+      }
+    },
+    {
+      "scenario": "mobile_spain_1995",
+      "cards": [
+        "5.035\nPerímetros derivados de imágenes Landsat\nFuente: ESFire30",
+        "25.557\nRegistros administrativos de incendios\nFuente: EGIF",
+        "141.082 ha\nSuperficie forestal declarada conocida\nFuente: EGIF"
+      ],
+      "summary_status": "Cada cifra corresponde a la fuente indicada; no se suman fuentes distintas.",
+      "selected_series": "egif_record_count",
+      "summary_visible_ms": 3897.103832998255,
+      "years": {
+        "1975": {
+          "status": "value",
+          "label": "1975: 4.128 registros. Fuente: EGIF. España.",
+          "in_range": false
+        },
+        "1995": {
+          "status": "value",
+          "label": "1995: 25.557 registros. Fuente: EGIF. España.",
+          "in_range": true
+        },
+        "2024": {
+          "status": "gap",
+          "label": "2024: no disponemos de este tipo de dato para este año. EGIF.",
+          "in_range": false
+        },
+        "2025": {
+          "status": "gap",
+          "label": "2025: no disponemos de este tipo de dato para este año. EGIF.",
+          "in_range": false
+        },
+        "2026": {
+          "status": "gap",
+          "label": "2026: no disponemos de este tipo de dato para este año. EGIF.",
+          "in_range": false
+        }
+      }
+    },
+    {
+      "scenario": "mobile_elx_2025",
+      "cards": [
+        "1\nPerímetros satelitales provisionales\nFuente: EFFIS",
+        "7 ha\nÁrea del perímetro satelital provisional\nFuente: EFFIS"
+      ],
+      "summary_status": "Cada cifra corresponde a la fuente indicada; no se suman fuentes distintas.",
+      "selected_series": "effis_perimeter_count",
+      "summary_visible_ms": 4410.931587997766,
+      "years": {
+        "1975": {
+          "status": "gap",
+          "label": "1975: no disponemos de este tipo de dato para este año. EFFIS.",
+          "in_range": false
+        },
+        "1995": {
+          "status": "gap",
+          "label": "1995: no disponemos de este tipo de dato para este año. EFFIS.",
+          "in_range": false
+        },
+        "2024": {
+          "status": "gap",
+          "label": "2024: no disponemos de este tipo de dato para este año. EFFIS.",
+          "in_range": false
+        },
+        "2025": {
+          "status": "value",
+          "label": "2025: 1 perímetro provisional. Fuente: EFFIS. Elx/Elche.",
+          "in_range": true
+        },
+        "2026": {
+          "status": "zero",
+          "label": "2026: 0 perímetros provisionales. Fuente: EFFIS. Elx/Elche.",
+          "in_range": false
+        }
+      }
+    }
+  ],
   "metrics": [
     {
       "scenario": "spain_full",
@@ -679,6 +1755,14 @@
       }
     }
   ],
+  "histogram": {
+    "annual_axis": 59,
+    "year_click": {
+      "from": 1995,
+      "to": 1995,
+      "highlight": true
+    }
+  },
   "filters": [
     {
       "scenario": "spain_egif_500",
@@ -1232,6 +2316,26 @@
       }
     }
   ],
+  "details": {
+    "egif": "PASS",
+    "esfire30": "PASS",
+    "icv": "PASS",
+    "effis": "PASS",
+    "icv_record_to_perimeters": "PASS"
+  },
+  "map": {
+    "context": "PASS",
+    "protomaps": "PASS",
+    "esfire30": "PASS"
+  },
+  "glyphs": {
+    "count": 9,
+    "status": "PASS"
+  },
+  "pmtiles": {
+    "range": "PASS",
+    "full_download_observed": false
+  },
   "icv_gif": {
     "passed": true,
     "cards": [
@@ -2114,6 +3218,15 @@
       ]
     }
   },
+  "permalinks": {
+    "native": "PASS",
+    "back_forward": "PASS (filter history remote)",
+    "reload": "PASS"
+  },
+  "legacy": {
+    "status": "INFERRED_FROM_EXACT_ARTIFACT_IDENTITY",
+    "basis": "ES-4D3C accepted legacy adapter; E4A exact remote identity and remote native reload pass. No runtime change occurred."
+  },
   "legacy_permalink": {
     "status": "INFERRED_FROM_EXACT_ARTIFACT_IDENTITY",
     "basis": "ES-4D3C accepted legacy adapter; E4A exact remote identity and remote native reload pass. No runtime change occurred."
@@ -2277,6 +3390,20 @@
       "runtime_errors": []
     }
   ],
+  "gva_comparison": {
+    "1995": "ICV primary; EGIF/ESFire30 complementary and independent",
+    "2024": "ICV PASS",
+    "2026": "EFFIS provisional PASS"
+  },
+  "e1_remote_closure": {
+    "overview": "RESOLVED_REMOTE",
+    "histogram": "RESOLVED_REMOTE",
+    "filters": "RESOLVED_REMOTE",
+    "map_context": "RESOLVED_REMOTE",
+    "detail_cards": "RESOLVED_REMOTE",
+    "technical_noise": "RESOLVED_REMOTE",
+    "mobile_hierarchy": "RESOLVED_REMOTE"
+  },
   "e1_regressions": {
     "overview": "RESOLVED_REMOTE",
     "histogram": "RESOLVED_REMOTE",
@@ -2286,10 +3413,29 @@
     "technical_noise": "RESOLVED_REMOTE",
     "mobile_hierarchy": "RESOLVED_REMOTE"
   },
+  "p1_gaps": {
+    "histogram_brush": "KEEP_P1_POST_RELEASE",
+    "mobile_histogram_target": "KEEP_P1_POST_RELEASE",
+    "cold_municipality_feedback": "KEEP_P1_POST_RELEASE"
+  },
   "p1": {
     "histogram_brush": "KEEP_P1_POST_RELEASE",
     "mobile_histogram_target": "KEEP_P1_POST_RELEASE",
     "cold_municipality_feedback": "KEEP_P1_POST_RELEASE"
+  },
+  "blockers": {
+    "fix_before_d5": [],
+    "external": [
+      "MITECO/ADCIF cause ontology",
+      "CCINIF permission",
+      "historical municipality limits"
+    ]
+  },
+  "decision": {
+    "remote_product_acceptance": "PASS_WITH_MINOR_GAPS",
+    "product_release_candidate": "READY_FOR_ROOT_DECISION",
+    "d5_status": "READY_TO_RESUME",
+    "next_phase": "ES-4D5_ROOT_SWITCH_DECISION"
   },
   "warnings": [
     "CDN cache behaviour is observed but not separately validated as a production cache policy.",
