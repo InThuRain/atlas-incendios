@@ -49,7 +49,7 @@ jobs:
         working-directory: atlas
         run: |
           mkdir ../site
-          tar --extract --gzip --file ../national-product-staging.tar.gz --directory ../site --no-same-owner
+          tar --extract --file ../national-product-staging.tar --directory ../site --no-same-owner
           python scripts/check_national_product_artifact.py --artifact ../site --output ../runner-site-identity.json | tee -a "$GITHUB_STEP_SUMMARY"
       - name: Preserve runner identity evidence
         uses: actions/upload-artifact@v4

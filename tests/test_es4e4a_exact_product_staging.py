@@ -16,7 +16,7 @@ class ES4E4AExactProductStagingTests(unittest.TestCase):
         workflow = WORKFLOW.read_text(encoding="utf-8")
         for required in (
             "transport_url", "transport_sha256", "transport_bytes",
-            "tar --extract --gzip", "check_national_product_artifact.py",
+            "tar --extract --file", "check_national_product_artifact.py",
             "actions/upload-pages-artifact@v3", "actions/deploy-pages@v4",
             "es4e4a-runner-identity",
         ):
@@ -34,7 +34,7 @@ class ES4E4AExactProductStagingTests(unittest.TestCase):
             "check_national_product_artifact as checker",
             "checker.check(artifact)",
             "FAIL_ARTIFACT_IDENTITY",
-            "gzip.GzipFile", "mtime=0", "tarfile.USTAR_FORMAT",
+            "info.mtime = 0", "tarfile.USTAR_FORMAT",
             "payload_fingerprint", "site_identity_sha256",
         ):
             self.assertIn(required, source)
