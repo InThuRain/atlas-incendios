@@ -859,3 +859,31 @@ D5_STATUS = PAUSED_FOR_PRODUCT_RECONCILIATION
 RESULTS_PATH = ES_4E4A_NATIONAL_PRODUCT_STAGING_DEPLOYMENT.md; data/audit/product/es4e4a_national_product_staging_deployment.json
 
 NEXT_PHASE = ES-4E4B_NATIONAL_PRODUCT_REMOTE_ACCEPTANCE
+
+PHASE = ES-4E4B
+
+STATUS = DONE (aceptación remota de producto sobre GitHub Pages staging exacto: identidad, métricas, histograma, filtros, fichas, navegación territorial, enlaces nativos, Range, caché de sesión, móvil y aislamiento de errores comprobados; sin modificaciones remotas).
+
+REMOTE_PRODUCT_ACCEPTANCE = PASS_WITH_MINOR_GAPS
+
+REMOTE_STAGING_URL = https://inthurain.github.io/atlas-incendios-es4c3d4-pages-staging/
+
+REMOTE_ARTIFACT_IDENTITY = PASS (497 ficheros; 812510441 B; payload fingerprint 10582ec0dc896654006c2162ea66e2fd7710790c477bb072bfb2473c51b18df3; manifest SHA-256 377b565548b6ff1376acde99e0cae458eb2b72d704c39587990126a0e69cf96e; site identity SHA-256 f5e80a728f45057692f36ba41f76900c9d00b9c962cedc4eb591e29e813da04e).
+
+REMOTE_PM_TILES_RANGE = PASS (Protomaps + ESFire30 Range 206; no descarga completa observada).
+
+E1_REMOTE_REGRESSIONS = RESOLVED_REMOTE (overview, histograma, filtros, contexto, fichas, ruido técnico y jerarquía móvil).
+
+P1_POST_RELEASE = histograma brush; objetivo táctil anual móvil; feedback de carga municipal fría.
+
+CDN_CACHE_VALIDATION = NOT_VALIDATED
+
+PRODUCTION_UNCHANGED = true
+
+NATIONAL_RELEASE_CANDIDATE = READY_FOR_ROOT_DECISION
+
+D5_STATUS = READY_TO_RESUME (no autorizado/iniciado en E4B)
+
+RESULTS_PATH = ES_4E4B_NATIONAL_PRODUCT_REMOTE_ACCEPTANCE.md; data/audit/product/es4e4b_national_product_remote_acceptance.json
+
+NEXT_PHASE = ES-4D5_ROOT_SWITCH_DECISION

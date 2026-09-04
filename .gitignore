@@ -104,6 +104,10 @@ build/es4e3d2/
 # Es un contenedor temporal, no un asset fuente ni parte de Git.
 build/es4e4a/
 
+# Trazas CDP crudas de la aceptación remota E4B. La evidencia compacta y
+# versionable vive en data/audit/product/.
+build/es4e4b/
+
 # Dependencias locales de los benchmarks JavaScript.
 benchmarks/gva_web/node_modules/
 
