@@ -819,3 +819,43 @@ PAGES_BYTES_REMAINING = 187489559
 PAGES_CAPACITY_STATUS = LIMITED_BUT_ACCEPTABLE
 
 NEXT_PHASE = ES-4E4_NATIONAL_PRODUCT_STAGING
+
+PHASE = ES-4E4A
+
+STATUS = DONE (artifact nacional de producto E3D1/E3D2 desplegado exactamente en GitHub Pages staging mediante transport TAR con gate de identidad local, runner y remoto; Range Protomaps/ESFire30, glyphs, base path y 4 smokes rápidos PASS; producción GVA intacta).
+
+STAGING_REPOSITORY = InThuRain/atlas-incendios-es4c3d4-pages-staging
+
+STAGING_BRANCH = main
+
+PREVIOUS_STAGING_COMMIT = 99b38f409e6affc219a15b2b37cfd48bfd83b706
+
+NEW_STAGING_COMMIT = a210ab94812aab85686ef76ef4654b954426bc75
+
+WORKFLOW_RUN_ID = 33853441734
+
+DEPLOYMENT_URL = https://inthurain.github.io/atlas-incendios-es4c3d4-pages-staging/
+
+TRANSPORT = national-product-staging.tar; 812902400 B; SHA-256 4bcc80fefbd9209f3808ae60011b9d59b4075dd0b27053d60167ce1af781edb7; GitHub Release prerelease national-product-staging-es4e4a
+
+LOCAL_ACCEPTED_SITE_IDENTITY = PASS (497 files; 812510441 B; payload fingerprint 10582ec0dc896654006c2162ea66e2fd7710790c477bb072bfb2473c51b18df3; asset-manifest SHA 377b565548b6ff1376acde99e0cae458eb2b72d704c39587990126a0e69cf96e; site-identity SHA f5e80a728f45057692f36ba41f76900c9d00b9c962cedc4eb591e29e813da04e).
+
+RUNNER_SITE_IDENTITY = PASS (mismo contrato tras extracción, antes de upload-pages-artifact).
+
+REMOTE_ARTIFACT_IDENTITY_STATUS = PASS
+
+STAGING_DEPLOYMENT_STATUS = PASS
+
+REMOTE_RANGE_STATUS = PASS (Protomaps + ESFire30; 0-0, initial, middle, final = 206 byte-idénticos; full download false).
+
+REMOTE_PACKAGING_SMOKE_STATUS = PASS (España 1995, GVA 1995, Elx 2025, móvil 390×844; glyphs 9/9; external runtime domains []).
+
+PRODUCTION_UNCHANGED = true
+
+PRODUCT_RELEASE_CANDIDATE = READY_FOR_REMOTE_PRODUCT_ACCEPTANCE
+
+D5_STATUS = PAUSED_FOR_PRODUCT_RECONCILIATION
+
+RESULTS_PATH = ES_4E4A_NATIONAL_PRODUCT_STAGING_DEPLOYMENT.md; data/audit/product/es4e4a_national_product_staging_deployment.json
+
+NEXT_PHASE = ES-4E4B_NATIONAL_PRODUCT_REMOTE_ACCEPTANCE
