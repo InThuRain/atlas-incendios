@@ -100,6 +100,10 @@ build/es4e3d1/
 # data/audit/product/ y estas trazas dependen de máquina, caché y viewport.
 build/es4e3d2/
 
+# Transporte local exacto del artifact E3D1/E3D2 hacia el runner Pages E4A.
+# Es un contenedor temporal, no un asset fuente ni parte de Git.
+build/es4e4a/
+
 # Dependencias locales de los benchmarks JavaScript.
 benchmarks/gva_web/node_modules/
 

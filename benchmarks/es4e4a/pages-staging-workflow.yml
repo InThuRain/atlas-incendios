@@ -1,0 +1,65 @@
+name: ES-4E4A exact national product staging
+
+on:
+  workflow_dispatch:
+    inputs:
+      source_ref:
+        description: Commit SHA of atlas-incendios containing the E4A checker
+        required: true
+        type: string
+      transport_url:
+        description: Immutable GitHub Release URL of the E4A transport archive
+        required: true
+        type: string
+      transport_sha256:
+        description: SHA-256 expected for the transport archive
+        required: true
+        type: string
+      transport_bytes:
+        description: Exact byte size expected for the transport archive
+        required: true
+        type: string
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          repository: InThuRain/atlas-incendios
+          ref: ${{ inputs.source_ref }}
+          path: atlas
+      - name: Download exact accepted-site transport
+        run: |
+          curl --fail --location --retry 3 --retry-delay 2 \
+            "${{ inputs.transport_url }}" --output national-product-staging.tar.gz
+          test "$(stat --printf='%s' national-product-staging.tar.gz)" = "${{ inputs.transport_bytes }}"
+          test "$(sha256sum national-product-staging.tar.gz | cut -d' ' -f1)" = "${{ inputs.transport_sha256 }}"
+          printf 'transport_bytes=%s\ntransport_sha256=%s\n' \
+            "${{ inputs.transport_bytes }}" "${{ inputs.transport_sha256 }}" | tee -a "$GITHUB_STEP_SUMMARY"
+      - name: Extract and gate the accepted site identity
+        working-directory: atlas
+        run: |
+          mkdir ../site
+          tar --extract --gzip --file ../national-product-staging.tar.gz --directory ../site --no-same-owner
+          python scripts/check_national_product_artifact.py --artifact ../site --output ../runner-site-identity.json | tee -a "$GITHUB_STEP_SUMMARY"
+      - name: Preserve runner identity evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: es4e4a-runner-identity
+          path: runner-site-identity.json
+          if-no-files-found: error
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+      - id: deployment
+        uses: actions/deploy-pages@v4
