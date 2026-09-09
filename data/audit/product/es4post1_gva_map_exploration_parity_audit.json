@@ -1,0 +1,5156 @@
+{
+  "assessment": {
+    "basic_popup": "FAIL",
+    "default_geometry_source": "PARTIAL",
+    "direct_click": "PARTIAL",
+    "geometry_completeness": "FAIL",
+    "map_exploration_parity": "FAIL",
+    "map_first": "PARTIAL",
+    "mobile": "PARTIAL",
+    "next_phase": "ES-4POST2_GVA_MAP_EXPLORATION_PARITY_IMPLEMENTATION",
+    "overlap_visual_encoding": "FAIL",
+    "post_release_product_parity_review": "FAILED_NEEDS_FIX",
+    "release_tag_status": "HOLD",
+    "temporal_visual_encoding": "FAIL"
+  },
+  "browser": {
+    "legacy_1995": {
+      "activeAssetCount": 3,
+      "activeAssetUrls": [
+        "data/web/gva/geometry/overview/castellon/1993-1999.geojson",
+        "data/web/gva/geometry/overview/valencia/1993-1999.geojson",
+        "data/web/gva/geometry/overview/alicante/1993-1999.geojson"
+      ],
+      "activeProvinces": [
+        "castellon",
+        "valencia",
+        "alicante"
+      ],
+      "activeSources": [
+        "esfire30",
+        "icv"
+      ],
+      "appElapsedMs": 186.39999999850988,
+      "availableCauses": [
+        {
+          "label": "Todas",
+          "value": ""
+        },
+        {
+          "label": "Desconocida",
+          "value": "unknown"
+        },
+        {
+          "label": "Intencionado",
+          "value": "intentional"
+        },
+        {
+          "label": "Negligencias y causas accidentales",
+          "value": "negligence_and_accidental"
+        },
+        {
+          "label": "Rayo",
+          "value": "lightning"
+        }
+      ],
+      "availableMunicipalities": [
+        {
+          "label": "Todos",
+          "value": ""
+        },
+        {
+          "label": "Ademuz",
+          "value": "46001"
+        },
+        {
+          "label": "Agres",
+          "value": "03003"
+        },
+        {
+          "label": "Agullent",
+          "value": "46004"
+        },
+        {
+          "label": "Aielo de Malferit",
+          "value": "46042"
+        },
+        {
+          "label": "Aielo de Rugat",
+          "value": "46043"
+        },
+        {
+          "label": "Albaida",
+          "value": "46006"
+        },
+        {
+          "label": "Albalat dels Tarongers",
+          "value": "46010"
+        },
+        {
+          "label": "Alberic",
+          "value": "46011"
+        },
+        {
+          "label": "Albocàsser",
+          "value": "12003"
+        },
+        {
+          "label": "Alborache",
+          "value": "46012"
+        },
+        {
+          "label": "Alcalà de Xivert",
+          "value": "12004"
+        },
+        {
+          "label": "Alcoi",
+          "value": "03009"
+        },
+        {
+          "label": "Alfara de la Baronia",
+          "value": "46024"
+        },
+        {
+          "label": "Alfarb",
+          "value": "46026"
+        },
+        {
+          "label": "Algemesí",
+          "value": "46029"
+        },
+        {
+          "label": "Algimia de Almonacid",
+          "value": "12008"
+        },
+        {
+          "label": "Alginet",
+          "value": "46031"
+        },
+        {
+          "label": "Almenara",
+          "value": "12011"
+        },
+        {
+          "label": "Almiserà",
+          "value": "46033"
+        },
+        {
+          "label": "Alpuente",
+          "value": "46036"
+        },
+        {
+          "label": "Altura",
+          "value": "12012"
+        },
+        {
+          "label": "Alzira",
+          "value": "46017"
+        },
+        {
+          "label": "Andilla",
+          "value": "46038"
+        },
+        {
+          "label": "Arañuel",
+          "value": "12013"
+        },
+        {
+          "label": "Artana",
+          "value": "12016"
+        },
+        {
+          "label": "Aspe",
+          "value": "03019"
+        },
+        {
+          "label": "Atzeneta del Maestrat",
+          "value": "12001"
+        },
+        {
+          "label": "Ayódar",
+          "value": "12017"
+        },
+        {
+          "label": "Ayora",
+          "value": "46044"
+        },
+        {
+          "label": "Azuébar",
+          "value": "12018"
+        },
+        {
+          "label": "Barxeta",
+          "value": "46045"
+        },
+        {
+          "label": "Bèlgida",
+          "value": "46047"
+        },
+        {
+          "label": "Benagéber",
+          "value": "46050"
+        },
+        {
+          "label": "Benaguasil",
+          "value": "46051"
+        },
+        {
+          "label": "Benasau",
+          "value": "03022"
+        },
+        {
+          "label": "Benassal",
+          "value": "12026"
+        },
+        {
+          "label": "Beniardà",
+          "value": "03027"
+        },
+        {
+          "label": "Beniatjar",
+          "value": "46056"
+        },
+        {
+          "label": "Benicarló",
+          "value": "12027"
+        },
+        {
+          "label": "Benifairó de la Valldigna",
+          "value": "46059"
+        },
+        {
+          "label": "Benifato",
+          "value": "03033"
+        },
+        {
+          "label": "Benigànim",
+          "value": "46062"
+        },
+        {
+          "label": "Benimantell",
+          "value": "03037"
+        },
+        {
+          "label": "Benimarfull",
+          "value": "03038"
+        },
+        {
+          "label": "Benimassot",
+          "value": "03039"
+        },
+        {
+          "label": "Benissa",
+          "value": "03041"
+        },
+        {
+          "label": "Benissoda",
+          "value": "46068"
+        },
+        {
+          "label": "Benlloc",
+          "value": "12029"
+        },
+        {
+          "label": "Bétera",
+          "value": "46070"
+        },
+        {
+          "label": "Bicorp",
+          "value": "46071"
+        },
+        {
+          "label": "Bocairent",
+          "value": "46072"
+        },
+        {
+          "label": "Bolbaite",
+          "value": "46073"
+        },
+        {
+          "label": "Borriol",
+          "value": "12031"
+        },
+        {
+          "label": "Buñol",
+          "value": "46077"
+        },
+        {
+          "label": "Cabanes",
+          "value": "12033"
+        },
+        {
+          "label": "Càlig",
+          "value": "12034"
+        },
+        {
+          "label": "Callosa d'en Sarrià",
+          "value": "03048"
+        },
+        {
+          "label": "Calp",
+          "value": "03047"
+        },
+        {
+          "label": "Canet lo Roig",
+          "value": "12036"
+        },
+        {
+          "label": "Carcaixent",
+          "value": "46083"
+        },
+        {
+          "label": "Casinos",
+          "value": "46089"
+        },
+        {
+          "label": "Castellnovo",
+          "value": "12039"
+        },
+        {
+          "label": "Castelló de Rugat",
+          "value": "46090"
+        },
+        {
+          "label": "Castielfabib",
+          "value": "46092"
+        },
+        {
+          "label": "Catí",
+          "value": "12042"
+        },
+        {
+          "label": "Caudiel",
+          "value": "12043"
+        },
+        {
+          "label": "Cervera del Maestre",
+          "value": "12044"
+        },
+        {
+          "label": "Chella",
+          "value": "46107"
+        },
+        {
+          "label": "Chelva",
+          "value": "46106"
+        },
+        {
+          "label": "Cheste",
+          "value": "46109"
+        },
+        {
+          "label": "Chiva",
+          "value": "46111"
+        },
+        {
+          "label": "Cirat",
+          "value": "12046"
+        },
+        {
+          "label": "Cocentaina",
+          "value": "03056"
+        },
+        {
+          "label": "Cofrentes",
+          "value": "46097"
+        },
+        {
+          "label": "Confrides",
+          "value": "03057"
+        },
+        {
+          "label": "Corbera",
+          "value": "46098"
+        },
+        {
+          "label": "Cortes de Arenoso",
+          "value": "12048"
+        },
+        {
+          "label": "Cortes de Pallás",
+          "value": "46099"
+        },
+        {
+          "label": "Crevillent",
+          "value": "03059"
+        },
+        {
+          "label": "Cullera",
+          "value": "46105"
+        },
+        {
+          "label": "Dénia",
+          "value": "03063"
+        },
+        {
+          "label": "el Castell de Guadalest",
+          "value": "03075"
+        },
+        {
+          "label": "el Genovés",
+          "value": "46132"
+        },
+        {
+          "label": "el Pinós",
+          "value": "03105"
+        },
+        {
+          "label": "el Poble Nou de Benitatxell",
+          "value": "03042"
+        },
+        {
+          "label": "el Ràfol d'Almúnia",
+          "value": "03110"
+        },
+        {
+          "label": "El Toro",
+          "value": "12115"
+        },
+        {
+          "label": "Enguera",
+          "value": "46118"
+        },
+        {
+          "label": "Eslida",
+          "value": "12057"
+        },
+        {
+          "label": "Espadilla",
+          "value": "12058"
+        },
+        {
+          "label": "Estivella",
+          "value": "46120"
+        },
+        {
+          "label": "Famorca",
+          "value": "03068"
+        },
+        {
+          "label": "Finestrat",
+          "value": "03069"
+        },
+        {
+          "label": "Fontanars dels Alforins",
+          "value": "46124"
+        },
+        {
+          "label": "Gaianes",
+          "value": "03072"
+        },
+        {
+          "label": "Gaibiel",
+          "value": "12065"
+        },
+        {
+          "label": "Gandia",
+          "value": "46131"
+        },
+        {
+          "label": "Gata de Gorgos",
+          "value": "03071"
+        },
+        {
+          "label": "Gestalgar",
+          "value": "46133"
+        },
+        {
+          "label": "Gilet",
+          "value": "46134"
+        },
+        {
+          "label": "Godelleta",
+          "value": "46136"
+        },
+        {
+          "label": "Guardamar del Segura",
+          "value": "03076"
+        },
+        {
+          "label": "Herbers",
+          "value": "12068"
+        },
+        {
+          "label": "Jalance",
+          "value": "46142"
+        },
+        {
+          "label": "Jérica",
+          "value": "12071"
+        },
+        {
+          "label": "l'Alcora",
+          "value": "12005"
+        },
+        {
+          "label": "l'Alfàs del Pi",
+          "value": "03011"
+        },
+        {
+          "label": "l'Atzúbia",
+          "value": "03001"
+        },
+        {
+          "label": "l'Olleria",
+          "value": "46183"
+        },
+        {
+          "label": "l'Orxa",
+          "value": "03084"
+        },
+        {
+          "label": "la Font de la Figuera",
+          "value": "46128"
+        },
+        {
+          "label": "la Llosa",
+          "value": "12074"
+        },
+        {
+          "label": "la Llosa de Ranes",
+          "value": "46157"
+        },
+        {
+          "label": "la Nucia",
+          "value": "03094"
+        },
+        {
+          "label": "La Pobla de Benifassà",
+          "value": "12093"
+        },
+        {
+          "label": "la Pobla del Duc",
+          "value": "46200"
+        },
+        {
+          "label": "la Pobla Tornesa",
+          "value": "12094"
+        },
+        {
+          "label": "la Serratella",
+          "value": "12103"
+        },
+        {
+          "label": "la Vall d'Uixó",
+          "value": "12126"
+        },
+        {
+          "label": "la Vall de Gallinera",
+          "value": "03136"
+        },
+        {
+          "label": "la Vall de Laguar",
+          "value": "03137"
+        },
+        {
+          "label": "la Vila Joiosa",
+          "value": "03139"
+        },
+        {
+          "label": "les Coves de Vinromà",
+          "value": "12050"
+        },
+        {
+          "label": "les Useres",
+          "value": "12122"
+        },
+        {
+          "label": "Llaurí",
+          "value": "46155"
+        },
+        {
+          "label": "Llíria",
+          "value": "46147"
+        },
+        {
+          "label": "Llucena",
+          "value": "12072"
+        },
+        {
+          "label": "Llutxent",
+          "value": "46150"
+        },
+        {
+          "label": "Losa del Obispo",
+          "value": "46149"
+        },
+        {
+          "label": "Macastre",
+          "value": "46158"
+        },
+        {
+          "label": "Matet",
+          "value": "12076"
+        },
+        {
+          "label": "Millena",
+          "value": "03086"
+        },
+        {
+          "label": "Moixent",
+          "value": "46170"
+        },
+        {
+          "label": "Monòver",
+          "value": "03089"
+        },
+        {
+          "label": "Montcada",
+          "value": "46171"
+        },
+        {
+          "label": "Montesa",
+          "value": "46174"
+        },
+        {
+          "label": "Montroi",
+          "value": "46176"
+        },
+        {
+          "label": "Montserrat",
+          "value": "46172"
+        },
+        {
+          "label": "Morella",
+          "value": "12080"
+        },
+        {
+          "label": "Murla",
+          "value": "03091"
+        },
+        {
+          "label": "Nàquera",
+          "value": "46178"
+        },
+        {
+          "label": "Navarrés",
+          "value": "46179"
+        },
+        {
+          "label": "Nules",
+          "value": "12082"
+        },
+        {
+          "label": "Oliva",
+          "value": "46181"
+        },
+        {
+          "label": "Olocau",
+          "value": "46182"
+        },
+        {
+          "label": "Olocau del Rey",
+          "value": "12083"
+        },
+        {
+          "label": "Onda",
+          "value": "12084"
+        },
+        {
+          "label": "Ontinyent",
+          "value": "46184"
+        },
+        {
+          "label": "Orba",
+          "value": "03097"
+        },
+        {
+          "label": "Orihuela",
+          "value": "03099"
+        },
+        {
+          "label": "Orpesa",
+          "value": "12085"
+        },
+        {
+          "label": "Otos",
+          "value": "46185"
+        },
+        {
+          "label": "Palma de Gandía",
+          "value": "46187"
+        },
+        {
+          "label": "Pavías",
+          "value": "12088"
+        },
+        {
+          "label": "Peníscola",
+          "value": "12089"
+        },
+        {
+          "label": "Picassent",
+          "value": "46194"
+        },
+        {
+          "label": "Planes",
+          "value": "03106"
+        },
+        {
+          "label": "Puebla de Arenoso",
+          "value": "12092"
+        },
+        {
+          "label": "Puebla de San Miguel",
+          "value": "46201"
+        },
+        {
+          "label": "Quart de les Valls",
+          "value": "46101"
+        },
+        {
+          "label": "Quatretonda",
+          "value": "46104"
+        },
+        {
+          "label": "Quesa",
+          "value": "46206"
+        },
+        {
+          "label": "Rafelguaraf",
+          "value": "46209"
+        },
+        {
+          "label": "Ráfol de Salem",
+          "value": "46210"
+        },
+        {
+          "label": "Real",
+          "value": "46212"
+        },
+        {
+          "label": "Requena",
+          "value": "46213"
+        },
+        {
+          "label": "Riba-roja de Túria",
+          "value": "46214"
+        },
+        {
+          "label": "Rugat",
+          "value": "46219"
+        },
+        {
+          "label": "Sagunt",
+          "value": "46220"
+        },
+        {
+          "label": "Sanet y Negrals",
+          "value": "03117"
+        },
+        {
+          "label": "Santa Magdalena de Pulpis",
+          "value": "12102"
+        },
+        {
+          "label": "Santa Pola",
+          "value": "03121"
+        },
+        {
+          "label": "Sax",
+          "value": "03123"
+        },
+        {
+          "label": "Segart",
+          "value": "46224"
+        },
+        {
+          "label": "Segorbe",
+          "value": "12104"
+        },
+        {
+          "label": "Sella",
+          "value": "03124"
+        },
+        {
+          "label": "Sellent",
+          "value": "46225"
+        },
+        {
+          "label": "Serra",
+          "value": "46228"
+        },
+        {
+          "label": "Sierra Engarcerán",
+          "value": "12105"
+        },
+        {
+          "label": "Simat de la Valldigna",
+          "value": "46231"
+        },
+        {
+          "label": "Sot de Ferrer",
+          "value": "12107"
+        },
+        {
+          "label": "Sumacàrcer",
+          "value": "46236"
+        },
+        {
+          "label": "Tavernes de la Valldigna",
+          "value": "46238"
+        },
+        {
+          "label": "Teresa de Cofrentes",
+          "value": "46239"
+        },
+        {
+          "label": "Teulada",
+          "value": "03128"
+        },
+        {
+          "label": "Tibi",
+          "value": "03129"
+        },
+        {
+          "label": "Titaguas",
+          "value": "46241"
+        },
+        {
+          "label": "Todolella",
+          "value": "12112"
+        },
+        {
+          "label": "Tollos",
+          "value": "03130"
+        },
+        {
+          "label": "Torreblanca",
+          "value": "12117"
+        },
+        {
+          "label": "Torrent",
+          "value": "46244"
+        },
+        {
+          "label": "Torres Torres",
+          "value": "46245"
+        },
+        {
+          "label": "Turís",
+          "value": "46248"
+        },
+        {
+          "label": "Utiel",
+          "value": "46249"
+        },
+        {
+          "label": "València",
+          "value": "46250"
+        },
+        {
+          "label": "Vall d'Alba",
+          "value": "12124"
+        },
+        {
+          "label": "Vallibona",
+          "value": "12127"
+        },
+        {
+          "label": "Venta del Moro",
+          "value": "46254"
+        },
+        {
+          "label": "Vila-real",
+          "value": "12135"
+        },
+        {
+          "label": "Vilafamés",
+          "value": "12128"
+        },
+        {
+          "label": "Vilallonga",
+          "value": "46255"
+        },
+        {
+          "label": "Vilamarxant",
+          "value": "46256"
+        },
+        {
+          "label": "Vilanova d'Alcolea",
+          "value": "12132"
+        },
+        {
+          "label": "Vistabella del Maestrat",
+          "value": "12139"
+        },
+        {
+          "label": "Viver",
+          "value": "12140"
+        },
+        {
+          "label": "Xàbia",
+          "value": "03082"
+        },
+        {
+          "label": "Xàtiva",
+          "value": "46145"
+        },
+        {
+          "label": "Xert",
+          "value": "12052"
+        },
+        {
+          "label": "Xilxes",
+          "value": "12053"
+        },
+        {
+          "label": "Yátova",
+          "value": "46261"
+        },
+        {
+          "label": "Zorita del Maestrazgo",
+          "value": "12141"
+        },
+        {
+          "label": "Zucaina",
+          "value": "12142"
+        }
+      ],
+      "causeFilter": "",
+      "center": {
+        "lat": 38.65,
+        "lng": -0.52
+      },
+      "coverageText": "ICV 1993–2024: histórico oficial consolidado de perímetros cartografiados; no es un inventario estadístico completo.",
+      "detailsSelectionVisible": true,
+      "detailsText": "ICV · oficial consolidadoFecha de inicio05/01/1995Fecha de extinción05/01/1995Municipioel Castell de GuadalestProvinciaAlicante/AlacantParaje—CausaIntencionadoSuperficie forestal declarada0,3 haEste perímetro es geométricamente idéntico a otros registros del conjunto de datos. Esto no implica por sí solo que se trate del mismo incendio ni confirma recurrencia.Más información técnicaNumPIF_CV1995AL0001FuenteInstitut Cartogràfic Valencià / Generalitat Valencianafire_idgva:pif-cv:1995AL0001Geometrías asociadas1geometry_idgva:geometry:1995:3:1956Municipio en origenCastell de Guadalest (el)Calidad geométricaA · perímetro oficial vectorial derivado para web sin reparación",
+      "gifOnly": false,
+      "hashRestored": true,
+      "heapUsedBytes": 44486680,
+      "histogramBarCount": 59,
+      "histogramSelectedYears": [
+        1995
+      ],
+      "history": null,
+      "lastLoad": {
+        "assetCount": 3,
+        "downloadedNow": 4,
+        "estimatedGzipBytes": 392928,
+        "level": "overview",
+        "loadMs": 81.89999999850988,
+        "loadedAdministrativeRecordCount": 0,
+        "loadedGeometryCount": 3790,
+        "provinces": [
+          "castellon",
+          "valencia",
+          "alicante"
+        ],
+        "rawBytes": 2604618,
+        "reason": "initial"
+      },
+      "lastRender": {
+        "administrativeRecordCount": 0,
+        "geometryCount": 467,
+        "reason": "initial",
+        "renderMs": 35.5
+      },
+      "level": "overview",
+      "loadedAdministrativeRecordCount": 0,
+      "loadedGeometryCount": 3790,
+      "loader": {
+        "blocksDownloaded": 3,
+        "cachedUrls": [
+          "data/web/gva/fires.json",
+          "data/web/gva/geometry/overview/castellon/1993-1999.geojson",
+          "data/web/gva/geometry/overview/valencia/1993-1999.geojson",
+          "data/web/gva/geometry/overview/alicante/1993-1999.geojson",
+          "data/web/gva/provenance.json"
+        ],
+        "candidateCount": 0,
+        "egifAdministrativeRecordCount": 0,
+        "estimatedGzipBytes": 965772,
+        "events": [
+          {
+            "estimatedGzipBytes": 0,
+            "fetchMs": 8.800000000745058,
+            "kind": "manifest",
+            "parseMs": 0.3999999985098839,
+            "responseBytes": 38959,
+            "totalMs": 9.199999999254942,
+            "url": "data/web/gva/manifest.json"
+          },
+          {
+            "estimatedGzipBytes": 572844,
+            "fetchMs": 26.199999999254942,
+            "kind": "icv_fires",
+            "parseMs": 32.899999998509884,
+            "responseBytes": 7657862,
+            "totalMs": 59.099999997764826,
+            "url": "data/web/gva/fires.json"
+          },
+          {
+            "estimatedGzipBytes": 121131,
+            "fetchMs": 8.899999998509884,
+            "kind": "icv_geometry",
+            "parseMs": 3,
+            "responseBytes": 765894,
+            "totalMs": 11.899999998509884,
+            "url": "data/web/gva/geometry/overview/castellon/1993-1999.geojson"
+          },
+          {
+            "estimatedGzipBytes": 111638,
+            "fetchMs": 12.100000001490116,
+            "kind": "icv_geometry",
+            "parseMs": 2.600000001490116,
+            "responseBytes": 720014,
+            "totalMs": 14.700000002980232,
+            "url": "data/web/gva/geometry/overview/alicante/1993-1999.geojson"
+          },
+          {
+            "estimatedGzipBytes": 160159,
+            "fetchMs": 14.900000002235174,
+            "kind": "icv_geometry",
+            "parseMs": 4.800000000745058,
+            "responseBytes": 1118710,
+            "totalMs": 19.700000002980232,
+            "url": "data/web/gva/geometry/overview/valencia/1993-1999.geojson"
+          }
+        ],
+        "geometriesDownloaded": 3790,
+        "requests": 5,
+        "responseBytes": 10301439
+      },
+      "mariolaPrimaryAccess": false,
+      "methodologyText": "EGIF/MITECO: historical administrative without geometry. Fuente y metodología.Origen de los datos: Ministerio para la Transición Ecológica y el Reto Demográfico.ESFire30: historical remote sensing. Fuente y metodología.ESFire30 Causes, Ochoa, Chuvieco, Rodrigues y Franquesa (2026), versión v1, CC BY 4.0, DOI 10.5281/zenodo.18449006. Datos transformados para el Atlas mediante selección territorial, reproyección a EPSG:4326, selección de atributos y, cuando proceda, simplificación geométrica.ICV: consolidated official. Fuente y metodología.Incendios forestales de la Comunitat Valenciana (1993–2024) CC BY 4.0, Generalitat. Datos transformados para su visualización mediante reproyección, selección de atributos, particionado y simplificación geométrica.EFFIS/Copernicus: provisional satellite. Fuente y metodología.European Union, Copernicus EMS / EFFIS (CC BY 4.0); selección espacial y reducción de atributos realizadas por el AtlasClasificación de causas: las categorías históricas EGIF y las modernas ICV no siempre son equivalentes. Por ello, “Negligencia”, “Accidental” y “Negligencias y causas accidentales” se conservan separadas.",
+      "minimumArea": 0,
+      "mobileLayout": false,
+      "municipalityFilter": "",
+      "municipalityFit": null,
+      "permalinkHash": "#v=1&lat=38.65000&lng=-0.52000&z=8&from=1995&to=1995&src=esfire30%2Cicv&province=all&min_area=0&gif=0&entity=gva%3Apif-cv%3A1995AL0001&geometry=gva%3Ageometry%3A1995%3A3%3A1956",
+      "pointHistoryText": "Se consultarán por separado los tipos de geometría disponibles.",
+      "profile": "public",
+      "provinceFilter": "all",
+      "ready": true,
+      "scopeOptions": [
+        {
+          "label": "Todo el País Valencià",
+          "value": "all"
+        },
+        {
+          "label": "Castelló",
+          "value": "castellon"
+        },
+        {
+          "label": "València",
+          "value": "valencia"
+        },
+        {
+          "label": "Alacant",
+          "value": "alicante"
+        }
+      ],
+      "screenshot": "data/audit/product/es4post1/legacy-gva-1995.png",
+      "selectedAdministrativeLinkStatus": null,
+      "selectedAreaHa": 0.3,
+      "selectedCandidateStrengths": [],
+      "selectedEntityId": "gva:pif-cv:1995AL0001",
+      "selectedFireId": "gva:pif-cv:1995AL0001",
+      "selectedGeometryHighlighted": true,
+      "selectedGeometryId": "gva:geometry:1995:3:1956",
+      "selectedIsMappedLarge": false,
+      "selectedMunicipalityIds": [],
+      "selectedMunicipalityNames": [],
+      "selectedProvinceIds": [],
+      "selectedSourceId": "icv",
+      "selectedVisibleGeometryCount": 1,
+      "selectionPopupDomVisible": true,
+      "selectionPopupGeometryId": "gva:geometry:1995:3:1956",
+      "selectionPopupVisible": true,
+      "shareButtonVisible": true,
+      "shareIconVisible": true,
+      "sigifLegendVisible": false,
+      "sourceControlIds": [
+        "egif",
+        "esfire30",
+        "icv",
+        "effis"
+      ],
+      "sourceSeparationHelpVisible": false,
+      "statusText": "overview · 3 assets · 3790 geometrías/puntos · 0 partes EGIF cargados · 383.7 KiB gzip estimados",
+      "territory": "comunitat_valenciana",
+      "territoryPanelPresent": false,
+      "timelineComplete": false,
+      "viewport": {
+        "height": 757,
+        "width": 1440
+      },
+      "visibleEffisPerimeterCount": 0,
+      "visibleEgifGifCount": 0,
+      "visibleEgifGridReferenceCount": 0,
+      "visibleEgifMunicipalityResolvedCount": 0,
+      "visibleEgifRecordCount": 0,
+      "visibleEsfire30MappedAreaHa": 0,
+      "visibleEsfire30PerimeterCount": 0,
+      "visibleFireCount": 467,
+      "visibleGifCount": 1,
+      "visibleIcvFireCount": 467,
+      "visiblePerimeterCount": 467,
+      "visibleSigifRecordCount": 0,
+      "years": {
+        "from": 1995,
+        "to": 1995
+      },
+      "zoom": 8
+    },
+    "legacy_2024": {
+      "activeAssetCount": 3,
+      "activeAssetUrls": [
+        "data/web/gva/geometry/overview/castellon/2020-2024.geojson",
+        "data/web/gva/geometry/overview/valencia/2020-2024.geojson",
+        "data/web/gva/geometry/overview/alicante/2020-2024.geojson"
+      ],
+      "activeProvinces": [
+        "castellon",
+        "valencia",
+        "alicante"
+      ],
+      "activeSources": [
+        "esfire30",
+        "icv"
+      ],
+      "appElapsedMs": 206.10000000149012,
+      "availableCauses": [
+        {
+          "label": "Todas",
+          "value": ""
+        },
+        {
+          "label": "Desconocida",
+          "value": "unknown"
+        },
+        {
+          "label": "Intencionado",
+          "value": "intentional"
+        },
+        {
+          "label": "Negligencia",
+          "value": "negligence"
+        },
+        {
+          "label": "Otras causas",
+          "value": "other"
+        },
+        {
+          "label": "Rayo",
+          "value": "lightning"
+        }
+      ],
+      "availableMunicipalities": [
+        {
+          "label": "Todos",
+          "value": ""
+        },
+        {
+          "label": "Agullent",
+          "value": "46004"
+        },
+        {
+          "label": "Aielo de Malferit",
+          "value": "46042"
+        },
+        {
+          "label": "Aigües",
+          "value": "03004"
+        },
+        {
+          "label": "Aín",
+          "value": "12002"
+        },
+        {
+          "label": "Alacant",
+          "value": "03014"
+        },
+        {
+          "label": "Albaida",
+          "value": "46006"
+        },
+        {
+          "label": "Alberic",
+          "value": "46011"
+        },
+        {
+          "label": "Alcalà de Xivert",
+          "value": "12004"
+        },
+        {
+          "label": "Alcàntera de Xúquer",
+          "value": "46016"
+        },
+        {
+          "label": "Alcàsser",
+          "value": "46015"
+        },
+        {
+          "label": "Alcoi",
+          "value": "03009"
+        },
+        {
+          "label": "Aldaia",
+          "value": "46021"
+        },
+        {
+          "label": "Alfara de la Baronia",
+          "value": "46024"
+        },
+        {
+          "label": "Alfarb",
+          "value": "46026"
+        },
+        {
+          "label": "Alfarrasí",
+          "value": "46027"
+        },
+        {
+          "label": "Alfauir",
+          "value": "46023"
+        },
+        {
+          "label": "Alfondeguilla",
+          "value": "12007"
+        },
+        {
+          "label": "Algemesí",
+          "value": "46029"
+        },
+        {
+          "label": "Algímia d'Alfara",
+          "value": "46030"
+        },
+        {
+          "label": "Algimia de Almonacid",
+          "value": "12008"
+        },
+        {
+          "label": "Almassora",
+          "value": "12009"
+        },
+        {
+          "label": "Almenara",
+          "value": "12011"
+        },
+        {
+          "label": "Alpuente",
+          "value": "46036"
+        },
+        {
+          "label": "Altea",
+          "value": "03018"
+        },
+        {
+          "label": "Alzira",
+          "value": "46017"
+        },
+        {
+          "label": "Andilla",
+          "value": "46038"
+        },
+        {
+          "label": "Antella",
+          "value": "46040"
+        },
+        {
+          "label": "Arañuel",
+          "value": "12013"
+        },
+        {
+          "label": "Artana",
+          "value": "12016"
+        },
+        {
+          "label": "Aspe",
+          "value": "03019"
+        },
+        {
+          "label": "Atzeneta del Maestrat",
+          "value": "12001"
+        },
+        {
+          "label": "Ayora",
+          "value": "46044"
+        },
+        {
+          "label": "Banyeres de Mariola",
+          "value": "03021"
+        },
+        {
+          "label": "Barx",
+          "value": "46046"
+        },
+        {
+          "label": "Barxeta",
+          "value": "46045"
+        },
+        {
+          "label": "Bèlgida",
+          "value": "46047"
+        },
+        {
+          "label": "Benafer",
+          "value": "12024"
+        },
+        {
+          "label": "Benasau",
+          "value": "03022"
+        },
+        {
+          "label": "Benassal",
+          "value": "12026"
+        },
+        {
+          "label": "Beneixida",
+          "value": "46053"
+        },
+        {
+          "label": "Beniardà",
+          "value": "03027"
+        },
+        {
+          "label": "Beniarjó",
+          "value": "46055"
+        },
+        {
+          "label": "Beniarrés",
+          "value": "03028"
+        },
+        {
+          "label": "Benicàssim",
+          "value": "12028"
+        },
+        {
+          "label": "Benidoleig",
+          "value": "03030"
+        },
+        {
+          "label": "Benidorm",
+          "value": "03031"
+        },
+        {
+          "label": "Benifairó de la Valldigna",
+          "value": "46059"
+        },
+        {
+          "label": "Benifairó de les Valls",
+          "value": "46058"
+        },
+        {
+          "label": "Benifato",
+          "value": "03033"
+        },
+        {
+          "label": "Benigànim",
+          "value": "46062"
+        },
+        {
+          "label": "Benigembla",
+          "value": "03029"
+        },
+        {
+          "label": "Benillup",
+          "value": "03036"
+        },
+        {
+          "label": "Benimodo",
+          "value": "46063"
+        },
+        {
+          "label": "Benirredrà",
+          "value": "46066"
+        },
+        {
+          "label": "Benissuera",
+          "value": "46069"
+        },
+        {
+          "label": "Bétera",
+          "value": "46070"
+        },
+        {
+          "label": "Biar",
+          "value": "03043"
+        },
+        {
+          "label": "Bicorp",
+          "value": "46071"
+        },
+        {
+          "label": "Bocairent",
+          "value": "46072"
+        },
+        {
+          "label": "Bolbaite",
+          "value": "46073"
+        },
+        {
+          "label": "Borriana",
+          "value": "12032"
+        },
+        {
+          "label": "Borriol",
+          "value": "12031"
+        },
+        {
+          "label": "Buñol",
+          "value": "46077"
+        },
+        {
+          "label": "Busot",
+          "value": "03046"
+        },
+        {
+          "label": "Cabanes",
+          "value": "12033"
+        },
+        {
+          "label": "Càlig",
+          "value": "12034"
+        },
+        {
+          "label": "Callosa d'en Sarrià",
+          "value": "03048"
+        },
+        {
+          "label": "Callosa de Segura",
+          "value": "03049"
+        },
+        {
+          "label": "Canals",
+          "value": "46081"
+        },
+        {
+          "label": "Carcaixent",
+          "value": "46083"
+        },
+        {
+          "label": "Càrcer",
+          "value": "46084"
+        },
+        {
+          "label": "Carlet",
+          "value": "46085"
+        },
+        {
+          "label": "Casinos",
+          "value": "46089"
+        },
+        {
+          "label": "Castalla",
+          "value": "03053"
+        },
+        {
+          "label": "Castell de Castells",
+          "value": "03054"
+        },
+        {
+          "label": "Castelló",
+          "value": "46257"
+        },
+        {
+          "label": "Castelló de la Plana",
+          "value": "12040"
+        },
+        {
+          "label": "Catarroja",
+          "value": "46094"
+        },
+        {
+          "label": "Catí",
+          "value": "12042"
+        },
+        {
+          "label": "Caudete de las Fuentes",
+          "value": "46095"
+        },
+        {
+          "label": "Caudiel",
+          "value": "12043"
+        },
+        {
+          "label": "Chelva",
+          "value": "46106"
+        },
+        {
+          "label": "Cheste",
+          "value": "46109"
+        },
+        {
+          "label": "Chiva",
+          "value": "46111"
+        },
+        {
+          "label": "Chulilla",
+          "value": "46112"
+        },
+        {
+          "label": "Confrides",
+          "value": "03057"
+        },
+        {
+          "label": "Corbera",
+          "value": "46098"
+        },
+        {
+          "label": "Cortes de Arenoso",
+          "value": "12048"
+        },
+        {
+          "label": "Cortes de Pallás",
+          "value": "46099"
+        },
+        {
+          "label": "Costur",
+          "value": "12049"
+        },
+        {
+          "label": "Cotes",
+          "value": "46100"
+        },
+        {
+          "label": "Crevillent",
+          "value": "03059"
+        },
+        {
+          "label": "Culla",
+          "value": "12051"
+        },
+        {
+          "label": "Cullera",
+          "value": "46105"
+        },
+        {
+          "label": "el Fondó de les Neus",
+          "value": "03077"
+        },
+        {
+          "label": "el Genovés",
+          "value": "46132"
+        },
+        {
+          "label": "el Ràfol d'Almúnia",
+          "value": "03110"
+        },
+        {
+          "label": "el Real de Gandia",
+          "value": "46211"
+        },
+        {
+          "label": "El Toro",
+          "value": "12115"
+        },
+        {
+          "label": "Elda",
+          "value": "03066"
+        },
+        {
+          "label": "Elx",
+          "value": "03065"
+        },
+        {
+          "label": "Enguera",
+          "value": "46118"
+        },
+        {
+          "label": "Eslida",
+          "value": "12057"
+        },
+        {
+          "label": "Estivella",
+          "value": "46120"
+        },
+        {
+          "label": "Famorca",
+          "value": "03068"
+        },
+        {
+          "label": "Fanzara",
+          "value": "12059"
+        },
+        {
+          "label": "Finestrat",
+          "value": "03069"
+        },
+        {
+          "label": "Gandia",
+          "value": "46131"
+        },
+        {
+          "label": "Gavarda",
+          "value": "46130"
+        },
+        {
+          "label": "Gestalgar",
+          "value": "46133"
+        },
+        {
+          "label": "Gorga",
+          "value": "03073"
+        },
+        {
+          "label": "Guadassuar",
+          "value": "46139"
+        },
+        {
+          "label": "Guardamar del Segura",
+          "value": "03076"
+        },
+        {
+          "label": "Jalance",
+          "value": "46142"
+        },
+        {
+          "label": "Jarafuel",
+          "value": "46144"
+        },
+        {
+          "label": "Jérica",
+          "value": "12071"
+        },
+        {
+          "label": "l'Alcora",
+          "value": "12005"
+        },
+        {
+          "label": "l'Alcúdia",
+          "value": "46019"
+        },
+        {
+          "label": "l'Alcúdia de Crespins",
+          "value": "46020"
+        },
+        {
+          "label": "l'Olleria",
+          "value": "46183"
+        },
+        {
+          "label": "la Font de la Figuera",
+          "value": "46128"
+        },
+        {
+          "label": "La Pobla de Benifassà",
+          "value": "12093"
+        },
+        {
+          "label": "la Pobla del Duc",
+          "value": "46200"
+        },
+        {
+          "label": "la Pobla Llarga",
+          "value": "46203"
+        },
+        {
+          "label": "la Pobla Tornesa",
+          "value": "12094"
+        },
+        {
+          "label": "la Vall d'Uixó",
+          "value": "12126"
+        },
+        {
+          "label": "la Vall de Laguar",
+          "value": "03137"
+        },
+        {
+          "label": "la Vila Joiosa",
+          "value": "03139"
+        },
+        {
+          "label": "les Coves de Vinromà",
+          "value": "12050"
+        },
+        {
+          "label": "les Useres",
+          "value": "12122"
+        },
+        {
+          "label": "Llíber",
+          "value": "03085"
+        },
+        {
+          "label": "Llíria",
+          "value": "46147"
+        },
+        {
+          "label": "Llucena",
+          "value": "12072"
+        },
+        {
+          "label": "Llutxent",
+          "value": "46150"
+        },
+        {
+          "label": "Ludiente",
+          "value": "12073"
+        },
+        {
+          "label": "Macastre",
+          "value": "46158"
+        },
+        {
+          "label": "Manises",
+          "value": "46159"
+        },
+        {
+          "label": "Massalavés",
+          "value": "46162"
+        },
+        {
+          "label": "Millena",
+          "value": "03086"
+        },
+        {
+          "label": "Moixent",
+          "value": "46170"
+        },
+        {
+          "label": "Monforte del Cid",
+          "value": "03088"
+        },
+        {
+          "label": "Monòver",
+          "value": "03089"
+        },
+        {
+          "label": "Montcada",
+          "value": "46171"
+        },
+        {
+          "label": "Montesa",
+          "value": "46174"
+        },
+        {
+          "label": "Montroi",
+          "value": "46176"
+        },
+        {
+          "label": "Montserrat",
+          "value": "46172"
+        },
+        {
+          "label": "Morella",
+          "value": "12080"
+        },
+        {
+          "label": "Muro de Alcoy",
+          "value": "03092"
+        },
+        {
+          "label": "Navajas",
+          "value": "12081"
+        },
+        {
+          "label": "Navarrés",
+          "value": "46179"
+        },
+        {
+          "label": "Novetlè",
+          "value": "46180"
+        },
+        {
+          "label": "Olocau",
+          "value": "46182"
+        },
+        {
+          "label": "Onda",
+          "value": "12084"
+        },
+        {
+          "label": "Ontinyent",
+          "value": "46184"
+        },
+        {
+          "label": "Orihuela",
+          "value": "03099"
+        },
+        {
+          "label": "Otos",
+          "value": "46185"
+        },
+        {
+          "label": "Paiporta",
+          "value": "46186"
+        },
+        {
+          "label": "Palma de Gandía",
+          "value": "46187"
+        },
+        {
+          "label": "Paterna",
+          "value": "46190"
+        },
+        {
+          "label": "Pedralba",
+          "value": "46191"
+        },
+        {
+          "label": "Pego",
+          "value": "03102"
+        },
+        {
+          "label": "Petrer",
+          "value": "03104"
+        },
+        {
+          "label": "Picanya",
+          "value": "46193"
+        },
+        {
+          "label": "Picassent",
+          "value": "46194"
+        },
+        {
+          "label": "Polop",
+          "value": "03107"
+        },
+        {
+          "label": "Quartell",
+          "value": "46103"
+        },
+        {
+          "label": "Quatretonda",
+          "value": "46104"
+        },
+        {
+          "label": "Real",
+          "value": "46212"
+        },
+        {
+          "label": "Relleu",
+          "value": "03112"
+        },
+        {
+          "label": "Requena",
+          "value": "46213"
+        },
+        {
+          "label": "Riba-roja de Túria",
+          "value": "46214"
+        },
+        {
+          "label": "Rossell",
+          "value": "12096"
+        },
+        {
+          "label": "Sagunt",
+          "value": "46220"
+        },
+        {
+          "label": "San Fulgencio",
+          "value": "03118"
+        },
+        {
+          "label": "San Miguel de Salinas",
+          "value": "03120"
+        },
+        {
+          "label": "Sant Joan de Moró",
+          "value": "12902"
+        },
+        {
+          "label": "Sant Vicent del Raspeig",
+          "value": "03122"
+        },
+        {
+          "label": "Santa Magdalena de Pulpis",
+          "value": "12102"
+        },
+        {
+          "label": "Santa Pola",
+          "value": "03121"
+        },
+        {
+          "label": "Sax",
+          "value": "03123"
+        },
+        {
+          "label": "Sella",
+          "value": "03124"
+        },
+        {
+          "label": "Sellent",
+          "value": "46225"
+        },
+        {
+          "label": "Serra",
+          "value": "46228"
+        },
+        {
+          "label": "Sierra Engarcerán",
+          "value": "12105"
+        },
+        {
+          "label": "Simat de la Valldigna",
+          "value": "46231"
+        },
+        {
+          "label": "Soneja",
+          "value": "12106"
+        },
+        {
+          "label": "Sot de Chera",
+          "value": "46234"
+        },
+        {
+          "label": "Sot de Ferrer",
+          "value": "12107"
+        },
+        {
+          "label": "Tàrbena",
+          "value": "03127"
+        },
+        {
+          "label": "Tavernes de la Valldigna",
+          "value": "46238"
+        },
+        {
+          "label": "Terrateig",
+          "value": "46240"
+        },
+        {
+          "label": "Teulada",
+          "value": "03128"
+        },
+        {
+          "label": "Tibi",
+          "value": "03129"
+        },
+        {
+          "label": "Toga",
+          "value": "12113"
+        },
+        {
+          "label": "Torrent",
+          "value": "46244"
+        },
+        {
+          "label": "Torrevieja",
+          "value": "03133"
+        },
+        {
+          "label": "Tous",
+          "value": "46246"
+        },
+        {
+          "label": "Traiguera",
+          "value": "12121"
+        },
+        {
+          "label": "Turís",
+          "value": "46248"
+        },
+        {
+          "label": "Utiel",
+          "value": "46249"
+        },
+        {
+          "label": "València",
+          "value": "46250"
+        },
+        {
+          "label": "Vall d'Alba",
+          "value": "12124"
+        },
+        {
+          "label": "Vallada",
+          "value": "46251"
+        },
+        {
+          "label": "Vallibona",
+          "value": "12127"
+        },
+        {
+          "label": "Vila-real",
+          "value": "12135"
+        },
+        {
+          "label": "Vilafamés",
+          "value": "12128"
+        },
+        {
+          "label": "Vilafranca",
+          "value": "12129"
+        },
+        {
+          "label": "Vilallonga",
+          "value": "46255"
+        },
+        {
+          "label": "Vilamarxant",
+          "value": "46256"
+        },
+        {
+          "label": "Villahermosa del Río",
+          "value": "12130"
+        },
+        {
+          "label": "Villena",
+          "value": "03140"
+        },
+        {
+          "label": "Vinaròs",
+          "value": "12138"
+        },
+        {
+          "label": "Vistabella del Maestrat",
+          "value": "12139"
+        },
+        {
+          "label": "Viver",
+          "value": "12140"
+        },
+        {
+          "label": "Xàbia",
+          "value": "03082"
+        },
+        {
+          "label": "Xàtiva",
+          "value": "46145"
+        },
+        {
+          "label": "Xeresa",
+          "value": "46146"
+        },
+        {
+          "label": "Xert",
+          "value": "12052"
+        },
+        {
+          "label": "Xixona",
+          "value": "03083"
+        },
+        {
+          "label": "Xodos",
+          "value": "12055"
+        }
+      ],
+      "causeFilter": "",
+      "center": {
+        "lat": 38.65,
+        "lng": -0.52
+      },
+      "coverageText": "ICV 1993–2024: histórico oficial consolidado de perímetros cartografiados; no es un inventario estadístico completo.",
+      "detailsSelectionVisible": true,
+      "detailsText": "ICV · oficial consolidadoFecha de inicio12/02/2024Fecha de extinción15/02/2024MunicipioSellaProvinciaAlicante/AlacantParajeRacó, Camino de Les ColmenesCausaOtras causasSuperficie forestal declarada32,21 haMás información técnicaNumPIF_CV2024AL0015FuenteInstitut Cartogràfic Valencià / Generalitat Valencianafire_idgva:pif-cv:2024AL0015Geometrías asociadas1geometry_idgva:geometry:2024:121:13273Causa en origenOtras CausasCalidad geométricaA · perímetro oficial vectorial derivado para web sin reparación",
+      "gifOnly": false,
+      "hashRestored": true,
+      "heapUsedBytes": 43398169,
+      "histogramBarCount": 59,
+      "histogramSelectedYears": [
+        2024
+      ],
+      "history": null,
+      "lastLoad": {
+        "assetCount": 3,
+        "downloadedNow": 4,
+        "estimatedGzipBytes": 415989,
+        "level": "overview",
+        "loadMs": 98.40000000223517,
+        "loadedAdministrativeRecordCount": 0,
+        "loadedGeometryCount": 1683,
+        "provinces": [
+          "castellon",
+          "valencia",
+          "alicante"
+        ],
+        "rawBytes": 2171258,
+        "reason": "initial"
+      },
+      "lastRender": {
+        "administrativeRecordCount": 0,
+        "geometryCount": 473,
+        "reason": "initial",
+        "renderMs": 34.19999999925494
+      },
+      "level": "overview",
+      "loadedAdministrativeRecordCount": 0,
+      "loadedGeometryCount": 1683,
+      "loader": {
+        "blocksDownloaded": 3,
+        "cachedUrls": [
+          "data/web/gva/fires.json",
+          "data/web/gva/geometry/overview/castellon/2020-2024.geojson",
+          "data/web/gva/geometry/overview/valencia/2020-2024.geojson",
+          "data/web/gva/geometry/overview/alicante/2020-2024.geojson",
+          "data/web/gva/provenance.json"
+        ],
+        "candidateCount": 0,
+        "egifAdministrativeRecordCount": 0,
+        "estimatedGzipBytes": 988833,
+        "events": [
+          {
+            "estimatedGzipBytes": 0,
+            "fetchMs": 6.600000001490116,
+            "kind": "manifest",
+            "parseMs": 0.5999999977648258,
+            "responseBytes": 38959,
+            "totalMs": 7.199999999254942,
+            "url": "data/web/gva/manifest.json"
+          },
+          {
+            "estimatedGzipBytes": 572844,
+            "fetchMs": 29.300000000745058,
+            "kind": "icv_fires",
+            "parseMs": 34.19999999925494,
+            "responseBytes": 7657862,
+            "totalMs": 63.5,
+            "url": "data/web/gva/fires.json"
+          },
+          {
+            "estimatedGzipBytes": 85452,
+            "fetchMs": 14.699999999254942,
+            "kind": "icv_geometry",
+            "parseMs": 2.199999999254942,
+            "responseBytes": 433770,
+            "totalMs": 16.899999998509884,
+            "url": "data/web/gva/geometry/overview/castellon/2020-2024.geojson"
+          },
+          {
+            "estimatedGzipBytes": 89638,
+            "fetchMs": 20.100000001490116,
+            "kind": "icv_geometry",
+            "parseMs": 2.7999999970197678,
+            "responseBytes": 481155,
+            "totalMs": 22.899999998509884,
+            "url": "data/web/gva/geometry/overview/alicante/2020-2024.geojson"
+          },
+          {
+            "estimatedGzipBytes": 240899,
+            "fetchMs": 23.900000002235174,
+            "kind": "icv_geometry",
+            "parseMs": 7.399999998509884,
+            "responseBytes": 1256333,
+            "totalMs": 31.300000000745058,
+            "url": "data/web/gva/geometry/overview/valencia/2020-2024.geojson"
+          }
+        ],
+        "geometriesDownloaded": 1683,
+        "requests": 5,
+        "responseBytes": 9868079
+      },
+      "mariolaPrimaryAccess": false,
+      "methodologyText": "EGIF/MITECO: historical administrative without geometry. Fuente y metodología.Origen de los datos: Ministerio para la Transición Ecológica y el Reto Demográfico.ESFire30: historical remote sensing. Fuente y metodología.ESFire30 Causes, Ochoa, Chuvieco, Rodrigues y Franquesa (2026), versión v1, CC BY 4.0, DOI 10.5281/zenodo.18449006. Datos transformados para el Atlas mediante selección territorial, reproyección a EPSG:4326, selección de atributos y, cuando proceda, simplificación geométrica.ICV: consolidated official. Fuente y metodología.Incendios forestales de la Comunitat Valenciana (1993–2024) CC BY 4.0, Generalitat. Datos transformados para su visualización mediante reproyección, selección de atributos, particionado y simplificación geométrica.EFFIS/Copernicus: provisional satellite. Fuente y metodología.European Union, Copernicus EMS / EFFIS (CC BY 4.0); selección espacial y reducción de atributos realizadas por el AtlasClasificación de causas: las categorías históricas EGIF y las modernas ICV no siempre son equivalentes. Por ello, “Negligencia”, “Accidental” y “Negligencias y causas accidentales” se conservan separadas.",
+      "minimumArea": 0,
+      "mobileLayout": false,
+      "municipalityFilter": "",
+      "municipalityFit": null,
+      "permalinkHash": "#v=1&lat=38.65000&lng=-0.52000&z=8&from=2024&to=2024&src=esfire30%2Cicv&province=all&min_area=0&gif=0&entity=gva%3Apif-cv%3A2024AL0015&geometry=gva%3Ageometry%3A2024%3A121%3A13273",
+      "pointHistoryText": "Se consultarán por separado los tipos de geometría disponibles.",
+      "profile": "public",
+      "provinceFilter": "all",
+      "ready": true,
+      "scopeOptions": [
+        {
+          "label": "Todo el País Valencià",
+          "value": "all"
+        },
+        {
+          "label": "Castelló",
+          "value": "castellon"
+        },
+        {
+          "label": "València",
+          "value": "valencia"
+        },
+        {
+          "label": "Alacant",
+          "value": "alicante"
+        }
+      ],
+      "screenshot": null,
+      "selectedAdministrativeLinkStatus": null,
+      "selectedAreaHa": 32.2127,
+      "selectedCandidateStrengths": [],
+      "selectedEntityId": "gva:pif-cv:2024AL0015",
+      "selectedFireId": "gva:pif-cv:2024AL0015",
+      "selectedGeometryHighlighted": true,
+      "selectedGeometryId": "gva:geometry:2024:121:13273",
+      "selectedIsMappedLarge": false,
+      "selectedMunicipalityIds": [],
+      "selectedMunicipalityNames": [],
+      "selectedProvinceIds": [],
+      "selectedSourceId": "icv",
+      "selectedVisibleGeometryCount": 1,
+      "selectionPopupDomVisible": true,
+      "selectionPopupGeometryId": "gva:geometry:2024:121:13273",
+      "selectionPopupVisible": true,
+      "shareButtonVisible": true,
+      "shareIconVisible": true,
+      "sigifLegendVisible": false,
+      "sourceControlIds": [
+        "egif",
+        "esfire30",
+        "icv",
+        "effis"
+      ],
+      "sourceSeparationHelpVisible": false,
+      "statusText": "overview · 3 assets · 1683 geometrías/puntos · 0 partes EGIF cargados · 406.2 KiB gzip estimados",
+      "territory": "comunitat_valenciana",
+      "territoryPanelPresent": false,
+      "timelineComplete": false,
+      "viewport": {
+        "height": 757,
+        "width": 1440
+      },
+      "visibleEffisPerimeterCount": 0,
+      "visibleEgifGifCount": 0,
+      "visibleEgifGridReferenceCount": 0,
+      "visibleEgifMunicipalityResolvedCount": 0,
+      "visibleEgifRecordCount": 0,
+      "visibleEsfire30MappedAreaHa": 0,
+      "visibleEsfire30PerimeterCount": 0,
+      "visibleFireCount": 472,
+      "visibleGifCount": 1,
+      "visibleIcvFireCount": 472,
+      "visiblePerimeterCount": 473,
+      "visibleSigifRecordCount": 0,
+      "years": {
+        "from": 2024,
+        "to": 2024
+      },
+      "zoom": 8
+    },
+    "legacy_overlap_1993_2024": {
+      "activeAssetCount": 12,
+      "activeAssetUrls": [
+        "data/web/gva/geometry/overview/castellon/1993-1999.geojson",
+        "data/web/gva/geometry/overview/castellon/2000-2009.geojson",
+        "data/web/gva/geometry/overview/castellon/2010-2019.geojson",
+        "data/web/gva/geometry/overview/castellon/2020-2024.geojson",
+        "data/web/gva/geometry/overview/valencia/1993-1999.geojson",
+        "data/web/gva/geometry/overview/valencia/2000-2009.geojson",
+        "data/web/gva/geometry/overview/valencia/2010-2019.geojson",
+        "data/web/gva/geometry/overview/valencia/2020-2024.geojson",
+        "data/web/gva/geometry/overview/alicante/1993-1999.geojson",
+        "data/web/gva/geometry/overview/alicante/2000-2009.geojson",
+        "data/web/gva/geometry/overview/alicante/2010-2019.geojson",
+        "data/web/gva/geometry/overview/alicante/2020-2024.geojson"
+      ],
+      "activeProvinces": [
+        "castellon",
+        "valencia",
+        "alicante"
+      ],
+      "activeSources": [
+        "esfire30",
+        "icv"
+      ],
+      "appElapsedMs": 690.1999999992549,
+      "availableCauses": [
+        {
+          "label": "Todas",
+          "value": ""
+        },
+        {
+          "label": "Desconocida",
+          "value": "unknown"
+        },
+        {
+          "label": "En investigación",
+          "value": "under_investigation"
+        },
+        {
+          "label": "Incendio reproducido",
+          "value": "rekindle"
+        },
+        {
+          "label": "Intencionado",
+          "value": "intentional"
+        },
+        {
+          "label": "Negligencia",
+          "value": "negligence"
+        },
+        {
+          "label": "Negligencias y causas accidentales",
+          "value": "negligence_and_accidental"
+        },
+        {
+          "label": "Otras causas",
+          "value": "other"
+        },
+        {
+          "label": "Rayo",
+          "value": "lightning"
+        }
+      ],
+      "availableMunicipalities": [
+        {
+          "label": "Todos",
+          "value": ""
+        },
+        {
+          "label": " ",
+          "value": "raw:castellon:-"
+        },
+        {
+          "label": " ",
+          "value": "raw:valencia:-"
+        },
+        {
+          "label": " ",
+          "value": "raw:alicante:-"
+        },
+        {
+          "label": "Ademuz",
+          "value": "46001"
+        },
+        {
+          "label": "Ador",
+          "value": "46002"
+        },
+        {
+          "label": "Agost",
+          "value": "03002"
+        },
+        {
+          "label": "Agres",
+          "value": "03003"
+        },
+        {
+          "label": "Agullent",
+          "value": "46004"
+        },
+        {
+          "label": "Aielo de Malferit",
+          "value": "46042"
+        },
+        {
+          "label": "Aielo de Rugat",
+          "value": "46043"
+        },
+        {
+          "label": "Aigües",
+          "value": "03004"
+        },
+        {
+          "label": "Aín",
+          "value": "12002"
+        },
+        {
+          "label": "Alacant",
+          "value": "03014"
+        },
+        {
+          "label": "Albaida",
+          "value": "46006"
+        },
+        {
+          "label": "Albalat de la Ribera",
+          "value": "46008"
+        },
+        {
+          "label": "Albalat dels Tarongers",
+          "value": "46010"
+        },
+        {
+          "label": "Albatera",
+          "value": "03005"
+        },
+        {
+          "label": "Alberic",
+          "value": "46011"
+        },
+        {
+          "label": "Albocàsser",
+          "value": "12003"
+        },
+        {
+          "label": "Alborache",
+          "value": "46012"
+        },
+        {
+          "label": "Alcalà de Xivert",
+          "value": "12004"
+        },
+        {
+          "label": "Alcalalí",
+          "value": "03006"
+        },
+        {
+          "label": "Alcàntera de Xúquer",
+          "value": "46016"
+        },
+        {
+          "label": "Alcàsser",
+          "value": "46015"
+        },
+        {
+          "label": "Alcoi",
+          "value": "03009"
+        },
+        {
+          "label": "Alcoleja",
+          "value": "03008"
+        },
+        {
+          "label": "Alcosser",
+          "value": "03007"
+        },
+        {
+          "label": "Alcublas",
+          "value": "46018"
+        },
+        {
+          "label": "Alcudia de Veo",
+          "value": "12006"
+        },
+        {
+          "label": "Aldaia",
+          "value": "46021"
+        },
+        {
+          "label": "Alfafara",
+          "value": "03010"
+        },
+        {
+          "label": "Alfara de la Baronia",
+          "value": "46024"
+        },
+        {
+          "label": "Alfara del Patriarca",
+          "value": "46025"
+        },
+        {
+          "label": "Alfarb",
+          "value": "46026"
+        },
+        {
+          "label": "Alfarrasí",
+          "value": "46027"
+        },
+        {
+          "label": "Alfauir",
+          "value": "46023"
+        },
+        {
+          "label": "Alfondeguilla",
+          "value": "12007"
+        },
+        {
+          "label": "Algar de Palància",
+          "value": "46028"
+        },
+        {
+          "label": "Algemesí",
+          "value": "46029"
+        },
+        {
+          "label": "Algímia d'Alfara",
+          "value": "46030"
+        },
+        {
+          "label": "Algimia de Almonacid",
+          "value": "12008"
+        },
+        {
+          "label": "Alginet",
+          "value": "46031"
+        },
+        {
+          "label": "Algorfa",
+          "value": "03012"
+        },
+        {
+          "label": "Algueña",
+          "value": "03013"
+        },
+        {
+          "label": "Almassora",
+          "value": "12009"
+        },
+        {
+          "label": "Almedíjar",
+          "value": "12010"
+        },
+        {
+          "label": "Almenara",
+          "value": "12011"
+        },
+        {
+          "label": "Almiserà",
+          "value": "46033"
+        },
+        {
+          "label": "Almoines",
+          "value": "46034"
+        },
+        {
+          "label": "Almoradí",
+          "value": "03015"
+        },
+        {
+          "label": "Almudaina",
+          "value": "03016"
+        },
+        {
+          "label": "Alpuente",
+          "value": "46036"
+        },
+        {
+          "label": "Altea",
+          "value": "03018"
+        },
+        {
+          "label": "Altura",
+          "value": "12012"
+        },
+        {
+          "label": "Alzira",
+          "value": "46017"
+        },
+        {
+          "label": "Andilla",
+          "value": "46038"
+        },
+        {
+          "label": "Anna",
+          "value": "46039"
+        },
+        {
+          "label": "Antella",
+          "value": "46040"
+        },
+        {
+          "label": "Arañuel",
+          "value": "12013"
+        },
+        {
+          "label": "Aras de los Olmos",
+          "value": "46041"
+        },
+        {
+          "label": "Ares del Maestrat",
+          "value": "12014"
+        },
+        {
+          "label": "Argelita",
+          "value": "12015"
+        },
+        {
+          "label": "Artana",
+          "value": "12016"
+        },
+        {
+          "label": "Aspe",
+          "value": "03019"
+        },
+        {
+          "label": "Atzeneta d'Albaida",
+          "value": "46003"
+        },
+        {
+          "label": "Atzeneta del Maestrat",
+          "value": "12001"
+        },
+        {
+          "label": "Ayódar",
+          "value": "12017"
+        },
+        {
+          "label": "Ayora",
+          "value": "46044"
+        },
+        {
+          "label": "Azuébar",
+          "value": "12018"
+        },
+        {
+          "label": "Balones",
+          "value": "03020"
+        },
+        {
+          "label": "Banyeres de Mariola",
+          "value": "03021"
+        },
+        {
+          "label": "Barracas",
+          "value": "12020"
+        },
+        {
+          "label": "Barx",
+          "value": "46046"
+        },
+        {
+          "label": "Barxeta",
+          "value": "46045"
+        },
+        {
+          "label": "Bejís",
+          "value": "12022"
+        },
+        {
+          "label": "Bèlgida",
+          "value": "46047"
+        },
+        {
+          "label": "Bellús",
+          "value": "46049"
+        },
+        {
+          "label": "Benafer",
+          "value": "12024"
+        },
+        {
+          "label": "Benafigos",
+          "value": "12025"
+        },
+        {
+          "label": "Benagéber",
+          "value": "46050"
+        },
+        {
+          "label": "Benaguasil",
+          "value": "46051"
+        },
+        {
+          "label": "Benasau",
+          "value": "03022"
+        },
+        {
+          "label": "Benassal",
+          "value": "12026"
+        },
+        {
+          "label": "Benavites",
+          "value": "46052"
+        },
+        {
+          "label": "Beneixama",
+          "value": "03023"
+        },
+        {
+          "label": "Beneixida",
+          "value": "46053"
+        },
+        {
+          "label": "Benejúzar",
+          "value": "03024"
+        },
+        {
+          "label": "Benferri",
+          "value": "03025"
+        },
+        {
+          "label": "Beniarbeig",
+          "value": "03026"
+        },
+        {
+          "label": "Beniardà",
+          "value": "03027"
+        },
+        {
+          "label": "Beniarjó",
+          "value": "46055"
+        },
+        {
+          "label": "Beniarrés",
+          "value": "03028"
+        },
+        {
+          "label": "Beniatjar",
+          "value": "46056"
+        },
+        {
+          "label": "Benicarló",
+          "value": "12027"
+        },
+        {
+          "label": "Benicàssim",
+          "value": "12028"
+        },
+        {
+          "label": "Benicolet",
+          "value": "46057"
+        },
+        {
+          "label": "Benicull de Xúquer",
+          "value": "46904"
+        },
+        {
+          "label": "Benidoleig",
+          "value": "03030"
+        },
+        {
+          "label": "Benidorm",
+          "value": "03031"
+        },
+        {
+          "label": "Benifairó de la Valldigna",
+          "value": "46059"
+        },
+        {
+          "label": "Benifairó de les Valls",
+          "value": "46058"
+        },
+        {
+          "label": "Benifallim",
+          "value": "03032"
+        },
+        {
+          "label": "Benifato",
+          "value": "03033"
+        },
+        {
+          "label": "Benigànim",
+          "value": "46062"
+        },
+        {
+          "label": "Benigembla",
+          "value": "03029"
+        },
+        {
+          "label": "Benijófar",
+          "value": "03034"
+        },
+        {
+          "label": "Benilloba",
+          "value": "03035"
+        },
+        {
+          "label": "Benillup",
+          "value": "03036"
+        },
+        {
+          "label": "Benimantell",
+          "value": "03037"
+        },
+        {
+          "label": "Benimarfull",
+          "value": "03038"
+        },
+        {
+          "label": "Benimassot",
+          "value": "03039"
+        },
+        {
+          "label": "Benimeli",
+          "value": "03040"
+        },
+        {
+          "label": "Benimodo",
+          "value": "46063"
+        },
+        {
+          "label": "Benimuslem",
+          "value": "46064"
+        },
+        {
+          "label": "Beniparrell",
+          "value": "46065"
+        },
+        {
+          "label": "Benirredrà",
+          "value": "46066"
+        },
+        {
+          "label": "Benissa",
+          "value": "03041"
+        },
+        {
+          "label": "Benissoda",
+          "value": "46068"
+        },
+        {
+          "label": "Benissuera",
+          "value": "46069"
+        },
+        {
+          "label": "Benlloc",
+          "value": "12029"
+        },
+        {
+          "label": "Bétera",
+          "value": "46070"
+        },
+        {
+          "label": "Betxí",
+          "value": "12021"
+        },
+        {
+          "label": "Biar",
+          "value": "03043"
+        },
+        {
+          "label": "Bicorp",
+          "value": "46071"
+        },
+        {
+          "label": "Bocairent",
+          "value": "46072"
+        },
+        {
+          "label": "Bolbaite",
+          "value": "46073"
+        },
+        {
+          "label": "Bolulla",
+          "value": "03045"
+        },
+        {
+          "label": "Borriana",
+          "value": "12032"
+        },
+        {
+          "label": "Borriol",
+          "value": "12031"
+        },
+        {
+          "label": "Bufali",
+          "value": "46075"
+        },
+        {
+          "label": "Bugarra",
+          "value": "46076"
+        },
+        {
+          "label": "Buñol",
+          "value": "46077"
+        },
+        {
+          "label": "Busot",
+          "value": "03046"
+        },
+        {
+          "label": "Cabanes",
+          "value": "12033"
+        },
+        {
+          "label": "Càlig",
+          "value": "12034"
+        },
+        {
+          "label": "Calles",
+          "value": "46079"
+        },
+        {
+          "label": "Callosa d'en Sarrià",
+          "value": "03048"
+        },
+        {
+          "label": "Callosa de Segura",
+          "value": "03049"
+        },
+        {
+          "label": "Calp",
+          "value": "03047"
+        },
+        {
+          "label": "Camporrobles",
+          "value": "46080"
+        },
+        {
+          "label": "Canals",
+          "value": "46081"
+        },
+        {
+          "label": "Canet d'En Berenguer",
+          "value": "46082"
+        },
+        {
+          "label": "Canet lo Roig",
+          "value": "12036"
+        },
+        {
+          "label": "Cañada",
+          "value": "03052"
+        },
+        {
+          "label": "Carcaixent",
+          "value": "46083"
+        },
+        {
+          "label": "Càrcer",
+          "value": "46084"
+        },
+        {
+          "label": "Carlet",
+          "value": "46085"
+        },
+        {
+          "label": "Carrícola",
+          "value": "46086"
+        },
+        {
+          "label": "Cas. Iniciado otra provincia",
+          "value": "raw:castellon:cas-iniciado-otra-provincia"
+        },
+        {
+          "label": "Casas Altas",
+          "value": "46087"
+        },
+        {
+          "label": "Casas Bajas",
+          "value": "46088"
+        },
+        {
+          "label": "Casinos",
+          "value": "46089"
+        },
+        {
+          "label": "Castalla",
+          "value": "03053"
+        },
+        {
+          "label": "Castell de Cabres",
+          "value": "12037"
+        },
+        {
+          "label": "Castell de Castells",
+          "value": "03054"
+        },
+        {
+          "label": "Castellfort",
+          "value": "12038"
+        },
+        {
+          "label": "Castellnovo",
+          "value": "12039"
+        },
+        {
+          "label": "Castelló",
+          "value": "46257"
+        },
+        {
+          "label": "Castelló de la Plana",
+          "value": "12040"
+        },
+        {
+          "label": "Castelló de Rugat",
+          "value": "46090"
+        },
+        {
+          "label": "Castellonet de la Conquesta",
+          "value": "46091"
+        },
+        {
+          "label": "Castielfabib",
+          "value": "46092"
+        },
+        {
+          "label": "CASTIELFABID",
+          "value": "raw:valencia:castielfabid"
+        },
+        {
+          "label": "Castillo de Villamalefa",
+          "value": "12041"
+        },
+        {
+          "label": "Catadau",
+          "value": "46093"
+        },
+        {
+          "label": "Catarroja",
+          "value": "46094"
+        },
+        {
+          "label": "Catí",
+          "value": "12042"
+        },
+        {
+          "label": "Catral",
+          "value": "03055"
+        },
+        {
+          "label": "Caudete de las Fuentes",
+          "value": "46095"
+        },
+        {
+          "label": "Caudiel",
+          "value": "12043"
+        },
+        {
+          "label": "Cerdà",
+          "value": "46096"
+        },
+        {
+          "label": "Cervera del Maestre",
+          "value": "12044"
+        },
+        {
+          "label": "Chella",
+          "value": "46107"
+        },
+        {
+          "label": "Chelva",
+          "value": "46106"
+        },
+        {
+          "label": "Chera",
+          "value": "46108"
+        },
+        {
+          "label": "Cheste",
+          "value": "46109"
+        },
+        {
+          "label": "Chiva",
+          "value": "46111"
+        },
+        {
+          "label": "Chóvar",
+          "value": "12056"
+        },
+        {
+          "label": "Chulilla",
+          "value": "46112"
+        },
+        {
+          "label": "Cinctorres",
+          "value": "12045"
+        },
+        {
+          "label": "Cirat",
+          "value": "12046"
+        },
+        {
+          "label": "Cocentaina",
+          "value": "03056"
+        },
+        {
+          "label": "Cofrentes",
+          "value": "46097"
+        },
+        {
+          "label": "Confrides",
+          "value": "03057"
+        },
+        {
+          "label": "Corbera",
+          "value": "46098"
+        },
+        {
+          "label": "Cortes de Arenoso",
+          "value": "12048"
+        },
+        {
+          "label": "Cortes de Pallás",
+          "value": "46099"
+        },
+        {
+          "label": "Costur",
+          "value": "12049"
+        },
+        {
+          "label": "Cotes",
+          "value": "46100"
+        },
+        {
+          "label": "Cox",
+          "value": "03058"
+        },
+        {
+          "label": "Crevillent",
+          "value": "03059"
+        },
+        {
+          "label": "Culla",
+          "value": "12051"
+        },
+        {
+          "label": "Cullera",
+          "value": "46105"
+        },
+        {
+          "label": "Dénia",
+          "value": "03063"
+        },
+        {
+          "label": "Dolores",
+          "value": "03064"
+        },
+        {
+          "label": "Domeño",
+          "value": "46114"
+        },
+        {
+          "label": "Dos Aguas",
+          "value": "46115"
+        },
+        {
+          "label": "el Camp de Mirra",
+          "value": "03051"
+        },
+        {
+          "label": "el Campello",
+          "value": "03050"
+        },
+        {
+          "label": "el Castell de Guadalest",
+          "value": "03075"
+        },
+        {
+          "label": "el Fondó de les Neus",
+          "value": "03077"
+        },
+        {
+          "label": "el Genovés",
+          "value": "46132"
+        },
+        {
+          "label": "el Palomar",
+          "value": "46189"
+        },
+        {
+          "label": "el Pinós",
+          "value": "03105"
+        },
+        {
+          "label": "el Poble Nou de Benitatxell",
+          "value": "03042"
+        },
+        {
+          "label": "el Puig de Santa Maria",
+          "value": "46204"
+        },
+        {
+          "label": "el Ràfol d'Almúnia",
+          "value": "03110"
+        },
+        {
+          "label": "el Real de Gandia",
+          "value": "46211"
+        },
+        {
+          "label": "El Toro",
+          "value": "12115"
+        },
+        {
+          "label": "el Verger",
+          "value": "03138"
+        },
+        {
+          "label": "Elda",
+          "value": "03066"
+        },
+        {
+          "label": "Elx",
+          "value": "03065"
+        },
+        {
+          "label": "Enguera",
+          "value": "46118"
+        },
+        {
+          "label": "Eslida",
+          "value": "12057"
+        },
+        {
+          "label": "Espadilla",
+          "value": "12058"
+        },
+        {
+          "label": "Estivella",
+          "value": "46120"
+        },
+        {
+          "label": "Estubeny",
+          "value": "46121"
+        },
+        {
+          "label": "Fageca",
+          "value": "03067"
+        },
+        {
+          "label": "Famorca",
+          "value": "03068"
+        },
+        {
+          "label": "Fanzara",
+          "value": "12059"
+        },
+        {
+          "label": "Favara",
+          "value": "46123"
+        },
+        {
+          "label": "Figueroles",
+          "value": "12060"
+        },
+        {
+          "label": "Finestrat",
+          "value": "03069"
+        },
+        {
+          "label": "FONTANARS DELS AFORINS",
+          "value": "raw:valencia:fontanars-dels-aforins"
+        },
+        {
+          "label": "Fontanars dels Alforins",
+          "value": "46124"
+        },
+        {
+          "label": "Forcall",
+          "value": "12061"
+        },
+        {
+          "label": "Fortaleny",
+          "value": "46125"
+        },
+        {
+          "label": "Fuente la Reina",
+          "value": "12063"
+        },
+        {
+          "label": "Fuenterrobles",
+          "value": "46129"
+        },
+        {
+          "label": "Fuentes de Ayódar",
+          "value": "12064"
+        },
+        {
+          "label": "Gaianes",
+          "value": "03072"
+        },
+        {
+          "label": "Gaibiel",
+          "value": "12065"
+        },
+        {
+          "label": "Gandia",
+          "value": "46131"
+        },
+        {
+          "label": "Gata de Gorgos",
+          "value": "03071"
+        },
+        {
+          "label": "Gátova",
+          "value": "46902"
+        },
+        {
+          "label": "Gavarda",
+          "value": "46130"
+        },
+        {
+          "label": "Geldo",
+          "value": "12067"
+        },
+        {
+          "label": "Gestalgar",
+          "value": "46133"
+        },
+        {
+          "label": "Gilet",
+          "value": "46134"
+        },
+        {
+          "label": "Godella",
+          "value": "46135"
+        },
+        {
+          "label": "Godelleta",
+          "value": "46136"
+        },
+        {
+          "label": "Gorga",
+          "value": "03073"
+        },
+        {
+          "label": "Granja de Rocamora",
+          "value": "03074"
+        },
+        {
+          "label": "Guadassuar",
+          "value": "46139"
+        },
+        {
+          "label": "Guardamar del Segura",
+          "value": "03076"
+        },
+        {
+          "label": "Herbers",
+          "value": "12068"
+        },
+        {
+          "label": "Higueras",
+          "value": "12069"
+        },
+        {
+          "label": "Higueruelas",
+          "value": "46141"
+        },
+        {
+          "label": "Hondón de los Frailes",
+          "value": "03078"
+        },
+        {
+          "label": "Ibi",
+          "value": "03079"
+        },
+        {
+          "label": "Jacarilla",
+          "value": "03080"
+        },
+        {
+          "label": "Jalance",
+          "value": "46142"
+        },
+        {
+          "label": "Jarafuel",
+          "value": "46144"
+        },
+        {
+          "label": "Jérica",
+          "value": "12071"
+        },
+        {
+          "label": "l'Alcora",
+          "value": "12005"
+        },
+        {
+          "label": "l'Alcúdia",
+          "value": "46019"
+        },
+        {
+          "label": "l'Alcúdia de Crespins",
+          "value": "46020"
+        },
+        {
+          "label": "l'Alfàs del Pi",
+          "value": "03011"
+        },
+        {
+          "label": "l'Alqueria d'Asnar",
+          "value": "03017"
+        },
+        {
+          "label": "L'Alqueria de Asnar",
+          "value": "raw:alicante:l-alqueria-de-asnar"
+        },
+        {
+          "label": "l'Alqueria de la Comtessa",
+          "value": "46037"
+        },
+        {
+          "label": "l'Atzúbia",
+          "value": "03001"
+        },
+        {
+          "label": "l'Énova",
+          "value": "46119"
+        },
+        {
+          "label": "l'Olleria",
+          "value": "46183"
+        },
+        {
+          "label": "l'Orxa",
+          "value": "03084"
+        },
+        {
+          "label": "la Font d'en Carròs",
+          "value": "46127"
+        },
+        {
+          "label": "la Font de la Figuera",
+          "value": "46128"
+        },
+        {
+          "label": "la Jana",
+          "value": "12070"
+        },
+        {
+          "label": "la Llosa",
+          "value": "12074"
+        },
+        {
+          "label": "la Llosa de Ranes",
+          "value": "46157"
+        },
+        {
+          "label": "La Mata",
+          "value": "raw:castellon:la-mata"
+        },
+        {
+          "label": "la Mata de Morella",
+          "value": "12075"
+        },
+        {
+          "label": "la Nucia",
+          "value": "03094"
+        },
+        {
+          "label": "La Pobla de Benifassà",
+          "value": "12093"
+        },
+        {
+          "label": "la Pobla de Vallbona",
+          "value": "46202"
+        },
+        {
+          "label": "la Pobla del Duc",
+          "value": "46200"
+        },
+        {
+          "label": "la Pobla Llarga",
+          "value": "46203"
+        },
+        {
+          "label": "la Pobla Tornesa",
+          "value": "12094"
+        },
+        {
+          "label": "la Romana",
+          "value": "03114"
+        },
+        {
+          "label": "la Salzadella",
+          "value": "12098"
+        },
+        {
+          "label": "la Serratella",
+          "value": "12103"
+        },
+        {
+          "label": "la Torre d'En Besora",
+          "value": "12119"
+        },
+        {
+          "label": "la Torre d'en Doménec",
+          "value": "12120"
+        },
+        {
+          "label": "la Torre de les Maçanes",
+          "value": "03132"
+        },
+        {
+          "label": "la Vall d'Alcalà",
+          "value": "03134"
+        },
+        {
+          "label": "la Vall d'Ebo",
+          "value": "03135"
+        },
+        {
+          "label": "la Vall d'Uixó",
+          "value": "12126"
+        },
+        {
+          "label": "la Vall de Gallinera",
+          "value": "03136"
+        },
+        {
+          "label": "la Vall de Laguar",
+          "value": "03137"
+        },
+        {
+          "label": "La Vall de Laguart",
+          "value": "raw:alicante:la-vall-de-laguart"
+        },
+        {
+          "label": "la Vila Joiosa",
+          "value": "03139"
+        },
+        {
+          "label": "la Vilavella",
+          "value": "12136"
+        },
+        {
+          "label": "La Yesa",
+          "value": "46262"
+        },
+        {
+          "label": "les Alqueries",
+          "value": "12901"
+        },
+        {
+          "label": "les Coves de Vinromà",
+          "value": "12050"
+        },
+        {
+          "label": "les Useres",
+          "value": "12122"
+        },
+        {
+          "label": "Llanera de Ranes",
+          "value": "46154"
+        },
+        {
+          "label": "Llaurí",
+          "value": "46155"
+        },
+        {
+          "label": "Llíber",
+          "value": "03085"
+        },
+        {
+          "label": "Llíria",
+          "value": "46147"
+        },
+        {
+          "label": "Llocnou de Sant Jeroni",
+          "value": "46153"
+        },
+        {
+          "label": "Llombai",
+          "value": "46156"
+        },
+        {
+          "label": "Llucena",
+          "value": "12072"
+        },
+        {
+          "label": "Llutxent",
+          "value": "46150"
+        },
+        {
+          "label": "Loriguilla",
+          "value": "46148"
+        },
+        {
+          "label": "Los Montesinos",
+          "value": "03903"
+        },
+        {
+          "label": "Losa del Obispo",
+          "value": "46149"
+        },
+        {
+          "label": "Ludiente",
+          "value": "12073"
+        },
+        {
+          "label": "Macastre",
+          "value": "46158"
+        },
+        {
+          "label": "Manises",
+          "value": "46159"
+        },
+        {
+          "label": "Manuel",
+          "value": "46160"
+        },
+        {
+          "label": "Marines",
+          "value": "46161"
+        },
+        {
+          "label": "Massalavés",
+          "value": "46162"
+        },
+        {
+          "label": "Massalfassar",
+          "value": "46163"
+        },
+        {
+          "label": "Massamagrell",
+          "value": "46164"
+        },
+        {
+          "label": "Massanassa",
+          "value": "46165"
+        },
+        {
+          "label": "Matet",
+          "value": "12076"
+        },
+        {
+          "label": "Millares",
+          "value": "46167"
+        },
+        {
+          "label": "Millena",
+          "value": "03086"
+        },
+        {
+          "label": "Moixent",
+          "value": "46170"
+        },
+        {
+          "label": "Moncofa",
+          "value": "12077"
+        },
+        {
+          "label": "Monforte del Cid",
+          "value": "03088"
+        },
+        {
+          "label": "Monòver",
+          "value": "03089"
+        },
+        {
+          "label": "Montán",
+          "value": "12078"
+        },
+        {
+          "label": "Montanejos",
+          "value": "12079"
+        },
+        {
+          "label": "Montaverner",
+          "value": "46173"
+        },
+        {
+          "label": "Montcada",
+          "value": "46171"
+        },
+        {
+          "label": "Montesa",
+          "value": "46174"
+        },
+        {
+          "label": "Montitxelvo",
+          "value": "46175"
+        },
+        {
+          "label": "Montroi",
+          "value": "46176"
+        },
+        {
+          "label": "Montserrat",
+          "value": "46172"
+        },
+        {
+          "label": "Morella",
+          "value": "12080"
+        },
+        {
+          "label": "Murla",
+          "value": "03091"
+        },
+        {
+          "label": "Muro de Alcoy",
+          "value": "03092"
+        },
+        {
+          "label": "Mutxamel",
+          "value": "03090"
+        },
+        {
+          "label": "Nàquera",
+          "value": "46178"
+        },
+        {
+          "label": "Navajas",
+          "value": "12081"
+        },
+        {
+          "label": "Navarrés",
+          "value": "46179"
+        },
+        {
+          "label": "Novelda",
+          "value": "03093"
+        },
+        {
+          "label": "Novetlè",
+          "value": "46180"
+        },
+        {
+          "label": "Nules",
+          "value": "12082"
+        },
+        {
+          "label": "Oliva",
+          "value": "46181"
+        },
+        {
+          "label": "Olocau",
+          "value": "46182"
+        },
+        {
+          "label": "Olocau del Rey",
+          "value": "12083"
+        },
+        {
+          "label": "Onda",
+          "value": "12084"
+        },
+        {
+          "label": "Ondara",
+          "value": "03095"
+        },
+        {
+          "label": "Onil",
+          "value": "03096"
+        },
+        {
+          "label": "Ontinyent",
+          "value": "46184"
+        },
+        {
+          "label": "Orba",
+          "value": "03097"
+        },
+        {
+          "label": "Orihuela",
+          "value": "03099"
+        },
+        {
+          "label": "Orpesa",
+          "value": "12085"
+        },
+        {
+          "label": "Orxeta",
+          "value": "03098"
+        },
+        {
+          "label": "Otos",
+          "value": "46185"
+        },
+        {
+          "label": "Otra Provincia",
+          "value": "raw:valencia:otra-provincia"
+        },
+        {
+          "label": "Paiporta",
+          "value": "46186"
+        },
+        {
+          "label": "Palanques",
+          "value": "12087"
+        },
+        {
+          "label": "Palma de Gandía",
+          "value": "46187"
+        },
+        {
+          "label": "Parcent",
+          "value": "03100"
+        },
+        {
+          "label": "Paterna",
+          "value": "46190"
+        },
+        {
+          "label": "Pavías",
+          "value": "12088"
+        },
+        {
+          "label": "Pedralba",
+          "value": "46191"
+        },
+        {
+          "label": "Pedreguer",
+          "value": "03101"
+        },
+        {
+          "label": "Pego",
+          "value": "03102"
+        },
+        {
+          "label": "Penàguila",
+          "value": "03103"
+        },
+        {
+          "label": "Peníscola",
+          "value": "12089"
+        },
+        {
+          "label": "Petrer",
+          "value": "03104"
+        },
+        {
+          "label": "Petrés",
+          "value": "46192"
+        },
+        {
+          "label": "Picanya",
+          "value": "46193"
+        },
+        {
+          "label": "Picassent",
+          "value": "46194"
+        },
+        {
+          "label": "Pilar de la Horadada",
+          "value": "03902"
+        },
+        {
+          "label": "Pina de Montalgrao",
+          "value": "12090"
+        },
+        {
+          "label": "Pinet",
+          "value": "46196"
+        },
+        {
+          "label": "Planes",
+          "value": "03106"
+        },
+        {
+          "label": "Polinyà de Xúquer",
+          "value": "46197"
+        },
+        {
+          "label": "POLINYÀ DEL XÚQUER",
+          "value": "raw:valencia:polinya-del-xuquer"
+        },
+        {
+          "label": "Polop",
+          "value": "03107"
+        },
+        {
+          "label": "Portell de Morella",
+          "value": "12091"
+        },
+        {
+          "label": "Potries",
+          "value": "46198"
+        },
+        {
+          "label": "Puçol",
+          "value": "46205"
+        },
+        {
+          "label": "Puebla de Arenoso",
+          "value": "12092"
+        },
+        {
+          "label": "Puebla de San Miguel",
+          "value": "46201"
+        },
+        {
+          "label": "Quart de les Valls",
+          "value": "46101"
+        },
+        {
+          "label": "Quart de Poblet",
+          "value": "46102"
+        },
+        {
+          "label": "Quartell",
+          "value": "46103"
+        },
+        {
+          "label": "Quatretonda",
+          "value": "46104"
+        },
+        {
+          "label": "Quatretondeta",
+          "value": "03060"
+        },
+        {
+          "label": "Quesa",
+          "value": "46206"
+        },
+        {
+          "label": "Rafelcofer",
+          "value": "46208"
+        },
+        {
+          "label": "Rafelguaraf",
+          "value": "46209"
+        },
+        {
+          "label": "Ráfol de Salem",
+          "value": "46210"
+        },
+        {
+          "label": "Real",
+          "value": "46212"
+        },
+        {
+          "label": "Redován",
+          "value": "03111"
+        },
+        {
+          "label": "Relleu",
+          "value": "03112"
+        },
+        {
+          "label": "Requena",
+          "value": "46213"
+        },
+        {
+          "label": "Riba-roja de Túria",
+          "value": "46214"
+        },
+        {
+          "label": "RIBA-ROJA DEL TÚRIA",
+          "value": "raw:valencia:riba-roja-del-turia"
+        },
+        {
+          "label": "Ribesalbes",
+          "value": "12095"
+        },
+        {
+          "label": "Riola",
+          "value": "46215"
+        },
+        {
+          "label": "Rojales",
+          "value": "03113"
+        },
+        {
+          "label": "Rossell",
+          "value": "12096"
+        },
+        {
+          "label": "Rotglà i Corberà",
+          "value": "46217"
+        },
+        {
+          "label": "Ròtova",
+          "value": "46218"
+        },
+        {
+          "label": "Rugat",
+          "value": "46219"
+        },
+        {
+          "label": "Sacañet",
+          "value": "12097"
+        },
+        {
+          "label": "Sagra",
+          "value": "03115"
+        },
+        {
+          "label": "Sagunt",
+          "value": "46220"
+        },
+        {
+          "label": "Salem",
+          "value": "46221"
+        },
+        {
+          "label": "Salinas",
+          "value": "03116"
+        },
+        {
+          "label": "San Antonio de Benagéber",
+          "value": "46903"
+        },
+        {
+          "label": "San Fulgencio",
+          "value": "03118"
+        },
+        {
+          "label": "San Isidro",
+          "value": "03904"
+        },
+        {
+          "label": "SAN MATEU",
+          "value": "raw:castellon:san-mateu"
+        },
+        {
+          "label": "San Miguel de Salinas",
+          "value": "03120"
+        },
+        {
+          "label": "Sanet y Negrals",
+          "value": "03117"
+        },
+        {
+          "label": "Sant Joan de Moró",
+          "value": "12902"
+        },
+        {
+          "label": "Sant Jordi",
+          "value": "12099"
+        },
+        {
+          "label": "Sant Mateu",
+          "value": "12100"
+        },
+        {
+          "label": "Sant Vicent del Raspeig",
+          "value": "03122"
+        },
+        {
+          "label": "Santa Magdalena de Pulpis",
+          "value": "12102"
+        },
+        {
+          "label": "Santa Pola",
+          "value": "03121"
+        },
+        {
+          "label": "Sax",
+          "value": "03123"
+        },
+        {
+          "label": "Segart",
+          "value": "46224"
+        },
+        {
+          "label": "Segorbe",
+          "value": "12104"
+        },
+        {
+          "label": "Sella",
+          "value": "03124"
+        },
+        {
+          "label": "Sellent",
+          "value": "46225"
+        },
+        {
+          "label": "Sempere",
+          "value": "46226"
+        },
+        {
+          "label": "Senija",
+          "value": "03125"
+        },
+        {
+          "label": "Senyera",
+          "value": "46227"
+        },
+        {
+          "label": "Serra",
+          "value": "46228"
+        },
+        {
+          "label": "Sierra Engarcerán",
+          "value": "12105"
+        },
+        {
+          "label": "Siete Aguas",
+          "value": "46229"
+        },
+        {
+          "label": "Simat de la Valldigna",
+          "value": "46231"
+        },
+        {
+          "label": "Sinarcas",
+          "value": "46232"
+        },
+        {
+          "label": "Sollana",
+          "value": "46233"
+        },
+        {
+          "label": "Soneja",
+          "value": "12106"
+        },
+        {
+          "label": "SOT CHERA",
+          "value": "raw:valencia:sot-chera"
+        },
+        {
+          "label": "Sot de Chera",
+          "value": "46234"
+        },
+        {
+          "label": "Sot de Ferrer",
+          "value": "12107"
+        },
+        {
+          "label": "Sueca",
+          "value": "46235"
+        },
+        {
+          "label": "Suera",
+          "value": "12108"
+        },
+        {
+          "label": "Sumacàrcer",
+          "value": "46236"
+        },
+        {
+          "label": "Tales",
+          "value": "12109"
+        },
+        {
+          "label": "Tàrbena",
+          "value": "03127"
+        },
+        {
+          "label": "Tavernes de la Valldigna",
+          "value": "46238"
+        },
+        {
+          "label": "Teresa",
+          "value": "12110"
+        },
+        {
+          "label": "Teresa de Cofrentes",
+          "value": "46239"
+        },
+        {
+          "label": "Terrateig",
+          "value": "46240"
+        },
+        {
+          "label": "Teulada",
+          "value": "03128"
+        },
+        {
+          "label": "Tibi",
+          "value": "03129"
+        },
+        {
+          "label": "Tírig",
+          "value": "12111"
+        },
+        {
+          "label": "Titaguas",
+          "value": "46241"
+        },
+        {
+          "label": "Todolella",
+          "value": "12112"
+        },
+        {
+          "label": "Toga",
+          "value": "12113"
+        },
+        {
+          "label": "Tollos",
+          "value": "03130"
+        },
+        {
+          "label": "Torás",
+          "value": "12114"
+        },
+        {
+          "label": "Tormos",
+          "value": "03131"
+        },
+        {
+          "label": "Torralba del Pinar",
+          "value": "12116"
+        },
+        {
+          "label": "Torrebaja",
+          "value": "46242"
+        },
+        {
+          "label": "Torreblanca",
+          "value": "12117"
+        },
+        {
+          "label": "Torrechiva",
+          "value": "12118"
+        },
+        {
+          "label": "Torrent",
+          "value": "46244"
+        },
+        {
+          "label": "Torres Torres",
+          "value": "46245"
+        },
+        {
+          "label": "Torrevieja",
+          "value": "03133"
+        },
+        {
+          "label": "Tous",
+          "value": "46246"
+        },
+        {
+          "label": "Traiguera",
+          "value": "12121"
+        },
+        {
+          "label": "Tuéjar",
+          "value": "46247"
+        },
+        {
+          "label": "Turís",
+          "value": "46248"
+        },
+        {
+          "label": "Utiel",
+          "value": "46249"
+        },
+        {
+          "label": "València",
+          "value": "46250"
+        },
+        {
+          "label": "Vall d'Alba",
+          "value": "12124"
+        },
+        {
+          "label": "Vall de Almonacid",
+          "value": "12125"
+        },
+        {
+          "label": "Vallada",
+          "value": "46251"
+        },
+        {
+          "label": "Vallanca",
+          "value": "46252"
+        },
+        {
+          "label": "Vallat",
+          "value": "12123"
+        },
+        {
+          "label": "Vallibona",
+          "value": "12127"
+        },
+        {
+          "label": "Venta del Moro",
+          "value": "46254"
+        },
+        {
+          "label": "Vila-real",
+          "value": "12135"
+        },
+        {
+          "label": "Vilafamés",
+          "value": "12128"
+        },
+        {
+          "label": "Vilafranca",
+          "value": "12129"
+        },
+        {
+          "label": "Vilallonga",
+          "value": "46255"
+        },
+        {
+          "label": "Vilamarxant",
+          "value": "46256"
+        },
+        {
+          "label": "Vilanova d'Alcolea",
+          "value": "12132"
+        },
+        {
+          "label": "Vilar de Canes",
+          "value": "12134"
+        },
+        {
+          "label": "Villahermosa del Río",
+          "value": "12130"
+        },
+        {
+          "label": "Villamalur",
+          "value": "12131"
+        },
+        {
+          "label": "Villanueva de Viver",
+          "value": "12133"
+        },
+        {
+          "label": "Villar del Arzobispo",
+          "value": "46258"
+        },
+        {
+          "label": "Villargordo del Cabriel",
+          "value": "46259"
+        },
+        {
+          "label": "Villena",
+          "value": "03140"
+        },
+        {
+          "label": "Vinalesa",
+          "value": "46260"
+        },
+        {
+          "label": "Vinaròs",
+          "value": "12138"
+        },
+        {
+          "label": "Vistabella del Maestrat",
+          "value": "12139"
+        },
+        {
+          "label": "Viver",
+          "value": "12140"
+        },
+        {
+          "label": "Xàbia",
+          "value": "03082"
+        },
+        {
+          "label": "Xaló",
+          "value": "03081"
+        },
+        {
+          "label": "Xàtiva",
+          "value": "46145"
+        },
+        {
+          "label": "Xeraco",
+          "value": "46143"
+        },
+        {
+          "label": "Xeresa",
+          "value": "46146"
+        },
+        {
+          "label": "Xert",
+          "value": "12052"
+        },
+        {
+          "label": "Xilxes",
+          "value": "12053"
+        },
+        {
+          "label": "Xixona",
+          "value": "03083"
+        },
+        {
+          "label": "Xodos",
+          "value": "12055"
+        },
+        {
+          "label": "Yátova",
+          "value": "46261"
+        },
+        {
+          "label": "Zarra",
+          "value": "46263"
+        },
+        {
+          "label": "Zorita del Maestrazgo",
+          "value": "12141"
+        },
+        {
+          "label": "Zucaina",
+          "value": "12142"
+        }
+      ],
+      "causeFilter": "",
+      "center": {
+        "lat": 38.65,
+        "lng": -0.52
+      },
+      "coverageText": "ICV 1993–2024: histórico oficial consolidado de perímetros cartografiados; no es un inventario estadístico completo.",
+      "detailsSelectionVisible": true,
+      "detailsText": "ICV · oficial consolidadoFecha de inicio13/09/1993Fecha de extinción13/09/1993MunicipioPegoProvinciaAlicante/AlacantParaje—CausaDesconocidaSuperficie forestal declarada4,5 haMás información técnicaNumPIF_CV1993AL0146FuenteInstitut Cartogràfic Valencià / Generalitat Valencianafire_idgva:pif-cv:1993AL0146Geometrías asociadas1geometry_idgva:geometry:1993:1:775Causa en origenCausa desconocidaCalidad geométricaA · perímetro oficial vectorial derivado para web sin reparación",
+      "gifOnly": false,
+      "hashRestored": true,
+      "heapUsedBytes": 167149164,
+      "histogramBarCount": 59,
+      "histogramSelectedYears": [],
+      "history": null,
+      "lastLoad": {
+        "assetCount": 12,
+        "downloadedNow": 13,
+        "estimatedGzipBytes": 2484912,
+        "level": "overview",
+        "loadMs": 266,
+        "loadedAdministrativeRecordCount": 0,
+        "loadedGeometryCount": 13739,
+        "provinces": [
+          "castellon",
+          "valencia",
+          "alicante"
+        ],
+        "rawBytes": 18254380,
+        "reason": "initial"
+      },
+      "lastRender": {
+        "administrativeRecordCount": 0,
+        "geometryCount": 13739,
+        "reason": "initial",
+        "renderMs": 310.80000000074506
+      },
+      "level": "overview",
+      "loadedAdministrativeRecordCount": 0,
+      "loadedGeometryCount": 13739,
+      "loader": {
+        "blocksDownloaded": 12,
+        "cachedUrls": [
+          "data/web/gva/fires.json",
+          "data/web/gva/geometry/overview/castellon/1993-1999.geojson",
+          "data/web/gva/geometry/overview/castellon/2000-2009.geojson",
+          "data/web/gva/geometry/overview/castellon/2010-2019.geojson",
+          "data/web/gva/geometry/overview/castellon/2020-2024.geojson",
+          "data/web/gva/geometry/overview/valencia/1993-1999.geojson",
+          "data/web/gva/geometry/overview/valencia/2000-2009.geojson",
+          "data/web/gva/geometry/overview/valencia/2010-2019.geojson",
+          "data/web/gva/geometry/overview/valencia/2020-2024.geojson",
+          "data/web/gva/geometry/overview/alicante/1993-1999.geojson",
+          "data/web/gva/geometry/overview/alicante/2000-2009.geojson",
+          "data/web/gva/geometry/overview/alicante/2010-2019.geojson",
+          "data/web/gva/geometry/overview/alicante/2020-2024.geojson",
+          "data/web/gva/provenance.json"
+        ],
+        "candidateCount": 0,
+        "egifAdministrativeRecordCount": 0,
+        "estimatedGzipBytes": 3057756,
+        "events": [
+          {
+            "estimatedGzipBytes": 0,
+            "fetchMs": 6.300000000745058,
+            "kind": "manifest",
+            "parseMs": 0.3999999985098839,
+            "responseBytes": 38959,
+            "totalMs": 6.800000000745058,
+            "url": "data/web/gva/manifest.json"
+          },
+          {
+            "estimatedGzipBytes": 572844,
+            "fetchMs": 25.300000000745058,
+            "kind": "icv_fires",
+            "parseMs": 32.69999999925494,
+            "responseBytes": 7657862,
+            "totalMs": 58,
+            "url": "data/web/gva/fires.json"
+          },
+          {
+            "estimatedGzipBytes": 121131,
+            "fetchMs": 30.899999998509884,
+            "kind": "icv_geometry",
+            "parseMs": 4.400000002235174,
+            "responseBytes": 765894,
+            "totalMs": 35.30000000074506,
+            "url": "data/web/gva/geometry/overview/castellon/1993-1999.geojson"
+          },
+          {
+            "estimatedGzipBytes": 85452,
+            "fetchMs": 41.19999999925494,
+            "kind": "icv_geometry",
+            "parseMs": 2,
+            "responseBytes": 433770,
+            "totalMs": 43.19999999925494,
+            "url": "data/web/gva/geometry/overview/castellon/2020-2024.geojson"
+          },
+          {
+            "estimatedGzipBytes": 166121,
+            "fetchMs": 59.600000001490116,
+            "kind": "icv_geometry",
+            "parseMs": 4.099999997764826,
+            "responseBytes": 900542,
+            "totalMs": 63.69999999925494,
+            "url": "data/web/gva/geometry/overview/castellon/2010-2019.geojson"
+          },
+          {
+            "estimatedGzipBytes": 180319,
+            "fetchMs": 64.59999999776483,
+            "kind": "icv_geometry",
+            "parseMs": 10.600000001490116,
+            "responseBytes": 1559226,
+            "totalMs": 75.19999999925494,
+            "url": "data/web/gva/geometry/overview/castellon/2000-2009.geojson"
+          },
+          {
+            "estimatedGzipBytes": 160159,
+            "fetchMs": 85.89999999850988,
+            "kind": "icv_geometry",
+            "parseMs": 7.600000001490116,
+            "responseBytes": 1118710,
+            "totalMs": 93.5,
+            "url": "data/web/gva/geometry/overview/valencia/1993-1999.geojson"
+          },
+          {
+            "estimatedGzipBytes": 359711,
+            "fetchMs": 107.79999999701977,
+            "kind": "icv_geometry",
+            "parseMs": 36,
+            "responseBytes": 5190158,
+            "totalMs": 143.79999999701977,
+            "url": "data/web/gva/geometry/overview/valencia/2000-2009.geojson"
+          },
+          {
+            "estimatedGzipBytes": 240899,
+            "fetchMs": 145.80000000074506,
+            "kind": "icv_geometry",
+            "parseMs": 8.099999997764826,
+            "responseBytes": 1256333,
+            "totalMs": 154,
+            "url": "data/web/gva/geometry/overview/valencia/2020-2024.geojson"
+          },
+          {
+            "estimatedGzipBytes": 111638,
+            "fetchMs": 154.80000000074506,
+            "kind": "icv_geometry",
+            "parseMs": 3.400000002235174,
+            "responseBytes": 720014,
+            "totalMs": 158.20000000298023,
+            "url": "data/web/gva/geometry/overview/alicante/1993-1999.geojson"
+          },
+          {
+            "estimatedGzipBytes": 172919,
+            "fetchMs": 158.90000000223517,
+            "kind": "icv_geometry",
+            "parseMs": 20.399999998509884,
+            "responseBytes": 1860327,
+            "totalMs": 179.30000000074506,
+            "url": "data/web/gva/geometry/overview/alicante/2000-2009.geojson"
+          },
+          {
+            "estimatedGzipBytes": 255315,
+            "fetchMs": 179.90000000223517,
+            "kind": "icv_geometry",
+            "parseMs": 6.099999997764826,
+            "responseBytes": 1303162,
+            "totalMs": 186,
+            "url": "data/web/gva/geometry/overview/alicante/2010-2019.geojson"
+          },
+          {
+            "estimatedGzipBytes": 541610,
+            "fetchMs": 187.59999999776483,
+            "kind": "icv_geometry",
+            "parseMs": 12.200000002980232,
+            "responseBytes": 2665089,
+            "totalMs": 199.80000000074506,
+            "url": "data/web/gva/geometry/overview/valencia/2010-2019.geojson"
+          },
+          {
+            "estimatedGzipBytes": 89638,
+            "fetchMs": 200.39999999850988,
+            "kind": "icv_geometry",
+            "parseMs": 2,
+            "responseBytes": 481155,
+            "totalMs": 202.39999999850988,
+            "url": "data/web/gva/geometry/overview/alicante/2020-2024.geojson"
+          }
+        ],
+        "geometriesDownloaded": 13739,
+        "requests": 14,
+        "responseBytes": 25951201
+      },
+      "mariolaPrimaryAccess": false,
+      "methodologyText": "EGIF/MITECO: historical administrative without geometry. Fuente y metodología.Origen de los datos: Ministerio para la Transición Ecológica y el Reto Demográfico.ESFire30: historical remote sensing. Fuente y metodología.ESFire30 Causes, Ochoa, Chuvieco, Rodrigues y Franquesa (2026), versión v1, CC BY 4.0, DOI 10.5281/zenodo.18449006. Datos transformados para el Atlas mediante selección territorial, reproyección a EPSG:4326, selección de atributos y, cuando proceda, simplificación geométrica.ICV: consolidated official. Fuente y metodología.Incendios forestales de la Comunitat Valenciana (1993–2024) CC BY 4.0, Generalitat. Datos transformados para su visualización mediante reproyección, selección de atributos, particionado y simplificación geométrica.EFFIS/Copernicus: provisional satellite. Fuente y metodología.European Union, Copernicus EMS / EFFIS (CC BY 4.0); selección espacial y reducción de atributos realizadas por el AtlasClasificación de causas: las categorías históricas EGIF y las modernas ICV no siempre son equivalentes. Por ello, “Negligencia”, “Accidental” y “Negligencias y causas accidentales” se conservan separadas.",
+      "minimumArea": 0,
+      "mobileLayout": false,
+      "municipalityFilter": "",
+      "municipalityFit": null,
+      "permalinkHash": "#v=1&lat=38.65000&lng=-0.52000&z=8&from=1993&to=2024&src=esfire30%2Cicv&province=all&min_area=0&gif=0&entity=gva%3Apif-cv%3A1993AL0146&geometry=gva%3Ageometry%3A1993%3A1%3A775",
+      "pointHistoryText": "Se consultarán por separado los tipos de geometría disponibles.",
+      "profile": "public",
+      "provinceFilter": "all",
+      "ready": true,
+      "scopeOptions": [
+        {
+          "label": "Todo el País Valencià",
+          "value": "all"
+        },
+        {
+          "label": "Castelló",
+          "value": "castellon"
+        },
+        {
+          "label": "València",
+          "value": "valencia"
+        },
+        {
+          "label": "Alacant",
+          "value": "alicante"
+        }
+      ],
+      "screenshot": null,
+      "selectedAdministrativeLinkStatus": null,
+      "selectedAreaHa": 4.5,
+      "selectedCandidateStrengths": [],
+      "selectedEntityId": "gva:pif-cv:1993AL0146",
+      "selectedFireId": "gva:pif-cv:1993AL0146",
+      "selectedGeometryHighlighted": true,
+      "selectedGeometryId": "gva:geometry:1993:1:775",
+      "selectedIsMappedLarge": false,
+      "selectedMunicipalityIds": [],
+      "selectedMunicipalityNames": [],
+      "selectedProvinceIds": [],
+      "selectedSourceId": "icv",
+      "selectedVisibleGeometryCount": 1,
+      "selectionPopupDomVisible": true,
+      "selectionPopupGeometryId": "gva:geometry:1993:1:775",
+      "selectionPopupVisible": true,
+      "shareButtonVisible": true,
+      "shareIconVisible": true,
+      "sigifLegendVisible": false,
+      "sourceControlIds": [
+        "egif",
+        "esfire30",
+        "icv",
+        "effis"
+      ],
+      "sourceSeparationHelpVisible": false,
+      "statusText": "overview · 12 assets · 13.739 geometrías/puntos · 0 partes EGIF cargados · 2.37 MiB gzip estimados",
+      "territory": "comunitat_valenciana",
+      "territoryPanelPresent": false,
+      "timelineComplete": false,
+      "viewport": {
+        "height": 757,
+        "width": 1440
+      },
+      "visibleEffisPerimeterCount": 0,
+      "visibleEgifGifCount": 0,
+      "visibleEgifGridReferenceCount": 0,
+      "visibleEgifMunicipalityResolvedCount": 0,
+      "visibleEgifRecordCount": 0,
+      "visibleEsfire30MappedAreaHa": 0,
+      "visibleEsfire30PerimeterCount": 0,
+      "visibleFireCount": 13738,
+      "visibleGifCount": 74,
+      "visibleIcvFireCount": 13738,
+      "visiblePerimeterCount": 13739,
+      "visibleSigifRecordCount": 0,
+      "years": {
+        "from": 1993,
+        "to": 2024
+      },
+      "zoom": 8
+    },
+    "national_1995": {
+      "detail_text": "Incendio oficial documentado ICV\nMinimizar\nCerrar\n\nIncendio y perímetro oficial documentados por la Generalitat Valenciana / ICV.\n\nMás sobre estos datos",
+      "detail_visible": true,
+      "esfire_default_visible": false,
+      "esfire_rendered_when_enabled": 13,
+      "icv_status": "complete",
+      "loaded_geometries": 467,
+      "loaded_records": 467,
+      "rendered_features": 44,
+      "runtime_errors": [],
+      "screenshot": "data/audit/product/es4post1/national-1995.png",
+      "selected_geometry_id": "gva:geometry:1995:3:783",
+      "source_features": 168,
+      "state": {
+        "autonomous_community_id": "ES:CCAA:10",
+        "center": [
+          -0.52,
+          38.65
+        ],
+        "effis_visible": false,
+        "egif_visible": true,
+        "esfire30_visible": false,
+        "filters": [],
+        "from": 1995,
+        "icv_visible": true,
+        "municipality_id": null,
+        "province_id": null,
+        "selected_effis_geometry_id": null,
+        "selected_effis_geometry_year": null,
+        "selected_egif_record_id": null,
+        "selected_egif_year": null,
+        "selected_geometry_id": null,
+        "selected_geometry_year": null,
+        "selected_icv_geometry_id": "gva:geometry:1995:3:783",
+        "selected_icv_geometry_year": 1995,
+        "selected_icv_record_id": "gva:pif-cv:1995CS5050",
+        "territory_scope": "autonomous_community",
+        "to": 1995,
+        "zoom": 8
+      }
+    },
+    "national_2024": {
+      "detail_text": "Incendio oficial documentado ICV\nMinimizar\nCerrar\n\nIncendio y perímetro oficial documentados por la Generalitat Valenciana / ICV.\n\nMás sobre estos datos",
+      "detail_visible": true,
+      "esfire_default_visible": false,
+      "esfire_rendered_when_enabled": 0,
+      "icv_status": "complete",
+      "loaded_geometries": 473,
+      "loaded_records": 472,
+      "rendered_features": 77,
+      "runtime_errors": [],
+      "screenshot": null,
+      "selected_geometry_id": "gva:geometry:2024:121:13268",
+      "source_features": 217,
+      "state": {
+        "autonomous_community_id": "ES:CCAA:10",
+        "center": [
+          -0.52,
+          38.65
+        ],
+        "effis_visible": false,
+        "egif_visible": false,
+        "esfire30_visible": false,
+        "filters": [],
+        "from": 2024,
+        "icv_visible": true,
+        "municipality_id": null,
+        "province_id": null,
+        "selected_effis_geometry_id": null,
+        "selected_effis_geometry_year": null,
+        "selected_egif_record_id": null,
+        "selected_egif_year": null,
+        "selected_geometry_id": null,
+        "selected_geometry_year": null,
+        "selected_icv_geometry_id": "gva:geometry:2024:121:13268",
+        "selected_icv_geometry_year": 2024,
+        "selected_icv_record_id": "gva:pif-cv:2024CS0016",
+        "territory_scope": "autonomous_community",
+        "to": 2024,
+        "zoom": 8
+      }
+    },
+    "national_mobile_1995": {
+      "detail_text": "Incendio oficial documentado ICV\nMinimizar\nCerrar\n\nIncendio y perímetro oficial documentados por la Generalitat Valenciana / ICV.\n\nMás sobre estos datos",
+      "detail_visible": true,
+      "esfire_default_visible": false,
+      "esfire_rendered_when_enabled": 7,
+      "icv_status": "complete",
+      "loaded_geometries": 467,
+      "loaded_records": 467,
+      "rendered_features": 28,
+      "runtime_errors": [],
+      "screenshot": "data/audit/product/es4post1/national-mobile-1995.png",
+      "selected_geometry_id": "gva:geometry:1995:3:783",
+      "source_features": 168,
+      "state": {
+        "autonomous_community_id": "ES:CCAA:10",
+        "center": [
+          -0.52,
+          38.65
+        ],
+        "effis_visible": false,
+        "egif_visible": true,
+        "esfire30_visible": false,
+        "filters": [],
+        "from": 1995,
+        "icv_visible": true,
+        "municipality_id": null,
+        "province_id": null,
+        "selected_effis_geometry_id": null,
+        "selected_effis_geometry_year": null,
+        "selected_egif_record_id": null,
+        "selected_egif_year": null,
+        "selected_geometry_id": null,
+        "selected_geometry_year": null,
+        "selected_icv_geometry_id": "gva:geometry:1995:3:783",
+        "selected_icv_geometry_year": 1995,
+        "selected_icv_record_id": "gva:pif-cv:1995CS5050",
+        "territory_scope": "autonomous_community",
+        "to": 1995,
+        "zoom": 8
+      }
+    },
+    "national_overlap_1993_2024": {
+      "detail_text": "Incendio oficial documentado ICV\nMinimizar\nCerrar\n\nIncendio y perímetro oficial documentados por la Generalitat Valenciana / ICV.\n\nMás sobre estos datos",
+      "detail_visible": true,
+      "esfire_default_visible": false,
+      "esfire_rendered_when_enabled": 547,
+      "icv_status": "complete",
+      "loaded_geometries": 12405,
+      "loaded_records": 12404,
+      "rendered_features": 1622,
+      "runtime_errors": [],
+      "screenshot": "data/audit/product/es4post1/national-overlap-1993-2024.png",
+      "selected_geometry_id": "gva:geometry:1993:1:781",
+      "source_features": 5304,
+      "state": {
+        "autonomous_community_id": "ES:CCAA:10",
+        "center": [
+          -0.52,
+          38.65
+        ],
+        "effis_visible": false,
+        "egif_visible": true,
+        "esfire30_visible": false,
+        "filters": [],
+        "from": 1993,
+        "icv_visible": true,
+        "municipality_id": null,
+        "province_id": null,
+        "selected_effis_geometry_id": null,
+        "selected_effis_geometry_year": null,
+        "selected_egif_record_id": null,
+        "selected_egif_year": null,
+        "selected_geometry_id": null,
+        "selected_geometry_year": null,
+        "selected_icv_geometry_id": "gva:geometry:1993:1:781",
+        "selected_icv_geometry_year": 1993,
+        "selected_icv_record_id": "gva:pif-cv:1993CS3101",
+        "territory_scope": "autonomous_community",
+        "to": 2024,
+        "zoom": 8
+      }
+    }
+  },
+  "click_flow": {
+    "legacy": "Leaflet feature click -> selectEntity -> L.popup",
+    "national": "MapLibre feature click -> sidebar/bottom detail",
+    "status": "PARTIAL"
+  },
+  "decision": {
+    "basic_popup": "FAIL",
+    "default_geometry_source": "PARTIAL",
+    "direct_click": "PARTIAL",
+    "geometry_completeness": "FAIL",
+    "map_exploration_parity": "FAIL",
+    "map_first": "PARTIAL",
+    "mobile": "PARTIAL",
+    "next_phase": "ES-4POST2_GVA_MAP_EXPLORATION_PARITY_IMPLEMENTATION",
+    "overlap_visual_encoding": "FAIL",
+    "post_release_product_parity_review": "FAILED_NEEDS_FIX",
+    "release_tag_status": "HOLD",
+    "temporal_visual_encoding": "FAIL"
+  },
+  "geometry_completeness": {
+    "expected": [
+      13738,
+      13739
+    ],
+    "national_loaded": [
+      12404,
+      12405
+    ],
+    "root_cause": "ICV province source-value normalization",
+    "status": "FAIL"
+  },
+  "human_tests": {
+    "complete_history": "FAIL 1334 ICV omitted in national runtime",
+    "same_year_1995": "PASS geometry availability, FAIL temporal/popup parity"
+  },
+  "implementation_plan": [
+    "normalize documented ICV province source values",
+    "restore temporal/overlap visual encoding and legend",
+    "add accessible map-anchored basic popup while retaining full detail card",
+    "repeat exact parity audit"
+  ],
+  "legacy_reference": {
+    "commit": "f7a3532f633a247f33dee3ebba9fbcc316c0e534",
+    "site": "/tmp/atlas-es4post1-gva/data/derived/gva/publication/site"
+  },
+  "mobile": {
+    "map_popup_and_temporal_reading": "FAIL",
+    "selection_detail": "PASS",
+    "viewport": "390x844"
+  },
+  "national_reference": "https://inthurain.github.io/atlas-incendios",
+  "old_gva_reference": {
+    "commit": "f7a3532f633a247f33dee3ebba9fbcc316c0e534",
+    "rebuild_status": "PASS",
+    "site": "/tmp/atlas-es4post1-gva/data/derived/gva/publication/site"
+  },
+  "overlap": {
+    "examples": [
+      {
+        "left": {
+          "fire_id": "gva:pif-cv:1993VL0022",
+          "geometry_id": "gva:geometry:1993:1:1141",
+          "year": 1993
+        },
+        "positive_area_overlap": true,
+        "right": {
+          "fire_id": "gva:pif-cv:1994VL0031",
+          "geometry_id": "gva:geometry:1994:2:1674",
+          "year": 1994
+        },
+        "zone": "Bocairent"
+      },
+      {
+        "left": {
+          "fire_id": "gva:pif-cv:1993VL0022",
+          "geometry_id": "gva:geometry:1993:1:1141",
+          "year": 1993
+        },
+        "positive_area_overlap": true,
+        "right": {
+          "fire_id": "gva:pif-cv:1995VL0121",
+          "geometry_id": "gva:geometry:1995:3:2223",
+          "year": 1995
+        },
+        "zone": "Bocairent"
+      },
+      {
+        "left": {
+          "fire_id": "gva:pif-cv:1993VL0022",
+          "geometry_id": "gva:geometry:1993:1:1141",
+          "year": 1993
+        },
+        "positive_area_overlap": true,
+        "right": {
+          "fire_id": "gva:pif-cv:2002VL0228",
+          "geometry_id": "gva:geometry:2002:10:2711",
+          "year": 2002
+        },
+        "zone": "Bocairent"
+      }
+    ],
+    "legacy": "year colour makes different dates readable",
+    "national": "constant fill has no temporal overlap cue",
+    "status": "FAIL"
+  },
+  "phase": "ES-4POST1",
+  "popup": {
+    "legacy": "direct map popup",
+    "national": "human detail card outside the map",
+    "status": "FAIL"
+  },
+  "production_identity": {
+    "observed_read_only": true,
+    "root_switch_commit": "84cbc9e43f2b1555a84b17cd5b94643b0b31eb1c",
+    "site_identity_sha256": "f5e80a728f45057692f36ba41f76900c9d00b9c962cedc4eb591e29e813da04e",
+    "url": "https://inthurain.github.io/atlas-incendios"
+  },
+  "production_risk": "MAJOR_PRODUCT_REGRESSION_FIX_FORWARD_REQUIRED",
+  "recommended_source": {
+    "gva_1993_2024": "ICV primary official geometry; ESFire30 remains complementary and independent"
+  },
+  "regressions": [
+    "ICV 2016-2019 province-value exclusion",
+    "constant ICV visual encoding",
+    "no map-anchored basic popup"
+  ],
+  "rollback_recommendation": "NO_AUTOMATIC_ROLLBACK; keep national live and fix forward before tag",
+  "root_causes": [
+    "ICV_KEY_BY_PROVINCE accepts only three title-cased source values",
+    "ICV paint has no year expression",
+    "selection design moved context from popup to detail card"
+  ],
+  "scenarios": [
+    {
+      "from": 1993,
+      "icv_geometries": 715,
+      "icv_records": 715,
+      "legacy_esfire30_geometries": 0,
+      "national_current_loader_excluded_records": 0,
+      "national_current_loader_records": 715,
+      "to": 1993
+    },
+    {
+      "from": 1995,
+      "icv_geometries": 467,
+      "icv_records": 467,
+      "legacy_esfire30_geometries": 0,
+      "national_current_loader_excluded_records": 0,
+      "national_current_loader_records": 467,
+      "to": 1995
+    },
+    {
+      "from": 2000,
+      "icv_geometries": 606,
+      "icv_records": 606,
+      "legacy_esfire30_geometries": 0,
+      "national_current_loader_excluded_records": 0,
+      "national_current_loader_records": 606,
+      "to": 2000
+    },
+    {
+      "from": 2010,
+      "icv_geometries": 328,
+      "icv_records": 328,
+      "legacy_esfire30_geometries": 0,
+      "national_current_loader_excluded_records": 0,
+      "national_current_loader_records": 328,
+      "to": 2010
+    },
+    {
+      "from": 2020,
+      "icv_geometries": 253,
+      "icv_records": 253,
+      "legacy_esfire30_geometries": 0,
+      "national_current_loader_excluded_records": 0,
+      "national_current_loader_records": 253,
+      "to": 2020
+    },
+    {
+      "from": 2024,
+      "icv_geometries": 473,
+      "icv_records": 472,
+      "legacy_esfire30_geometries": 0,
+      "national_current_loader_excluded_records": 0,
+      "national_current_loader_records": 472,
+      "to": 2024
+    },
+    {
+      "from": 1993,
+      "icv_geometries": 13739,
+      "icv_records": 13738,
+      "legacy_esfire30_geometries": 0,
+      "national_current_loader_excluded_records": 1334,
+      "national_current_loader_records": 12404,
+      "to": 2024
+    },
+    {
+      "from": 2000,
+      "icv_geometries": 4878,
+      "icv_records": 4878,
+      "legacy_esfire30_geometries": 0,
+      "national_current_loader_excluded_records": 0,
+      "national_current_loader_records": 4878,
+      "to": 2010
+    },
+    {
+      "from": 2015,
+      "icv_geometries": 3332,
+      "icv_records": 3331,
+      "legacy_esfire30_geometries": 0,
+      "national_current_loader_excluded_records": 1334,
+      "national_current_loader_records": 1997,
+      "to": 2024
+    }
+  ],
+  "screenshots": {
+    "legacy_1995": "data/audit/product/es4post1/legacy-gva-1995.png",
+    "national_1995": "data/audit/product/es4post1/national-1995.png",
+    "national_mobile_1995": "data/audit/product/es4post1/national-mobile-1995.png",
+    "national_overlap_1993_2024": "data/audit/product/es4post1/national-overlap-1993-2024.png"
+  },
+  "source_render_matrix": {
+    "gva_1993_2024": {
+      "expected_icv_geometries": 13739,
+      "expected_icv_records": 13738,
+      "legacy_rendered": 13739,
+      "national_excluded": 1334,
+      "national_loaded": 12405,
+      "national_rendered_viewport": 1622
+    },
+    "gva_1995": {
+      "expected_icv_geometries": 467,
+      "expected_icv_records": 467,
+      "legacy_loaded": 3790,
+      "legacy_rendered": 467,
+      "national_loaded": 467,
+      "national_rendered_viewport": 44
+    },
+    "gva_2024": {
+      "expected_icv_geometries": 473,
+      "expected_icv_records": 472,
+      "legacy_rendered": 473,
+      "national_loaded": 473,
+      "national_rendered_viewport": 77
+    }
+  },
+  "static": {
+    "icv_geometry_count": 13739,
+    "icv_manifest": {
+      "coverage": [
+        1993,
+        2024
+      ],
+      "fires_sha256": "0ab80347d78f46764ad8152f08a06872667160bf3631b44830cf168eb0ce8b1e"
+    },
+    "icv_record_count": 13738,
+    "legacy_esfire30": {
+      "coverage": [
+        1985,
+        1992
+      ],
+      "geometry_count": 710
+    },
+    "national_current_loader_exclusion": {
+      "by_source_value": {
+        "ALICANTE": 338,
+        "CASTELLON": 273,
+        "Castellon": 1,
+        "VALENCIA": 722
+      },
+      "by_year": {
+        "2016": 341,
+        "2017": 346,
+        "2018": 375,
+        "2019": 272
+      },
+      "reason": "ICV_KEY_BY_PROVINCE only recognizes title-cased province labels",
+      "records": 1334
+    },
+    "overlap_examples": [
+      {
+        "left": {
+          "fire_id": "gva:pif-cv:1993VL0022",
+          "geometry_id": "gva:geometry:1993:1:1141",
+          "year": 1993
+        },
+        "positive_area_overlap": true,
+        "right": {
+          "fire_id": "gva:pif-cv:1994VL0031",
+          "geometry_id": "gva:geometry:1994:2:1674",
+          "year": 1994
+        },
+        "zone": "Bocairent"
+      },
+      {
+        "left": {
+          "fire_id": "gva:pif-cv:1993VL0022",
+          "geometry_id": "gva:geometry:1993:1:1141",
+          "year": 1993
+        },
+        "positive_area_overlap": true,
+        "right": {
+          "fire_id": "gva:pif-cv:1995VL0121",
+          "geometry_id": "gva:geometry:1995:3:2223",
+          "year": 1995
+        },
+        "zone": "Bocairent"
+      },
+      {
+        "left": {
+          "fire_id": "gva:pif-cv:1993VL0022",
+          "geometry_id": "gva:geometry:1993:1:1141",
+          "year": 1993
+        },
+        "positive_area_overlap": true,
+        "right": {
+          "fire_id": "gva:pif-cv:2002VL0228",
+          "geometry_id": "gva:geometry:2002:10:2711",
+          "year": 2002
+        },
+        "zone": "Bocairent"
+      }
+    ],
+    "ranges": [
+      {
+        "from": 1993,
+        "icv_geometries": 715,
+        "icv_records": 715,
+        "legacy_esfire30_geometries": 0,
+        "national_current_loader_excluded_records": 0,
+        "national_current_loader_records": 715,
+        "to": 1993
+      },
+      {
+        "from": 1995,
+        "icv_geometries": 467,
+        "icv_records": 467,
+        "legacy_esfire30_geometries": 0,
+        "national_current_loader_excluded_records": 0,
+        "national_current_loader_records": 467,
+        "to": 1995
+      },
+      {
+        "from": 2000,
+        "icv_geometries": 606,
+        "icv_records": 606,
+        "legacy_esfire30_geometries": 0,
+        "national_current_loader_excluded_records": 0,
+        "national_current_loader_records": 606,
+        "to": 2000
+      },
+      {
+        "from": 2010,
+        "icv_geometries": 328,
+        "icv_records": 328,
+        "legacy_esfire30_geometries": 0,
+        "national_current_loader_excluded_records": 0,
+        "national_current_loader_records": 328,
+        "to": 2010
+      },
+      {
+        "from": 2020,
+        "icv_geometries": 253,
+        "icv_records": 253,
+        "legacy_esfire30_geometries": 0,
+        "national_current_loader_excluded_records": 0,
+        "national_current_loader_records": 253,
+        "to": 2020
+      },
+      {
+        "from": 2024,
+        "icv_geometries": 473,
+        "icv_records": 472,
+        "legacy_esfire30_geometries": 0,
+        "national_current_loader_excluded_records": 0,
+        "national_current_loader_records": 472,
+        "to": 2024
+      },
+      {
+        "from": 1993,
+        "icv_geometries": 13739,
+        "icv_records": 13738,
+        "legacy_esfire30_geometries": 0,
+        "national_current_loader_excluded_records": 1334,
+        "national_current_loader_records": 12404,
+        "to": 2024
+      },
+      {
+        "from": 2000,
+        "icv_geometries": 4878,
+        "icv_records": 4878,
+        "legacy_esfire30_geometries": 0,
+        "national_current_loader_excluded_records": 0,
+        "national_current_loader_records": 4878,
+        "to": 2010
+      },
+      {
+        "from": 2015,
+        "icv_geometries": 3332,
+        "icv_records": 3331,
+        "legacy_esfire30_geometries": 0,
+        "national_current_loader_excluded_records": 1334,
+        "national_current_loader_records": 1997,
+        "to": 2024
+      }
+    ]
+  },
+  "temporal_encoding": {
+    "legacy": "interpolated 1985-old blue to 2026-recent red RGB",
+    "national": "constant ICV green #246b55",
+    "status": "FAIL"
+  }
+}
