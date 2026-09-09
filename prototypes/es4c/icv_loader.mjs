@@ -1,4 +1,5 @@
 import { canonicalFilters, documentedIcvGif, filterStateKey, recordMatchesSourceFilters } from "./source_filters.mjs";
+import { resolveIcvProvince } from "./icv_territory_crosswalk.mjs";
 
 /** Loader ICV para el runtime nacional.
  *
@@ -16,13 +17,14 @@ export const ICV_PROVINCE_BY_ID = Object.freeze({
   "ES:PROV:12": "castellon",
   "ES:PROV:46": "valencia",
 });
-const ICV_KEY_BY_PROVINCE = Object.freeze({ "Alicante/Alacant": "alicante", "Castellón/Castelló": "castellon", "Valencia/València": "valencia" });
 
 function abortError() {
   return new DOMException("Carga ICV sustituida por un estado posterior", "AbortError");
 }
 
 function normalizeMunicipalityId(value) {
+  // filtro documental por municipality_id declarado en ICV; nunca un
+  // spatial join contra BDLJE para deducir municipio desde el perímetro.
   return /^\d{5}$/.test(String(value || "")) ? `ES:MUN:${value}` : null;
 }
 
@@ -95,6 +97,7 @@ export class IcvLoader {
     const features = payload.features.map((feature) => {
       const fire = firesById.get(feature?.properties?.fire_id);
       if (!fire || !feature?.properties?.geometry_id || !feature.geometry) throw new Error(`Feature ICV sin identidad o fire asociado en ${asset.url}`);
+      const province = resolveIcvProvince(fire.province);
       return {
         ...feature,
         properties: {
@@ -102,6 +105,10 @@ export class IcvLoader {
           source_id: "icv",
           geometry_quality: "A_official_vector",
           municipality_id: normalizeMunicipalityId(fire.municipality_id),
+          // La provincia procede exclusivamente del crosswalk documental del
+          // snapshot ICV. No se deriva de la geometría ni del municipio.
+          province_id: province?.territory_id || null,
+          autonomous_community_id: province?.autonomous_community_id || null,
           source_record_id: fire.num_pif_cv,
           year: fire.year,
         },
@@ -124,7 +131,7 @@ export class IcvLoader {
       const assets = this.assetsFor(manifest, { provinces, fromYear, toYear, level });
       const loaded = await Promise.all(assets.map((asset) => this.loadAsset(asset, firesById, controller.signal)));
       if (generation !== this.generation || controller.signal.aborted) return { status: "stale" };
-      const territoryFires = [...firesById.values()].filter((fire) => provinces.includes(ICV_KEY_BY_PROVINCE[fire.province])
+      const territoryFires = [...firesById.values()].filter((fire) => provinces.includes(resolveIcvProvince(fire.province)?.province_key)
         && (!municipalityId || normalizeMunicipalityId(fire.municipality_id) === municipalityId));
       const filteredAllYears = territoryFires.filter((fire) => recordMatchesSourceFilters("icv", fire, normalizedFilters));
       const activeFires = filteredAllYears.filter((fire) => fire.year >= fromYear && fire.year <= toYear);

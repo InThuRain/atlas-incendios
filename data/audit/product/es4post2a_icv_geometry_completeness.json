@@ -1,0 +1,545 @@
+{
+  "phase": "ES-4POST2A_ICV_GEOMETRY_COMPLETENESS",
+  "before": {
+    "runtime_loader_crosswalk": [
+      "Alicante/Alacant",
+      "Castellón/Castelló",
+      "Valencia/València"
+    ],
+    "records": 12404,
+    "geometries": 12405,
+    "missing_records": 1334,
+    "missing_geometries": 1334
+  },
+  "affected_records": {
+    "records": 1334,
+    "geometries": 1334,
+    "by_year": {
+      "2016": {
+        "records": 341,
+        "geometries": 341
+      },
+      "2017": {
+        "records": 346,
+        "geometries": 346
+      },
+      "2018": {
+        "records": 375,
+        "geometries": 375
+      },
+      "2019": {
+        "records": 272,
+        "geometries": 272
+      }
+    },
+    "by_province": {
+      "ALICANTE": {
+        "records": 338,
+        "geometries": 338,
+        "territory_id": "ES:PROV:03"
+      },
+      "CASTELLON": {
+        "records": 273,
+        "geometries": 273,
+        "territory_id": "ES:PROV:12"
+      },
+      "Castellon": {
+        "records": 1,
+        "geometries": 1,
+        "territory_id": "ES:PROV:12"
+      },
+      "VALENCIA": {
+        "records": 722,
+        "geometries": 722,
+        "territory_id": "ES:PROV:46"
+      }
+    }
+  },
+  "raw_values": [
+    {
+      "raw": "ALICANTE",
+      "normalized": "Alicante/Alacant",
+      "count": 338,
+      "geometries": 338,
+      "years": {
+        "2016": 95,
+        "2017": 81,
+        "2018": 93,
+        "2019": 69
+      },
+      "mapped_territory": "ES:PROV:03",
+      "mapped_autonomous_community": "ES:CCAA:10",
+      "mapping_status": "MATCHED_EXPLICIT"
+    },
+    {
+      "raw": "Alicante/Alacant",
+      "normalized": "Alicante/Alacant",
+      "count": 3330,
+      "geometries": 3331,
+      "years": {
+        "1993": 192,
+        "1994": 183,
+        "1995": 97,
+        "1996": 119,
+        "1997": 93,
+        "1998": 173,
+        "1999": 183,
+        "2000": 159,
+        "2001": 121,
+        "2002": 101,
+        "2003": 124,
+        "2004": 145,
+        "2005": 150,
+        "2006": 122,
+        "2007": 91,
+        "2008": 84,
+        "2009": 109,
+        "2010": 108,
+        "2011": 123,
+        "2012": 130,
+        "2013": 93,
+        "2014": 118,
+        "2015": 89,
+        "2020": 88,
+        "2021": 71,
+        "2022": 70,
+        "2023": 96,
+        "2024": 98
+      },
+      "mapped_territory": "ES:PROV:03",
+      "mapped_autonomous_community": "ES:CCAA:10",
+      "mapping_status": "MATCHED_EXPLICIT"
+    },
+    {
+      "raw": "CASTELLON",
+      "normalized": "Castellón/Castelló",
+      "count": 273,
+      "geometries": 273,
+      "years": {
+        "2016": 71,
+        "2017": 62,
+        "2018": 91,
+        "2019": 49
+      },
+      "mapped_territory": "ES:PROV:12",
+      "mapped_autonomous_community": "ES:CCAA:10",
+      "mapping_status": "MATCHED_EXPLICIT"
+    },
+    {
+      "raw": "Castellon",
+      "normalized": "Castellón/Castelló",
+      "count": 1,
+      "geometries": 1,
+      "years": {
+        "2019": 1
+      },
+      "mapped_territory": "ES:PROV:12",
+      "mapped_autonomous_community": "ES:CCAA:10",
+      "mapping_status": "MATCHED_EXPLICIT"
+    },
+    {
+      "raw": "Castellón/Castelló",
+      "normalized": "Castellón/Castelló",
+      "count": 3070,
+      "geometries": 3070,
+      "years": {
+        "1993": 216,
+        "1994": 218,
+        "1995": 123,
+        "1996": 109,
+        "1997": 110,
+        "1998": 150,
+        "1999": 164,
+        "2000": 126,
+        "2001": 123,
+        "2002": 76,
+        "2003": 88,
+        "2004": 120,
+        "2005": 168,
+        "2006": 110,
+        "2007": 114,
+        "2008": 71,
+        "2009": 115,
+        "2010": 63,
+        "2011": 91,
+        "2012": 88,
+        "2013": 70,
+        "2014": 123,
+        "2015": 87,
+        "2020": 43,
+        "2021": 53,
+        "2022": 81,
+        "2023": 80,
+        "2024": 90
+      },
+      "mapped_territory": "ES:PROV:12",
+      "mapped_autonomous_community": "ES:CCAA:10",
+      "mapping_status": "MATCHED_EXPLICIT"
+    },
+    {
+      "raw": "VALENCIA",
+      "normalized": "Valencia/València",
+      "count": 722,
+      "geometries": 722,
+      "years": {
+        "2016": 175,
+        "2017": 203,
+        "2018": 191,
+        "2019": 153
+      },
+      "mapped_territory": "ES:PROV:46",
+      "mapped_autonomous_community": "ES:CCAA:10",
+      "mapping_status": "MATCHED_EXPLICIT"
+    },
+    {
+      "raw": "Valencia/València",
+      "normalized": "Valencia/València",
+      "count": 6004,
+      "geometries": 6004,
+      "years": {
+        "1993": 307,
+        "1994": 351,
+        "1995": 247,
+        "1996": 155,
+        "1997": 145,
+        "1998": 223,
+        "1999": 232,
+        "2000": 321,
+        "2001": 198,
+        "2002": 144,
+        "2003": 196,
+        "2004": 222,
+        "2005": 368,
+        "2006": 240,
+        "2007": 170,
+        "2008": 171,
+        "2009": 203,
+        "2010": 157,
+        "2011": 205,
+        "2012": 268,
+        "2013": 172,
+        "2014": 258,
+        "2015": 139,
+        "2020": 122,
+        "2021": 116,
+        "2022": 141,
+        "2023": 249,
+        "2024": 284
+      },
+      "mapped_territory": "ES:PROV:46",
+      "mapped_autonomous_community": "ES:CCAA:10",
+      "mapping_status": "MATCHED_EXPLICIT"
+    }
+  ],
+  "root_cause": "The runtime loader used a case-sensitive three-value ICV_KEY_BY_PROVINCE map, while the accepted summary path already had seven explicit source aliases. The 2016–2019 source spellings therefore failed only in map/runtime territorial filtering.",
+  "crosswalk": {
+    "module": "prototypes/es4c/icv_territory_crosswalk.mjs",
+    "matching": "exact explicit source value only; unknown values resolve null",
+    "observed_values": 7,
+    "unresolved_observed_values": []
+  },
+  "territory_mapping": {
+    "autonomous_community_id": "ES:CCAA:10",
+    "province_ids": [
+      "ES:PROV:03",
+      "ES:PROV:12",
+      "ES:PROV:46"
+    ]
+  },
+  "rebuilt_assets": {
+    "required": [
+      "national frontend runtime (icv_loader.mjs + icv_territory_crosswalk.mjs)"
+    ],
+    "not_required": [
+      "ICV source attributes/geometries",
+      "national UX summary",
+      "Protomaps",
+      "ESFire30",
+      "EGIF",
+      "EFFIS",
+      "municipal boundaries"
+    ]
+  },
+  "after": {
+    "records": 13738,
+    "geometries": 13739,
+    "unique_fire_ids": 13738
+  },
+  "year_counts": {
+    "1993": {
+      "records": 715,
+      "geometries": 715
+    },
+    "1994": {
+      "records": 752,
+      "geometries": 752
+    },
+    "1995": {
+      "records": 467,
+      "geometries": 467
+    },
+    "1996": {
+      "records": 383,
+      "geometries": 383
+    },
+    "1997": {
+      "records": 348,
+      "geometries": 348
+    },
+    "1998": {
+      "records": 546,
+      "geometries": 546
+    },
+    "1999": {
+      "records": 579,
+      "geometries": 579
+    },
+    "2000": {
+      "records": 606,
+      "geometries": 606
+    },
+    "2001": {
+      "records": 442,
+      "geometries": 442
+    },
+    "2002": {
+      "records": 321,
+      "geometries": 321
+    },
+    "2003": {
+      "records": 408,
+      "geometries": 408
+    },
+    "2004": {
+      "records": 487,
+      "geometries": 487
+    },
+    "2005": {
+      "records": 686,
+      "geometries": 686
+    },
+    "2006": {
+      "records": 472,
+      "geometries": 472
+    },
+    "2007": {
+      "records": 375,
+      "geometries": 375
+    },
+    "2008": {
+      "records": 326,
+      "geometries": 326
+    },
+    "2009": {
+      "records": 427,
+      "geometries": 427
+    },
+    "2010": {
+      "records": 328,
+      "geometries": 328
+    },
+    "2011": {
+      "records": 419,
+      "geometries": 419
+    },
+    "2012": {
+      "records": 486,
+      "geometries": 486
+    },
+    "2013": {
+      "records": 335,
+      "geometries": 335
+    },
+    "2014": {
+      "records": 499,
+      "geometries": 499
+    },
+    "2015": {
+      "records": 315,
+      "geometries": 315
+    },
+    "2016": {
+      "records": 341,
+      "geometries": 341
+    },
+    "2017": {
+      "records": 346,
+      "geometries": 346
+    },
+    "2018": {
+      "records": 375,
+      "geometries": 375
+    },
+    "2019": {
+      "records": 272,
+      "geometries": 272
+    },
+    "2020": {
+      "records": 253,
+      "geometries": 253
+    },
+    "2021": {
+      "records": 240,
+      "geometries": 240
+    },
+    "2022": {
+      "records": 292,
+      "geometries": 292
+    },
+    "2023": {
+      "records": 425,
+      "geometries": 425
+    },
+    "2024": {
+      "records": 472,
+      "geometries": 473
+    }
+  },
+  "territory_counts": {
+    "ES:PROV:03": {
+      "records": 3668,
+      "geometries": 3669
+    },
+    "ES:PROV:12": {
+      "records": 3344,
+      "geometries": 3344
+    },
+    "ES:PROV:46": {
+      "records": 6726,
+      "geometries": 6726
+    },
+    "ES:CCAA:10": {
+      "records": 13738,
+      "geometries": 13739
+    }
+  },
+  "runtime": {
+    "status": "PASS",
+    "scenarios": {
+      "2016": {
+        "loaded_records": 341,
+        "loaded_geometries": 341,
+        "source_features": 341,
+        "geometry_id": "gva:geometry:2016:24:11582",
+        "source_record_id": "gva:pif-cv:2016CS0001",
+        "raw_province": "CASTELLON",
+        "province_id": "ES:PROV:12",
+        "autonomous_community_id": "ES:CCAA:10",
+        "temporal_year": 2016,
+        "detail_visible": true,
+        "selection_summary": "geometry_id: gva:geometry:2016:24:11582 · source record: gva:pif-cv:2016CS0001 · ICV / perímetro oficial Generalitat.",
+        "errors": [],
+        "map_loaded": false,
+        "selected_geometry_id": "gva:geometry:2016:24:11582",
+        "rendered_features": 6,
+        "filtered_records": 4,
+        "restored_records": 341,
+        "elapsed_ms": 4965.75
+      },
+      "2017": {
+        "loaded_records": 346,
+        "loaded_geometries": 346,
+        "source_features": 346,
+        "geometry_id": "gva:geometry:2017:25:12285",
+        "source_record_id": "gva:pif-cv:2017CS0001",
+        "raw_province": "CASTELLON",
+        "province_id": "ES:PROV:12",
+        "autonomous_community_id": "ES:CCAA:10",
+        "temporal_year": 2017,
+        "detail_visible": true,
+        "selection_summary": "geometry_id: gva:geometry:2017:25:12285 · source record: gva:pif-cv:2017CS0001 · ICV / perímetro oficial Generalitat.",
+        "errors": [],
+        "map_loaded": false,
+        "selected_geometry_id": "gva:geometry:2017:25:12285",
+        "rendered_features": 4,
+        "filtered_records": 2,
+        "restored_records": 346,
+        "elapsed_ms": 4957.66
+      },
+      "2018": {
+        "loaded_records": 375,
+        "loaded_geometries": 375,
+        "source_features": 375,
+        "geometry_id": "gva:geometry:2018:26:11922",
+        "source_record_id": "gva:pif-cv:2018CS0001",
+        "raw_province": "CASTELLON",
+        "province_id": "ES:PROV:12",
+        "autonomous_community_id": "ES:CCAA:10",
+        "temporal_year": 2018,
+        "detail_visible": true,
+        "selection_summary": "geometry_id: gva:geometry:2018:26:11922 · source record: gva:pif-cv:2018CS0001 · ICV / perímetro oficial Generalitat.",
+        "errors": [],
+        "map_loaded": false,
+        "selected_geometry_id": "gva:geometry:2018:26:11922",
+        "rendered_features": 4,
+        "filtered_records": 1,
+        "restored_records": 375,
+        "elapsed_ms": 4979.4
+      },
+      "2019": {
+        "loaded_records": 272,
+        "loaded_geometries": 272,
+        "source_features": 272,
+        "geometry_id": "gva:geometry:2019:27:536",
+        "source_record_id": "gva:pif-cv:2019CS0001",
+        "raw_province": "Castellon",
+        "province_id": "ES:PROV:12",
+        "autonomous_community_id": "ES:CCAA:10",
+        "temporal_year": 2019,
+        "detail_visible": true,
+        "selection_summary": "geometry_id: gva:geometry:2019:27:536 · source record: gva:pif-cv:2019CS0001 · ICV / perímetro oficial Generalitat.",
+        "errors": [],
+        "map_loaded": false,
+        "selected_geometry_id": "gva:geometry:2019:27:536",
+        "rendered_features": 1,
+        "filtered_records": 1,
+        "restored_records": 272,
+        "elapsed_ms": 4964.4
+      },
+      "1993-2024": {
+        "loaded_records": 13738,
+        "loaded_geometries": 13739,
+        "source_features": 13739,
+        "geometry_id": "gva:geometry:2016:24:11582",
+        "source_record_id": "gva:pif-cv:2016CS0001",
+        "raw_province": "CASTELLON",
+        "province_id": "ES:PROV:12",
+        "autonomous_community_id": "ES:CCAA:10",
+        "temporal_year": 2016,
+        "detail_visible": true,
+        "selection_summary": "geometry_id: gva:geometry:2016:24:11582 · source record: gva:pif-cv:2016CS0001 · ICV / perímetro oficial Generalitat.",
+        "errors": [],
+        "map_loaded": false,
+        "selected_geometry_id": "gva:geometry:2016:24:11582",
+        "rendered_features": 186,
+        "filtered_records": 74,
+        "restored_records": 13738,
+        "elapsed_ms": 7761.25
+      }
+    },
+    "failures": [],
+    "asset_strategy": "new lightweight frontend plus symlinked accepted product data; no ICV source or geometry rebuild"
+  },
+  "filters": {
+    "status": "PASS",
+    "contract": "ICV area/GIF/cause filters run after the explicit source-value crosswalk; runtime smoke exercises area then restores the unfiltered result."
+  },
+  "permalinks": {
+    "schema_change": false,
+    "status": "PASS",
+    "note": "Only loader normalization changes; es4c-state-v1 is not modified."
+  },
+  "performance": {
+    "status": "PASS",
+    "note": "No new asset family or eager national data load. Per-scenario elapsed milliseconds are retained in runtime.scenarios."
+  },
+  "tests": {
+    "status": "PASS",
+    "focused_test": "tests/test_es4post2a_icv_geometry_completeness.py"
+  },
+  "production_recommendation": {
+    "priority": "HIGH",
+    "release_tag_status": "HOLD"
+  },
+  "status": "PASS"
+}

@@ -40,6 +40,7 @@ RUNTIME_FILES = (
     "municipality_loader.mjs",
     "municipality_layer.mjs",
     "municipality_esfire_index.mjs",
+    "icv_territory_crosswalk.mjs",
     "icv_loader.mjs",
     "effis_loader.mjs",
     "source_filters.mjs",
