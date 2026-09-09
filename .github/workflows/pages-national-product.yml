@@ -1,0 +1,53 @@
+name: Deploy exact national Atlas product to GitHub Pages
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Shared with the legacy workflow and pages.yml. A rollback is queued rather
+# than cancelled while an operator investigates a national deployment.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Download fixed golden national archive
+        run: |
+          curl --fail --location --retry 3 --retry-delay 2 \
+            'https://github.com/InThuRain/atlas-incendios-es4c3d4-pages-staging/releases/download/national-product-staging-es4e4a/national-product-staging.tar' \
+            --output national-product-staging.tar
+
+      - name: Verify archive, extract safely and gate exact site identity
+        run: |
+          python scripts/check_national_product_release_gate.py \
+            --archive national-product-staging.tar \
+            --extract-to site \
+            --output runner-national-product-identity.json | tee -a "$GITHUB_STEP_SUMMARY"
+          printf '%s\n' 'golden archive identity PASS; runner site identity PASS' | tee -a "$GITHUB_STEP_SUMMARY"
+
+      - name: Preserve runner identity evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: national-product-runner-identity
+          path: runner-national-product-identity.json
+          if-no-files-found: error
+
+      - uses: actions/configure-pages@v5
+      - name: Upload exact national Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+      - id: deployment
+        uses: actions/deploy-pages@v4

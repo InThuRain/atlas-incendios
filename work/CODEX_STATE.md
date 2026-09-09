@@ -374,6 +374,34 @@ PRODUCT_RELEASE_CANDIDATE = READY_FOR_PRODUCTION_SWITCH
 
 NEXT_PHASE = ES-4D5_ROOT_SWITCH_EXECUTION
 
+PHASE = ES-4D5_RELEASE_WORKFLOWS_PREPARATION
+
+STATUS = DONE (workflows locales preparados; no push, dispatch ni deploy).
+
+GOLDEN_TAR_LOCATION = GitHub Release asset InThuRain/atlas-incendios-es4c3d4-pages-staging / national-product-staging-es4e4a / national-product-staging.tar
+
+GOLDEN_TAR_AVAILABILITY = DURABLE
+
+GOLDEN_TAR_BYTES = 812902400
+
+GOLDEN_TAR_SHA256 = 4bcc80fefbd9209f3808ae60011b9d59b4075dd0b27053d60167ce1af781edb7
+
+NATIONAL_DEPLOY_WORKFLOW_STATUS = READY
+
+ROLLBACK_WORKFLOW_STATUS = READY
+
+LEGACY_ROLLBACK_BUILD_STATUS = REPRODUCIBLE_WITH_PINNED_INPUTS (anchor f7a3532f633a247f33dee3ebba9fbcc316c0e534; public-data-v5 verificado; build/validate local temporal PASS).
+
+ROOT_SWITCH_WORKFLOW_STATUS = READY
+
+PRODUCTION_SWITCH_READY = true
+
+PRODUCT_RELEASE_CANDIDATE = READY_FOR_PRODUCTION_SWITCH
+
+D5_STATUS = READY_TO_RESUME_EXECUTION
+
+NEXT_PHASE = ES-4D5_ROOT_SWITCH_EXECUTION
+
 PHASE = ES-4E1
 
 STATUS = DONE (auditoría comparativa de producto GVA vs staging nacional completada; sin cambios de runtime, producción, staging ni datos).

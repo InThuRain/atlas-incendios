@@ -1,0 +1,65 @@
+{
+  "phase": "ES-4D5_RELEASE_WORKFLOWS_PREPARATION",
+  "previous_execution_attempt": {
+    "status": "BLOCKED_PRE_PUSH_RELEASE_WORKFLOWS",
+    "production_unchanged": true,
+    "reason": "pages.yml was the historical GVA builder, not an identity-gated national artifact deployment workflow"
+  },
+  "golden_tar": {
+    "location": "GitHub Release asset: InThuRain/atlas-incendios-es4c3d4-pages-staging / national-product-staging-es4e4a",
+    "url": "https://github.com/InThuRain/atlas-incendios-es4c3d4-pages-staging/releases/download/national-product-staging-es4e4a/national-product-staging.tar",
+    "availability": "DURABLE",
+    "bytes": 812902400,
+    "sha256": "4bcc80fefbd9209f3808ae60011b9d59b4075dd0b27053d60167ce1af781edb7",
+    "transport_status": "READY"
+  },
+  "national_workflow": {
+    "path": ".github/workflows/pages-national-product.yml",
+    "trigger": "workflow_dispatch",
+    "inputs": [],
+    "rebuilds_datasets": false,
+    "rebuilds_site": false,
+    "base_path_rewrite": false,
+    "target": "GitHub Pages production root"
+  },
+  "national_gate": {
+    "script": "scripts/check_national_product_release_gate.py",
+    "archive": {"bytes": 812902400, "sha256": "4bcc80fefbd9209f3808ae60011b9d59b4075dd0b27053d60167ce1af781edb7"},
+    "site": {
+      "site_file_count": 497,
+      "site_total_bytes": 812510441,
+      "payload_file_count": 495,
+      "payload_total_bytes": 812291384,
+      "payload_fingerprint": "10582ec0dc896654006c2162ea66e2fd7710790c477bb072bfb2473c51b18df3",
+      "asset_manifest_sha256": "377b565548b6ff1376acde99e0cae458eb2b72d704c39587990126a0e69cf96e",
+      "site_identity_sha256": "f5e80a728f45057692f36ba41f76900c9d00b9c962cedc4eb591e29e813da04e"
+    },
+    "required_assets": {"protomaps": "72bb270ff6fc18ccba3042834f9a9eb72901c243e7dec88b3ebb63eaafaeb729", "esfire30": "3c6eb10ba146008cdabf36646d48a4c7a92c1c1357ad90679f6b5dce42013cfe", "glyph_ranges": 9},
+    "local_dry_gate": "PASS"
+  },
+  "rollback_anchor": "f7a3532f633a247f33dee3ebba9fbcc316c0e534",
+  "legacy_build": {
+    "command": "download_public_data_bundle -> build_frontend_profile public -> validators -> build_public_site -> validate_public_site",
+    "required_input": {"release": "public-data-v5", "asset": "atlas-public-data-v5.tar.gz", "bytes": 13399633, "sha256": "622030c9d0d6b52b94a4796d75aaa7bf125df132c7034935531b0a64c8c98e4c"},
+    "status": "REPRODUCIBLE_WITH_PINNED_INPUTS",
+    "local_worktree_validation": "PASS",
+    "retroactive_site_identity": null
+  },
+  "rollback_workflow": {
+    "path": ".github/workflows/pages-legacy-gva-rollback.yml",
+    "trigger": "workflow_dispatch",
+    "checkout_ref": "f7a3532f633a247f33dee3ebba9fbcc316c0e534",
+    "mutates_main": false,
+    "site_verification": "validate_public_site.py PASS"
+  },
+  "concurrency": {"group": "pages", "cancel_in_progress": false, "shared_with": ["pages.yml", "pages-national-product.yml", "pages-legacy-gva-rollback.yml"]},
+  "permissions": ["contents: read", "pages: write", "id-token: write"],
+  "action_versions": {"checkout": "v5", "setup_python": "v6", "configure_pages": "v5", "upload_pages_artifact": "v3", "deploy_pages": "v4", "upload_artifact": "v4"},
+  "validation": {"yaml_parser": "PASS (PyYAML)", "actionlint": "NOT_INSTALLED", "static_safety_tests": "PASS", "workflow_order": "PASS"},
+  "negative_tests": {"wrong_tar_sha": "FAIL_BEFORE_DEPLOY", "wrong_site_total_bytes": "FAIL_BEFORE_DEPLOY", "wrong_site_identity": "FAIL_BEFORE_DEPLOY"},
+  "production_status": {"url": "https://inthurain.github.io/atlas-incendios/", "status": 200, "unchanged": true},
+  "staging_status": {"url": "https://inthurain.github.io/atlas-incendios-es4c3d4-pages-staging/", "status": 200, "unchanged": true},
+  "blockers": [],
+  "status": "READY",
+  "next_phase": "ES-4D5_ROOT_SWITCH_EXECUTION"
+}
