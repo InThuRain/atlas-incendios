@@ -1,0 +1,92 @@
+{
+  "schema_version": "es4d5-root-switch-execution-v1",
+  "phase": "ES-4D5_ROOT_SWITCH_EXECUTION",
+  "status": "PASS",
+  "production_url": "https://inthurain.github.io/atlas-incendios/",
+  "staging_url": "https://inthurain.github.io/atlas-incendios-es4c3d4-pages-staging/",
+  "git": {
+    "pushed_head": "84cbc9e43f2b1555a84b17cd5b94643b0b31eb1c",
+    "origin_main_before_push": "7b6520bd3f9c6729580bb48692dd5f7a3afa79ca",
+    "origin_main_after_push": "84cbc9e43f2b1555a84b17cd5b94643b0b31eb1c",
+    "push_mode": "normal_no_force"
+  },
+  "workflow": {
+    "name": "pages-national-product.yml",
+    "run_id": 34373964522,
+    "conclusion": "success",
+    "pages_artifact_id": 10113096632,
+    "deployment_id": 6353961987,
+    "deployment_state": "success"
+  },
+  "identity": {
+    "transport_tar": {
+      "bytes": 812902400,
+      "sha256": "4bcc80fefbd9209f3808ae60011b9d59b4075dd0b27053d60167ce1af781edb7"
+    },
+    "site_file_count": 497,
+    "site_total_bytes": 812510441,
+    "payload_file_count": 495,
+    "payload_total_bytes": 812291384,
+    "payload_fingerprint": "10582ec0dc896654006c2162ea66e2fd7710790c477bb072bfb2473c51b18df3",
+    "asset_manifest_sha256": "377b565548b6ff1376acde99e0cae458eb2b72d704c39587990126a0e69cf96e",
+    "site_identity_sha256": "f5e80a728f45057692f36ba41f76900c9d00b9c962cedc4eb591e29e813da04e",
+    "staging_references": 0,
+    "unexpected_runtime_domains": []
+  },
+  "pmtiles": {
+    "protomaps": {
+      "bytes": 293324998,
+      "sha256": "72bb270ff6fc18ccba3042834f9a9eb72901c243e7dec88b3ebb63eaafaeb729",
+      "range_tests": "0-0, initial, middle, final: 206 byte-identical",
+      "passed": true
+    },
+    "esfire30": {
+      "bytes": 63052056,
+      "sha256": "3c6eb10ba146008cdabf36646d48a4c7a92c1c1357ad90679f6b5dce42013cfe",
+      "range_tests": "0-0, initial, middle, final: 206 byte-identical",
+      "passed": true
+    },
+    "full_download_observed": false,
+    "glyph_ranges": 9,
+    "glyph_404_count": 0
+  },
+  "browser_acceptance": {
+    "metrics_passed": 13,
+    "filters_passed": 13,
+    "highlights_passed": 10,
+    "icv_gif_independent": true,
+    "network_scenarios_passed": ["spain_cold", "galicia", "ourense", "cangas", "elx"],
+    "warm_navigation_passed": true,
+    "mobile_passed": true,
+    "runtime_errors": 0,
+    "native_permalink": {"fresh_tab_match": true, "reload_match": true},
+    "legacy_gva_v1": {
+      "historic_1995": "PASS_DIRECT",
+      "recent_effis": "PASS_DIRECT",
+      "harness_note": "The legacy observer requires a test node absent after v1 hash restoration; direct browser checks confirm map and restored state."
+    }
+  },
+  "product_controls": {
+    "spain_1995": {"esfire30_perimeters": 5035, "egif_records": 25557, "egif_known_forest_area_ha": 141082},
+    "gva_1995": {"icv_official_records": 467, "egif_records": 467, "esfire30_perimeters": 25},
+    "elx_2025": {"effis_perimeters": 1, "effis_area_ha": 7},
+    "canarias": "EGIF available; ESFire30 no cartographic perimeter coverage, not zero fires",
+    "cangas_del_narcea": {"municipal_esfire30_geometry_ids": 2610, "status": "PASS"}
+  },
+  "network_observations": {
+    "spain_cold": {"esfire30": {"requests": 10, "bytes": 1811399}, "protomaps": {"requests": 10, "bytes": 496979}, "ready_ms": 6515.48},
+    "galicia": {"esfire30": {"requests": 18, "bytes": 5670097}, "protomaps": {"requests": 18, "bytes": 1299772}, "ready_ms": 8710.18},
+    "ourense": {"esfire30": {"requests": 24, "bytes": 7262234}, "protomaps": {"requests": 24, "bytes": 1986926}, "ready_ms": 9580.05},
+    "cangas": {"esfire30": {"requests": 18, "bytes": 3332074}, "protomaps": {"requests": 18, "bytes": 1276658}, "ready_ms": 12037.62},
+    "elx": {"esfire30": {"requests": 19, "bytes": 738636}, "protomaps": {"requests": 22, "bytes": 1091144}, "ready_ms": 6993.02}
+  },
+  "rollback": {
+    "required": false,
+    "executed": false,
+    "workflow": "pages-legacy-gva-rollback.yml",
+    "fixed_anchor": "f7a3532f633a247f33dee3ebba9fbcc316c0e534"
+  },
+  "cdn_cache_validation": "NOT_VALIDATED_INDEPENDENTLY",
+  "next_phase": "POST_RELEASE_CHECKPOINT",
+  "recommended_future_tag": "national-product-v1.0.0"
+}

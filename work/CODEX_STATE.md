@@ -941,3 +941,51 @@ D5_STATUS = READY_TO_RESUME (no autorizado/iniciado en E4B)
 RESULTS_PATH = ES_4E4B_NATIONAL_PRODUCT_REMOTE_ACCEPTANCE.md; data/audit/product/es4e4b_national_product_remote_acceptance.json
 
 NEXT_PHASE = ES-4D5_ROOT_SWITCH_DECISION
+
+PHASE = ES-4D5_ROOT_SWITCH_EXECUTION
+
+STATUS = DONE (push normal autorizado, workflow nacional manual y deployment Pages remoto ejecutados; root nacional con identidad exacta, Range, producto, enlaces y móvil aceptados).
+
+ROOT_SWITCH_EXECUTION = PASS
+
+PRODUCTION_SWITCH_STATUS = PASS
+
+REMOTE_PRODUCTION_IDENTITY_STATUS = PASS
+
+NATIONAL_PRODUCT_STATUS = LIVE
+
+PRODUCT_RELEASE_CANDIDATE = RELEASED
+
+D5_STATUS = COMPLETE
+
+ROLLBACK_REQUIRED = false
+
+PRODUCTION_URL = https://inthurain.github.io/atlas-incendios/
+
+STAGING_URL = https://inthurain.github.io/atlas-incendios-es4c3d4-pages-staging/
+
+PUSHED_HEAD = 84cbc9e43f2b1555a84b17cd5b94643b0b31eb1c
+
+WORKFLOW_RUN_ID = 34373964522
+
+PAGES_ARTIFACT_ID = 10113096632
+
+PAGES_DEPLOYMENT_ID = 6353961987
+
+REMOTE_SITE_IDENTITY = f5e80a728f45057692f36ba41f76900c9d00b9c962cedc4eb591e29e813da04e
+
+REMOTE_ASSET_MANIFEST = 377b565548b6ff1376acde99e0cae458eb2b72d704c39587990126a0e69cf96e
+
+PMTILES_RANGE = PASS (Protomaps + ESFire30: 0-0, initial, middle and final HTTP 206 byte-identical; no full download).
+
+GLYPH_404_COUNT = 0
+
+RUNTIME_UNEXPECTED_ERRORS = 0
+
+LEGACY_GVA_V1 = PASS_DIRECT (historic and EFFIS hashes restore state/map; the old test-node observer is not applicable after v1 restoration).
+
+CDN_CACHE_VALIDATION = NOT_VALIDATED_INDEPENDENTLY
+
+RESULTS_PATH = ES_4D5_ROOT_SWITCH_EXECUTION.md; data/audit/product/es4d5_root_switch_execution.json
+
+NEXT_PHASE = POST_RELEASE_CHECKPOINT
