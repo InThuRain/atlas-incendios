@@ -1,0 +1,106 @@
+{
+  "phase": "ES-4D5_ROOT_SWITCH_DECISION",
+  "local_git": {
+    "branch": "main",
+    "head": "201c3a93956e153ff356dcf2a127482b9af7f420",
+    "working_tree_at_audit_start": "clean",
+    "commits_ahead_of_origin_main": 4,
+    "commits_behind_origin_main": 0,
+    "ahead_commits": [
+      {"sha": "57e946d", "subject": "Validate exact national product staging deployment"},
+      {"sha": "e7e41ff", "subject": "Record E4A staging checkpoint"},
+      {"sha": "f375be7", "subject": "Accept national product remotely"},
+      {"sha": "201c3a9", "subject": "Complete remote acceptance evidence"}
+    ]
+  },
+  "remote_git": {
+    "origin_main": "7b6520bd3f9c6729580bb48692dd5f7a3afa79ca",
+    "fetch": "git fetch origin --prune",
+    "push_triggers_pages": false
+  },
+  "production_current": {
+    "repository": "InThuRain/atlas-incendios",
+    "branch": "main",
+    "url": "https://inthurain.github.io/atlas-incendios/",
+    "root_status": 200,
+    "pages_build_type": "workflow",
+    "pages_source": {"branch": "main", "path": "/"},
+    "workflow": ".github/workflows/pages.yml",
+    "workflow_trigger": "workflow_dispatch",
+    "workflow_run_id": 32943744421,
+    "deployment_id": 6099343480,
+    "deployment_status_id": 17347149751,
+    "deployment_status": "success",
+    "git_commit": "f7a3532f633a247f33dee3ebba9fbcc316c0e534",
+    "root_identity": null
+  },
+  "staging_candidate": {
+    "url": "https://inthurain.github.io/atlas-incendios-es4c3d4-pages-staging/",
+    "repository": "InThuRain/atlas-incendios-es4c3d4-pages-staging",
+    "branch": "main",
+    "deployed_commit": "a210ab94812aab85686ef76ef4654b954426bc75",
+    "remote_acceptance": "PASS_WITH_MINOR_GAPS",
+    "status": "golden_candidate"
+  },
+  "artifact_identity": {
+    "site_file_count": 497,
+    "site_total_bytes": 812510441,
+    "payload_file_count": 495,
+    "payload_total_bytes": 812291384,
+    "payload_fingerprint": "10582ec0dc896654006c2162ea66e2fd7710790c477bb072bfb2473c51b18df3",
+    "asset_manifest_sha256": "377b565548b6ff1376acde99e0cae458eb2b72d704c39587990126a0e69cf96e",
+    "site_identity_sha256": "f5e80a728f45057692f36ba41f76900c9d00b9c962cedc4eb591e29e813da04e",
+    "checker": "PASS",
+    "transport": {
+      "url": "https://github.com/InThuRain/atlas-incendios-es4c3d4-pages-staging/releases/download/national-product-staging-es4e4a/national-product-staging.tar",
+      "bytes": 812902400,
+      "sha256": "4bcc80fefbd9209f3808ae60011b9d59b4075dd0b27053d60167ce1af781edb7"
+    }
+  },
+  "deployment_mechanism": {
+    "current_gva": "manual pages.yml; builds GVA from source and immutable public-data bundle",
+    "national_plan": "new manual identity-gated artifact transport workflow, cloned from accepted E4A mechanism",
+    "permissions": ["contents: read", "pages: write", "id-token: write"],
+    "code_push_and_deploy_separable": true
+  },
+  "push_effects": {
+    "command": "git push origin main",
+    "commits": 4,
+    "automatic_pages_deployment": false,
+    "risk": "synchronizes traceability only; a manual workflow dispatch remains required"
+  },
+  "root_path": {
+    "production": "/atlas-incendios/",
+    "staging_specific_paths_found_in_accepted_artifact": 0,
+    "runtime_external_data_domains": [],
+    "portable": true
+  },
+  "permalink_compatibility": {
+    "legacy_gva_v1": "PASS",
+    "national_es4c_state_v1": "PASS",
+    "contract": "legacy hashes are adapted without rewriting; native hashes remain native"
+  },
+  "capacity": {
+    "site_total_bytes": 812510441,
+    "conservative_remaining_bytes": 187489559,
+    "status": "LIMITED_BUT_ACCEPTABLE"
+  },
+  "rollback_anchor": {
+    "git_commit": "f7a3532f633a247f33dee3ebba9fbcc316c0e534",
+    "workflow_run_id": 32943744421,
+    "deployment_id": 6099343480,
+    "artifact_available": false,
+    "strategy": "manual rollback workflow that checks out the fixed anchor and runs its historical GVA build"
+  },
+  "rollback_plan": {
+    "workflow_to_add_in_d5b": "pages-legacy-gva-rollback.yml",
+    "triggers": ["root unavailable", "wrong remote identity", "Protomaps Range failure", "ESFire30 Range failure", "glyph failure", "base-path failure", "severe permalink regression", "major map/runtime crash"],
+    "manual_rebuild": false,
+    "staging_preserved": true,
+    "gva_history_preserved": true
+  },
+  "postdeploy_gates": ["root", "Spain 1995", "GVA 1995", "Elx 2025", "Canarias", "legacy #v=1", "native #es4c-state-v1", "mobile 390x844", "Protomaps Range", "ESFire30 Range", "glyphs", "remote identity", "no full PMTiles download"],
+  "risks": ["cache max-age=600 requires a clean-profile and cache-busting verification", "Pages capacity is limited", "Node 20 to Node 24 warning is NON_BLOCKING_INFRA_WARNING"],
+  "decision": {"root_switch_decision": "GO", "production_switch_ready": true, "product_release_candidate": "READY_FOR_PRODUCTION_SWITCH"},
+  "next_phase": "ES-4D5_ROOT_SWITCH_EXECUTION"
+}

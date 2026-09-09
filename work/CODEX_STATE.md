@@ -348,6 +348,32 @@ RESULTS_PATH = ES_4D4B_NATIONAL_PRODUCTION_STAGING_ACCEPTANCE.md; data/audit/pro
 
 NEXT_PHASE = ES-4D5_ROOT_SWITCH_DECISION
 
+PHASE = ES-4D5_ROOT_SWITCH_DECISION
+
+STATUS = DONE (decisión y runbook locales; sin push, deploy ni mutación remota).
+
+LOCAL_HEAD_AT_AUDIT = 201c3a93956e153ff356dcf2a127482b9af7f420
+
+ORIGIN_MAIN_AT_AUDIT = 7b6520bd3f9c6729580bb48692dd5f7a3afa79ca
+
+LOCAL_DIVERGENCE = 4 ahead / 0 behind; working tree clean al iniciar la auditoría.
+
+CURRENT_PRODUCTION_GIT_COMMIT = f7a3532f633a247f33dee3ebba9fbcc316c0e534
+
+CURRENT_PRODUCTION_WORKFLOW = .github/workflows/pages.yml; workflow_dispatch only; run 32943744421; deployment 6099343480 / status 17347149751 success.
+
+ROLLBACK_ANCHOR = f7a3532f633a247f33dee3ebba9fbcc316c0e534
+
+ACCEPTED_ARTIFACT = 497 files / 812510441 B / payload 10582ec0dc896654006c2162ea66e2fd7710790c477bb072bfb2473c51b18df3 / manifest 377b565548b6ff1376acde99e0cae458eb2b72d704c39587990126a0e69cf96e / site f5e80a728f45057692f36ba41f76900c9d00b9c962cedc4eb591e29e813da04e.
+
+ROOT_SWITCH_DECISION = GO
+
+PRODUCTION_SWITCH_READY = true
+
+PRODUCT_RELEASE_CANDIDATE = READY_FOR_PRODUCTION_SWITCH
+
+NEXT_PHASE = ES-4D5_ROOT_SWITCH_EXECUTION
+
 PHASE = ES-4E1
 
 STATUS = DONE (auditoría comparativa de producto GVA vs staging nacional completada; sin cambios de runtime, producción, staging ni datos).
