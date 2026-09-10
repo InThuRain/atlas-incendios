@@ -19,6 +19,7 @@ import { MunicipalityEsfireIndexLoader, municipalityFilterExpression } from "./m
 import { IcvLoader, icvLevelForZoom, icvProvincesForScope } from "./icv_loader.mjs";
 import { EffisLoader, effisIntegratedTerritory } from "./effis_loader.mjs";
 import { applicableFilterContracts, canonicalFilters, documentedIcvGif, filtersForSource } from "./source_filters.mjs";
+import { temporalColorExpression, temporalVisualState } from "./temporal_style.mjs";
 import { adaptLegacyGvaV1State, dispatchStateHash, parseLegacyGvaV1State } from "../../src/national/compat/gva-v1.mjs";
 
 const runtimeAssets = runtimeConfig.assets || {};
@@ -29,7 +30,9 @@ const BASEMAP_ARCHIVE_URL = runtimeAssets.basemap?.pmtiles?.path ? runtimeUrl(ru
 const BASEMAP_GLYPHS_TEMPLATE = runtimeAssets.basemap?.glyphs?.template || null;
 const SOURCE_LAYER = "esfire30";
 const FILL_LAYER = "esfire30-perimeters";
+const OUTLINE_LAYER = "esfire30-perimeter-outlines";
 const SELECTED_LAYER = "esfire30-selected";
+const HOVER_LAYER = "esfire30-hover";
 const YEAR_MIN = 1968;
 // ICV se activa únicamente desde src/national/asset-config.mjs. El
 // prototipo histórico conserva por tanto su tope 2023.
@@ -38,13 +41,17 @@ const ICV_ASSET_BASE_URL = runtimeUrl(runtimeAssets.icv?.asset_base_url?.path ||
 const ICV_ENABLED = Boolean(ICV_MANIFEST_URL);
 const ICV_SOURCE_ID = "icv";
 const ICV_FILL_LAYER = "icv-perimeters";
+const ICV_OUTLINE_LAYER = "icv-perimeter-outlines";
 const ICV_SELECTED_LAYER = "icv-selected";
+const ICV_HOVER_LAYER = "icv-hover";
 const EFFIS_MANIFEST_URL = runtimeAssets.effis?.manifest?.path ? runtimeUrl(runtimeAssets.effis.manifest.path) : null;
 const EFFIS_ASSET_BASE_URL = runtimeUrl(runtimeAssets.effis?.asset_base_url?.path || runtimeConfig.asset_base_url || "./");
 const EFFIS_ENABLED = Boolean(EFFIS_MANIFEST_URL);
 const EFFIS_SOURCE_ID = "effis";
 const EFFIS_FILL_LAYER = "effis-perimeters";
+const EFFIS_OUTLINE_LAYER = "effis-perimeter-outlines";
 const EFFIS_SELECTED_LAYER = "effis-selected";
+const EFFIS_HOVER_LAYER = "effis-hover";
 const YEAR_MAX = EFFIS_ENABLED ? 2026 : ICV_ENABLED ? 2024 : 2023;
 const ESFIRE_YEAR_MIN = 1985;
 const ESFIRE_YEAR_MAX = 2021;
@@ -299,33 +306,69 @@ const map = new maplibregl.Map({
         type: "fill",
         source: SOURCE_ID,
         "source-layer": SOURCE_LAYER,
-        paint: { "fill-color": "#b54d2f", "fill-opacity": 0.42, "fill-outline-color": "#76321f" },
+        layout: { "fill-sort-key": ["to-number", ["get", "year"]] },
+        paint: { "fill-color": temporalColorExpression(temporalVisualState(state.from, state.to).domain), "fill-opacity": 0.2 },
+      },
+      {
+        id: OUTLINE_LAYER,
+        type: "line",
+        source: SOURCE_ID,
+        "source-layer": SOURCE_LAYER,
+        paint: { "line-color": "#875b20", "line-width": 2, "line-opacity": 0.78, "line-dasharray": [2, 5] },
       },
       {
         id: ICV_FILL_LAYER,
         type: "fill",
         source: ICV_SOURCE_ID,
-        paint: { "fill-color": "#246b55", "fill-opacity": 0.38, "fill-outline-color": "#164a3a" },
+        layout: { "fill-sort-key": ["to-number", ["get", "year"]] },
+        paint: { "fill-color": temporalColorExpression(temporalVisualState(state.from, state.to).domain), "fill-opacity": 0.28 },
+      },
+      {
+        id: ICV_OUTLINE_LAYER,
+        type: "line",
+        source: ICV_SOURCE_ID,
+        paint: { "line-color": temporalColorExpression(temporalVisualState(state.from, state.to).domain), "line-width": 1.2, "line-opacity": 0.9 },
       },
       {
         id: ICV_SELECTED_LAYER,
         type: "line",
         source: ICV_SOURCE_ID,
         filter: ["==", ["get", "geometry_id"], "__none__"],
-        paint: { "line-color": "#102f25", "line-width": 3.5, "line-opacity": 1 },
+        paint: { "line-color": "#151a18", "line-width": 3, "line-opacity": 1 },
+      },
+      {
+        id: ICV_HOVER_LAYER,
+        type: "line",
+        source: ICV_SOURCE_ID,
+        filter: ["==", ["get", "geometry_id"], "__none__"],
+        paint: { "line-color": "#151a18", "line-width": 2.2, "line-opacity": 0.95 },
       },
       {
         id: EFFIS_FILL_LAYER,
         type: "fill",
         source: EFFIS_SOURCE_ID,
-        paint: { "fill-color": "#6a4fa3", "fill-opacity": 0.28, "fill-outline-color": "#49356f" },
+        layout: { "fill-sort-key": ["to-number", ["get", "year"]] },
+        paint: { "fill-color": temporalColorExpression(temporalVisualState(state.from, state.to).domain), "fill-opacity": 0.2 },
+      },
+      {
+        id: EFFIS_OUTLINE_LAYER,
+        type: "line",
+        source: EFFIS_SOURCE_ID,
+        paint: { "line-color": temporalColorExpression(temporalVisualState(state.from, state.to).domain), "line-width": 2, "line-opacity": 0.85, "line-dasharray": [7, 5] },
       },
       {
         id: EFFIS_SELECTED_LAYER,
         type: "line",
         source: EFFIS_SOURCE_ID,
         filter: ["==", ["get", "geometry_id"], "__none__"],
-        paint: { "line-color": "#211a2f", "line-width": 3.5, "line-dasharray": [2, 2] },
+        paint: { "line-color": "#211a2f", "line-width": 4, "line-dasharray": [2, 2] },
+      },
+      {
+        id: EFFIS_HOVER_LAYER,
+        type: "line",
+        source: EFFIS_SOURCE_ID,
+        filter: ["==", ["get", "geometry_id"], "__none__"],
+        paint: { "line-color": "#211a2f", "line-width": 2.6, "line-opacity": 0.95, "line-dasharray": [2, 2] },
       },
       {
         id: SELECTED_LAYER,
@@ -333,7 +376,15 @@ const map = new maplibregl.Map({
         source: SOURCE_ID,
         "source-layer": SOURCE_LAYER,
         filter: ["==", ["get", "geometry_id"], "__none__"],
-        paint: { "line-color": "#112f72", "line-width": 3.5, "line-opacity": 1 },
+        paint: { "line-color": "#151a18", "line-width": 4, "line-opacity": 1 },
+      },
+      {
+        id: HOVER_LAYER,
+        type: "line",
+        source: SOURCE_ID,
+        "source-layer": SOURCE_LAYER,
+        filter: ["==", ["get", "geometry_id"], "__none__"],
+        paint: { "line-color": "#151a18", "line-width": 2.8, "line-opacity": 0.95, "line-dasharray": [2, 5] },
       },
     ],
   },
@@ -440,6 +491,41 @@ function yearFilter() {
   return ["all", [">=", ["to-number", ["get", "year"]], from], ["<=", ["to-number", ["get", "year"]], to]];
 }
 
+// La escala se deriva sólo del intervalo solicitado y de la cobertura geométrica
+// conocida 1985–2026. No mira los resultados de filtros por área/GIF/causa ni
+// el subconjunto de teselas cargado, para que un mismo año conserve su sentido.
+function currentTemporalVisual() {
+  return temporalVisualState(state.from, state.to);
+}
+
+function applyTemporalStyle() {
+  const visual = currentTemporalVisual();
+  const color = visual.expression;
+  for (const layer of [FILL_LAYER, ICV_FILL_LAYER, EFFIS_FILL_LAYER]) {
+    if (map.getLayer(layer)) map.setPaintProperty(layer, "fill-color", color);
+  }
+  for (const layer of [ICV_OUTLINE_LAYER, EFFIS_OUTLINE_LAYER]) {
+    if (map.getLayer(layer)) map.setPaintProperty(layer, "line-color", color);
+  }
+  return visual;
+}
+
+function setLayerFilter(layer, filter) {
+  if (map.getLayer(layer)) map.setFilter(layer, filter);
+}
+
+function clearHover(sourceId) {
+  const layer = sourceId === "icv" ? ICV_HOVER_LAYER : sourceId === "effis" ? EFFIS_HOVER_LAYER : HOVER_LAYER;
+  setLayerFilter(layer, ["==", ["get", "geometry_id"], "__none__"]);
+}
+
+function showHover(sourceId, feature) {
+  const geometryId = feature?.properties?.geometry_id;
+  if (!geometryId) return clearHover(sourceId);
+  const layer = sourceId === "icv" ? ICV_HOVER_LAYER : sourceId === "effis" ? EFFIS_HOVER_LAYER : HOVER_LAYER;
+  setLayerFilter(layer, ["==", ["get", "geometry_id"], String(geometryId)]);
+}
+
 function territoryCode(territoryId) {
   const match = /^ES:(CCAA|PROV):(\d{2})$/.exec(territoryId || "");
   return match ? { code: Number(match[2]), property_prefix: match[1] === "CCAA" ? "ccaa" : "prov" } : null;
@@ -463,8 +549,11 @@ function applyFilters() {
   lastEsfireFilterStartedAt = performance.now();
   const territoryFilter = territoryFilterExpression();
   const visibleFilter = ["all", yearFilter(), territoryFilter];
-  map.setFilter(FILL_LAYER, visibleFilter);
-  map.setFilter(SELECTED_LAYER, state.selected_geometry_id
+  applyTemporalStyle();
+  setLayerFilter(FILL_LAYER, visibleFilter);
+  setLayerFilter(OUTLINE_LAYER, visibleFilter);
+  setLayerFilter(HOVER_LAYER, ["==", ["get", "geometry_id"], "__none__"]);
+  setLayerFilter(SELECTED_LAYER, state.selected_geometry_id
     ? ["all", visibleFilter, ["==", ["get", "geometry_id"], state.selected_geometry_id]]
     : ["==", ["get", "geometry_id"], "__none__"]);
 }
@@ -1030,7 +1119,8 @@ function setIcvCollection(features = []) {
 
 function clearIcvSelection(updateState = true) {
   if (updateState) state = reduceRuntimeState(state, { type: "clear_icv_geometry_selection" });
-  map.setFilter(ICV_SELECTED_LAYER, ["==", ["get", "geometry_id"], "__none__"]);
+  setLayerFilter(ICV_SELECTED_LAYER, ["==", ["get", "geometry_id"], "__none__"]);
+  clearHover("icv");
   if (icvDetail) icvDetail.hidden = true;
   if (icvSelectionSummary) icvSelectionSummary.textContent = "Pulsa o toca un perímetro oficial valenciano para inspeccionarlo.";
   if (icvDetailFields) icvDetailFields.replaceChildren();
@@ -1074,7 +1164,7 @@ function selectIcvFeature(feature) {
   const geometryId = feature?.properties?.geometry_id;
   if (!geometryId) return null;
   transition({ type: "select_icv_geometry", geometry_id: String(geometryId), year: Number(feature.properties.year), record_id: String(feature.properties.fire_id || "") });
-  map.setFilter(ICV_SELECTED_LAYER, ["==", ["get", "geometry_id"], String(geometryId)]);
+  setLayerFilter(ICV_SELECTED_LAYER, ["==", ["get", "geometry_id"], String(geometryId)]);
   renderIcvDetail(feature);
   return state.selected_icv_geometry_id;
 }
@@ -1087,7 +1177,7 @@ function selectIcvRecord(recordId) {
   const fire = latestIcvResult.fires_by_id?.get(recordId);
   if (!fire || (latestIcvResult.active_fire_ids && !latestIcvResult.active_fire_ids.has(recordId))) return null;
   transition({ type: "select_icv_record", record_id: fire.fire_id });
-  map.setFilter(ICV_SELECTED_LAYER, ["==", ["get", "geometry_id"], "__none__"]);
+  setLayerFilter(ICV_SELECTED_LAYER, ["==", ["get", "geometry_id"], "__none__"]);
   if (icvDetail && icvDetailFields && icvSelectionSummary) {
     const gif = documentedIcvGif(fire);
     const rows = [["Fuente", "ICV / Generalitat Valenciana · registro administrativo"], ["Identificador del registro", fire.fire_id], ["Número PIF CV", fire.num_pif_cv || "No disponible"], ["Año", fire.year], ["Fecha de inicio", fire.start_date || "No disponible"], ["Fecha de extinción", fire.end_date || "No disponible"], ["Provincia declarada", fire.province || "No disponible"], ["Municipio declarado", fire.municipality_name || "No disponible"], ["Paraje", fire.place_name || "No disponible"], ["Superficie forestal declarada", formatOptionalArea(fire.reported_forest_area_ha)], ["Causa documentada", fire.cause_label || "No disponible"], ["Código de causa", fire.cause_code || "No disponible"], ["GIF", gif === true ? "Sí · criterio documentado ICV ≥500 ha" : gif === false ? "No · criterio documentado ICV ≥500 ha" : "No disponible"], ["Geometrías documentadas", Array.isArray(fire.geometry_ids) ? fire.geometry_ids.length : "No disponible"]];
@@ -1130,7 +1220,8 @@ function setEffisCollection(features = []) {
 
 function clearEffisSelection(updateState = true) {
   if (updateState) state = reduceRuntimeState(state, { type: "clear_effis_geometry_selection" });
-  map.setFilter(EFFIS_SELECTED_LAYER, ["==", ["get", "geometry_id"], "__none__"]);
+  setLayerFilter(EFFIS_SELECTED_LAYER, ["==", ["get", "geometry_id"], "__none__"]);
+  clearHover("effis");
   if (effisDetail) effisDetail.hidden = true;
   if (effisSelectionSummary) effisSelectionSummary.textContent = "Pulsa o toca un perímetro satelital provisional para inspeccionarlo.";
   effisDetailFields?.replaceChildren();
@@ -1144,7 +1235,7 @@ function selectEffisFeature(feature) {
   const properties = feature?.properties || {};
   if (!properties.geometry_id) return null;
   transition({ type: "select_effis_geometry", geometry_id: String(properties.geometry_id), year: Number(properties.year) });
-  map.setFilter(EFFIS_SELECTED_LAYER, ["==", ["get", "geometry_id"], String(properties.geometry_id)]);
+  setLayerFilter(EFFIS_SELECTED_LAYER, ["==", ["get", "geometry_id"], String(properties.geometry_id)]);
   if (effisDetail && effisDetailFields && effisSelectionSummary) {
     const rows = [["Fuente", "EFFIS / Copernicus EMS · perímetro satelital provisional"], ["Identificador de geometría", properties.geometry_id], ["ID EFFIS", properties.effis_id], ["Año", properties.year], ["Fecha EFFIS", properties.date || "No disponible"], ["Fecha final EFFIS", properties.final_date || "No disponible"], ["Provincia declarada", properties.province || "No disponible"], ["Municipio/commune declarado", properties.municipality_name || "No disponible"], ["Superficie cartografiada", formatOptionalArea(properties.mapped_area_ha)], ["Calidad geométrica", "B · teledetección provisional"], ["Snapshot", properties.acquired_at || "No disponible"]];
     effisDetailFields.replaceChildren();
@@ -1509,11 +1600,14 @@ map.on("click", FILL_LAYER, (event) => selectFeature(event.features?.[0]));
 map.on("click", ICV_FILL_LAYER, (event) => selectIcvFeature(event.features?.[0]));
 map.on("click", EFFIS_FILL_LAYER, (event) => selectEffisFeature(event.features?.[0]));
 map.on("mouseenter", FILL_LAYER, () => { map.getCanvas().style.cursor = "pointer"; });
-map.on("mouseleave", FILL_LAYER, () => { map.getCanvas().style.cursor = ""; });
+map.on("mousemove", FILL_LAYER, (event) => showHover("esfire30", event.features?.[0]));
+map.on("mouseleave", FILL_LAYER, () => { map.getCanvas().style.cursor = ""; clearHover("esfire30"); });
 map.on("mouseenter", ICV_FILL_LAYER, () => { map.getCanvas().style.cursor = "pointer"; });
-map.on("mouseleave", ICV_FILL_LAYER, () => { map.getCanvas().style.cursor = ""; });
+map.on("mousemove", ICV_FILL_LAYER, (event) => showHover("icv", event.features?.[0]));
+map.on("mouseleave", ICV_FILL_LAYER, () => { map.getCanvas().style.cursor = ""; clearHover("icv"); });
 map.on("mouseenter", EFFIS_FILL_LAYER, () => { map.getCanvas().style.cursor = "pointer"; });
-map.on("mouseleave", EFFIS_FILL_LAYER, () => { map.getCanvas().style.cursor = ""; });
+map.on("mousemove", EFFIS_FILL_LAYER, (event) => showHover("effis", event.features?.[0]));
+map.on("mouseleave", EFFIS_FILL_LAYER, () => { map.getCanvas().style.cursor = ""; clearHover("effis"); });
 map.on("error", (event) => {
   // El controlador productivo del mapa base registra el fallo y degrada a
   // BDLJE-only. No contaminar por ello el estado de ESFire30 ni el error
@@ -2025,6 +2119,10 @@ map.once("idle", () => {
 window.__es4cRuntime = {
   map,
   getState: () => ({ ...state }),
+  getTemporalVisualState: () => {
+    const visual = currentTemporalVisual();
+    return { ...visual, domain: visual.domain && { ...visual.domain } };
+  },
   selectFirstRenderedFeature,
   applyYears,
   setEgifScope,

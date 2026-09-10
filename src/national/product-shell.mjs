@@ -122,14 +122,31 @@ function buildLegend(state, view) {
   const list = document.querySelector("#user-map-legend");
   if (!list) return;
   list.replaceChildren();
+  const temporal = globalThis.__es4cRuntime?.getTemporalVisualState?.();
+  if (temporal?.domain) {
+    const item = document.createElement("li"); item.className = "legend-temporal";
+    item.setAttribute("aria-label", `Color temporal de perímetros: desde ${temporal.domain.from}, más antiguo, hasta ${temporal.domain.to}, más reciente.`);
+    const heading = document.createElement("strong"); heading.textContent = "Año del perímetro";
+    const scale = document.createElement("div"); scale.className = "temporal-scale";
+    const old = document.createElement("span"); old.textContent = String(temporal.domain.from); old.className = "temporal-scale__year";
+    const gradient = document.createElement("span"); gradient.className = "temporal-scale__gradient"; gradient.setAttribute("aria-hidden", "true");
+    const recent = document.createElement("span"); recent.textContent = String(temporal.domain.to); recent.className = "temporal-scale__year";
+    scale.append(old, gradient, recent);
+    const labels = document.createElement("small"); labels.textContent = temporal.single_year ? "Año seleccionado" : "Más antiguo ← → más reciente";
+    item.append(heading, scale, labels); list.append(item);
+  }
   const entries = [{ label: "Límite administrativo actual", swatch: "boundary" }];
   const preferred = view.primary === "multi_regime" ? view.geometry_sources : [view.primary, ...SOURCE_IDS];
+  const visibleEntries = [];
   for (const id of [...new Set(preferred)]) {
     const presentation = SOURCE_PRESENTATION[id];
     if (!presentation || !presentation.legend || !sourceHasCoverage(state, id)) continue;
-    entries.push({ label: presentation.legend, swatch: presentation.swatch });
+    visibleEntries.push({ label: presentation.legend, swatch: presentation.swatch });
   }
-  for (const entry of entries) {
+  if (visibleEntries.length) {
+    const heading = document.createElement("li"); heading.className = "legend-source-heading"; heading.textContent = "Capas"; list.append(heading);
+  }
+  for (const entry of [...entries, ...visibleEntries]) {
     const item = document.createElement("li");
     const swatch = document.createElement("span"); swatch.className = `legend-swatch legend-swatch--${entry.swatch}`; swatch.setAttribute("aria-hidden", "true");
     item.append(swatch, document.createTextNode(entry.label)); list.append(item);

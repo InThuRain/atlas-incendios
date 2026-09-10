@@ -44,6 +44,7 @@ RUNTIME_FILES = (
     "icv_loader.mjs",
     "effis_loader.mjs",
     "source_filters.mjs",
+    "temporal_style.mjs",
     "compat_gva_v1.mjs",
 )
 # PMTiles 4.3.0 conserva una importación ESM relativa a fflate. Se entrega

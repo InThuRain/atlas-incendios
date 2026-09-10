@@ -1,0 +1,2153 @@
+{
+  "phase": "ES-4POST2B_TEMPORAL_ENCODING_AND_OVERLAP",
+  "old_gva_algorithm": {
+    "anchor": "f7a3532f633a247f33dee3ebba9fbcc316c0e534",
+    "domain": "state.geometryYearRange = min/max de las fuentes con geometría del manifest; 1985–2026 en el perfil final",
+    "palette": {
+      "old": "rgb(44,123,182)",
+      "recent": "rgb(240,82,46)"
+    },
+    "interpolation": "lineal RGB, ratio clamp [0,1], Math.round por canal",
+    "fills": {
+      "icv": 0.28,
+      "esfire30": 0.2,
+      "effis": 0.2,
+      "selected_icv": 0.5,
+      "selected_esfire30": 0.46,
+      "selected_effis": 0.42
+    },
+    "strokes": {
+      "icv": "temporal / 1.2; selected #151a18 / 3",
+      "esfire30": "#875b20 / 2 / dash 2 5; selected #151a18 / 4",
+      "effis": "temporal / 2 / dash 7 5; selected #211a2f / 4"
+    },
+    "draw_order": "Leaflet conserva el orden de la colección cargada; no usaba un territorio principal.",
+    "legend": "gradiente azul→rojo con extremos del dominio geométrico, separado de filas de fuente.",
+    "range_behavior": "el filtro temporal cambia features; la normalización original permanecía en el dominio geométrico global.",
+    "single_year_behavior": "No había una rama de un año: el dominio seguía siendo global; por ejemplo, 1995 en 1985–2026 da rgb(92,113,149). El denominador max(1, max-min) sólo evita división por cero si el dominio geométrico llegara a colapsar."
+  },
+  "national_before": {
+    "icv_fill": "#246b55",
+    "icv_fill_opacity": 0.38,
+    "temporal_visual_encoding": "FAIL",
+    "overlap_readability": "FAIL",
+    "screenshots": [
+      "data/audit/product/es4post1/legacy-gva-1995.png",
+      "data/audit/product/es4post1/national-1995.png",
+      "data/audit/product/es4post1/national-overlap-1993-2024.png"
+    ]
+  },
+  "temporal_scale": {
+    "algorithm": "misma interpolación RGB histórica; dominio explícito = intersección del periodo solicitado con 1985–2026",
+    "property": "year",
+    "filters_change_domain": false
+  },
+  "palette": {
+    "old": "rgb(44,123,182)",
+    "recent": "rgb(240,82,46)"
+  },
+  "domain": {
+    "geometry_coverage": {
+      "from": 1985,
+      "to": 2026
+    },
+    "selection_policy": "selected requested range clipped to known geometry coverage; no min/max de teselas o resultados filtrados"
+  },
+  "range_behavior": {
+    "updates_without_reload": true,
+    "single_year": "blue historical endpoint, documented same-year value; no fabricated subannual precision"
+  },
+  "layer_order": {
+    "feature_order": "fill-sort-key ascending by numeric year within each MapLibre source",
+    "meaning": "el color es la señal cronológica primaria; el sort sólo evita que la colección quede en orden de asset arbitrario",
+    "source_order": [
+      "ESFire30 fill/outline",
+      "ICV fill/outline",
+      "EFFIS fill/outline",
+      "selection/hover outlines"
+    ]
+  },
+  "opacity": {
+    "icv_fill": 0.28,
+    "esfire30_fill": 0.2,
+    "effis_fill": 0.2,
+    "outlines": "ICV temporal 1.2; ESFire30 #875b20 2 dash; EFFIS temporal 2 dash"
+  },
+  "selection": "El relleno temporal no cambia; sólo se superpone un contorno oscuro de mayor ancho.",
+  "hover": "El hover usa exclusivamente un line layer oscuro; no reemplaza el color temporal del fill.",
+  "legend": "Año del perímetro, gradiente azul→rojo, años extremos y texto más antiguo/más reciente; Capas queda debajo como información secundaria.",
+  "sources": {
+    "icv": "temporal, oficial, referencia de paridad",
+    "esfire30": "temporal con contorno punteado secundario; sigue siendo Landsat",
+    "effis": "temporal con contorno punteado secundario; sigue siendo provisional",
+    "egif": "sin geometría individual; no recibe estilo de polígono"
+  },
+  "filters": {
+    "policy": "área, GIF y causa ICV mantienen el dominio del periodo solicitado; nunca usan min/max de resultados filtrados"
+  },
+  "histogram": {
+    "policy": "el clic anual llama a applyYears(); la leyenda se deriva de ese nuevo estado temporal"
+  },
+  "permalinks": {
+    "native": "es4c-state-v1 no serializa paleta ni leyenda; ambas se derivan de from/to",
+    "legacy_gva_v1": "sin cambios en el adaptador #v=1; la compatibilidad se comprueba con el test focalizado existente"
+  },
+  "human_tests": {
+    "recurrence": "PASS: el rango 2000–2020 muestra un gradiente continuo; una zona con varios perímetros se interpreta por colores y transparencia antes de abrir ficha.",
+    "age": "PASS: la leyenda textual azul antiguo → rojo reciente permite comparar dos perímetros sin abrir ficha.",
+    "range": "PASS: 2000–2020 y 2015–2020 actualizan dominio/leyenda sin reload."
+  },
+  "viewports": {
+    "legacy_before": "data/audit/product/es4post1",
+    "post": "data/audit/product/es4post2b"
+  },
+  "screenshots": {
+    "old_gva": "data/audit/product/es4post1/legacy-gva-1995.png",
+    "national_before": "data/audit/product/es4post1/national-1995.png",
+    "national_before_overlap": "data/audit/product/es4post1/national-overlap-1993-2024.png",
+    "national_after": "data/audit/product/es4post2b/national-after-1995.png",
+    "national_after_overlap": "data/audit/product/es4post2b/national-after-overlap-1993-2024.png",
+    "national_after_mobile": "data/audit/product/es4post2b/national-after-mobile-1995.png"
+  },
+  "mobile": {
+    "status": "PASS",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "note": "La leyenda compacta conserva años y gradiente sin tapar de forma desproporcionada el mapa."
+  },
+  "accessibility": {
+    "textual_temporal_legend": true,
+    "limitation": "La paleta añade texto y años, pero no es una auditoría completa de daltonismo."
+  },
+  "performance": {
+    "status": "PASS",
+    "scenarios": {
+      "1995": 6611.8,
+      "2016": 6463.58,
+      "2017": 6718.08,
+      "2018": 6800.72,
+      "2019": 6693.44,
+      "1993-2024": 9174.63,
+      "2015-2020": 6667.72,
+      "mobile-1995": 5421.28,
+      "2024AL0005": 5513.38,
+      "filters-histogram": 6685.86,
+      "2000-2020": 8901.16
+    },
+    "note": "La actualización cambia propiedades/filtros MapLibre; no reconstruye colecciones."
+  },
+  "tests": {
+    "status": "PASS",
+    "focused": "tests/test_es4post2b_temporal_encoding_and_overlap.py"
+  },
+  "parity": {
+    "temporal_visual_encoding": "PARITY",
+    "overlap_readability": "PARITY",
+    "map_first_temporal_discovery": "PASS",
+    "map_exploration_parity": "STILL_FAILS_PENDING_DIRECT_POPUP"
+  },
+  "production_recommendation": {
+    "patch_bundle_recommendation": "CONTINUE_TO_POST2C_BEFORE_DEPLOY",
+    "production_status": "LIVE_PRE_POST2A",
+    "release_tag_status": "HOLD"
+  },
+  "status": "PASS",
+  "browser_smoke": {
+    "status": "PASS",
+    "scenarios": {
+      "1995": {
+        "loaded_records": 467,
+        "loaded_geometries": 467,
+        "fit_feature": {
+          "geometry_id": "gva:geometry:1995:3:783",
+          "fire_id": "gva:pif-cv:1995CS5050",
+          "year": 1995,
+          "matching_geometries": 467
+        },
+        "selected_geometry_id": "gva:geometry:1995:3:783",
+        "temporal": {
+          "domain": {
+            "from": 1995,
+            "to": 1995
+          },
+          "palette": {
+            "old": "rgb(44,123,182)",
+            "recent": "rgb(240,82,46)"
+          },
+          "single_year": true,
+          "expression": "rgb(44,123,182)"
+        },
+        "layers": {
+          "icv-perimeters": {
+            "exists": true,
+            "type": "fill",
+            "paint": "rgb(44,123,182)"
+          },
+          "icv-perimeter-outlines": {
+            "exists": true,
+            "type": "line",
+            "paint": "rgb(44,123,182)"
+          },
+          "icv-selected": {
+            "exists": true,
+            "type": "line",
+            "paint": "#151a18",
+            "filter": [
+              "==",
+              [
+                "get",
+                "geometry_id"
+              ],
+              "gva:geometry:1995:3:783"
+            ]
+          },
+          "icv-hover": {
+            "exists": true,
+            "type": "line",
+            "paint": "#151a18",
+            "filter": [
+              "==",
+              [
+                "get",
+                "geometry_id"
+              ],
+              "__none__"
+            ]
+          },
+          "esfire30-perimeters": {
+            "exists": true,
+            "type": "fill",
+            "paint": "rgb(44,123,182)",
+            "filter": [
+              "all",
+              [
+                "==",
+                [
+                  "get",
+                  "year"
+                ],
+                "__outside_esfire30_coverage__"
+              ],
+              [
+                "==",
+                [
+                  "get",
+                  "geometry_id"
+                ],
+                "__outside_selected_territory__"
+              ]
+            ]
+          },
+          "esfire30-perimeter-outlines": {
+            "exists": true,
+            "type": "line",
+            "paint": "#875b20",
+            "filter": [
+              "all",
+              [
+                "==",
+                [
+                  "get",
+                  "year"
+                ],
+                "__outside_esfire30_coverage__"
+              ],
+              [
+                "==",
+                [
+                  "get",
+                  "geometry_id"
+                ],
+                "__outside_selected_territory__"
+              ]
+            ]
+          },
+          "effis-perimeters": {
+            "exists": true,
+            "type": "fill",
+            "paint": "rgb(44,123,182)"
+          },
+          "effis-perimeter-outlines": {
+            "exists": true,
+            "type": "line",
+            "paint": "rgb(44,123,182)"
+          }
+        },
+        "legend": "Año del perímetro\n1995\n1995\nAño seleccionado\nCAPAS\nLímite administrativo actual\nPerímetros oficiales",
+        "hover_filter": [
+          "==",
+          [
+            "get",
+            "geometry_id"
+          ],
+          "gva:geometry:1995:3:2116"
+        ],
+        "rendered_icv_features": 10,
+        "runtime_errors": [],
+        "browser_errors": [],
+        "viewport": {
+          "width": 1440,
+          "height": 757
+        },
+        "screenshot": "data/audit/product/es4post2b/national-after-1995.png",
+        "elapsed_ms": 6611.8
+      },
+      "2016": {
+        "loaded_records": 341,
+        "loaded_geometries": 341,
+        "fit_feature": {
+          "geometry_id": "gva:geometry:2016:24:11582",
+          "fire_id": "gva:pif-cv:2016CS0001",
+          "year": 2016
+        },
+        "selected_geometry_id": "gva:geometry:2016:24:11582",
+        "temporal": {
+          "domain": {
+            "from": 2016,
+            "to": 2016
+          },
+          "palette": {
+            "old": "rgb(44,123,182)",
+            "recent": "rgb(240,82,46)"
+          },
+          "single_year": true,
+          "expression": "rgb(44,123,182)"
+        },
+        "layers": {
+          "icv-perimeters": {
+            "exists": true,
+            "type": "fill",
+            "paint": "rgb(44,123,182)"
+          },
+          "icv-perimeter-outlines": {
+            "exists": true,
+            "type": "line",
+            "paint": "rgb(44,123,182)"
+          },
+          "icv-selected": {
+            "exists": true,
+            "type": "line",
+            "paint": "#151a18",
+            "filter": [
+              "==",
+              [
+                "get",
+                "geometry_id"
+              ],
+              "gva:geometry:2016:24:11582"
+            ]
+          },
+          "icv-hover": {
+            "exists": true,
+            "type": "line",
+            "paint": "#151a18",
+            "filter": [
+              "==",
+              [
+                "get",
+                "geometry_id"
+              ],
+              "__none__"
+            ]
+          },
+          "esfire30-perimeters": {
+            "exists": true,
+            "type": "fill",
+            "paint": "rgb(44,123,182)",
+            "filter": [
+              "all",
+              [
+                "==",
+                [
+                  "get",
+                  "year"
+                ],
+                "__outside_esfire30_coverage__"
+              ],
+              [
+                "==",
+                [
+                  "get",
+                  "geometry_id"
+                ],
+                "__outside_selected_territory__"
+              ]
+            ]
+          },
+          "esfire30-perimeter-outlines": {
+            "exists": true,
+            "type": "line",
+            "paint": "#875b20",
+            "filter": [
+              "all",
+              [
+                "==",
+                [
+                  "get",
+                  "year"
+                ],
+                "__outside_esfire30_coverage__"
+              ],
+              [
+                "==",
+                [
+                  "get",
+                  "geometry_id"
+                ],
+                "__outside_selected_territory__"
+              ]
+            ]
+          },
+          "effis-perimeters": {
+            "exists": true,
+            "type": "fill",
+            "paint": "rgb(44,123,182)"
+          },
+          "effis-perimeter-outlines": {
+            "exists": true,
+            "type": "line",
+            "paint": "rgb(44,123,182)"
+          }
+        },
+        "legend": "Año del perímetro\n2016\n2016\nAño seleccionado\nCAPAS\nLímite administrativo actual\nPerímetros oficiales",
+        "hover_filter": [
+          "==",
+          [
+            "get",
+            "geometry_id"
+          ],
+          "gva:geometry:2016:24:11651"
+        ],
+        "rendered_icv_features": 6,
+        "runtime_errors": [],
+        "browser_errors": [],
+        "viewport": {
+          "width": 1440,
+          "height": 757
+        },
+        "screenshot": null,
+        "elapsed_ms": 6463.58
+      },
+      "2017": {
+        "loaded_records": 346,
+        "loaded_geometries": 346,
+        "fit_feature": {
+          "geometry_id": "gva:geometry:2017:25:12285",
+          "fire_id": "gva:pif-cv:2017CS0001",
+          "year": 2017
+        },
+        "selected_geometry_id": "gva:geometry:2017:25:12285",
+        "temporal": {
+          "domain": {
+            "from": 2017,
+            "to": 2017
+          },
+          "palette": {
+            "old": "rgb(44,123,182)",
+            "recent": "rgb(240,82,46)"
+          },
+          "single_year": true,
+          "expression": "rgb(44,123,182)"
+        },
+        "layers": {
+          "icv-perimeters": {
+            "exists": true,
+            "type": "fill",
+            "paint": "rgb(44,123,182)"
+          },
+          "icv-perimeter-outlines": {
+            "exists": true,
+            "type": "line",
+            "paint": "rgb(44,123,182)"
+          },
+          "icv-selected": {
+            "exists": true,
+            "type": "line",
+            "paint": "#151a18",
+            "filter": [
+              "==",
+              [
+                "get",
+                "geometry_id"
+              ],
+              "gva:geometry:2017:25:12285"
+            ]
+          },
+          "icv-hover": {
+            "exists": true,
+            "type": "line",
+            "paint": "#151a18",
+            "filter": [
+              "==",
+              [
+                "get",
+                "geometry_id"
+              ],
+              "__none__"
+            ]
+          },
+          "esfire30-perimeters": {
+            "exists": true,
+            "type": "fill",
+            "paint": "rgb(44,123,182)",
+            "filter": [
+              "all",
+              [
+                "==",
+                [
+                  "get",
+                  "year"
+                ],
+                "__outside_esfire30_coverage__"
+              ],
+              [
+                "==",
+                [
+                  "get",
+                  "geometry_id"
+                ],
+                "__outside_selected_territory__"
+              ]
+            ]
+          },
+          "esfire30-perimeter-outlines": {
+            "exists": true,
+            "type": "line",
+            "paint": "#875b20",
+            "filter": [
+              "all",
+              [
+                "==",
+                [
+                  "get",
+                  "year"
+                ],
+                "__outside_esfire30_coverage__"
+              ],
+              [
+                "==",
+                [
+                  "get",
+                  "geometry_id"
+                ],
+                "__outside_selected_territory__"
+              ]
+            ]
+          },
+          "effis-perimeters": {
+            "exists": true,
+            "type": "fill",
+            "paint": "rgb(44,123,182)"
+          },
+          "effis-perimeter-outlines": {
+            "exists": true,
+            "type": "line",
+            "paint": "rgb(44,123,182)"
+          }
+        },
+        "legend": "Año del perímetro\n2017\n2017\nAño seleccionado\nCAPAS\nLímite administrativo actual\nPerímetros oficiales",
+        "hover_filter": [
+          "==",
+          [
+            "get",
+            "geometry_id"
+          ],
+          "gva:geometry:2017:25:12305"
+        ],
+        "rendered_icv_features": 4,
+        "runtime_errors": [],
+        "browser_errors": [],
+        "viewport": {
+          "width": 1440,
+          "height": 757
+        },
+        "screenshot": null,
+        "elapsed_ms": 6718.08
+      },
+      "2018": {
+        "loaded_records": 375,
+        "loaded_geometries": 375,
+        "fit_feature": {
+          "geometry_id": "gva:geometry:2018:26:11922",
+          "fire_id": "gva:pif-cv:2018CS0001",
+          "year": 2018
+        },
+        "selected_geometry_id": "gva:geometry:2018:26:11922",
+        "temporal": {
+          "domain": {
+            "from": 2018,
+            "to": 2018
+          },
+          "palette": {
+            "old": "rgb(44,123,182)",
+            "recent": "rgb(240,82,46)"
+          },
+          "single_year": true,
+          "expression": "rgb(44,123,182)"
+        },
+        "layers": {
+          "icv-perimeters": {
+            "exists": true,
+            "type": "fill",
+            "paint": "rgb(44,123,182)"
+          },
+          "icv-perimeter-outlines": {
+            "exists": true,
+            "type": "line",
+            "paint": "rgb(44,123,182)"
+          },
+          "icv-selected": {
+            "exists": true,
+            "type": "line",
+            "paint": "#151a18",
+            "filter": [
+              "==",
+              [
+                "get",
+                "geometry_id"
+              ],
+              "gva:geometry:2018:26:11922"
+            ]
+          },
+          "icv-hover": {
+            "exists": true,
+            "type": "line",
+            "paint": "#151a18",
+            "filter": [
+              "==",
+              [
+                "get",
+                "geometry_id"
+              ],
+              "__none__"
+            ]
+          },
+          "esfire30-perimeters": {
+            "exists": true,
+            "type": "fill",
+            "paint": "rgb(44,123,182)",
+            "filter": [
+              "all",
+              [
+                "==",
+                [
+                  "get",
+                  "year"
+                ],
+                "__outside_esfire30_coverage__"
+              ],
+              [
+                "==",
+                [
+                  "get",
+                  "geometry_id"
+                ],
+                "__outside_selected_territory__"
+              ]
+            ]
+          },
+          "esfire30-perimeter-outlines": {
+            "exists": true,
+            "type": "line",
+            "paint": "#875b20",
+            "filter": [
+              "all",
+              [
+                "==",
+                [
+                  "get",
+                  "year"
+                ],
+                "__outside_esfire30_coverage__"
+              ],
+              [
+                "==",
+                [
+                  "get",
+                  "geometry_id"
+                ],
+                "__outside_selected_territory__"
+              ]
+            ]
+          },
+          "effis-perimeters": {
+            "exists": true,
+            "type": "fill",
+            "paint": "rgb(44,123,182)"
+          },
+          "effis-perimeter-outlines": {
+            "exists": true,
+            "type": "line",
+            "paint": "rgb(44,123,182)"
+          }
+        },
+        "legend": "Año del perímetro\n2018\n2018\nAño seleccionado\nCAPAS\nLímite administrativo actual\nPerímetros oficiales",
+        "hover_filter": [
+          "==",
+          [
+            "get",
+            "geometry_id"
+          ],
+          "gva:geometry:2018:26:11941"
+        ],
+        "rendered_icv_features": 4,
+        "runtime_errors": [],
+        "browser_errors": [],
+        "viewport": {
+          "width": 1440,
+          "height": 757
+        },
+        "screenshot": null,
+        "elapsed_ms": 6800.72
+      },
+      "2019": {
+        "loaded_records": 272,
+        "loaded_geometries": 272,
+        "fit_feature": {
+          "geometry_id": "gva:geometry:2019:27:536",
+          "fire_id": "gva:pif-cv:2019CS0001",
+          "year": 2019
+        },
+        "selected_geometry_id": "gva:geometry:2019:27:536",
+        "temporal": {
+          "domain": {
+            "from": 2019,
+            "to": 2019
+          },
+          "palette": {
+            "old": "rgb(44,123,182)",
+            "recent": "rgb(240,82,46)"
+          },
+          "single_year": true,
+          "expression": "rgb(44,123,182)"
+        },
+        "layers": {
+          "icv-perimeters": {
+            "exists": true,
+            "type": "fill",
+            "paint": "rgb(44,123,182)"
+          },
+          "icv-perimeter-outlines": {
+            "exists": true,
+            "type": "line",
+            "paint": "rgb(44,123,182)"
+          },
+          "icv-selected": {
+            "exists": true,
+            "type": "line",
+            "paint": "#151a18",
+            "filter": [
+              "==",
+              [
+                "get",
+                "geometry_id"
+              ],
+              "gva:geometry:2019:27:536"
+            ]
+          },
+          "icv-hover": {
+            "exists": true,
+            "type": "line",
+            "paint": "#151a18",
+            "filter": [
+              "==",
+              [
+                "get",
+                "geometry_id"
+              ],
+              "__none__"
+            ]
+          },
+          "esfire30-perimeters": {
+            "exists": true,
+            "type": "fill",
+            "paint": "rgb(44,123,182)",
+            "filter": [
+              "all",
+              [
+                "==",
+                [
+                  "get",
+                  "year"
+                ],
+                "__outside_esfire30_coverage__"
+              ],
+              [
+                "==",
+                [
+                  "get",
+                  "geometry_id"
+                ],
+                "__outside_selected_territory__"
+              ]
+            ]
+          },
+          "esfire30-perimeter-outlines": {
+            "exists": true,
+            "type": "line",
+            "paint": "#875b20",
+            "filter": [
+              "all",
+              [
+                "==",
+                [
+                  "get",
+                  "year"
+                ],
+                "__outside_esfire30_coverage__"
+              ],
+              [
+                "==",
+                [
+                  "get",
+                  "geometry_id"
+                ],
+                "__outside_selected_territory__"
+              ]
+            ]
+          },
+          "effis-perimeters": {
+            "exists": true,
+            "type": "fill",
+            "paint": "rgb(44,123,182)"
+          },
+          "effis-perimeter-outlines": {
+            "exists": true,
+            "type": "line",
+            "paint": "rgb(44,123,182)"
+          }
+        },
+        "legend": "Año del perímetro\n2019\n2019\nAño seleccionado\nCAPAS\nLímite administrativo actual\nPerímetros oficiales",
+        "hover_filter": [
+          "==",
+          [
+            "get",
+            "geometry_id"
+          ],
+          "gva:geometry:2019:27:536"
+        ],
+        "rendered_icv_features": 1,
+        "runtime_errors": [],
+        "browser_errors": [],
+        "viewport": {
+          "width": 1440,
+          "height": 757
+        },
+        "screenshot": null,
+        "elapsed_ms": 6693.44
+      },
+      "1993-2024": {
+        "loaded_records": 13738,
+        "loaded_geometries": 13739,
+        "fit_feature": {
+          "geometry_id": "gva:geometry:2016:24:11582",
+          "fire_id": "gva:pif-cv:2016CS0001",
+          "year": 2016,
+          "matching_geometries": 341
+        },
+        "selected_geometry_id": "gva:geometry:2016:24:11582",
+        "temporal": {
+          "domain": {
+            "from": 1993,
+            "to": 2024
+          },
+          "palette": {
+            "old": "rgb(44,123,182)",
+            "recent": "rgb(240,82,46)"
+          },
+          "single_year": false,
+          "expression": [
+            "interpolate",
+            [
+              "linear"
+            ],
+            [
+              "to-number",
+              [
+                "get",
+                "year"
+              ]
+            ],
+            1993,
+            "rgb(44,123,182)",
+            2024,
+            "rgb(240,82,46)"
+          ]
+        },
+        "layers": {
+          "icv-perimeters": {
+            "exists": true,
+            "type": "fill",
+            "paint": [
+              "interpolate",
+              [
+                "linear"
+              ],
+              [
+                "to-number",
+                [
+                  "get",
+                  "year"
+                ]
+              ],
+              1993,
+              "rgb(44,123,182)",
+              2024,
+              "rgb(240,82,46)"
+            ]
+          },
+          "icv-perimeter-outlines": {
+            "exists": true,
+            "type": "line",
+            "paint": [
+              "interpolate",
+              [
+                "linear"
+              ],
+              [
+                "to-number",
+                [
+                  "get",
+                  "year"
+                ]
+              ],
+              1993,
+              "rgb(44,123,182)",
+              2024,
+              "rgb(240,82,46)"
+            ]
+          },
+          "icv-selected": {
+            "exists": true,
+            "type": "line",
+            "paint": "#151a18",
+            "filter": [
+              "==",
+              [
+                "get",
+                "geometry_id"
+              ],
+              "gva:geometry:2016:24:11582"
+            ]
+          },
+          "icv-hover": {
+            "exists": true,
+            "type": "line",
+            "paint": "#151a18",
+            "filter": [
+              "==",
+              [
+                "get",
+                "geometry_id"
+              ],
+              "__none__"
+            ]
+          },
+          "esfire30-perimeters": {
+            "exists": true,
+            "type": "fill",
+            "paint": [
+              "interpolate",
+              [
+                "linear"
+              ],
+              [
+                "to-number",
+                [
+                  "get",
+                  "year"
+                ]
+              ],
+              1993,
+              "rgb(44,123,182)",
+              2024,
+              "rgb(240,82,46)"
+            ],
+            "filter": [
+              "all",
+              [
+                "==",
+                [
+                  "get",
+                  "year"
+                ],
+                "__outside_esfire30_coverage__"
+              ],
+              [
+                "==",
+                [
+                  "get",
+                  "geometry_id"
+                ],
+                "__outside_selected_territory__"
+              ]
+            ]
+          },
+          "esfire30-perimeter-outlines": {
+            "exists": true,
+            "type": "line",
+            "paint": "#875b20",
+            "filter": [
+              "all",
+              [
+                "==",
+                [
+                  "get",
+                  "year"
+                ],
+                "__outside_esfire30_coverage__"
+              ],
+              [
+                "==",
+                [
+                  "get",
+                  "geometry_id"
+                ],
+                "__outside_selected_territory__"
+              ]
+            ]
+          },
+          "effis-perimeters": {
+            "exists": true,
+            "type": "fill",
+            "paint": [
+              "interpolate",
+              [
+                "linear"
+              ],
+              [
+                "to-number",
+                [
+                  "get",
+                  "year"
+                ]
+              ],
+              1993,
+              "rgb(44,123,182)",
+              2024,
+              "rgb(240,82,46)"
+            ]
+          },
+          "effis-perimeter-outlines": {
+            "exists": true,
+            "type": "line",
+            "paint": [
+              "interpolate",
+              [
+                "linear"
+              ],
+              [
+                "to-number",
+                [
+                  "get",
+                  "year"
+                ]
+              ],
+              1993,
+              "rgb(44,123,182)",
+              2024,
+              "rgb(240,82,46)"
+            ]
+          }
+        },
+        "legend": "Año del perímetro\n1993\n2024\nMás antiguo ← → más reciente\nCAPAS\nLímite administrativo actual\nPerímetros oficiales",
+        "hover_filter": [
+          "==",
+          [
+            "get",
+            "geometry_id"
+          ],
+          "gva:geometry:2024:121:13395"
+        ],
+        "rendered_icv_features": 186,
+        "runtime_errors": [],
+        "browser_errors": [],
+        "viewport": {
+          "width": 1440,
+          "height": 757
+        },
+        "screenshot": "data/audit/product/es4post2b/national-after-overlap-1993-2024.png",
+        "elapsed_ms": 9174.63
+      },
+      "2015-2020": {
+        "loaded_records": 1902,
+        "loaded_geometries": 1902,
+        "fit_feature": {
+          "geometry_id": "gva:geometry:2016:24:11582",
+          "fire_id": "gva:pif-cv:2016CS0001",
+          "year": 2016
+        },
+        "selected_geometry_id": "gva:geometry:2016:24:11582",
+        "temporal": {
+          "domain": {
+            "from": 2015,
+            "to": 2020
+          },
+          "palette": {
+            "old": "rgb(44,123,182)",
+            "recent": "rgb(240,82,46)"
+          },
+          "single_year": false,
+          "expression": [
+            "interpolate",
+            [
+              "linear"
+            ],
+            [
+              "to-number",
+              [
+                "get",
+                "year"
+              ]
+            ],
+            2015,
+            "rgb(44,123,182)",
+            2020,
+            "rgb(240,82,46)"
+          ]
+        },
+        "layers": {
+          "icv-perimeters": {
+            "exists": true,
+            "type": "fill",
+            "paint": [
+              "interpolate",
+              [
+                "linear"
+              ],
+              [
+                "to-number",
+                [
+                  "get",
+                  "year"
+                ]
+              ],
+              2015,
+              "rgb(44,123,182)",
+              2020,
+              "rgb(240,82,46)"
+            ]
+          },
+          "icv-perimeter-outlines": {
+            "exists": true,
+            "type": "line",
+            "paint": [
+              "interpolate",
+              [
+                "linear"
+              ],
+              [
+                "to-number",
+                [
+                  "get",
+                  "year"
+                ]
+              ],
+              2015,
+              "rgb(44,123,182)",
+              2020,
+              "rgb(240,82,46)"
+            ]
+          },
+          "icv-selected": {
+            "exists": true,
+            "type": "line",
+            "paint": "#151a18",
+            "filter": [
+              "==",
+              [
+                "get",
+                "geometry_id"
+              ],
+              "gva:geometry:2016:24:11582"
+            ]
+          },
+          "icv-hover": {
+            "exists": true,
+            "type": "line",
+            "paint": "#151a18",
+            "filter": [
+              "==",
+              [
+                "get",
+                "geometry_id"
+              ],
+              "__none__"
+            ]
+          },
+          "esfire30-perimeters": {
+            "exists": true,
+            "type": "fill",
+            "paint": [
+              "interpolate",
+              [
+                "linear"
+              ],
+              [
+                "to-number",
+                [
+                  "get",
+                  "year"
+                ]
+              ],
+              2015,
+              "rgb(44,123,182)",
+              2020,
+              "rgb(240,82,46)"
+            ],
+            "filter": [
+              "all",
+              [
+                "==",
+                [
+                  "get",
+                  "year"
+                ],
+                "__outside_esfire30_coverage__"
+              ],
+              [
+                "==",
+                [
+                  "get",
+                  "geometry_id"
+                ],
+                "__outside_selected_territory__"
+              ]
+            ]
+          },
+          "esfire30-perimeter-outlines": {
+            "exists": true,
+            "type": "line",
+            "paint": "#875b20",
+            "filter": [
+              "all",
+              [
+                "==",
+                [
+                  "get",
+                  "year"
+                ],
+                "__outside_esfire30_coverage__"
+              ],
+              [
+                "==",
+                [
+                  "get",
+                  "geometry_id"
+                ],
+                "__outside_selected_territory__"
+              ]
+            ]
+          },
+          "effis-perimeters": {
+            "exists": true,
+            "type": "fill",
+            "paint": [
+              "interpolate",
+              [
+                "linear"
+              ],
+              [
+                "to-number",
+                [
+                  "get",
+                  "year"
+                ]
+              ],
+              2015,
+              "rgb(44,123,182)",
+              2020,
+              "rgb(240,82,46)"
+            ]
+          },
+          "effis-perimeter-outlines": {
+            "exists": true,
+            "type": "line",
+            "paint": [
+              "interpolate",
+              [
+                "linear"
+              ],
+              [
+                "to-number",
+                [
+                  "get",
+                  "year"
+                ]
+              ],
+              2015,
+              "rgb(44,123,182)",
+              2020,
+              "rgb(240,82,46)"
+            ]
+          }
+        },
+        "legend": "Año del perímetro\n2015\n2020\nMás antiguo ← → más reciente\nCAPAS\nLímite administrativo actual\nPerímetros oficiales",
+        "hover_filter": [
+          "==",
+          [
+            "get",
+            "geometry_id"
+          ],
+          "gva:geometry:2019:27:540"
+        ],
+        "rendered_icv_features": 21,
+        "runtime_errors": [],
+        "browser_errors": [],
+        "viewport": {
+          "width": 1440,
+          "height": 757
+        },
+        "screenshot": null,
+        "elapsed_ms": 6667.72
+      },
+      "mobile-1995": {
+        "loaded_records": 467,
+        "loaded_geometries": 467,
+        "fit_feature": {
+          "geometry_id": "gva:geometry:1995:3:783",
+          "fire_id": "gva:pif-cv:1995CS5050",
+          "year": 1995,
+          "matching_geometries": 467
+        },
+        "selected_geometry_id": "gva:geometry:1995:3:783",
+        "temporal": {
+          "domain": {
+            "from": 1995,
+            "to": 1995
+          },
+          "palette": {
+            "old": "rgb(44,123,182)",
+            "recent": "rgb(240,82,46)"
+          },
+          "single_year": true,
+          "expression": "rgb(44,123,182)"
+        },
+        "layers": {
+          "icv-perimeters": {
+            "exists": true,
+            "type": "fill",
+            "paint": "rgb(44,123,182)"
+          },
+          "icv-perimeter-outlines": {
+            "exists": true,
+            "type": "line",
+            "paint": "rgb(44,123,182)"
+          },
+          "icv-selected": {
+            "exists": true,
+            "type": "line",
+            "paint": "#151a18",
+            "filter": [
+              "==",
+              [
+                "get",
+                "geometry_id"
+              ],
+              "gva:geometry:1995:3:783"
+            ]
+          },
+          "icv-hover": {
+            "exists": true,
+            "type": "line",
+            "paint": "#151a18",
+            "filter": [
+              "==",
+              [
+                "get",
+                "geometry_id"
+              ],
+              "__none__"
+            ]
+          },
+          "esfire30-perimeters": {
+            "exists": true,
+            "type": "fill",
+            "paint": "rgb(44,123,182)",
+            "filter": [
+              "all",
+              [
+                "==",
+                [
+                  "get",
+                  "year"
+                ],
+                "__outside_esfire30_coverage__"
+              ],
+              [
+                "==",
+                [
+                  "get",
+                  "geometry_id"
+                ],
+                "__outside_selected_territory__"
+              ]
+            ]
+          },
+          "esfire30-perimeter-outlines": {
+            "exists": true,
+            "type": "line",
+            "paint": "#875b20",
+            "filter": [
+              "all",
+              [
+                "==",
+                [
+                  "get",
+                  "year"
+                ],
+                "__outside_esfire30_coverage__"
+              ],
+              [
+                "==",
+                [
+                  "get",
+                  "geometry_id"
+                ],
+                "__outside_selected_territory__"
+              ]
+            ]
+          },
+          "effis-perimeters": {
+            "exists": true,
+            "type": "fill",
+            "paint": "rgb(44,123,182)"
+          },
+          "effis-perimeter-outlines": {
+            "exists": true,
+            "type": "line",
+            "paint": "rgb(44,123,182)"
+          }
+        },
+        "legend": "Año del perímetro\n1995\n1995\nAño seleccionado\nCAPAS\nLímite administrativo actual\nPerímetros oficiales",
+        "hover_filter": [
+          "==",
+          [
+            "get",
+            "geometry_id"
+          ],
+          "gva:geometry:1995:3:2073"
+        ],
+        "rendered_icv_features": 2,
+        "runtime_errors": [],
+        "browser_errors": [],
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "screenshot": "data/audit/product/es4post2b/national-after-mobile-1995.png",
+        "elapsed_ms": 5421.28
+      },
+      "2024AL0005": {
+        "loaded_records": 472,
+        "loaded_geometries": 473,
+        "fit_feature": {
+          "geometry_id": "gva:geometry:2024:121:13587",
+          "fire_id": "gva:pif-cv:2024AL0005",
+          "year": 2024,
+          "matching_geometries": 2
+        },
+        "selected_geometry_id": "gva:geometry:2024:121:13587",
+        "temporal": {
+          "domain": {
+            "from": 2024,
+            "to": 2024
+          },
+          "palette": {
+            "old": "rgb(44,123,182)",
+            "recent": "rgb(240,82,46)"
+          },
+          "single_year": true,
+          "expression": "rgb(44,123,182)"
+        },
+        "layers": {
+          "icv-perimeters": {
+            "exists": true,
+            "type": "fill",
+            "paint": "rgb(44,123,182)"
+          },
+          "icv-perimeter-outlines": {
+            "exists": true,
+            "type": "line",
+            "paint": "rgb(44,123,182)"
+          },
+          "icv-selected": {
+            "exists": true,
+            "type": "line",
+            "paint": "#151a18",
+            "filter": [
+              "==",
+              [
+                "get",
+                "geometry_id"
+              ],
+              "gva:geometry:2024:121:13587"
+            ]
+          },
+          "icv-hover": {
+            "exists": true,
+            "type": "line",
+            "paint": "#151a18",
+            "filter": [
+              "==",
+              [
+                "get",
+                "geometry_id"
+              ],
+              "__none__"
+            ]
+          },
+          "esfire30-perimeters": {
+            "exists": true,
+            "type": "fill",
+            "paint": "rgb(44,123,182)",
+            "filter": [
+              "all",
+              [
+                "==",
+                [
+                  "get",
+                  "year"
+                ],
+                "__outside_esfire30_coverage__"
+              ],
+              [
+                "==",
+                [
+                  "get",
+                  "geometry_id"
+                ],
+                "__outside_selected_territory__"
+              ]
+            ]
+          },
+          "esfire30-perimeter-outlines": {
+            "exists": true,
+            "type": "line",
+            "paint": "#875b20",
+            "filter": [
+              "all",
+              [
+                "==",
+                [
+                  "get",
+                  "year"
+                ],
+                "__outside_esfire30_coverage__"
+              ],
+              [
+                "==",
+                [
+                  "get",
+                  "geometry_id"
+                ],
+                "__outside_selected_territory__"
+              ]
+            ]
+          },
+          "effis-perimeters": {
+            "exists": true,
+            "type": "fill",
+            "paint": "rgb(44,123,182)"
+          },
+          "effis-perimeter-outlines": {
+            "exists": true,
+            "type": "line",
+            "paint": "rgb(44,123,182)"
+          }
+        },
+        "legend": "Año del perímetro\n2024\n2024\nAño seleccionado\nCAPAS\nLímite administrativo actual\nPerímetros oficiales",
+        "hover_filter": [
+          "==",
+          [
+            "get",
+            "geometry_id"
+          ],
+          "gva:geometry:2024:121:13389"
+        ],
+        "rendered_icv_features": 6,
+        "runtime_errors": [],
+        "browser_errors": [],
+        "viewport": {
+          "width": 1440,
+          "height": 757
+        },
+        "screenshot": null,
+        "elapsed_ms": 5513.38
+      },
+      "filters-histogram": {
+        "loaded_records": 1902,
+        "loaded_geometries": 1902,
+        "fit_feature": {
+          "geometry_id": "gva:geometry:2016:24:11582",
+          "fire_id": "gva:pif-cv:2016CS0001",
+          "year": 2016,
+          "matching_geometries": 341
+        },
+        "selected_geometry_id": "gva:geometry:2016:24:11582",
+        "temporal": {
+          "domain": {
+            "from": 2015,
+            "to": 2020
+          },
+          "palette": {
+            "old": "rgb(44,123,182)",
+            "recent": "rgb(240,82,46)"
+          },
+          "single_year": false,
+          "expression": [
+            "interpolate",
+            [
+              "linear"
+            ],
+            [
+              "to-number",
+              [
+                "get",
+                "year"
+              ]
+            ],
+            2015,
+            "rgb(44,123,182)",
+            2020,
+            "rgb(240,82,46)"
+          ]
+        },
+        "layers": {
+          "icv-perimeters": {
+            "exists": true,
+            "type": "fill",
+            "paint": [
+              "interpolate",
+              [
+                "linear"
+              ],
+              [
+                "to-number",
+                [
+                  "get",
+                  "year"
+                ]
+              ],
+              2015,
+              "rgb(44,123,182)",
+              2020,
+              "rgb(240,82,46)"
+            ]
+          },
+          "icv-perimeter-outlines": {
+            "exists": true,
+            "type": "line",
+            "paint": [
+              "interpolate",
+              [
+                "linear"
+              ],
+              [
+                "to-number",
+                [
+                  "get",
+                  "year"
+                ]
+              ],
+              2015,
+              "rgb(44,123,182)",
+              2020,
+              "rgb(240,82,46)"
+            ]
+          },
+          "icv-selected": {
+            "exists": true,
+            "type": "line",
+            "paint": "#151a18",
+            "filter": [
+              "==",
+              [
+                "get",
+                "geometry_id"
+              ],
+              "gva:geometry:2016:24:11582"
+            ]
+          },
+          "icv-hover": {
+            "exists": true,
+            "type": "line",
+            "paint": "#151a18",
+            "filter": [
+              "==",
+              [
+                "get",
+                "geometry_id"
+              ],
+              "__none__"
+            ]
+          },
+          "esfire30-perimeters": {
+            "exists": true,
+            "type": "fill",
+            "paint": [
+              "interpolate",
+              [
+                "linear"
+              ],
+              [
+                "to-number",
+                [
+                  "get",
+                  "year"
+                ]
+              ],
+              2015,
+              "rgb(44,123,182)",
+              2020,
+              "rgb(240,82,46)"
+            ],
+            "filter": [
+              "all",
+              [
+                "==",
+                [
+                  "get",
+                  "year"
+                ],
+                "__outside_esfire30_coverage__"
+              ],
+              [
+                "==",
+                [
+                  "get",
+                  "geometry_id"
+                ],
+                "__outside_selected_territory__"
+              ]
+            ]
+          },
+          "esfire30-perimeter-outlines": {
+            "exists": true,
+            "type": "line",
+            "paint": "#875b20",
+            "filter": [
+              "all",
+              [
+                "==",
+                [
+                  "get",
+                  "year"
+                ],
+                "__outside_esfire30_coverage__"
+              ],
+              [
+                "==",
+                [
+                  "get",
+                  "geometry_id"
+                ],
+                "__outside_selected_territory__"
+              ]
+            ]
+          },
+          "effis-perimeters": {
+            "exists": true,
+            "type": "fill",
+            "paint": [
+              "interpolate",
+              [
+                "linear"
+              ],
+              [
+                "to-number",
+                [
+                  "get",
+                  "year"
+                ]
+              ],
+              2015,
+              "rgb(44,123,182)",
+              2020,
+              "rgb(240,82,46)"
+            ]
+          },
+          "effis-perimeter-outlines": {
+            "exists": true,
+            "type": "line",
+            "paint": [
+              "interpolate",
+              [
+                "linear"
+              ],
+              [
+                "to-number",
+                [
+                  "get",
+                  "year"
+                ]
+              ],
+              2015,
+              "rgb(44,123,182)",
+              2020,
+              "rgb(240,82,46)"
+            ]
+          }
+        },
+        "legend": "Año del perímetro\n2015\n2020\nMás antiguo ← → más reciente\nCAPAS\nLímite administrativo actual\nPerímetros oficiales",
+        "hover_filter": [
+          "==",
+          [
+            "get",
+            "geometry_id"
+          ],
+          "gva:geometry:2019:27:540"
+        ],
+        "rendered_icv_features": 21,
+        "runtime_errors": [],
+        "browser_errors": [],
+        "viewport": {
+          "width": 1440,
+          "height": 757
+        },
+        "screenshot": null,
+        "elapsed_ms": 6685.86,
+        "filters_histogram": {
+          "original_domain": {
+            "from": 2015,
+            "to": 2020
+          },
+          "filters": {
+            "icv_min_area": {
+              "domain": {
+                "from": 2015,
+                "to": 2020
+              },
+              "active": [
+                {
+                  "filter_id": "icv_min_area",
+                  "filter_type": "min_value",
+                  "source": "icv",
+                  "metric_id": "icv_declared_forest_area_ha",
+                  "value": 1,
+                  "unit": "ha"
+                }
+              ]
+            },
+            "icv_gif": {
+              "domain": {
+                "from": 2015,
+                "to": 2020
+              },
+              "active": [
+                {
+                  "filter_id": "icv_gif",
+                  "filter_type": "flag",
+                  "source": "icv",
+                  "metric_id": "icv_gif_count",
+                  "value": true,
+                  "unit": null
+                }
+              ]
+            },
+            "icv_cause": {
+              "domain": {
+                "from": 2015,
+                "to": 2020
+              },
+              "active": [
+                {
+                  "filter_id": "icv_cause",
+                  "filter_type": "enum",
+                  "source": "icv",
+                  "metric_id": "icv_cause_distribution",
+                  "value": "negligence",
+                  "unit": null
+                }
+              ]
+            }
+          },
+          "histogram": {
+            "button_found": true,
+            "state": {
+              "from": 2016,
+              "to": 2016,
+              "territory_scope": "autonomous_community",
+              "autonomous_community_id": "ES:CCAA:10",
+              "province_id": null,
+              "municipality_id": null,
+              "esfire30_visible": false,
+              "egif_visible": true,
+              "icv_visible": true,
+              "effis_visible": false,
+              "selected_geometry_id": null,
+              "selected_geometry_year": null,
+              "selected_egif_record_id": null,
+              "selected_egif_year": null,
+              "selected_icv_geometry_id": null,
+              "selected_icv_geometry_year": null,
+              "selected_icv_record_id": null,
+              "selected_effis_geometry_id": null,
+              "selected_effis_geometry_year": null,
+              "filters": [],
+              "center": [
+                -0.4192323500000157,
+                39.3317085097313
+              ],
+              "zoom": 6.774950576867614
+            },
+            "domain": {
+              "from": 2016,
+              "to": 2016
+            },
+            "legend": "Año del perímetro\n2016\n2016\nAño seleccionado\nCAPAS\nLímite administrativo actual\nPerímetros oficiales"
+          }
+        }
+      },
+      "2000-2020": {
+        "loaded_records": 8519,
+        "loaded_geometries": 8519,
+        "fit_feature": {
+          "geometry_id": "gva:geometry:2016:24:11582",
+          "fire_id": "gva:pif-cv:2016CS0001",
+          "year": 2016,
+          "matching_geometries": 341
+        },
+        "selected_geometry_id": "gva:geometry:2016:24:11582",
+        "temporal": {
+          "domain": {
+            "from": 2000,
+            "to": 2020
+          },
+          "palette": {
+            "old": "rgb(44,123,182)",
+            "recent": "rgb(240,82,46)"
+          },
+          "single_year": false,
+          "expression": [
+            "interpolate",
+            [
+              "linear"
+            ],
+            [
+              "to-number",
+              [
+                "get",
+                "year"
+              ]
+            ],
+            2000,
+            "rgb(44,123,182)",
+            2020,
+            "rgb(240,82,46)"
+          ]
+        },
+        "layers": {
+          "icv-perimeters": {
+            "exists": true,
+            "type": "fill",
+            "paint": [
+              "interpolate",
+              [
+                "linear"
+              ],
+              [
+                "to-number",
+                [
+                  "get",
+                  "year"
+                ]
+              ],
+              2000,
+              "rgb(44,123,182)",
+              2020,
+              "rgb(240,82,46)"
+            ]
+          },
+          "icv-perimeter-outlines": {
+            "exists": true,
+            "type": "line",
+            "paint": [
+              "interpolate",
+              [
+                "linear"
+              ],
+              [
+                "to-number",
+                [
+                  "get",
+                  "year"
+                ]
+              ],
+              2000,
+              "rgb(44,123,182)",
+              2020,
+              "rgb(240,82,46)"
+            ]
+          },
+          "icv-selected": {
+            "exists": true,
+            "type": "line",
+            "paint": "#151a18",
+            "filter": [
+              "==",
+              [
+                "get",
+                "geometry_id"
+              ],
+              "gva:geometry:2016:24:11582"
+            ]
+          },
+          "icv-hover": {
+            "exists": true,
+            "type": "line",
+            "paint": "#151a18",
+            "filter": [
+              "==",
+              [
+                "get",
+                "geometry_id"
+              ],
+              "__none__"
+            ]
+          },
+          "esfire30-perimeters": {
+            "exists": true,
+            "type": "fill",
+            "paint": [
+              "interpolate",
+              [
+                "linear"
+              ],
+              [
+                "to-number",
+                [
+                  "get",
+                  "year"
+                ]
+              ],
+              2000,
+              "rgb(44,123,182)",
+              2020,
+              "rgb(240,82,46)"
+            ],
+            "filter": [
+              "all",
+              [
+                "==",
+                [
+                  "get",
+                  "year"
+                ],
+                "__outside_esfire30_coverage__"
+              ],
+              [
+                "==",
+                [
+                  "get",
+                  "geometry_id"
+                ],
+                "__outside_selected_territory__"
+              ]
+            ]
+          },
+          "esfire30-perimeter-outlines": {
+            "exists": true,
+            "type": "line",
+            "paint": "#875b20",
+            "filter": [
+              "all",
+              [
+                "==",
+                [
+                  "get",
+                  "year"
+                ],
+                "__outside_esfire30_coverage__"
+              ],
+              [
+                "==",
+                [
+                  "get",
+                  "geometry_id"
+                ],
+                "__outside_selected_territory__"
+              ]
+            ]
+          },
+          "effis-perimeters": {
+            "exists": true,
+            "type": "fill",
+            "paint": [
+              "interpolate",
+              [
+                "linear"
+              ],
+              [
+                "to-number",
+                [
+                  "get",
+                  "year"
+                ]
+              ],
+              2000,
+              "rgb(44,123,182)",
+              2020,
+              "rgb(240,82,46)"
+            ]
+          },
+          "effis-perimeter-outlines": {
+            "exists": true,
+            "type": "line",
+            "paint": [
+              "interpolate",
+              [
+                "linear"
+              ],
+              [
+                "to-number",
+                [
+                  "get",
+                  "year"
+                ]
+              ],
+              2000,
+              "rgb(44,123,182)",
+              2020,
+              "rgb(240,82,46)"
+            ]
+          }
+        },
+        "legend": "Año del perímetro\n2000\n2020\nMás antiguo ← → más reciente\nCAPAS\nLímite administrativo actual\nPerímetros oficiales",
+        "hover_filter": [
+          "==",
+          [
+            "get",
+            "geometry_id"
+          ],
+          "gva:geometry:2019:27:540"
+        ],
+        "rendered_icv_features": 107,
+        "runtime_errors": [],
+        "browser_errors": [],
+        "viewport": {
+          "width": 1440,
+          "height": 757
+        },
+        "screenshot": null,
+        "elapsed_ms": 8901.16
+      }
+    },
+    "failures": [],
+    "expected_scenarios": [
+      "1993-2024",
+      "1995",
+      "2000-2020",
+      "2015-2020",
+      "2016",
+      "2017",
+      "2018",
+      "2019",
+      "2024AL0005",
+      "filters-histogram",
+      "mobile-1995"
+    ]
+  }
+}

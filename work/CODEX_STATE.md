@@ -1031,3 +1031,39 @@ PRODUCTION_STATUS = LIVE_UNCHANGED (no push, deploy ni tag durante POST2A)
 RESULTS_PATH = ES_4POST2A_ICV_GEOMETRY_COMPLETENESS.md; data/audit/product/es4post2a_icv_geometry_completeness.json
 
 NEXT_PHASE = ES-4POST2B_TEMPORAL_ENCODING_AND_OVERLAP
+
+PHASE = ES-4POST2B_TEMPORAL_ENCODING_AND_OVERLAP
+
+STATUS = DONE (estilo temporal azul antiguo → rojo reciente recuperado sobre las geometrías ICV, ESFire30 y EFFIS; dominio explícito por periodo solicitado, leyenda primaria y solapes legibles; sin datasets, despliegue ni cambios de permalink).
+
+TEMPORAL_VISUAL_ENCODING = PARITY
+
+OVERLAP_READABILITY = PARITY
+
+TEMPORAL_LEGEND_STATUS = PASS
+
+MAP_FIRST_TEMPORAL_DISCOVERY = PASS
+
+MAP_EXPLORATION_PARITY = STILL_FAILS_PENDING_DIRECT_POPUP
+
+ICV_1993_2024 = PASS (13738 records; 13739 geometries)
+
+ICV_RECOVERED_2016_2019 = PASS (341/341; 346/346; 375/375; 272/272)
+
+ICV_2024AL0005 = PASS (1 fire_id; 2 geometry_id; selección individual)
+
+FILTERS_TEMPORAL_DOMAIN = PASS (ICV área, GIF y causa no redefinen el dominio)
+
+HISTOGRAM_TEMPORAL_UPDATE = PASS (clic anual 2016 → estado y leyenda 2016–2016)
+
+PERMALINKS = PASS (es4c-state-v1 y GVA #v=1 sin cambios de contrato)
+
+PRODUCTION_STATUS = LIVE_PRE_POST2A
+
+PATCH_BUNDLE_RECOMMENDATION = CONTINUE_TO_POST2C_BEFORE_DEPLOY
+
+RELEASE_TAG_STATUS = HOLD
+
+RESULTS_PATH = ES_4POST2B_TEMPORAL_ENCODING_AND_OVERLAP.md; data/audit/product/es4post2b_temporal_encoding_and_overlap.json
+
+NEXT_PHASE = ES-4POST2C_DIRECT_HUMAN_POPUP
