@@ -1,0 +1,15 @@
+{
+  "archive": {
+    "bytes": 431670756,
+    "sha256": "8903bc91de088e82b7c3410d6b2d2e0a5eda64889ffdcc02569319fcc14e45af"
+  },
+  "site": {
+    "site_file_count": 500,
+    "site_total_bytes": 812540623,
+    "payload_file_count": 498,
+    "payload_total_bytes": 812320501,
+    "payload_fingerprint": "97821c6cf3a6282a6304a0ac02c8eb0c0fff762a293de655dde64511c3169d82",
+    "asset_manifest_sha256": "557c662dd23df2207f68b6ef36ddae35f0d06b069864ffbb8b3b53ded7a59bd0",
+    "site_identity_sha256": "f8fe88d66313931d2ed318723334d45062f23cc72f86538835a6df638ba785a1"
+  }
+}

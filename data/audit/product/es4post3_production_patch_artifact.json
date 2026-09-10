@@ -1,0 +1,16 @@
+{
+  "phase": "ES-4POST3_PRODUCTION_PATCH_ARTIFACT",
+  "source": {"local_head": "f984c66f3e78c5173abbcc13f3a317246b511a57", "origin_main": "84cbc9e43f2b1555a84b17cd5b94643b0b31eb1c", "ahead": 6, "behind": 0, "worktree": "clean"},
+  "pre_post2_identity": {"site_file_count": 497, "site_total_bytes": 812510441, "payload_fingerprint": "10582ec0dc896654006c2162ea66e2fd7710790c477bb072bfb2473c51b18df3"},
+  "patch_contents": ["POST2A", "POST2B", "POST2C"],
+  "build1": {"site_file_count": 500, "site_total_bytes": 812540623, "payload_file_count": 498, "payload_total_bytes": 812320501, "payload_fingerprint": "97821c6cf3a6282a6304a0ac02c8eb0c0fff762a293de655dde64511c3169d82", "asset_manifest_sha256": "557c662dd23df2207f68b6ef36ddae35f0d06b069864ffbb8b3b53ded7a59bd0", "site_identity_sha256": "f8fe88d66313931d2ed318723334d45062f23cc72f86538835a6df638ba785a1"},
+  "build2": "identical_to_build1", "reproducibility": "PASS",
+  "delta": {"file_count": 3, "site_bytes": 30182, "payload_bytes": 29117},
+  "large_assets": {"protomaps": [293324998, "72bb270ff6fc18ccba3042834f9a9eb72901c243e7dec88b3ebb63eaafaeb729"], "esfire30": [63052056, "3c6eb10ba146008cdabf36646d48a4c7a92c1c1357ad90679f6b5dce42013cfe"]},
+  "glyphs": "PASS: 9 ranges; unbundled=0; 404=0", "summary": "unchanged", "highlights": "unchanged",
+  "icv": {"records": 13738, "geometries": 13739, "recovered": {"2016": 341, "2017": 346, "2018": 375, "2019": 272}},
+  "temporal": "PASS", "popup": "PASS", "tar": {"bytes": 431670756, "sha256": "8903bc91de088e82b7c3410d6b2d2e0a5eda64889ffdcc02569319fcc14e45af", "byte_reproducible": true},
+  "extraction": "PASS", "self_contained": "PASS", "base_path": "PASS", "capacity": {"remaining_bytes": 187459377, "status": "LIMITED_BUT_ACCEPTABLE"},
+  "smokes": {"packaging": "PASS: 7 quick, 8 glyph contexts", "range": "PASS", "external_runtime_domains": []},
+  "tests": "PASS: focused POST2 plus artifact gates", "production_status": "LIVE_PRE_POST2A", "status": "READY_FOR_REMOTE_STAGING", "next_phase": "ES-4POST4_PRODUCTION_PATCH_STAGING"
+}
