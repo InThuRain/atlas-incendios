@@ -1,0 +1,15 @@
+{
+  "phase": "ES-4POST2D_MAP_EXPLORATION_FINAL_ACCEPTANCE",
+  "old_gva": {"anchor": "f7a3532f633a247f33dee3ebba9fbcc316c0e534", "bundle": "public-data-v5", "bundle_sha256": "622030c9d0d6b52b94a4796d75aaa7bf125df132c7034935531b0a64c8c98e4c", "local_click": {"geometry_id": "gva:geometry:1995:3:783", "record_id": "gva:pif-cv:1995CS5050", "popup": true, "visible_icv_1995": 467}},
+  "corrected_national": {"post2_bundle": ["POST2A", "POST2B", "POST2C"], "icv_records": 13738, "icv_geometries": 13739, "recovered_by_year": {"2016": 341, "2017": 346, "2018": 375, "2019": 272}},
+  "journeys": {"recurrence": "PASS", "age": "PASS", "click": "PASS", "details": "PASS"},
+  "geometry": "PARITY", "temporal": "PARITY", "overlap": "PARITY", "popup": "PARITY", "multi_hit": "PARITY", "map_first": "PASS",
+  "sources": {"icv": "official geometry", "esfire30": "Landsat perimeter", "effis": "provisional satellite perimeter", "egif": "no individual geometry"},
+  "national_regressions": {"spain_1995": "PASS", "canarias": "PASS: ESFire30 sin cobertura", "effis_elx_2025": "PASS: 1 perimeter, 7 ha", "permalinks": "PASS"},
+  "mobile": "PARITY", "accessibility": "PASS", "performance": {"popup_detail_fetch": false, "full_pmtiles_download": false},
+  "screenshots": ["data/audit/product/es4post2c_direct_human_popup/desktop-icv-popup.png", "data/audit/product/es4post2c_direct_human_popup/desktop-multi-hit.png", "data/audit/product/es4post2c_direct_human_popup/mobile-icv-popup.png"],
+  "parity_matrix": {"GEOMETRY_COMPLETENESS": "PARITY", "TEMPORAL_VISUAL_ENCODING": "PARITY", "OVERLAP_READABILITY": "PARITY", "DIRECT_CLICK": "PARITY", "BASIC_POPUP": "PARITY", "MULTI_HIT_EXPLORATION": "PARITY", "MAP_FIRST_DISCOVERY": "PASS", "MOBILE_MAP_EXPLORATION": "PARITY"},
+  "decision": {"MAP_EXPLORATION_PARITY": "PASS", "POST2_PRODUCT_RECONCILIATION": "PASS", "PRODUCTION_PATCH_READY": true},
+  "production_recommendation": {"value": "DEPLOY_POST2A_POST2B_POST2C", "priority": "HIGH", "release_tag": "HOLD", "next_phase": "ES-4POST3_PRODUCTION_PATCH_ARTIFACT"},
+  "status": "PASS"
+}
