@@ -20,6 +20,7 @@ import { IcvLoader, icvLevelForZoom, icvProvincesForScope } from "./icv_loader.m
 import { EffisLoader, effisIntegratedTerritory } from "./effis_loader.mjs";
 import { applicableFilterContracts, canonicalFilters, documentedIcvGif, filtersForSource } from "./source_filters.mjs";
 import { temporalColorExpression, temporalVisualState } from "./temporal_style.mjs";
+import { chooserLabel, dedupeAndSortHits, popupModel } from "./direct_popup.mjs";
 import { adaptLegacyGvaV1State, dispatchStateHash, parseLegacyGvaV1State } from "../../src/national/compat/gva-v1.mjs";
 
 const runtimeAssets = runtimeConfig.assets || {};
@@ -105,6 +106,7 @@ const effisSelectionSummary = document.querySelector("#effis-selection-summary")
 const effisDetailFields = document.querySelector("#effis-detail-fields");
 const sourceCoverage = document.querySelector("#source-coverage");
 const runtimeStateSummary = document.querySelector("#runtime-state-summary");
+const productShell = document.querySelector("#national-product-shell");
 const copyStateLink = document.querySelector("#copy-state-link");
 const copyStateStatus = document.querySelector("#copy-state-status");
 const territoryStatus = document.querySelector("#territory-status");
@@ -220,6 +222,8 @@ let latestMunicipalityResult = null;
 let municipalityTransitionGeneration = 0;
 let esfireTerritory = { status: "national", code: null, property_prefix: null, geometry_ids: null, geometry_id_set: null, strategy: null, metrics: null, expression_bytes: 0, filter_ms: 0, error: null };
 let selectedGeometryProperties = null;
+let directPopup = null;
+let directPopupMeta = null;
 let lastEsfireFilterStartedAt = null;
 let filterNotice = "";
 // Un error de transporte del PMTiles no equivale a falta de cobertura ni a
@@ -638,6 +642,164 @@ function formatOptionalArea(value) {
   return typeof value === "number" && Number.isFinite(value) ? `${formatNumber(value, 2)} ha` : "No disponible";
 }
 
+function popupTerritoryName() {
+  if (state.municipality_id) return municipalityCatalog?.byId.get(state.municipality_id)?.official_name || "el municipio seleccionado";
+  if (state.province_id) return PROVINCE_OPTIONS.find((row) => row.territory_id === state.province_id)?.official_name || "la provincia seleccionada";
+  return territoryScope.selectedOptions[0]?.textContent || "España";
+}
+
+function setMapPopupActive(active) {
+  if (productShell) productShell.dataset.mapPopupActive = String(Boolean(active));
+}
+
+function closeDirectPopup() {
+  const popup = directPopup;
+  directPopup = null;
+  directPopupMeta = null;
+  setMapPopupActive(false);
+  popup?.remove();
+}
+
+function closeDirectPopupFor(sourceId) {
+  if (!directPopupMeta) return;
+  const includesSource = directPopupMeta.hits.some((hit) => hit.sourceId === sourceId);
+  if (includesSource) closeDirectPopup();
+}
+
+function popupSourceForLayer(layerId) {
+  if ([ICV_FILL_LAYER, ICV_OUTLINE_LAYER].includes(layerId)) return "icv";
+  if ([EFFIS_FILL_LAYER, EFFIS_OUTLINE_LAYER].includes(layerId)) return "effis";
+  if ([FILL_LAYER, OUTLINE_LAYER].includes(layerId)) return "esfire30";
+  return null;
+}
+
+function popupRecordFor(hit) {
+  return hit.sourceId === "icv" ? latestIcvResult.fires_by_id?.get(hit.feature.properties?.fire_id) || null : null;
+}
+
+function popupModelFor(hit) {
+  return popupModel({
+    sourceId: hit.sourceId,
+    properties: hit.feature.properties || {},
+    record: popupRecordFor(hit),
+    territoryName: popupTerritoryName(),
+  });
+}
+
+function directPopupState() {
+  return directPopupMeta ? {
+    active: true,
+    kind: directPopupMeta.kind,
+    hit_count: directPopupMeta.hits.length,
+    source_id: directPopupMeta.hit?.sourceId || null,
+    geometry_id: directPopupMeta.hit?.geometryId || null,
+    anchor: directPopupMeta.anchor ? { ...directPopupMeta.anchor } : null,
+  } : { active: false, kind: null, hit_count: 0, source_id: null, geometry_id: null, anchor: null };
+}
+
+function appendPopupRows(target, rows) {
+  const list = document.createElement("dl");
+  list.className = "direct-popup__fields";
+  for (const [label, value] of rows) {
+    const term = document.createElement("dt"); term.textContent = label;
+    const definition = document.createElement("dd"); definition.textContent = String(value);
+    list.append(term, definition);
+  }
+  target.append(list);
+}
+
+function popupHeader(title, sourceLabel) {
+  const header = document.createElement("header"); header.className = "direct-popup__header";
+  const titleNode = document.createElement("h3"); titleNode.textContent = title;
+  const source = document.createElement("span"); source.className = "direct-popup__source"; source.textContent = sourceLabel;
+  const close = document.createElement("button"); close.type = "button"; close.className = "direct-popup__close";
+  close.setAttribute("aria-label", "Cerrar información del perímetro"); close.textContent = "Cerrar";
+  close.addEventListener("click", (event) => { event.preventDefault(); event.stopPropagation(); closeDirectPopup(); });
+  const text = document.createElement("div"); text.append(titleNode, source);
+  header.append(text, close);
+  return header;
+}
+
+function selectPopupHit(hit, { showDetail = false } = {}) {
+  if (hit.sourceId === "icv") return selectIcvFeature(hit.feature, { showDetail });
+  if (hit.sourceId === "effis") return selectEffisFeature(hit.feature, { showDetail });
+  return selectFeature(hit.feature);
+}
+
+function revealPopupDetails(hit) {
+  closeDirectPopup();
+  selectPopupHit(hit, { showDetail: true });
+  const card = document.querySelector(`[data-detail-card="${hit.sourceId}"]`);
+  if (card) {
+    card.classList.remove("is-minimized");
+    card.querySelector("[data-detail-minimize]")?.setAttribute("aria-expanded", "true");
+    card.scrollIntoView({ block: "nearest", behavior: "smooth" });
+  }
+}
+
+function openDirectFeaturePopup(hit, lngLat) {
+  closeDirectPopup();
+  hit.model ||= popupModelFor(hit);
+  selectPopupHit(hit, { showDetail: false });
+  const content = document.createElement("section"); content.className = "direct-popup";
+  content.setAttribute("role", "dialog"); content.setAttribute("aria-label", `Información de ${hit.model.title}`);
+  content.append(popupHeader(hit.model.title, hit.model.sourceLabel));
+  appendPopupRows(content, hit.model.rows);
+  if (hit.model.note) { const note = document.createElement("p"); note.className = "direct-popup__note"; note.textContent = hit.model.note; content.append(note); }
+  const details = document.createElement("button"); details.type = "button"; details.className = "direct-popup__details"; details.textContent = "Ver detalles";
+  details.addEventListener("click", (event) => { event.preventDefault(); event.stopPropagation(); revealPopupDetails(hit); });
+  content.append(details);
+  const popup = new maplibregl.Popup({ closeButton: false, closeOnClick: false, closeOnMove: false, focusAfterOpen: false, maxWidth: "22rem", offset: 10 })
+    .setLngLat(lngLat).setDOMContent(content).addTo(map);
+  directPopup = popup;
+  directPopupMeta = { kind: "feature", hit, hits: [hit], anchor: { lng: lngLat.lng, lat: lngLat.lat } };
+  setMapPopupActive(true);
+  popup.on("close", () => { if (directPopup === popup) { directPopup = null; directPopupMeta = null; setMapPopupActive(false); } });
+}
+
+function openDirectPopupChooser(hits, lngLat) {
+  closeDirectPopup();
+  const content = document.createElement("section"); content.className = "direct-popup direct-popup--chooser";
+  content.setAttribute("role", "dialog"); content.setAttribute("aria-label", "Elegir perímetro");
+  content.append(popupHeader(`${hits.length} perímetros en este punto`, "Elige el que quieres consultar"));
+  const list = document.createElement("ul"); list.className = "direct-popup__choices";
+  for (const hit of hits) {
+    hit.model ||= popupModelFor(hit);
+    const item = document.createElement("li");
+    const button = document.createElement("button"); button.type = "button";
+    // Identidad sólo para la interacción y el harness: nunca se muestra como
+    // texto humano ni se usa para asociar geometrías entre fuentes.
+    button.dataset.popupGeometryId = hit.geometryId;
+    button.dataset.popupSource = hit.sourceId;
+    const label = document.createElement("strong"); label.textContent = chooserLabel(hit);
+    const source = document.createElement("span"); source.textContent = hit.model.sourceLabel;
+    button.append(label, source);
+    button.addEventListener("click", (event) => { event.preventDefault(); event.stopPropagation(); openDirectFeaturePopup(hit, lngLat); });
+    item.append(button); list.append(item);
+  }
+  content.append(list);
+  const popup = new maplibregl.Popup({ closeButton: false, closeOnClick: false, closeOnMove: false, focusAfterOpen: false, maxWidth: "22rem", offset: 10 })
+    .setLngLat(lngLat).setDOMContent(content).addTo(map);
+  directPopup = popup;
+  directPopupMeta = { kind: "chooser", hit: null, hits, anchor: { lng: lngLat.lng, lat: lngLat.lat } };
+  setMapPopupActive(true);
+  popup.on("close", () => { if (directPopup === popup) { directPopup = null; directPopupMeta = null; setMapPopupActive(false); } });
+}
+
+function mapPopupHits(point) {
+  const layers = [FILL_LAYER, OUTLINE_LAYER, ICV_FILL_LAYER, ICV_OUTLINE_LAYER, EFFIS_FILL_LAYER, EFFIS_OUTLINE_LAYER]
+    .filter((layerId) => map.getLayer(layerId));
+  const rendered = map.queryRenderedFeatures(point, { layers });
+  return dedupeAndSortHits(rendered.map((feature, renderOrder) => ({ feature, renderOrder, sourceId: popupSourceForLayer(feature.layer?.id) })).filter((hit) => hit.sourceId));
+}
+
+function handleMapPopupClick(event) {
+  const hits = mapPopupHits(event.point);
+  if (!hits.length) { closeDirectPopup(); return; }
+  if (hits.length === 1) openDirectFeaturePopup(hits[0], event.lngLat);
+  else openDirectPopupChooser(hits, event.lngLat);
+}
+
 function formatGif(value) {
   if (value === true) return "Sí (administrativo EGIF)";
   if (value === false) return "No (administrativo EGIF)";
@@ -653,6 +815,7 @@ function clearEgifSelection(updateState = true) {
 }
 
 function clearGeometrySelection(updateState = true) {
+  closeDirectPopupFor("esfire30");
   if (updateState) state = reduceRuntimeState(state, { type: "clear_geometry_selection" });
   selectedGeometryProperties = null;
   applyFilters();
@@ -660,6 +823,10 @@ function clearGeometrySelection(updateState = true) {
 }
 
 function transition(event) {
+  // El ancla del popup es un punto del estado visible. Cualquier cambio de
+  // periodo, territorio, fuente o filtro puede retirar esa geometría: se
+  // cierra sin tocar la selección hasta que el reducer/loader la valide.
+  if (["set_range", "set_scope", "set_province", "set_municipality", "set_visibility", "set_filter", "remove_filter", "clear_filters"].includes(event.type)) closeDirectPopup();
   const previous = state;
   state = reduceRuntimeState(state, event);
   const previousFilterIds = new Set((previous.filters || []).map((row) => row.filter_id));
@@ -1118,6 +1285,7 @@ function setIcvCollection(features = []) {
 }
 
 function clearIcvSelection(updateState = true) {
+  closeDirectPopupFor("icv");
   if (updateState) state = reduceRuntimeState(state, { type: "clear_icv_geometry_selection" });
   setLayerFilter(ICV_SELECTED_LAYER, ["==", ["get", "geometry_id"], "__none__"]);
   clearHover("icv");
@@ -1160,12 +1328,13 @@ function renderIcvDetail(feature) {
   icvSelectionSummary.textContent = `geometry_id: ${properties.geometry_id} · source record: ${properties.fire_id} · ICV / perímetro oficial Generalitat.`;
 }
 
-function selectIcvFeature(feature) {
+function selectIcvFeature(feature, { showDetail = true } = {}) {
   const geometryId = feature?.properties?.geometry_id;
   if (!geometryId) return null;
   transition({ type: "select_icv_geometry", geometry_id: String(geometryId), year: Number(feature.properties.year), record_id: String(feature.properties.fire_id || "") });
   setLayerFilter(ICV_SELECTED_LAYER, ["==", ["get", "geometry_id"], String(geometryId)]);
-  renderIcvDetail(feature);
+  if (showDetail) renderIcvDetail(feature);
+  else if (icvDetail) icvDetail.hidden = true;
   return state.selected_icv_geometry_id;
 }
 
@@ -1219,6 +1388,7 @@ function setEffisCollection(features = []) {
 }
 
 function clearEffisSelection(updateState = true) {
+  closeDirectPopupFor("effis");
   if (updateState) state = reduceRuntimeState(state, { type: "clear_effis_geometry_selection" });
   setLayerFilter(EFFIS_SELECTED_LAYER, ["==", ["get", "geometry_id"], "__none__"]);
   clearHover("effis");
@@ -1231,18 +1401,18 @@ function findLoadedEffisGeometry(geometryId) {
   return latestEffisResult.features?.find((feature) => String(feature.properties?.geometry_id) === geometryId) || null;
 }
 
-function selectEffisFeature(feature) {
+function selectEffisFeature(feature, { showDetail = true } = {}) {
   const properties = feature?.properties || {};
   if (!properties.geometry_id) return null;
   transition({ type: "select_effis_geometry", geometry_id: String(properties.geometry_id), year: Number(properties.year) });
   setLayerFilter(EFFIS_SELECTED_LAYER, ["==", ["get", "geometry_id"], String(properties.geometry_id)]);
-  if (effisDetail && effisDetailFields && effisSelectionSummary) {
+  if (showDetail && effisDetail && effisDetailFields && effisSelectionSummary) {
     const rows = [["Fuente", "EFFIS / Copernicus EMS · perímetro satelital provisional"], ["Identificador de geometría", properties.geometry_id], ["ID EFFIS", properties.effis_id], ["Año", properties.year], ["Fecha EFFIS", properties.date || "No disponible"], ["Fecha final EFFIS", properties.final_date || "No disponible"], ["Provincia declarada", properties.province || "No disponible"], ["Municipio/commune declarado", properties.municipality_name || "No disponible"], ["Superficie cartografiada", formatOptionalArea(properties.mapped_area_ha)], ["Calidad geométrica", "B · teledetección provisional"], ["Snapshot", properties.acquired_at || "No disponible"]];
     effisDetailFields.replaceChildren();
     for (const [label, value] of rows) { const term = document.createElement("dt"); term.textContent = label; const definition = document.createElement("dd"); definition.textContent = value == null ? "No disponible" : String(value); effisDetailFields.append(term, definition); }
     effisDetail.hidden = false;
     effisSelectionSummary.textContent = `geometry_id: ${properties.geometry_id} · EFFIS ${properties.effis_id} · perímetro satelital provisional.`;
-  }
+  } else if (!showDetail && effisDetail) effisDetail.hidden = true;
   return state.selected_effis_geometry_id;
 }
 
@@ -1596,9 +1766,10 @@ map.on("moveend", () => {
     if (level !== icvLoadedLevel) refreshIcv().catch((error) => errors.push(String(error)));
   }
 });
-map.on("click", FILL_LAYER, (event) => selectFeature(event.features?.[0]));
-map.on("click", ICV_FILL_LAYER, (event) => selectIcvFeature(event.features?.[0]));
-map.on("click", EFFIS_FILL_LAYER, (event) => selectEffisFeature(event.features?.[0]));
+// Un único click consulta fills y outlines ya visibles. Esto conserva la
+// selección exacta, evita duplicar una misma geometría y permite elegir cuando
+// MapLibre devuelve varios perímetros que se solapan en el mismo punto.
+map.on("click", handleMapPopupClick);
 map.on("mouseenter", FILL_LAYER, () => { map.getCanvas().style.cursor = "pointer"; });
 map.on("mousemove", FILL_LAYER, (event) => showHover("esfire30", event.features?.[0]));
 map.on("mouseleave", FILL_LAYER, () => { map.getCanvas().style.cursor = ""; clearHover("esfire30"); });
@@ -1608,6 +1779,9 @@ map.on("mouseleave", ICV_FILL_LAYER, () => { map.getCanvas().style.cursor = ""; 
 map.on("mouseenter", EFFIS_FILL_LAYER, () => { map.getCanvas().style.cursor = "pointer"; });
 map.on("mousemove", EFFIS_FILL_LAYER, (event) => showHover("effis", event.features?.[0]));
 map.on("mouseleave", EFFIS_FILL_LAYER, () => { map.getCanvas().style.cursor = ""; clearHover("effis"); });
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape" && directPopup) { event.preventDefault(); closeDirectPopup(); }
+});
 map.on("error", (event) => {
   // El controlador productivo del mapa base registra el fallo y degrada a
   // BDLJE-only. No contaminar por ello el estado de ESFire30 ni el error
@@ -2123,6 +2297,9 @@ window.__es4cRuntime = {
     const visual = currentTemporalVisual();
     return { ...visual, domain: visual.domain && { ...visual.domain } };
   },
+  getDirectPopupState: directPopupState,
+  closeDirectPopup,
+  handleMapPopupClick,
   selectFirstRenderedFeature,
   applyYears,
   setEgifScope,

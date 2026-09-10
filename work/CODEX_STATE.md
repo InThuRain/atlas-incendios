@@ -1067,3 +1067,41 @@ RELEASE_TAG_STATUS = HOLD
 RESULTS_PATH = ES_4POST2B_TEMPORAL_ENCODING_AND_OVERLAP.md; data/audit/product/es4post2b_temporal_encoding_and_overlap.json
 
 NEXT_PHASE = ES-4POST2C_DIRECT_HUMAN_POPUP
+
+PHASE = ES-4POST2C_DIRECT_HUMAN_POPUP
+
+STATUS = DONE (popup humano directo MapLibre, con selección exacta, selector de solapes fuente-separado, ficha reutilizada y evidencia Chromium desktop/móvil; sin datasets, deploy, push ni tag).
+
+DIRECT_CLICK = PARITY
+
+BASIC_POPUP = PARITY
+
+HUMAN_FIELD_AVAILABILITY = PARITY
+
+MULTI_HIT_EXPLORATION = PARITY
+
+MOBILE_POPUP = PARITY
+
+MAP_FIRST_CLICK_DISCOVERY = PASS
+
+MAP_EXPLORATION_PARITY = READY_FOR_FINAL_ACCEPTANCE
+
+ICV_1993_2024 = PASS (13.738 records; 13.739 geometrías; recuperados 2016–2019 conservados).
+
+ICV_2024AL0005 = PASS (un source record, dos geometry_id, popup/selección individual).
+
+TEMPORAL_VISUAL_ENCODING = PARITY
+
+OVERLAP_READABILITY = PARITY
+
+PERMALINKS = PASS (es4c-state-v1 y GVA #v=1 sin cambio de contrato; popup visual no serializado).
+
+PRODUCTION_PATCH_BUNDLE = POST2A_POST2B_POST2C
+
+PRODUCTION_STATUS = LIVE_PRE_POST2A (sin push ni despliegue durante POST2C).
+
+RELEASE_TAG_STATUS = HOLD
+
+RESULTS_PATH = ES_4POST2C_DIRECT_HUMAN_POPUP.md; data/audit/product/es4post2c_direct_human_popup.json
+
+NEXT_PHASE = ES-4POST2D_MAP_EXPLORATION_FINAL_ACCEPTANCE
