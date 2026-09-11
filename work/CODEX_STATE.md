@@ -1219,3 +1219,37 @@ RELEASE_TAG_RECOMMENDATION = national-product-v1.0.0
 RESULTS_PATH = ES_4POST5_PRODUCTION_PATCH_EXECUTION.md; data/audit/product/es4post5_production_patch_execution.json
 
 NEXT_PHASE = ES-4POST6_POST_RELEASE_CHECKPOINT
+
+PHASE = ES-4POST6_POST_RELEASE_CHECKPOINT
+
+STATUS = DONE (POST5 sincronizado en main; salud acotada e identidad pública PASS; tag anotado publicado sobre el commit desplegado, sin nuevo deploy; cierre POST6 sólo local).
+
+POST_RELEASE_CHECKPOINT = PASS
+NATIONAL_PRODUCT_STATUS = LIVE_V1_0_0
+MAP_EXPLORATION_PARITY = PASS
+RELEASE_TAG_STATUS = CREATED
+RELEASE_TAG = national-product-v1.0.0
+RELEASE_TAG_TARGET = 534cfe37a7120904f48c87bba71b4fcb7423bb5f
+RELEASE_TAG_OBJECT = 9c951b0c6bc2e66cd3e1613fd8f6a14e0fd101aa
+PRODUCTION_MAIN_COMMIT = 534cfe37a7120904f48c87bba71b4fcb7423bb5f
+PRODUCTION_PAGES_DEPLOYMENT = 6397065009
+PRODUCTION_SITE_IDENTITY_SHA256 = f8fe88d66313931d2ed318723334d45062f23cc72f86538835a6df638ba785a1
+PRODUCTION_MANIFEST_SHA256 = 557c662dd23df2207f68b6ef36ddae35f0d06b069864ffbb8b3b53ded7a59bd0
+PRIMARY_ROLLBACK_READY = true
+DEEP_ROLLBACK_READY = true
+STAGING_PRESERVED = true
+UNEXPECTED_DEPLOYMENT = false
+POST5_COMMIT_PUSHED = a08b437d120666dcc71b2e84ea7aba12f131d2e5
+POST6_CLOSING_COMMIT_PUSH_POLICY = LOCAL_ONLY
+D5_STATUS = COMPLETE
+POST_RELEASE_RECONCILIATION = COMPLETE
+
+P1_PENDING = histogram brush; mobile histogram touch targets; cold municipality loading feedback
+P2_PENDING = z13 / relief / POI; safe ESFire30 ranking; minor mobile polish
+EXTERNAL_BLOCKERS = EGIF cause ontology / MITECO-ADCIF; CCINIF permission; historical municipality geometries
+
+PRODUCT_PRINCIPLE = Future national improvements MUST NOT regress map-first exploration, temporal readability, overlap readability, direct popup or human information hierarchy. Technical/source richness remains progressive disclosure.
+
+RESULTS_PATH = ES_4POST6_POST_RELEASE_CHECKPOINT.md; data/audit/product/es4post6_post_release_checkpoint.json
+
+NEXT_PHASE = POST_RELEASE_BACKLOG
