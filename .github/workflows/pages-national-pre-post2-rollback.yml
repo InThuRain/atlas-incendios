@@ -1,4 +1,4 @@
-name: Deploy exact national Atlas product to GitHub Pages
+name: Roll back Pages to exact PRE-POST2 national product
 
 on:
   workflow_dispatch:
@@ -26,14 +26,13 @@ jobs:
       - name: Download fixed golden national archive
         run: |
           curl --fail --location --retry 3 --retry-delay 2 \
-            'https://github.com/InThuRain/atlas-incendios-es4c3d4-pages-staging/releases/download/national-product-post2-staging-es4post4/national-product-post2-patch.tar.gz' \
-            --output national-product-post2-patch.tar.gz
+            'https://github.com/InThuRain/atlas-incendios-es4c3d4-pages-staging/releases/download/national-product-staging-es4e4a/national-product-staging.tar' \
+            --output national-product-staging.tar
 
       - name: Verify archive, extract safely and gate exact site identity
         run: |
           python scripts/check_national_product_release_gate.py \
-            --archive national-product-post2-patch.tar.gz \
-            --contract config/national-product-post2-patch-identity.json \
+            --archive national-product-staging.tar \
             --extract-to site \
             --output runner-national-product-identity.json | tee -a "$GITHUB_STEP_SUMMARY"
           printf '%s\n' 'golden archive identity PASS; runner site identity PASS' | tee -a "$GITHUB_STEP_SUMMARY"
