@@ -1,0 +1,2344 @@
+{
+  "phase": "ES-4HOT2_CLICK_ROUTING_STAGING",
+  "status": "PENDING_EXPLICIT_UPLOAD_AUTHORIZATION",
+  "git": {
+    "source_product_commit": "d98810048994d90bf0a99a883dee94c29a1abb5e",
+    "origin_main": "b8949f99c88118e1091a83bc1853184246374c21",
+    "ahead": 1,
+    "behind": 0,
+    "initial_worktree": "no tracked changes; untracked build/ only"
+  },
+  "artifact": {
+    "site_file_count": 501,
+    "site_total_bytes": 812542848,
+    "payload_file_count": 499,
+    "payload_total_bytes": 812322370,
+    "payload_fingerprint": "7d85b4f07dd5901452b028831d8d33c4cbf8567a9732aca74d44981ba60fc992",
+    "asset_manifest_sha256": "5e0610b121f54550b852460053b9c1d5c35e6be2311363f53fcbe9817762f3a9",
+    "site_identity_sha256": "6ae69340c9fb676d2331e9afbf1dd98569873b43119f73e2672665122fc4e30a"
+  },
+  "artifact_path": "build/national-product-hot1-candidate",
+  "reproducibility": {
+    "artifact": "build/national-product-hot1-candidate",
+    "identity": {
+      "failures": [],
+      "manifest_sha256": "5e0610b121f54550b852460053b9c1d5c35e6be2311363f53fcbe9817762f3a9",
+      "output": "build/national-product-hot1-candidate",
+      "payload_file_count": 499,
+      "payload_fingerprint": "7d85b4f07dd5901452b028831d8d33c4cbf8567a9732aca74d44981ba60fc992",
+      "payload_total_bytes": 812322370,
+      "site_file_count": 501,
+      "site_identity_sha256": "6ae69340c9fb676d2331e9afbf1dd98569873b43119f73e2672665122fc4e30a",
+      "site_total_bytes": 812542848,
+      "valid": true
+    },
+    "matches": {
+      "manifest_sha256": true,
+      "payload_file_count": true,
+      "payload_fingerprint": true,
+      "payload_total_bytes": true,
+      "site_file_count": true,
+      "site_identity_sha256": true,
+      "site_total_bytes": true
+    },
+    "status": "PASS"
+  },
+  "tar": {
+    "bytes": 431671665,
+    "sha256": "0ba62338927b76c56f5bcde5446cfd62a712d92e5edbeaf6815c1200383e9cba",
+    "path": "build/national-product-hot1-candidate.tar.gz",
+    "extracted_gate": true
+  },
+  "delta_vs_v1_0_0": {
+    "site_bytes": 2225,
+    "payload_bytes": 1869,
+    "site_files": 1,
+    "changed_paths": [
+      {
+        "path": "runtime/app.js",
+        "before_bytes": 130330,
+        "after_bytes": 131715
+      },
+      {
+        "path": "runtime/map_click_routing.mjs",
+        "before_bytes": null,
+        "after_bytes": 625
+      },
+      {
+        "path": "runtime/municipality_layer.mjs",
+        "before_bytes": 2718,
+        "after_bytes": 2642
+      },
+      {
+        "path": "runtime/province_layer.mjs",
+        "before_bytes": 3918,
+        "after_bytes": 3886
+      },
+      {
+        "path": "runtime/territory_layer.mjs",
+        "before_bytes": 3856,
+        "after_bytes": 3823
+      }
+    ],
+    "all_data_unchanged": true
+  },
+  "local_packaged_clicks": {
+    "icv": {
+      "passed": true,
+      "territory_unchanged": true,
+      "expected_geometry": "gva:geometry:1995:3:783",
+      "hover": {
+        "cursor": "pointer",
+        "highlight_filters": [
+          {
+            "layer": "icv-hover",
+            "filter": [
+              "==",
+              [
+                "get",
+                "geometry_id"
+              ],
+              "__none__"
+            ]
+          },
+          {
+            "layer": "esfire30-hover",
+            "filter": [
+              "==",
+              [
+                "get",
+                "geometry_id"
+              ],
+              "__none__"
+            ]
+          },
+          {
+            "layer": "effis-hover",
+            "filter": [
+              "==",
+              [
+                "get",
+                "geometry_id"
+              ],
+              "__none__"
+            ]
+          }
+        ]
+      },
+      "errors": [],
+      "before": {
+        "territory": {
+          "territory_scope": "autonomous_community",
+          "autonomous_community_id": "ES:CCAA:10",
+          "province_id": null,
+          "municipality_id": null
+        },
+        "selection": {
+          "selected_geometry_id": null,
+          "selected_geometry_year": null,
+          "selected_egif_record_id": null,
+          "selected_egif_year": null,
+          "selected_icv_geometry_id": null,
+          "selected_icv_geometry_year": null,
+          "selected_icv_record_id": null,
+          "selected_effis_geometry_id": null,
+          "selected_effis_geometry_year": null
+        },
+        "popup": {
+          "active": false,
+          "kind": null,
+          "hit_count": 0,
+          "source_id": null,
+          "geometry_id": null,
+          "anchor": null
+        }
+      },
+      "after": {
+        "territory": {
+          "territory_scope": "autonomous_community",
+          "autonomous_community_id": "ES:CCAA:10",
+          "province_id": null,
+          "municipality_id": null
+        },
+        "selection": {
+          "selected_geometry_id": null,
+          "selected_geometry_year": null,
+          "selected_egif_record_id": null,
+          "selected_egif_year": null,
+          "selected_icv_geometry_id": "gva:geometry:1995:3:783",
+          "selected_icv_geometry_year": 1995,
+          "selected_icv_record_id": "gva:pif-cv:1995CS5050",
+          "selected_effis_geometry_id": null,
+          "selected_effis_geometry_year": null
+        },
+        "popup": {
+          "active": true,
+          "kind": "feature",
+          "hit_count": 1,
+          "source_id": "icv",
+          "geometry_id": "gva:geometry:1995:3:783",
+          "anchor": {
+            "lng": -0.49119099999703053,
+            "lat": 40.09180366166885
+          }
+        }
+      },
+      "background": {
+        "passed": true,
+        "before": {
+          "territory": {
+            "territory_scope": "autonomous_community",
+            "autonomous_community_id": "ES:CCAA:10",
+            "province_id": null,
+            "municipality_id": null
+          },
+          "selection": {
+            "selected_geometry_id": null,
+            "selected_geometry_year": null,
+            "selected_egif_record_id": null,
+            "selected_egif_year": null,
+            "selected_icv_geometry_id": "gva:geometry:1995:3:783",
+            "selected_icv_geometry_year": 1995,
+            "selected_icv_record_id": "gva:pif-cv:1995CS5050",
+            "selected_effis_geometry_id": null,
+            "selected_effis_geometry_year": null
+          },
+          "popup": {
+            "active": false,
+            "kind": null,
+            "hit_count": 0,
+            "source_id": null,
+            "geometry_id": null,
+            "anchor": null
+          }
+        },
+        "after": {
+          "territory": {
+            "territory_scope": "province",
+            "autonomous_community_id": "ES:CCAA:10",
+            "province_id": "ES:PROV:12",
+            "municipality_id": null
+          },
+          "selection": {
+            "selected_geometry_id": null,
+            "selected_geometry_year": null,
+            "selected_egif_record_id": null,
+            "selected_egif_year": null,
+            "selected_icv_geometry_id": null,
+            "selected_icv_geometry_year": null,
+            "selected_icv_record_id": null,
+            "selected_effis_geometry_id": null,
+            "selected_effis_geometry_year": null
+          },
+          "popup": {
+            "active": false,
+            "kind": null,
+            "hit_count": 0,
+            "source_id": null,
+            "geometry_id": null,
+            "anchor": null
+          }
+        }
+      }
+    },
+    "province": {
+      "passed": true,
+      "territory_unchanged": true,
+      "expected_geometry": "gva:geometry:2016:24:11828",
+      "hover": {
+        "cursor": "pointer",
+        "highlight_filters": [
+          {
+            "layer": "icv-hover",
+            "filter": [
+              "==",
+              [
+                "get",
+                "geometry_id"
+              ],
+              "__none__"
+            ]
+          },
+          {
+            "layer": "esfire30-hover",
+            "filter": [
+              "==",
+              [
+                "get",
+                "geometry_id"
+              ],
+              "__none__"
+            ]
+          },
+          {
+            "layer": "effis-hover",
+            "filter": [
+              "==",
+              [
+                "get",
+                "geometry_id"
+              ],
+              "__none__"
+            ]
+          }
+        ]
+      },
+      "errors": [],
+      "before": {
+        "territory": {
+          "territory_scope": "province",
+          "autonomous_community_id": "ES:CCAA:10",
+          "province_id": "ES:PROV:03",
+          "municipality_id": null
+        },
+        "selection": {
+          "selected_geometry_id": null,
+          "selected_geometry_year": null,
+          "selected_egif_record_id": null,
+          "selected_egif_year": null,
+          "selected_icv_geometry_id": null,
+          "selected_icv_geometry_year": null,
+          "selected_icv_record_id": null,
+          "selected_effis_geometry_id": null,
+          "selected_effis_geometry_year": null
+        },
+        "popup": {
+          "active": false,
+          "kind": null,
+          "hit_count": 0,
+          "source_id": null,
+          "geometry_id": null,
+          "anchor": null
+        }
+      },
+      "after": {
+        "territory": {
+          "territory_scope": "province",
+          "autonomous_community_id": "ES:CCAA:10",
+          "province_id": "ES:PROV:03",
+          "municipality_id": null
+        },
+        "selection": {
+          "selected_geometry_id": null,
+          "selected_geometry_year": null,
+          "selected_egif_record_id": null,
+          "selected_egif_year": null,
+          "selected_icv_geometry_id": "gva:geometry:2016:24:11828",
+          "selected_icv_geometry_year": 2016,
+          "selected_icv_record_id": "gva:pif-cv:2016AL0074",
+          "selected_effis_geometry_id": null,
+          "selected_effis_geometry_year": null
+        },
+        "popup": {
+          "active": true,
+          "kind": "feature",
+          "hit_count": 1,
+          "source_id": "icv",
+          "geometry_id": "gva:geometry:2016:24:11828",
+          "anchor": {
+            "lng": 0.17708500000159688,
+            "lat": 38.75146893667619
+          }
+        }
+      },
+      "background": {
+        "passed": true,
+        "before": {
+          "territory": {
+            "territory_scope": "province",
+            "autonomous_community_id": "ES:CCAA:10",
+            "province_id": "ES:PROV:03",
+            "municipality_id": null
+          },
+          "selection": {
+            "selected_geometry_id": null,
+            "selected_geometry_year": null,
+            "selected_egif_record_id": null,
+            "selected_egif_year": null,
+            "selected_icv_geometry_id": "gva:geometry:2016:24:11828",
+            "selected_icv_geometry_year": 2016,
+            "selected_icv_record_id": "gva:pif-cv:2016AL0074",
+            "selected_effis_geometry_id": null,
+            "selected_effis_geometry_year": null
+          },
+          "popup": {
+            "active": false,
+            "kind": null,
+            "hit_count": 0,
+            "source_id": null,
+            "geometry_id": null,
+            "anchor": null
+          }
+        },
+        "after": {
+          "territory": {
+            "territory_scope": "municipality",
+            "autonomous_community_id": "ES:CCAA:10",
+            "province_id": "ES:PROV:03",
+            "municipality_id": "ES:MUN:03082"
+          },
+          "selection": {
+            "selected_geometry_id": null,
+            "selected_geometry_year": null,
+            "selected_egif_record_id": null,
+            "selected_egif_year": null,
+            "selected_icv_geometry_id": null,
+            "selected_icv_geometry_year": null,
+            "selected_icv_record_id": null,
+            "selected_effis_geometry_id": null,
+            "selected_effis_geometry_year": null
+          },
+          "popup": {
+            "active": false,
+            "kind": null,
+            "hit_count": 0,
+            "source_id": null,
+            "geometry_id": null,
+            "anchor": null
+          }
+        }
+      }
+    },
+    "municipality": {
+      "passed": true,
+      "territory_unchanged": true,
+      "expected_geometry": "gva:geometry:2016:24:11828",
+      "hover": {
+        "cursor": "pointer",
+        "highlight_filters": [
+          {
+            "layer": "icv-hover",
+            "filter": [
+              "==",
+              [
+                "get",
+                "geometry_id"
+              ],
+              "__none__"
+            ]
+          },
+          {
+            "layer": "esfire30-hover",
+            "filter": [
+              "==",
+              [
+                "get",
+                "geometry_id"
+              ],
+              "__none__"
+            ]
+          },
+          {
+            "layer": "effis-hover",
+            "filter": [
+              "==",
+              [
+                "get",
+                "geometry_id"
+              ],
+              "__none__"
+            ]
+          }
+        ]
+      },
+      "errors": [],
+      "before": {
+        "territory": {
+          "territory_scope": "municipality",
+          "autonomous_community_id": "ES:CCAA:10",
+          "province_id": "ES:PROV:03",
+          "municipality_id": "ES:MUN:03042"
+        },
+        "selection": {
+          "selected_geometry_id": null,
+          "selected_geometry_year": null,
+          "selected_egif_record_id": null,
+          "selected_egif_year": null,
+          "selected_icv_geometry_id": null,
+          "selected_icv_geometry_year": null,
+          "selected_icv_record_id": null,
+          "selected_effis_geometry_id": null,
+          "selected_effis_geometry_year": null
+        },
+        "popup": {
+          "active": false,
+          "kind": null,
+          "hit_count": 0,
+          "source_id": null,
+          "geometry_id": null,
+          "anchor": null
+        }
+      },
+      "after": {
+        "territory": {
+          "territory_scope": "municipality",
+          "autonomous_community_id": "ES:CCAA:10",
+          "province_id": "ES:PROV:03",
+          "municipality_id": "ES:MUN:03042"
+        },
+        "selection": {
+          "selected_geometry_id": null,
+          "selected_geometry_year": null,
+          "selected_egif_record_id": null,
+          "selected_egif_year": null,
+          "selected_icv_geometry_id": "gva:geometry:2016:24:11828",
+          "selected_icv_geometry_year": 2016,
+          "selected_icv_record_id": "gva:pif-cv:2016AL0074",
+          "selected_effis_geometry_id": null,
+          "selected_effis_geometry_year": null
+        },
+        "popup": {
+          "active": true,
+          "kind": "feature",
+          "hit_count": 1,
+          "source_id": "icv",
+          "geometry_id": "gva:geometry:2016:24:11828",
+          "anchor": {
+            "lng": 0.17708500000159688,
+            "lat": 38.75146893667619
+          }
+        }
+      }
+    },
+    "multi": {
+      "passed": true,
+      "territory_unchanged": true,
+      "expected_geometry": "gva:geometry:1995:3:785",
+      "hover": {
+        "cursor": "pointer",
+        "highlight_filters": [
+          {
+            "layer": "icv-hover",
+            "filter": [
+              "==",
+              [
+                "get",
+                "geometry_id"
+              ],
+              "gva:geometry:1995:3:785"
+            ]
+          },
+          {
+            "layer": "esfire30-hover",
+            "filter": [
+              "==",
+              [
+                "get",
+                "geometry_id"
+              ],
+              "esfire30:v1:1995:60"
+            ]
+          },
+          {
+            "layer": "effis-hover",
+            "filter": [
+              "==",
+              [
+                "get",
+                "geometry_id"
+              ],
+              "__none__"
+            ]
+          }
+        ]
+      },
+      "errors": [],
+      "before": {
+        "territory": {
+          "territory_scope": "autonomous_community",
+          "autonomous_community_id": "ES:CCAA:10",
+          "province_id": null,
+          "municipality_id": null
+        },
+        "selection": {
+          "selected_geometry_id": null,
+          "selected_geometry_year": null,
+          "selected_egif_record_id": null,
+          "selected_egif_year": null,
+          "selected_icv_geometry_id": null,
+          "selected_icv_geometry_year": null,
+          "selected_icv_record_id": null,
+          "selected_effis_geometry_id": null,
+          "selected_effis_geometry_year": null
+        },
+        "popup": {
+          "active": false,
+          "kind": null,
+          "hit_count": 0,
+          "source_id": null,
+          "geometry_id": null,
+          "anchor": null
+        }
+      },
+      "after": {
+        "territory": {
+          "territory_scope": "autonomous_community",
+          "autonomous_community_id": "ES:CCAA:10",
+          "province_id": null,
+          "municipality_id": null
+        },
+        "selection": {
+          "selected_geometry_id": null,
+          "selected_geometry_year": null,
+          "selected_egif_record_id": null,
+          "selected_egif_year": null,
+          "selected_icv_geometry_id": null,
+          "selected_icv_geometry_year": null,
+          "selected_icv_record_id": null,
+          "selected_effis_geometry_id": null,
+          "selected_effis_geometry_year": null
+        },
+        "popup": {
+          "active": true,
+          "kind": "chooser",
+          "hit_count": 2,
+          "source_id": null,
+          "geometry_id": null,
+          "anchor": {
+            "lng": -0.08239746093948952,
+            "lat": 38.88595542095831
+          }
+        }
+      }
+    },
+    "recovered": {
+      "passed": true,
+      "territory_unchanged": true,
+      "expected_geometry": "gva:geometry:2016:24:11828",
+      "hover": {
+        "cursor": "pointer",
+        "highlight_filters": [
+          {
+            "layer": "icv-hover",
+            "filter": [
+              "==",
+              [
+                "get",
+                "geometry_id"
+              ],
+              "__none__"
+            ]
+          },
+          {
+            "layer": "esfire30-hover",
+            "filter": [
+              "==",
+              [
+                "get",
+                "geometry_id"
+              ],
+              "__none__"
+            ]
+          },
+          {
+            "layer": "effis-hover",
+            "filter": [
+              "==",
+              [
+                "get",
+                "geometry_id"
+              ],
+              "__none__"
+            ]
+          }
+        ]
+      },
+      "errors": [],
+      "before": {
+        "territory": {
+          "territory_scope": "autonomous_community",
+          "autonomous_community_id": "ES:CCAA:10",
+          "province_id": null,
+          "municipality_id": null
+        },
+        "selection": {
+          "selected_geometry_id": null,
+          "selected_geometry_year": null,
+          "selected_egif_record_id": null,
+          "selected_egif_year": null,
+          "selected_icv_geometry_id": null,
+          "selected_icv_geometry_year": null,
+          "selected_icv_record_id": null,
+          "selected_effis_geometry_id": null,
+          "selected_effis_geometry_year": null
+        },
+        "popup": {
+          "active": false,
+          "kind": null,
+          "hit_count": 0,
+          "source_id": null,
+          "geometry_id": null,
+          "anchor": null
+        }
+      },
+      "after": {
+        "territory": {
+          "territory_scope": "autonomous_community",
+          "autonomous_community_id": "ES:CCAA:10",
+          "province_id": null,
+          "municipality_id": null
+        },
+        "selection": {
+          "selected_geometry_id": null,
+          "selected_geometry_year": null,
+          "selected_egif_record_id": null,
+          "selected_egif_year": null,
+          "selected_icv_geometry_id": "gva:geometry:2016:24:11828",
+          "selected_icv_geometry_year": 2016,
+          "selected_icv_record_id": "gva:pif-cv:2016AL0074",
+          "selected_effis_geometry_id": null,
+          "selected_effis_geometry_year": null
+        },
+        "popup": {
+          "active": true,
+          "kind": "feature",
+          "hit_count": 1,
+          "source_id": "icv",
+          "geometry_id": "gva:geometry:2016:24:11828",
+          "anchor": {
+            "lng": 0.17708500000159688,
+            "lat": 38.75146893667619
+          }
+        }
+      }
+    },
+    "double0": {
+      "passed": true,
+      "territory_unchanged": true,
+      "expected_geometry": "gva:geometry:2024:121:13587",
+      "hover": {
+        "cursor": "pointer",
+        "highlight_filters": [
+          {
+            "layer": "icv-hover",
+            "filter": [
+              "==",
+              [
+                "get",
+                "geometry_id"
+              ],
+              "__none__"
+            ]
+          },
+          {
+            "layer": "esfire30-hover",
+            "filter": [
+              "==",
+              [
+                "get",
+                "geometry_id"
+              ],
+              "__none__"
+            ]
+          },
+          {
+            "layer": "effis-hover",
+            "filter": [
+              "==",
+              [
+                "get",
+                "geometry_id"
+              ],
+              "__none__"
+            ]
+          }
+        ]
+      },
+      "errors": [],
+      "before": {
+        "territory": {
+          "territory_scope": "autonomous_community",
+          "autonomous_community_id": "ES:CCAA:10",
+          "province_id": null,
+          "municipality_id": null
+        },
+        "selection": {
+          "selected_geometry_id": null,
+          "selected_geometry_year": null,
+          "selected_egif_record_id": null,
+          "selected_egif_year": null,
+          "selected_icv_geometry_id": null,
+          "selected_icv_geometry_year": null,
+          "selected_icv_record_id": null,
+          "selected_effis_geometry_id": null,
+          "selected_effis_geometry_year": null
+        },
+        "popup": {
+          "active": false,
+          "kind": null,
+          "hit_count": 0,
+          "source_id": null,
+          "geometry_id": null,
+          "anchor": null
+        }
+      },
+      "after": {
+        "territory": {
+          "territory_scope": "autonomous_community",
+          "autonomous_community_id": "ES:CCAA:10",
+          "province_id": null,
+          "municipality_id": null
+        },
+        "selection": {
+          "selected_geometry_id": null,
+          "selected_geometry_year": null,
+          "selected_egif_record_id": null,
+          "selected_egif_year": null,
+          "selected_icv_geometry_id": null,
+          "selected_icv_geometry_year": null,
+          "selected_icv_record_id": null,
+          "selected_effis_geometry_id": null,
+          "selected_effis_geometry_year": null
+        },
+        "popup": {
+          "active": true,
+          "kind": "chooser",
+          "hit_count": 2,
+          "source_id": null,
+          "geometry_id": null,
+          "anchor": {
+            "lng": -0.7756000000016741,
+            "lat": 37.94770368373959
+          }
+        }
+      }
+    },
+    "double1": {
+      "passed": true,
+      "territory_unchanged": true,
+      "expected_geometry": "gva:geometry:2024:121:13606",
+      "hover": {
+        "cursor": "pointer",
+        "highlight_filters": [
+          {
+            "layer": "icv-hover",
+            "filter": [
+              "==",
+              [
+                "get",
+                "geometry_id"
+              ],
+              "gva:geometry:2024:121:13606"
+            ]
+          },
+          {
+            "layer": "esfire30-hover",
+            "filter": [
+              "==",
+              [
+                "get",
+                "geometry_id"
+              ],
+              "__none__"
+            ]
+          },
+          {
+            "layer": "effis-hover",
+            "filter": [
+              "==",
+              [
+                "get",
+                "geometry_id"
+              ],
+              "__none__"
+            ]
+          }
+        ]
+      },
+      "errors": [],
+      "before": {
+        "territory": {
+          "territory_scope": "autonomous_community",
+          "autonomous_community_id": "ES:CCAA:10",
+          "province_id": null,
+          "municipality_id": null
+        },
+        "selection": {
+          "selected_geometry_id": null,
+          "selected_geometry_year": null,
+          "selected_egif_record_id": null,
+          "selected_egif_year": null,
+          "selected_icv_geometry_id": null,
+          "selected_icv_geometry_year": null,
+          "selected_icv_record_id": null,
+          "selected_effis_geometry_id": null,
+          "selected_effis_geometry_year": null
+        },
+        "popup": {
+          "active": false,
+          "kind": null,
+          "hit_count": 0,
+          "source_id": null,
+          "geometry_id": null,
+          "anchor": null
+        }
+      },
+      "after": {
+        "territory": {
+          "territory_scope": "autonomous_community",
+          "autonomous_community_id": "ES:CCAA:10",
+          "province_id": null,
+          "municipality_id": null
+        },
+        "selection": {
+          "selected_geometry_id": null,
+          "selected_geometry_year": null,
+          "selected_egif_record_id": null,
+          "selected_egif_year": null,
+          "selected_icv_geometry_id": null,
+          "selected_icv_geometry_year": null,
+          "selected_icv_record_id": null,
+          "selected_effis_geometry_id": null,
+          "selected_effis_geometry_year": null
+        },
+        "popup": {
+          "active": true,
+          "kind": "chooser",
+          "hit_count": 2,
+          "source_id": null,
+          "geometry_id": null,
+          "anchor": {
+            "lng": -0.7755840000009186,
+            "lat": 37.94771268373202
+          }
+        }
+      }
+    },
+    "esfire30": {
+      "passed": true,
+      "territory_unchanged": true,
+      "expected_geometry": "esfire30:v1:1995:60",
+      "hover": {
+        "cursor": "pointer",
+        "highlight_filters": [
+          {
+            "layer": "icv-hover",
+            "filter": [
+              "==",
+              [
+                "get",
+                "geometry_id"
+              ],
+              "__none__"
+            ]
+          },
+          {
+            "layer": "esfire30-hover",
+            "filter": [
+              "==",
+              [
+                "get",
+                "geometry_id"
+              ],
+              "__none__"
+            ]
+          },
+          {
+            "layer": "effis-hover",
+            "filter": [
+              "==",
+              [
+                "get",
+                "geometry_id"
+              ],
+              "__none__"
+            ]
+          }
+        ]
+      },
+      "errors": [],
+      "before": {
+        "territory": {
+          "territory_scope": "autonomous_community",
+          "autonomous_community_id": "ES:CCAA:10",
+          "province_id": null,
+          "municipality_id": null
+        },
+        "selection": {
+          "selected_geometry_id": null,
+          "selected_geometry_year": null,
+          "selected_egif_record_id": null,
+          "selected_egif_year": null,
+          "selected_icv_geometry_id": null,
+          "selected_icv_geometry_year": null,
+          "selected_icv_record_id": null,
+          "selected_effis_geometry_id": null,
+          "selected_effis_geometry_year": null
+        },
+        "popup": {
+          "active": false,
+          "kind": null,
+          "hit_count": 0,
+          "source_id": null,
+          "geometry_id": null,
+          "anchor": null
+        }
+      },
+      "after": {
+        "territory": {
+          "territory_scope": "autonomous_community",
+          "autonomous_community_id": "ES:CCAA:10",
+          "province_id": null,
+          "municipality_id": null
+        },
+        "selection": {
+          "selected_geometry_id": "esfire30:v1:1995:60",
+          "selected_geometry_year": 1995,
+          "selected_egif_record_id": null,
+          "selected_egif_year": null,
+          "selected_icv_geometry_id": null,
+          "selected_icv_geometry_year": null,
+          "selected_icv_record_id": null,
+          "selected_effis_geometry_id": null,
+          "selected_effis_geometry_year": null
+        },
+        "popup": {
+          "active": true,
+          "kind": "feature",
+          "hit_count": 1,
+          "source_id": "esfire30",
+          "geometry_id": "esfire30:v1:1995:60",
+          "anchor": {
+            "lng": -0.07965087890738687,
+            "lat": 38.88782608627119
+          }
+        }
+      }
+    },
+    "effis": {
+      "passed": true,
+      "territory_unchanged": true,
+      "expected_geometry": "effis:rda:285361:f05085eba622a5bb",
+      "hover": {
+        "cursor": "pointer",
+        "highlight_filters": [
+          {
+            "layer": "icv-hover",
+            "filter": [
+              "==",
+              [
+                "get",
+                "geometry_id"
+              ],
+              "__none__"
+            ]
+          },
+          {
+            "layer": "esfire30-hover",
+            "filter": [
+              "==",
+              [
+                "get",
+                "geometry_id"
+              ],
+              "__none__"
+            ]
+          },
+          {
+            "layer": "effis-hover",
+            "filter": [
+              "==",
+              [
+                "get",
+                "geometry_id"
+              ],
+              "effis:rda:285361:f05085eba622a5bb"
+            ]
+          }
+        ]
+      },
+      "errors": [],
+      "before": {
+        "territory": {
+          "territory_scope": "autonomous_community",
+          "autonomous_community_id": "ES:CCAA:10",
+          "province_id": null,
+          "municipality_id": null
+        },
+        "selection": {
+          "selected_geometry_id": null,
+          "selected_geometry_year": null,
+          "selected_egif_record_id": null,
+          "selected_egif_year": null,
+          "selected_icv_geometry_id": null,
+          "selected_icv_geometry_year": null,
+          "selected_icv_record_id": null,
+          "selected_effis_geometry_id": null,
+          "selected_effis_geometry_year": null
+        },
+        "popup": {
+          "active": false,
+          "kind": null,
+          "hit_count": 0,
+          "source_id": null,
+          "geometry_id": null,
+          "anchor": null
+        }
+      },
+      "after": {
+        "territory": {
+          "territory_scope": "autonomous_community",
+          "autonomous_community_id": "ES:CCAA:10",
+          "province_id": null,
+          "municipality_id": null
+        },
+        "selection": {
+          "selected_geometry_id": null,
+          "selected_geometry_year": null,
+          "selected_egif_record_id": null,
+          "selected_egif_year": null,
+          "selected_icv_geometry_id": null,
+          "selected_icv_geometry_year": null,
+          "selected_icv_record_id": null,
+          "selected_effis_geometry_id": "effis:rda:285361:f05085eba622a5bb",
+          "selected_effis_geometry_year": 2025
+        },
+        "popup": {
+          "active": true,
+          "kind": "feature",
+          "hit_count": 1,
+          "source_id": "effis",
+          "geometry_id": "effis:rda:285361:f05085eba622a5bb",
+          "anchor": {
+            "lng": -0.7585335000024145,
+            "lat": 38.19544095489317
+          }
+        }
+      }
+    },
+    "mobile": {
+      "passed": true,
+      "territory_unchanged": true,
+      "expected_geometry": "gva:geometry:1995:3:783",
+      "hover": {
+        "cursor": "pointer",
+        "highlight_filters": [
+          {
+            "layer": "icv-hover",
+            "filter": [
+              "==",
+              [
+                "get",
+                "geometry_id"
+              ],
+              "__none__"
+            ]
+          },
+          {
+            "layer": "esfire30-hover",
+            "filter": [
+              "==",
+              [
+                "get",
+                "geometry_id"
+              ],
+              "__none__"
+            ]
+          },
+          {
+            "layer": "effis-hover",
+            "filter": [
+              "==",
+              [
+                "get",
+                "geometry_id"
+              ],
+              "__none__"
+            ]
+          }
+        ]
+      },
+      "errors": [],
+      "before": {
+        "territory": {
+          "territory_scope": "autonomous_community",
+          "autonomous_community_id": "ES:CCAA:10",
+          "province_id": null,
+          "municipality_id": null
+        },
+        "selection": {
+          "selected_geometry_id": null,
+          "selected_geometry_year": null,
+          "selected_egif_record_id": null,
+          "selected_egif_year": null,
+          "selected_icv_geometry_id": null,
+          "selected_icv_geometry_year": null,
+          "selected_icv_record_id": null,
+          "selected_effis_geometry_id": null,
+          "selected_effis_geometry_year": null
+        },
+        "popup": {
+          "active": false,
+          "kind": null,
+          "hit_count": 0,
+          "source_id": null,
+          "geometry_id": null,
+          "anchor": null
+        }
+      },
+      "after": {
+        "territory": {
+          "territory_scope": "autonomous_community",
+          "autonomous_community_id": "ES:CCAA:10",
+          "province_id": null,
+          "municipality_id": null
+        },
+        "selection": {
+          "selected_geometry_id": null,
+          "selected_geometry_year": null,
+          "selected_egif_record_id": null,
+          "selected_egif_year": null,
+          "selected_icv_geometry_id": "gva:geometry:1995:3:783",
+          "selected_icv_geometry_year": 1995,
+          "selected_icv_record_id": "gva:pif-cv:1995CS5050",
+          "selected_effis_geometry_id": null,
+          "selected_effis_geometry_year": null
+        },
+        "popup": {
+          "active": true,
+          "kind": "feature",
+          "hit_count": 1,
+          "source_id": "icv",
+          "geometry_id": "gva:geometry:1995:3:783",
+          "anchor": {
+            "lng": -0.4911910000012938,
+            "lat": 40.091729792286344
+          }
+        }
+      },
+      "background": {
+        "passed": true,
+        "before": {
+          "territory": {
+            "territory_scope": "autonomous_community",
+            "autonomous_community_id": "ES:CCAA:10",
+            "province_id": null,
+            "municipality_id": null
+          },
+          "selection": {
+            "selected_geometry_id": null,
+            "selected_geometry_year": null,
+            "selected_egif_record_id": null,
+            "selected_egif_year": null,
+            "selected_icv_geometry_id": "gva:geometry:1995:3:783",
+            "selected_icv_geometry_year": 1995,
+            "selected_icv_record_id": "gva:pif-cv:1995CS5050",
+            "selected_effis_geometry_id": null,
+            "selected_effis_geometry_year": null
+          },
+          "popup": {
+            "active": false,
+            "kind": null,
+            "hit_count": 0,
+            "source_id": null,
+            "geometry_id": null,
+            "anchor": null
+          }
+        },
+        "after": {
+          "territory": {
+            "territory_scope": "province",
+            "autonomous_community_id": "ES:CCAA:10",
+            "province_id": "ES:PROV:12",
+            "municipality_id": null
+          },
+          "selection": {
+            "selected_geometry_id": null,
+            "selected_geometry_year": null,
+            "selected_egif_record_id": null,
+            "selected_egif_year": null,
+            "selected_icv_geometry_id": null,
+            "selected_icv_geometry_year": null,
+            "selected_icv_record_id": null,
+            "selected_effis_geometry_id": null,
+            "selected_effis_geometry_year": null
+          },
+          "popup": {
+            "active": false,
+            "kind": null,
+            "hit_count": 0,
+            "source_id": null,
+            "geometry_id": null,
+            "anchor": null
+          }
+        }
+      }
+    },
+    "filtered": {
+      "passed": true,
+      "territory_unchanged": true,
+      "expected_geometry": "gva:geometry:1995:3:783",
+      "hover": {
+        "cursor": "pointer",
+        "highlight_filters": [
+          {
+            "layer": "icv-hover",
+            "filter": [
+              "==",
+              [
+                "get",
+                "geometry_id"
+              ],
+              "__none__"
+            ]
+          },
+          {
+            "layer": "esfire30-hover",
+            "filter": [
+              "==",
+              [
+                "get",
+                "geometry_id"
+              ],
+              "__none__"
+            ]
+          },
+          {
+            "layer": "effis-hover",
+            "filter": [
+              "==",
+              [
+                "get",
+                "geometry_id"
+              ],
+              "__none__"
+            ]
+          }
+        ]
+      },
+      "errors": [],
+      "before": {
+        "territory": {
+          "territory_scope": "autonomous_community",
+          "autonomous_community_id": "ES:CCAA:10",
+          "province_id": null,
+          "municipality_id": null
+        },
+        "selection": {
+          "selected_geometry_id": null,
+          "selected_geometry_year": null,
+          "selected_egif_record_id": null,
+          "selected_egif_year": null,
+          "selected_icv_geometry_id": null,
+          "selected_icv_geometry_year": null,
+          "selected_icv_record_id": null,
+          "selected_effis_geometry_id": null,
+          "selected_effis_geometry_year": null
+        },
+        "popup": {
+          "active": false,
+          "kind": null,
+          "hit_count": 0,
+          "source_id": null,
+          "geometry_id": null,
+          "anchor": null
+        }
+      },
+      "after": {
+        "territory": {
+          "territory_scope": "autonomous_community",
+          "autonomous_community_id": "ES:CCAA:10",
+          "province_id": null,
+          "municipality_id": null
+        },
+        "selection": {
+          "selected_geometry_id": null,
+          "selected_geometry_year": null,
+          "selected_egif_record_id": null,
+          "selected_egif_year": null,
+          "selected_icv_geometry_id": "gva:geometry:1995:3:783",
+          "selected_icv_geometry_year": 1995,
+          "selected_icv_record_id": "gva:pif-cv:1995CS5050",
+          "selected_effis_geometry_id": null,
+          "selected_effis_geometry_year": null
+        },
+        "popup": {
+          "active": true,
+          "kind": "feature",
+          "hit_count": 1,
+          "source_id": "icv",
+          "geometry_id": "gva:geometry:1995:3:783",
+          "anchor": {
+            "lng": -0.49119099999703053,
+            "lat": 40.09180366166885
+          }
+        }
+      },
+      "removed_feature": {
+        "before_click": {
+          "territory": {
+            "territory_scope": "autonomous_community",
+            "autonomous_community_id": "ES:CCAA:10",
+            "province_id": null,
+            "municipality_id": null
+          },
+          "selection": {
+            "selected_geometry_id": null,
+            "selected_geometry_year": null,
+            "selected_egif_record_id": null,
+            "selected_egif_year": null,
+            "selected_icv_geometry_id": null,
+            "selected_icv_geometry_year": null,
+            "selected_icv_record_id": null,
+            "selected_effis_geometry_id": null,
+            "selected_effis_geometry_year": null
+          },
+          "popup": {
+            "active": false,
+            "kind": null,
+            "hit_count": 0,
+            "source_id": null,
+            "geometry_id": null,
+            "anchor": null
+          }
+        },
+        "after_click": {
+          "territory": {
+            "territory_scope": "province",
+            "autonomous_community_id": "ES:CCAA:10",
+            "province_id": "ES:PROV:12",
+            "municipality_id": null
+          },
+          "selection": {
+            "selected_geometry_id": null,
+            "selected_geometry_year": null,
+            "selected_egif_record_id": null,
+            "selected_egif_year": null,
+            "selected_icv_geometry_id": null,
+            "selected_icv_geometry_year": null,
+            "selected_icv_record_id": null,
+            "selected_effis_geometry_id": null,
+            "selected_effis_geometry_year": null
+          },
+          "popup": {
+            "active": false,
+            "kind": null,
+            "hit_count": 0,
+            "source_id": null,
+            "geometry_id": null,
+            "anchor": null
+          }
+        },
+        "remaining_rendered_hits": 0,
+        "passed": true
+      }
+    },
+    "hidden": {
+      "passed": true,
+      "territory_unchanged": true,
+      "expected_geometry": "gva:geometry:1995:3:783",
+      "hover": {
+        "cursor": "pointer",
+        "highlight_filters": [
+          {
+            "layer": "icv-hover",
+            "filter": [
+              "==",
+              [
+                "get",
+                "geometry_id"
+              ],
+              "__none__"
+            ]
+          },
+          {
+            "layer": "esfire30-hover",
+            "filter": [
+              "==",
+              [
+                "get",
+                "geometry_id"
+              ],
+              "__none__"
+            ]
+          },
+          {
+            "layer": "effis-hover",
+            "filter": [
+              "==",
+              [
+                "get",
+                "geometry_id"
+              ],
+              "__none__"
+            ]
+          }
+        ]
+      },
+      "errors": [],
+      "before": {
+        "territory": {
+          "territory_scope": "autonomous_community",
+          "autonomous_community_id": "ES:CCAA:10",
+          "province_id": null,
+          "municipality_id": null
+        },
+        "selection": {
+          "selected_geometry_id": null,
+          "selected_geometry_year": null,
+          "selected_egif_record_id": null,
+          "selected_egif_year": null,
+          "selected_icv_geometry_id": null,
+          "selected_icv_geometry_year": null,
+          "selected_icv_record_id": null,
+          "selected_effis_geometry_id": null,
+          "selected_effis_geometry_year": null
+        },
+        "popup": {
+          "active": false,
+          "kind": null,
+          "hit_count": 0,
+          "source_id": null,
+          "geometry_id": null,
+          "anchor": null
+        }
+      },
+      "after": {
+        "territory": {
+          "territory_scope": "autonomous_community",
+          "autonomous_community_id": "ES:CCAA:10",
+          "province_id": null,
+          "municipality_id": null
+        },
+        "selection": {
+          "selected_geometry_id": null,
+          "selected_geometry_year": null,
+          "selected_egif_record_id": null,
+          "selected_egif_year": null,
+          "selected_icv_geometry_id": "gva:geometry:1995:3:783",
+          "selected_icv_geometry_year": 1995,
+          "selected_icv_record_id": "gva:pif-cv:1995CS5050",
+          "selected_effis_geometry_id": null,
+          "selected_effis_geometry_year": null
+        },
+        "popup": {
+          "active": true,
+          "kind": "feature",
+          "hit_count": 1,
+          "source_id": "icv",
+          "geometry_id": "gva:geometry:1995:3:783",
+          "anchor": {
+            "lng": -0.49119099999703053,
+            "lat": 40.09180366166885
+          }
+        }
+      },
+      "removed_feature": {
+        "before_click": {
+          "territory": {
+            "territory_scope": "autonomous_community",
+            "autonomous_community_id": "ES:CCAA:10",
+            "province_id": null,
+            "municipality_id": null
+          },
+          "selection": {
+            "selected_geometry_id": null,
+            "selected_geometry_year": null,
+            "selected_egif_record_id": null,
+            "selected_egif_year": null,
+            "selected_icv_geometry_id": null,
+            "selected_icv_geometry_year": null,
+            "selected_icv_record_id": null,
+            "selected_effis_geometry_id": null,
+            "selected_effis_geometry_year": null
+          },
+          "popup": {
+            "active": false,
+            "kind": null,
+            "hit_count": 0,
+            "source_id": null,
+            "geometry_id": null,
+            "anchor": null
+          }
+        },
+        "after_click": {
+          "territory": {
+            "territory_scope": "province",
+            "autonomous_community_id": "ES:CCAA:10",
+            "province_id": "ES:PROV:12",
+            "municipality_id": null
+          },
+          "selection": {
+            "selected_geometry_id": null,
+            "selected_geometry_year": null,
+            "selected_egif_record_id": null,
+            "selected_egif_year": null,
+            "selected_icv_geometry_id": null,
+            "selected_icv_geometry_year": null,
+            "selected_icv_record_id": null,
+            "selected_effis_geometry_id": null,
+            "selected_effis_geometry_year": null
+          },
+          "popup": {
+            "active": false,
+            "kind": null,
+            "hit_count": 0,
+            "source_id": null,
+            "geometry_id": null,
+            "anchor": null
+          }
+        },
+        "remaining_rendered_hits": 0,
+        "passed": true
+      }
+    },
+    "period": {
+      "passed": true,
+      "territory_unchanged": true,
+      "expected_geometry": "gva:geometry:1995:3:783",
+      "hover": {
+        "cursor": "pointer",
+        "highlight_filters": [
+          {
+            "layer": "icv-hover",
+            "filter": [
+              "==",
+              [
+                "get",
+                "geometry_id"
+              ],
+              "__none__"
+            ]
+          },
+          {
+            "layer": "esfire30-hover",
+            "filter": [
+              "==",
+              [
+                "get",
+                "geometry_id"
+              ],
+              "__none__"
+            ]
+          },
+          {
+            "layer": "effis-hover",
+            "filter": [
+              "==",
+              [
+                "get",
+                "geometry_id"
+              ],
+              "__none__"
+            ]
+          }
+        ]
+      },
+      "errors": [],
+      "before": {
+        "territory": {
+          "territory_scope": "autonomous_community",
+          "autonomous_community_id": "ES:CCAA:10",
+          "province_id": null,
+          "municipality_id": null
+        },
+        "selection": {
+          "selected_geometry_id": null,
+          "selected_geometry_year": null,
+          "selected_egif_record_id": null,
+          "selected_egif_year": null,
+          "selected_icv_geometry_id": null,
+          "selected_icv_geometry_year": null,
+          "selected_icv_record_id": null,
+          "selected_effis_geometry_id": null,
+          "selected_effis_geometry_year": null
+        },
+        "popup": {
+          "active": false,
+          "kind": null,
+          "hit_count": 0,
+          "source_id": null,
+          "geometry_id": null,
+          "anchor": null
+        }
+      },
+      "after": {
+        "territory": {
+          "territory_scope": "autonomous_community",
+          "autonomous_community_id": "ES:CCAA:10",
+          "province_id": null,
+          "municipality_id": null
+        },
+        "selection": {
+          "selected_geometry_id": null,
+          "selected_geometry_year": null,
+          "selected_egif_record_id": null,
+          "selected_egif_year": null,
+          "selected_icv_geometry_id": "gva:geometry:1995:3:783",
+          "selected_icv_geometry_year": 1995,
+          "selected_icv_record_id": "gva:pif-cv:1995CS5050",
+          "selected_effis_geometry_id": null,
+          "selected_effis_geometry_year": null
+        },
+        "popup": {
+          "active": true,
+          "kind": "feature",
+          "hit_count": 1,
+          "source_id": "icv",
+          "geometry_id": "gva:geometry:1995:3:783",
+          "anchor": {
+            "lng": -0.49119099999703053,
+            "lat": 40.09180366166885
+          }
+        }
+      },
+      "removed_feature": {
+        "before_click": {
+          "territory": {
+            "territory_scope": "autonomous_community",
+            "autonomous_community_id": "ES:CCAA:10",
+            "province_id": null,
+            "municipality_id": null
+          },
+          "selection": {
+            "selected_geometry_id": null,
+            "selected_geometry_year": null,
+            "selected_egif_record_id": null,
+            "selected_egif_year": null,
+            "selected_icv_geometry_id": null,
+            "selected_icv_geometry_year": null,
+            "selected_icv_record_id": null,
+            "selected_effis_geometry_id": null,
+            "selected_effis_geometry_year": null
+          },
+          "popup": {
+            "active": false,
+            "kind": null,
+            "hit_count": 0,
+            "source_id": null,
+            "geometry_id": null,
+            "anchor": null
+          }
+        },
+        "after_click": {
+          "territory": {
+            "territory_scope": "province",
+            "autonomous_community_id": "ES:CCAA:10",
+            "province_id": "ES:PROV:12",
+            "municipality_id": null
+          },
+          "selection": {
+            "selected_geometry_id": null,
+            "selected_geometry_year": null,
+            "selected_egif_record_id": null,
+            "selected_egif_year": null,
+            "selected_icv_geometry_id": null,
+            "selected_icv_geometry_year": null,
+            "selected_icv_record_id": null,
+            "selected_effis_geometry_id": null,
+            "selected_effis_geometry_year": null
+          },
+          "popup": {
+            "active": false,
+            "kind": null,
+            "hit_count": 0,
+            "source_id": null,
+            "geometry_id": null,
+            "anchor": null
+          }
+        },
+        "remaining_rendered_hits": 0,
+        "passed": true
+      }
+    }
+  },
+  "local_regressions": {
+    "identity": {
+      "root": {
+        "status": 200,
+        "sha256": "178390918306783d154025baf556191577902b19257fcb541f799006b07b9430"
+      },
+      "asset-manifest.json": {
+        "status": 200,
+        "sha256": "5e0610b121f54550b852460053b9c1d5c35e6be2311363f53fcbe9817762f3a9"
+      },
+      "site-identity.json": {
+        "status": 200,
+        "sha256": "6ae69340c9fb676d2331e9afbf1dd98569873b43119f73e2672665122fc4e30a"
+      }
+    },
+    "temporal": {
+      "cases": {
+        "gva_1993_2024": {
+          "loaded_records": 13738,
+          "loaded_geometries": 13739,
+          "selected_geometry_id": "gva:geometry:2016:24:11582",
+          "temporal": {
+            "domain": {
+              "from": 1993,
+              "to": 2024
+            },
+            "palette": {
+              "old": "rgb(44,123,182)",
+              "recent": "rgb(240,82,46)"
+            },
+            "single_year": false,
+            "expression": [
+              "interpolate",
+              [
+                "linear"
+              ],
+              [
+                "to-number",
+                [
+                  "get",
+                  "year"
+                ]
+              ],
+              1993,
+              "rgb(44,123,182)",
+              2024,
+              "rgb(240,82,46)"
+            ]
+          },
+          "icv_fill": [
+            "interpolate",
+            [
+              "linear"
+            ],
+            [
+              "to-number",
+              [
+                "get",
+                "year"
+              ]
+            ],
+            1993,
+            "rgb(44,123,182)",
+            2024,
+            "rgb(240,82,46)"
+          ],
+          "icv_outline": [
+            "interpolate",
+            [
+              "linear"
+            ],
+            [
+              "to-number",
+              [
+                "get",
+                "year"
+              ]
+            ],
+            1993,
+            "rgb(44,123,182)",
+            2024,
+            "rgb(240,82,46)"
+          ],
+          "legend": "Año del perímetro\n1993\n2024\nMás antiguo ← → más reciente\nCAPAS\nLímite administrativo actual\nPerímetros oficiales",
+          "runtime_errors": [],
+          "browser_errors": [],
+          "elapsed_ms": 10737.29
+        },
+        "recurrence_2000_2020": {
+          "loaded_records": 8519,
+          "loaded_geometries": 8519,
+          "selected_geometry_id": "gva:geometry:2016:24:11582",
+          "temporal": {
+            "domain": {
+              "from": 2000,
+              "to": 2020
+            },
+            "palette": {
+              "old": "rgb(44,123,182)",
+              "recent": "rgb(240,82,46)"
+            },
+            "single_year": false,
+            "expression": [
+              "interpolate",
+              [
+                "linear"
+              ],
+              [
+                "to-number",
+                [
+                  "get",
+                  "year"
+                ]
+              ],
+              2000,
+              "rgb(44,123,182)",
+              2020,
+              "rgb(240,82,46)"
+            ]
+          },
+          "icv_fill": [
+            "interpolate",
+            [
+              "linear"
+            ],
+            [
+              "to-number",
+              [
+                "get",
+                "year"
+              ]
+            ],
+            2000,
+            "rgb(44,123,182)",
+            2020,
+            "rgb(240,82,46)"
+          ],
+          "icv_outline": [
+            "interpolate",
+            [
+              "linear"
+            ],
+            [
+              "to-number",
+              [
+                "get",
+                "year"
+              ]
+            ],
+            2000,
+            "rgb(44,123,182)",
+            2020,
+            "rgb(240,82,46)"
+          ],
+          "legend": "Año del perímetro\n2000\n2020\nMás antiguo ← → más reciente\nCAPAS\nLímite administrativo actual\nPerímetros oficiales",
+          "runtime_errors": [],
+          "browser_errors": [],
+          "elapsed_ms": 9048.12
+        }
+      },
+      "icv_1993_2024": {
+        "records": 13738,
+        "geometries": 13739
+      },
+      "recovered_2016_2019": {},
+      "palette": {
+        "old": "rgb(44,123,182)",
+        "recent": "rgb(240,82,46)"
+      },
+      "recurrence_human_test": "PASS",
+      "passed": true,
+      "failures": []
+    },
+    "range": {
+      "esfire30_fire_pmtiles": [
+        {
+          "request": "bytes=0-0",
+          "status": 206,
+          "content_range": "bytes 0-0/63052056",
+          "bytes": 1,
+          "byte_identical_to_local": true,
+          "elapsed_ms": 0.807,
+          "headers": {
+            "content-length": "1",
+            "content-range": "bytes 0-0/63052056",
+            "content-type": "application/octet-stream",
+            "accept-ranges": "bytes"
+          },
+          "passed": true
+        },
+        {
+          "request": "bytes=0-16383",
+          "status": 206,
+          "content_range": "bytes 0-16383/63052056",
+          "bytes": 16384,
+          "byte_identical_to_local": true,
+          "elapsed_ms": 0.509,
+          "headers": {
+            "content-length": "16384",
+            "content-range": "bytes 0-16383/63052056",
+            "content-type": "application/octet-stream",
+            "accept-ranges": "bytes"
+          },
+          "passed": true
+        }
+      ],
+      "protomaps_basemap_pmtiles": [
+        {
+          "request": "bytes=0-0",
+          "status": 206,
+          "content_range": "bytes 0-0/293324998",
+          "bytes": 1,
+          "byte_identical_to_local": true,
+          "elapsed_ms": 0.498,
+          "headers": {
+            "content-length": "1",
+            "content-range": "bytes 0-0/293324998",
+            "content-type": "application/octet-stream",
+            "accept-ranges": "bytes"
+          },
+          "passed": true
+        },
+        {
+          "request": "bytes=0-16383",
+          "status": 206,
+          "content_range": "bytes 0-16383/293324998",
+          "bytes": 16384,
+          "byte_identical_to_local": true,
+          "elapsed_ms": 0.429,
+          "headers": {
+            "content-length": "16384",
+            "content-range": "bytes 0-16383/293324998",
+            "content-type": "application/octet-stream",
+            "accept-ranges": "bytes"
+          },
+          "passed": true
+        }
+      ]
+    },
+    "glyphs": [
+      {
+        "path": "data/basemap/protomaps/20260902-z12/72bb270ff6fc18ccba3042834f9a9eb72901c243e7dec88b3ebb63eaafaeb729/fonts/Noto Sans Regular/0-255.pbf",
+        "status": 200,
+        "headers": {
+          "content-length": "76044",
+          "content-type": "application/octet-stream",
+          "accept-ranges": "bytes"
+        },
+        "passed": true
+      },
+      {
+        "path": "data/basemap/protomaps/20260902-z12/72bb270ff6fc18ccba3042834f9a9eb72901c243e7dec88b3ebb63eaafaeb729/fonts/Noto Sans Regular/1024-1279.pbf",
+        "status": 200,
+        "headers": {
+          "content-length": "125320",
+          "content-type": "application/octet-stream",
+          "accept-ranges": "bytes"
+        },
+        "passed": true
+      },
+      {
+        "path": "data/basemap/protomaps/20260902-z12/72bb270ff6fc18ccba3042834f9a9eb72901c243e7dec88b3ebb63eaafaeb729/fonts/Noto Sans Regular/11520-11775.pbf",
+        "status": 200,
+        "headers": {
+          "content-length": "98137",
+          "content-type": "application/octet-stream",
+          "accept-ranges": "bytes"
+        },
+        "passed": true
+      },
+      {
+        "path": "data/basemap/protomaps/20260902-z12/72bb270ff6fc18ccba3042834f9a9eb72901c243e7dec88b3ebb63eaafaeb729/fonts/Noto Sans Regular/1536-1791.pbf",
+        "status": 200,
+        "headers": {
+          "content-length": "110716",
+          "content-type": "application/octet-stream",
+          "accept-ranges": "bytes"
+        },
+        "passed": true
+      },
+      {
+        "path": "data/basemap/protomaps/20260902-z12/72bb270ff6fc18ccba3042834f9a9eb72901c243e7dec88b3ebb63eaafaeb729/fonts/Noto Sans Regular/256-511.pbf",
+        "status": 200,
+        "headers": {
+          "content-length": "127726",
+          "content-type": "application/octet-stream",
+          "accept-ranges": "bytes"
+        },
+        "passed": true
+      },
+      {
+        "path": "data/basemap/protomaps/20260902-z12/72bb270ff6fc18ccba3042834f9a9eb72901c243e7dec88b3ebb63eaafaeb729/fonts/Noto Sans Regular/512-767.pbf",
+        "status": 200,
+        "headers": {
+          "content-length": "94728",
+          "content-type": "application/octet-stream",
+          "accept-ranges": "bytes"
+        },
+        "passed": true
+      },
+      {
+        "path": "data/basemap/protomaps/20260902-z12/72bb270ff6fc18ccba3042834f9a9eb72901c243e7dec88b3ebb63eaafaeb729/fonts/Noto Sans Regular/768-1023.pbf",
+        "status": 200,
+        "headers": {
+          "content-length": "77034",
+          "content-type": "application/octet-stream",
+          "accept-ranges": "bytes"
+        },
+        "passed": true
+      },
+      {
+        "path": "data/basemap/protomaps/20260902-z12/72bb270ff6fc18ccba3042834f9a9eb72901c243e7dec88b3ebb63eaafaeb729/fonts/Noto Sans Regular/7680-7935.pbf",
+        "status": 200,
+        "headers": {
+          "content-length": "135449",
+          "content-type": "application/octet-stream",
+          "accept-ranges": "bytes"
+        },
+        "passed": true
+      },
+      {
+        "path": "data/basemap/protomaps/20260902-z12/72bb270ff6fc18ccba3042834f9a9eb72901c243e7dec88b3ebb63eaafaeb729/fonts/Noto Sans Regular/8192-8447.pbf",
+        "status": 200,
+        "headers": {
+          "content-length": "64220",
+          "content-type": "application/octet-stream",
+          "accept-ranges": "bytes"
+        },
+        "passed": true
+      }
+    ],
+    "native_capture": {
+      "before": {
+        "url": "http://127.0.0.1:45623/index.html?smoke=pais_valencia&from=1995&to=1995&egif_scope=ES%3ACCAA%3A10#es4c-state-v1=eyJ2IjoiZXM0Yy1zdGF0ZS12MSIsIm1hcCI6eyJsYXQiOjM5LjMsImxvbiI6LTAuNywieiI6OH0sInRpbWUiOnsiZnJvbSI6MTk5NSwidG8iOjE5OTV9LCJ0ZXJyaXRvcnkiOnsic2NvcGUiOiJhdXRvbm9tb3VzX2NvbW11bml0eSIsImF1dG9ub21vdXNfY29tbXVuaXR5X2lkIjoiRVM6Q0NBQToxMCIsInByb3ZpbmNlX2lkIjpudWxsLCJtdW5pY2lwYWxpdHlfaWQiOm51bGx9LCJzb3VyY2VzIjp7ImVzZmlyZTMwIjpmYWxzZSwiZWdpZiI6dHJ1ZSwiaWN2Ijp0cnVlLCJlZmZpcyI6ZmFsc2V9LCJhbmFseXNpcyI6eyJmaWx0ZXJzIjpbeyJmaWx0ZXJfaWQiOiJpY3ZfbWluX2FyZWEiLCJmaWx0ZXJfdHlwZSI6Im1pbl92YWx1ZSIsInNvdXJjZSI6ImljdiIsIm1ldHJpY19pZCI6Imljdl9kZWNsYXJlZF9mb3Jlc3RfYXJlYV9oYSIsInZhbHVlIjo1MDAsInVuaXQiOiJoYSJ9XX0sInNlbGVjdGlvbnMiOnsiZ2VvbWV0cnlfaWQiOm51bGwsImVnaWZfcmVjb3JkX2lkIjpudWxsLCJpY3ZfZ2VvbWV0cnlfaWQiOm51bGwsImljdl9yZWNvcmRfaWQiOiJndmE6cGlmLWN2OjE5OTVBTDAwNzYiLCJlZmZpc19nZW9tZXRyeV9pZCI6bnVsbH19",
+        "state": {
+          "from": 1995,
+          "to": 1995,
+          "territory_scope": "autonomous_community",
+          "autonomous_community_id": "ES:CCAA:10",
+          "province_id": null,
+          "municipality_id": null,
+          "esfire30_visible": false,
+          "egif_visible": true,
+          "icv_visible": true,
+          "effis_visible": false,
+          "selected_geometry_id": null,
+          "selected_geometry_year": null,
+          "selected_egif_record_id": null,
+          "selected_egif_year": null,
+          "selected_icv_geometry_id": null,
+          "selected_icv_geometry_year": null,
+          "selected_icv_record_id": "gva:pif-cv:1995AL0076",
+          "selected_effis_geometry_id": null,
+          "selected_effis_geometry_year": null,
+          "filters": [
+            {
+              "filter_id": "icv_min_area",
+              "filter_type": "min_value",
+              "source": "icv",
+              "metric_id": "icv_declared_forest_area_ha",
+              "value": 500,
+              "unit": "ha"
+            }
+          ],
+          "center": [
+            -0.7,
+            39.3
+          ],
+          "zoom": 8
+        },
+        "copy": "No se pudo copiar automáticamente; copia esta URL: http://127.0.0.1:45623/index.html?smoke=pais_valencia&from=1995&to=1995&egif_scope=ES%3ACCAA%3A10#es4c-state-v1=eyJ2IjoiZXM0Yy1zdGF0ZS12MSIsIm1hcCI6eyJsYXQiOjM5LjMsImxvbiI6LTAuNywieiI6OH0sInRpbWUiOnsiZnJvbSI6MTk5NSwidG8iOjE5OTV9LCJ0ZXJyaXRvcnkiOnsic2NvcGUiOiJhdXRvbm9tb3VzX2NvbW11bml0eSIsImF1dG9ub21vdXNfY29tbXVuaXR5X2lkIjoiRVM6Q0NBQToxMCIsInByb3ZpbmNlX2lkIjpudWxsLCJtdW5pY2lwYWxpdHlfaWQiOm51bGx9LCJzb3VyY2VzIjp7ImVzZmlyZTMwIjpmYWxzZSwiZWdpZiI6dHJ1ZSwiaWN2Ijp0cnVlLCJlZmZpcyI6ZmFsc2V9LCJhbmFseXNpcyI6eyJmaWx0ZXJzIjpbeyJmaWx0ZXJfaWQiOiJpY3ZfbWluX2FyZWEiLCJmaWx0ZXJfdHlwZSI6Im1pbl92YWx1ZSIsInNvdXJjZSI6ImljdiIsIm1ldHJpY19pZCI6Imljdl9kZWNsYXJlZF9mb3Jlc3RfYXJlYV9oYSIsInZhbHVlIjo1MDAsInVuaXQiOiJoYSJ9XX0sInNlbGVjdGlvbnMiOnsiZ2VvbWV0cnlfaWQiOm51bGwsImVnaWZfcmVjb3JkX2lkIjpudWxsLCJpY3ZfZ2VvbWV0cnlfaWQiOm51bGwsImljdl9yZWNvcmRfaWQiOiJndmE6cGlmLWN2OjE5OTVBTDAwNzYiLCJlZmZpc19nZW9tZXRyeV9pZCI6bnVsbH19"
+      }
+    },
+    "native_restore": {
+      "fresh_before_reload": {
+        "state": {
+          "from": 1995,
+          "to": 1995,
+          "territory_scope": "autonomous_community",
+          "autonomous_community_id": "ES:CCAA:10",
+          "province_id": null,
+          "municipality_id": null,
+          "esfire30_visible": false,
+          "egif_visible": true,
+          "icv_visible": true,
+          "effis_visible": false,
+          "selected_geometry_id": null,
+          "selected_geometry_year": null,
+          "selected_egif_record_id": null,
+          "selected_egif_year": null,
+          "selected_icv_geometry_id": null,
+          "selected_icv_geometry_year": null,
+          "selected_icv_record_id": "gva:pif-cv:1995AL0076",
+          "selected_effis_geometry_id": null,
+          "selected_effis_geometry_year": null,
+          "filters": [
+            {
+              "filter_id": "icv_min_area",
+              "filter_type": "min_value",
+              "source": "icv",
+              "metric_id": "icv_declared_forest_area_ha",
+              "value": 500,
+              "unit": "ha"
+            }
+          ],
+          "center": [
+            -0.7,
+            39.3
+          ],
+          "zoom": 8
+        },
+        "hash": "#es4c-state-v1=eyJ2IjoiZXM0Yy1zdGF0ZS12MSIsIm1hcCI6eyJsYXQiOjM5LjMsImxvbiI6LTAuNywieiI6OH0sInRpbWUiOnsiZnJvbSI6MTk5NSwidG8iOjE5OTV9LCJ0ZXJyaXRvcnkiOnsic2NvcGUiOiJhdXRvbm9tb3VzX2NvbW11bml0eSIsImF1dG9ub21vdXNfY29tbXVuaXR5X2lkIjoiRVM6Q0NBQToxMCIsInByb3ZpbmNlX2lkIjpudWxsLCJtdW5pY2lwYWxpdHlfaWQiOm51bGx9LCJzb3VyY2VzIjp7ImVzZmlyZTMwIjpmYWxzZSwiZWdpZiI6dHJ1ZSwiaWN2Ijp0cnVlLCJlZmZpcyI6ZmFsc2V9LCJhbmFseXNpcyI6eyJmaWx0ZXJzIjpbeyJmaWx0ZXJfaWQiOiJpY3ZfbWluX2FyZWEiLCJmaWx0ZXJfdHlwZSI6Im1pbl92YWx1ZSIsInNvdXJjZSI6ImljdiIsIm1ldHJpY19pZCI6Imljdl9kZWNsYXJlZF9mb3Jlc3RfYXJlYV9oYSIsInZhbHVlIjo1MDAsInVuaXQiOiJoYSJ9XX0sInNlbGVjdGlvbnMiOnsiZ2VvbWV0cnlfaWQiOm51bGwsImVnaWZfcmVjb3JkX2lkIjpudWxsLCJpY3ZfZ2VvbWV0cnlfaWQiOm51bGwsImljdl9yZWNvcmRfaWQiOiJndmE6cGlmLWN2OjE5OTVBTDAwNzYiLCJlZmZpc19nZW9tZXRyeV9pZCI6bnVsbH19",
+        "map_loaded": true,
+        "errors": []
+      },
+      "after_reload": {
+        "state": {
+          "from": 1995,
+          "to": 1995,
+          "territory_scope": "autonomous_community",
+          "autonomous_community_id": "ES:CCAA:10",
+          "province_id": null,
+          "municipality_id": null,
+          "esfire30_visible": false,
+          "egif_visible": true,
+          "icv_visible": true,
+          "effis_visible": false,
+          "selected_geometry_id": null,
+          "selected_geometry_year": null,
+          "selected_egif_record_id": null,
+          "selected_egif_year": null,
+          "selected_icv_geometry_id": null,
+          "selected_icv_geometry_year": null,
+          "selected_icv_record_id": "gva:pif-cv:1995AL0076",
+          "selected_effis_geometry_id": null,
+          "selected_effis_geometry_year": null,
+          "filters": [
+            {
+              "filter_id": "icv_min_area",
+              "filter_type": "min_value",
+              "source": "icv",
+              "metric_id": "icv_declared_forest_area_ha",
+              "value": 500,
+              "unit": "ha"
+            }
+          ],
+          "center": [
+            -0.7,
+            39.3
+          ],
+          "zoom": 8
+        },
+        "hash": "#es4c-state-v1=eyJ2IjoiZXM0Yy1zdGF0ZS12MSIsIm1hcCI6eyJsYXQiOjM5LjMsImxvbiI6LTAuNywieiI6OH0sInRpbWUiOnsiZnJvbSI6MTk5NSwidG8iOjE5OTV9LCJ0ZXJyaXRvcnkiOnsic2NvcGUiOiJhdXRvbm9tb3VzX2NvbW11bml0eSIsImF1dG9ub21vdXNfY29tbXVuaXR5X2lkIjoiRVM6Q0NBQToxMCIsInByb3ZpbmNlX2lkIjpudWxsLCJtdW5pY2lwYWxpdHlfaWQiOm51bGx9LCJzb3VyY2VzIjp7ImVzZmlyZTMwIjpmYWxzZSwiZWdpZiI6dHJ1ZSwiaWN2Ijp0cnVlLCJlZmZpcyI6ZmFsc2V9LCJhbmFseXNpcyI6eyJmaWx0ZXJzIjpbeyJmaWx0ZXJfaWQiOiJpY3ZfbWluX2FyZWEiLCJmaWx0ZXJfdHlwZSI6Im1pbl92YWx1ZSIsInNvdXJjZSI6ImljdiIsIm1ldHJpY19pZCI6Imljdl9kZWNsYXJlZF9mb3Jlc3RfYXJlYV9oYSIsInZhbHVlIjo1MDAsInVuaXQiOiJoYSJ9XX0sInNlbGVjdGlvbnMiOnsiZ2VvbWV0cnlfaWQiOm51bGwsImVnaWZfcmVjb3JkX2lkIjpudWxsLCJpY3ZfZ2VvbWV0cnlfaWQiOm51bGwsImljdl9yZWNvcmRfaWQiOiJndmE6cGlmLWN2OjE5OTVBTDAwNzYiLCJlZmZpc19nZW9tZXRyeV9pZCI6bnVsbH19",
+        "map_loaded": true,
+        "errors": []
+      }
+    },
+    "legacy_historic": {
+      "fresh_tab": {
+        "state": {
+          "from": 1995,
+          "to": 1995,
+          "territory_scope": "autonomous_community",
+          "autonomous_community_id": "ES:CCAA:10",
+          "province_id": null,
+          "municipality_id": null,
+          "esfire30_visible": true,
+          "egif_visible": true,
+          "icv_visible": true,
+          "effis_visible": false,
+          "selected_geometry_id": null,
+          "selected_geometry_year": null,
+          "selected_egif_record_id": null,
+          "selected_egif_year": null,
+          "selected_icv_geometry_id": null,
+          "selected_icv_geometry_year": null,
+          "selected_icv_record_id": null,
+          "selected_effis_geometry_id": null,
+          "selected_effis_geometry_year": null,
+          "filters": [],
+          "center": [
+            -0.7,
+            39.3
+          ],
+          "zoom": 8
+        },
+        "hash": "#v=1&lat=39.30000&lng=-0.70000&z=8&from=1995&to=1995&src=egif%2Cesfire30%2Cicv&province=all&min_area=0&gif=0",
+        "map_loaded": true,
+        "errors": []
+      }
+    },
+    "legacy_recent": {
+      "fresh_tab": {
+        "state": {
+          "from": 2025,
+          "to": 2025,
+          "territory_scope": "municipality",
+          "autonomous_community_id": "ES:CCAA:10",
+          "province_id": "ES:PROV:03",
+          "municipality_id": "ES:MUN:03065",
+          "esfire30_visible": true,
+          "egif_visible": true,
+          "icv_visible": false,
+          "effis_visible": true,
+          "selected_geometry_id": null,
+          "selected_geometry_year": null,
+          "selected_egif_record_id": null,
+          "selected_egif_year": null,
+          "selected_icv_geometry_id": null,
+          "selected_icv_geometry_year": null,
+          "selected_icv_record_id": null,
+          "selected_effis_geometry_id": null,
+          "selected_effis_geometry_year": null,
+          "filters": [
+            {
+              "filter_id": "effis_min_area",
+              "filter_type": "min_value",
+              "source": "effis",
+              "metric_id": "effis_mapped_area_ha",
+              "value": 10,
+              "unit": "ha"
+            }
+          ],
+          "center": [
+            -0.71,
+            38.17
+          ],
+          "zoom": 11
+        },
+        "hash": "#v=1&lat=38.17000&lng=-0.71000&z=11&from=2025&to=2025&src=effis&province=alicante&municipality=03065&min_area=10&gif=0&entity=effis%3Arda%3A285361%3Af05085eba622a5bb&geometry=effis%3Arda%3A285361%3Af05085eba622a5bb",
+        "map_loaded": true,
+        "errors": []
+      }
+    },
+    "validation": {
+      "passed": true,
+      "failures": []
+    }
+  },
+  "tests": {
+    "modern_node": "v22.18.0",
+    "specific_existing": 24,
+    "hot2_harness": 4,
+    "failures": 0,
+    "node_archive_sha256": "c1bfeecf1d7404fa74728f9db72e697decbd8119ccc6f5a294d795756dfcfca7"
+  },
+  "pre_remote_identity": {
+    "production": {
+      "root": {
+        "status": 200,
+        "sha256": "178390918306783d154025baf556191577902b19257fcb541f799006b07b9430"
+      },
+      "asset-manifest.json": {
+        "status": 200,
+        "sha256": "557c662dd23df2207f68b6ef36ddae35f0d06b069864ffbb8b3b53ded7a59bd0"
+      },
+      "site-identity.json": {
+        "status": 200,
+        "sha256": "f8fe88d66313931d2ed318723334d45062f23cc72f86538835a6df638ba785a1"
+      }
+    },
+    "staging": {
+      "root": {
+        "status": 200,
+        "sha256": "178390918306783d154025baf556191577902b19257fcb541f799006b07b9430"
+      },
+      "asset-manifest.json": {
+        "status": 200,
+        "sha256": "557c662dd23df2207f68b6ef36ddae35f0d06b069864ffbb8b3b53ded7a59bd0"
+      },
+      "site-identity.json": {
+        "status": 200,
+        "sha256": "f8fe88d66313931d2ed318723334d45062f23cc72f86538835a6df638ba785a1"
+      }
+    }
+  },
+  "staging_release": {
+    "repository": "InThuRain/atlas-incendios-es4c3d4-pages-staging",
+    "planned_tag": "national-product-v1.0.1-staging-hot2",
+    "created": false,
+    "upload_performed": false
+  },
+  "deployment": {
+    "workflow": "pages-hot2.yml",
+    "workflow_commit": "2643e2a4f38725b0c6918f5bd80a9c6ee3cbcf12",
+    "dispatched": false,
+    "last_existing_run": 34528201012
+  },
+  "remote_clicks": "NOT_RUN",
+  "production_unchanged": true,
+  "production_tag_target": "534cfe37a7120904f48c87bba71b4fcb7423bb5f",
+  "blocker": "Auto-review rejected remote release creation/upload, requesting explicit trusted authorization for 431671665-byte payload and staging destination. No bypass attempted. Earlier GitHub attempt rejected abbreviated target SHA with HTTP 422; release remains absent.",
+  "decision": {
+    "HOTFIX_STAGING_STATUS": "PENDING",
+    "REMOTE_CLICK_ROUTING": "NOT_RUN",
+    "PRODUCTION_HOTFIX_CANDIDATE": "NOT_YET_ACCEPTED"
+  },
+  "next_phase": "ES-4HOT2_CLICK_ROUTING_STAGING",
+  "after_pass_next_phase": "ES-4HOT3_V1_0_1_PRODUCTION_EXECUTION"
+}

@@ -1281,3 +1281,30 @@ DEPLOY = false
 TAG_CREATED = false
 RESULTS_PATH = ES_4HOT1_MAP_CLICK_ROUTING_HOTFIX.md; data/audit/product/es4hot1_map_click_routing_hotfix.json
 NEXT_PHASE = ES-4HOT2_CLICK_ROUTING_STAGING
+
+## HOT2 — checkpoint local, pendiente de autorización de upload
+
+PHASE = ES-4HOT2_CLICK_ROUTING_STAGING
+STATUS = PENDING_EXPLICIT_UPLOAD_AUTHORIZATION
+SOURCE_PRODUCT_COMMIT = d98810048994d90bf0a99a883dee94c29a1abb5e
+DONE = dos ensamblados limpios idénticos; datos SHA intactos; TAR fijo extraído/gate PASS; 13/13 clics/taps reales empaquetados; regresión temporal y enlaces PASS; 24 tests específicos Node22 + 4 harness PASS
+HOTFIX_ARTIFACT = build/national-product-hot1-candidate
+HOTFIX_TAR = build/national-product-hot1-candidate.tar.gz
+HOTFIX_TAR_BYTES = 431671665
+HOTFIX_TAR_SHA256 = 0ba62338927b76c56f5bcde5446cfd62a712d92e5edbeaf6815c1200383e9cba
+HOTFIX_SITE_IDENTITY_SHA256 = 6ae69340c9fb676d2331e9afbf1dd98569873b43119f73e2672665122fc4e30a
+STAGING_WORKFLOW_COMMIT = 2643e2a4f38725b0c6918f5bd80a9c6ee3cbcf12
+STAGING_WORKFLOW = pages-hot2.yml (manual; repositorio staging únicamente)
+STAGING_RELEASE_CREATED = false
+STAGING_DEPLOY_DISPATCHED = false
+PENDING = autorización explícita upload TAR 431671665 B a prerelease staging; identidad transporte remoto; dispatch staging; clics/taps remotos y segunda pasada limpia; aceptación final
+BLOCKER = auto-review rechazó la creación/upload remoto; no se ha eludido. Release HOT2 comprobada ausente; último run staging sigue POST4 34528201012.
+PRODUCTION = LIVE_V1_0_0_UNCHANGED
+PRODUCTION_PUSH = false
+PRODUCTION_TAG_CREATED = false
+REMOTE_CLICK_ROUTING = NOT_RUN
+HOTFIX_STAGING_STATUS = PENDING
+PRODUCTION_HOTFIX_CANDIDATE = NOT_YET_ACCEPTED
+RESUME = reutilizar build/es4hot2 y TAR exacto; no reconstruir ni repetir pruebas locales válidas; seguir ES_4HOT2_CLICK_ROUTING_STAGING.md
+NEXT_PHASE = ES-4HOT2_CLICK_ROUTING_STAGING (continuation)
+AFTER_PASS_NEXT_PHASE = ES-4HOT3_V1_0_1_PRODUCTION_EXECUTION (no iniciado)

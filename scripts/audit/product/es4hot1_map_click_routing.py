@@ -91,14 +91,18 @@ def run(base, name):
         H.wait_map_stable(client,deadline)
         pt=pixel(client,source,fire,geometry,name=='multi',name=='isolated')
         if not pt:raise RuntimeError('No uncovered painted pixel: '+name)
-        trace(client);before=client.evaluate(SNAPSHOT);hover=gesture(client,pt,mobile)
+        trace(client);before=client.evaluate(SNAPSHOT)
+        resources_before=client.evaluate('performance.getEntriesByType("resource").map(x=>x.name)')
+        hover=gesture(client,pt,mobile)
         time.sleep(.8);immediate=client.evaluate(SNAPSHOT)
         H.wait_map_stable(client,deadline)
         after=client.evaluate(SNAPSHOT)
         expected=geometry or next(h['geometry_id'] for h in pt['hits'] if h['layer'].startswith(source+'-'))
         row={'point':pt,'hover':hover,'before':before,'immediate':immediate,'after':after,'events':client.evaluate('window.__hot1Events'),
              'expected_geometry':expected,'territory_unchanged':before['territory']==after['territory'],
-             'errors':client.evaluate('globalThis.__e3c2BrowserErrors||[]')}
+             'errors':client.evaluate('globalThis.__e3c2BrowserErrors||[]'),
+             'human_popup':H.popup_snapshot(client),
+             'new_resource_urls':[url for url in client.evaluate('performance.getEntriesByType("resource").map(x=>x.name)') if url not in resources_before]}
         row['passed']=row['territory_unchanged'] and after['popup']['active'] and not row['errors']
         if name!='multi' and len(pt['hits'])==1:
             row['passed']=row['passed'] and expected in after['selection'].values()
