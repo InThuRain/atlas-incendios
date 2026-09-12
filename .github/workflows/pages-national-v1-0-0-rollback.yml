@@ -1,4 +1,4 @@
-name: Deploy exact national Atlas product to GitHub Pages
+name: Roll back Pages to exact national product v1.0.0
 
 on:
   workflow_dispatch:
@@ -14,10 +14,6 @@ concurrency:
   group: pages
   cancel-in-progress: false
 
-env:
-  TAR_BYTES: "431671665"
-  TAR_SHA256: 0ba62338927b76c56f5bcde5446cfd62a712d92e5edbeaf6815c1200383e9cba
-
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -30,16 +26,14 @@ jobs:
       - name: Download fixed golden national archive
         run: |
           curl --fail --location --retry 3 --retry-delay 2 \
-            'https://github.com/InThuRain/atlas-incendios-es4c3d4-pages-staging/releases/download/national-product-v1.0.1-staging-hot2/national-product-hot1-candidate.tar.gz' \
-            --output national-product-hot1-candidate.tar.gz
-          test "$(stat --printf='%s' national-product-hot1-candidate.tar.gz)" = "$TAR_BYTES"
-          echo "$TAR_SHA256  national-product-hot1-candidate.tar.gz" | sha256sum --check --strict
+            'https://github.com/InThuRain/atlas-incendios-es4c3d4-pages-staging/releases/download/national-product-post2-staging-es4post4/national-product-post2-patch.tar.gz' \
+            --output national-product-post2-patch.tar.gz
 
       - name: Verify archive, extract safely and gate exact site identity
         run: |
           python scripts/check_national_product_release_gate.py \
-            --archive national-product-hot1-candidate.tar.gz \
-            --contract config/national-product-hot1-candidate-identity.json \
+            --archive national-product-post2-patch.tar.gz \
+            --contract config/national-product-post2-patch-identity.json \
             --extract-to site \
             --output runner-national-product-identity.json | tee -a "$GITHUB_STEP_SUMMARY"
           printf '%s\n' 'golden archive identity PASS; runner site identity PASS' | tee -a "$GITHUB_STEP_SUMMARY"
