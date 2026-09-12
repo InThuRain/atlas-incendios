@@ -102,10 +102,20 @@ def run(base, name):
              'expected_geometry':expected,'territory_unchanged':before['territory']==after['territory'],
              'errors':client.evaluate('globalThis.__e3c2BrowserErrors||[]'),
              'human_popup':H.popup_snapshot(client),
+             'pmtiles_resources':client.evaluate('performance.getEntriesByType("resource").filter(x=>x.name.includes(".pmtiles")).map(x=>({url:x.name,status:x.responseStatus,bytes:x.encodedBodySize,transfer_bytes:x.transferSize}))'),
              'new_resource_urls':[url for url in client.evaluate('performance.getEntriesByType("resource").map(x=>x.name)') if url not in resources_before]}
         row['passed']=row['territory_unchanged'] and after['popup']['active'] and not row['errors']
         if name!='multi' and len(pt['hits'])==1:
             row['passed']=row['passed'] and expected in after['selection'].values()
+        if name.startswith('double') and after['popup'].get('kind')=='chooser':
+            button=client.evaluate("""(()=>{const b=[...document.querySelectorAll('[data-popup-geometry-id]')].find(b=>b.dataset.popupGeometryId===%s);if(!b)return null;const r=b.getBoundingClientRect();return {x:r.x+r.width/2,y:r.y+r.height/2}})()""" % json.dumps(expected))
+            if not button:raise RuntimeError('Missing actual chooser button for '+expected)
+            gesture(client,button,mobile);time.sleep(.3)
+            H.wait_map_stable(client,deadline)
+            chosen=client.evaluate(SNAPSHOT)
+            row['chooser_selection']={'after':chosen,'human_popup':H.popup_snapshot(client),
+                'passed':expected in chosen['selection'].values() and chosen['popup'].get('geometry_id')==expected and chosen['territory']==before['territory']}
+            row['passed']=row['passed'] and row['chooser_selection']['passed']
         if name in ('hidden','filtered','period'):
             if name=='hidden':
                 client.evaluate("window.__es4cRuntime.setSourceVisibility('icv',false).then(()=>true)")

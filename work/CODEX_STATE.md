@@ -1308,3 +1308,30 @@ PRODUCTION_HOTFIX_CANDIDATE = NOT_YET_ACCEPTED
 RESUME = reutilizar build/es4hot2 y TAR exacto; no reconstruir ni repetir pruebas locales válidas; seguir ES_4HOT2_CLICK_ROUTING_STAGING.md
 NEXT_PHASE = ES-4HOT2_CLICK_ROUTING_STAGING (continuation)
 AFTER_PASS_NEXT_PHASE = ES-4HOT3_V1_0_1_PRODUCTION_EXECUTION (no iniciado)
+
+## HOT2 — cierre tras autorización explícita de staging
+
+PHASE = ES-4HOT2_CLICK_ROUTING_STAGING
+STATUS = DONE
+HOTFIX_STAGING_STATUS = PASS
+REMOTE_CLICK_ROUTING = PASS
+PRODUCTION_HOTFIX_CANDIDATE = READY_FOR_V1_0_1_PRODUCTION
+SOURCE_PRODUCT_COMMIT = d98810048994d90bf0a99a883dee94c29a1abb5e
+HOTFIX_SITE_IDENTITY_SHA256 = 6ae69340c9fb676d2331e9afbf1dd98569873b43119f73e2672665122fc4e30a
+HOTFIX_TAR_BYTES = 431671665
+HOTFIX_TAR_SHA256 = 0ba62338927b76c56f5bcde5446cfd62a712d92e5edbeaf6815c1200383e9cba
+STAGING_RELEASE = national-product-v1.0.1-staging-hot2
+STAGING_RUN = 34699143697
+STAGING_DEPLOYMENT = 6410645351
+DONE = identidad local/remota exacta; runner gate PASS; 13/13 clics/taps remotos; 3/3 segunda pasada limpia con fondos; ambas geometrías 2024AL0005 seleccionadas con clic real en chooser; temporal/enlaces/Range/glyphs PASS; 28 tests específicos PASS Node22
+PENDING = aprobación y autorización de HOT3; no hay trabajo HOT2 pendiente
+RUNTIME_ERRORS = 0
+FULL_DOWNLOAD_OBSERVED = false
+PRODUCTION = LIVE_V1_0_0_UNCHANGED
+PRODUCTION_PUSH = false
+PRODUCTION_DEPLOY = false
+PRODUCTION_TAG_CREATED = false
+RELEASE_TAG_TARGET = 534cfe37a7120904f48c87bba71b4fcb7423bb5f
+RECOMMENDED_HOTFIX_VERSION = national-product-v1.0.1
+RESULTS_PATH = ES_4HOT2_CLICK_ROUTING_STAGING.md; data/audit/product/es4hot2_click_routing_staging.json
+NEXT_PHASE = ES-4HOT3_V1_0_1_PRODUCTION_EXECUTION (no iniciado)
