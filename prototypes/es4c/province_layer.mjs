@@ -39,7 +39,7 @@ export async function addOfficialProvinceLayer(map, { fetchImpl = globalThis.fet
     const properties = feature && feature.properties ? feature.properties : {};
     return properties.territory_id && properties.parent_id ? onSelect(String(properties.territory_id), String(properties.parent_id)) : null;
   };
-  map.on("click", PROVINCE_FILL_LAYER, (event) => selectFromFeature(event.features && event.features[0]));
+  // Selection is dispatched exclusively by the runtime map click arbiter.
   return {
     byId,
     setScope(communityId, provinceId = null) {

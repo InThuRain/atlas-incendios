@@ -65,10 +65,10 @@ assert.strictEqual(parseStateHash(hash,defaults,new Set(["ES:CCAA:10"]),parents)
 assert.strictEqual(parseStateHash(hash,defaults,new Set(["ES:CCAA:10"]),new Map()).state.territory_scope,"ES");
 const features=Array.from({length:50},(_,i)=>({type:"Feature",properties:{territory_id:`ES:PROV:${String(i+1).padStart(2,"0")}`,parent_id:i<3?"ES:CCAA:10":"ES:CCAA:01",bounds:[i,30,i+.5,31]},geometry:{type:"Polygon",coordinates:[]}}));
 const events={}, calls=[]; let selected=null;
-const map={addSource:(...x)=>calls.push(["source",...x]),addLayer:(x)=>calls.push(["layer",x]),on:(event,layer,callback)=>events[`${event}:${layer}`]=callback,getCanvas:()=>({style:{}}),setFilter:(...x)=>calls.push(["filter",...x]),fitBounds:(...x)=>calls.push(["fit",...x])};
+const map={addSource:(...x)=>calls.push(["source",...x]),addLayer:(x)=>calls.push(["layer",x]),getLayer:()=>null,on:(event,layer,callback)=>events[`${event}:${layer}`]=callback,getCanvas:()=>({style:{}}),setFilter:(...x)=>calls.push(["filter",...x]),fitBounds:(...x)=>calls.push(["fit",...x])};
 const layer=await addOfficialProvinceLayer(map,{fetchImpl:async()=>({ok:true,json:async()=>({features})}),onSelect:(id,parent)=>selected=[id,parent]});
 layer.setScope("ES:CCAA:10","ES:PROV:03"); assert.strictEqual(calls.filter(x=>x[0]==="filter").pop()[1],PROVINCE_SELECTED_LAYER);
-events["click:official-province-territories-fill"]({features:[features[2]]}); assert.deepStrictEqual(selected,["ES:PROV:03","ES:CCAA:10"]); assert.strictEqual(layer.fit("ES:PROV:03"),true);
+assert.strictEqual(events["click:official-province-territories-fill"],undefined); layer.selectFromFeature(features[2]); assert.deepStrictEqual(selected,["ES:PROV:03","ES:CCAA:10"]); assert.strictEqual(layer.fit("ES:PROV:03"),true);
 const columns={record_id:["egif-record:1","egif-record:2"],year:[1995,1995],province_id:["ES:PROV:03","ES:PROV:46"],is_gif_forest_ge_500_ha:[false,true],municipality_id:[null,"ES:MUN:1"],reported_forest_area_ha:[null,4]};
 const loaded={asset:{asset_id:"a",initial:{gzip_size:1}},data:{columns},lookup:new Map([["egif-record:1",0],["egif-record:2",1]]),metrics:{raw_bytes:1,fetch_ms:0,parse_ms:0}};
 assert.strictEqual(summarizeInitialAssets([loaded],1995,1995,"ES:PROV:03").records,1); assert.strictEqual(pageOfInitialRows([loaded],1995,1995,0,10,"ES:PROV:46").rows.length,1); assert.strictEqual(recordMatchesInitialScope([loaded],"egif-record:1",1995,1995,"ES:PROV:46"),false);

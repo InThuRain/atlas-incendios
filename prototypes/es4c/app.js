@@ -11,10 +11,11 @@ import { canonicalTerritoryName, TERRITORY_OPTIONS } from "./territory_catalog.m
 import { PROVINCES_BY_COMMUNITY, PROVINCE_OPTIONS } from "./province_catalog.mjs";
 import { createRuntimeState, effectiveCoverage, reduceRuntimeState, selectedTerritoryId, SOURCE_COVERAGE } from "./runtime_state.mjs";
 import { parseStateHash, serializeState } from "./state_serialization.mjs";
-import { addOfficialTerritoryLayer } from "./territory_layer.mjs";
-import { addOfficialProvinceLayer } from "./province_layer.mjs";
+import { addOfficialTerritoryLayer, CCAA_FILL_LAYER } from "./territory_layer.mjs";
+import { addOfficialProvinceLayer, PROVINCE_FILL_LAYER } from "./province_layer.mjs";
+import { routeMapClick } from "./map_click_routing.mjs";
 import { MunicipalityLoader } from "./municipality_loader.mjs";
-import { addOfficialMunicipalityLayer } from "./municipality_layer.mjs";
+import { addOfficialMunicipalityLayer, MUNICIPALITY_FILL_LAYER } from "./municipality_layer.mjs";
 import { MunicipalityEsfireIndexLoader, municipalityFilterExpression } from "./municipality_esfire_index.mjs";
 import { IcvLoader, icvLevelForZoom, icvProvincesForScope } from "./icv_loader.mjs";
 import { EffisLoader, effisIntegratedTerritory } from "./effis_loader.mjs";
@@ -667,9 +668,9 @@ function closeDirectPopupFor(sourceId) {
 }
 
 function popupSourceForLayer(layerId) {
-  if ([ICV_FILL_LAYER, ICV_OUTLINE_LAYER].includes(layerId)) return "icv";
-  if ([EFFIS_FILL_LAYER, EFFIS_OUTLINE_LAYER].includes(layerId)) return "effis";
-  if ([FILL_LAYER, OUTLINE_LAYER].includes(layerId)) return "esfire30";
+  if ([ICV_FILL_LAYER, ICV_OUTLINE_LAYER, ICV_SELECTED_LAYER, ICV_HOVER_LAYER].includes(layerId)) return "icv";
+  if ([EFFIS_FILL_LAYER, EFFIS_OUTLINE_LAYER, EFFIS_SELECTED_LAYER, EFFIS_HOVER_LAYER].includes(layerId)) return "effis";
+  if ([FILL_LAYER, OUTLINE_LAYER, SELECTED_LAYER, HOVER_LAYER].includes(layerId)) return "esfire30";
   return null;
 }
 
@@ -787,17 +788,42 @@ function openDirectPopupChooser(hits, lngLat) {
 }
 
 function mapPopupHits(point) {
-  const layers = [FILL_LAYER, OUTLINE_LAYER, ICV_FILL_LAYER, ICV_OUTLINE_LAYER, EFFIS_FILL_LAYER, EFFIS_OUTLINE_LAYER]
-    .filter((layerId) => map.getLayer(layerId));
+  const layers = [FILL_LAYER, OUTLINE_LAYER, SELECTED_LAYER, HOVER_LAYER,
+    ICV_FILL_LAYER, ICV_OUTLINE_LAYER, ICV_SELECTED_LAYER, ICV_HOVER_LAYER,
+    EFFIS_FILL_LAYER, EFFIS_OUTLINE_LAYER, EFFIS_SELECTED_LAYER, EFFIS_HOVER_LAYER]
+    .filter((layerId) => map.getLayer(layerId) && map.getLayoutProperty(layerId, "visibility") !== "none"
+      && state[`${popupSourceForLayer(layerId)}_visible`]);
+  if (!layers.length) return [];
   const rendered = map.queryRenderedFeatures(point, { layers });
   return dedupeAndSortHits(rendered.map((feature, renderOrder) => ({ feature, renderOrder, sourceId: popupSourceForLayer(feature.layer?.id) })).filter((hit) => hit.sourceId));
 }
 
-function handleMapPopupClick(event) {
-  const hits = mapPopupHits(event.point);
+function handleFirePopupHits(hits, event) {
   if (!hits.length) { closeDirectPopup(); return; }
   if (hits.length === 1) openDirectFeaturePopup(hits[0], event.lngLat);
   else openDirectPopupChooser(hits, event.lngLat);
+}
+
+function navigableTerritoryAtPoint(point) {
+  // Most specific current administrative background wins; query once before
+  // any mutation. Do not let a new scope change the routing of this gesture.
+  for (const [layerId, controller] of [[MUNICIPALITY_FILL_LAYER, municipalityLayer],
+    [PROVINCE_FILL_LAYER, provinceLayer], [CCAA_FILL_LAYER, territoryLayer]]) {
+    if (!controller || !map.getLayer(layerId)) continue;
+    const feature = map.queryRenderedFeatures(point, { layers: [layerId] })[0];
+    if (feature) return { feature, controller };
+  }
+  return null;
+}
+
+function handleMapPopupClick(event) {
+  return routeMapClick(event, {
+    queryFireHits: mapPopupHits,
+    handleFireHits: handleFirePopupHits,
+    queryTerritory: navigableTerritoryAtPoint,
+    handleTerritory: ({ feature, controller }) => { closeDirectPopup(); controller.selectFromFeature(feature); },
+    handleEmpty: () => closeDirectPopup(),
+  });
 }
 
 function formatGif(value) {

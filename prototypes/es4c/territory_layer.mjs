@@ -55,7 +55,7 @@ export async function addOfficialTerritoryLayer(map, { fetchImpl = globalThis.fe
     const territoryId = feature && feature.properties ? feature.properties.territory_id : null;
     return territoryId ? onSelect(String(territoryId)) : null;
   };
-  map.on("click", CCAA_FILL_LAYER, (event) => { selectFromFeature(event.features && event.features[0]); });
+  // Selection is dispatched exclusively by the runtime map click arbiter.
   const nationalBounds = boundsForFeature({ properties: { bounds: collection.metadata ? collection.metadata.national_bounds : null } });
   return {
     collection,

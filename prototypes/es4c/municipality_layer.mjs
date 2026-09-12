@@ -14,7 +14,7 @@ export function addOfficialMunicipalityLayer(map, { onSelect = () => {} } = {}) 
   map.addLayer({ id: MUNICIPALITY_SELECTED_LAYER, type: "line", source: MUNICIPALITY_SOURCE_ID, filter: ["==", ["get", "municipality_id"], "__none__"], paint: { "line-color": "#004d61", "line-width": 3.5, "line-opacity": 1 } }, fireLayer);
   map.on("mouseenter", MUNICIPALITY_FILL_LAYER, () => { map.getCanvas().style.cursor = "pointer"; });
   map.on("mouseleave", MUNICIPALITY_FILL_LAYER, () => { map.getCanvas().style.cursor = ""; });
-  map.on("click", MUNICIPALITY_FILL_LAYER, (event) => { const id = event.features?.[0]?.properties?.municipality_id; if (id) onSelect(String(id)); });
+  // Selection is dispatched exclusively by the runtime map click arbiter.
   return {
     setCollection(collection) {
       const effective = collection || EMPTY;

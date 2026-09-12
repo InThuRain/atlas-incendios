@@ -1,0 +1,3140 @@
+{
+  "phase": "ES-4HOT1_MAP_CLICK_ROUTING_HOTFIX",
+  "production_reproduction": {
+    "url": "https://inthurain.github.io/atlas-incendios/",
+    "release": "national-product-v1.0.0",
+    "tag_target": "534cfe37a7120904f48c87bba71b4fcb7423bb5f",
+    "gesture": "CDP Input.dispatchMouseEvent / Input.dispatchTouchEvent on uncovered canvas pixel; no direct fire helper",
+    "cases": {
+      "icv": {
+        "point": {
+          "x": 511,
+          "y": 412.5,
+          "point": {
+            "x": 511,
+            "y": 344.5
+          },
+          "lngLat": {
+            "lng": -0.49119099999703053,
+            "lat": 40.091737999999026
+          },
+          "hits": [
+            {
+              "source": "icv",
+              "layer": "icv-perimeter-outlines",
+              "geometry_id": "gva:geometry:1995:3:783"
+            }
+          ],
+          "territories": [
+            {
+              "layer": "official-province-territories-fill",
+              "properties": {
+                "territory_id": "ES:PROV:12",
+                "parent_id": "ES:CCAA:10"
+              }
+            },
+            {
+              "layer": "official-ccaa-territories-fill",
+              "properties": {
+                "territory_id": "ES:CCAA:10"
+              }
+            }
+          ]
+        },
+        "hover": {
+          "cursor": "pointer",
+          "text": ""
+        },
+        "before": {
+          "territory": {
+            "territory_scope": "autonomous_community",
+            "autonomous_community_id": "ES:CCAA:10",
+            "province_id": null,
+            "municipality_id": null
+          },
+          "selection": {},
+          "popup": {
+            "active": false,
+            "kind": null,
+            "hit_count": 0,
+            "source_id": null,
+            "geometry_id": null,
+            "anchor": null
+          }
+        },
+        "after": {
+          "territory": {
+            "territory_scope": "province",
+            "autonomous_community_id": "ES:CCAA:10",
+            "province_id": "ES:PROV:12",
+            "municipality_id": null
+          },
+          "selection": {},
+          "popup": {
+            "active": false,
+            "kind": null,
+            "hit_count": 0,
+            "source_id": null,
+            "geometry_id": null,
+            "anchor": null
+          }
+        },
+        "expected_geometry": "gva:geometry:1995:3:783",
+        "territory_unchanged": false,
+        "passed": false,
+        "errors": [],
+        "events": [
+          {
+            "index": 0,
+            "name": "handleMapPopupClick",
+            "popup_before": false,
+            "popup_after": true,
+            "territory_before": {
+              "territory_scope": "autonomous_community",
+              "autonomous_community_id": "ES:CCAA:10",
+              "province_id": null,
+              "municipality_id": null
+            },
+            "territory_after": {
+              "territory_scope": "autonomous_community",
+              "autonomous_community_id": "ES:CCAA:10",
+              "province_id": null,
+              "municipality_id": null
+            }
+          },
+          {
+            "index": 1,
+            "name": "a",
+            "popup_before": true,
+            "popup_after": true,
+            "territory_before": {
+              "territory_scope": "autonomous_community",
+              "autonomous_community_id": "ES:CCAA:10",
+              "province_id": null,
+              "municipality_id": null
+            },
+            "territory_after": {
+              "territory_scope": "autonomous_community",
+              "autonomous_community_id": "ES:CCAA:10",
+              "province_id": null,
+              "municipality_id": null
+            }
+          },
+          {
+            "index": 2,
+            "name": "a",
+            "popup_before": true,
+            "popup_after": false,
+            "territory_before": {
+              "territory_scope": "autonomous_community",
+              "autonomous_community_id": "ES:CCAA:10",
+              "province_id": null,
+              "municipality_id": null
+            },
+            "territory_after": {
+              "territory_scope": "province",
+              "autonomous_community_id": "ES:CCAA:10",
+              "province_id": "ES:PROV:12",
+              "municipality_id": null
+            }
+          },
+          {
+            "index": 3,
+            "name": "a",
+            "popup_before": false,
+            "popup_after": false,
+            "territory_before": {
+              "territory_scope": "province",
+              "autonomous_community_id": "ES:CCAA:10",
+              "province_id": "ES:PROV:12",
+              "municipality_id": null
+            },
+            "territory_after": {
+              "territory_scope": "province",
+              "autonomous_community_id": "ES:CCAA:10",
+              "province_id": "ES:PROV:12",
+              "municipality_id": null
+            }
+          }
+        ]
+      },
+      "recovered": {
+        "point": {
+          "x": 511,
+          "y": 412.5,
+          "point": {
+            "x": 511,
+            "y": 344.5
+          },
+          "lngLat": {
+            "lng": 0.17708500000159688,
+            "lat": 38.75140200000047
+          },
+          "hits": [
+            {
+              "source": "icv",
+              "layer": "icv-perimeter-outlines",
+              "geometry_id": "gva:geometry:2016:24:11828"
+            }
+          ],
+          "territories": [
+            {
+              "layer": "official-province-territories-fill",
+              "properties": {
+                "territory_id": "ES:PROV:03",
+                "parent_id": "ES:CCAA:10"
+              }
+            },
+            {
+              "layer": "official-ccaa-territories-fill",
+              "properties": {
+                "territory_id": "ES:CCAA:10"
+              }
+            }
+          ]
+        },
+        "hover": {
+          "cursor": "pointer",
+          "text": ""
+        },
+        "before": {
+          "territory": {
+            "territory_scope": "autonomous_community",
+            "autonomous_community_id": "ES:CCAA:10",
+            "province_id": null,
+            "municipality_id": null
+          },
+          "selection": {},
+          "popup": {
+            "active": false,
+            "kind": null,
+            "hit_count": 0,
+            "source_id": null,
+            "geometry_id": null,
+            "anchor": null
+          }
+        },
+        "after": {
+          "territory": {
+            "territory_scope": "province",
+            "autonomous_community_id": "ES:CCAA:10",
+            "province_id": "ES:PROV:03",
+            "municipality_id": null
+          },
+          "selection": {},
+          "popup": {
+            "active": false,
+            "kind": null,
+            "hit_count": 0,
+            "source_id": null,
+            "geometry_id": null,
+            "anchor": null
+          }
+        },
+        "expected_geometry": "gva:geometry:2016:24:11828",
+        "territory_unchanged": false,
+        "passed": false,
+        "errors": [],
+        "events": [
+          {
+            "index": 0,
+            "name": "handleMapPopupClick",
+            "popup_before": false,
+            "popup_after": true,
+            "territory_before": {
+              "territory_scope": "autonomous_community",
+              "autonomous_community_id": "ES:CCAA:10",
+              "province_id": null,
+              "municipality_id": null
+            },
+            "territory_after": {
+              "territory_scope": "autonomous_community",
+              "autonomous_community_id": "ES:CCAA:10",
+              "province_id": null,
+              "municipality_id": null
+            }
+          },
+          {
+            "index": 1,
+            "name": "a",
+            "popup_before": true,
+            "popup_after": true,
+            "territory_before": {
+              "territory_scope": "autonomous_community",
+              "autonomous_community_id": "ES:CCAA:10",
+              "province_id": null,
+              "municipality_id": null
+            },
+            "territory_after": {
+              "territory_scope": "autonomous_community",
+              "autonomous_community_id": "ES:CCAA:10",
+              "province_id": null,
+              "municipality_id": null
+            }
+          },
+          {
+            "index": 2,
+            "name": "a",
+            "popup_before": true,
+            "popup_after": false,
+            "territory_before": {
+              "territory_scope": "autonomous_community",
+              "autonomous_community_id": "ES:CCAA:10",
+              "province_id": null,
+              "municipality_id": null
+            },
+            "territory_after": {
+              "territory_scope": "province",
+              "autonomous_community_id": "ES:CCAA:10",
+              "province_id": "ES:PROV:03",
+              "municipality_id": null
+            }
+          },
+          {
+            "index": 3,
+            "name": "a",
+            "popup_before": false,
+            "popup_after": false,
+            "territory_before": {
+              "territory_scope": "province",
+              "autonomous_community_id": "ES:CCAA:10",
+              "province_id": "ES:PROV:03",
+              "municipality_id": null
+            },
+            "territory_after": {
+              "territory_scope": "province",
+              "autonomous_community_id": "ES:CCAA:10",
+              "province_id": "ES:PROV:03",
+              "municipality_id": null
+            }
+          }
+        ]
+      },
+      "province": {
+        "point": {
+          "x": 511,
+          "y": 412.5,
+          "point": {
+            "x": 511,
+            "y": 344.5
+          },
+          "lngLat": {
+            "lng": 0.17708500000159688,
+            "lat": 38.75140200000047
+          },
+          "hits": [
+            {
+              "source": "icv",
+              "layer": "icv-perimeter-outlines",
+              "geometry_id": "gva:geometry:2016:24:11828"
+            }
+          ],
+          "territories": [
+            {
+              "layer": "official-municipality-territories-fill",
+              "properties": {
+                "municipality_id": "ES:MUN:03082"
+              }
+            },
+            {
+              "layer": "official-province-territories-fill",
+              "properties": {
+                "territory_id": "ES:PROV:03",
+                "parent_id": "ES:CCAA:10"
+              }
+            },
+            {
+              "layer": "official-ccaa-territories-fill",
+              "properties": {
+                "territory_id": "ES:CCAA:10"
+              }
+            }
+          ]
+        },
+        "hover": {
+          "cursor": "pointer",
+          "text": ""
+        },
+        "before": {
+          "territory": {
+            "territory_scope": "province",
+            "autonomous_community_id": "ES:CCAA:10",
+            "province_id": "ES:PROV:03",
+            "municipality_id": null
+          },
+          "selection": {},
+          "popup": {
+            "active": false,
+            "kind": null,
+            "hit_count": 0,
+            "source_id": null,
+            "geometry_id": null,
+            "anchor": null
+          }
+        },
+        "after": {
+          "territory": {
+            "territory_scope": "municipality",
+            "autonomous_community_id": "ES:CCAA:10",
+            "province_id": "ES:PROV:03",
+            "municipality_id": "ES:MUN:03082"
+          },
+          "selection": {},
+          "popup": {
+            "active": false,
+            "kind": null,
+            "hit_count": 0,
+            "source_id": null,
+            "geometry_id": null,
+            "anchor": null
+          }
+        },
+        "expected_geometry": "gva:geometry:2016:24:11828",
+        "territory_unchanged": false,
+        "passed": false,
+        "errors": [],
+        "events": [
+          {
+            "index": 0,
+            "name": "handleMapPopupClick",
+            "popup_before": false,
+            "popup_after": true,
+            "territory_before": {
+              "territory_scope": "province",
+              "autonomous_community_id": "ES:CCAA:10",
+              "province_id": "ES:PROV:03",
+              "municipality_id": null
+            },
+            "territory_after": {
+              "territory_scope": "province",
+              "autonomous_community_id": "ES:CCAA:10",
+              "province_id": "ES:PROV:03",
+              "municipality_id": null
+            }
+          },
+          {
+            "index": 1,
+            "name": "a",
+            "popup_before": true,
+            "popup_after": true,
+            "territory_before": {
+              "territory_scope": "province",
+              "autonomous_community_id": "ES:CCAA:10",
+              "province_id": "ES:PROV:03",
+              "municipality_id": null
+            },
+            "territory_after": {
+              "territory_scope": "province",
+              "autonomous_community_id": "ES:CCAA:10",
+              "province_id": "ES:PROV:03",
+              "municipality_id": null
+            }
+          },
+          {
+            "index": 2,
+            "name": "a",
+            "popup_before": true,
+            "popup_after": false,
+            "territory_before": {
+              "territory_scope": "province",
+              "autonomous_community_id": "ES:CCAA:10",
+              "province_id": "ES:PROV:03",
+              "municipality_id": null
+            },
+            "territory_after": {
+              "territory_scope": "province",
+              "autonomous_community_id": "ES:CCAA:10",
+              "province_id": "ES:PROV:03",
+              "municipality_id": null
+            }
+          },
+          {
+            "index": 3,
+            "name": "a",
+            "popup_before": false,
+            "popup_after": false,
+            "territory_before": {
+              "territory_scope": "province",
+              "autonomous_community_id": "ES:CCAA:10",
+              "province_id": "ES:PROV:03",
+              "municipality_id": null
+            },
+            "territory_after": {
+              "territory_scope": "province",
+              "autonomous_community_id": "ES:CCAA:10",
+              "province_id": "ES:PROV:03",
+              "municipality_id": null
+            }
+          }
+        ]
+      },
+      "multi": {
+        "point": {
+          "x": 511,
+          "y": 412.5,
+          "point": {
+            "x": 511,
+            "y": 344.5
+          },
+          "lngLat": {
+            "lng": -0.08239746093948952,
+            "lat": 38.885688179035554
+          },
+          "hits": [
+            {
+              "source": "icv",
+              "layer": "icv-perimeter-outlines",
+              "geometry_id": "gva:geometry:1995:3:785"
+            },
+            {
+              "source": "esfire30",
+              "layer": "esfire30-perimeter-outlines",
+              "geometry_id": "esfire30:v1:1995:60"
+            }
+          ],
+          "territories": [
+            {
+              "layer": "official-province-territories-fill",
+              "properties": {
+                "territory_id": "ES:PROV:46",
+                "parent_id": "ES:CCAA:10"
+              }
+            },
+            {
+              "layer": "official-ccaa-territories-fill",
+              "properties": {
+                "territory_id": "ES:CCAA:10"
+              }
+            }
+          ]
+        },
+        "hover": {
+          "cursor": "pointer",
+          "text": ""
+        },
+        "before": {
+          "territory": {
+            "territory_scope": "autonomous_community",
+            "autonomous_community_id": "ES:CCAA:10",
+            "province_id": null,
+            "municipality_id": null
+          },
+          "selection": {},
+          "popup": {
+            "active": false,
+            "kind": null,
+            "hit_count": 0,
+            "source_id": null,
+            "geometry_id": null,
+            "anchor": null
+          }
+        },
+        "after": {
+          "territory": {
+            "territory_scope": "province",
+            "autonomous_community_id": "ES:CCAA:10",
+            "province_id": "ES:PROV:46",
+            "municipality_id": null
+          },
+          "selection": {},
+          "popup": {
+            "active": false,
+            "kind": null,
+            "hit_count": 0,
+            "source_id": null,
+            "geometry_id": null,
+            "anchor": null
+          }
+        },
+        "expected_geometry": "gva:geometry:1995:3:785",
+        "territory_unchanged": false,
+        "passed": false,
+        "errors": [],
+        "events": [
+          {
+            "index": 0,
+            "name": "handleMapPopupClick",
+            "popup_before": false,
+            "popup_after": true,
+            "territory_before": {
+              "territory_scope": "autonomous_community",
+              "autonomous_community_id": "ES:CCAA:10",
+              "province_id": null,
+              "municipality_id": null
+            },
+            "territory_after": {
+              "territory_scope": "autonomous_community",
+              "autonomous_community_id": "ES:CCAA:10",
+              "province_id": null,
+              "municipality_id": null
+            }
+          },
+          {
+            "index": 1,
+            "name": "a",
+            "popup_before": true,
+            "popup_after": true,
+            "territory_before": {
+              "territory_scope": "autonomous_community",
+              "autonomous_community_id": "ES:CCAA:10",
+              "province_id": null,
+              "municipality_id": null
+            },
+            "territory_after": {
+              "territory_scope": "autonomous_community",
+              "autonomous_community_id": "ES:CCAA:10",
+              "province_id": null,
+              "municipality_id": null
+            }
+          },
+          {
+            "index": 2,
+            "name": "a",
+            "popup_before": true,
+            "popup_after": false,
+            "territory_before": {
+              "territory_scope": "autonomous_community",
+              "autonomous_community_id": "ES:CCAA:10",
+              "province_id": null,
+              "municipality_id": null
+            },
+            "territory_after": {
+              "territory_scope": "province",
+              "autonomous_community_id": "ES:CCAA:10",
+              "province_id": "ES:PROV:46",
+              "municipality_id": null
+            }
+          },
+          {
+            "index": 3,
+            "name": "a",
+            "popup_before": false,
+            "popup_after": false,
+            "territory_before": {
+              "territory_scope": "province",
+              "autonomous_community_id": "ES:CCAA:10",
+              "province_id": "ES:PROV:46",
+              "municipality_id": null
+            },
+            "territory_after": {
+              "territory_scope": "province",
+              "autonomous_community_id": "ES:CCAA:10",
+              "province_id": "ES:PROV:46",
+              "municipality_id": null
+            }
+          }
+        ]
+      },
+      "esfire30": {
+        "point": {
+          "x": 511,
+          "y": 412.5,
+          "point": {
+            "x": 511,
+            "y": 344.5
+          },
+          "lngLat": {
+            "lng": -0.07965087890738687,
+            "lat": 38.88675714069592
+          },
+          "hits": [
+            {
+              "source": "esfire30",
+              "layer": "esfire30-perimeter-outlines",
+              "geometry_id": "esfire30:v1:1995:60"
+            }
+          ],
+          "territories": [
+            {
+              "layer": "official-province-territories-fill",
+              "properties": {
+                "territory_id": "ES:PROV:46",
+                "parent_id": "ES:CCAA:10"
+              }
+            },
+            {
+              "layer": "official-ccaa-territories-fill",
+              "properties": {
+                "territory_id": "ES:CCAA:10"
+              }
+            }
+          ]
+        },
+        "hover": {
+          "cursor": "pointer",
+          "text": ""
+        },
+        "before": {
+          "territory": {
+            "territory_scope": "autonomous_community",
+            "autonomous_community_id": "ES:CCAA:10",
+            "province_id": null,
+            "municipality_id": null
+          },
+          "selection": {},
+          "popup": {
+            "active": false,
+            "kind": null,
+            "hit_count": 0,
+            "source_id": null,
+            "geometry_id": null,
+            "anchor": null
+          }
+        },
+        "after": {
+          "territory": {
+            "territory_scope": "province",
+            "autonomous_community_id": "ES:CCAA:10",
+            "province_id": "ES:PROV:46",
+            "municipality_id": null
+          },
+          "selection": {
+            "selected_geometry_id": "esfire30:v1:1995:60",
+            "selected_geometry_year": 1995
+          },
+          "popup": {
+            "active": false,
+            "kind": null,
+            "hit_count": 0,
+            "source_id": null,
+            "geometry_id": null,
+            "anchor": null
+          }
+        },
+        "expected_geometry": "esfire30:v1:1995:60",
+        "territory_unchanged": false,
+        "passed": false,
+        "errors": [],
+        "events": [
+          {
+            "index": 0,
+            "name": "handleMapPopupClick",
+            "popup_before": false,
+            "popup_after": true,
+            "territory_before": {
+              "territory_scope": "autonomous_community",
+              "autonomous_community_id": "ES:CCAA:10",
+              "province_id": null,
+              "municipality_id": null
+            },
+            "territory_after": {
+              "territory_scope": "autonomous_community",
+              "autonomous_community_id": "ES:CCAA:10",
+              "province_id": null,
+              "municipality_id": null
+            }
+          },
+          {
+            "index": 1,
+            "name": "a",
+            "popup_before": true,
+            "popup_after": true,
+            "territory_before": {
+              "territory_scope": "autonomous_community",
+              "autonomous_community_id": "ES:CCAA:10",
+              "province_id": null,
+              "municipality_id": null
+            },
+            "territory_after": {
+              "territory_scope": "autonomous_community",
+              "autonomous_community_id": "ES:CCAA:10",
+              "province_id": null,
+              "municipality_id": null
+            }
+          },
+          {
+            "index": 2,
+            "name": "a",
+            "popup_before": true,
+            "popup_after": false,
+            "territory_before": {
+              "territory_scope": "autonomous_community",
+              "autonomous_community_id": "ES:CCAA:10",
+              "province_id": null,
+              "municipality_id": null
+            },
+            "territory_after": {
+              "territory_scope": "province",
+              "autonomous_community_id": "ES:CCAA:10",
+              "province_id": "ES:PROV:46",
+              "municipality_id": null
+            }
+          },
+          {
+            "index": 3,
+            "name": "a",
+            "popup_before": false,
+            "popup_after": false,
+            "territory_before": {
+              "territory_scope": "province",
+              "autonomous_community_id": "ES:CCAA:10",
+              "province_id": "ES:PROV:46",
+              "municipality_id": null
+            },
+            "territory_after": {
+              "territory_scope": "province",
+              "autonomous_community_id": "ES:CCAA:10",
+              "province_id": "ES:PROV:46",
+              "municipality_id": null
+            }
+          }
+        ]
+      },
+      "effis": {
+        "point": {
+          "x": 511,
+          "y": 412.5,
+          "point": {
+            "x": 511,
+            "y": 344.5
+          },
+          "lngLat": {
+            "lng": -0.7585335000024145,
+            "lat": 38.1953735000009
+          },
+          "hits": [
+            {
+              "source": "effis",
+              "layer": "effis-perimeter-outlines",
+              "geometry_id": "effis:rda:285361:f05085eba622a5bb"
+            }
+          ],
+          "territories": [
+            {
+              "layer": "official-province-territories-fill",
+              "properties": {
+                "territory_id": "ES:PROV:03",
+                "parent_id": "ES:CCAA:10"
+              }
+            },
+            {
+              "layer": "official-ccaa-territories-fill",
+              "properties": {
+                "territory_id": "ES:CCAA:10"
+              }
+            }
+          ]
+        },
+        "hover": {
+          "cursor": "pointer",
+          "text": ""
+        },
+        "before": {
+          "territory": {
+            "territory_scope": "autonomous_community",
+            "autonomous_community_id": "ES:CCAA:10",
+            "province_id": null,
+            "municipality_id": null
+          },
+          "selection": {},
+          "popup": {
+            "active": false,
+            "kind": null,
+            "hit_count": 0,
+            "source_id": null,
+            "geometry_id": null,
+            "anchor": null
+          }
+        },
+        "after": {
+          "territory": {
+            "territory_scope": "province",
+            "autonomous_community_id": "ES:CCAA:10",
+            "province_id": "ES:PROV:03",
+            "municipality_id": null
+          },
+          "selection": {},
+          "popup": {
+            "active": false,
+            "kind": null,
+            "hit_count": 0,
+            "source_id": null,
+            "geometry_id": null,
+            "anchor": null
+          }
+        },
+        "expected_geometry": "effis:rda:285361:f05085eba622a5bb",
+        "territory_unchanged": false,
+        "passed": false,
+        "errors": [],
+        "events": [
+          {
+            "index": 0,
+            "name": "handleMapPopupClick",
+            "popup_before": false,
+            "popup_after": true,
+            "territory_before": {
+              "territory_scope": "autonomous_community",
+              "autonomous_community_id": "ES:CCAA:10",
+              "province_id": null,
+              "municipality_id": null
+            },
+            "territory_after": {
+              "territory_scope": "autonomous_community",
+              "autonomous_community_id": "ES:CCAA:10",
+              "province_id": null,
+              "municipality_id": null
+            }
+          },
+          {
+            "index": 1,
+            "name": "a",
+            "popup_before": true,
+            "popup_after": true,
+            "territory_before": {
+              "territory_scope": "autonomous_community",
+              "autonomous_community_id": "ES:CCAA:10",
+              "province_id": null,
+              "municipality_id": null
+            },
+            "territory_after": {
+              "territory_scope": "autonomous_community",
+              "autonomous_community_id": "ES:CCAA:10",
+              "province_id": null,
+              "municipality_id": null
+            }
+          },
+          {
+            "index": 2,
+            "name": "a",
+            "popup_before": true,
+            "popup_after": false,
+            "territory_before": {
+              "territory_scope": "autonomous_community",
+              "autonomous_community_id": "ES:CCAA:10",
+              "province_id": null,
+              "municipality_id": null
+            },
+            "territory_after": {
+              "territory_scope": "province",
+              "autonomous_community_id": "ES:CCAA:10",
+              "province_id": "ES:PROV:03",
+              "municipality_id": null
+            }
+          },
+          {
+            "index": 3,
+            "name": "a",
+            "popup_before": false,
+            "popup_after": false,
+            "territory_before": {
+              "territory_scope": "province",
+              "autonomous_community_id": "ES:CCAA:10",
+              "province_id": "ES:PROV:03",
+              "municipality_id": null
+            },
+            "territory_after": {
+              "territory_scope": "province",
+              "autonomous_community_id": "ES:CCAA:10",
+              "province_id": "ES:PROV:03",
+              "municipality_id": null
+            }
+          }
+        ]
+      },
+      "mobile": {
+        "point": {
+          "x": 195,
+          "y": 234.9375,
+          "point": {
+            "x": 195,
+            "y": 176.5
+          },
+          "lngLat": {
+            "lng": -0.4911910000012938,
+            "lat": 40.09173799999948
+          },
+          "hits": [
+            {
+              "source": "icv",
+              "layer": "icv-perimeter-outlines",
+              "geometry_id": "gva:geometry:1995:3:783"
+            }
+          ],
+          "territories": [
+            {
+              "layer": "official-province-territories-fill",
+              "properties": {
+                "territory_id": "ES:PROV:12",
+                "parent_id": "ES:CCAA:10"
+              }
+            },
+            {
+              "layer": "official-ccaa-territories-fill",
+              "properties": {
+                "territory_id": "ES:CCAA:10"
+              }
+            }
+          ]
+        },
+        "hover": {
+          "cursor": "pointer",
+          "text": ""
+        },
+        "before": {
+          "territory": {
+            "territory_scope": "autonomous_community",
+            "autonomous_community_id": "ES:CCAA:10",
+            "province_id": null,
+            "municipality_id": null
+          },
+          "selection": {},
+          "popup": {
+            "active": false,
+            "kind": null,
+            "hit_count": 0,
+            "source_id": null,
+            "geometry_id": null,
+            "anchor": null
+          }
+        },
+        "after": {
+          "territory": {
+            "territory_scope": "province",
+            "autonomous_community_id": "ES:CCAA:10",
+            "province_id": "ES:PROV:12",
+            "municipality_id": null
+          },
+          "selection": {},
+          "popup": {
+            "active": false,
+            "kind": null,
+            "hit_count": 0,
+            "source_id": null,
+            "geometry_id": null,
+            "anchor": null
+          }
+        },
+        "expected_geometry": "gva:geometry:1995:3:783",
+        "territory_unchanged": false,
+        "passed": false,
+        "errors": [],
+        "events": [
+          {
+            "index": 0,
+            "name": "handleMapPopupClick",
+            "popup_before": false,
+            "popup_after": true,
+            "territory_before": {
+              "territory_scope": "autonomous_community",
+              "autonomous_community_id": "ES:CCAA:10",
+              "province_id": null,
+              "municipality_id": null
+            },
+            "territory_after": {
+              "territory_scope": "autonomous_community",
+              "autonomous_community_id": "ES:CCAA:10",
+              "province_id": null,
+              "municipality_id": null
+            }
+          },
+          {
+            "index": 1,
+            "name": "a",
+            "popup_before": true,
+            "popup_after": true,
+            "territory_before": {
+              "territory_scope": "autonomous_community",
+              "autonomous_community_id": "ES:CCAA:10",
+              "province_id": null,
+              "municipality_id": null
+            },
+            "territory_after": {
+              "territory_scope": "autonomous_community",
+              "autonomous_community_id": "ES:CCAA:10",
+              "province_id": null,
+              "municipality_id": null
+            }
+          },
+          {
+            "index": 2,
+            "name": "a",
+            "popup_before": true,
+            "popup_after": false,
+            "territory_before": {
+              "territory_scope": "autonomous_community",
+              "autonomous_community_id": "ES:CCAA:10",
+              "province_id": null,
+              "municipality_id": null
+            },
+            "territory_after": {
+              "territory_scope": "province",
+              "autonomous_community_id": "ES:CCAA:10",
+              "province_id": "ES:PROV:12",
+              "municipality_id": null
+            }
+          },
+          {
+            "index": 3,
+            "name": "a",
+            "popup_before": false,
+            "popup_after": false,
+            "territory_before": {
+              "territory_scope": "province",
+              "autonomous_community_id": "ES:CCAA:10",
+              "province_id": "ES:PROV:12",
+              "municipality_id": null
+            },
+            "territory_after": {
+              "territory_scope": "province",
+              "autonomous_community_id": "ES:CCAA:10",
+              "province_id": "ES:PROV:12",
+              "municipality_id": null
+            }
+          }
+        ]
+      }
+    },
+    "failed_cases": 7,
+    "isolated_case_attempt": {
+      "fixture": "gva:pif-cv:2016AL0074",
+      "condition": "painted pixel without administrative candidate",
+      "result": "NOT_FOUND; no positive isolated case claimed"
+    }
+  },
+  "click_handlers": {
+    "before": [
+      "app.js global handleMapPopupClick",
+      "territory_layer.mjs delegated CCAA fill click",
+      "province_layer.mjs delegated province fill click",
+      "municipality_layer.mjs delegated municipality fill click"
+    ],
+    "after": [
+      "app.js global handleMapPopupClick -> routeMapClick"
+    ],
+    "other_handlers": [
+      "popup chooser button: preventDefault + stopPropagation -> exact geometry popup",
+      "popup close/details buttons",
+      "selectors and breadcrumb: independent explicit territorial actions",
+      "legacy js/app.js pointMode: unchanged"
+    ]
+  },
+  "event_order": {
+    "before": "Global fire handler registered synchronously; CCAA then province then municipality delegated handlers registered on async layer readiness. Observed fire opens popup, CCAA same-parent no-op, province transition closes it; municipal navigation may complete asynchronously.",
+    "after": "One synchronous ownership decision before any territory mutation. Administrative controllers no longer register click listeners."
+  },
+  "fire_query": {
+    "before": "Exact-point query already hit ICV/ESFire30/EFFIS fill+outline; not the primary cause.",
+    "after": "Exact point, visible enabled source layers: fill/outline/selected/hover; dedupe source+geometry_id using existing contract.",
+    "tolerance_pixels": 0
+  },
+  "territory_query": {
+    "priority": [
+      "municipality",
+      "province",
+      "CCAA"
+    ],
+    "only_if_no_fire_hit": true,
+    "authority": "rendered official administrative fill features; existing selectFromFeature callbacks and ES-2 hierarchy"
+  },
+  "root_cause": [
+    "COMPETING_CLICK_HANDLERS",
+    "STATE_INVALIDATION_AFTER_FIRE_CLICK"
+  ],
+  "before": {
+    "production_click_routing": "FAIL",
+    "popup": "opens synchronously then is closed by set_province / set_municipality for same gesture"
+  },
+  "fix": {
+    "module": "prototypes/es4c/map_click_routing.mjs",
+    "exclusive": true,
+    "listener_order_dependency": false,
+    "production_modified": false
+  },
+  "precedence": [
+    "explicit point query if supplied by host",
+    "visible fire: single popup or multi-hit",
+    "navigable administrative background",
+    "empty: no invented navigation"
+  ],
+  "popup": {
+    "cases": {
+      "icv": {
+        "point": {
+          "x": 511,
+          "y": 412.5,
+          "point": {
+            "x": 511,
+            "y": 344.5
+          },
+          "lngLat": {
+            "lng": -0.49119099999703053,
+            "lat": 40.091737999999026
+          },
+          "hits": [
+            {
+              "source": "icv",
+              "layer": "icv-perimeter-outlines",
+              "geometry_id": "gva:geometry:1995:3:783"
+            }
+          ],
+          "territories": [
+            {
+              "layer": "official-province-territories-fill",
+              "properties": {
+                "territory_id": "ES:PROV:12",
+                "parent_id": "ES:CCAA:10"
+              }
+            },
+            {
+              "layer": "official-ccaa-territories-fill",
+              "properties": {
+                "territory_id": "ES:CCAA:10"
+              }
+            }
+          ]
+        },
+        "hover": {
+          "cursor": "pointer",
+          "text": ""
+        },
+        "before": {
+          "territory": {
+            "territory_scope": "autonomous_community",
+            "autonomous_community_id": "ES:CCAA:10",
+            "province_id": null,
+            "municipality_id": null
+          },
+          "selection": {},
+          "popup": {
+            "active": false,
+            "kind": null,
+            "hit_count": 0,
+            "source_id": null,
+            "geometry_id": null,
+            "anchor": null
+          }
+        },
+        "after": {
+          "territory": {
+            "territory_scope": "autonomous_community",
+            "autonomous_community_id": "ES:CCAA:10",
+            "province_id": null,
+            "municipality_id": null
+          },
+          "selection": {
+            "selected_icv_geometry_id": "gva:geometry:1995:3:783",
+            "selected_icv_geometry_year": 1995,
+            "selected_icv_record_id": "gva:pif-cv:1995CS5050"
+          },
+          "popup": {
+            "active": true,
+            "kind": "feature",
+            "hit_count": 1,
+            "source_id": "icv",
+            "geometry_id": "gva:geometry:1995:3:783",
+            "anchor": {
+              "lng": -0.49119099999703053,
+              "lat": 40.09180366166885
+            }
+          }
+        },
+        "expected_geometry": "gva:geometry:1995:3:783",
+        "territory_unchanged": true,
+        "passed": true,
+        "errors": [],
+        "events": [
+          {
+            "index": 0,
+            "name": "handleMapPopupClick",
+            "popup_before": false,
+            "popup_after": true,
+            "territory_before": {
+              "territory_scope": "autonomous_community",
+              "autonomous_community_id": "ES:CCAA:10",
+              "province_id": null,
+              "municipality_id": null
+            },
+            "territory_after": {
+              "territory_scope": "autonomous_community",
+              "autonomous_community_id": "ES:CCAA:10",
+              "province_id": null,
+              "municipality_id": null
+            }
+          }
+        ],
+        "background": {
+          "point": {
+            "x": 320,
+            "y": 84,
+            "point": {
+              "x": 320,
+              "y": 16
+            },
+            "lngLat": {
+              "lng": -0.5239783229959016,
+              "lat": 40.13486406511211
+            },
+            "hits": [],
+            "territories": [
+              {
+                "layer": "official-province-territories-fill",
+                "properties": {
+                  "territory_id": "ES:PROV:12",
+                  "parent_id": "ES:CCAA:10"
+                }
+              },
+              {
+                "layer": "official-ccaa-territories-fill",
+                "properties": {
+                  "territory_id": "ES:CCAA:10"
+                }
+              }
+            ]
+          },
+          "before": {
+            "territory": {
+              "territory_scope": "autonomous_community",
+              "autonomous_community_id": "ES:CCAA:10",
+              "province_id": null,
+              "municipality_id": null
+            },
+            "selection": {
+              "selected_icv_geometry_id": "gva:geometry:1995:3:783",
+              "selected_icv_geometry_year": 1995,
+              "selected_icv_record_id": "gva:pif-cv:1995CS5050"
+            },
+            "popup": {
+              "active": false,
+              "kind": null,
+              "hit_count": 0,
+              "source_id": null,
+              "geometry_id": null,
+              "anchor": null
+            }
+          },
+          "after": {
+            "territory": {
+              "territory_scope": "province",
+              "autonomous_community_id": "ES:CCAA:10",
+              "province_id": "ES:PROV:12",
+              "municipality_id": null
+            },
+            "selection": {},
+            "popup": {
+              "active": false,
+              "kind": null,
+              "hit_count": 0,
+              "source_id": null,
+              "geometry_id": null,
+              "anchor": null
+            }
+          },
+          "passed": true
+        }
+      },
+      "recovered": {
+        "point": {
+          "x": 511,
+          "y": 412.5,
+          "point": {
+            "x": 511,
+            "y": 344.5
+          },
+          "lngLat": {
+            "lng": 0.17708500000159688,
+            "lat": 38.75140200000047
+          },
+          "hits": [
+            {
+              "source": "icv",
+              "layer": "icv-perimeter-outlines",
+              "geometry_id": "gva:geometry:2016:24:11828"
+            }
+          ],
+          "territories": [
+            {
+              "layer": "official-province-territories-fill",
+              "properties": {
+                "territory_id": "ES:PROV:03",
+                "parent_id": "ES:CCAA:10"
+              }
+            },
+            {
+              "layer": "official-ccaa-territories-fill",
+              "properties": {
+                "territory_id": "ES:CCAA:10"
+              }
+            }
+          ]
+        },
+        "hover": {
+          "cursor": "pointer",
+          "text": ""
+        },
+        "before": {
+          "territory": {
+            "territory_scope": "autonomous_community",
+            "autonomous_community_id": "ES:CCAA:10",
+            "province_id": null,
+            "municipality_id": null
+          },
+          "selection": {},
+          "popup": {
+            "active": false,
+            "kind": null,
+            "hit_count": 0,
+            "source_id": null,
+            "geometry_id": null,
+            "anchor": null
+          }
+        },
+        "after": {
+          "territory": {
+            "territory_scope": "autonomous_community",
+            "autonomous_community_id": "ES:CCAA:10",
+            "province_id": null,
+            "municipality_id": null
+          },
+          "selection": {
+            "selected_icv_geometry_id": "gva:geometry:2016:24:11828",
+            "selected_icv_geometry_year": 2016,
+            "selected_icv_record_id": "gva:pif-cv:2016AL0074"
+          },
+          "popup": {
+            "active": true,
+            "kind": "feature",
+            "hit_count": 1,
+            "source_id": "icv",
+            "geometry_id": "gva:geometry:2016:24:11828",
+            "anchor": {
+              "lng": 0.17708500000159688,
+              "lat": 38.75146893667619
+            }
+          }
+        },
+        "expected_geometry": "gva:geometry:2016:24:11828",
+        "territory_unchanged": true,
+        "passed": true,
+        "errors": [],
+        "events": [
+          {
+            "index": 0,
+            "name": "handleMapPopupClick",
+            "popup_before": false,
+            "popup_after": true,
+            "territory_before": {
+              "territory_scope": "autonomous_community",
+              "autonomous_community_id": "ES:CCAA:10",
+              "province_id": null,
+              "municipality_id": null
+            },
+            "territory_after": {
+              "territory_scope": "autonomous_community",
+              "autonomous_community_id": "ES:CCAA:10",
+              "province_id": null,
+              "municipality_id": null
+            }
+          }
+        ]
+      },
+      "province": {
+        "point": {
+          "x": 511,
+          "y": 412.5,
+          "point": {
+            "x": 511,
+            "y": 344.5
+          },
+          "lngLat": {
+            "lng": 0.17708500000159688,
+            "lat": 38.75140200000047
+          },
+          "hits": [
+            {
+              "source": "icv",
+              "layer": "icv-perimeter-outlines",
+              "geometry_id": "gva:geometry:2016:24:11828"
+            }
+          ],
+          "territories": [
+            {
+              "layer": "official-municipality-territories-fill",
+              "properties": {
+                "municipality_id": "ES:MUN:03082"
+              }
+            },
+            {
+              "layer": "official-province-territories-fill",
+              "properties": {
+                "territory_id": "ES:PROV:03",
+                "parent_id": "ES:CCAA:10"
+              }
+            },
+            {
+              "layer": "official-ccaa-territories-fill",
+              "properties": {
+                "territory_id": "ES:CCAA:10"
+              }
+            }
+          ]
+        },
+        "hover": {
+          "cursor": "pointer",
+          "text": ""
+        },
+        "before": {
+          "territory": {
+            "territory_scope": "province",
+            "autonomous_community_id": "ES:CCAA:10",
+            "province_id": "ES:PROV:03",
+            "municipality_id": null
+          },
+          "selection": {},
+          "popup": {
+            "active": false,
+            "kind": null,
+            "hit_count": 0,
+            "source_id": null,
+            "geometry_id": null,
+            "anchor": null
+          }
+        },
+        "after": {
+          "territory": {
+            "territory_scope": "province",
+            "autonomous_community_id": "ES:CCAA:10",
+            "province_id": "ES:PROV:03",
+            "municipality_id": null
+          },
+          "selection": {
+            "selected_icv_geometry_id": "gva:geometry:2016:24:11828",
+            "selected_icv_geometry_year": 2016,
+            "selected_icv_record_id": "gva:pif-cv:2016AL0074"
+          },
+          "popup": {
+            "active": true,
+            "kind": "feature",
+            "hit_count": 1,
+            "source_id": "icv",
+            "geometry_id": "gva:geometry:2016:24:11828",
+            "anchor": {
+              "lng": 0.17708500000159688,
+              "lat": 38.75146893667619
+            }
+          }
+        },
+        "expected_geometry": "gva:geometry:2016:24:11828",
+        "territory_unchanged": true,
+        "passed": true,
+        "errors": [],
+        "events": [
+          {
+            "index": 0,
+            "name": "handleMapPopupClick",
+            "popup_before": false,
+            "popup_after": true,
+            "territory_before": {
+              "territory_scope": "province",
+              "autonomous_community_id": "ES:CCAA:10",
+              "province_id": "ES:PROV:03",
+              "municipality_id": null
+            },
+            "territory_after": {
+              "territory_scope": "province",
+              "autonomous_community_id": "ES:CCAA:10",
+              "province_id": "ES:PROV:03",
+              "municipality_id": null
+            }
+          }
+        ],
+        "background": {
+          "point": {
+            "x": 320,
+            "y": 84,
+            "point": {
+              "x": 320,
+              "y": 16
+            },
+            "lngLat": {
+              "lng": 0.14429767700266893,
+              "lat": 38.79536586903663
+            },
+            "hits": [],
+            "territories": [
+              {
+                "layer": "official-municipality-territories-fill",
+                "properties": {
+                  "municipality_id": "ES:MUN:03082"
+                }
+              },
+              {
+                "layer": "official-province-territories-fill",
+                "properties": {
+                  "territory_id": "ES:PROV:03",
+                  "parent_id": "ES:CCAA:10"
+                }
+              },
+              {
+                "layer": "official-ccaa-territories-fill",
+                "properties": {
+                  "territory_id": "ES:CCAA:10"
+                }
+              }
+            ]
+          },
+          "before": {
+            "territory": {
+              "territory_scope": "province",
+              "autonomous_community_id": "ES:CCAA:10",
+              "province_id": "ES:PROV:03",
+              "municipality_id": null
+            },
+            "selection": {
+              "selected_icv_geometry_id": "gva:geometry:2016:24:11828",
+              "selected_icv_geometry_year": 2016,
+              "selected_icv_record_id": "gva:pif-cv:2016AL0074"
+            },
+            "popup": {
+              "active": false,
+              "kind": null,
+              "hit_count": 0,
+              "source_id": null,
+              "geometry_id": null,
+              "anchor": null
+            }
+          },
+          "after": {
+            "territory": {
+              "territory_scope": "municipality",
+              "autonomous_community_id": "ES:CCAA:10",
+              "province_id": "ES:PROV:03",
+              "municipality_id": "ES:MUN:03082"
+            },
+            "selection": {},
+            "popup": {
+              "active": false,
+              "kind": null,
+              "hit_count": 0,
+              "source_id": null,
+              "geometry_id": null,
+              "anchor": null
+            }
+          },
+          "passed": true
+        }
+      },
+      "multi": {
+        "point": {
+          "x": 511,
+          "y": 412.5,
+          "point": {
+            "x": 511,
+            "y": 344.5
+          },
+          "lngLat": {
+            "lng": -0.08239746093948952,
+            "lat": 38.885688179035554
+          },
+          "hits": [
+            {
+              "source": "icv",
+              "layer": "icv-perimeter-outlines",
+              "geometry_id": "gva:geometry:1995:3:785"
+            },
+            {
+              "source": "esfire30",
+              "layer": "esfire30-perimeter-outlines",
+              "geometry_id": "esfire30:v1:1995:60"
+            }
+          ],
+          "territories": [
+            {
+              "layer": "official-province-territories-fill",
+              "properties": {
+                "territory_id": "ES:PROV:46",
+                "parent_id": "ES:CCAA:10"
+              }
+            },
+            {
+              "layer": "official-ccaa-territories-fill",
+              "properties": {
+                "territory_id": "ES:CCAA:10"
+              }
+            }
+          ]
+        },
+        "hover": {
+          "cursor": "pointer",
+          "text": ""
+        },
+        "before": {
+          "territory": {
+            "territory_scope": "autonomous_community",
+            "autonomous_community_id": "ES:CCAA:10",
+            "province_id": null,
+            "municipality_id": null
+          },
+          "selection": {},
+          "popup": {
+            "active": false,
+            "kind": null,
+            "hit_count": 0,
+            "source_id": null,
+            "geometry_id": null,
+            "anchor": null
+          }
+        },
+        "after": {
+          "territory": {
+            "territory_scope": "autonomous_community",
+            "autonomous_community_id": "ES:CCAA:10",
+            "province_id": null,
+            "municipality_id": null
+          },
+          "selection": {},
+          "popup": {
+            "active": true,
+            "kind": "chooser",
+            "hit_count": 2,
+            "source_id": null,
+            "geometry_id": null,
+            "anchor": {
+              "lng": -0.08239746093948952,
+              "lat": 38.88595542095831
+            }
+          }
+        },
+        "expected_geometry": "gva:geometry:1995:3:785",
+        "territory_unchanged": true,
+        "passed": true,
+        "errors": [],
+        "events": [
+          {
+            "index": 0,
+            "name": "handleMapPopupClick",
+            "popup_before": false,
+            "popup_after": true,
+            "territory_before": {
+              "territory_scope": "autonomous_community",
+              "autonomous_community_id": "ES:CCAA:10",
+              "province_id": null,
+              "municipality_id": null
+            },
+            "territory_after": {
+              "territory_scope": "autonomous_community",
+              "autonomous_community_id": "ES:CCAA:10",
+              "province_id": null,
+              "municipality_id": null
+            }
+          }
+        ]
+      },
+      "esfire30": {
+        "point": {
+          "x": 511,
+          "y": 412.5,
+          "point": {
+            "x": 511,
+            "y": 344.5
+          },
+          "lngLat": {
+            "lng": -0.07965087890738687,
+            "lat": 38.88675714069592
+          },
+          "hits": [
+            {
+              "source": "esfire30",
+              "layer": "esfire30-perimeter-outlines",
+              "geometry_id": "esfire30:v1:1995:60"
+            }
+          ],
+          "territories": [
+            {
+              "layer": "official-province-territories-fill",
+              "properties": {
+                "territory_id": "ES:PROV:46",
+                "parent_id": "ES:CCAA:10"
+              }
+            },
+            {
+              "layer": "official-ccaa-territories-fill",
+              "properties": {
+                "territory_id": "ES:CCAA:10"
+              }
+            }
+          ]
+        },
+        "hover": {
+          "cursor": "pointer",
+          "text": ""
+        },
+        "before": {
+          "territory": {
+            "territory_scope": "autonomous_community",
+            "autonomous_community_id": "ES:CCAA:10",
+            "province_id": null,
+            "municipality_id": null
+          },
+          "selection": {},
+          "popup": {
+            "active": false,
+            "kind": null,
+            "hit_count": 0,
+            "source_id": null,
+            "geometry_id": null,
+            "anchor": null
+          }
+        },
+        "after": {
+          "territory": {
+            "territory_scope": "autonomous_community",
+            "autonomous_community_id": "ES:CCAA:10",
+            "province_id": null,
+            "municipality_id": null
+          },
+          "selection": {
+            "selected_geometry_id": "esfire30:v1:1995:60",
+            "selected_geometry_year": 1995
+          },
+          "popup": {
+            "active": true,
+            "kind": "feature",
+            "hit_count": 1,
+            "source_id": "esfire30",
+            "geometry_id": "esfire30:v1:1995:60",
+            "anchor": {
+              "lng": -0.07965087890738687,
+              "lat": 38.88782608627119
+            }
+          }
+        },
+        "expected_geometry": "esfire30:v1:1995:60",
+        "territory_unchanged": true,
+        "passed": true,
+        "errors": [],
+        "events": [
+          {
+            "index": 0,
+            "name": "handleMapPopupClick",
+            "popup_before": false,
+            "popup_after": true,
+            "territory_before": {
+              "territory_scope": "autonomous_community",
+              "autonomous_community_id": "ES:CCAA:10",
+              "province_id": null,
+              "municipality_id": null
+            },
+            "territory_after": {
+              "territory_scope": "autonomous_community",
+              "autonomous_community_id": "ES:CCAA:10",
+              "province_id": null,
+              "municipality_id": null
+            }
+          }
+        ]
+      },
+      "effis": {
+        "point": {
+          "x": 511,
+          "y": 412.5,
+          "point": {
+            "x": 511,
+            "y": 344.5
+          },
+          "lngLat": {
+            "lng": -0.7585335000024145,
+            "lat": 38.1953735000009
+          },
+          "hits": [
+            {
+              "source": "effis",
+              "layer": "effis-perimeter-outlines",
+              "geometry_id": "effis:rda:285361:f05085eba622a5bb"
+            }
+          ],
+          "territories": [
+            {
+              "layer": "official-province-territories-fill",
+              "properties": {
+                "territory_id": "ES:PROV:03",
+                "parent_id": "ES:CCAA:10"
+              }
+            },
+            {
+              "layer": "official-ccaa-territories-fill",
+              "properties": {
+                "territory_id": "ES:CCAA:10"
+              }
+            }
+          ]
+        },
+        "hover": {
+          "cursor": "pointer",
+          "text": ""
+        },
+        "before": {
+          "territory": {
+            "territory_scope": "autonomous_community",
+            "autonomous_community_id": "ES:CCAA:10",
+            "province_id": null,
+            "municipality_id": null
+          },
+          "selection": {},
+          "popup": {
+            "active": false,
+            "kind": null,
+            "hit_count": 0,
+            "source_id": null,
+            "geometry_id": null,
+            "anchor": null
+          }
+        },
+        "after": {
+          "territory": {
+            "territory_scope": "autonomous_community",
+            "autonomous_community_id": "ES:CCAA:10",
+            "province_id": null,
+            "municipality_id": null
+          },
+          "selection": {
+            "selected_effis_geometry_id": "effis:rda:285361:f05085eba622a5bb",
+            "selected_effis_geometry_year": 2025
+          },
+          "popup": {
+            "active": true,
+            "kind": "feature",
+            "hit_count": 1,
+            "source_id": "effis",
+            "geometry_id": "effis:rda:285361:f05085eba622a5bb",
+            "anchor": {
+              "lng": -0.7585335000024145,
+              "lat": 38.19544095489317
+            }
+          }
+        },
+        "expected_geometry": "effis:rda:285361:f05085eba622a5bb",
+        "territory_unchanged": true,
+        "passed": true,
+        "errors": [],
+        "events": [
+          {
+            "index": 0,
+            "name": "handleMapPopupClick",
+            "popup_before": false,
+            "popup_after": true,
+            "territory_before": {
+              "territory_scope": "autonomous_community",
+              "autonomous_community_id": "ES:CCAA:10",
+              "province_id": null,
+              "municipality_id": null
+            },
+            "territory_after": {
+              "territory_scope": "autonomous_community",
+              "autonomous_community_id": "ES:CCAA:10",
+              "province_id": null,
+              "municipality_id": null
+            }
+          }
+        ]
+      },
+      "mobile": {
+        "point": {
+          "x": 195,
+          "y": 234.9375,
+          "point": {
+            "x": 195,
+            "y": 176.5
+          },
+          "lngLat": {
+            "lng": -0.4911910000012938,
+            "lat": 40.09173799999948
+          },
+          "hits": [
+            {
+              "source": "icv",
+              "layer": "icv-perimeter-outlines",
+              "geometry_id": "gva:geometry:1995:3:783"
+            }
+          ],
+          "territories": [
+            {
+              "layer": "official-province-territories-fill",
+              "properties": {
+                "territory_id": "ES:PROV:12",
+                "parent_id": "ES:CCAA:10"
+              }
+            },
+            {
+              "layer": "official-ccaa-territories-fill",
+              "properties": {
+                "territory_id": "ES:CCAA:10"
+              }
+            }
+          ]
+        },
+        "hover": {
+          "cursor": "pointer",
+          "text": ""
+        },
+        "before": {
+          "territory": {
+            "territory_scope": "autonomous_community",
+            "autonomous_community_id": "ES:CCAA:10",
+            "province_id": null,
+            "municipality_id": null
+          },
+          "selection": {},
+          "popup": {
+            "active": false,
+            "kind": null,
+            "hit_count": 0,
+            "source_id": null,
+            "geometry_id": null,
+            "anchor": null
+          }
+        },
+        "after": {
+          "territory": {
+            "territory_scope": "autonomous_community",
+            "autonomous_community_id": "ES:CCAA:10",
+            "province_id": null,
+            "municipality_id": null
+          },
+          "selection": {
+            "selected_icv_geometry_id": "gva:geometry:1995:3:783",
+            "selected_icv_geometry_year": 1995,
+            "selected_icv_record_id": "gva:pif-cv:1995CS5050"
+          },
+          "popup": {
+            "active": true,
+            "kind": "feature",
+            "hit_count": 1,
+            "source_id": "icv",
+            "geometry_id": "gva:geometry:1995:3:783",
+            "anchor": {
+              "lng": -0.4911910000012938,
+              "lat": 40.091729792286344
+            }
+          }
+        },
+        "expected_geometry": "gva:geometry:1995:3:783",
+        "territory_unchanged": true,
+        "passed": true,
+        "errors": [],
+        "events": [
+          {
+            "index": 0,
+            "name": "handleMapPopupClick",
+            "popup_before": false,
+            "popup_after": true,
+            "territory_before": {
+              "territory_scope": "autonomous_community",
+              "autonomous_community_id": "ES:CCAA:10",
+              "province_id": null,
+              "municipality_id": null
+            },
+            "territory_after": {
+              "territory_scope": "autonomous_community",
+              "autonomous_community_id": "ES:CCAA:10",
+              "province_id": null,
+              "municipality_id": null
+            }
+          }
+        ],
+        "background": {
+          "point": {
+            "x": 200,
+            "y": 74.4375,
+            "point": {
+              "x": 200,
+              "y": 16
+            },
+            "lngLat": {
+              "lng": -0.4903326931162155,
+              "lat": 40.11281214250147
+            },
+            "hits": [],
+            "territories": [
+              {
+                "layer": "official-province-territories-fill",
+                "properties": {
+                  "territory_id": "ES:PROV:12",
+                  "parent_id": "ES:CCAA:10"
+                }
+              },
+              {
+                "layer": "official-ccaa-territories-fill",
+                "properties": {
+                  "territory_id": "ES:CCAA:10"
+                }
+              }
+            ]
+          },
+          "before": {
+            "territory": {
+              "territory_scope": "autonomous_community",
+              "autonomous_community_id": "ES:CCAA:10",
+              "province_id": null,
+              "municipality_id": null
+            },
+            "selection": {
+              "selected_icv_geometry_id": "gva:geometry:1995:3:783",
+              "selected_icv_geometry_year": 1995,
+              "selected_icv_record_id": "gva:pif-cv:1995CS5050"
+            },
+            "popup": {
+              "active": false,
+              "kind": null,
+              "hit_count": 0,
+              "source_id": null,
+              "geometry_id": null,
+              "anchor": null
+            }
+          },
+          "after": {
+            "territory": {
+              "territory_scope": "province",
+              "autonomous_community_id": "ES:CCAA:10",
+              "province_id": "ES:PROV:12",
+              "municipality_id": null
+            },
+            "selection": {},
+            "popup": {
+              "active": false,
+              "kind": null,
+              "hit_count": 0,
+              "source_id": null,
+              "geometry_id": null,
+              "anchor": null
+            }
+          },
+          "passed": true
+        }
+      },
+      "double0": {
+        "point": {
+          "x": 511,
+          "y": 412.5,
+          "point": {
+            "x": 511,
+            "y": 344.5
+          },
+          "lngLat": {
+            "lng": -0.7756000000016741,
+            "lat": 37.94763599999976
+          },
+          "hits": [
+            {
+              "source": "icv",
+              "layer": "icv-perimeter-outlines",
+              "geometry_id": "gva:geometry:2024:121:13606"
+            },
+            {
+              "source": "icv",
+              "layer": "icv-perimeter-outlines",
+              "geometry_id": "gva:geometry:2024:121:13587"
+            }
+          ],
+          "territories": [
+            {
+              "layer": "official-province-territories-fill",
+              "properties": {
+                "territory_id": "ES:PROV:03",
+                "parent_id": "ES:CCAA:10"
+              }
+            },
+            {
+              "layer": "official-ccaa-territories-fill",
+              "properties": {
+                "territory_id": "ES:CCAA:10"
+              }
+            }
+          ]
+        },
+        "hover": {
+          "cursor": "pointer",
+          "text": ""
+        },
+        "before": {
+          "territory": {
+            "territory_scope": "autonomous_community",
+            "autonomous_community_id": "ES:CCAA:10",
+            "province_id": null,
+            "municipality_id": null
+          },
+          "selection": {},
+          "popup": {
+            "active": false,
+            "kind": null,
+            "hit_count": 0,
+            "source_id": null,
+            "geometry_id": null,
+            "anchor": null
+          }
+        },
+        "after": {
+          "territory": {
+            "territory_scope": "autonomous_community",
+            "autonomous_community_id": "ES:CCAA:10",
+            "province_id": null,
+            "municipality_id": null
+          },
+          "selection": {},
+          "popup": {
+            "active": true,
+            "kind": "chooser",
+            "hit_count": 2,
+            "source_id": null,
+            "geometry_id": null,
+            "anchor": {
+              "lng": -0.7756000000016741,
+              "lat": 37.94770368373959
+            }
+          }
+        },
+        "expected_geometry": "gva:geometry:2024:121:13587",
+        "territory_unchanged": true,
+        "passed": true,
+        "errors": [],
+        "events": [
+          {
+            "index": 0,
+            "name": "handleMapPopupClick",
+            "popup_before": false,
+            "popup_after": true,
+            "territory_before": {
+              "territory_scope": "autonomous_community",
+              "autonomous_community_id": "ES:CCAA:10",
+              "province_id": null,
+              "municipality_id": null
+            },
+            "territory_after": {
+              "territory_scope": "autonomous_community",
+              "autonomous_community_id": "ES:CCAA:10",
+              "province_id": null,
+              "municipality_id": null
+            }
+          }
+        ]
+      },
+      "double1": {
+        "point": {
+          "x": 511,
+          "y": 412.5,
+          "point": {
+            "x": 511,
+            "y": 344.5
+          },
+          "lngLat": {
+            "lng": -0.7755840000009186,
+            "lat": 37.94764500000046
+          },
+          "hits": [
+            {
+              "source": "icv",
+              "layer": "icv-perimeter-outlines",
+              "geometry_id": "gva:geometry:2024:121:13606"
+            },
+            {
+              "source": "icv",
+              "layer": "icv-perimeter-outlines",
+              "geometry_id": "gva:geometry:2024:121:13587"
+            }
+          ],
+          "territories": [
+            {
+              "layer": "official-province-territories-fill",
+              "properties": {
+                "territory_id": "ES:PROV:03",
+                "parent_id": "ES:CCAA:10"
+              }
+            },
+            {
+              "layer": "official-ccaa-territories-fill",
+              "properties": {
+                "territory_id": "ES:CCAA:10"
+              }
+            }
+          ]
+        },
+        "hover": {
+          "cursor": "pointer",
+          "text": ""
+        },
+        "before": {
+          "territory": {
+            "territory_scope": "autonomous_community",
+            "autonomous_community_id": "ES:CCAA:10",
+            "province_id": null,
+            "municipality_id": null
+          },
+          "selection": {},
+          "popup": {
+            "active": false,
+            "kind": null,
+            "hit_count": 0,
+            "source_id": null,
+            "geometry_id": null,
+            "anchor": null
+          }
+        },
+        "after": {
+          "territory": {
+            "territory_scope": "autonomous_community",
+            "autonomous_community_id": "ES:CCAA:10",
+            "province_id": null,
+            "municipality_id": null
+          },
+          "selection": {},
+          "popup": {
+            "active": true,
+            "kind": "chooser",
+            "hit_count": 2,
+            "source_id": null,
+            "geometry_id": null,
+            "anchor": {
+              "lng": -0.7755840000009186,
+              "lat": 37.94771268373202
+            }
+          }
+        },
+        "expected_geometry": "gva:geometry:2024:121:13606",
+        "territory_unchanged": true,
+        "passed": true,
+        "errors": [],
+        "events": [
+          {
+            "index": 0,
+            "name": "handleMapPopupClick",
+            "popup_before": false,
+            "popup_after": true,
+            "territory_before": {
+              "territory_scope": "autonomous_community",
+              "autonomous_community_id": "ES:CCAA:10",
+              "province_id": null,
+              "municipality_id": null
+            },
+            "territory_after": {
+              "territory_scope": "autonomous_community",
+              "autonomous_community_id": "ES:CCAA:10",
+              "province_id": null,
+              "municipality_id": null
+            }
+          }
+        ]
+      },
+      "municipality": {
+        "point": {
+          "x": 511,
+          "y": 412.5,
+          "point": {
+            "x": 511,
+            "y": 344.5
+          },
+          "lngLat": {
+            "lng": 0.17708500000159688,
+            "lat": 38.75140200000047
+          },
+          "hits": [
+            {
+              "source": "icv",
+              "layer": "icv-perimeter-outlines",
+              "geometry_id": "gva:geometry:2016:24:11828"
+            }
+          ],
+          "territories": [
+            {
+              "layer": "official-municipality-territories-fill",
+              "properties": {
+                "municipality_id": "ES:MUN:03082"
+              }
+            },
+            {
+              "layer": "official-province-territories-fill",
+              "properties": {
+                "territory_id": "ES:PROV:03",
+                "parent_id": "ES:CCAA:10"
+              }
+            },
+            {
+              "layer": "official-ccaa-territories-fill",
+              "properties": {
+                "territory_id": "ES:CCAA:10"
+              }
+            }
+          ]
+        },
+        "hover": {
+          "cursor": "pointer",
+          "highlight_filters": [
+            {
+              "layer": "icv-hover",
+              "filter": [
+                "==",
+                [
+                  "get",
+                  "geometry_id"
+                ],
+                "__none__"
+              ]
+            },
+            {
+              "layer": "esfire30-hover",
+              "filter": [
+                "==",
+                [
+                  "get",
+                  "geometry_id"
+                ],
+                "__none__"
+              ]
+            },
+            {
+              "layer": "effis-hover",
+              "filter": [
+                "==",
+                [
+                  "get",
+                  "geometry_id"
+                ],
+                "__none__"
+              ]
+            }
+          ]
+        },
+        "before": {
+          "territory": {
+            "territory_scope": "municipality",
+            "autonomous_community_id": "ES:CCAA:10",
+            "province_id": "ES:PROV:03",
+            "municipality_id": "ES:MUN:03042"
+          },
+          "selection": {},
+          "popup": {
+            "active": false,
+            "kind": null,
+            "hit_count": 0,
+            "source_id": null,
+            "geometry_id": null,
+            "anchor": null
+          }
+        },
+        "after": {
+          "territory": {
+            "territory_scope": "municipality",
+            "autonomous_community_id": "ES:CCAA:10",
+            "province_id": "ES:PROV:03",
+            "municipality_id": "ES:MUN:03042"
+          },
+          "selection": {
+            "selected_icv_geometry_id": "gva:geometry:2016:24:11828",
+            "selected_icv_geometry_year": 2016,
+            "selected_icv_record_id": "gva:pif-cv:2016AL0074"
+          },
+          "popup": {
+            "active": true,
+            "kind": "feature",
+            "hit_count": 1,
+            "source_id": "icv",
+            "geometry_id": "gva:geometry:2016:24:11828",
+            "anchor": {
+              "lng": 0.17708500000159688,
+              "lat": 38.75146893667619
+            }
+          }
+        },
+        "expected_geometry": "gva:geometry:2016:24:11828",
+        "territory_unchanged": true,
+        "passed": true,
+        "errors": [],
+        "events": [
+          {
+            "index": 0,
+            "name": "handleMapPopupClick",
+            "popup_before": false,
+            "popup_after": true,
+            "territory_before": {
+              "territory_scope": "municipality",
+              "autonomous_community_id": "ES:CCAA:10",
+              "province_id": "ES:PROV:03",
+              "municipality_id": "ES:MUN:03042"
+            },
+            "territory_after": {
+              "territory_scope": "municipality",
+              "autonomous_community_id": "ES:CCAA:10",
+              "province_id": "ES:PROV:03",
+              "municipality_id": "ES:MUN:03042"
+            }
+          }
+        ]
+      }
+    },
+    "passed_cases": 10,
+    "no_detail_required": "Existing POST2C loaded-record popup reused; no new detail request path."
+  },
+  "multi_hit": {
+    "status": "PASS",
+    "territory_unchanged": true,
+    "no_source_fusion": true
+  },
+  "territory_state": {
+    "community_unchanged": true,
+    "province_unchanged": true,
+    "municipality_unchanged": true,
+    "background_province_drill_preserved": true,
+    "background_municipality_drill_preserved": true
+  },
+  "point_query_mode": {
+    "national_runtime": "NOT_PRESENT in src/national or deployed national artifact",
+    "legacy": "Existing pointMode/queryPoint path in js/app.js untouched",
+    "arbiter_unit_test": "point_query consumes event before both fire and territory queries",
+    "new_tool_implemented": false
+  },
+  "hover": {
+    "cursor": "pointer on tested visible fires; matches consumed fire clicks",
+    "highlight": "Existing fill hover styles retained; supplementary selected/hover strokes now queryable"
+  },
+  "filters": {
+    "cases": {
+      "hidden": {
+        "point": {
+          "x": 511,
+          "y": 412.5,
+          "point": {
+            "x": 511,
+            "y": 344.5
+          },
+          "lngLat": {
+            "lng": -0.49119099999703053,
+            "lat": 40.091737999999026
+          },
+          "hits": [
+            {
+              "source": "icv",
+              "layer": "icv-perimeter-outlines",
+              "geometry_id": "gva:geometry:1995:3:783"
+            }
+          ],
+          "territories": [
+            {
+              "layer": "official-province-territories-fill",
+              "properties": {
+                "territory_id": "ES:PROV:12",
+                "parent_id": "ES:CCAA:10"
+              }
+            },
+            {
+              "layer": "official-ccaa-territories-fill",
+              "properties": {
+                "territory_id": "ES:CCAA:10"
+              }
+            }
+          ]
+        },
+        "hover": {
+          "cursor": "pointer",
+          "highlight_filters": [
+            {
+              "layer": "icv-hover",
+              "filter": [
+                "==",
+                [
+                  "get",
+                  "geometry_id"
+                ],
+                "__none__"
+              ]
+            },
+            {
+              "layer": "esfire30-hover",
+              "filter": [
+                "==",
+                [
+                  "get",
+                  "geometry_id"
+                ],
+                "__none__"
+              ]
+            },
+            {
+              "layer": "effis-hover",
+              "filter": [
+                "==",
+                [
+                  "get",
+                  "geometry_id"
+                ],
+                "__none__"
+              ]
+            }
+          ]
+        },
+        "before": {
+          "territory": {
+            "territory_scope": "autonomous_community",
+            "autonomous_community_id": "ES:CCAA:10",
+            "province_id": null,
+            "municipality_id": null
+          },
+          "selection": {},
+          "popup": {
+            "active": false,
+            "kind": null,
+            "hit_count": 0,
+            "source_id": null,
+            "geometry_id": null,
+            "anchor": null
+          }
+        },
+        "after": {
+          "territory": {
+            "territory_scope": "autonomous_community",
+            "autonomous_community_id": "ES:CCAA:10",
+            "province_id": null,
+            "municipality_id": null
+          },
+          "selection": {
+            "selected_icv_geometry_id": "gva:geometry:1995:3:783",
+            "selected_icv_geometry_year": 1995,
+            "selected_icv_record_id": "gva:pif-cv:1995CS5050"
+          },
+          "popup": {
+            "active": true,
+            "kind": "feature",
+            "hit_count": 1,
+            "source_id": "icv",
+            "geometry_id": "gva:geometry:1995:3:783",
+            "anchor": {
+              "lng": -0.49119099999703053,
+              "lat": 40.09180366166885
+            }
+          }
+        },
+        "expected_geometry": "gva:geometry:1995:3:783",
+        "territory_unchanged": true,
+        "passed": true,
+        "errors": [],
+        "events": [
+          {
+            "index": 0,
+            "name": "handleMapPopupClick",
+            "popup_before": false,
+            "popup_after": true,
+            "territory_before": {
+              "territory_scope": "autonomous_community",
+              "autonomous_community_id": "ES:CCAA:10",
+              "province_id": null,
+              "municipality_id": null
+            },
+            "territory_after": {
+              "territory_scope": "autonomous_community",
+              "autonomous_community_id": "ES:CCAA:10",
+              "province_id": null,
+              "municipality_id": null
+            }
+          }
+        ],
+        "removed_feature": {
+          "before_click": {
+            "territory": {
+              "territory_scope": "autonomous_community",
+              "autonomous_community_id": "ES:CCAA:10",
+              "province_id": null,
+              "municipality_id": null
+            },
+            "selection": {
+              "selected_geometry_id": null,
+              "selected_geometry_year": null,
+              "selected_egif_record_id": null,
+              "selected_egif_year": null,
+              "selected_icv_geometry_id": null,
+              "selected_icv_geometry_year": null,
+              "selected_icv_record_id": null,
+              "selected_effis_geometry_id": null,
+              "selected_effis_geometry_year": null
+            },
+            "popup": {
+              "active": false,
+              "kind": null,
+              "hit_count": 0,
+              "source_id": null,
+              "geometry_id": null,
+              "anchor": null
+            }
+          },
+          "after_click": {
+            "territory": {
+              "territory_scope": "province",
+              "autonomous_community_id": "ES:CCAA:10",
+              "province_id": "ES:PROV:12",
+              "municipality_id": null
+            },
+            "selection": {
+              "selected_geometry_id": null,
+              "selected_geometry_year": null,
+              "selected_egif_record_id": null,
+              "selected_egif_year": null,
+              "selected_icv_geometry_id": null,
+              "selected_icv_geometry_year": null,
+              "selected_icv_record_id": null,
+              "selected_effis_geometry_id": null,
+              "selected_effis_geometry_year": null
+            },
+            "popup": {
+              "active": false,
+              "kind": null,
+              "hit_count": 0,
+              "source_id": null,
+              "geometry_id": null,
+              "anchor": null
+            }
+          },
+          "remaining_rendered_hits": 0,
+          "passed": true
+        }
+      },
+      "filtered": {
+        "point": {
+          "x": 511,
+          "y": 412.5,
+          "point": {
+            "x": 511,
+            "y": 344.5
+          },
+          "lngLat": {
+            "lng": -0.49119099999703053,
+            "lat": 40.091737999999026
+          },
+          "hits": [
+            {
+              "source": "icv",
+              "layer": "icv-perimeter-outlines",
+              "geometry_id": "gva:geometry:1995:3:783"
+            }
+          ],
+          "territories": [
+            {
+              "layer": "official-province-territories-fill",
+              "properties": {
+                "territory_id": "ES:PROV:12",
+                "parent_id": "ES:CCAA:10"
+              }
+            },
+            {
+              "layer": "official-ccaa-territories-fill",
+              "properties": {
+                "territory_id": "ES:CCAA:10"
+              }
+            }
+          ]
+        },
+        "hover": {
+          "cursor": "pointer",
+          "highlight_filters": [
+            {
+              "layer": "icv-hover",
+              "filter": [
+                "==",
+                [
+                  "get",
+                  "geometry_id"
+                ],
+                "__none__"
+              ]
+            },
+            {
+              "layer": "esfire30-hover",
+              "filter": [
+                "==",
+                [
+                  "get",
+                  "geometry_id"
+                ],
+                "__none__"
+              ]
+            },
+            {
+              "layer": "effis-hover",
+              "filter": [
+                "==",
+                [
+                  "get",
+                  "geometry_id"
+                ],
+                "__none__"
+              ]
+            }
+          ]
+        },
+        "before": {
+          "territory": {
+            "territory_scope": "autonomous_community",
+            "autonomous_community_id": "ES:CCAA:10",
+            "province_id": null,
+            "municipality_id": null
+          },
+          "selection": {},
+          "popup": {
+            "active": false,
+            "kind": null,
+            "hit_count": 0,
+            "source_id": null,
+            "geometry_id": null,
+            "anchor": null
+          }
+        },
+        "after": {
+          "territory": {
+            "territory_scope": "autonomous_community",
+            "autonomous_community_id": "ES:CCAA:10",
+            "province_id": null,
+            "municipality_id": null
+          },
+          "selection": {
+            "selected_icv_geometry_id": "gva:geometry:1995:3:783",
+            "selected_icv_geometry_year": 1995,
+            "selected_icv_record_id": "gva:pif-cv:1995CS5050"
+          },
+          "popup": {
+            "active": true,
+            "kind": "feature",
+            "hit_count": 1,
+            "source_id": "icv",
+            "geometry_id": "gva:geometry:1995:3:783",
+            "anchor": {
+              "lng": -0.49119099999703053,
+              "lat": 40.09180366166885
+            }
+          }
+        },
+        "expected_geometry": "gva:geometry:1995:3:783",
+        "territory_unchanged": true,
+        "passed": true,
+        "errors": [],
+        "events": [
+          {
+            "index": 0,
+            "name": "handleMapPopupClick",
+            "popup_before": false,
+            "popup_after": true,
+            "territory_before": {
+              "territory_scope": "autonomous_community",
+              "autonomous_community_id": "ES:CCAA:10",
+              "province_id": null,
+              "municipality_id": null
+            },
+            "territory_after": {
+              "territory_scope": "autonomous_community",
+              "autonomous_community_id": "ES:CCAA:10",
+              "province_id": null,
+              "municipality_id": null
+            }
+          }
+        ],
+        "removed_feature": {
+          "before_click": {
+            "territory": {
+              "territory_scope": "autonomous_community",
+              "autonomous_community_id": "ES:CCAA:10",
+              "province_id": null,
+              "municipality_id": null
+            },
+            "selection": {
+              "selected_geometry_id": null,
+              "selected_geometry_year": null,
+              "selected_egif_record_id": null,
+              "selected_egif_year": null,
+              "selected_icv_geometry_id": null,
+              "selected_icv_geometry_year": null,
+              "selected_icv_record_id": null,
+              "selected_effis_geometry_id": null,
+              "selected_effis_geometry_year": null
+            },
+            "popup": {
+              "active": false,
+              "kind": null,
+              "hit_count": 0,
+              "source_id": null,
+              "geometry_id": null,
+              "anchor": null
+            }
+          },
+          "after_click": {
+            "territory": {
+              "territory_scope": "province",
+              "autonomous_community_id": "ES:CCAA:10",
+              "province_id": "ES:PROV:12",
+              "municipality_id": null
+            },
+            "selection": {
+              "selected_geometry_id": null,
+              "selected_geometry_year": null,
+              "selected_egif_record_id": null,
+              "selected_egif_year": null,
+              "selected_icv_geometry_id": null,
+              "selected_icv_geometry_year": null,
+              "selected_icv_record_id": null,
+              "selected_effis_geometry_id": null,
+              "selected_effis_geometry_year": null
+            },
+            "popup": {
+              "active": false,
+              "kind": null,
+              "hit_count": 0,
+              "source_id": null,
+              "geometry_id": null,
+              "anchor": null
+            }
+          },
+          "remaining_rendered_hits": 0,
+          "passed": true
+        }
+      },
+      "period": {
+        "point": {
+          "x": 511,
+          "y": 412.5,
+          "point": {
+            "x": 511,
+            "y": 344.5
+          },
+          "lngLat": {
+            "lng": -0.49119099999703053,
+            "lat": 40.091737999999026
+          },
+          "hits": [
+            {
+              "source": "icv",
+              "layer": "icv-perimeter-outlines",
+              "geometry_id": "gva:geometry:1995:3:783"
+            }
+          ],
+          "territories": [
+            {
+              "layer": "official-province-territories-fill",
+              "properties": {
+                "territory_id": "ES:PROV:12",
+                "parent_id": "ES:CCAA:10"
+              }
+            },
+            {
+              "layer": "official-ccaa-territories-fill",
+              "properties": {
+                "territory_id": "ES:CCAA:10"
+              }
+            }
+          ]
+        },
+        "hover": {
+          "cursor": "pointer",
+          "highlight_filters": [
+            {
+              "layer": "icv-hover",
+              "filter": [
+                "==",
+                [
+                  "get",
+                  "geometry_id"
+                ],
+                "__none__"
+              ]
+            },
+            {
+              "layer": "esfire30-hover",
+              "filter": [
+                "==",
+                [
+                  "get",
+                  "geometry_id"
+                ],
+                "__none__"
+              ]
+            },
+            {
+              "layer": "effis-hover",
+              "filter": [
+                "==",
+                [
+                  "get",
+                  "geometry_id"
+                ],
+                "__none__"
+              ]
+            }
+          ]
+        },
+        "before": {
+          "territory": {
+            "territory_scope": "autonomous_community",
+            "autonomous_community_id": "ES:CCAA:10",
+            "province_id": null,
+            "municipality_id": null
+          },
+          "selection": {},
+          "popup": {
+            "active": false,
+            "kind": null,
+            "hit_count": 0,
+            "source_id": null,
+            "geometry_id": null,
+            "anchor": null
+          }
+        },
+        "after": {
+          "territory": {
+            "territory_scope": "autonomous_community",
+            "autonomous_community_id": "ES:CCAA:10",
+            "province_id": null,
+            "municipality_id": null
+          },
+          "selection": {
+            "selected_icv_geometry_id": "gva:geometry:1995:3:783",
+            "selected_icv_geometry_year": 1995,
+            "selected_icv_record_id": "gva:pif-cv:1995CS5050"
+          },
+          "popup": {
+            "active": true,
+            "kind": "feature",
+            "hit_count": 1,
+            "source_id": "icv",
+            "geometry_id": "gva:geometry:1995:3:783",
+            "anchor": {
+              "lng": -0.49119099999703053,
+              "lat": 40.09180366166885
+            }
+          }
+        },
+        "expected_geometry": "gva:geometry:1995:3:783",
+        "territory_unchanged": true,
+        "passed": true,
+        "errors": [],
+        "events": [
+          {
+            "index": 0,
+            "name": "handleMapPopupClick",
+            "popup_before": false,
+            "popup_after": true,
+            "territory_before": {
+              "territory_scope": "autonomous_community",
+              "autonomous_community_id": "ES:CCAA:10",
+              "province_id": null,
+              "municipality_id": null
+            },
+            "territory_after": {
+              "territory_scope": "autonomous_community",
+              "autonomous_community_id": "ES:CCAA:10",
+              "province_id": null,
+              "municipality_id": null
+            }
+          }
+        ],
+        "removed_feature": {
+          "before_click": {
+            "territory": {
+              "territory_scope": "autonomous_community",
+              "autonomous_community_id": "ES:CCAA:10",
+              "province_id": null,
+              "municipality_id": null
+            },
+            "selection": {
+              "selected_geometry_id": null,
+              "selected_geometry_year": null,
+              "selected_egif_record_id": null,
+              "selected_egif_year": null,
+              "selected_icv_geometry_id": null,
+              "selected_icv_geometry_year": null,
+              "selected_icv_record_id": null,
+              "selected_effis_geometry_id": null,
+              "selected_effis_geometry_year": null
+            },
+            "popup": {
+              "active": false,
+              "kind": null,
+              "hit_count": 0,
+              "source_id": null,
+              "geometry_id": null,
+              "anchor": null
+            }
+          },
+          "after_click": {
+            "territory": {
+              "territory_scope": "province",
+              "autonomous_community_id": "ES:CCAA:10",
+              "province_id": "ES:PROV:12",
+              "municipality_id": null
+            },
+            "selection": {
+              "selected_geometry_id": null,
+              "selected_geometry_year": null,
+              "selected_egif_record_id": null,
+              "selected_egif_year": null,
+              "selected_icv_geometry_id": null,
+              "selected_icv_geometry_year": null,
+              "selected_icv_record_id": null,
+              "selected_effis_geometry_id": null,
+              "selected_effis_geometry_year": null
+            },
+            "popup": {
+              "active": false,
+              "kind": null,
+              "hit_count": 0,
+              "source_id": null,
+              "geometry_id": null,
+              "anchor": null
+            }
+          },
+          "remaining_rendered_hits": 0,
+          "passed": true
+        }
+      }
+    },
+    "passed_cases": 3,
+    "initial_filter_fixture_error": "1e9 rejected by existing max1e6 contract; corrected test value1e6, no runtime filter change"
+  },
+  "mobile": {
+    "viewport": [
+      390,
+      844
+    ],
+    "input": "CDP touchStart/touchEnd",
+    "fire": "PASS",
+    "background": "PASS",
+    "physical_device": false
+  },
+  "tests": {
+    "unit_popup_temporal_serialization": {
+      "passed": 21,
+      "groups": {
+        "test_es4hot1_map_click_routing.py": 5,
+        "test_es4post2c_direct_human_popup.py": 7,
+        "test_es4post2b_temporal_encoding_and_overlap.py": 7,
+        "test_es4c1c2_state_serialization.py": 2
+      }
+    },
+    "province_legacy_test": {
+      "passed": 2,
+      "environment_blocked": 1,
+      "reason": "System Node10.19.0 cannot parse pre-existing optional chaining in province_layer.mjs; controller fixture adapted to explicit selection, actual province path passes Chromium."
+    },
+    "browser_local": {
+      "passed": 13,
+      "failed": 0
+    },
+    "production_before": {
+      "failed_as_expected": 7
+    },
+    "suite_complete_run": false
+  },
+  "previous_test_gap": "POST2C map_click invoked window.__es4cRuntime.handleMapPopupClick directly. POST2D/POST4/POST5 reused it; administrative delegated listeners were bypassed, and territory before==after was not a gate. Comment incorrectly called it the real MapLibre click listener.",
+  "data_unchanged": {
+    "datasets": true,
+    "pmtiles": true,
+    "source_counts": "No ingestion/join/rebuild; data symlinked read-only into temporary lightweight frontend. Full source recount not repeated.",
+    "temporal_style": true,
+    "serialization_schemas": true,
+    "legacy_js": true,
+    "tag_unchanged": true,
+    "push": false,
+    "deploy": false
+  },
+  "status": "PASS",
+  "click_routing_hotfix": "PASS",
+  "direct_click_production_bug": "FIXED_LOCALLY",
+  "basic_popup_bug": "FIXED_LOCALLY",
+  "territory_background_drill": "PRESERVED",
+  "map_exploration_parity": "READY_FOR_HOTFIX_STAGING",
+  "production_still_has_bug": true,
+  "recommended_version_after_acceptance": "national-product-v1.0.1",
+  "next_phase": "ES-4HOT2_CLICK_ROUTING_STAGING"
+}
