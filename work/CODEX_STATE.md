@@ -1385,3 +1385,32 @@ TAG_CREATED = false
 CLOSING_COMMIT_PUSH = false
 RESULTS_PATH = ES_4HOT3_V1_0_1_PRODUCTION_EXECUTION.md; data/audit/product/es4hot3_v1_0_1_production_execution.json
 NEXT_PHASE = ES-4HOT4_V1_0_1_POST_RELEASE_CHECKPOINT (no iniciado)
+
+## HOT4 — cierre formal v1.0.1
+
+PHASE = ES-4HOT4_V1_0_1_POST_RELEASE_CHECKPOINT
+STATUS = DONE
+HOTFIX_POST_RELEASE_CHECKPOINT = PASS
+NATIONAL_PRODUCT_STATUS = LIVE_V1_0_1
+REMOTE_CLICK_ROUTING = PASS
+MAP_EXPLORATION_PARITY = PASS
+RELEASE_TAG_STATUS = CREATED
+RELEASE_TAG = national-product-v1.0.1
+TAG_TARGET = 5cffab72499f74ea6d1f76b516adaef291eceaf7 (local/remote verified)
+V1_0_0_TAG_STATUS = IMMUTABLE
+V1_0_0_TAG_TARGET = 534cfe37a7120904f48c87bba71b4fcb7423bb5f
+PRODUCTION_DEPLOYMENT = 6414182725
+PRODUCTION_SITE_IDENTITY = 6ae69340c9fb676d2331e9afbf1dd98569873b43119f73e2672665122fc4e30a
+HOT3_DOCUMENTATION_PUSHED = a314fcefee6659c216213fff782d9fe85c57a0ad
+UNEXPECTED_DEPLOY_AFTER_MAIN_OR_TAG = false
+DONE = four real-click/tap cases; product/temporal/native/legacy PASS; Range206; glyphs9/9; staging preserved; three manual rollbacks READY; tag published exactly; no new deploy
+PENDING = none in HOT4; final documentation commit local only
+FIRE_CLICK_PRECEDENCE = point-query mode if present > visible fire geometry > background territorial drill > empty map
+MANDATORY_FUTURE_RELEASE_REGRESSION = click visible fire -> territory unchanged
+PRODUCT_INVARIANTS = map-first exploration; temporal/overlap readability; direct popup; human information hierarchy; fire-click precedence
+P1 = cold municipality loading feedback; mobile histogram touch targets; histogram brush
+P2 = z13 / relief / POI; safe ESFire30 ranking; minor mobile polish
+HOTFIX_CYCLE = COMPLETE
+FINAL_CHECKPOINT_PUSH = false
+RESULTS_PATH = ES_4HOT4_V1_0_1_POST_RELEASE_CHECKPOINT.md; data/audit/product/es4hot4_v1_0_1_post_release_checkpoint.json
+NEXT_PHASE = POST_RELEASE_BACKLOG (no iniciado)

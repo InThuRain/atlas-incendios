@@ -1,0 +1,3067 @@
+{
+  "phase": "ES-4HOT4_V1_0_1_POST_RELEASE_CHECKPOINT",
+  "observed_at": "2026-09-13T09:00:44.101534+00:00",
+  "git": {
+    "precheck_head": "a314fcefee6659c216213fff782d9fe85c57a0ad",
+    "precheck_origin_main": "5cffab72499f74ea6d1f76b516adaef291eceaf7",
+    "initial_ahead": 1,
+    "initial_behind": 0,
+    "tracked_worktree_clean": true,
+    "untracked_excluded": [
+      "build/"
+    ],
+    "closing_scope": [
+      "ES_4HOT3_V1_0_1_PRODUCTION_EXECUTION.md",
+      "data/audit/product/es4hot3_v1_0_1_production_execution.json",
+      "work/CODEX_STATE.md"
+    ],
+    "documentation_pushed": true,
+    "origin_after_push": "a314fcefee6659c216213fff782d9fe85c57a0ad",
+    "synced_before_final_local_commit": true,
+    "final_commit_push": false
+  },
+  "production": {
+    "before_push": {
+      "root": {
+        "status": 200,
+        "sha256": "178390918306783d154025baf556191577902b19257fcb541f799006b07b9430"
+      },
+      "asset-manifest.json": {
+        "status": 200,
+        "sha256": "5e0610b121f54550b852460053b9c1d5c35e6be2311363f53fcbe9817762f3a9"
+      },
+      "site-identity.json": {
+        "status": 200,
+        "sha256": "6ae69340c9fb676d2331e9afbf1dd98569873b43119f73e2672665122fc4e30a"
+      }
+    },
+    "after_tag": {
+      "root": {
+        "status": 200,
+        "sha256": "178390918306783d154025baf556191577902b19257fcb541f799006b07b9430"
+      },
+      "asset-manifest.json": {
+        "status": 200,
+        "sha256": "5e0610b121f54550b852460053b9c1d5c35e6be2311363f53fcbe9817762f3a9"
+      },
+      "site-identity.json": {
+        "status": 200,
+        "sha256": "6ae69340c9fb676d2331e9afbf1dd98569873b43119f73e2672665122fc4e30a"
+      }
+    },
+    "deployment_id": 6414182725,
+    "deployment_sha": "5cffab72499f74ea6d1f76b516adaef291eceaf7",
+    "recent_runs": [
+      {
+        "databaseId": 34717913721,
+        "event": "workflow_dispatch",
+        "headSha": "5cffab72499f74ea6d1f76b516adaef291eceaf7",
+        "status": "completed"
+      },
+      {
+        "databaseId": 34620607559,
+        "event": "workflow_dispatch",
+        "headSha": "534cfe37a7120904f48c87bba71b4fcb7423bb5f",
+        "status": "completed"
+      },
+      {
+        "databaseId": 34373964522,
+        "event": "workflow_dispatch",
+        "headSha": "84cbc9e43f2b1555a84b17cd5b94643b0b31eb1c",
+        "status": "completed"
+      }
+    ],
+    "unexpected_deploy_after_main_push": false,
+    "unexpected_deploy_after_tag": false
+  },
+  "click_health": {
+    "icv": {
+      "point": {
+        "x": 511,
+        "y": 412.5,
+        "point": {
+          "x": 511,
+          "y": 344.5
+        },
+        "lngLat": {
+          "lng": -0.49119099999703053,
+          "lat": 40.091737999999026
+        },
+        "hits": [
+          {
+            "source": "icv",
+            "layer": "icv-perimeter-outlines",
+            "geometry_id": "gva:geometry:1995:3:783"
+          }
+        ],
+        "territories": [
+          {
+            "layer": "official-province-territories-fill",
+            "properties": {
+              "territory_id": "ES:PROV:12",
+              "parent_id": "ES:CCAA:10",
+              "source_code": "34101200000",
+              "official_name": "Castellón/Castelló",
+              "source_name": "Castelló/Castellón",
+              "territory_type": "province",
+              "bounds": "[-0.8462969,39.7146978,0.6903109,40.7886312]"
+            }
+          },
+          {
+            "layer": "official-ccaa-territories-fill",
+            "properties": {
+              "territory_id": "ES:CCAA:10",
+              "source_code": "34100000000",
+              "official_name": "Comunitat Valenciana",
+              "source_name": "Comunitat Valenciana",
+              "territory_type": "autonomous_community",
+              "bounds": "[-1.528778,37.8437849,0.6903133,40.7886312]"
+            }
+          }
+        ]
+      },
+      "hover": {
+        "cursor": "pointer",
+        "highlight_filters": [
+          {
+            "layer": "icv-hover",
+            "filter": [
+              "==",
+              [
+                "get",
+                "geometry_id"
+              ],
+              "__none__"
+            ]
+          },
+          {
+            "layer": "esfire30-hover",
+            "filter": [
+              "==",
+              [
+                "get",
+                "geometry_id"
+              ],
+              "__none__"
+            ]
+          },
+          {
+            "layer": "effis-hover",
+            "filter": [
+              "==",
+              [
+                "get",
+                "geometry_id"
+              ],
+              "__none__"
+            ]
+          }
+        ]
+      },
+      "before": {
+        "territory": {
+          "territory_scope": "autonomous_community",
+          "autonomous_community_id": "ES:CCAA:10",
+          "province_id": null,
+          "municipality_id": null
+        },
+        "selection": {
+          "selected_geometry_id": null,
+          "selected_geometry_year": null,
+          "selected_egif_record_id": null,
+          "selected_egif_year": null,
+          "selected_icv_geometry_id": null,
+          "selected_icv_geometry_year": null,
+          "selected_icv_record_id": null,
+          "selected_effis_geometry_id": null,
+          "selected_effis_geometry_year": null
+        },
+        "popup": {
+          "active": false,
+          "kind": null,
+          "hit_count": 0,
+          "source_id": null,
+          "geometry_id": null,
+          "anchor": null
+        }
+      },
+      "immediate": {
+        "territory": {
+          "territory_scope": "autonomous_community",
+          "autonomous_community_id": "ES:CCAA:10",
+          "province_id": null,
+          "municipality_id": null
+        },
+        "selection": {
+          "selected_geometry_id": null,
+          "selected_geometry_year": null,
+          "selected_egif_record_id": null,
+          "selected_egif_year": null,
+          "selected_icv_geometry_id": "gva:geometry:1995:3:783",
+          "selected_icv_geometry_year": 1995,
+          "selected_icv_record_id": "gva:pif-cv:1995CS5050",
+          "selected_effis_geometry_id": null,
+          "selected_effis_geometry_year": null
+        },
+        "popup": {
+          "active": true,
+          "kind": "feature",
+          "hit_count": 1,
+          "source_id": "icv",
+          "geometry_id": "gva:geometry:1995:3:783",
+          "anchor": {
+            "lng": -0.49119099999703053,
+            "lat": 40.09180366166885
+          }
+        }
+      },
+      "after": {
+        "territory": {
+          "territory_scope": "autonomous_community",
+          "autonomous_community_id": "ES:CCAA:10",
+          "province_id": null,
+          "municipality_id": null
+        },
+        "selection": {
+          "selected_geometry_id": null,
+          "selected_geometry_year": null,
+          "selected_egif_record_id": null,
+          "selected_egif_year": null,
+          "selected_icv_geometry_id": "gva:geometry:1995:3:783",
+          "selected_icv_geometry_year": 1995,
+          "selected_icv_record_id": "gva:pif-cv:1995CS5050",
+          "selected_effis_geometry_id": null,
+          "selected_effis_geometry_year": null
+        },
+        "popup": {
+          "active": true,
+          "kind": "feature",
+          "hit_count": 1,
+          "source_id": "icv",
+          "geometry_id": "gva:geometry:1995:3:783",
+          "anchor": {
+            "lng": -0.49119099999703053,
+            "lat": 40.09180366166885
+          }
+        }
+      },
+      "events": [
+        {
+          "i": 0,
+          "name": "handleMapPopupClick",
+          "before": {
+            "territory": {
+              "territory_scope": "autonomous_community",
+              "autonomous_community_id": "ES:CCAA:10",
+              "province_id": null,
+              "municipality_id": null
+            },
+            "selection": {
+              "selected_geometry_id": null,
+              "selected_geometry_year": null,
+              "selected_egif_record_id": null,
+              "selected_egif_year": null,
+              "selected_icv_geometry_id": null,
+              "selected_icv_geometry_year": null,
+              "selected_icv_record_id": null,
+              "selected_effis_geometry_id": null,
+              "selected_effis_geometry_year": null
+            },
+            "popup": {
+              "active": false,
+              "kind": null,
+              "hit_count": 0,
+              "source_id": null,
+              "geometry_id": null,
+              "anchor": null
+            }
+          },
+          "after": {
+            "territory": {
+              "territory_scope": "autonomous_community",
+              "autonomous_community_id": "ES:CCAA:10",
+              "province_id": null,
+              "municipality_id": null
+            },
+            "selection": {
+              "selected_geometry_id": null,
+              "selected_geometry_year": null,
+              "selected_egif_record_id": null,
+              "selected_egif_year": null,
+              "selected_icv_geometry_id": "gva:geometry:1995:3:783",
+              "selected_icv_geometry_year": 1995,
+              "selected_icv_record_id": "gva:pif-cv:1995CS5050",
+              "selected_effis_geometry_id": null,
+              "selected_effis_geometry_year": null
+            },
+            "popup": {
+              "active": true,
+              "kind": "feature",
+              "hit_count": 1,
+              "source_id": "icv",
+              "geometry_id": "gva:geometry:1995:3:783",
+              "anchor": {
+                "lng": -0.49119099999703053,
+                "lat": 40.09180366166885
+              }
+            }
+          }
+        }
+      ],
+      "expected_geometry": "gva:geometry:1995:3:783",
+      "territory_unchanged": true,
+      "errors": [],
+      "human_popup": {
+        "state": {
+          "active": true,
+          "kind": "feature",
+          "hit_count": 1,
+          "source_id": "icv",
+          "geometry_id": "gva:geometry:1995:3:783",
+          "anchor": {
+            "lng": -0.49119099999703053,
+            "lat": 40.09180366166885
+          }
+        },
+        "text": "Incendio documentado\nICV · Generalitat Valenciana\nCerrar\nFecha\n11/05/1995\nMunicipio\nArañuel\nProvincia\nCastellón/Castelló\nSuperficie\n5 ha\nCausa\nRayo\nVer detalles",
+        "details": "Ver detalles",
+        "role": "dialog",
+        "close": "Cerrar información del perímetro",
+        "shell": "true",
+        "sourceSelections": {
+          "from": 1995,
+          "to": 1995,
+          "territory_scope": "autonomous_community",
+          "autonomous_community_id": "ES:CCAA:10",
+          "province_id": null,
+          "municipality_id": null,
+          "esfire30_visible": false,
+          "egif_visible": true,
+          "icv_visible": true,
+          "effis_visible": false,
+          "selected_geometry_id": null,
+          "selected_geometry_year": null,
+          "selected_egif_record_id": null,
+          "selected_egif_year": null,
+          "selected_icv_geometry_id": "gva:geometry:1995:3:783",
+          "selected_icv_geometry_year": 1995,
+          "selected_icv_record_id": "gva:pif-cv:1995CS5050",
+          "selected_effis_geometry_id": null,
+          "selected_effis_geometry_year": null,
+          "filters": [],
+          "center": [
+            -0.491191,
+            40.091738
+          ],
+          "zoom": 12
+        },
+        "errors": []
+      },
+      "pmtiles_resources": [
+        {
+          "url": "https://inthurain.github.io/atlas-incendios/data/esfire30/v1/3c6eb10ba146008cdabf36646d48a4c7a92c1c1357ad90679f6b5dce42013cfe/esfire30-national-fidelity-territories.pmtiles",
+          "status": 206,
+          "bytes": 16384,
+          "transfer_bytes": 16684
+        },
+        {
+          "url": "https://inthurain.github.io/atlas-incendios/data/esfire30/v1/3c6eb10ba146008cdabf36646d48a4c7a92c1c1357ad90679f6b5dce42013cfe/esfire30-national-fidelity-territories.pmtiles",
+          "status": 206,
+          "bytes": 8316,
+          "transfer_bytes": 0
+        },
+        {
+          "url": "https://inthurain.github.io/atlas-incendios/data/esfire30/v1/3c6eb10ba146008cdabf36646d48a4c7a92c1c1357ad90679f6b5dce42013cfe/esfire30-national-fidelity-territories.pmtiles",
+          "status": 206,
+          "bytes": 121545,
+          "transfer_bytes": 121845
+        },
+        {
+          "url": "https://inthurain.github.io/atlas-incendios/data/esfire30/v1/3c6eb10ba146008cdabf36646d48a4c7a92c1c1357ad90679f6b5dce42013cfe/esfire30-national-fidelity-territories.pmtiles",
+          "status": 206,
+          "bytes": 345205,
+          "transfer_bytes": 345505
+        },
+        {
+          "url": "https://inthurain.github.io/atlas-incendios/data/esfire30/v1/3c6eb10ba146008cdabf36646d48a4c7a92c1c1357ad90679f6b5dce42013cfe/esfire30-national-fidelity-territories.pmtiles",
+          "status": 206,
+          "bytes": 13892,
+          "transfer_bytes": 14192
+        },
+        {
+          "url": "https://inthurain.github.io/atlas-incendios/data/esfire30/v1/3c6eb10ba146008cdabf36646d48a4c7a92c1c1357ad90679f6b5dce42013cfe/esfire30-national-fidelity-territories.pmtiles",
+          "status": 206,
+          "bytes": 20865,
+          "transfer_bytes": 21165
+        },
+        {
+          "url": "https://inthurain.github.io/atlas-incendios/data/basemap/protomaps/20260902-z12/72bb270ff6fc18ccba3042834f9a9eb72901c243e7dec88b3ebb63eaafaeb729/basemap.pmtiles",
+          "status": 206,
+          "bytes": 16384,
+          "transfer_bytes": 16684
+        },
+        {
+          "url": "https://inthurain.github.io/atlas-incendios/data/basemap/protomaps/20260902-z12/72bb270ff6fc18ccba3042834f9a9eb72901c243e7dec88b3ebb63eaafaeb729/basemap.pmtiles",
+          "status": 206,
+          "bytes": 10324,
+          "transfer_bytes": 0
+        },
+        {
+          "url": "https://inthurain.github.io/atlas-incendios/data/basemap/protomaps/20260902-z12/72bb270ff6fc18ccba3042834f9a9eb72901c243e7dec88b3ebb63eaafaeb729/basemap.pmtiles",
+          "status": 206,
+          "bytes": 33030,
+          "transfer_bytes": 33330
+        },
+        {
+          "url": "https://inthurain.github.io/atlas-incendios/data/basemap/protomaps/20260902-z12/72bb270ff6fc18ccba3042834f9a9eb72901c243e7dec88b3ebb63eaafaeb729/basemap.pmtiles",
+          "status": 206,
+          "bytes": 35204,
+          "transfer_bytes": 35504
+        },
+        {
+          "url": "https://inthurain.github.io/atlas-incendios/data/basemap/protomaps/20260902-z12/72bb270ff6fc18ccba3042834f9a9eb72901c243e7dec88b3ebb63eaafaeb729/basemap.pmtiles",
+          "status": 206,
+          "bytes": 41693,
+          "transfer_bytes": 41993
+        },
+        {
+          "url": "https://inthurain.github.io/atlas-incendios/data/basemap/protomaps/20260902-z12/72bb270ff6fc18ccba3042834f9a9eb72901c243e7dec88b3ebb63eaafaeb729/basemap.pmtiles",
+          "status": 206,
+          "bytes": 127284,
+          "transfer_bytes": 127584
+        },
+        {
+          "url": "https://inthurain.github.io/atlas-incendios/data/esfire30/v1/3c6eb10ba146008cdabf36646d48a4c7a92c1c1357ad90679f6b5dce42013cfe/esfire30-national-fidelity-territories.pmtiles",
+          "status": 206,
+          "bytes": 392173,
+          "transfer_bytes": 392473
+        },
+        {
+          "url": "https://inthurain.github.io/atlas-incendios/data/esfire30/v1/3c6eb10ba146008cdabf36646d48a4c7a92c1c1357ad90679f6b5dce42013cfe/esfire30-national-fidelity-territories.pmtiles",
+          "status": 206,
+          "bytes": 24902,
+          "transfer_bytes": 25202
+        },
+        {
+          "url": "https://inthurain.github.io/atlas-incendios/data/esfire30/v1/3c6eb10ba146008cdabf36646d48a4c7a92c1c1357ad90679f6b5dce42013cfe/esfire30-national-fidelity-territories.pmtiles",
+          "status": 206,
+          "bytes": 469793,
+          "transfer_bytes": 470093
+        },
+        {
+          "url": "https://inthurain.github.io/atlas-incendios/data/esfire30/v1/3c6eb10ba146008cdabf36646d48a4c7a92c1c1357ad90679f6b5dce42013cfe/esfire30-national-fidelity-territories.pmtiles",
+          "status": 206,
+          "bytes": 94186,
+          "transfer_bytes": 94486
+        },
+        {
+          "url": "https://inthurain.github.io/atlas-incendios/data/basemap/protomaps/20260902-z12/72bb270ff6fc18ccba3042834f9a9eb72901c243e7dec88b3ebb63eaafaeb729/basemap.pmtiles",
+          "status": 206,
+          "bytes": 77527,
+          "transfer_bytes": 77827
+        },
+        {
+          "url": "https://inthurain.github.io/atlas-incendios/data/basemap/protomaps/20260902-z12/72bb270ff6fc18ccba3042834f9a9eb72901c243e7dec88b3ebb63eaafaeb729/basemap.pmtiles",
+          "status": 206,
+          "bytes": 21571,
+          "transfer_bytes": 21871
+        },
+        {
+          "url": "https://inthurain.github.io/atlas-incendios/data/basemap/protomaps/20260902-z12/72bb270ff6fc18ccba3042834f9a9eb72901c243e7dec88b3ebb63eaafaeb729/basemap.pmtiles",
+          "status": 206,
+          "bytes": 71735,
+          "transfer_bytes": 72035
+        },
+        {
+          "url": "https://inthurain.github.io/atlas-incendios/data/basemap/protomaps/20260902-z12/72bb270ff6fc18ccba3042834f9a9eb72901c243e7dec88b3ebb63eaafaeb729/basemap.pmtiles",
+          "status": 206,
+          "bytes": 86237,
+          "transfer_bytes": 86537
+        },
+        {
+          "url": "https://inthurain.github.io/atlas-incendios/data/esfire30/v1/3c6eb10ba146008cdabf36646d48a4c7a92c1c1357ad90679f6b5dce42013cfe/esfire30-national-fidelity-territories.pmtiles",
+          "status": 206,
+          "bytes": 7373,
+          "transfer_bytes": 7673
+        },
+        {
+          "url": "https://inthurain.github.io/atlas-incendios/data/basemap/protomaps/20260902-z12/72bb270ff6fc18ccba3042834f9a9eb72901c243e7dec88b3ebb63eaafaeb729/basemap.pmtiles",
+          "status": 206,
+          "bytes": 9403,
+          "transfer_bytes": 9703
+        },
+        {
+          "url": "https://inthurain.github.io/atlas-incendios/data/esfire30/v1/3c6eb10ba146008cdabf36646d48a4c7a92c1c1357ad90679f6b5dce42013cfe/esfire30-national-fidelity-territories.pmtiles",
+          "status": 206,
+          "bytes": 993,
+          "transfer_bytes": 1293
+        },
+        {
+          "url": "https://inthurain.github.io/atlas-incendios/data/esfire30/v1/3c6eb10ba146008cdabf36646d48a4c7a92c1c1357ad90679f6b5dce42013cfe/esfire30-national-fidelity-territories.pmtiles",
+          "status": 206,
+          "bytes": 632,
+          "transfer_bytes": 932
+        },
+        {
+          "url": "https://inthurain.github.io/atlas-incendios/data/esfire30/v1/3c6eb10ba146008cdabf36646d48a4c7a92c1c1357ad90679f6b5dce42013cfe/esfire30-national-fidelity-territories.pmtiles",
+          "status": 206,
+          "bytes": 786,
+          "transfer_bytes": 1086
+        },
+        {
+          "url": "https://inthurain.github.io/atlas-incendios/data/esfire30/v1/3c6eb10ba146008cdabf36646d48a4c7a92c1c1357ad90679f6b5dce42013cfe/esfire30-national-fidelity-territories.pmtiles",
+          "status": 206,
+          "bytes": 1128,
+          "transfer_bytes": 1428
+        },
+        {
+          "url": "https://inthurain.github.io/atlas-incendios/data/esfire30/v1/3c6eb10ba146008cdabf36646d48a4c7a92c1c1357ad90679f6b5dce42013cfe/esfire30-national-fidelity-territories.pmtiles",
+          "status": 206,
+          "bytes": 1374,
+          "transfer_bytes": 1674
+        },
+        {
+          "url": "https://inthurain.github.io/atlas-incendios/data/basemap/protomaps/20260902-z12/72bb270ff6fc18ccba3042834f9a9eb72901c243e7dec88b3ebb63eaafaeb729/basemap.pmtiles",
+          "status": 206,
+          "bytes": 20302,
+          "transfer_bytes": 20602
+        },
+        {
+          "url": "https://inthurain.github.io/atlas-incendios/data/basemap/protomaps/20260902-z12/72bb270ff6fc18ccba3042834f9a9eb72901c243e7dec88b3ebb63eaafaeb729/basemap.pmtiles",
+          "status": 206,
+          "bytes": 13185,
+          "transfer_bytes": 13485
+        },
+        {
+          "url": "https://inthurain.github.io/atlas-incendios/data/basemap/protomaps/20260902-z12/72bb270ff6fc18ccba3042834f9a9eb72901c243e7dec88b3ebb63eaafaeb729/basemap.pmtiles",
+          "status": 206,
+          "bytes": 18317,
+          "transfer_bytes": 18617
+        },
+        {
+          "url": "https://inthurain.github.io/atlas-incendios/data/basemap/protomaps/20260902-z12/72bb270ff6fc18ccba3042834f9a9eb72901c243e7dec88b3ebb63eaafaeb729/basemap.pmtiles",
+          "status": 206,
+          "bytes": 21241,
+          "transfer_bytes": 21541
+        },
+        {
+          "url": "https://inthurain.github.io/atlas-incendios/data/basemap/protomaps/20260902-z12/72bb270ff6fc18ccba3042834f9a9eb72901c243e7dec88b3ebb63eaafaeb729/basemap.pmtiles",
+          "status": 206,
+          "bytes": 14063,
+          "transfer_bytes": 14363
+        },
+        {
+          "url": "https://inthurain.github.io/atlas-incendios/data/basemap/protomaps/20260902-z12/72bb270ff6fc18ccba3042834f9a9eb72901c243e7dec88b3ebb63eaafaeb729/basemap.pmtiles",
+          "status": 206,
+          "bytes": 19724,
+          "transfer_bytes": 20024
+        }
+      ],
+      "new_resource_urls": [],
+      "passed": true,
+      "background": {
+        "point": {
+          "x": 320,
+          "y": 84,
+          "point": {
+            "x": 320,
+            "y": 16
+          },
+          "lngLat": {
+            "lng": -0.5239783229959016,
+            "lat": 40.13486406511211
+          },
+          "hits": [],
+          "territories": [
+            {
+              "layer": "official-province-territories-fill",
+              "properties": {
+                "territory_id": "ES:PROV:12",
+                "parent_id": "ES:CCAA:10",
+                "source_code": "34101200000",
+                "official_name": "Castellón/Castelló",
+                "source_name": "Castelló/Castellón",
+                "territory_type": "province",
+                "bounds": "[-0.8462969,39.7146978,0.6903109,40.7886312]"
+              }
+            },
+            {
+              "layer": "official-ccaa-territories-fill",
+              "properties": {
+                "territory_id": "ES:CCAA:10",
+                "source_code": "34100000000",
+                "official_name": "Comunitat Valenciana",
+                "source_name": "Comunitat Valenciana",
+                "territory_type": "autonomous_community",
+                "bounds": "[-1.528778,37.8437849,0.6903133,40.7886312]"
+              }
+            }
+          ]
+        },
+        "before": {
+          "territory": {
+            "territory_scope": "autonomous_community",
+            "autonomous_community_id": "ES:CCAA:10",
+            "province_id": null,
+            "municipality_id": null
+          },
+          "selection": {
+            "selected_geometry_id": null,
+            "selected_geometry_year": null,
+            "selected_egif_record_id": null,
+            "selected_egif_year": null,
+            "selected_icv_geometry_id": "gva:geometry:1995:3:783",
+            "selected_icv_geometry_year": 1995,
+            "selected_icv_record_id": "gva:pif-cv:1995CS5050",
+            "selected_effis_geometry_id": null,
+            "selected_effis_geometry_year": null
+          },
+          "popup": {
+            "active": false,
+            "kind": null,
+            "hit_count": 0,
+            "source_id": null,
+            "geometry_id": null,
+            "anchor": null
+          }
+        },
+        "after": {
+          "territory": {
+            "territory_scope": "province",
+            "autonomous_community_id": "ES:CCAA:10",
+            "province_id": "ES:PROV:12",
+            "municipality_id": null
+          },
+          "selection": {
+            "selected_geometry_id": null,
+            "selected_geometry_year": null,
+            "selected_egif_record_id": null,
+            "selected_egif_year": null,
+            "selected_icv_geometry_id": null,
+            "selected_icv_geometry_year": null,
+            "selected_icv_record_id": null,
+            "selected_effis_geometry_id": null,
+            "selected_effis_geometry_year": null
+          },
+          "popup": {
+            "active": false,
+            "kind": null,
+            "hit_count": 0,
+            "source_id": null,
+            "geometry_id": null,
+            "anchor": null
+          }
+        },
+        "passed": true
+      }
+    },
+    "province": {
+      "point": {
+        "x": 511,
+        "y": 412.5,
+        "point": {
+          "x": 511,
+          "y": 344.5
+        },
+        "lngLat": {
+          "lng": 0.17708500000159688,
+          "lat": 38.75140200000047
+        },
+        "hits": [
+          {
+            "source": "icv",
+            "layer": "icv-perimeter-outlines",
+            "geometry_id": "gva:geometry:2016:24:11828"
+          }
+        ],
+        "territories": [
+          {
+            "layer": "official-municipality-territories-fill",
+            "properties": {
+              "autonomous_community_id": "ES:CCAA:10",
+              "municipality_id": "ES:MUN:03082",
+              "official_name": "Xàbia/Jávea",
+              "province_id": "ES:PROV:03"
+            }
+          },
+          {
+            "layer": "official-province-territories-fill",
+            "properties": {
+              "territory_id": "ES:PROV:03",
+              "parent_id": "ES:CCAA:10",
+              "source_code": "34100300000",
+              "official_name": "Alicante/Alacant",
+              "source_name": "Alacant/Alicante",
+              "territory_type": "province",
+              "bounds": "[-1.0941618,37.8437789,0.2340674,38.8873914]"
+            }
+          },
+          {
+            "layer": "official-ccaa-territories-fill",
+            "properties": {
+              "territory_id": "ES:CCAA:10",
+              "source_code": "34100000000",
+              "official_name": "Comunitat Valenciana",
+              "source_name": "Comunitat Valenciana",
+              "territory_type": "autonomous_community",
+              "bounds": "[-1.528778,37.8437849,0.6903133,40.7886312]"
+            }
+          }
+        ]
+      },
+      "hover": {
+        "cursor": "pointer",
+        "highlight_filters": [
+          {
+            "layer": "icv-hover",
+            "filter": [
+              "==",
+              [
+                "get",
+                "geometry_id"
+              ],
+              "__none__"
+            ]
+          },
+          {
+            "layer": "esfire30-hover",
+            "filter": [
+              "==",
+              [
+                "get",
+                "geometry_id"
+              ],
+              "__none__"
+            ]
+          },
+          {
+            "layer": "effis-hover",
+            "filter": [
+              "==",
+              [
+                "get",
+                "geometry_id"
+              ],
+              "__none__"
+            ]
+          }
+        ]
+      },
+      "before": {
+        "territory": {
+          "territory_scope": "province",
+          "autonomous_community_id": "ES:CCAA:10",
+          "province_id": "ES:PROV:03",
+          "municipality_id": null
+        },
+        "selection": {
+          "selected_geometry_id": null,
+          "selected_geometry_year": null,
+          "selected_egif_record_id": null,
+          "selected_egif_year": null,
+          "selected_icv_geometry_id": null,
+          "selected_icv_geometry_year": null,
+          "selected_icv_record_id": null,
+          "selected_effis_geometry_id": null,
+          "selected_effis_geometry_year": null
+        },
+        "popup": {
+          "active": false,
+          "kind": null,
+          "hit_count": 0,
+          "source_id": null,
+          "geometry_id": null,
+          "anchor": null
+        }
+      },
+      "immediate": {
+        "territory": {
+          "territory_scope": "province",
+          "autonomous_community_id": "ES:CCAA:10",
+          "province_id": "ES:PROV:03",
+          "municipality_id": null
+        },
+        "selection": {
+          "selected_geometry_id": null,
+          "selected_geometry_year": null,
+          "selected_egif_record_id": null,
+          "selected_egif_year": null,
+          "selected_icv_geometry_id": "gva:geometry:2016:24:11828",
+          "selected_icv_geometry_year": 2016,
+          "selected_icv_record_id": "gva:pif-cv:2016AL0074",
+          "selected_effis_geometry_id": null,
+          "selected_effis_geometry_year": null
+        },
+        "popup": {
+          "active": true,
+          "kind": "feature",
+          "hit_count": 1,
+          "source_id": "icv",
+          "geometry_id": "gva:geometry:2016:24:11828",
+          "anchor": {
+            "lng": 0.17708500000159688,
+            "lat": 38.75146893667619
+          }
+        }
+      },
+      "after": {
+        "territory": {
+          "territory_scope": "province",
+          "autonomous_community_id": "ES:CCAA:10",
+          "province_id": "ES:PROV:03",
+          "municipality_id": null
+        },
+        "selection": {
+          "selected_geometry_id": null,
+          "selected_geometry_year": null,
+          "selected_egif_record_id": null,
+          "selected_egif_year": null,
+          "selected_icv_geometry_id": "gva:geometry:2016:24:11828",
+          "selected_icv_geometry_year": 2016,
+          "selected_icv_record_id": "gva:pif-cv:2016AL0074",
+          "selected_effis_geometry_id": null,
+          "selected_effis_geometry_year": null
+        },
+        "popup": {
+          "active": true,
+          "kind": "feature",
+          "hit_count": 1,
+          "source_id": "icv",
+          "geometry_id": "gva:geometry:2016:24:11828",
+          "anchor": {
+            "lng": 0.17708500000159688,
+            "lat": 38.75146893667619
+          }
+        }
+      },
+      "events": [
+        {
+          "i": 0,
+          "name": "handleMapPopupClick",
+          "before": {
+            "territory": {
+              "territory_scope": "province",
+              "autonomous_community_id": "ES:CCAA:10",
+              "province_id": "ES:PROV:03",
+              "municipality_id": null
+            },
+            "selection": {
+              "selected_geometry_id": null,
+              "selected_geometry_year": null,
+              "selected_egif_record_id": null,
+              "selected_egif_year": null,
+              "selected_icv_geometry_id": null,
+              "selected_icv_geometry_year": null,
+              "selected_icv_record_id": null,
+              "selected_effis_geometry_id": null,
+              "selected_effis_geometry_year": null
+            },
+            "popup": {
+              "active": false,
+              "kind": null,
+              "hit_count": 0,
+              "source_id": null,
+              "geometry_id": null,
+              "anchor": null
+            }
+          },
+          "after": {
+            "territory": {
+              "territory_scope": "province",
+              "autonomous_community_id": "ES:CCAA:10",
+              "province_id": "ES:PROV:03",
+              "municipality_id": null
+            },
+            "selection": {
+              "selected_geometry_id": null,
+              "selected_geometry_year": null,
+              "selected_egif_record_id": null,
+              "selected_egif_year": null,
+              "selected_icv_geometry_id": "gva:geometry:2016:24:11828",
+              "selected_icv_geometry_year": 2016,
+              "selected_icv_record_id": "gva:pif-cv:2016AL0074",
+              "selected_effis_geometry_id": null,
+              "selected_effis_geometry_year": null
+            },
+            "popup": {
+              "active": true,
+              "kind": "feature",
+              "hit_count": 1,
+              "source_id": "icv",
+              "geometry_id": "gva:geometry:2016:24:11828",
+              "anchor": {
+                "lng": 0.17708500000159688,
+                "lat": 38.75146893667619
+              }
+            }
+          }
+        }
+      ],
+      "expected_geometry": "gva:geometry:2016:24:11828",
+      "territory_unchanged": true,
+      "errors": [],
+      "human_popup": {
+        "state": {
+          "active": true,
+          "kind": "feature",
+          "hit_count": 1,
+          "source_id": "icv",
+          "geometry_id": "gva:geometry:2016:24:11828",
+          "anchor": {
+            "lng": 0.17708500000159688,
+            "lat": 38.75146893667619
+          }
+        },
+        "text": "Incendio documentado\nICV · Generalitat Valenciana\nCerrar\nFecha\n04/09/2016\nParaje\nCumbres del Sol\nMunicipio\nel Poble Nou de Benitatxell\nProvincia\nALICANTE\nSuperficie\n689,3 ha\nCausa\nNegligencia\nGIF\nSí\nVer detalles",
+        "details": "Ver detalles",
+        "role": "dialog",
+        "close": "Cerrar información del perímetro",
+        "shell": "true",
+        "sourceSelections": {
+          "from": 2016,
+          "to": 2016,
+          "territory_scope": "province",
+          "autonomous_community_id": "ES:CCAA:10",
+          "province_id": "ES:PROV:03",
+          "municipality_id": null,
+          "esfire30_visible": false,
+          "egif_visible": true,
+          "icv_visible": true,
+          "effis_visible": false,
+          "selected_geometry_id": null,
+          "selected_geometry_year": null,
+          "selected_egif_record_id": null,
+          "selected_egif_year": null,
+          "selected_icv_geometry_id": "gva:geometry:2016:24:11828",
+          "selected_icv_geometry_year": 2016,
+          "selected_icv_record_id": "gva:pif-cv:2016AL0074",
+          "selected_effis_geometry_id": null,
+          "selected_effis_geometry_year": null,
+          "filters": [],
+          "center": [
+            0.177085,
+            38.751402
+          ],
+          "zoom": 12
+        },
+        "errors": []
+      },
+      "pmtiles_resources": [
+        {
+          "url": "https://inthurain.github.io/atlas-incendios/data/esfire30/v1/3c6eb10ba146008cdabf36646d48a4c7a92c1c1357ad90679f6b5dce42013cfe/esfire30-national-fidelity-territories.pmtiles",
+          "status": 206,
+          "bytes": 16384,
+          "transfer_bytes": 16684
+        },
+        {
+          "url": "https://inthurain.github.io/atlas-incendios/data/esfire30/v1/3c6eb10ba146008cdabf36646d48a4c7a92c1c1357ad90679f6b5dce42013cfe/esfire30-national-fidelity-territories.pmtiles",
+          "status": 206,
+          "bytes": 8316,
+          "transfer_bytes": 0
+        },
+        {
+          "url": "https://inthurain.github.io/atlas-incendios/data/esfire30/v1/3c6eb10ba146008cdabf36646d48a4c7a92c1c1357ad90679f6b5dce42013cfe/esfire30-national-fidelity-territories.pmtiles",
+          "status": 206,
+          "bytes": 121545,
+          "transfer_bytes": 121845
+        },
+        {
+          "url": "https://inthurain.github.io/atlas-incendios/data/esfire30/v1/3c6eb10ba146008cdabf36646d48a4c7a92c1c1357ad90679f6b5dce42013cfe/esfire30-national-fidelity-territories.pmtiles",
+          "status": 206,
+          "bytes": 345205,
+          "transfer_bytes": 345505
+        },
+        {
+          "url": "https://inthurain.github.io/atlas-incendios/data/esfire30/v1/3c6eb10ba146008cdabf36646d48a4c7a92c1c1357ad90679f6b5dce42013cfe/esfire30-national-fidelity-territories.pmtiles",
+          "status": 206,
+          "bytes": 13892,
+          "transfer_bytes": 14192
+        },
+        {
+          "url": "https://inthurain.github.io/atlas-incendios/data/esfire30/v1/3c6eb10ba146008cdabf36646d48a4c7a92c1c1357ad90679f6b5dce42013cfe/esfire30-national-fidelity-territories.pmtiles",
+          "status": 206,
+          "bytes": 20865,
+          "transfer_bytes": 21165
+        },
+        {
+          "url": "https://inthurain.github.io/atlas-incendios/data/basemap/protomaps/20260902-z12/72bb270ff6fc18ccba3042834f9a9eb72901c243e7dec88b3ebb63eaafaeb729/basemap.pmtiles",
+          "status": 206,
+          "bytes": 16384,
+          "transfer_bytes": 16684
+        },
+        {
+          "url": "https://inthurain.github.io/atlas-incendios/data/basemap/protomaps/20260902-z12/72bb270ff6fc18ccba3042834f9a9eb72901c243e7dec88b3ebb63eaafaeb729/basemap.pmtiles",
+          "status": 206,
+          "bytes": 10324,
+          "transfer_bytes": 0
+        },
+        {
+          "url": "https://inthurain.github.io/atlas-incendios/data/basemap/protomaps/20260902-z12/72bb270ff6fc18ccba3042834f9a9eb72901c243e7dec88b3ebb63eaafaeb729/basemap.pmtiles",
+          "status": 206,
+          "bytes": 33030,
+          "transfer_bytes": 33330
+        },
+        {
+          "url": "https://inthurain.github.io/atlas-incendios/data/basemap/protomaps/20260902-z12/72bb270ff6fc18ccba3042834f9a9eb72901c243e7dec88b3ebb63eaafaeb729/basemap.pmtiles",
+          "status": 206,
+          "bytes": 35204,
+          "transfer_bytes": 35504
+        },
+        {
+          "url": "https://inthurain.github.io/atlas-incendios/data/basemap/protomaps/20260902-z12/72bb270ff6fc18ccba3042834f9a9eb72901c243e7dec88b3ebb63eaafaeb729/basemap.pmtiles",
+          "status": 206,
+          "bytes": 41693,
+          "transfer_bytes": 41993
+        },
+        {
+          "url": "https://inthurain.github.io/atlas-incendios/data/basemap/protomaps/20260902-z12/72bb270ff6fc18ccba3042834f9a9eb72901c243e7dec88b3ebb63eaafaeb729/basemap.pmtiles",
+          "status": 206,
+          "bytes": 127284,
+          "transfer_bytes": 127584
+        },
+        {
+          "url": "https://inthurain.github.io/atlas-incendios/data/esfire30/v1/3c6eb10ba146008cdabf36646d48a4c7a92c1c1357ad90679f6b5dce42013cfe/esfire30-national-fidelity-territories.pmtiles",
+          "status": 206,
+          "bytes": 392173,
+          "transfer_bytes": 392473
+        },
+        {
+          "url": "https://inthurain.github.io/atlas-incendios/data/esfire30/v1/3c6eb10ba146008cdabf36646d48a4c7a92c1c1357ad90679f6b5dce42013cfe/esfire30-national-fidelity-territories.pmtiles",
+          "status": 206,
+          "bytes": 24902,
+          "transfer_bytes": 25202
+        },
+        {
+          "url": "https://inthurain.github.io/atlas-incendios/data/esfire30/v1/3c6eb10ba146008cdabf36646d48a4c7a92c1c1357ad90679f6b5dce42013cfe/esfire30-national-fidelity-territories.pmtiles",
+          "status": 206,
+          "bytes": 469793,
+          "transfer_bytes": 470093
+        },
+        {
+          "url": "https://inthurain.github.io/atlas-incendios/data/esfire30/v1/3c6eb10ba146008cdabf36646d48a4c7a92c1c1357ad90679f6b5dce42013cfe/esfire30-national-fidelity-territories.pmtiles",
+          "status": 206,
+          "bytes": 94186,
+          "transfer_bytes": 94486
+        },
+        {
+          "url": "https://inthurain.github.io/atlas-incendios/data/basemap/protomaps/20260902-z12/72bb270ff6fc18ccba3042834f9a9eb72901c243e7dec88b3ebb63eaafaeb729/basemap.pmtiles",
+          "status": 206,
+          "bytes": 77527,
+          "transfer_bytes": 77827
+        },
+        {
+          "url": "https://inthurain.github.io/atlas-incendios/data/basemap/protomaps/20260902-z12/72bb270ff6fc18ccba3042834f9a9eb72901c243e7dec88b3ebb63eaafaeb729/basemap.pmtiles",
+          "status": 206,
+          "bytes": 21571,
+          "transfer_bytes": 21871
+        },
+        {
+          "url": "https://inthurain.github.io/atlas-incendios/data/basemap/protomaps/20260902-z12/72bb270ff6fc18ccba3042834f9a9eb72901c243e7dec88b3ebb63eaafaeb729/basemap.pmtiles",
+          "status": 206,
+          "bytes": 71735,
+          "transfer_bytes": 72035
+        },
+        {
+          "url": "https://inthurain.github.io/atlas-incendios/data/basemap/protomaps/20260902-z12/72bb270ff6fc18ccba3042834f9a9eb72901c243e7dec88b3ebb63eaafaeb729/basemap.pmtiles",
+          "status": 206,
+          "bytes": 86237,
+          "transfer_bytes": 86537
+        },
+        {
+          "url": "https://inthurain.github.io/atlas-incendios/data/esfire30/v1/3c6eb10ba146008cdabf36646d48a4c7a92c1c1357ad90679f6b5dce42013cfe/esfire30-national-fidelity-territories.pmtiles",
+          "status": 206,
+          "bytes": 18571,
+          "transfer_bytes": 18871
+        },
+        {
+          "url": "https://inthurain.github.io/atlas-incendios/data/esfire30/v1/3c6eb10ba146008cdabf36646d48a4c7a92c1c1357ad90679f6b5dce42013cfe/esfire30-national-fidelity-territories.pmtiles",
+          "status": 206,
+          "bytes": 1212,
+          "transfer_bytes": 1512
+        },
+        {
+          "url": "https://inthurain.github.io/atlas-incendios/data/esfire30/v1/3c6eb10ba146008cdabf36646d48a4c7a92c1c1357ad90679f6b5dce42013cfe/esfire30-national-fidelity-territories.pmtiles",
+          "status": 206,
+          "bytes": 76123,
+          "transfer_bytes": 76423
+        },
+        {
+          "url": "https://inthurain.github.io/atlas-incendios/data/esfire30/v1/3c6eb10ba146008cdabf36646d48a4c7a92c1c1357ad90679f6b5dce42013cfe/esfire30-national-fidelity-territories.pmtiles",
+          "status": 206,
+          "bytes": 21857,
+          "transfer_bytes": 22157
+        },
+        {
+          "url": "https://inthurain.github.io/atlas-incendios/data/esfire30/v1/3c6eb10ba146008cdabf36646d48a4c7a92c1c1357ad90679f6b5dce42013cfe/esfire30-national-fidelity-territories.pmtiles",
+          "status": 206,
+          "bytes": 488,
+          "transfer_bytes": 788
+        },
+        {
+          "url": "https://inthurain.github.io/atlas-incendios/data/esfire30/v1/3c6eb10ba146008cdabf36646d48a4c7a92c1c1357ad90679f6b5dce42013cfe/esfire30-national-fidelity-territories.pmtiles",
+          "status": 206,
+          "bytes": 17676,
+          "transfer_bytes": 17976
+        },
+        {
+          "url": "https://inthurain.github.io/atlas-incendios/data/basemap/protomaps/20260902-z12/72bb270ff6fc18ccba3042834f9a9eb72901c243e7dec88b3ebb63eaafaeb729/basemap.pmtiles",
+          "status": 206,
+          "bytes": 96824,
+          "transfer_bytes": 97124
+        },
+        {
+          "url": "https://inthurain.github.io/atlas-incendios/data/basemap/protomaps/20260902-z12/72bb270ff6fc18ccba3042834f9a9eb72901c243e7dec88b3ebb63eaafaeb729/basemap.pmtiles",
+          "status": 206,
+          "bytes": 7546,
+          "transfer_bytes": 7846
+        },
+        {
+          "url": "https://inthurain.github.io/atlas-incendios/data/basemap/protomaps/20260902-z12/72bb270ff6fc18ccba3042834f9a9eb72901c243e7dec88b3ebb63eaafaeb729/basemap.pmtiles",
+          "status": 206,
+          "bytes": 88371,
+          "transfer_bytes": 88671
+        },
+        {
+          "url": "https://inthurain.github.io/atlas-incendios/data/basemap/protomaps/20260902-z12/72bb270ff6fc18ccba3042834f9a9eb72901c243e7dec88b3ebb63eaafaeb729/basemap.pmtiles",
+          "status": 206,
+          "bytes": 122254,
+          "transfer_bytes": 122554
+        },
+        {
+          "url": "https://inthurain.github.io/atlas-incendios/data/basemap/protomaps/20260902-z12/72bb270ff6fc18ccba3042834f9a9eb72901c243e7dec88b3ebb63eaafaeb729/basemap.pmtiles",
+          "status": 206,
+          "bytes": 10607,
+          "transfer_bytes": 10907
+        },
+        {
+          "url": "https://inthurain.github.io/atlas-incendios/data/basemap/protomaps/20260902-z12/72bb270ff6fc18ccba3042834f9a9eb72901c243e7dec88b3ebb63eaafaeb729/basemap.pmtiles",
+          "status": 206,
+          "bytes": 62494,
+          "transfer_bytes": 62794
+        },
+        {
+          "url": "https://inthurain.github.io/atlas-incendios/data/esfire30/v1/3c6eb10ba146008cdabf36646d48a4c7a92c1c1357ad90679f6b5dce42013cfe/esfire30-national-fidelity-territories.pmtiles",
+          "status": 206,
+          "bytes": 7373,
+          "transfer_bytes": 7673
+        },
+        {
+          "url": "https://inthurain.github.io/atlas-incendios/data/basemap/protomaps/20260902-z12/72bb270ff6fc18ccba3042834f9a9eb72901c243e7dec88b3ebb63eaafaeb729/basemap.pmtiles",
+          "status": 206,
+          "bytes": 9403,
+          "transfer_bytes": 9703
+        },
+        {
+          "url": "https://inthurain.github.io/atlas-incendios/data/basemap/protomaps/20260902-z12/72bb270ff6fc18ccba3042834f9a9eb72901c243e7dec88b3ebb63eaafaeb729/basemap.pmtiles",
+          "status": 206,
+          "bytes": 13503,
+          "transfer_bytes": 13803
+        },
+        {
+          "url": "https://inthurain.github.io/atlas-incendios/data/basemap/protomaps/20260902-z12/72bb270ff6fc18ccba3042834f9a9eb72901c243e7dec88b3ebb63eaafaeb729/basemap.pmtiles",
+          "status": 206,
+          "bytes": 40920,
+          "transfer_bytes": 41220
+        },
+        {
+          "url": "https://inthurain.github.io/atlas-incendios/data/basemap/protomaps/20260902-z12/72bb270ff6fc18ccba3042834f9a9eb72901c243e7dec88b3ebb63eaafaeb729/basemap.pmtiles",
+          "status": 206,
+          "bytes": 18773,
+          "transfer_bytes": 19073
+        },
+        {
+          "url": "https://inthurain.github.io/atlas-incendios/data/basemap/protomaps/20260902-z12/72bb270ff6fc18ccba3042834f9a9eb72901c243e7dec88b3ebb63eaafaeb729/basemap.pmtiles",
+          "status": 206,
+          "bytes": 50563,
+          "transfer_bytes": 50863
+        }
+      ],
+      "new_resource_urls": [],
+      "passed": true,
+      "background": {
+        "point": {
+          "x": 320,
+          "y": 84,
+          "point": {
+            "x": 320,
+            "y": 16
+          },
+          "lngLat": {
+            "lng": 0.14429767700266893,
+            "lat": 38.79536586903663
+          },
+          "hits": [],
+          "territories": [
+            {
+              "layer": "official-municipality-territories-fill",
+              "properties": {
+                "autonomous_community_id": "ES:CCAA:10",
+                "municipality_id": "ES:MUN:03082",
+                "official_name": "Xàbia/Jávea",
+                "province_id": "ES:PROV:03"
+              }
+            },
+            {
+              "layer": "official-province-territories-fill",
+              "properties": {
+                "territory_id": "ES:PROV:03",
+                "parent_id": "ES:CCAA:10",
+                "source_code": "34100300000",
+                "official_name": "Alicante/Alacant",
+                "source_name": "Alacant/Alicante",
+                "territory_type": "province",
+                "bounds": "[-1.0941618,37.8437789,0.2340674,38.8873914]"
+              }
+            },
+            {
+              "layer": "official-ccaa-territories-fill",
+              "properties": {
+                "territory_id": "ES:CCAA:10",
+                "source_code": "34100000000",
+                "official_name": "Comunitat Valenciana",
+                "source_name": "Comunitat Valenciana",
+                "territory_type": "autonomous_community",
+                "bounds": "[-1.528778,37.8437849,0.6903133,40.7886312]"
+              }
+            }
+          ]
+        },
+        "before": {
+          "territory": {
+            "territory_scope": "province",
+            "autonomous_community_id": "ES:CCAA:10",
+            "province_id": "ES:PROV:03",
+            "municipality_id": null
+          },
+          "selection": {
+            "selected_geometry_id": null,
+            "selected_geometry_year": null,
+            "selected_egif_record_id": null,
+            "selected_egif_year": null,
+            "selected_icv_geometry_id": "gva:geometry:2016:24:11828",
+            "selected_icv_geometry_year": 2016,
+            "selected_icv_record_id": "gva:pif-cv:2016AL0074",
+            "selected_effis_geometry_id": null,
+            "selected_effis_geometry_year": null
+          },
+          "popup": {
+            "active": false,
+            "kind": null,
+            "hit_count": 0,
+            "source_id": null,
+            "geometry_id": null,
+            "anchor": null
+          }
+        },
+        "after": {
+          "territory": {
+            "territory_scope": "municipality",
+            "autonomous_community_id": "ES:CCAA:10",
+            "province_id": "ES:PROV:03",
+            "municipality_id": "ES:MUN:03082"
+          },
+          "selection": {
+            "selected_geometry_id": null,
+            "selected_geometry_year": null,
+            "selected_egif_record_id": null,
+            "selected_egif_year": null,
+            "selected_icv_geometry_id": null,
+            "selected_icv_geometry_year": null,
+            "selected_icv_record_id": null,
+            "selected_effis_geometry_id": null,
+            "selected_effis_geometry_year": null
+          },
+          "popup": {
+            "active": false,
+            "kind": null,
+            "hit_count": 0,
+            "source_id": null,
+            "geometry_id": null,
+            "anchor": null
+          }
+        },
+        "passed": true
+      }
+    },
+    "multi": {
+      "point": {
+        "x": 511,
+        "y": 412.5,
+        "point": {
+          "x": 511,
+          "y": 344.5
+        },
+        "lngLat": {
+          "lng": -0.08239746093948952,
+          "lat": 38.885688179035554
+        },
+        "hits": [
+          {
+            "source": "icv",
+            "layer": "icv-perimeter-outlines",
+            "geometry_id": "gva:geometry:1995:3:785"
+          },
+          {
+            "source": "esfire30",
+            "layer": "esfire30-perimeter-outlines",
+            "geometry_id": "esfire30:v1:1995:60"
+          }
+        ],
+        "territories": [
+          {
+            "layer": "official-province-territories-fill",
+            "properties": {
+              "territory_id": "ES:PROV:46",
+              "parent_id": "ES:CCAA:10",
+              "source_code": "34104600000",
+              "official_name": "Valencia/València",
+              "source_name": "València/Valencia",
+              "territory_type": "province",
+              "bounds": "[-1.528778,38.6865536,-0.0247022,40.2116832]"
+            }
+          },
+          {
+            "layer": "official-ccaa-territories-fill",
+            "properties": {
+              "territory_id": "ES:CCAA:10",
+              "source_code": "34100000000",
+              "official_name": "Comunitat Valenciana",
+              "source_name": "Comunitat Valenciana",
+              "territory_type": "autonomous_community",
+              "bounds": "[-1.528778,37.8437849,0.6903133,40.7886312]"
+            }
+          }
+        ]
+      },
+      "hover": {
+        "cursor": "pointer",
+        "highlight_filters": [
+          {
+            "layer": "icv-hover",
+            "filter": [
+              "==",
+              [
+                "get",
+                "geometry_id"
+              ],
+              "gva:geometry:1995:3:785"
+            ]
+          },
+          {
+            "layer": "esfire30-hover",
+            "filter": [
+              "==",
+              [
+                "get",
+                "geometry_id"
+              ],
+              "esfire30:v1:1995:60"
+            ]
+          },
+          {
+            "layer": "effis-hover",
+            "filter": [
+              "==",
+              [
+                "get",
+                "geometry_id"
+              ],
+              "__none__"
+            ]
+          }
+        ]
+      },
+      "before": {
+        "territory": {
+          "territory_scope": "autonomous_community",
+          "autonomous_community_id": "ES:CCAA:10",
+          "province_id": null,
+          "municipality_id": null
+        },
+        "selection": {
+          "selected_geometry_id": null,
+          "selected_geometry_year": null,
+          "selected_egif_record_id": null,
+          "selected_egif_year": null,
+          "selected_icv_geometry_id": null,
+          "selected_icv_geometry_year": null,
+          "selected_icv_record_id": null,
+          "selected_effis_geometry_id": null,
+          "selected_effis_geometry_year": null
+        },
+        "popup": {
+          "active": false,
+          "kind": null,
+          "hit_count": 0,
+          "source_id": null,
+          "geometry_id": null,
+          "anchor": null
+        }
+      },
+      "immediate": {
+        "territory": {
+          "territory_scope": "autonomous_community",
+          "autonomous_community_id": "ES:CCAA:10",
+          "province_id": null,
+          "municipality_id": null
+        },
+        "selection": {
+          "selected_geometry_id": null,
+          "selected_geometry_year": null,
+          "selected_egif_record_id": null,
+          "selected_egif_year": null,
+          "selected_icv_geometry_id": null,
+          "selected_icv_geometry_year": null,
+          "selected_icv_record_id": null,
+          "selected_effis_geometry_id": null,
+          "selected_effis_geometry_year": null
+        },
+        "popup": {
+          "active": true,
+          "kind": "chooser",
+          "hit_count": 2,
+          "source_id": null,
+          "geometry_id": null,
+          "anchor": {
+            "lng": -0.08239746093948952,
+            "lat": 38.88595542095831
+          }
+        }
+      },
+      "after": {
+        "territory": {
+          "territory_scope": "autonomous_community",
+          "autonomous_community_id": "ES:CCAA:10",
+          "province_id": null,
+          "municipality_id": null
+        },
+        "selection": {
+          "selected_geometry_id": null,
+          "selected_geometry_year": null,
+          "selected_egif_record_id": null,
+          "selected_egif_year": null,
+          "selected_icv_geometry_id": null,
+          "selected_icv_geometry_year": null,
+          "selected_icv_record_id": null,
+          "selected_effis_geometry_id": null,
+          "selected_effis_geometry_year": null
+        },
+        "popup": {
+          "active": true,
+          "kind": "chooser",
+          "hit_count": 2,
+          "source_id": null,
+          "geometry_id": null,
+          "anchor": {
+            "lng": -0.08239746093948952,
+            "lat": 38.88595542095831
+          }
+        }
+      },
+      "events": [
+        {
+          "i": 0,
+          "name": "handleMapPopupClick",
+          "before": {
+            "territory": {
+              "territory_scope": "autonomous_community",
+              "autonomous_community_id": "ES:CCAA:10",
+              "province_id": null,
+              "municipality_id": null
+            },
+            "selection": {
+              "selected_geometry_id": null,
+              "selected_geometry_year": null,
+              "selected_egif_record_id": null,
+              "selected_egif_year": null,
+              "selected_icv_geometry_id": null,
+              "selected_icv_geometry_year": null,
+              "selected_icv_record_id": null,
+              "selected_effis_geometry_id": null,
+              "selected_effis_geometry_year": null
+            },
+            "popup": {
+              "active": false,
+              "kind": null,
+              "hit_count": 0,
+              "source_id": null,
+              "geometry_id": null,
+              "anchor": null
+            }
+          },
+          "after": {
+            "territory": {
+              "territory_scope": "autonomous_community",
+              "autonomous_community_id": "ES:CCAA:10",
+              "province_id": null,
+              "municipality_id": null
+            },
+            "selection": {
+              "selected_geometry_id": null,
+              "selected_geometry_year": null,
+              "selected_egif_record_id": null,
+              "selected_egif_year": null,
+              "selected_icv_geometry_id": null,
+              "selected_icv_geometry_year": null,
+              "selected_icv_record_id": null,
+              "selected_effis_geometry_id": null,
+              "selected_effis_geometry_year": null
+            },
+            "popup": {
+              "active": true,
+              "kind": "chooser",
+              "hit_count": 2,
+              "source_id": null,
+              "geometry_id": null,
+              "anchor": {
+                "lng": -0.08239746093948952,
+                "lat": 38.88595542095831
+              }
+            }
+          }
+        }
+      ],
+      "expected_geometry": "gva:geometry:1995:3:785",
+      "territory_unchanged": true,
+      "errors": [],
+      "human_popup": {
+        "state": {
+          "active": true,
+          "kind": "chooser",
+          "hit_count": 2,
+          "source_id": null,
+          "geometry_id": null,
+          "anchor": {
+            "lng": -0.08239746093948952,
+            "lat": 38.88595542095831
+          }
+        },
+        "text": "2 perímetros en este punto\nElige el que quieres consultar\nCerrar\n1995 · Perímetro Landsat\nESFire30\n1995 · Oliva\nICV · Generalitat Valenciana",
+        "details": null,
+        "role": "dialog",
+        "close": "Cerrar información del perímetro",
+        "shell": "true",
+        "sourceSelections": {
+          "from": 1995,
+          "to": 1995,
+          "territory_scope": "autonomous_community",
+          "autonomous_community_id": "ES:CCAA:10",
+          "province_id": null,
+          "municipality_id": null,
+          "esfire30_visible": true,
+          "egif_visible": true,
+          "icv_visible": true,
+          "effis_visible": false,
+          "selected_geometry_id": null,
+          "selected_geometry_year": null,
+          "selected_egif_record_id": null,
+          "selected_egif_year": null,
+          "selected_icv_geometry_id": null,
+          "selected_icv_geometry_year": null,
+          "selected_icv_record_id": null,
+          "selected_effis_geometry_id": null,
+          "selected_effis_geometry_year": null,
+          "filters": [],
+          "center": [
+            -0.0823974609375,
+            38.88568817903612
+          ],
+          "zoom": 10
+        },
+        "errors": []
+      },
+      "pmtiles_resources": [
+        {
+          "url": "https://inthurain.github.io/atlas-incendios/data/esfire30/v1/3c6eb10ba146008cdabf36646d48a4c7a92c1c1357ad90679f6b5dce42013cfe/esfire30-national-fidelity-territories.pmtiles",
+          "status": 206,
+          "bytes": 16384,
+          "transfer_bytes": 16684
+        },
+        {
+          "url": "https://inthurain.github.io/atlas-incendios/data/esfire30/v1/3c6eb10ba146008cdabf36646d48a4c7a92c1c1357ad90679f6b5dce42013cfe/esfire30-national-fidelity-territories.pmtiles",
+          "status": 206,
+          "bytes": 8316,
+          "transfer_bytes": 0
+        },
+        {
+          "url": "https://inthurain.github.io/atlas-incendios/data/esfire30/v1/3c6eb10ba146008cdabf36646d48a4c7a92c1c1357ad90679f6b5dce42013cfe/esfire30-national-fidelity-territories.pmtiles",
+          "status": 206,
+          "bytes": 121545,
+          "transfer_bytes": 121845
+        },
+        {
+          "url": "https://inthurain.github.io/atlas-incendios/data/esfire30/v1/3c6eb10ba146008cdabf36646d48a4c7a92c1c1357ad90679f6b5dce42013cfe/esfire30-national-fidelity-territories.pmtiles",
+          "status": 206,
+          "bytes": 345205,
+          "transfer_bytes": 345505
+        },
+        {
+          "url": "https://inthurain.github.io/atlas-incendios/data/esfire30/v1/3c6eb10ba146008cdabf36646d48a4c7a92c1c1357ad90679f6b5dce42013cfe/esfire30-national-fidelity-territories.pmtiles",
+          "status": 206,
+          "bytes": 13892,
+          "transfer_bytes": 14192
+        },
+        {
+          "url": "https://inthurain.github.io/atlas-incendios/data/esfire30/v1/3c6eb10ba146008cdabf36646d48a4c7a92c1c1357ad90679f6b5dce42013cfe/esfire30-national-fidelity-territories.pmtiles",
+          "status": 206,
+          "bytes": 20865,
+          "transfer_bytes": 21165
+        },
+        {
+          "url": "https://inthurain.github.io/atlas-incendios/data/basemap/protomaps/20260902-z12/72bb270ff6fc18ccba3042834f9a9eb72901c243e7dec88b3ebb63eaafaeb729/basemap.pmtiles",
+          "status": 206,
+          "bytes": 16384,
+          "transfer_bytes": 16684
+        },
+        {
+          "url": "https://inthurain.github.io/atlas-incendios/data/basemap/protomaps/20260902-z12/72bb270ff6fc18ccba3042834f9a9eb72901c243e7dec88b3ebb63eaafaeb729/basemap.pmtiles",
+          "status": 206,
+          "bytes": 10324,
+          "transfer_bytes": 0
+        },
+        {
+          "url": "https://inthurain.github.io/atlas-incendios/data/basemap/protomaps/20260902-z12/72bb270ff6fc18ccba3042834f9a9eb72901c243e7dec88b3ebb63eaafaeb729/basemap.pmtiles",
+          "status": 206,
+          "bytes": 33030,
+          "transfer_bytes": 33330
+        },
+        {
+          "url": "https://inthurain.github.io/atlas-incendios/data/basemap/protomaps/20260902-z12/72bb270ff6fc18ccba3042834f9a9eb72901c243e7dec88b3ebb63eaafaeb729/basemap.pmtiles",
+          "status": 206,
+          "bytes": 35204,
+          "transfer_bytes": 35504
+        },
+        {
+          "url": "https://inthurain.github.io/atlas-incendios/data/basemap/protomaps/20260902-z12/72bb270ff6fc18ccba3042834f9a9eb72901c243e7dec88b3ebb63eaafaeb729/basemap.pmtiles",
+          "status": 206,
+          "bytes": 41693,
+          "transfer_bytes": 41993
+        },
+        {
+          "url": "https://inthurain.github.io/atlas-incendios/data/basemap/protomaps/20260902-z12/72bb270ff6fc18ccba3042834f9a9eb72901c243e7dec88b3ebb63eaafaeb729/basemap.pmtiles",
+          "status": 206,
+          "bytes": 127284,
+          "transfer_bytes": 127584
+        },
+        {
+          "url": "https://inthurain.github.io/atlas-incendios/data/esfire30/v1/3c6eb10ba146008cdabf36646d48a4c7a92c1c1357ad90679f6b5dce42013cfe/esfire30-national-fidelity-territories.pmtiles",
+          "status": 206,
+          "bytes": 392173,
+          "transfer_bytes": 392473
+        },
+        {
+          "url": "https://inthurain.github.io/atlas-incendios/data/esfire30/v1/3c6eb10ba146008cdabf36646d48a4c7a92c1c1357ad90679f6b5dce42013cfe/esfire30-national-fidelity-territories.pmtiles",
+          "status": 206,
+          "bytes": 24902,
+          "transfer_bytes": 25202
+        },
+        {
+          "url": "https://inthurain.github.io/atlas-incendios/data/esfire30/v1/3c6eb10ba146008cdabf36646d48a4c7a92c1c1357ad90679f6b5dce42013cfe/esfire30-national-fidelity-territories.pmtiles",
+          "status": 206,
+          "bytes": 469793,
+          "transfer_bytes": 470093
+        },
+        {
+          "url": "https://inthurain.github.io/atlas-incendios/data/esfire30/v1/3c6eb10ba146008cdabf36646d48a4c7a92c1c1357ad90679f6b5dce42013cfe/esfire30-national-fidelity-territories.pmtiles",
+          "status": 206,
+          "bytes": 94186,
+          "transfer_bytes": 94486
+        },
+        {
+          "url": "https://inthurain.github.io/atlas-incendios/data/basemap/protomaps/20260902-z12/72bb270ff6fc18ccba3042834f9a9eb72901c243e7dec88b3ebb63eaafaeb729/basemap.pmtiles",
+          "status": 206,
+          "bytes": 77527,
+          "transfer_bytes": 77827
+        },
+        {
+          "url": "https://inthurain.github.io/atlas-incendios/data/basemap/protomaps/20260902-z12/72bb270ff6fc18ccba3042834f9a9eb72901c243e7dec88b3ebb63eaafaeb729/basemap.pmtiles",
+          "status": 206,
+          "bytes": 21571,
+          "transfer_bytes": 21871
+        },
+        {
+          "url": "https://inthurain.github.io/atlas-incendios/data/basemap/protomaps/20260902-z12/72bb270ff6fc18ccba3042834f9a9eb72901c243e7dec88b3ebb63eaafaeb729/basemap.pmtiles",
+          "status": 206,
+          "bytes": 71735,
+          "transfer_bytes": 72035
+        },
+        {
+          "url": "https://inthurain.github.io/atlas-incendios/data/basemap/protomaps/20260902-z12/72bb270ff6fc18ccba3042834f9a9eb72901c243e7dec88b3ebb63eaafaeb729/basemap.pmtiles",
+          "status": 206,
+          "bytes": 86237,
+          "transfer_bytes": 86537
+        },
+        {
+          "url": "https://inthurain.github.io/atlas-incendios/data/esfire30/v1/3c6eb10ba146008cdabf36646d48a4c7a92c1c1357ad90679f6b5dce42013cfe/esfire30-national-fidelity-territories.pmtiles",
+          "status": 206,
+          "bytes": 13275,
+          "transfer_bytes": 13575
+        },
+        {
+          "url": "https://inthurain.github.io/atlas-incendios/data/esfire30/v1/3c6eb10ba146008cdabf36646d48a4c7a92c1c1357ad90679f6b5dce42013cfe/esfire30-national-fidelity-territories.pmtiles",
+          "status": 206,
+          "bytes": 11610,
+          "transfer_bytes": 11910
+        },
+        {
+          "url": "https://inthurain.github.io/atlas-incendios/data/esfire30/v1/3c6eb10ba146008cdabf36646d48a4c7a92c1c1357ad90679f6b5dce42013cfe/esfire30-national-fidelity-territories.pmtiles",
+          "status": 206,
+          "bytes": 127,
+          "transfer_bytes": 427
+        },
+        {
+          "url": "https://inthurain.github.io/atlas-incendios/data/esfire30/v1/3c6eb10ba146008cdabf36646d48a4c7a92c1c1357ad90679f6b5dce42013cfe/esfire30-national-fidelity-territories.pmtiles",
+          "status": 206,
+          "bytes": 465,
+          "transfer_bytes": 765
+        },
+        {
+          "url": "https://inthurain.github.io/atlas-incendios/data/esfire30/v1/3c6eb10ba146008cdabf36646d48a4c7a92c1c1357ad90679f6b5dce42013cfe/esfire30-national-fidelity-territories.pmtiles",
+          "status": 206,
+          "bytes": 7198,
+          "transfer_bytes": 7498
+        },
+        {
+          "url": "https://inthurain.github.io/atlas-incendios/data/esfire30/v1/3c6eb10ba146008cdabf36646d48a4c7a92c1c1357ad90679f6b5dce42013cfe/esfire30-national-fidelity-territories.pmtiles",
+          "status": 206,
+          "bytes": 6744,
+          "transfer_bytes": 7044
+        },
+        {
+          "url": "https://inthurain.github.io/atlas-incendios/data/basemap/protomaps/20260902-z12/72bb270ff6fc18ccba3042834f9a9eb72901c243e7dec88b3ebb63eaafaeb729/basemap.pmtiles",
+          "status": 206,
+          "bytes": 65431,
+          "transfer_bytes": 65731
+        },
+        {
+          "url": "https://inthurain.github.io/atlas-incendios/data/basemap/protomaps/20260902-z12/72bb270ff6fc18ccba3042834f9a9eb72901c243e7dec88b3ebb63eaafaeb729/basemap.pmtiles",
+          "status": 206,
+          "bytes": 67156,
+          "transfer_bytes": 67456
+        },
+        {
+          "url": "https://inthurain.github.io/atlas-incendios/data/basemap/protomaps/20260902-z12/72bb270ff6fc18ccba3042834f9a9eb72901c243e7dec88b3ebb63eaafaeb729/basemap.pmtiles",
+          "status": 206,
+          "bytes": 10831,
+          "transfer_bytes": 11131
+        },
+        {
+          "url": "https://inthurain.github.io/atlas-incendios/data/basemap/protomaps/20260902-z12/72bb270ff6fc18ccba3042834f9a9eb72901c243e7dec88b3ebb63eaafaeb729/basemap.pmtiles",
+          "status": 206,
+          "bytes": 34735,
+          "transfer_bytes": 35035
+        },
+        {
+          "url": "https://inthurain.github.io/atlas-incendios/data/basemap/protomaps/20260902-z12/72bb270ff6fc18ccba3042834f9a9eb72901c243e7dec88b3ebb63eaafaeb729/basemap.pmtiles",
+          "status": 206,
+          "bytes": 68287,
+          "transfer_bytes": 68587
+        },
+        {
+          "url": "https://inthurain.github.io/atlas-incendios/data/basemap/protomaps/20260902-z12/72bb270ff6fc18ccba3042834f9a9eb72901c243e7dec88b3ebb63eaafaeb729/basemap.pmtiles",
+          "status": 206,
+          "bytes": 101041,
+          "transfer_bytes": 101341
+        }
+      ],
+      "new_resource_urls": [],
+      "passed": true
+    },
+    "mobile": {
+      "point": {
+        "x": 195,
+        "y": 234.9375,
+        "point": {
+          "x": 195,
+          "y": 176.5
+        },
+        "lngLat": {
+          "lng": -0.4911910000012938,
+          "lat": 40.09173799999948
+        },
+        "hits": [
+          {
+            "source": "icv",
+            "layer": "icv-perimeter-outlines",
+            "geometry_id": "gva:geometry:1995:3:783"
+          }
+        ],
+        "territories": [
+          {
+            "layer": "official-province-territories-fill",
+            "properties": {
+              "territory_id": "ES:PROV:12",
+              "parent_id": "ES:CCAA:10",
+              "source_code": "34101200000",
+              "official_name": "Castellón/Castelló",
+              "source_name": "Castelló/Castellón",
+              "territory_type": "province",
+              "bounds": "[-0.8462969,39.7146978,0.6903109,40.7886312]"
+            }
+          },
+          {
+            "layer": "official-ccaa-territories-fill",
+            "properties": {
+              "territory_id": "ES:CCAA:10",
+              "source_code": "34100000000",
+              "official_name": "Comunitat Valenciana",
+              "source_name": "Comunitat Valenciana",
+              "territory_type": "autonomous_community",
+              "bounds": "[-1.528778,37.8437849,0.6903133,40.7886312]"
+            }
+          }
+        ]
+      },
+      "hover": {
+        "cursor": "pointer",
+        "highlight_filters": [
+          {
+            "layer": "icv-hover",
+            "filter": [
+              "==",
+              [
+                "get",
+                "geometry_id"
+              ],
+              "__none__"
+            ]
+          },
+          {
+            "layer": "esfire30-hover",
+            "filter": [
+              "==",
+              [
+                "get",
+                "geometry_id"
+              ],
+              "__none__"
+            ]
+          },
+          {
+            "layer": "effis-hover",
+            "filter": [
+              "==",
+              [
+                "get",
+                "geometry_id"
+              ],
+              "__none__"
+            ]
+          }
+        ]
+      },
+      "before": {
+        "territory": {
+          "territory_scope": "autonomous_community",
+          "autonomous_community_id": "ES:CCAA:10",
+          "province_id": null,
+          "municipality_id": null
+        },
+        "selection": {
+          "selected_geometry_id": null,
+          "selected_geometry_year": null,
+          "selected_egif_record_id": null,
+          "selected_egif_year": null,
+          "selected_icv_geometry_id": null,
+          "selected_icv_geometry_year": null,
+          "selected_icv_record_id": null,
+          "selected_effis_geometry_id": null,
+          "selected_effis_geometry_year": null
+        },
+        "popup": {
+          "active": false,
+          "kind": null,
+          "hit_count": 0,
+          "source_id": null,
+          "geometry_id": null,
+          "anchor": null
+        }
+      },
+      "immediate": {
+        "territory": {
+          "territory_scope": "autonomous_community",
+          "autonomous_community_id": "ES:CCAA:10",
+          "province_id": null,
+          "municipality_id": null
+        },
+        "selection": {
+          "selected_geometry_id": null,
+          "selected_geometry_year": null,
+          "selected_egif_record_id": null,
+          "selected_egif_year": null,
+          "selected_icv_geometry_id": "gva:geometry:1995:3:783",
+          "selected_icv_geometry_year": 1995,
+          "selected_icv_record_id": "gva:pif-cv:1995CS5050",
+          "selected_effis_geometry_id": null,
+          "selected_effis_geometry_year": null
+        },
+        "popup": {
+          "active": true,
+          "kind": "feature",
+          "hit_count": 1,
+          "source_id": "icv",
+          "geometry_id": "gva:geometry:1995:3:783",
+          "anchor": {
+            "lng": -0.4911910000012938,
+            "lat": 40.091729792286344
+          }
+        }
+      },
+      "after": {
+        "territory": {
+          "territory_scope": "autonomous_community",
+          "autonomous_community_id": "ES:CCAA:10",
+          "province_id": null,
+          "municipality_id": null
+        },
+        "selection": {
+          "selected_geometry_id": null,
+          "selected_geometry_year": null,
+          "selected_egif_record_id": null,
+          "selected_egif_year": null,
+          "selected_icv_geometry_id": "gva:geometry:1995:3:783",
+          "selected_icv_geometry_year": 1995,
+          "selected_icv_record_id": "gva:pif-cv:1995CS5050",
+          "selected_effis_geometry_id": null,
+          "selected_effis_geometry_year": null
+        },
+        "popup": {
+          "active": true,
+          "kind": "feature",
+          "hit_count": 1,
+          "source_id": "icv",
+          "geometry_id": "gva:geometry:1995:3:783",
+          "anchor": {
+            "lng": -0.4911910000012938,
+            "lat": 40.091729792286344
+          }
+        }
+      },
+      "events": [
+        {
+          "i": 0,
+          "name": "handleMapPopupClick",
+          "before": {
+            "territory": {
+              "territory_scope": "autonomous_community",
+              "autonomous_community_id": "ES:CCAA:10",
+              "province_id": null,
+              "municipality_id": null
+            },
+            "selection": {
+              "selected_geometry_id": null,
+              "selected_geometry_year": null,
+              "selected_egif_record_id": null,
+              "selected_egif_year": null,
+              "selected_icv_geometry_id": null,
+              "selected_icv_geometry_year": null,
+              "selected_icv_record_id": null,
+              "selected_effis_geometry_id": null,
+              "selected_effis_geometry_year": null
+            },
+            "popup": {
+              "active": false,
+              "kind": null,
+              "hit_count": 0,
+              "source_id": null,
+              "geometry_id": null,
+              "anchor": null
+            }
+          },
+          "after": {
+            "territory": {
+              "territory_scope": "autonomous_community",
+              "autonomous_community_id": "ES:CCAA:10",
+              "province_id": null,
+              "municipality_id": null
+            },
+            "selection": {
+              "selected_geometry_id": null,
+              "selected_geometry_year": null,
+              "selected_egif_record_id": null,
+              "selected_egif_year": null,
+              "selected_icv_geometry_id": "gva:geometry:1995:3:783",
+              "selected_icv_geometry_year": 1995,
+              "selected_icv_record_id": "gva:pif-cv:1995CS5050",
+              "selected_effis_geometry_id": null,
+              "selected_effis_geometry_year": null
+            },
+            "popup": {
+              "active": true,
+              "kind": "feature",
+              "hit_count": 1,
+              "source_id": "icv",
+              "geometry_id": "gva:geometry:1995:3:783",
+              "anchor": {
+                "lng": -0.4911910000012938,
+                "lat": 40.091729792286344
+              }
+            }
+          }
+        }
+      ],
+      "expected_geometry": "gva:geometry:1995:3:783",
+      "territory_unchanged": true,
+      "errors": [],
+      "human_popup": {
+        "state": {
+          "active": true,
+          "kind": "feature",
+          "hit_count": 1,
+          "source_id": "icv",
+          "geometry_id": "gva:geometry:1995:3:783",
+          "anchor": {
+            "lng": -0.4911910000012938,
+            "lat": 40.091729792286344
+          }
+        },
+        "text": "Incendio documentado\nICV · Generalitat Valenciana\nCerrar\nFecha\n11/05/1995\nMunicipio\nArañuel\nProvincia\nCastellón/Castelló\nSuperficie\n5 ha\nCausa\nRayo\nVer detalles",
+        "details": "Ver detalles",
+        "role": "dialog",
+        "close": "Cerrar información del perímetro",
+        "shell": "true",
+        "sourceSelections": {
+          "from": 1995,
+          "to": 1995,
+          "territory_scope": "autonomous_community",
+          "autonomous_community_id": "ES:CCAA:10",
+          "province_id": null,
+          "municipality_id": null,
+          "esfire30_visible": false,
+          "egif_visible": true,
+          "icv_visible": true,
+          "effis_visible": false,
+          "selected_geometry_id": null,
+          "selected_geometry_year": null,
+          "selected_egif_record_id": null,
+          "selected_egif_year": null,
+          "selected_icv_geometry_id": "gva:geometry:1995:3:783",
+          "selected_icv_geometry_year": 1995,
+          "selected_icv_record_id": "gva:pif-cv:1995CS5050",
+          "selected_effis_geometry_id": null,
+          "selected_effis_geometry_year": null,
+          "filters": [],
+          "center": [
+            -0.491191,
+            40.091738
+          ],
+          "zoom": 12
+        },
+        "errors": []
+      },
+      "pmtiles_resources": [
+        {
+          "url": "https://inthurain.github.io/atlas-incendios/data/esfire30/v1/3c6eb10ba146008cdabf36646d48a4c7a92c1c1357ad90679f6b5dce42013cfe/esfire30-national-fidelity-territories.pmtiles",
+          "status": 206,
+          "bytes": 16384,
+          "transfer_bytes": 16684
+        },
+        {
+          "url": "https://inthurain.github.io/atlas-incendios/data/esfire30/v1/3c6eb10ba146008cdabf36646d48a4c7a92c1c1357ad90679f6b5dce42013cfe/esfire30-national-fidelity-territories.pmtiles",
+          "status": 206,
+          "bytes": 8316,
+          "transfer_bytes": 0
+        },
+        {
+          "url": "https://inthurain.github.io/atlas-incendios/data/esfire30/v1/3c6eb10ba146008cdabf36646d48a4c7a92c1c1357ad90679f6b5dce42013cfe/esfire30-national-fidelity-territories.pmtiles",
+          "status": 206,
+          "bytes": 121545,
+          "transfer_bytes": 121845
+        },
+        {
+          "url": "https://inthurain.github.io/atlas-incendios/data/esfire30/v1/3c6eb10ba146008cdabf36646d48a4c7a92c1c1357ad90679f6b5dce42013cfe/esfire30-national-fidelity-territories.pmtiles",
+          "status": 206,
+          "bytes": 345205,
+          "transfer_bytes": 345505
+        },
+        {
+          "url": "https://inthurain.github.io/atlas-incendios/data/esfire30/v1/3c6eb10ba146008cdabf36646d48a4c7a92c1c1357ad90679f6b5dce42013cfe/esfire30-national-fidelity-territories.pmtiles",
+          "status": 206,
+          "bytes": 13892,
+          "transfer_bytes": 14192
+        },
+        {
+          "url": "https://inthurain.github.io/atlas-incendios/data/esfire30/v1/3c6eb10ba146008cdabf36646d48a4c7a92c1c1357ad90679f6b5dce42013cfe/esfire30-national-fidelity-territories.pmtiles",
+          "status": 206,
+          "bytes": 20865,
+          "transfer_bytes": 21165
+        },
+        {
+          "url": "https://inthurain.github.io/atlas-incendios/data/basemap/protomaps/20260902-z12/72bb270ff6fc18ccba3042834f9a9eb72901c243e7dec88b3ebb63eaafaeb729/basemap.pmtiles",
+          "status": 206,
+          "bytes": 16384,
+          "transfer_bytes": 16684
+        },
+        {
+          "url": "https://inthurain.github.io/atlas-incendios/data/basemap/protomaps/20260902-z12/72bb270ff6fc18ccba3042834f9a9eb72901c243e7dec88b3ebb63eaafaeb729/basemap.pmtiles",
+          "status": 206,
+          "bytes": 10324,
+          "transfer_bytes": 0
+        },
+        {
+          "url": "https://inthurain.github.io/atlas-incendios/data/basemap/protomaps/20260902-z12/72bb270ff6fc18ccba3042834f9a9eb72901c243e7dec88b3ebb63eaafaeb729/basemap.pmtiles",
+          "status": 206,
+          "bytes": 33030,
+          "transfer_bytes": 33330
+        },
+        {
+          "url": "https://inthurain.github.io/atlas-incendios/data/basemap/protomaps/20260902-z12/72bb270ff6fc18ccba3042834f9a9eb72901c243e7dec88b3ebb63eaafaeb729/basemap.pmtiles",
+          "status": 206,
+          "bytes": 35204,
+          "transfer_bytes": 35504
+        },
+        {
+          "url": "https://inthurain.github.io/atlas-incendios/data/basemap/protomaps/20260902-z12/72bb270ff6fc18ccba3042834f9a9eb72901c243e7dec88b3ebb63eaafaeb729/basemap.pmtiles",
+          "status": 206,
+          "bytes": 41693,
+          "transfer_bytes": 41993
+        },
+        {
+          "url": "https://inthurain.github.io/atlas-incendios/data/basemap/protomaps/20260902-z12/72bb270ff6fc18ccba3042834f9a9eb72901c243e7dec88b3ebb63eaafaeb729/basemap.pmtiles",
+          "status": 206,
+          "bytes": 127284,
+          "transfer_bytes": 127584
+        },
+        {
+          "url": "https://inthurain.github.io/atlas-incendios/data/esfire30/v1/3c6eb10ba146008cdabf36646d48a4c7a92c1c1357ad90679f6b5dce42013cfe/esfire30-national-fidelity-territories.pmtiles",
+          "status": 206,
+          "bytes": 304446,
+          "transfer_bytes": 304746
+        },
+        {
+          "url": "https://inthurain.github.io/atlas-incendios/data/esfire30/v1/3c6eb10ba146008cdabf36646d48a4c7a92c1c1357ad90679f6b5dce42013cfe/esfire30-national-fidelity-territories.pmtiles",
+          "status": 206,
+          "bytes": 17274,
+          "transfer_bytes": 17574
+        },
+        {
+          "url": "https://inthurain.github.io/atlas-incendios/data/esfire30/v1/3c6eb10ba146008cdabf36646d48a4c7a92c1c1357ad90679f6b5dce42013cfe/esfire30-national-fidelity-territories.pmtiles",
+          "status": 206,
+          "bytes": 920393,
+          "transfer_bytes": 920693
+        },
+        {
+          "url": "https://inthurain.github.io/atlas-incendios/data/esfire30/v1/3c6eb10ba146008cdabf36646d48a4c7a92c1c1357ad90679f6b5dce42013cfe/esfire30-national-fidelity-territories.pmtiles",
+          "status": 206,
+          "bytes": 48695,
+          "transfer_bytes": 48995
+        },
+        {
+          "url": "https://inthurain.github.io/atlas-incendios/data/basemap/protomaps/20260902-z12/72bb270ff6fc18ccba3042834f9a9eb72901c243e7dec88b3ebb63eaafaeb729/basemap.pmtiles",
+          "status": 206,
+          "bytes": 55603,
+          "transfer_bytes": 55903
+        },
+        {
+          "url": "https://inthurain.github.io/atlas-incendios/data/basemap/protomaps/20260902-z12/72bb270ff6fc18ccba3042834f9a9eb72901c243e7dec88b3ebb63eaafaeb729/basemap.pmtiles",
+          "status": 206,
+          "bytes": 35493,
+          "transfer_bytes": 35793
+        },
+        {
+          "url": "https://inthurain.github.io/atlas-incendios/data/basemap/protomaps/20260902-z12/72bb270ff6fc18ccba3042834f9a9eb72901c243e7dec88b3ebb63eaafaeb729/basemap.pmtiles",
+          "status": 206,
+          "bytes": 48785,
+          "transfer_bytes": 49085
+        },
+        {
+          "url": "https://inthurain.github.io/atlas-incendios/data/basemap/protomaps/20260902-z12/72bb270ff6fc18ccba3042834f9a9eb72901c243e7dec88b3ebb63eaafaeb729/basemap.pmtiles",
+          "status": 206,
+          "bytes": 100803,
+          "transfer_bytes": 101103
+        },
+        {
+          "url": "https://inthurain.github.io/atlas-incendios/data/esfire30/v1/3c6eb10ba146008cdabf36646d48a4c7a92c1c1357ad90679f6b5dce42013cfe/esfire30-national-fidelity-territories.pmtiles",
+          "status": 206,
+          "bytes": 7373,
+          "transfer_bytes": 7673
+        },
+        {
+          "url": "https://inthurain.github.io/atlas-incendios/data/basemap/protomaps/20260902-z12/72bb270ff6fc18ccba3042834f9a9eb72901c243e7dec88b3ebb63eaafaeb729/basemap.pmtiles",
+          "status": 206,
+          "bytes": 9403,
+          "transfer_bytes": 9703
+        },
+        {
+          "url": "https://inthurain.github.io/atlas-incendios/data/esfire30/v1/3c6eb10ba146008cdabf36646d48a4c7a92c1c1357ad90679f6b5dce42013cfe/esfire30-national-fidelity-territories.pmtiles",
+          "status": 206,
+          "bytes": 993,
+          "transfer_bytes": 1293
+        },
+        {
+          "url": "https://inthurain.github.io/atlas-incendios/data/esfire30/v1/3c6eb10ba146008cdabf36646d48a4c7a92c1c1357ad90679f6b5dce42013cfe/esfire30-national-fidelity-territories.pmtiles",
+          "status": 206,
+          "bytes": 632,
+          "transfer_bytes": 932
+        },
+        {
+          "url": "https://inthurain.github.io/atlas-incendios/data/basemap/protomaps/20260902-z12/72bb270ff6fc18ccba3042834f9a9eb72901c243e7dec88b3ebb63eaafaeb729/basemap.pmtiles",
+          "status": 206,
+          "bytes": 20302,
+          "transfer_bytes": 20602
+        },
+        {
+          "url": "https://inthurain.github.io/atlas-incendios/data/basemap/protomaps/20260902-z12/72bb270ff6fc18ccba3042834f9a9eb72901c243e7dec88b3ebb63eaafaeb729/basemap.pmtiles",
+          "status": 206,
+          "bytes": 13185,
+          "transfer_bytes": 13485
+        }
+      ],
+      "new_resource_urls": [],
+      "passed": true,
+      "background": {
+        "point": {
+          "x": 200,
+          "y": 74.4375,
+          "point": {
+            "x": 200,
+            "y": 16
+          },
+          "lngLat": {
+            "lng": -0.4903326931162155,
+            "lat": 40.11281214250147
+          },
+          "hits": [],
+          "territories": [
+            {
+              "layer": "official-province-territories-fill",
+              "properties": {
+                "territory_id": "ES:PROV:12",
+                "parent_id": "ES:CCAA:10",
+                "source_code": "34101200000",
+                "official_name": "Castellón/Castelló",
+                "source_name": "Castelló/Castellón",
+                "territory_type": "province",
+                "bounds": "[-0.8462969,39.7146978,0.6903109,40.7886312]"
+              }
+            },
+            {
+              "layer": "official-ccaa-territories-fill",
+              "properties": {
+                "territory_id": "ES:CCAA:10",
+                "source_code": "34100000000",
+                "official_name": "Comunitat Valenciana",
+                "source_name": "Comunitat Valenciana",
+                "territory_type": "autonomous_community",
+                "bounds": "[-1.528778,37.8437849,0.6903133,40.7886312]"
+              }
+            }
+          ]
+        },
+        "before": {
+          "territory": {
+            "territory_scope": "autonomous_community",
+            "autonomous_community_id": "ES:CCAA:10",
+            "province_id": null,
+            "municipality_id": null
+          },
+          "selection": {
+            "selected_geometry_id": null,
+            "selected_geometry_year": null,
+            "selected_egif_record_id": null,
+            "selected_egif_year": null,
+            "selected_icv_geometry_id": "gva:geometry:1995:3:783",
+            "selected_icv_geometry_year": 1995,
+            "selected_icv_record_id": "gva:pif-cv:1995CS5050",
+            "selected_effis_geometry_id": null,
+            "selected_effis_geometry_year": null
+          },
+          "popup": {
+            "active": false,
+            "kind": null,
+            "hit_count": 0,
+            "source_id": null,
+            "geometry_id": null,
+            "anchor": null
+          }
+        },
+        "after": {
+          "territory": {
+            "territory_scope": "province",
+            "autonomous_community_id": "ES:CCAA:10",
+            "province_id": "ES:PROV:12",
+            "municipality_id": null
+          },
+          "selection": {
+            "selected_geometry_id": null,
+            "selected_geometry_year": null,
+            "selected_egif_record_id": null,
+            "selected_egif_year": null,
+            "selected_icv_geometry_id": null,
+            "selected_icv_geometry_year": null,
+            "selected_icv_record_id": null,
+            "selected_effis_geometry_id": null,
+            "selected_effis_geometry_year": null
+          },
+          "popup": {
+            "active": false,
+            "kind": null,
+            "hit_count": 0,
+            "source_id": null,
+            "geometry_id": null,
+            "anchor": null
+          }
+        },
+        "passed": true
+      }
+    }
+  },
+  "product_health": {
+    "passed": true,
+    "temporal": {
+      "cases": {
+        "gva_1993_2024": {
+          "loaded_records": 13738,
+          "loaded_geometries": 13739,
+          "selected_geometry_id": "gva:geometry:2016:24:11582",
+          "temporal": {
+            "domain": {
+              "from": 1993,
+              "to": 2024
+            },
+            "palette": {
+              "old": "rgb(44,123,182)",
+              "recent": "rgb(240,82,46)"
+            },
+            "single_year": false,
+            "expression": [
+              "interpolate",
+              [
+                "linear"
+              ],
+              [
+                "to-number",
+                [
+                  "get",
+                  "year"
+                ]
+              ],
+              1993,
+              "rgb(44,123,182)",
+              2024,
+              "rgb(240,82,46)"
+            ]
+          },
+          "icv_fill": [
+            "interpolate",
+            [
+              "linear"
+            ],
+            [
+              "to-number",
+              [
+                "get",
+                "year"
+              ]
+            ],
+            1993,
+            "rgb(44,123,182)",
+            2024,
+            "rgb(240,82,46)"
+          ],
+          "icv_outline": [
+            "interpolate",
+            [
+              "linear"
+            ],
+            [
+              "to-number",
+              [
+                "get",
+                "year"
+              ]
+            ],
+            1993,
+            "rgb(44,123,182)",
+            2024,
+            "rgb(240,82,46)"
+          ],
+          "legend": "Año del perímetro\n1993\n2024\nMás antiguo ← → más reciente\nCAPAS\nLímite administrativo actual\nPerímetros oficiales",
+          "runtime_errors": [],
+          "browser_errors": [],
+          "elapsed_ms": 14755.48
+        },
+        "recurrence_2000_2020": {
+          "loaded_records": 8519,
+          "loaded_geometries": 8519,
+          "selected_geometry_id": "gva:geometry:2016:24:11582",
+          "temporal": {
+            "domain": {
+              "from": 2000,
+              "to": 2020
+            },
+            "palette": {
+              "old": "rgb(44,123,182)",
+              "recent": "rgb(240,82,46)"
+            },
+            "single_year": false,
+            "expression": [
+              "interpolate",
+              [
+                "linear"
+              ],
+              [
+                "to-number",
+                [
+                  "get",
+                  "year"
+                ]
+              ],
+              2000,
+              "rgb(44,123,182)",
+              2020,
+              "rgb(240,82,46)"
+            ]
+          },
+          "icv_fill": [
+            "interpolate",
+            [
+              "linear"
+            ],
+            [
+              "to-number",
+              [
+                "get",
+                "year"
+              ]
+            ],
+            2000,
+            "rgb(44,123,182)",
+            2020,
+            "rgb(240,82,46)"
+          ],
+          "icv_outline": [
+            "interpolate",
+            [
+              "linear"
+            ],
+            [
+              "to-number",
+              [
+                "get",
+                "year"
+              ]
+            ],
+            2000,
+            "rgb(44,123,182)",
+            2020,
+            "rgb(240,82,46)"
+          ],
+          "legend": "Año del perímetro\n2000\n2020\nMás antiguo ← → más reciente\nCAPAS\nLímite administrativo actual\nPerímetros oficiales",
+          "runtime_errors": [],
+          "browser_errors": [],
+          "elapsed_ms": 12896.74
+        }
+      },
+      "icv_1993_2024": {
+        "records": 13738,
+        "geometries": 13739
+      },
+      "recovered_2016_2019": {},
+      "palette": {
+        "old": "rgb(44,123,182)",
+        "recent": "rgb(240,82,46)"
+      },
+      "recurrence_human_test": "PASS",
+      "passed": true,
+      "failures": []
+    },
+    "gva_1995": {
+      "loaded_records": 467,
+      "loaded_geometries": 467,
+      "selected_geometry_id": "gva:geometry:1995:3:783",
+      "temporal": {
+        "domain": {
+          "from": 1995,
+          "to": 1995
+        },
+        "palette": {
+          "old": "rgb(44,123,182)",
+          "recent": "rgb(240,82,46)"
+        },
+        "single_year": true,
+        "expression": "rgb(44,123,182)"
+      },
+      "icv_fill": "rgb(44,123,182)",
+      "icv_outline": "rgb(44,123,182)",
+      "legend": "Año del perímetro\n1995\n1995\nAño seleccionado\nCAPAS\nLímite administrativo actual\nPerímetros oficiales",
+      "runtime_errors": [],
+      "browser_errors": [],
+      "elapsed_ms": 15076.25
+    },
+    "elx_effis": {
+      "effis_perimeter_count": 1,
+      "effis_mapped_area_ha": 7
+    },
+    "elx_errors": [],
+    "native_capture": {
+      "before": {
+        "url": "https://inthurain.github.io/atlas-incendios/index.html?smoke=pais_valencia&from=1995&to=1995&egif_scope=ES%3ACCAA%3A10#es4c-state-v1=eyJ2IjoiZXM0Yy1zdGF0ZS12MSIsIm1hcCI6eyJsYXQiOjM5LjMsImxvbiI6LTAuNywieiI6OH0sInRpbWUiOnsiZnJvbSI6MTk5NSwidG8iOjE5OTV9LCJ0ZXJyaXRvcnkiOnsic2NvcGUiOiJhdXRvbm9tb3VzX2NvbW11bml0eSIsImF1dG9ub21vdXNfY29tbXVuaXR5X2lkIjoiRVM6Q0NBQToxMCIsInByb3ZpbmNlX2lkIjpudWxsLCJtdW5pY2lwYWxpdHlfaWQiOm51bGx9LCJzb3VyY2VzIjp7ImVzZmlyZTMwIjpmYWxzZSwiZWdpZiI6dHJ1ZSwiaWN2Ijp0cnVlLCJlZmZpcyI6ZmFsc2V9LCJhbmFseXNpcyI6eyJmaWx0ZXJzIjpbeyJmaWx0ZXJfaWQiOiJpY3ZfbWluX2FyZWEiLCJmaWx0ZXJfdHlwZSI6Im1pbl92YWx1ZSIsInNvdXJjZSI6ImljdiIsIm1ldHJpY19pZCI6Imljdl9kZWNsYXJlZF9mb3Jlc3RfYXJlYV9oYSIsInZhbHVlIjo1MDAsInVuaXQiOiJoYSJ9XX0sInNlbGVjdGlvbnMiOnsiZ2VvbWV0cnlfaWQiOm51bGwsImVnaWZfcmVjb3JkX2lkIjpudWxsLCJpY3ZfZ2VvbWV0cnlfaWQiOm51bGwsImljdl9yZWNvcmRfaWQiOiJndmE6cGlmLWN2OjE5OTVBTDAwNzYiLCJlZmZpc19nZW9tZXRyeV9pZCI6bnVsbH19",
+        "state": {
+          "from": 1995,
+          "to": 1995,
+          "territory_scope": "autonomous_community",
+          "autonomous_community_id": "ES:CCAA:10",
+          "province_id": null,
+          "municipality_id": null,
+          "esfire30_visible": false,
+          "egif_visible": true,
+          "icv_visible": true,
+          "effis_visible": false,
+          "selected_geometry_id": null,
+          "selected_geometry_year": null,
+          "selected_egif_record_id": null,
+          "selected_egif_year": null,
+          "selected_icv_geometry_id": null,
+          "selected_icv_geometry_year": null,
+          "selected_icv_record_id": "gva:pif-cv:1995AL0076",
+          "selected_effis_geometry_id": null,
+          "selected_effis_geometry_year": null,
+          "filters": [
+            {
+              "filter_id": "icv_min_area",
+              "filter_type": "min_value",
+              "source": "icv",
+              "metric_id": "icv_declared_forest_area_ha",
+              "value": 500,
+              "unit": "ha"
+            }
+          ],
+          "center": [
+            -0.7,
+            39.3
+          ],
+          "zoom": 8
+        },
+        "copy": "No se pudo copiar automáticamente; copia esta URL: https://inthurain.github.io/atlas-incendios/index.html?smoke=pais_valencia&from=1995&to=1995&egif_scope=ES%3ACCAA%3A10#es4c-state-v1=eyJ2IjoiZXM0Yy1zdGF0ZS12MSIsIm1hcCI6eyJsYXQiOjM5LjMsImxvbiI6LTAuNywieiI6OH0sInRpbWUiOnsiZnJvbSI6MTk5NSwidG8iOjE5OTV9LCJ0ZXJyaXRvcnkiOnsic2NvcGUiOiJhdXRvbm9tb3VzX2NvbW11bml0eSIsImF1dG9ub21vdXNfY29tbXVuaXR5X2lkIjoiRVM6Q0NBQToxMCIsInByb3ZpbmNlX2lkIjpudWxsLCJtdW5pY2lwYWxpdHlfaWQiOm51bGx9LCJzb3VyY2VzIjp7ImVzZmlyZTMwIjpmYWxzZSwiZWdpZiI6dHJ1ZSwiaWN2Ijp0cnVlLCJlZmZpcyI6ZmFsc2V9LCJhbmFseXNpcyI6eyJmaWx0ZXJzIjpbeyJmaWx0ZXJfaWQiOiJpY3ZfbWluX2FyZWEiLCJmaWx0ZXJfdHlwZSI6Im1pbl92YWx1ZSIsInNvdXJjZSI6ImljdiIsIm1ldHJpY19pZCI6Imljdl9kZWNsYXJlZF9mb3Jlc3RfYXJlYV9oYSIsInZhbHVlIjo1MDAsInVuaXQiOiJoYSJ9XX0sInNlbGVjdGlvbnMiOnsiZ2VvbWV0cnlfaWQiOm51bGwsImVnaWZfcmVjb3JkX2lkIjpudWxsLCJpY3ZfZ2VvbWV0cnlfaWQiOm51bGwsImljdl9yZWNvcmRfaWQiOiJndmE6cGlmLWN2OjE5OTVBTDAwNzYiLCJlZmZpc19nZW9tZXRyeV9pZCI6bnVsbH19"
+      }
+    },
+    "native_restore": {
+      "fresh_before_reload": {
+        "state": {
+          "from": 1995,
+          "to": 1995,
+          "territory_scope": "autonomous_community",
+          "autonomous_community_id": "ES:CCAA:10",
+          "province_id": null,
+          "municipality_id": null,
+          "esfire30_visible": false,
+          "egif_visible": true,
+          "icv_visible": true,
+          "effis_visible": false,
+          "selected_geometry_id": null,
+          "selected_geometry_year": null,
+          "selected_egif_record_id": null,
+          "selected_egif_year": null,
+          "selected_icv_geometry_id": null,
+          "selected_icv_geometry_year": null,
+          "selected_icv_record_id": "gva:pif-cv:1995AL0076",
+          "selected_effis_geometry_id": null,
+          "selected_effis_geometry_year": null,
+          "filters": [
+            {
+              "filter_id": "icv_min_area",
+              "filter_type": "min_value",
+              "source": "icv",
+              "metric_id": "icv_declared_forest_area_ha",
+              "value": 500,
+              "unit": "ha"
+            }
+          ],
+          "center": [
+            -0.7,
+            39.3
+          ],
+          "zoom": 8
+        },
+        "hash": "#es4c-state-v1=eyJ2IjoiZXM0Yy1zdGF0ZS12MSIsIm1hcCI6eyJsYXQiOjM5LjMsImxvbiI6LTAuNywieiI6OH0sInRpbWUiOnsiZnJvbSI6MTk5NSwidG8iOjE5OTV9LCJ0ZXJyaXRvcnkiOnsic2NvcGUiOiJhdXRvbm9tb3VzX2NvbW11bml0eSIsImF1dG9ub21vdXNfY29tbXVuaXR5X2lkIjoiRVM6Q0NBQToxMCIsInByb3ZpbmNlX2lkIjpudWxsLCJtdW5pY2lwYWxpdHlfaWQiOm51bGx9LCJzb3VyY2VzIjp7ImVzZmlyZTMwIjpmYWxzZSwiZWdpZiI6dHJ1ZSwiaWN2Ijp0cnVlLCJlZmZpcyI6ZmFsc2V9LCJhbmFseXNpcyI6eyJmaWx0ZXJzIjpbeyJmaWx0ZXJfaWQiOiJpY3ZfbWluX2FyZWEiLCJmaWx0ZXJfdHlwZSI6Im1pbl92YWx1ZSIsInNvdXJjZSI6ImljdiIsIm1ldHJpY19pZCI6Imljdl9kZWNsYXJlZF9mb3Jlc3RfYXJlYV9oYSIsInZhbHVlIjo1MDAsInVuaXQiOiJoYSJ9XX0sInNlbGVjdGlvbnMiOnsiZ2VvbWV0cnlfaWQiOm51bGwsImVnaWZfcmVjb3JkX2lkIjpudWxsLCJpY3ZfZ2VvbWV0cnlfaWQiOm51bGwsImljdl9yZWNvcmRfaWQiOiJndmE6cGlmLWN2OjE5OTVBTDAwNzYiLCJlZmZpc19nZW9tZXRyeV9pZCI6bnVsbH19",
+        "map_loaded": true,
+        "errors": []
+      },
+      "after_reload": {
+        "state": {
+          "from": 1995,
+          "to": 1995,
+          "territory_scope": "autonomous_community",
+          "autonomous_community_id": "ES:CCAA:10",
+          "province_id": null,
+          "municipality_id": null,
+          "esfire30_visible": false,
+          "egif_visible": true,
+          "icv_visible": true,
+          "effis_visible": false,
+          "selected_geometry_id": null,
+          "selected_geometry_year": null,
+          "selected_egif_record_id": null,
+          "selected_egif_year": null,
+          "selected_icv_geometry_id": null,
+          "selected_icv_geometry_year": null,
+          "selected_icv_record_id": "gva:pif-cv:1995AL0076",
+          "selected_effis_geometry_id": null,
+          "selected_effis_geometry_year": null,
+          "filters": [
+            {
+              "filter_id": "icv_min_area",
+              "filter_type": "min_value",
+              "source": "icv",
+              "metric_id": "icv_declared_forest_area_ha",
+              "value": 500,
+              "unit": "ha"
+            }
+          ],
+          "center": [
+            -0.7,
+            39.3
+          ],
+          "zoom": 8
+        },
+        "hash": "#es4c-state-v1=eyJ2IjoiZXM0Yy1zdGF0ZS12MSIsIm1hcCI6eyJsYXQiOjM5LjMsImxvbiI6LTAuNywieiI6OH0sInRpbWUiOnsiZnJvbSI6MTk5NSwidG8iOjE5OTV9LCJ0ZXJyaXRvcnkiOnsic2NvcGUiOiJhdXRvbm9tb3VzX2NvbW11bml0eSIsImF1dG9ub21vdXNfY29tbXVuaXR5X2lkIjoiRVM6Q0NBQToxMCIsInByb3ZpbmNlX2lkIjpudWxsLCJtdW5pY2lwYWxpdHlfaWQiOm51bGx9LCJzb3VyY2VzIjp7ImVzZmlyZTMwIjpmYWxzZSwiZWdpZiI6dHJ1ZSwiaWN2Ijp0cnVlLCJlZmZpcyI6ZmFsc2V9LCJhbmFseXNpcyI6eyJmaWx0ZXJzIjpbeyJmaWx0ZXJfaWQiOiJpY3ZfbWluX2FyZWEiLCJmaWx0ZXJfdHlwZSI6Im1pbl92YWx1ZSIsInNvdXJjZSI6ImljdiIsIm1ldHJpY19pZCI6Imljdl9kZWNsYXJlZF9mb3Jlc3RfYXJlYV9oYSIsInZhbHVlIjo1MDAsInVuaXQiOiJoYSJ9XX0sInNlbGVjdGlvbnMiOnsiZ2VvbWV0cnlfaWQiOm51bGwsImVnaWZfcmVjb3JkX2lkIjpudWxsLCJpY3ZfZ2VvbWV0cnlfaWQiOm51bGwsImljdl9yZWNvcmRfaWQiOiJndmE6cGlmLWN2OjE5OTVBTDAwNzYiLCJlZmZpc19nZW9tZXRyeV9pZCI6bnVsbH19",
+        "map_loaded": true,
+        "errors": []
+      }
+    },
+    "legacy_historic": {
+      "fresh_tab": {
+        "state": {
+          "from": 1995,
+          "to": 1995,
+          "territory_scope": "autonomous_community",
+          "autonomous_community_id": "ES:CCAA:10",
+          "province_id": null,
+          "municipality_id": null,
+          "esfire30_visible": true,
+          "egif_visible": true,
+          "icv_visible": true,
+          "effis_visible": false,
+          "selected_geometry_id": null,
+          "selected_geometry_year": null,
+          "selected_egif_record_id": null,
+          "selected_egif_year": null,
+          "selected_icv_geometry_id": null,
+          "selected_icv_geometry_year": null,
+          "selected_icv_record_id": null,
+          "selected_effis_geometry_id": null,
+          "selected_effis_geometry_year": null,
+          "filters": [],
+          "center": [
+            -0.7,
+            39.3
+          ],
+          "zoom": 8
+        },
+        "hash": "#v=1&lat=39.30000&lng=-0.70000&z=8&from=1995&to=1995&src=egif%2Cesfire30%2Cicv&province=all&min_area=0&gif=0",
+        "map_loaded": true,
+        "errors": []
+      }
+    },
+    "legacy_recent": {
+      "fresh_tab": {
+        "state": {
+          "from": 2025,
+          "to": 2025,
+          "territory_scope": "municipality",
+          "autonomous_community_id": "ES:CCAA:10",
+          "province_id": "ES:PROV:03",
+          "municipality_id": "ES:MUN:03065",
+          "esfire30_visible": true,
+          "egif_visible": true,
+          "icv_visible": false,
+          "effis_visible": true,
+          "selected_geometry_id": null,
+          "selected_geometry_year": null,
+          "selected_egif_record_id": null,
+          "selected_egif_year": null,
+          "selected_icv_geometry_id": null,
+          "selected_icv_geometry_year": null,
+          "selected_icv_record_id": null,
+          "selected_effis_geometry_id": null,
+          "selected_effis_geometry_year": null,
+          "filters": [
+            {
+              "filter_id": "effis_min_area",
+              "filter_type": "min_value",
+              "source": "effis",
+              "metric_id": "effis_mapped_area_ha",
+              "value": 10,
+              "unit": "ha"
+            }
+          ],
+          "center": [
+            -0.71,
+            38.17
+          ],
+          "zoom": 11
+        },
+        "hash": "#v=1&lat=38.17000&lng=-0.71000&z=11&from=2025&to=2025&src=effis&province=alicante&municipality=03065&min_area=10&gif=0&entity=effis%3Arda%3A285361%3Af05085eba622a5bb&geometry=effis%3Arda%3A285361%3Af05085eba622a5bb",
+        "map_loaded": true,
+        "errors": []
+      }
+    },
+    "validation": {
+      "passed": true,
+      "failures": []
+    }
+  },
+  "pmtiles": {
+    "range": {
+      "esfire30_fire_pmtiles": [
+        {
+          "request": "bytes=0-0",
+          "status": 206,
+          "content_range": "bytes 0-0/63052056",
+          "bytes": 1,
+          "byte_identical_to_local": true,
+          "elapsed_ms": 67.7,
+          "headers": {
+            "content-length": "1",
+            "content-range": "bytes 0-0/63052056",
+            "content-type": "application/octet-stream",
+            "accept-ranges": "bytes",
+            "cache-control": "max-age=600",
+            "etag": "\"6aa5b99a-3c21918\"",
+            "last-modified": "Sat, 12 Sep 2026 20:44:10 GMT",
+            "age": "28",
+            "x-cache": "HIT",
+            "x-cache-hits": "0",
+            "access-control-allow-origin": "*"
+          },
+          "passed": true
+        },
+        {
+          "request": "bytes=0-16383",
+          "status": 206,
+          "content_range": "bytes 0-16383/63052056",
+          "bytes": 16384,
+          "byte_identical_to_local": true,
+          "elapsed_ms": 56.816,
+          "headers": {
+            "content-length": "16384",
+            "content-range": "bytes 0-16383/63052056",
+            "content-type": "application/octet-stream",
+            "accept-ranges": "bytes",
+            "cache-control": "max-age=600",
+            "etag": "\"6aa5b99a-3c21918\"",
+            "last-modified": "Sat, 12 Sep 2026 20:44:10 GMT",
+            "age": "28",
+            "x-cache": "HIT",
+            "x-cache-hits": "0",
+            "access-control-allow-origin": "*"
+          },
+          "passed": true
+        }
+      ],
+      "protomaps_basemap_pmtiles": [
+        {
+          "request": "bytes=0-0",
+          "status": 206,
+          "content_range": "bytes 0-0/293324998",
+          "bytes": 1,
+          "byte_identical_to_local": true,
+          "elapsed_ms": 51.12,
+          "headers": {
+            "content-length": "1",
+            "content-range": "bytes 0-0/293324998",
+            "content-type": "application/octet-stream",
+            "accept-ranges": "bytes",
+            "cache-control": "max-age=600",
+            "etag": "\"6aa5b999-117bc8c6\"",
+            "last-modified": "Sat, 12 Sep 2026 20:44:09 GMT",
+            "age": "28",
+            "x-cache": "HIT",
+            "x-cache-hits": "0",
+            "access-control-allow-origin": "*"
+          },
+          "passed": true
+        },
+        {
+          "request": "bytes=0-16383",
+          "status": 206,
+          "content_range": "bytes 0-16383/293324998",
+          "bytes": 16384,
+          "byte_identical_to_local": true,
+          "elapsed_ms": 55.102,
+          "headers": {
+            "content-length": "16384",
+            "content-range": "bytes 0-16383/293324998",
+            "content-type": "application/octet-stream",
+            "accept-ranges": "bytes",
+            "cache-control": "max-age=600",
+            "etag": "\"6aa5b999-117bc8c6\"",
+            "last-modified": "Sat, 12 Sep 2026 20:44:09 GMT",
+            "age": "28",
+            "x-cache": "HIT",
+            "x-cache-hits": "0",
+            "access-control-allow-origin": "*"
+          },
+          "passed": true
+        }
+      ]
+    },
+    "browser_resource_count": 129,
+    "observed_status_codes": [
+      206
+    ],
+    "full_download_observed": false
+  },
+  "glyphs": [
+    {
+      "path": "data/basemap/protomaps/20260902-z12/72bb270ff6fc18ccba3042834f9a9eb72901c243e7dec88b3ebb63eaafaeb729/fonts/Noto Sans Regular/0-255.pbf",
+      "status": 200,
+      "headers": {
+        "content-length": "76044",
+        "content-type": "application/octet-stream",
+        "accept-ranges": "bytes",
+        "cache-control": "max-age=600",
+        "etag": "\"6aa5b999-1290c\"",
+        "last-modified": "Sat, 12 Sep 2026 20:44:09 GMT",
+        "age": "0",
+        "x-cache": "MISS",
+        "x-cache-hits": "0",
+        "access-control-allow-origin": "*"
+      },
+      "passed": true
+    },
+    {
+      "path": "data/basemap/protomaps/20260902-z12/72bb270ff6fc18ccba3042834f9a9eb72901c243e7dec88b3ebb63eaafaeb729/fonts/Noto Sans Regular/1024-1279.pbf",
+      "status": 200,
+      "headers": {
+        "content-length": "125320",
+        "content-type": "application/octet-stream",
+        "accept-ranges": "bytes",
+        "cache-control": "max-age=600",
+        "etag": "\"6aa5b99a-1e988\"",
+        "last-modified": "Sat, 12 Sep 2026 20:44:10 GMT",
+        "age": "0",
+        "x-cache": "MISS",
+        "x-cache-hits": "0",
+        "access-control-allow-origin": "*"
+      },
+      "passed": true
+    },
+    {
+      "path": "data/basemap/protomaps/20260902-z12/72bb270ff6fc18ccba3042834f9a9eb72901c243e7dec88b3ebb63eaafaeb729/fonts/Noto Sans Regular/11520-11775.pbf",
+      "status": 200,
+      "headers": {
+        "content-length": "98137",
+        "content-type": "application/octet-stream",
+        "accept-ranges": "bytes",
+        "cache-control": "max-age=600",
+        "etag": "\"6aa5b999-17f59\"",
+        "last-modified": "Sat, 12 Sep 2026 20:44:09 GMT",
+        "age": "0",
+        "x-cache": "MISS",
+        "x-cache-hits": "0",
+        "access-control-allow-origin": "*"
+      },
+      "passed": true
+    },
+    {
+      "path": "data/basemap/protomaps/20260902-z12/72bb270ff6fc18ccba3042834f9a9eb72901c243e7dec88b3ebb63eaafaeb729/fonts/Noto Sans Regular/1536-1791.pbf",
+      "status": 200,
+      "headers": {
+        "content-length": "110716",
+        "content-type": "application/octet-stream",
+        "accept-ranges": "bytes",
+        "cache-control": "max-age=600",
+        "etag": "\"6aa5b99a-1b07c\"",
+        "last-modified": "Sat, 12 Sep 2026 20:44:10 GMT",
+        "age": "0",
+        "x-cache": "MISS",
+        "x-cache-hits": "0",
+        "access-control-allow-origin": "*"
+      },
+      "passed": true
+    },
+    {
+      "path": "data/basemap/protomaps/20260902-z12/72bb270ff6fc18ccba3042834f9a9eb72901c243e7dec88b3ebb63eaafaeb729/fonts/Noto Sans Regular/256-511.pbf",
+      "status": 200,
+      "headers": {
+        "content-length": "127726",
+        "content-type": "application/octet-stream",
+        "accept-ranges": "bytes",
+        "cache-control": "max-age=600",
+        "etag": "\"6aa5b99a-1f2ee\"",
+        "last-modified": "Sat, 12 Sep 2026 20:44:10 GMT",
+        "age": "0",
+        "x-cache": "MISS",
+        "x-cache-hits": "0",
+        "access-control-allow-origin": "*"
+      },
+      "passed": true
+    },
+    {
+      "path": "data/basemap/protomaps/20260902-z12/72bb270ff6fc18ccba3042834f9a9eb72901c243e7dec88b3ebb63eaafaeb729/fonts/Noto Sans Regular/512-767.pbf",
+      "status": 200,
+      "headers": {
+        "content-length": "94728",
+        "content-type": "application/octet-stream",
+        "accept-ranges": "bytes",
+        "cache-control": "max-age=600",
+        "etag": "\"6aa5b999-17208\"",
+        "last-modified": "Sat, 12 Sep 2026 20:44:09 GMT",
+        "age": "0",
+        "x-cache": "MISS",
+        "x-cache-hits": "0",
+        "access-control-allow-origin": "*"
+      },
+      "passed": true
+    },
+    {
+      "path": "data/basemap/protomaps/20260902-z12/72bb270ff6fc18ccba3042834f9a9eb72901c243e7dec88b3ebb63eaafaeb729/fonts/Noto Sans Regular/768-1023.pbf",
+      "status": 200,
+      "headers": {
+        "content-length": "77034",
+        "content-type": "application/octet-stream",
+        "accept-ranges": "bytes",
+        "cache-control": "max-age=600",
+        "etag": "\"6aa5b99a-12cea\"",
+        "last-modified": "Sat, 12 Sep 2026 20:44:10 GMT",
+        "age": "0",
+        "x-cache": "MISS",
+        "x-cache-hits": "0",
+        "access-control-allow-origin": "*"
+      },
+      "passed": true
+    },
+    {
+      "path": "data/basemap/protomaps/20260902-z12/72bb270ff6fc18ccba3042834f9a9eb72901c243e7dec88b3ebb63eaafaeb729/fonts/Noto Sans Regular/7680-7935.pbf",
+      "status": 200,
+      "headers": {
+        "content-length": "135449",
+        "content-type": "application/octet-stream",
+        "accept-ranges": "bytes",
+        "cache-control": "max-age=600",
+        "etag": "\"6aa5b99a-21119\"",
+        "last-modified": "Sat, 12 Sep 2026 20:44:10 GMT",
+        "age": "0",
+        "x-cache": "MISS",
+        "x-cache-hits": "0",
+        "access-control-allow-origin": "*"
+      },
+      "passed": true
+    },
+    {
+      "path": "data/basemap/protomaps/20260902-z12/72bb270ff6fc18ccba3042834f9a9eb72901c243e7dec88b3ebb63eaafaeb729/fonts/Noto Sans Regular/8192-8447.pbf",
+      "status": 200,
+      "headers": {
+        "content-length": "64220",
+        "content-type": "application/octet-stream",
+        "accept-ranges": "bytes",
+        "cache-control": "max-age=600",
+        "etag": "\"6aa5b999-fadc\"",
+        "last-modified": "Sat, 12 Sep 2026 20:44:09 GMT",
+        "age": "0",
+        "x-cache": "MISS",
+        "x-cache-hits": "0",
+        "access-control-allow-origin": "*"
+      },
+      "passed": true
+    }
+  ],
+  "staging": {
+    "preserved": true,
+    "identity": {
+      "root": {
+        "status": 200,
+        "sha256": "178390918306783d154025baf556191577902b19257fcb541f799006b07b9430"
+      },
+      "asset-manifest.json": {
+        "status": 200,
+        "sha256": "5e0610b121f54550b852460053b9c1d5c35e6be2311363f53fcbe9817762f3a9"
+      },
+      "site-identity.json": {
+        "status": 200,
+        "sha256": "6ae69340c9fb676d2331e9afbf1dd98569873b43119f73e2672665122fc4e30a"
+      }
+    }
+  },
+  "rollbacks": {
+    "pages-national-v1-0-0-rollback.yml": {
+      "name": "Roll back Pages to exact national product v1.0.0",
+      "path": ".github/workflows/pages-national-v1-0-0-rollback.yml",
+      "state": "active",
+      "manual_dispatchable": true,
+      "executed": false
+    },
+    "pages-national-pre-post2-rollback.yml": {
+      "name": "Roll back Pages to exact PRE-POST2 national product",
+      "path": ".github/workflows/pages-national-pre-post2-rollback.yml",
+      "state": "active",
+      "manual_dispatchable": true,
+      "executed": false
+    },
+    "pages-legacy-gva-rollback.yml": {
+      "name": "Roll back GitHub Pages to fixed legacy GVA anchor",
+      "path": ".github/workflows/pages-legacy-gva-rollback.yml",
+      "state": "active",
+      "manual_dispatchable": true,
+      "executed": false
+    }
+  },
+  "v1_0_0_tag": {
+    "status": "IMMUTABLE",
+    "local_target": "534cfe37a7120904f48c87bba71b4fcb7423bb5f",
+    "remote_target": "534cfe37a7120904f48c87bba71b4fcb7423bb5f"
+  },
+  "v1_0_1_tag": {
+    "pre_existed": false,
+    "status": "CREATED",
+    "annotated": true,
+    "object": "ac8ce8af9831c8e95e3ff77bd8cc8a68979311a8",
+    "local_target": "5cffab72499f74ea6d1f76b516adaef291eceaf7",
+    "remote_target": "5cffab72499f74ea6d1f76b516adaef291eceaf7",
+    "pushed": true,
+    "remote_verification": [
+      "9c951b0c6bc2e66cd3e1613fd8f6a14e0fd101aa\trefs/tags/national-product-v1.0.0",
+      "534cfe37a7120904f48c87bba71b4fcb7423bb5f\trefs/tags/national-product-v1.0.0^{}",
+      "ac8ce8af9831c8e95e3ff77bd8cc8a68979311a8\trefs/tags/national-product-v1.0.1",
+      "5cffab72499f74ea6d1f76b516adaef291eceaf7\trefs/tags/national-product-v1.0.1^{}"
+    ]
+  },
+  "release_identity": {
+    "tag": "national-product-v1.0.1",
+    "tag_target": "5cffab72499f74ea6d1f76b516adaef291eceaf7",
+    "production_url": "https://inthurain.github.io/atlas-incendios/",
+    "pages_deployment": 6414182725,
+    "manifest_sha256": "5e0610b121f54550b852460053b9c1d5c35e6be2311363f53fcbe9817762f3a9",
+    "site_identity_sha256": "6ae69340c9fb676d2331e9afbf1dd98569873b43119f73e2672665122fc4e30a",
+    "site_file_count": 501,
+    "site_total_bytes": 812542848,
+    "payload_file_count": 499,
+    "payload_total_bytes": 812322370,
+    "payload_fingerprint": "7d85b4f07dd5901452b028831d8d33c4cbf8567a9732aca74d44981ba60fc992",
+    "tar_bytes": 431671665,
+    "tar_sha256": "0ba62338927b76c56f5bcde5446cfd62a712d92e5edbeaf6815c1200383e9cba"
+  },
+  "interaction_invariant": {
+    "precedence": [
+      "point-query mode if present",
+      "visible fire geometry",
+      "background territorial drill",
+      "empty map"
+    ],
+    "mandatory_acceptance": "click visible fire -> territory unchanged",
+    "future_release_regression_required": true
+  },
+  "backlog": {
+    "P1": [
+      "cold municipality loading feedback",
+      "mobile histogram touch targets",
+      "histogram brush"
+    ],
+    "P2": [
+      "z13 / relief / POI",
+      "safe ESFire30 ranking",
+      "minor mobile polish"
+    ],
+    "implementation_started": false
+  },
+  "status": {
+    "HOTFIX_POST_RELEASE_CHECKPOINT": "PASS",
+    "NATIONAL_PRODUCT_STATUS": "LIVE_V1_0_1",
+    "REMOTE_CLICK_ROUTING": "PASS",
+    "MAP_EXPLORATION_PARITY": "PASS",
+    "HOTFIX_CYCLE": "COMPLETE"
+  },
+  "next_phase": "POST_RELEASE_BACKLOG"
+}
