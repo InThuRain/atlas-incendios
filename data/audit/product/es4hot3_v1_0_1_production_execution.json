@@ -1,0 +1,5772 @@
+{
+  "phase": "ES-4HOT3_V1_0_1_PRODUCTION_EXECUTION",
+  "status": "PASS",
+  "git": {
+    "precheck_head": "3866054a6239c8ef10cbef5e0a878a14865ffef1",
+    "origin_main": "b8949f99c88118e1091a83bc1853184246374c21",
+    "initial_ahead": 3,
+    "initial_behind": 0,
+    "initial_worktree": "No tracked changes; untracked build/ only",
+    "pending_commits": [
+      "d988100",
+      "b52b3b7",
+      "3866054"
+    ],
+    "second_fetch_origin_unchanged": true,
+    "after_predeploy_ahead": 4,
+    "after_predeploy_behind": 0
+  },
+  "predeploy_commit": "5cffab72499f74ea6d1f76b516adaef291eceaf7",
+  "v1_0_0_production": {
+    "http_status": 200,
+    "manifest_sha256": "557c662dd23df2207f68b6ef36ddae35f0d06b069864ffbb8b3b53ded7a59bd0",
+    "site_identity_sha256": "f8fe88d66313931d2ed318723334d45062f23cc72f86538835a6df638ba785a1"
+  },
+  "hotfix_candidate": {
+    "url": "https://github.com/InThuRain/atlas-incendios-es4c3d4-pages-staging/releases/download/national-product-v1.0.1-staging-hot2/national-product-hot1-candidate.tar.gz",
+    "bytes": 431671665,
+    "sha256": "0ba62338927b76c56f5bcde5446cfd62a712d92e5edbeaf6815c1200383e9cba",
+    "staging_identity_exact": true,
+    "remote_tar_identity_exact": true
+  },
+  "rollback_strategy": {
+    "primary": "pages-national-v1-0-0-rollback.yml",
+    "secondary": "pages-national-pre-post2-rollback.yml",
+    "deep": "pages-legacy-gva-rollback.yml",
+    "manual_only": true,
+    "concurrency": {
+      "group": "pages",
+      "cancel-in-progress": false
+    },
+    "v1_0_0_local_ready": true,
+    "remote_availability": "All four national/rollback workflows active before dispatch"
+  },
+  "tests": {
+    "static_negative_pass": 7,
+    "failures": 0
+  },
+  "push": {
+    "performed": true,
+    "range": "b8949f99c88118e1091a83bc1853184246374c21..5cffab72499f74ea6d1f76b516adaef291eceaf7",
+    "commits": [
+      "d988100",
+      "b52b3b7",
+      "3866054",
+      "5cffab7"
+    ],
+    "after_push_ahead": 0,
+    "after_push_behind": 0,
+    "unexpected_auto_deploy": false,
+    "v1_0_0_live_before_dispatch": true,
+    "origin_main": "5cffab72499f74ea6d1f76b516adaef291eceaf7"
+  },
+  "deployment": {
+    "run": {
+      "conclusion": "success",
+      "createdAt": "2026-09-12T20:43:14Z",
+      "databaseId": 34717913721,
+      "headSha": "5cffab72499f74ea6d1f76b516adaef291eceaf7",
+      "jobs": [
+        {
+          "completedAt": "2026-09-12T20:44:13Z",
+          "conclusion": "success",
+          "databaseId": 103618356417,
+          "name": "deploy",
+          "startedAt": "2026-09-12T20:43:19Z",
+          "status": "completed",
+          "steps": [
+            {
+              "completedAt": "2026-09-12T20:43:21Z",
+              "conclusion": "success",
+              "name": "Set up job",
+              "number": 1,
+              "startedAt": "2026-09-12T20:43:20Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-12T20:43:22Z",
+              "conclusion": "success",
+              "name": "Run actions/checkout@v5",
+              "number": 2,
+              "startedAt": "2026-09-12T20:43:21Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-12T20:43:25Z",
+              "conclusion": "success",
+              "name": "Download fixed golden national archive",
+              "number": 3,
+              "startedAt": "2026-09-12T20:43:22Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-12T20:43:31Z",
+              "conclusion": "success",
+              "name": "Verify archive, extract safely and gate exact site identity",
+              "number": 4,
+              "startedAt": "2026-09-12T20:43:25Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-12T20:43:31Z",
+              "conclusion": "success",
+              "name": "Preserve runner identity evidence",
+              "number": 5,
+              "startedAt": "2026-09-12T20:43:31Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-12T20:43:31Z",
+              "conclusion": "success",
+              "name": "Run actions/configure-pages@v5",
+              "number": 6,
+              "startedAt": "2026-09-12T20:43:31Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-12T20:43:56Z",
+              "conclusion": "success",
+              "name": "Upload exact national Pages artifact",
+              "number": 7,
+              "startedAt": "2026-09-12T20:43:31Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-12T20:44:12Z",
+              "conclusion": "success",
+              "name": "Run actions/deploy-pages@v4",
+              "number": 8,
+              "startedAt": "2026-09-12T20:43:56Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-12T20:44:12Z",
+              "conclusion": "success",
+              "name": "Post Run actions/checkout@v5",
+              "number": 16,
+              "startedAt": "2026-09-12T20:44:12Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-12T20:44:12Z",
+              "conclusion": "success",
+              "name": "Complete job",
+              "number": 17,
+              "startedAt": "2026-09-12T20:44:12Z",
+              "status": "completed"
+            }
+          ],
+          "url": "https://github.com/InThuRain/atlas-incendios/actions/runs/34717913721/job/103618356417"
+        }
+      ],
+      "status": "completed",
+      "updatedAt": "2026-09-12T20:44:14Z",
+      "url": "https://github.com/InThuRain/atlas-incendios/actions/runs/34717913721"
+    },
+    "pages_artifact_id": 10305721504,
+    "artifacts": [
+      {
+        "id": 10305756487,
+        "node_id": "MDg6QXJ0aWZhY3QxMDMwNTc1NjQ4Nw==",
+        "name": "national-product-runner-identity",
+        "size_in_bytes": 590,
+        "url": "https://api.github.com/repos/InThuRain/atlas-incendios/actions/artifacts/10305756487",
+        "archive_download_url": "https://api.github.com/repos/InThuRain/atlas-incendios/actions/artifacts/10305756487/zip",
+        "expired": false,
+        "digest": "sha256:3b7e2af0b4bf3ad22e9467d31ff71755b33d796015c371f09845e7b10b5b5ba0",
+        "created_at": "2026-09-12T20:43:31Z",
+        "updated_at": "2026-09-12T20:43:31Z",
+        "expires_at": "2026-12-11T20:43:15Z",
+        "workflow_run": {
+          "id": 34717913721,
+          "repository_id": 1339316644,
+          "head_repository_id": 1339316644,
+          "head_branch": "main",
+          "head_sha": "5cffab72499f74ea6d1f76b516adaef291eceaf7"
+        }
+      },
+      {
+        "id": 10305721504,
+        "node_id": "MDg6QXJ0aWZhY3QxMDMwNTcyMTUwNA==",
+        "name": "github-pages",
+        "size_in_bytes": 432205243,
+        "url": "https://api.github.com/repos/InThuRain/atlas-incendios/actions/artifacts/10305721504",
+        "archive_download_url": "https://api.github.com/repos/InThuRain/atlas-incendios/actions/artifacts/10305721504/zip",
+        "expired": false,
+        "digest": "sha256:b683d1c334b49aeabc693ecee4ac01aee2c2e0751f3a9957f93441c1416f3f6e",
+        "created_at": "2026-09-12T20:43:56Z",
+        "updated_at": "2026-09-12T20:43:56Z",
+        "expires_at": "2026-09-13T20:43:32Z",
+        "workflow_run": {
+          "id": 34717913721,
+          "repository_id": 1339316644,
+          "head_repository_id": 1339316644,
+          "head_branch": "main",
+          "head_sha": "5cffab72499f74ea6d1f76b516adaef291eceaf7"
+        }
+      }
+    ],
+    "deployment": {
+      "url": "https://api.github.com/repos/InThuRain/atlas-incendios/deployments/6414182725",
+      "id": 6414182725,
+      "node_id": "DE_kwDOT9RZpM8AAAABflCpRQ",
+      "task": "deploy",
+      "original_environment": "github-pages",
+      "environment": "github-pages",
+      "description": null,
+      "created_at": "2026-09-12T20:43:15Z",
+      "updated_at": "2026-09-12T20:44:14Z",
+      "statuses_url": "https://api.github.com/repos/InThuRain/atlas-incendios/deployments/6414182725/statuses",
+      "repository_url": "https://api.github.com/repos/InThuRain/atlas-incendios",
+      "creator": {
+        "login": "InThuRain",
+        "id": 20360276,
+        "node_id": "MDQ6VXNlcjIwMzYwMjc2",
+        "avatar_url": "https://avatars.githubusercontent.com/u/20360276?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/InThuRain",
+        "html_url": "https://github.com/InThuRain",
+        "followers_url": "https://api.github.com/users/InThuRain/followers",
+        "following_url": "https://api.github.com/users/InThuRain/following{/other_user}",
+        "gists_url": "https://api.github.com/users/InThuRain/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/InThuRain/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/InThuRain/subscriptions",
+        "organizations_url": "https://api.github.com/users/InThuRain/orgs",
+        "repos_url": "https://api.github.com/users/InThuRain/repos",
+        "events_url": "https://api.github.com/users/InThuRain/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/InThuRain/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "sha": "5cffab72499f74ea6d1f76b516adaef291eceaf7",
+      "ref": "main",
+      "payload": {},
+      "transient_environment": false,
+      "production_environment": false,
+      "performed_via_github_app": {
+        "id": 15368,
+        "client_id": "Iv1.05c79e9ad1f6bdfa",
+        "slug": "github-actions",
+        "node_id": "MDM6QXBwMTUzNjg=",
+        "owner": {
+          "login": "github",
+          "id": 9919,
+          "node_id": "MDEyOk9yZ2FuaXphdGlvbjk5MTk=",
+          "avatar_url": "https://avatars.githubusercontent.com/u/9919?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/github",
+          "html_url": "https://github.com/github",
+          "followers_url": "https://api.github.com/users/github/followers",
+          "following_url": "https://api.github.com/users/github/following{/other_user}",
+          "gists_url": "https://api.github.com/users/github/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/github/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/github/subscriptions",
+          "organizations_url": "https://api.github.com/users/github/orgs",
+          "repos_url": "https://api.github.com/users/github/repos",
+          "events_url": "https://api.github.com/users/github/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/github/received_events",
+          "type": "Organization",
+          "user_view_type": "public",
+          "site_admin": false
+        },
+        "name": "GitHub Actions",
+        "description": "Automate your workflow from idea to production",
+        "external_url": "https://help.github.com/en/actions",
+        "html_url": "https://github.com/apps/github-actions",
+        "created_at": "2018-07-30T09:30:17Z",
+        "updated_at": "2026-06-18T16:17:48Z",
+        "permissions": {
+          "actions": "write",
+          "administration": "read",
+          "artifact_metadata": "write",
+          "attestations": "write",
+          "checks": "write",
+          "code_quality": "write",
+          "contents": "write",
+          "copilot_requests": "write",
+          "deployments": "write",
+          "discussions": "write",
+          "drives": "write",
+          "issues": "write",
+          "merge_queues": "write",
+          "metadata": "read",
+          "models": "read",
+          "packages": "write",
+          "pages": "write",
+          "pull_requests": "write",
+          "repository_hooks": "write",
+          "repository_projects": "write",
+          "security_events": "write",
+          "statuses": "write",
+          "vulnerability_alerts": "read"
+        },
+        "events": [
+          "branch_protection_rule",
+          "check_run",
+          "check_suite",
+          "create",
+          "delete",
+          "deployment",
+          "deployment_status",
+          "discussion",
+          "discussion_comment",
+          "fork",
+          "gollum",
+          "issues",
+          "issue_comment",
+          "label",
+          "merge_group",
+          "milestone",
+          "page_build",
+          "public",
+          "pull_request",
+          "pull_request_review",
+          "pull_request_review_comment",
+          "push",
+          "registry_package",
+          "release",
+          "repository",
+          "repository_dispatch",
+          "status",
+          "watch",
+          "workflow_dispatch",
+          "workflow_run"
+        ]
+      }
+    },
+    "deployment_status": {
+      "url": "https://api.github.com/repos/InThuRain/atlas-incendios/deployments/6414182725/statuses/18272556847",
+      "id": 18272556847,
+      "node_id": "DES_kwDOT9RZpM8AAAAEQSEXLw",
+      "state": "success",
+      "creator": {
+        "login": "InThuRain",
+        "id": 20360276,
+        "node_id": "MDQ6VXNlcjIwMzYwMjc2",
+        "avatar_url": "https://avatars.githubusercontent.com/u/20360276?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/InThuRain",
+        "html_url": "https://github.com/InThuRain",
+        "followers_url": "https://api.github.com/users/InThuRain/followers",
+        "following_url": "https://api.github.com/users/InThuRain/following{/other_user}",
+        "gists_url": "https://api.github.com/users/InThuRain/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/InThuRain/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/InThuRain/subscriptions",
+        "organizations_url": "https://api.github.com/users/InThuRain/orgs",
+        "repos_url": "https://api.github.com/users/InThuRain/repos",
+        "events_url": "https://api.github.com/users/InThuRain/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/InThuRain/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "description": "",
+      "environment": "github-pages",
+      "target_url": "https://github.com/InThuRain/atlas-incendios/actions/runs/34717913721/job/103618356417",
+      "created_at": "2026-09-12T20:44:14Z",
+      "updated_at": "2026-09-12T20:44:14Z",
+      "deployment_url": "https://api.github.com/repos/InThuRain/atlas-incendios/deployments/6414182725",
+      "repository_url": "https://api.github.com/repos/InThuRain/atlas-incendios",
+      "environment_url": "https://inthurain.github.io/atlas-incendios/",
+      "log_url": "https://github.com/InThuRain/atlas-incendios/actions/runs/34717913721/job/103618356417",
+      "performed_via_github_app": null
+    },
+    "duration_seconds": 60
+  },
+  "rollback": {
+    "required": false,
+    "executed": false,
+    "result": "NOT_NEEDED"
+  },
+  "tag_status": {
+    "v1_0_0_unchanged": true,
+    "receipt": "9c951b0c6bc2e66cd3e1613fd8f6a14e0fd101aa\trefs/tags/national-product-v1.0.0\n534cfe37a7120904f48c87bba71b4fcb7423bb5f\trefs/tags/national-product-v1.0.0^{}",
+    "v1_0_1_created": false,
+    "recommended_tag": "national-product-v1.0.1",
+    "future_tag_target": "5cffab72499f74ea6d1f76b516adaef291eceaf7"
+  },
+  "next_phase": "ES-4HOT4_V1_0_1_POST_RELEASE_CHECKPOINT",
+  "authorization": "Explicit user authorization in chat for push through 5cffab7, manual production dispatch and critical rollback; no tag authorized.",
+  "runner": {
+    "archive": {
+      "actual": {
+        "bytes": 431671665,
+        "sha256": "0ba62338927b76c56f5bcde5446cfd62a712d92e5edbeaf6815c1200383e9cba"
+      },
+      "failures": [],
+      "path": "national-product-hot1-candidate.tar.gz",
+      "valid": true
+    },
+    "site": {
+      "actual": {
+        "asset_manifest_sha256": "5e0610b121f54550b852460053b9c1d5c35e6be2311363f53fcbe9817762f3a9",
+        "payload_file_count": 499,
+        "payload_fingerprint": "7d85b4f07dd5901452b028831d8d33c4cbf8567a9732aca74d44981ba60fc992",
+        "payload_total_bytes": 812322370,
+        "site_file_count": 501,
+        "site_identity_sha256": "6ae69340c9fb676d2331e9afbf1dd98569873b43119f73e2672665122fc4e30a",
+        "site_total_bytes": 812542848
+      },
+      "checker_failures": [],
+      "failures": [],
+      "staging_references": 0,
+      "valid": true
+    },
+    "valid": true
+  },
+  "remote_identity": {
+    "root": {
+      "status": 200,
+      "sha256": "178390918306783d154025baf556191577902b19257fcb541f799006b07b9430"
+    },
+    "asset-manifest.json": {
+      "status": 200,
+      "sha256": "5e0610b121f54550b852460053b9c1d5c35e6be2311363f53fcbe9817762f3a9"
+    },
+    "site-identity.json": {
+      "status": 200,
+      "sha256": "6ae69340c9fb676d2331e9afbf1dd98569873b43119f73e2672665122fc4e30a"
+    }
+  },
+  "single_fire_click": {
+    "passed": true,
+    "before": {
+      "territory": {
+        "territory_scope": "autonomous_community",
+        "autonomous_community_id": "ES:CCAA:10",
+        "province_id": null,
+        "municipality_id": null
+      },
+      "selection": {
+        "selected_geometry_id": null,
+        "selected_geometry_year": null,
+        "selected_egif_record_id": null,
+        "selected_egif_year": null,
+        "selected_icv_geometry_id": null,
+        "selected_icv_geometry_year": null,
+        "selected_icv_record_id": null,
+        "selected_effis_geometry_id": null,
+        "selected_effis_geometry_year": null
+      },
+      "popup": {
+        "active": false,
+        "kind": null,
+        "hit_count": 0,
+        "source_id": null,
+        "geometry_id": null,
+        "anchor": null
+      }
+    },
+    "after": {
+      "territory": {
+        "territory_scope": "autonomous_community",
+        "autonomous_community_id": "ES:CCAA:10",
+        "province_id": null,
+        "municipality_id": null
+      },
+      "selection": {
+        "selected_geometry_id": null,
+        "selected_geometry_year": null,
+        "selected_egif_record_id": null,
+        "selected_egif_year": null,
+        "selected_icv_geometry_id": "gva:geometry:1995:3:783",
+        "selected_icv_geometry_year": 1995,
+        "selected_icv_record_id": "gva:pif-cv:1995CS5050",
+        "selected_effis_geometry_id": null,
+        "selected_effis_geometry_year": null
+      },
+      "popup": {
+        "active": true,
+        "kind": "feature",
+        "hit_count": 1,
+        "source_id": "icv",
+        "geometry_id": "gva:geometry:1995:3:783",
+        "anchor": {
+          "lng": -0.49119099999703053,
+          "lat": 40.09180366166885
+        }
+      }
+    },
+    "expected_geometry": "gva:geometry:1995:3:783",
+    "territory_unchanged": true,
+    "hover": {
+      "cursor": "pointer",
+      "highlight_filters": [
+        {
+          "layer": "icv-hover",
+          "filter": [
+            "==",
+            [
+              "get",
+              "geometry_id"
+            ],
+            "__none__"
+          ]
+        },
+        {
+          "layer": "esfire30-hover",
+          "filter": [
+            "==",
+            [
+              "get",
+              "geometry_id"
+            ],
+            "__none__"
+          ]
+        },
+        {
+          "layer": "effis-hover",
+          "filter": [
+            "==",
+            [
+              "get",
+              "geometry_id"
+            ],
+            "__none__"
+          ]
+        }
+      ]
+    },
+    "human_popup": {
+      "state": {
+        "active": true,
+        "kind": "feature",
+        "hit_count": 1,
+        "source_id": "icv",
+        "geometry_id": "gva:geometry:1995:3:783",
+        "anchor": {
+          "lng": -0.49119099999703053,
+          "lat": 40.09180366166885
+        }
+      },
+      "text": "Incendio documentado\nICV · Generalitat Valenciana\nCerrar\nFecha\n11/05/1995\nMunicipio\nArañuel\nProvincia\nCastellón/Castelló\nSuperficie\n5 ha\nCausa\nRayo\nVer detalles",
+      "details": "Ver detalles",
+      "role": "dialog",
+      "close": "Cerrar información del perímetro",
+      "shell": "true",
+      "sourceSelections": {
+        "from": 1995,
+        "to": 1995,
+        "territory_scope": "autonomous_community",
+        "autonomous_community_id": "ES:CCAA:10",
+        "province_id": null,
+        "municipality_id": null,
+        "esfire30_visible": false,
+        "egif_visible": true,
+        "icv_visible": true,
+        "effis_visible": false,
+        "selected_geometry_id": null,
+        "selected_geometry_year": null,
+        "selected_egif_record_id": null,
+        "selected_egif_year": null,
+        "selected_icv_geometry_id": "gva:geometry:1995:3:783",
+        "selected_icv_geometry_year": 1995,
+        "selected_icv_record_id": "gva:pif-cv:1995CS5050",
+        "selected_effis_geometry_id": null,
+        "selected_effis_geometry_year": null,
+        "filters": [],
+        "center": [
+          -0.491191,
+          40.091738
+        ],
+        "zoom": 12
+      },
+      "errors": []
+    },
+    "background": {
+      "point": {
+        "x": 320,
+        "y": 84,
+        "point": {
+          "x": 320,
+          "y": 16
+        },
+        "lngLat": {
+          "lng": -0.5239783229959016,
+          "lat": 40.13486406511211
+        },
+        "hits": [],
+        "territories": [
+          {
+            "layer": "official-province-territories-fill",
+            "properties": {
+              "territory_id": "ES:PROV:12",
+              "parent_id": "ES:CCAA:10",
+              "source_code": "34101200000",
+              "official_name": "Castellón/Castelló",
+              "source_name": "Castelló/Castellón",
+              "territory_type": "province",
+              "bounds": "[-0.8462969,39.7146978,0.6903109,40.7886312]"
+            }
+          },
+          {
+            "layer": "official-ccaa-territories-fill",
+            "properties": {
+              "territory_id": "ES:CCAA:10",
+              "source_code": "34100000000",
+              "official_name": "Comunitat Valenciana",
+              "source_name": "Comunitat Valenciana",
+              "territory_type": "autonomous_community",
+              "bounds": "[-1.528778,37.8437849,0.6903133,40.7886312]"
+            }
+          }
+        ]
+      },
+      "before": {
+        "territory": {
+          "territory_scope": "autonomous_community",
+          "autonomous_community_id": "ES:CCAA:10",
+          "province_id": null,
+          "municipality_id": null
+        },
+        "selection": {
+          "selected_geometry_id": null,
+          "selected_geometry_year": null,
+          "selected_egif_record_id": null,
+          "selected_egif_year": null,
+          "selected_icv_geometry_id": "gva:geometry:1995:3:783",
+          "selected_icv_geometry_year": 1995,
+          "selected_icv_record_id": "gva:pif-cv:1995CS5050",
+          "selected_effis_geometry_id": null,
+          "selected_effis_geometry_year": null
+        },
+        "popup": {
+          "active": false,
+          "kind": null,
+          "hit_count": 0,
+          "source_id": null,
+          "geometry_id": null,
+          "anchor": null
+        }
+      },
+      "after": {
+        "territory": {
+          "territory_scope": "province",
+          "autonomous_community_id": "ES:CCAA:10",
+          "province_id": "ES:PROV:12",
+          "municipality_id": null
+        },
+        "selection": {
+          "selected_geometry_id": null,
+          "selected_geometry_year": null,
+          "selected_egif_record_id": null,
+          "selected_egif_year": null,
+          "selected_icv_geometry_id": null,
+          "selected_icv_geometry_year": null,
+          "selected_icv_record_id": null,
+          "selected_effis_geometry_id": null,
+          "selected_effis_geometry_year": null
+        },
+        "popup": {
+          "active": false,
+          "kind": null,
+          "hit_count": 0,
+          "source_id": null,
+          "geometry_id": null,
+          "anchor": null
+        }
+      },
+      "passed": true
+    },
+    "errors": [],
+    "new_resource_urls": []
+  },
+  "province_fire_click": {
+    "passed": true,
+    "before": {
+      "territory": {
+        "territory_scope": "province",
+        "autonomous_community_id": "ES:CCAA:10",
+        "province_id": "ES:PROV:03",
+        "municipality_id": null
+      },
+      "selection": {
+        "selected_geometry_id": null,
+        "selected_geometry_year": null,
+        "selected_egif_record_id": null,
+        "selected_egif_year": null,
+        "selected_icv_geometry_id": null,
+        "selected_icv_geometry_year": null,
+        "selected_icv_record_id": null,
+        "selected_effis_geometry_id": null,
+        "selected_effis_geometry_year": null
+      },
+      "popup": {
+        "active": false,
+        "kind": null,
+        "hit_count": 0,
+        "source_id": null,
+        "geometry_id": null,
+        "anchor": null
+      }
+    },
+    "after": {
+      "territory": {
+        "territory_scope": "province",
+        "autonomous_community_id": "ES:CCAA:10",
+        "province_id": "ES:PROV:03",
+        "municipality_id": null
+      },
+      "selection": {
+        "selected_geometry_id": null,
+        "selected_geometry_year": null,
+        "selected_egif_record_id": null,
+        "selected_egif_year": null,
+        "selected_icv_geometry_id": "gva:geometry:2016:24:11828",
+        "selected_icv_geometry_year": 2016,
+        "selected_icv_record_id": "gva:pif-cv:2016AL0074",
+        "selected_effis_geometry_id": null,
+        "selected_effis_geometry_year": null
+      },
+      "popup": {
+        "active": true,
+        "kind": "feature",
+        "hit_count": 1,
+        "source_id": "icv",
+        "geometry_id": "gva:geometry:2016:24:11828",
+        "anchor": {
+          "lng": 0.17708500000159688,
+          "lat": 38.75146893667619
+        }
+      }
+    },
+    "expected_geometry": "gva:geometry:2016:24:11828",
+    "territory_unchanged": true,
+    "hover": {
+      "cursor": "pointer",
+      "highlight_filters": [
+        {
+          "layer": "icv-hover",
+          "filter": [
+            "==",
+            [
+              "get",
+              "geometry_id"
+            ],
+            "__none__"
+          ]
+        },
+        {
+          "layer": "esfire30-hover",
+          "filter": [
+            "==",
+            [
+              "get",
+              "geometry_id"
+            ],
+            "__none__"
+          ]
+        },
+        {
+          "layer": "effis-hover",
+          "filter": [
+            "==",
+            [
+              "get",
+              "geometry_id"
+            ],
+            "__none__"
+          ]
+        }
+      ]
+    },
+    "human_popup": {
+      "state": {
+        "active": true,
+        "kind": "feature",
+        "hit_count": 1,
+        "source_id": "icv",
+        "geometry_id": "gva:geometry:2016:24:11828",
+        "anchor": {
+          "lng": 0.17708500000159688,
+          "lat": 38.75146893667619
+        }
+      },
+      "text": "Incendio documentado\nICV · Generalitat Valenciana\nCerrar\nFecha\n04/09/2016\nParaje\nCumbres del Sol\nMunicipio\nel Poble Nou de Benitatxell\nProvincia\nALICANTE\nSuperficie\n689,3 ha\nCausa\nNegligencia\nGIF\nSí\nVer detalles",
+      "details": "Ver detalles",
+      "role": "dialog",
+      "close": "Cerrar información del perímetro",
+      "shell": "true",
+      "sourceSelections": {
+        "from": 2016,
+        "to": 2016,
+        "territory_scope": "province",
+        "autonomous_community_id": "ES:CCAA:10",
+        "province_id": "ES:PROV:03",
+        "municipality_id": null,
+        "esfire30_visible": false,
+        "egif_visible": true,
+        "icv_visible": true,
+        "effis_visible": false,
+        "selected_geometry_id": null,
+        "selected_geometry_year": null,
+        "selected_egif_record_id": null,
+        "selected_egif_year": null,
+        "selected_icv_geometry_id": "gva:geometry:2016:24:11828",
+        "selected_icv_geometry_year": 2016,
+        "selected_icv_record_id": "gva:pif-cv:2016AL0074",
+        "selected_effis_geometry_id": null,
+        "selected_effis_geometry_year": null,
+        "filters": [],
+        "center": [
+          0.177085,
+          38.751402
+        ],
+        "zoom": 12
+      },
+      "errors": []
+    },
+    "background": {
+      "point": {
+        "x": 320,
+        "y": 84,
+        "point": {
+          "x": 320,
+          "y": 16
+        },
+        "lngLat": {
+          "lng": 0.14429767700266893,
+          "lat": 38.79536586903663
+        },
+        "hits": [],
+        "territories": [
+          {
+            "layer": "official-municipality-territories-fill",
+            "properties": {
+              "autonomous_community_id": "ES:CCAA:10",
+              "municipality_id": "ES:MUN:03082",
+              "official_name": "Xàbia/Jávea",
+              "province_id": "ES:PROV:03"
+            }
+          },
+          {
+            "layer": "official-province-territories-fill",
+            "properties": {
+              "territory_id": "ES:PROV:03",
+              "parent_id": "ES:CCAA:10",
+              "source_code": "34100300000",
+              "official_name": "Alicante/Alacant",
+              "source_name": "Alacant/Alicante",
+              "territory_type": "province",
+              "bounds": "[-1.0941618,37.8437789,0.2340674,38.8873914]"
+            }
+          },
+          {
+            "layer": "official-ccaa-territories-fill",
+            "properties": {
+              "territory_id": "ES:CCAA:10",
+              "source_code": "34100000000",
+              "official_name": "Comunitat Valenciana",
+              "source_name": "Comunitat Valenciana",
+              "territory_type": "autonomous_community",
+              "bounds": "[-1.528778,37.8437849,0.6903133,40.7886312]"
+            }
+          }
+        ]
+      },
+      "before": {
+        "territory": {
+          "territory_scope": "province",
+          "autonomous_community_id": "ES:CCAA:10",
+          "province_id": "ES:PROV:03",
+          "municipality_id": null
+        },
+        "selection": {
+          "selected_geometry_id": null,
+          "selected_geometry_year": null,
+          "selected_egif_record_id": null,
+          "selected_egif_year": null,
+          "selected_icv_geometry_id": "gva:geometry:2016:24:11828",
+          "selected_icv_geometry_year": 2016,
+          "selected_icv_record_id": "gva:pif-cv:2016AL0074",
+          "selected_effis_geometry_id": null,
+          "selected_effis_geometry_year": null
+        },
+        "popup": {
+          "active": false,
+          "kind": null,
+          "hit_count": 0,
+          "source_id": null,
+          "geometry_id": null,
+          "anchor": null
+        }
+      },
+      "after": {
+        "territory": {
+          "territory_scope": "municipality",
+          "autonomous_community_id": "ES:CCAA:10",
+          "province_id": "ES:PROV:03",
+          "municipality_id": "ES:MUN:03082"
+        },
+        "selection": {
+          "selected_geometry_id": null,
+          "selected_geometry_year": null,
+          "selected_egif_record_id": null,
+          "selected_egif_year": null,
+          "selected_icv_geometry_id": null,
+          "selected_icv_geometry_year": null,
+          "selected_icv_record_id": null,
+          "selected_effis_geometry_id": null,
+          "selected_effis_geometry_year": null
+        },
+        "popup": {
+          "active": false,
+          "kind": null,
+          "hit_count": 0,
+          "source_id": null,
+          "geometry_id": null,
+          "anchor": null
+        }
+      },
+      "passed": true
+    },
+    "errors": [],
+    "new_resource_urls": []
+  },
+  "municipal_fire_click": {
+    "passed": true,
+    "before": {
+      "territory": {
+        "territory_scope": "municipality",
+        "autonomous_community_id": "ES:CCAA:10",
+        "province_id": "ES:PROV:03",
+        "municipality_id": "ES:MUN:03042"
+      },
+      "selection": {
+        "selected_geometry_id": null,
+        "selected_geometry_year": null,
+        "selected_egif_record_id": null,
+        "selected_egif_year": null,
+        "selected_icv_geometry_id": null,
+        "selected_icv_geometry_year": null,
+        "selected_icv_record_id": null,
+        "selected_effis_geometry_id": null,
+        "selected_effis_geometry_year": null
+      },
+      "popup": {
+        "active": false,
+        "kind": null,
+        "hit_count": 0,
+        "source_id": null,
+        "geometry_id": null,
+        "anchor": null
+      }
+    },
+    "after": {
+      "territory": {
+        "territory_scope": "municipality",
+        "autonomous_community_id": "ES:CCAA:10",
+        "province_id": "ES:PROV:03",
+        "municipality_id": "ES:MUN:03042"
+      },
+      "selection": {
+        "selected_geometry_id": null,
+        "selected_geometry_year": null,
+        "selected_egif_record_id": null,
+        "selected_egif_year": null,
+        "selected_icv_geometry_id": "gva:geometry:2016:24:11828",
+        "selected_icv_geometry_year": 2016,
+        "selected_icv_record_id": "gva:pif-cv:2016AL0074",
+        "selected_effis_geometry_id": null,
+        "selected_effis_geometry_year": null
+      },
+      "popup": {
+        "active": true,
+        "kind": "feature",
+        "hit_count": 1,
+        "source_id": "icv",
+        "geometry_id": "gva:geometry:2016:24:11828",
+        "anchor": {
+          "lng": 0.17708500000159688,
+          "lat": 38.75146893667619
+        }
+      }
+    },
+    "expected_geometry": "gva:geometry:2016:24:11828",
+    "territory_unchanged": true,
+    "hover": {
+      "cursor": "pointer",
+      "highlight_filters": [
+        {
+          "layer": "icv-hover",
+          "filter": [
+            "==",
+            [
+              "get",
+              "geometry_id"
+            ],
+            "__none__"
+          ]
+        },
+        {
+          "layer": "esfire30-hover",
+          "filter": [
+            "==",
+            [
+              "get",
+              "geometry_id"
+            ],
+            "__none__"
+          ]
+        },
+        {
+          "layer": "effis-hover",
+          "filter": [
+            "==",
+            [
+              "get",
+              "geometry_id"
+            ],
+            "__none__"
+          ]
+        }
+      ]
+    },
+    "human_popup": {
+      "state": {
+        "active": true,
+        "kind": "feature",
+        "hit_count": 1,
+        "source_id": "icv",
+        "geometry_id": "gva:geometry:2016:24:11828",
+        "anchor": {
+          "lng": 0.17708500000159688,
+          "lat": 38.75146893667619
+        }
+      },
+      "text": "Incendio documentado\nICV · Generalitat Valenciana\nCerrar\nFecha\n04/09/2016\nParaje\nCumbres del Sol\nMunicipio\nel Poble Nou de Benitatxell\nProvincia\nALICANTE\nSuperficie\n689,3 ha\nCausa\nNegligencia\nGIF\nSí\nVer detalles",
+      "details": "Ver detalles",
+      "role": "dialog",
+      "close": "Cerrar información del perímetro",
+      "shell": "true",
+      "sourceSelections": {
+        "from": 2016,
+        "to": 2016,
+        "territory_scope": "municipality",
+        "autonomous_community_id": "ES:CCAA:10",
+        "province_id": "ES:PROV:03",
+        "municipality_id": "ES:MUN:03042",
+        "esfire30_visible": false,
+        "egif_visible": true,
+        "icv_visible": true,
+        "effis_visible": false,
+        "selected_geometry_id": null,
+        "selected_geometry_year": null,
+        "selected_egif_record_id": null,
+        "selected_egif_year": null,
+        "selected_icv_geometry_id": "gva:geometry:2016:24:11828",
+        "selected_icv_geometry_year": 2016,
+        "selected_icv_record_id": "gva:pif-cv:2016AL0074",
+        "selected_effis_geometry_id": null,
+        "selected_effis_geometry_year": null,
+        "filters": [],
+        "center": [
+          0.177085,
+          38.751402
+        ],
+        "zoom": 12
+      },
+      "errors": []
+    },
+    "errors": [],
+    "new_resource_urls": []
+  },
+  "background_drill": {
+    "icv": {
+      "point": {
+        "x": 320,
+        "y": 84,
+        "point": {
+          "x": 320,
+          "y": 16
+        },
+        "lngLat": {
+          "lng": -0.5239783229959016,
+          "lat": 40.13486406511211
+        },
+        "hits": [],
+        "territories": [
+          {
+            "layer": "official-province-territories-fill",
+            "properties": {
+              "territory_id": "ES:PROV:12",
+              "parent_id": "ES:CCAA:10",
+              "source_code": "34101200000",
+              "official_name": "Castellón/Castelló",
+              "source_name": "Castelló/Castellón",
+              "territory_type": "province",
+              "bounds": "[-0.8462969,39.7146978,0.6903109,40.7886312]"
+            }
+          },
+          {
+            "layer": "official-ccaa-territories-fill",
+            "properties": {
+              "territory_id": "ES:CCAA:10",
+              "source_code": "34100000000",
+              "official_name": "Comunitat Valenciana",
+              "source_name": "Comunitat Valenciana",
+              "territory_type": "autonomous_community",
+              "bounds": "[-1.528778,37.8437849,0.6903133,40.7886312]"
+            }
+          }
+        ]
+      },
+      "before": {
+        "territory": {
+          "territory_scope": "autonomous_community",
+          "autonomous_community_id": "ES:CCAA:10",
+          "province_id": null,
+          "municipality_id": null
+        },
+        "selection": {
+          "selected_geometry_id": null,
+          "selected_geometry_year": null,
+          "selected_egif_record_id": null,
+          "selected_egif_year": null,
+          "selected_icv_geometry_id": "gva:geometry:1995:3:783",
+          "selected_icv_geometry_year": 1995,
+          "selected_icv_record_id": "gva:pif-cv:1995CS5050",
+          "selected_effis_geometry_id": null,
+          "selected_effis_geometry_year": null
+        },
+        "popup": {
+          "active": false,
+          "kind": null,
+          "hit_count": 0,
+          "source_id": null,
+          "geometry_id": null,
+          "anchor": null
+        }
+      },
+      "after": {
+        "territory": {
+          "territory_scope": "province",
+          "autonomous_community_id": "ES:CCAA:10",
+          "province_id": "ES:PROV:12",
+          "municipality_id": null
+        },
+        "selection": {
+          "selected_geometry_id": null,
+          "selected_geometry_year": null,
+          "selected_egif_record_id": null,
+          "selected_egif_year": null,
+          "selected_icv_geometry_id": null,
+          "selected_icv_geometry_year": null,
+          "selected_icv_record_id": null,
+          "selected_effis_geometry_id": null,
+          "selected_effis_geometry_year": null
+        },
+        "popup": {
+          "active": false,
+          "kind": null,
+          "hit_count": 0,
+          "source_id": null,
+          "geometry_id": null,
+          "anchor": null
+        }
+      },
+      "passed": true
+    },
+    "province": {
+      "point": {
+        "x": 320,
+        "y": 84,
+        "point": {
+          "x": 320,
+          "y": 16
+        },
+        "lngLat": {
+          "lng": 0.14429767700266893,
+          "lat": 38.79536586903663
+        },
+        "hits": [],
+        "territories": [
+          {
+            "layer": "official-municipality-territories-fill",
+            "properties": {
+              "autonomous_community_id": "ES:CCAA:10",
+              "municipality_id": "ES:MUN:03082",
+              "official_name": "Xàbia/Jávea",
+              "province_id": "ES:PROV:03"
+            }
+          },
+          {
+            "layer": "official-province-territories-fill",
+            "properties": {
+              "territory_id": "ES:PROV:03",
+              "parent_id": "ES:CCAA:10",
+              "source_code": "34100300000",
+              "official_name": "Alicante/Alacant",
+              "source_name": "Alacant/Alicante",
+              "territory_type": "province",
+              "bounds": "[-1.0941618,37.8437789,0.2340674,38.8873914]"
+            }
+          },
+          {
+            "layer": "official-ccaa-territories-fill",
+            "properties": {
+              "territory_id": "ES:CCAA:10",
+              "source_code": "34100000000",
+              "official_name": "Comunitat Valenciana",
+              "source_name": "Comunitat Valenciana",
+              "territory_type": "autonomous_community",
+              "bounds": "[-1.528778,37.8437849,0.6903133,40.7886312]"
+            }
+          }
+        ]
+      },
+      "before": {
+        "territory": {
+          "territory_scope": "province",
+          "autonomous_community_id": "ES:CCAA:10",
+          "province_id": "ES:PROV:03",
+          "municipality_id": null
+        },
+        "selection": {
+          "selected_geometry_id": null,
+          "selected_geometry_year": null,
+          "selected_egif_record_id": null,
+          "selected_egif_year": null,
+          "selected_icv_geometry_id": "gva:geometry:2016:24:11828",
+          "selected_icv_geometry_year": 2016,
+          "selected_icv_record_id": "gva:pif-cv:2016AL0074",
+          "selected_effis_geometry_id": null,
+          "selected_effis_geometry_year": null
+        },
+        "popup": {
+          "active": false,
+          "kind": null,
+          "hit_count": 0,
+          "source_id": null,
+          "geometry_id": null,
+          "anchor": null
+        }
+      },
+      "after": {
+        "territory": {
+          "territory_scope": "municipality",
+          "autonomous_community_id": "ES:CCAA:10",
+          "province_id": "ES:PROV:03",
+          "municipality_id": "ES:MUN:03082"
+        },
+        "selection": {
+          "selected_geometry_id": null,
+          "selected_geometry_year": null,
+          "selected_egif_record_id": null,
+          "selected_egif_year": null,
+          "selected_icv_geometry_id": null,
+          "selected_icv_geometry_year": null,
+          "selected_icv_record_id": null,
+          "selected_effis_geometry_id": null,
+          "selected_effis_geometry_year": null
+        },
+        "popup": {
+          "active": false,
+          "kind": null,
+          "hit_count": 0,
+          "source_id": null,
+          "geometry_id": null,
+          "anchor": null
+        }
+      },
+      "passed": true
+    },
+    "mobile": {
+      "point": {
+        "x": 200,
+        "y": 74.4375,
+        "point": {
+          "x": 200,
+          "y": 16
+        },
+        "lngLat": {
+          "lng": -0.4903326931162155,
+          "lat": 40.11281214250147
+        },
+        "hits": [],
+        "territories": [
+          {
+            "layer": "official-province-territories-fill",
+            "properties": {
+              "territory_id": "ES:PROV:12",
+              "parent_id": "ES:CCAA:10",
+              "source_code": "34101200000",
+              "official_name": "Castellón/Castelló",
+              "source_name": "Castelló/Castellón",
+              "territory_type": "province",
+              "bounds": "[-0.8462969,39.7146978,0.6903109,40.7886312]"
+            }
+          },
+          {
+            "layer": "official-ccaa-territories-fill",
+            "properties": {
+              "territory_id": "ES:CCAA:10",
+              "source_code": "34100000000",
+              "official_name": "Comunitat Valenciana",
+              "source_name": "Comunitat Valenciana",
+              "territory_type": "autonomous_community",
+              "bounds": "[-1.528778,37.8437849,0.6903133,40.7886312]"
+            }
+          }
+        ]
+      },
+      "before": {
+        "territory": {
+          "territory_scope": "autonomous_community",
+          "autonomous_community_id": "ES:CCAA:10",
+          "province_id": null,
+          "municipality_id": null
+        },
+        "selection": {
+          "selected_geometry_id": null,
+          "selected_geometry_year": null,
+          "selected_egif_record_id": null,
+          "selected_egif_year": null,
+          "selected_icv_geometry_id": "gva:geometry:1995:3:783",
+          "selected_icv_geometry_year": 1995,
+          "selected_icv_record_id": "gva:pif-cv:1995CS5050",
+          "selected_effis_geometry_id": null,
+          "selected_effis_geometry_year": null
+        },
+        "popup": {
+          "active": false,
+          "kind": null,
+          "hit_count": 0,
+          "source_id": null,
+          "geometry_id": null,
+          "anchor": null
+        }
+      },
+      "after": {
+        "territory": {
+          "territory_scope": "province",
+          "autonomous_community_id": "ES:CCAA:10",
+          "province_id": "ES:PROV:12",
+          "municipality_id": null
+        },
+        "selection": {
+          "selected_geometry_id": null,
+          "selected_geometry_year": null,
+          "selected_egif_record_id": null,
+          "selected_egif_year": null,
+          "selected_icv_geometry_id": null,
+          "selected_icv_geometry_year": null,
+          "selected_icv_record_id": null,
+          "selected_effis_geometry_id": null,
+          "selected_effis_geometry_year": null
+        },
+        "popup": {
+          "active": false,
+          "kind": null,
+          "hit_count": 0,
+          "source_id": null,
+          "geometry_id": null,
+          "anchor": null
+        }
+      },
+      "passed": true
+    }
+  },
+  "multi_hit": {
+    "passed": true,
+    "before": {
+      "territory": {
+        "territory_scope": "autonomous_community",
+        "autonomous_community_id": "ES:CCAA:10",
+        "province_id": null,
+        "municipality_id": null
+      },
+      "selection": {
+        "selected_geometry_id": null,
+        "selected_geometry_year": null,
+        "selected_egif_record_id": null,
+        "selected_egif_year": null,
+        "selected_icv_geometry_id": null,
+        "selected_icv_geometry_year": null,
+        "selected_icv_record_id": null,
+        "selected_effis_geometry_id": null,
+        "selected_effis_geometry_year": null
+      },
+      "popup": {
+        "active": false,
+        "kind": null,
+        "hit_count": 0,
+        "source_id": null,
+        "geometry_id": null,
+        "anchor": null
+      }
+    },
+    "after": {
+      "territory": {
+        "territory_scope": "autonomous_community",
+        "autonomous_community_id": "ES:CCAA:10",
+        "province_id": null,
+        "municipality_id": null
+      },
+      "selection": {
+        "selected_geometry_id": null,
+        "selected_geometry_year": null,
+        "selected_egif_record_id": null,
+        "selected_egif_year": null,
+        "selected_icv_geometry_id": null,
+        "selected_icv_geometry_year": null,
+        "selected_icv_record_id": null,
+        "selected_effis_geometry_id": null,
+        "selected_effis_geometry_year": null
+      },
+      "popup": {
+        "active": true,
+        "kind": "chooser",
+        "hit_count": 2,
+        "source_id": null,
+        "geometry_id": null,
+        "anchor": {
+          "lng": -0.08239746093948952,
+          "lat": 38.88595542095831
+        }
+      }
+    },
+    "expected_geometry": "gva:geometry:1995:3:785",
+    "territory_unchanged": true,
+    "hover": {
+      "cursor": "pointer",
+      "highlight_filters": [
+        {
+          "layer": "icv-hover",
+          "filter": [
+            "==",
+            [
+              "get",
+              "geometry_id"
+            ],
+            "gva:geometry:1995:3:785"
+          ]
+        },
+        {
+          "layer": "esfire30-hover",
+          "filter": [
+            "==",
+            [
+              "get",
+              "geometry_id"
+            ],
+            "esfire30:v1:1995:60"
+          ]
+        },
+        {
+          "layer": "effis-hover",
+          "filter": [
+            "==",
+            [
+              "get",
+              "geometry_id"
+            ],
+            "__none__"
+          ]
+        }
+      ]
+    },
+    "human_popup": {
+      "state": {
+        "active": true,
+        "kind": "chooser",
+        "hit_count": 2,
+        "source_id": null,
+        "geometry_id": null,
+        "anchor": {
+          "lng": -0.08239746093948952,
+          "lat": 38.88595542095831
+        }
+      },
+      "text": "2 perímetros en este punto\nElige el que quieres consultar\nCerrar\n1995 · Perímetro Landsat\nESFire30\n1995 · Oliva\nICV · Generalitat Valenciana",
+      "details": null,
+      "role": "dialog",
+      "close": "Cerrar información del perímetro",
+      "shell": "true",
+      "sourceSelections": {
+        "from": 1995,
+        "to": 1995,
+        "territory_scope": "autonomous_community",
+        "autonomous_community_id": "ES:CCAA:10",
+        "province_id": null,
+        "municipality_id": null,
+        "esfire30_visible": true,
+        "egif_visible": true,
+        "icv_visible": true,
+        "effis_visible": false,
+        "selected_geometry_id": null,
+        "selected_geometry_year": null,
+        "selected_egif_record_id": null,
+        "selected_egif_year": null,
+        "selected_icv_geometry_id": null,
+        "selected_icv_geometry_year": null,
+        "selected_icv_record_id": null,
+        "selected_effis_geometry_id": null,
+        "selected_effis_geometry_year": null,
+        "filters": [],
+        "center": [
+          -0.0823974609375,
+          38.88568817903612
+        ],
+        "zoom": 10
+      },
+      "errors": []
+    },
+    "errors": [],
+    "new_resource_urls": []
+  },
+  "sources": {
+    "icv": {
+      "passed": true,
+      "before": {
+        "territory": {
+          "territory_scope": "autonomous_community",
+          "autonomous_community_id": "ES:CCAA:10",
+          "province_id": null,
+          "municipality_id": null
+        },
+        "selection": {
+          "selected_geometry_id": null,
+          "selected_geometry_year": null,
+          "selected_egif_record_id": null,
+          "selected_egif_year": null,
+          "selected_icv_geometry_id": null,
+          "selected_icv_geometry_year": null,
+          "selected_icv_record_id": null,
+          "selected_effis_geometry_id": null,
+          "selected_effis_geometry_year": null
+        },
+        "popup": {
+          "active": false,
+          "kind": null,
+          "hit_count": 0,
+          "source_id": null,
+          "geometry_id": null,
+          "anchor": null
+        }
+      },
+      "after": {
+        "territory": {
+          "territory_scope": "autonomous_community",
+          "autonomous_community_id": "ES:CCAA:10",
+          "province_id": null,
+          "municipality_id": null
+        },
+        "selection": {
+          "selected_geometry_id": null,
+          "selected_geometry_year": null,
+          "selected_egif_record_id": null,
+          "selected_egif_year": null,
+          "selected_icv_geometry_id": "gva:geometry:1995:3:783",
+          "selected_icv_geometry_year": 1995,
+          "selected_icv_record_id": "gva:pif-cv:1995CS5050",
+          "selected_effis_geometry_id": null,
+          "selected_effis_geometry_year": null
+        },
+        "popup": {
+          "active": true,
+          "kind": "feature",
+          "hit_count": 1,
+          "source_id": "icv",
+          "geometry_id": "gva:geometry:1995:3:783",
+          "anchor": {
+            "lng": -0.49119099999703053,
+            "lat": 40.09180366166885
+          }
+        }
+      },
+      "expected_geometry": "gva:geometry:1995:3:783",
+      "territory_unchanged": true,
+      "hover": {
+        "cursor": "pointer",
+        "highlight_filters": [
+          {
+            "layer": "icv-hover",
+            "filter": [
+              "==",
+              [
+                "get",
+                "geometry_id"
+              ],
+              "__none__"
+            ]
+          },
+          {
+            "layer": "esfire30-hover",
+            "filter": [
+              "==",
+              [
+                "get",
+                "geometry_id"
+              ],
+              "__none__"
+            ]
+          },
+          {
+            "layer": "effis-hover",
+            "filter": [
+              "==",
+              [
+                "get",
+                "geometry_id"
+              ],
+              "__none__"
+            ]
+          }
+        ]
+      },
+      "human_popup": {
+        "state": {
+          "active": true,
+          "kind": "feature",
+          "hit_count": 1,
+          "source_id": "icv",
+          "geometry_id": "gva:geometry:1995:3:783",
+          "anchor": {
+            "lng": -0.49119099999703053,
+            "lat": 40.09180366166885
+          }
+        },
+        "text": "Incendio documentado\nICV · Generalitat Valenciana\nCerrar\nFecha\n11/05/1995\nMunicipio\nArañuel\nProvincia\nCastellón/Castelló\nSuperficie\n5 ha\nCausa\nRayo\nVer detalles",
+        "details": "Ver detalles",
+        "role": "dialog",
+        "close": "Cerrar información del perímetro",
+        "shell": "true",
+        "sourceSelections": {
+          "from": 1995,
+          "to": 1995,
+          "territory_scope": "autonomous_community",
+          "autonomous_community_id": "ES:CCAA:10",
+          "province_id": null,
+          "municipality_id": null,
+          "esfire30_visible": false,
+          "egif_visible": true,
+          "icv_visible": true,
+          "effis_visible": false,
+          "selected_geometry_id": null,
+          "selected_geometry_year": null,
+          "selected_egif_record_id": null,
+          "selected_egif_year": null,
+          "selected_icv_geometry_id": "gva:geometry:1995:3:783",
+          "selected_icv_geometry_year": 1995,
+          "selected_icv_record_id": "gva:pif-cv:1995CS5050",
+          "selected_effis_geometry_id": null,
+          "selected_effis_geometry_year": null,
+          "filters": [],
+          "center": [
+            -0.491191,
+            40.091738
+          ],
+          "zoom": 12
+        },
+        "errors": []
+      },
+      "background": {
+        "point": {
+          "x": 320,
+          "y": 84,
+          "point": {
+            "x": 320,
+            "y": 16
+          },
+          "lngLat": {
+            "lng": -0.5239783229959016,
+            "lat": 40.13486406511211
+          },
+          "hits": [],
+          "territories": [
+            {
+              "layer": "official-province-territories-fill",
+              "properties": {
+                "territory_id": "ES:PROV:12",
+                "parent_id": "ES:CCAA:10",
+                "source_code": "34101200000",
+                "official_name": "Castellón/Castelló",
+                "source_name": "Castelló/Castellón",
+                "territory_type": "province",
+                "bounds": "[-0.8462969,39.7146978,0.6903109,40.7886312]"
+              }
+            },
+            {
+              "layer": "official-ccaa-territories-fill",
+              "properties": {
+                "territory_id": "ES:CCAA:10",
+                "source_code": "34100000000",
+                "official_name": "Comunitat Valenciana",
+                "source_name": "Comunitat Valenciana",
+                "territory_type": "autonomous_community",
+                "bounds": "[-1.528778,37.8437849,0.6903133,40.7886312]"
+              }
+            }
+          ]
+        },
+        "before": {
+          "territory": {
+            "territory_scope": "autonomous_community",
+            "autonomous_community_id": "ES:CCAA:10",
+            "province_id": null,
+            "municipality_id": null
+          },
+          "selection": {
+            "selected_geometry_id": null,
+            "selected_geometry_year": null,
+            "selected_egif_record_id": null,
+            "selected_egif_year": null,
+            "selected_icv_geometry_id": "gva:geometry:1995:3:783",
+            "selected_icv_geometry_year": 1995,
+            "selected_icv_record_id": "gva:pif-cv:1995CS5050",
+            "selected_effis_geometry_id": null,
+            "selected_effis_geometry_year": null
+          },
+          "popup": {
+            "active": false,
+            "kind": null,
+            "hit_count": 0,
+            "source_id": null,
+            "geometry_id": null,
+            "anchor": null
+          }
+        },
+        "after": {
+          "territory": {
+            "territory_scope": "province",
+            "autonomous_community_id": "ES:CCAA:10",
+            "province_id": "ES:PROV:12",
+            "municipality_id": null
+          },
+          "selection": {
+            "selected_geometry_id": null,
+            "selected_geometry_year": null,
+            "selected_egif_record_id": null,
+            "selected_egif_year": null,
+            "selected_icv_geometry_id": null,
+            "selected_icv_geometry_year": null,
+            "selected_icv_record_id": null,
+            "selected_effis_geometry_id": null,
+            "selected_effis_geometry_year": null
+          },
+          "popup": {
+            "active": false,
+            "kind": null,
+            "hit_count": 0,
+            "source_id": null,
+            "geometry_id": null,
+            "anchor": null
+          }
+        },
+        "passed": true
+      },
+      "errors": [],
+      "new_resource_urls": []
+    },
+    "esfire30": {
+      "passed": true,
+      "before": {
+        "territory": {
+          "territory_scope": "autonomous_community",
+          "autonomous_community_id": "ES:CCAA:10",
+          "province_id": null,
+          "municipality_id": null
+        },
+        "selection": {
+          "selected_geometry_id": null,
+          "selected_geometry_year": null,
+          "selected_egif_record_id": null,
+          "selected_egif_year": null,
+          "selected_icv_geometry_id": null,
+          "selected_icv_geometry_year": null,
+          "selected_icv_record_id": null,
+          "selected_effis_geometry_id": null,
+          "selected_effis_geometry_year": null
+        },
+        "popup": {
+          "active": false,
+          "kind": null,
+          "hit_count": 0,
+          "source_id": null,
+          "geometry_id": null,
+          "anchor": null
+        }
+      },
+      "after": {
+        "territory": {
+          "territory_scope": "autonomous_community",
+          "autonomous_community_id": "ES:CCAA:10",
+          "province_id": null,
+          "municipality_id": null
+        },
+        "selection": {
+          "selected_geometry_id": "esfire30:v1:1995:60",
+          "selected_geometry_year": 1995,
+          "selected_egif_record_id": null,
+          "selected_egif_year": null,
+          "selected_icv_geometry_id": null,
+          "selected_icv_geometry_year": null,
+          "selected_icv_record_id": null,
+          "selected_effis_geometry_id": null,
+          "selected_effis_geometry_year": null
+        },
+        "popup": {
+          "active": true,
+          "kind": "feature",
+          "hit_count": 1,
+          "source_id": "esfire30",
+          "geometry_id": "esfire30:v1:1995:60",
+          "anchor": {
+            "lng": -0.07965087890738687,
+            "lat": 38.88782608627119
+          }
+        }
+      },
+      "expected_geometry": "esfire30:v1:1995:60",
+      "territory_unchanged": true,
+      "hover": {
+        "cursor": "pointer",
+        "highlight_filters": [
+          {
+            "layer": "icv-hover",
+            "filter": [
+              "==",
+              [
+                "get",
+                "geometry_id"
+              ],
+              "__none__"
+            ]
+          },
+          {
+            "layer": "esfire30-hover",
+            "filter": [
+              "==",
+              [
+                "get",
+                "geometry_id"
+              ],
+              "__none__"
+            ]
+          },
+          {
+            "layer": "effis-hover",
+            "filter": [
+              "==",
+              [
+                "get",
+                "geometry_id"
+              ],
+              "__none__"
+            ]
+          }
+        ]
+      },
+      "human_popup": {
+        "state": {
+          "active": true,
+          "kind": "feature",
+          "hit_count": 1,
+          "source_id": "esfire30",
+          "geometry_id": "esfire30:v1:1995:60",
+          "anchor": {
+            "lng": -0.07965087890738687,
+            "lat": 38.88782608627119
+          }
+        },
+        "text": "Perímetro Landsat\nESFire30\nCerrar\nAño\n1995\nTerritorio consultado\nComunitat Valenciana\n\nPerímetro obtenido mediante imágenes Landsat; no constituye cartografía oficial.\n\nVer detalles",
+        "details": "Ver detalles",
+        "role": "dialog",
+        "close": "Cerrar información del perímetro",
+        "shell": "true",
+        "sourceSelections": {
+          "from": 1995,
+          "to": 1995,
+          "territory_scope": "autonomous_community",
+          "autonomous_community_id": "ES:CCAA:10",
+          "province_id": null,
+          "municipality_id": null,
+          "esfire30_visible": true,
+          "egif_visible": true,
+          "icv_visible": false,
+          "effis_visible": false,
+          "selected_geometry_id": "esfire30:v1:1995:60",
+          "selected_geometry_year": 1995,
+          "selected_egif_record_id": null,
+          "selected_egif_year": null,
+          "selected_icv_geometry_id": null,
+          "selected_icv_geometry_year": null,
+          "selected_icv_record_id": null,
+          "selected_effis_geometry_id": null,
+          "selected_effis_geometry_year": null,
+          "filters": [],
+          "center": [
+            -0.07965087890625,
+            38.88675714069592
+          ],
+          "zoom": 8
+        },
+        "errors": []
+      },
+      "errors": [],
+      "new_resource_urls": []
+    },
+    "effis": {
+      "passed": true,
+      "before": {
+        "territory": {
+          "territory_scope": "autonomous_community",
+          "autonomous_community_id": "ES:CCAA:10",
+          "province_id": null,
+          "municipality_id": null
+        },
+        "selection": {
+          "selected_geometry_id": null,
+          "selected_geometry_year": null,
+          "selected_egif_record_id": null,
+          "selected_egif_year": null,
+          "selected_icv_geometry_id": null,
+          "selected_icv_geometry_year": null,
+          "selected_icv_record_id": null,
+          "selected_effis_geometry_id": null,
+          "selected_effis_geometry_year": null
+        },
+        "popup": {
+          "active": false,
+          "kind": null,
+          "hit_count": 0,
+          "source_id": null,
+          "geometry_id": null,
+          "anchor": null
+        }
+      },
+      "after": {
+        "territory": {
+          "territory_scope": "autonomous_community",
+          "autonomous_community_id": "ES:CCAA:10",
+          "province_id": null,
+          "municipality_id": null
+        },
+        "selection": {
+          "selected_geometry_id": null,
+          "selected_geometry_year": null,
+          "selected_egif_record_id": null,
+          "selected_egif_year": null,
+          "selected_icv_geometry_id": null,
+          "selected_icv_geometry_year": null,
+          "selected_icv_record_id": null,
+          "selected_effis_geometry_id": "effis:rda:285361:f05085eba622a5bb",
+          "selected_effis_geometry_year": 2025
+        },
+        "popup": {
+          "active": true,
+          "kind": "feature",
+          "hit_count": 1,
+          "source_id": "effis",
+          "geometry_id": "effis:rda:285361:f05085eba622a5bb",
+          "anchor": {
+            "lng": -0.7585335000024145,
+            "lat": 38.19544095489317
+          }
+        }
+      },
+      "expected_geometry": "effis:rda:285361:f05085eba622a5bb",
+      "territory_unchanged": true,
+      "hover": {
+        "cursor": "pointer",
+        "highlight_filters": [
+          {
+            "layer": "icv-hover",
+            "filter": [
+              "==",
+              [
+                "get",
+                "geometry_id"
+              ],
+              "__none__"
+            ]
+          },
+          {
+            "layer": "esfire30-hover",
+            "filter": [
+              "==",
+              [
+                "get",
+                "geometry_id"
+              ],
+              "__none__"
+            ]
+          },
+          {
+            "layer": "effis-hover",
+            "filter": [
+              "==",
+              [
+                "get",
+                "geometry_id"
+              ],
+              "effis:rda:285361:f05085eba622a5bb"
+            ]
+          }
+        ]
+      },
+      "human_popup": {
+        "state": {
+          "active": true,
+          "kind": "feature",
+          "hit_count": 1,
+          "source_id": "effis",
+          "geometry_id": "effis:rda:285361:f05085eba622a5bb",
+          "anchor": {
+            "lng": -0.7585335000024145,
+            "lat": 38.19544095489317
+          }
+        },
+        "text": "Perímetro satelital\nEFFIS · Copernicus\nCerrar\nFecha\n30/10/2025\nMunicipio\nElx\nProvincia\nAlicante/Alacant\nTerritorio\nComunitat Valenciana\nSuperficie\n7 ha\n\nDato satelital provisional.\n\nVer detalles",
+        "details": "Ver detalles",
+        "role": "dialog",
+        "close": "Cerrar información del perímetro",
+        "shell": "true",
+        "sourceSelections": {
+          "from": 2025,
+          "to": 2025,
+          "territory_scope": "autonomous_community",
+          "autonomous_community_id": "ES:CCAA:10",
+          "province_id": null,
+          "municipality_id": null,
+          "esfire30_visible": false,
+          "egif_visible": false,
+          "icv_visible": false,
+          "effis_visible": true,
+          "selected_geometry_id": null,
+          "selected_geometry_year": null,
+          "selected_egif_record_id": null,
+          "selected_egif_year": null,
+          "selected_icv_geometry_id": null,
+          "selected_icv_geometry_year": null,
+          "selected_icv_record_id": null,
+          "selected_effis_geometry_id": "effis:rda:285361:f05085eba622a5bb",
+          "selected_effis_geometry_year": 2025,
+          "filters": [],
+          "center": [
+            -0.7585335,
+            38.1953735
+          ],
+          "zoom": 12
+        },
+        "errors": []
+      },
+      "errors": [],
+      "new_resource_urls": []
+    }
+  },
+  "recovered_2016": {
+    "passed": true,
+    "before": {
+      "territory": {
+        "territory_scope": "autonomous_community",
+        "autonomous_community_id": "ES:CCAA:10",
+        "province_id": null,
+        "municipality_id": null
+      },
+      "selection": {
+        "selected_geometry_id": null,
+        "selected_geometry_year": null,
+        "selected_egif_record_id": null,
+        "selected_egif_year": null,
+        "selected_icv_geometry_id": null,
+        "selected_icv_geometry_year": null,
+        "selected_icv_record_id": null,
+        "selected_effis_geometry_id": null,
+        "selected_effis_geometry_year": null
+      },
+      "popup": {
+        "active": false,
+        "kind": null,
+        "hit_count": 0,
+        "source_id": null,
+        "geometry_id": null,
+        "anchor": null
+      }
+    },
+    "after": {
+      "territory": {
+        "territory_scope": "autonomous_community",
+        "autonomous_community_id": "ES:CCAA:10",
+        "province_id": null,
+        "municipality_id": null
+      },
+      "selection": {
+        "selected_geometry_id": null,
+        "selected_geometry_year": null,
+        "selected_egif_record_id": null,
+        "selected_egif_year": null,
+        "selected_icv_geometry_id": "gva:geometry:2016:24:11828",
+        "selected_icv_geometry_year": 2016,
+        "selected_icv_record_id": "gva:pif-cv:2016AL0074",
+        "selected_effis_geometry_id": null,
+        "selected_effis_geometry_year": null
+      },
+      "popup": {
+        "active": true,
+        "kind": "feature",
+        "hit_count": 1,
+        "source_id": "icv",
+        "geometry_id": "gva:geometry:2016:24:11828",
+        "anchor": {
+          "lng": 0.17708500000159688,
+          "lat": 38.75146893667619
+        }
+      }
+    },
+    "expected_geometry": "gva:geometry:2016:24:11828",
+    "territory_unchanged": true,
+    "hover": {
+      "cursor": "pointer",
+      "highlight_filters": [
+        {
+          "layer": "icv-hover",
+          "filter": [
+            "==",
+            [
+              "get",
+              "geometry_id"
+            ],
+            "__none__"
+          ]
+        },
+        {
+          "layer": "esfire30-hover",
+          "filter": [
+            "==",
+            [
+              "get",
+              "geometry_id"
+            ],
+            "__none__"
+          ]
+        },
+        {
+          "layer": "effis-hover",
+          "filter": [
+            "==",
+            [
+              "get",
+              "geometry_id"
+            ],
+            "__none__"
+          ]
+        }
+      ]
+    },
+    "human_popup": {
+      "state": {
+        "active": true,
+        "kind": "feature",
+        "hit_count": 1,
+        "source_id": "icv",
+        "geometry_id": "gva:geometry:2016:24:11828",
+        "anchor": {
+          "lng": 0.17708500000159688,
+          "lat": 38.75146893667619
+        }
+      },
+      "text": "Incendio documentado\nICV · Generalitat Valenciana\nCerrar\nFecha\n04/09/2016\nParaje\nCumbres del Sol\nMunicipio\nel Poble Nou de Benitatxell\nProvincia\nALICANTE\nSuperficie\n689,3 ha\nCausa\nNegligencia\nGIF\nSí\nVer detalles",
+      "details": "Ver detalles",
+      "role": "dialog",
+      "close": "Cerrar información del perímetro",
+      "shell": "true",
+      "sourceSelections": {
+        "from": 2016,
+        "to": 2016,
+        "territory_scope": "autonomous_community",
+        "autonomous_community_id": "ES:CCAA:10",
+        "province_id": null,
+        "municipality_id": null,
+        "esfire30_visible": false,
+        "egif_visible": true,
+        "icv_visible": true,
+        "effis_visible": false,
+        "selected_geometry_id": null,
+        "selected_geometry_year": null,
+        "selected_egif_record_id": null,
+        "selected_egif_year": null,
+        "selected_icv_geometry_id": "gva:geometry:2016:24:11828",
+        "selected_icv_geometry_year": 2016,
+        "selected_icv_record_id": "gva:pif-cv:2016AL0074",
+        "selected_effis_geometry_id": null,
+        "selected_effis_geometry_year": null,
+        "filters": [],
+        "center": [
+          0.177085,
+          38.751402
+        ],
+        "zoom": 12
+      },
+      "errors": []
+    },
+    "errors": [],
+    "new_resource_urls": []
+  },
+  "2024AL0005": {
+    "double0": {
+      "passed": true,
+      "before": {
+        "territory": {
+          "territory_scope": "autonomous_community",
+          "autonomous_community_id": "ES:CCAA:10",
+          "province_id": null,
+          "municipality_id": null
+        },
+        "selection": {
+          "selected_geometry_id": null,
+          "selected_geometry_year": null,
+          "selected_egif_record_id": null,
+          "selected_egif_year": null,
+          "selected_icv_geometry_id": null,
+          "selected_icv_geometry_year": null,
+          "selected_icv_record_id": null,
+          "selected_effis_geometry_id": null,
+          "selected_effis_geometry_year": null
+        },
+        "popup": {
+          "active": false,
+          "kind": null,
+          "hit_count": 0,
+          "source_id": null,
+          "geometry_id": null,
+          "anchor": null
+        }
+      },
+      "after": {
+        "territory": {
+          "territory_scope": "autonomous_community",
+          "autonomous_community_id": "ES:CCAA:10",
+          "province_id": null,
+          "municipality_id": null
+        },
+        "selection": {
+          "selected_geometry_id": null,
+          "selected_geometry_year": null,
+          "selected_egif_record_id": null,
+          "selected_egif_year": null,
+          "selected_icv_geometry_id": null,
+          "selected_icv_geometry_year": null,
+          "selected_icv_record_id": null,
+          "selected_effis_geometry_id": null,
+          "selected_effis_geometry_year": null
+        },
+        "popup": {
+          "active": true,
+          "kind": "chooser",
+          "hit_count": 2,
+          "source_id": null,
+          "geometry_id": null,
+          "anchor": {
+            "lng": -0.7756000000016741,
+            "lat": 37.94770368373959
+          }
+        }
+      },
+      "expected_geometry": "gva:geometry:2024:121:13587",
+      "territory_unchanged": true,
+      "hover": {
+        "cursor": "pointer",
+        "highlight_filters": [
+          {
+            "layer": "icv-hover",
+            "filter": [
+              "==",
+              [
+                "get",
+                "geometry_id"
+              ],
+              "__none__"
+            ]
+          },
+          {
+            "layer": "esfire30-hover",
+            "filter": [
+              "==",
+              [
+                "get",
+                "geometry_id"
+              ],
+              "__none__"
+            ]
+          },
+          {
+            "layer": "effis-hover",
+            "filter": [
+              "==",
+              [
+                "get",
+                "geometry_id"
+              ],
+              "__none__"
+            ]
+          }
+        ]
+      },
+      "human_popup": {
+        "state": {
+          "active": true,
+          "kind": "chooser",
+          "hit_count": 2,
+          "source_id": null,
+          "geometry_id": null,
+          "anchor": {
+            "lng": -0.7756000000016741,
+            "lat": 37.94770368373959
+          }
+        },
+        "text": "2 perímetros en este punto\nElige el que quieres consultar\nCerrar\n2024 · Cabezo Redondo de la Balsa\nICV · Generalitat Valenciana\n2024 · Cabezo Redondo de la Balsa\nICV · Generalitat Valenciana",
+        "details": null,
+        "role": "dialog",
+        "close": "Cerrar información del perímetro",
+        "shell": "true",
+        "sourceSelections": {
+          "from": 2024,
+          "to": 2024,
+          "territory_scope": "autonomous_community",
+          "autonomous_community_id": "ES:CCAA:10",
+          "province_id": null,
+          "municipality_id": null,
+          "esfire30_visible": false,
+          "egif_visible": false,
+          "icv_visible": true,
+          "effis_visible": false,
+          "selected_geometry_id": null,
+          "selected_geometry_year": null,
+          "selected_egif_record_id": null,
+          "selected_egif_year": null,
+          "selected_icv_geometry_id": null,
+          "selected_icv_geometry_year": null,
+          "selected_icv_record_id": null,
+          "selected_effis_geometry_id": null,
+          "selected_effis_geometry_year": null,
+          "filters": [],
+          "center": [
+            -0.7756,
+            37.947636
+          ],
+          "zoom": 12
+        },
+        "errors": []
+      },
+      "chooser_selection": {
+        "after": {
+          "territory": {
+            "territory_scope": "autonomous_community",
+            "autonomous_community_id": "ES:CCAA:10",
+            "province_id": null,
+            "municipality_id": null
+          },
+          "selection": {
+            "selected_geometry_id": null,
+            "selected_geometry_year": null,
+            "selected_egif_record_id": null,
+            "selected_egif_year": null,
+            "selected_icv_geometry_id": "gva:geometry:2024:121:13587",
+            "selected_icv_geometry_year": 2024,
+            "selected_icv_record_id": "gva:pif-cv:2024AL0005",
+            "selected_effis_geometry_id": null,
+            "selected_effis_geometry_year": null
+          },
+          "popup": {
+            "active": true,
+            "kind": "feature",
+            "hit_count": 1,
+            "source_id": "icv",
+            "geometry_id": "gva:geometry:2024:121:13587",
+            "anchor": {
+              "lng": -0.7756000000016741,
+              "lat": 37.94770368373959
+            }
+          }
+        },
+        "human_popup": {
+          "state": {
+            "active": true,
+            "kind": "feature",
+            "hit_count": 1,
+            "source_id": "icv",
+            "geometry_id": "gva:geometry:2024:121:13587",
+            "anchor": {
+              "lng": -0.7756000000016741,
+              "lat": 37.94770368373959
+            }
+          },
+          "text": "Incendio documentado\nICV · Generalitat Valenciana\nCerrar\nFecha\n07/01/2024\nParaje\nCabezo Redondo de la Balsa\nMunicipio\nSan Miguel de Salinas\nProvincia\nAlicante/Alacant\nSuperficie\n0,01 ha\nCausa\nIntencionado\nVer detalles",
+          "details": "Ver detalles",
+          "role": "dialog",
+          "close": "Cerrar información del perímetro",
+          "shell": "true",
+          "sourceSelections": {
+            "from": 2024,
+            "to": 2024,
+            "territory_scope": "autonomous_community",
+            "autonomous_community_id": "ES:CCAA:10",
+            "province_id": null,
+            "municipality_id": null,
+            "esfire30_visible": false,
+            "egif_visible": false,
+            "icv_visible": true,
+            "effis_visible": false,
+            "selected_geometry_id": null,
+            "selected_geometry_year": null,
+            "selected_egif_record_id": null,
+            "selected_egif_year": null,
+            "selected_icv_geometry_id": "gva:geometry:2024:121:13587",
+            "selected_icv_geometry_year": 2024,
+            "selected_icv_record_id": "gva:pif-cv:2024AL0005",
+            "selected_effis_geometry_id": null,
+            "selected_effis_geometry_year": null,
+            "filters": [],
+            "center": [
+              -0.7756,
+              37.947636
+            ],
+            "zoom": 12
+          },
+          "errors": []
+        },
+        "passed": true
+      },
+      "errors": [],
+      "new_resource_urls": []
+    },
+    "double1": {
+      "passed": true,
+      "before": {
+        "territory": {
+          "territory_scope": "autonomous_community",
+          "autonomous_community_id": "ES:CCAA:10",
+          "province_id": null,
+          "municipality_id": null
+        },
+        "selection": {
+          "selected_geometry_id": null,
+          "selected_geometry_year": null,
+          "selected_egif_record_id": null,
+          "selected_egif_year": null,
+          "selected_icv_geometry_id": null,
+          "selected_icv_geometry_year": null,
+          "selected_icv_record_id": null,
+          "selected_effis_geometry_id": null,
+          "selected_effis_geometry_year": null
+        },
+        "popup": {
+          "active": false,
+          "kind": null,
+          "hit_count": 0,
+          "source_id": null,
+          "geometry_id": null,
+          "anchor": null
+        }
+      },
+      "after": {
+        "territory": {
+          "territory_scope": "autonomous_community",
+          "autonomous_community_id": "ES:CCAA:10",
+          "province_id": null,
+          "municipality_id": null
+        },
+        "selection": {
+          "selected_geometry_id": null,
+          "selected_geometry_year": null,
+          "selected_egif_record_id": null,
+          "selected_egif_year": null,
+          "selected_icv_geometry_id": null,
+          "selected_icv_geometry_year": null,
+          "selected_icv_record_id": null,
+          "selected_effis_geometry_id": null,
+          "selected_effis_geometry_year": null
+        },
+        "popup": {
+          "active": true,
+          "kind": "chooser",
+          "hit_count": 2,
+          "source_id": null,
+          "geometry_id": null,
+          "anchor": {
+            "lng": -0.7755840000009186,
+            "lat": 37.94771268373202
+          }
+        }
+      },
+      "expected_geometry": "gva:geometry:2024:121:13606",
+      "territory_unchanged": true,
+      "hover": {
+        "cursor": "pointer",
+        "highlight_filters": [
+          {
+            "layer": "icv-hover",
+            "filter": [
+              "==",
+              [
+                "get",
+                "geometry_id"
+              ],
+              "gva:geometry:2024:121:13606"
+            ]
+          },
+          {
+            "layer": "esfire30-hover",
+            "filter": [
+              "==",
+              [
+                "get",
+                "geometry_id"
+              ],
+              "__none__"
+            ]
+          },
+          {
+            "layer": "effis-hover",
+            "filter": [
+              "==",
+              [
+                "get",
+                "geometry_id"
+              ],
+              "__none__"
+            ]
+          }
+        ]
+      },
+      "human_popup": {
+        "state": {
+          "active": true,
+          "kind": "chooser",
+          "hit_count": 2,
+          "source_id": null,
+          "geometry_id": null,
+          "anchor": {
+            "lng": -0.7755840000009186,
+            "lat": 37.94771268373202
+          }
+        },
+        "text": "2 perímetros en este punto\nElige el que quieres consultar\nCerrar\n2024 · Cabezo Redondo de la Balsa\nICV · Generalitat Valenciana\n2024 · Cabezo Redondo de la Balsa\nICV · Generalitat Valenciana",
+        "details": null,
+        "role": "dialog",
+        "close": "Cerrar información del perímetro",
+        "shell": "true",
+        "sourceSelections": {
+          "from": 2024,
+          "to": 2024,
+          "territory_scope": "autonomous_community",
+          "autonomous_community_id": "ES:CCAA:10",
+          "province_id": null,
+          "municipality_id": null,
+          "esfire30_visible": false,
+          "egif_visible": false,
+          "icv_visible": true,
+          "effis_visible": false,
+          "selected_geometry_id": null,
+          "selected_geometry_year": null,
+          "selected_egif_record_id": null,
+          "selected_egif_year": null,
+          "selected_icv_geometry_id": null,
+          "selected_icv_geometry_year": null,
+          "selected_icv_record_id": null,
+          "selected_effis_geometry_id": null,
+          "selected_effis_geometry_year": null,
+          "filters": [],
+          "center": [
+            -0.775584,
+            37.947645
+          ],
+          "zoom": 12
+        },
+        "errors": []
+      },
+      "chooser_selection": {
+        "after": {
+          "territory": {
+            "territory_scope": "autonomous_community",
+            "autonomous_community_id": "ES:CCAA:10",
+            "province_id": null,
+            "municipality_id": null
+          },
+          "selection": {
+            "selected_geometry_id": null,
+            "selected_geometry_year": null,
+            "selected_egif_record_id": null,
+            "selected_egif_year": null,
+            "selected_icv_geometry_id": "gva:geometry:2024:121:13606",
+            "selected_icv_geometry_year": 2024,
+            "selected_icv_record_id": "gva:pif-cv:2024AL0005",
+            "selected_effis_geometry_id": null,
+            "selected_effis_geometry_year": null
+          },
+          "popup": {
+            "active": true,
+            "kind": "feature",
+            "hit_count": 1,
+            "source_id": "icv",
+            "geometry_id": "gva:geometry:2024:121:13606",
+            "anchor": {
+              "lng": -0.7755840000009186,
+              "lat": 37.94771268373202
+            }
+          }
+        },
+        "human_popup": {
+          "state": {
+            "active": true,
+            "kind": "feature",
+            "hit_count": 1,
+            "source_id": "icv",
+            "geometry_id": "gva:geometry:2024:121:13606",
+            "anchor": {
+              "lng": -0.7755840000009186,
+              "lat": 37.94771268373202
+            }
+          },
+          "text": "Incendio documentado\nICV · Generalitat Valenciana\nCerrar\nFecha\n07/01/2024\nParaje\nCabezo Redondo de la Balsa\nMunicipio\nSan Miguel de Salinas\nProvincia\nAlicante/Alacant\nSuperficie\n0,01 ha\nCausa\nIntencionado\nVer detalles",
+          "details": "Ver detalles",
+          "role": "dialog",
+          "close": "Cerrar información del perímetro",
+          "shell": "true",
+          "sourceSelections": {
+            "from": 2024,
+            "to": 2024,
+            "territory_scope": "autonomous_community",
+            "autonomous_community_id": "ES:CCAA:10",
+            "province_id": null,
+            "municipality_id": null,
+            "esfire30_visible": false,
+            "egif_visible": false,
+            "icv_visible": true,
+            "effis_visible": false,
+            "selected_geometry_id": null,
+            "selected_geometry_year": null,
+            "selected_egif_record_id": null,
+            "selected_egif_year": null,
+            "selected_icv_geometry_id": "gva:geometry:2024:121:13606",
+            "selected_icv_geometry_year": 2024,
+            "selected_icv_record_id": "gva:pif-cv:2024AL0005",
+            "selected_effis_geometry_id": null,
+            "selected_effis_geometry_year": null,
+            "filters": [],
+            "center": [
+              -0.775584,
+              37.947645
+            ],
+            "zoom": 12
+          },
+          "errors": []
+        },
+        "passed": true
+      },
+      "errors": [],
+      "new_resource_urls": []
+    }
+  },
+  "filters": {
+    "passed": true,
+    "before": {
+      "territory": {
+        "territory_scope": "autonomous_community",
+        "autonomous_community_id": "ES:CCAA:10",
+        "province_id": null,
+        "municipality_id": null
+      },
+      "selection": {
+        "selected_geometry_id": null,
+        "selected_geometry_year": null,
+        "selected_egif_record_id": null,
+        "selected_egif_year": null,
+        "selected_icv_geometry_id": null,
+        "selected_icv_geometry_year": null,
+        "selected_icv_record_id": null,
+        "selected_effis_geometry_id": null,
+        "selected_effis_geometry_year": null
+      },
+      "popup": {
+        "active": false,
+        "kind": null,
+        "hit_count": 0,
+        "source_id": null,
+        "geometry_id": null,
+        "anchor": null
+      }
+    },
+    "after": {
+      "territory": {
+        "territory_scope": "autonomous_community",
+        "autonomous_community_id": "ES:CCAA:10",
+        "province_id": null,
+        "municipality_id": null
+      },
+      "selection": {
+        "selected_geometry_id": null,
+        "selected_geometry_year": null,
+        "selected_egif_record_id": null,
+        "selected_egif_year": null,
+        "selected_icv_geometry_id": "gva:geometry:1995:3:783",
+        "selected_icv_geometry_year": 1995,
+        "selected_icv_record_id": "gva:pif-cv:1995CS5050",
+        "selected_effis_geometry_id": null,
+        "selected_effis_geometry_year": null
+      },
+      "popup": {
+        "active": true,
+        "kind": "feature",
+        "hit_count": 1,
+        "source_id": "icv",
+        "geometry_id": "gva:geometry:1995:3:783",
+        "anchor": {
+          "lng": -0.49119099999703053,
+          "lat": 40.09180366166885
+        }
+      }
+    },
+    "expected_geometry": "gva:geometry:1995:3:783",
+    "territory_unchanged": true,
+    "hover": {
+      "cursor": "pointer",
+      "highlight_filters": [
+        {
+          "layer": "icv-hover",
+          "filter": [
+            "==",
+            [
+              "get",
+              "geometry_id"
+            ],
+            "__none__"
+          ]
+        },
+        {
+          "layer": "esfire30-hover",
+          "filter": [
+            "==",
+            [
+              "get",
+              "geometry_id"
+            ],
+            "__none__"
+          ]
+        },
+        {
+          "layer": "effis-hover",
+          "filter": [
+            "==",
+            [
+              "get",
+              "geometry_id"
+            ],
+            "__none__"
+          ]
+        }
+      ]
+    },
+    "human_popup": {
+      "state": {
+        "active": true,
+        "kind": "feature",
+        "hit_count": 1,
+        "source_id": "icv",
+        "geometry_id": "gva:geometry:1995:3:783",
+        "anchor": {
+          "lng": -0.49119099999703053,
+          "lat": 40.09180366166885
+        }
+      },
+      "text": "Incendio documentado\nICV · Generalitat Valenciana\nCerrar\nFecha\n11/05/1995\nMunicipio\nArañuel\nProvincia\nCastellón/Castelló\nSuperficie\n5 ha\nCausa\nRayo\nVer detalles",
+      "details": "Ver detalles",
+      "role": "dialog",
+      "close": "Cerrar información del perímetro",
+      "shell": "true",
+      "sourceSelections": {
+        "from": 1995,
+        "to": 1995,
+        "territory_scope": "autonomous_community",
+        "autonomous_community_id": "ES:CCAA:10",
+        "province_id": null,
+        "municipality_id": null,
+        "esfire30_visible": false,
+        "egif_visible": true,
+        "icv_visible": true,
+        "effis_visible": false,
+        "selected_geometry_id": null,
+        "selected_geometry_year": null,
+        "selected_egif_record_id": null,
+        "selected_egif_year": null,
+        "selected_icv_geometry_id": "gva:geometry:1995:3:783",
+        "selected_icv_geometry_year": 1995,
+        "selected_icv_record_id": "gva:pif-cv:1995CS5050",
+        "selected_effis_geometry_id": null,
+        "selected_effis_geometry_year": null,
+        "filters": [],
+        "center": [
+          -0.491191,
+          40.091738
+        ],
+        "zoom": 12
+      },
+      "errors": []
+    },
+    "removed_feature": {
+      "before_click": {
+        "territory": {
+          "territory_scope": "autonomous_community",
+          "autonomous_community_id": "ES:CCAA:10",
+          "province_id": null,
+          "municipality_id": null
+        },
+        "selection": {
+          "selected_geometry_id": null,
+          "selected_geometry_year": null,
+          "selected_egif_record_id": null,
+          "selected_egif_year": null,
+          "selected_icv_geometry_id": null,
+          "selected_icv_geometry_year": null,
+          "selected_icv_record_id": null,
+          "selected_effis_geometry_id": null,
+          "selected_effis_geometry_year": null
+        },
+        "popup": {
+          "active": false,
+          "kind": null,
+          "hit_count": 0,
+          "source_id": null,
+          "geometry_id": null,
+          "anchor": null
+        }
+      },
+      "after_click": {
+        "territory": {
+          "territory_scope": "province",
+          "autonomous_community_id": "ES:CCAA:10",
+          "province_id": "ES:PROV:12",
+          "municipality_id": null
+        },
+        "selection": {
+          "selected_geometry_id": null,
+          "selected_geometry_year": null,
+          "selected_egif_record_id": null,
+          "selected_egif_year": null,
+          "selected_icv_geometry_id": null,
+          "selected_icv_geometry_year": null,
+          "selected_icv_record_id": null,
+          "selected_effis_geometry_id": null,
+          "selected_effis_geometry_year": null
+        },
+        "popup": {
+          "active": false,
+          "kind": null,
+          "hit_count": 0,
+          "source_id": null,
+          "geometry_id": null,
+          "anchor": null
+        }
+      },
+      "remaining_rendered_hits": 0,
+      "passed": true
+    },
+    "errors": [],
+    "new_resource_urls": []
+  },
+  "source_toggle": {
+    "passed": true,
+    "before": {
+      "territory": {
+        "territory_scope": "autonomous_community",
+        "autonomous_community_id": "ES:CCAA:10",
+        "province_id": null,
+        "municipality_id": null
+      },
+      "selection": {
+        "selected_geometry_id": null,
+        "selected_geometry_year": null,
+        "selected_egif_record_id": null,
+        "selected_egif_year": null,
+        "selected_icv_geometry_id": null,
+        "selected_icv_geometry_year": null,
+        "selected_icv_record_id": null,
+        "selected_effis_geometry_id": null,
+        "selected_effis_geometry_year": null
+      },
+      "popup": {
+        "active": false,
+        "kind": null,
+        "hit_count": 0,
+        "source_id": null,
+        "geometry_id": null,
+        "anchor": null
+      }
+    },
+    "after": {
+      "territory": {
+        "territory_scope": "autonomous_community",
+        "autonomous_community_id": "ES:CCAA:10",
+        "province_id": null,
+        "municipality_id": null
+      },
+      "selection": {
+        "selected_geometry_id": null,
+        "selected_geometry_year": null,
+        "selected_egif_record_id": null,
+        "selected_egif_year": null,
+        "selected_icv_geometry_id": "gva:geometry:1995:3:783",
+        "selected_icv_geometry_year": 1995,
+        "selected_icv_record_id": "gva:pif-cv:1995CS5050",
+        "selected_effis_geometry_id": null,
+        "selected_effis_geometry_year": null
+      },
+      "popup": {
+        "active": true,
+        "kind": "feature",
+        "hit_count": 1,
+        "source_id": "icv",
+        "geometry_id": "gva:geometry:1995:3:783",
+        "anchor": {
+          "lng": -0.49119099999703053,
+          "lat": 40.09180366166885
+        }
+      }
+    },
+    "expected_geometry": "gva:geometry:1995:3:783",
+    "territory_unchanged": true,
+    "hover": {
+      "cursor": "pointer",
+      "highlight_filters": [
+        {
+          "layer": "icv-hover",
+          "filter": [
+            "==",
+            [
+              "get",
+              "geometry_id"
+            ],
+            "__none__"
+          ]
+        },
+        {
+          "layer": "esfire30-hover",
+          "filter": [
+            "==",
+            [
+              "get",
+              "geometry_id"
+            ],
+            "__none__"
+          ]
+        },
+        {
+          "layer": "effis-hover",
+          "filter": [
+            "==",
+            [
+              "get",
+              "geometry_id"
+            ],
+            "__none__"
+          ]
+        }
+      ]
+    },
+    "human_popup": {
+      "state": {
+        "active": true,
+        "kind": "feature",
+        "hit_count": 1,
+        "source_id": "icv",
+        "geometry_id": "gva:geometry:1995:3:783",
+        "anchor": {
+          "lng": -0.49119099999703053,
+          "lat": 40.09180366166885
+        }
+      },
+      "text": "Incendio documentado\nICV · Generalitat Valenciana\nCerrar\nFecha\n11/05/1995\nMunicipio\nArañuel\nProvincia\nCastellón/Castelló\nSuperficie\n5 ha\nCausa\nRayo\nVer detalles",
+      "details": "Ver detalles",
+      "role": "dialog",
+      "close": "Cerrar información del perímetro",
+      "shell": "true",
+      "sourceSelections": {
+        "from": 1995,
+        "to": 1995,
+        "territory_scope": "autonomous_community",
+        "autonomous_community_id": "ES:CCAA:10",
+        "province_id": null,
+        "municipality_id": null,
+        "esfire30_visible": false,
+        "egif_visible": true,
+        "icv_visible": true,
+        "effis_visible": false,
+        "selected_geometry_id": null,
+        "selected_geometry_year": null,
+        "selected_egif_record_id": null,
+        "selected_egif_year": null,
+        "selected_icv_geometry_id": "gva:geometry:1995:3:783",
+        "selected_icv_geometry_year": 1995,
+        "selected_icv_record_id": "gva:pif-cv:1995CS5050",
+        "selected_effis_geometry_id": null,
+        "selected_effis_geometry_year": null,
+        "filters": [],
+        "center": [
+          -0.491191,
+          40.091738
+        ],
+        "zoom": 12
+      },
+      "errors": []
+    },
+    "removed_feature": {
+      "before_click": {
+        "territory": {
+          "territory_scope": "autonomous_community",
+          "autonomous_community_id": "ES:CCAA:10",
+          "province_id": null,
+          "municipality_id": null
+        },
+        "selection": {
+          "selected_geometry_id": null,
+          "selected_geometry_year": null,
+          "selected_egif_record_id": null,
+          "selected_egif_year": null,
+          "selected_icv_geometry_id": null,
+          "selected_icv_geometry_year": null,
+          "selected_icv_record_id": null,
+          "selected_effis_geometry_id": null,
+          "selected_effis_geometry_year": null
+        },
+        "popup": {
+          "active": false,
+          "kind": null,
+          "hit_count": 0,
+          "source_id": null,
+          "geometry_id": null,
+          "anchor": null
+        }
+      },
+      "after_click": {
+        "territory": {
+          "territory_scope": "province",
+          "autonomous_community_id": "ES:CCAA:10",
+          "province_id": "ES:PROV:12",
+          "municipality_id": null
+        },
+        "selection": {
+          "selected_geometry_id": null,
+          "selected_geometry_year": null,
+          "selected_egif_record_id": null,
+          "selected_egif_year": null,
+          "selected_icv_geometry_id": null,
+          "selected_icv_geometry_year": null,
+          "selected_icv_record_id": null,
+          "selected_effis_geometry_id": null,
+          "selected_effis_geometry_year": null
+        },
+        "popup": {
+          "active": false,
+          "kind": null,
+          "hit_count": 0,
+          "source_id": null,
+          "geometry_id": null,
+          "anchor": null
+        }
+      },
+      "remaining_rendered_hits": 0,
+      "passed": true
+    },
+    "errors": [],
+    "new_resource_urls": []
+  },
+  "period_invalidation": {
+    "passed": true,
+    "before": {
+      "territory": {
+        "territory_scope": "autonomous_community",
+        "autonomous_community_id": "ES:CCAA:10",
+        "province_id": null,
+        "municipality_id": null
+      },
+      "selection": {
+        "selected_geometry_id": null,
+        "selected_geometry_year": null,
+        "selected_egif_record_id": null,
+        "selected_egif_year": null,
+        "selected_icv_geometry_id": null,
+        "selected_icv_geometry_year": null,
+        "selected_icv_record_id": null,
+        "selected_effis_geometry_id": null,
+        "selected_effis_geometry_year": null
+      },
+      "popup": {
+        "active": false,
+        "kind": null,
+        "hit_count": 0,
+        "source_id": null,
+        "geometry_id": null,
+        "anchor": null
+      }
+    },
+    "after": {
+      "territory": {
+        "territory_scope": "autonomous_community",
+        "autonomous_community_id": "ES:CCAA:10",
+        "province_id": null,
+        "municipality_id": null
+      },
+      "selection": {
+        "selected_geometry_id": null,
+        "selected_geometry_year": null,
+        "selected_egif_record_id": null,
+        "selected_egif_year": null,
+        "selected_icv_geometry_id": "gva:geometry:1995:3:783",
+        "selected_icv_geometry_year": 1995,
+        "selected_icv_record_id": "gva:pif-cv:1995CS5050",
+        "selected_effis_geometry_id": null,
+        "selected_effis_geometry_year": null
+      },
+      "popup": {
+        "active": true,
+        "kind": "feature",
+        "hit_count": 1,
+        "source_id": "icv",
+        "geometry_id": "gva:geometry:1995:3:783",
+        "anchor": {
+          "lng": -0.49119099999703053,
+          "lat": 40.09180366166885
+        }
+      }
+    },
+    "expected_geometry": "gva:geometry:1995:3:783",
+    "territory_unchanged": true,
+    "hover": {
+      "cursor": "pointer",
+      "highlight_filters": [
+        {
+          "layer": "icv-hover",
+          "filter": [
+            "==",
+            [
+              "get",
+              "geometry_id"
+            ],
+            "__none__"
+          ]
+        },
+        {
+          "layer": "esfire30-hover",
+          "filter": [
+            "==",
+            [
+              "get",
+              "geometry_id"
+            ],
+            "__none__"
+          ]
+        },
+        {
+          "layer": "effis-hover",
+          "filter": [
+            "==",
+            [
+              "get",
+              "geometry_id"
+            ],
+            "__none__"
+          ]
+        }
+      ]
+    },
+    "human_popup": {
+      "state": {
+        "active": true,
+        "kind": "feature",
+        "hit_count": 1,
+        "source_id": "icv",
+        "geometry_id": "gva:geometry:1995:3:783",
+        "anchor": {
+          "lng": -0.49119099999703053,
+          "lat": 40.09180366166885
+        }
+      },
+      "text": "Incendio documentado\nICV · Generalitat Valenciana\nCerrar\nFecha\n11/05/1995\nMunicipio\nArañuel\nProvincia\nCastellón/Castelló\nSuperficie\n5 ha\nCausa\nRayo\nVer detalles",
+      "details": "Ver detalles",
+      "role": "dialog",
+      "close": "Cerrar información del perímetro",
+      "shell": "true",
+      "sourceSelections": {
+        "from": 1995,
+        "to": 1995,
+        "territory_scope": "autonomous_community",
+        "autonomous_community_id": "ES:CCAA:10",
+        "province_id": null,
+        "municipality_id": null,
+        "esfire30_visible": false,
+        "egif_visible": true,
+        "icv_visible": true,
+        "effis_visible": false,
+        "selected_geometry_id": null,
+        "selected_geometry_year": null,
+        "selected_egif_record_id": null,
+        "selected_egif_year": null,
+        "selected_icv_geometry_id": "gva:geometry:1995:3:783",
+        "selected_icv_geometry_year": 1995,
+        "selected_icv_record_id": "gva:pif-cv:1995CS5050",
+        "selected_effis_geometry_id": null,
+        "selected_effis_geometry_year": null,
+        "filters": [],
+        "center": [
+          -0.491191,
+          40.091738
+        ],
+        "zoom": 12
+      },
+      "errors": []
+    },
+    "removed_feature": {
+      "before_click": {
+        "territory": {
+          "territory_scope": "autonomous_community",
+          "autonomous_community_id": "ES:CCAA:10",
+          "province_id": null,
+          "municipality_id": null
+        },
+        "selection": {
+          "selected_geometry_id": null,
+          "selected_geometry_year": null,
+          "selected_egif_record_id": null,
+          "selected_egif_year": null,
+          "selected_icv_geometry_id": null,
+          "selected_icv_geometry_year": null,
+          "selected_icv_record_id": null,
+          "selected_effis_geometry_id": null,
+          "selected_effis_geometry_year": null
+        },
+        "popup": {
+          "active": false,
+          "kind": null,
+          "hit_count": 0,
+          "source_id": null,
+          "geometry_id": null,
+          "anchor": null
+        }
+      },
+      "after_click": {
+        "territory": {
+          "territory_scope": "province",
+          "autonomous_community_id": "ES:CCAA:10",
+          "province_id": "ES:PROV:12",
+          "municipality_id": null
+        },
+        "selection": {
+          "selected_geometry_id": null,
+          "selected_geometry_year": null,
+          "selected_egif_record_id": null,
+          "selected_egif_year": null,
+          "selected_icv_geometry_id": null,
+          "selected_icv_geometry_year": null,
+          "selected_icv_record_id": null,
+          "selected_effis_geometry_id": null,
+          "selected_effis_geometry_year": null
+        },
+        "popup": {
+          "active": false,
+          "kind": null,
+          "hit_count": 0,
+          "source_id": null,
+          "geometry_id": null,
+          "anchor": null
+        }
+      },
+      "remaining_rendered_hits": 0,
+      "passed": true
+    },
+    "errors": [],
+    "new_resource_urls": []
+  },
+  "hover": {
+    "icv": {
+      "cursor": "pointer",
+      "highlight_filters": [
+        {
+          "layer": "icv-hover",
+          "filter": [
+            "==",
+            [
+              "get",
+              "geometry_id"
+            ],
+            "__none__"
+          ]
+        },
+        {
+          "layer": "esfire30-hover",
+          "filter": [
+            "==",
+            [
+              "get",
+              "geometry_id"
+            ],
+            "__none__"
+          ]
+        },
+        {
+          "layer": "effis-hover",
+          "filter": [
+            "==",
+            [
+              "get",
+              "geometry_id"
+            ],
+            "__none__"
+          ]
+        }
+      ]
+    },
+    "province": {
+      "cursor": "pointer",
+      "highlight_filters": [
+        {
+          "layer": "icv-hover",
+          "filter": [
+            "==",
+            [
+              "get",
+              "geometry_id"
+            ],
+            "__none__"
+          ]
+        },
+        {
+          "layer": "esfire30-hover",
+          "filter": [
+            "==",
+            [
+              "get",
+              "geometry_id"
+            ],
+            "__none__"
+          ]
+        },
+        {
+          "layer": "effis-hover",
+          "filter": [
+            "==",
+            [
+              "get",
+              "geometry_id"
+            ],
+            "__none__"
+          ]
+        }
+      ]
+    },
+    "municipality": {
+      "cursor": "pointer",
+      "highlight_filters": [
+        {
+          "layer": "icv-hover",
+          "filter": [
+            "==",
+            [
+              "get",
+              "geometry_id"
+            ],
+            "__none__"
+          ]
+        },
+        {
+          "layer": "esfire30-hover",
+          "filter": [
+            "==",
+            [
+              "get",
+              "geometry_id"
+            ],
+            "__none__"
+          ]
+        },
+        {
+          "layer": "effis-hover",
+          "filter": [
+            "==",
+            [
+              "get",
+              "geometry_id"
+            ],
+            "__none__"
+          ]
+        }
+      ]
+    },
+    "multi": {
+      "cursor": "pointer",
+      "highlight_filters": [
+        {
+          "layer": "icv-hover",
+          "filter": [
+            "==",
+            [
+              "get",
+              "geometry_id"
+            ],
+            "gva:geometry:1995:3:785"
+          ]
+        },
+        {
+          "layer": "esfire30-hover",
+          "filter": [
+            "==",
+            [
+              "get",
+              "geometry_id"
+            ],
+            "esfire30:v1:1995:60"
+          ]
+        },
+        {
+          "layer": "effis-hover",
+          "filter": [
+            "==",
+            [
+              "get",
+              "geometry_id"
+            ],
+            "__none__"
+          ]
+        }
+      ]
+    },
+    "recovered": {
+      "cursor": "pointer",
+      "highlight_filters": [
+        {
+          "layer": "icv-hover",
+          "filter": [
+            "==",
+            [
+              "get",
+              "geometry_id"
+            ],
+            "__none__"
+          ]
+        },
+        {
+          "layer": "esfire30-hover",
+          "filter": [
+            "==",
+            [
+              "get",
+              "geometry_id"
+            ],
+            "__none__"
+          ]
+        },
+        {
+          "layer": "effis-hover",
+          "filter": [
+            "==",
+            [
+              "get",
+              "geometry_id"
+            ],
+            "__none__"
+          ]
+        }
+      ]
+    },
+    "double0": {
+      "cursor": "pointer",
+      "highlight_filters": [
+        {
+          "layer": "icv-hover",
+          "filter": [
+            "==",
+            [
+              "get",
+              "geometry_id"
+            ],
+            "__none__"
+          ]
+        },
+        {
+          "layer": "esfire30-hover",
+          "filter": [
+            "==",
+            [
+              "get",
+              "geometry_id"
+            ],
+            "__none__"
+          ]
+        },
+        {
+          "layer": "effis-hover",
+          "filter": [
+            "==",
+            [
+              "get",
+              "geometry_id"
+            ],
+            "__none__"
+          ]
+        }
+      ]
+    },
+    "double1": {
+      "cursor": "pointer",
+      "highlight_filters": [
+        {
+          "layer": "icv-hover",
+          "filter": [
+            "==",
+            [
+              "get",
+              "geometry_id"
+            ],
+            "gva:geometry:2024:121:13606"
+          ]
+        },
+        {
+          "layer": "esfire30-hover",
+          "filter": [
+            "==",
+            [
+              "get",
+              "geometry_id"
+            ],
+            "__none__"
+          ]
+        },
+        {
+          "layer": "effis-hover",
+          "filter": [
+            "==",
+            [
+              "get",
+              "geometry_id"
+            ],
+            "__none__"
+          ]
+        }
+      ]
+    },
+    "esfire30": {
+      "cursor": "pointer",
+      "highlight_filters": [
+        {
+          "layer": "icv-hover",
+          "filter": [
+            "==",
+            [
+              "get",
+              "geometry_id"
+            ],
+            "__none__"
+          ]
+        },
+        {
+          "layer": "esfire30-hover",
+          "filter": [
+            "==",
+            [
+              "get",
+              "geometry_id"
+            ],
+            "__none__"
+          ]
+        },
+        {
+          "layer": "effis-hover",
+          "filter": [
+            "==",
+            [
+              "get",
+              "geometry_id"
+            ],
+            "__none__"
+          ]
+        }
+      ]
+    },
+    "effis": {
+      "cursor": "pointer",
+      "highlight_filters": [
+        {
+          "layer": "icv-hover",
+          "filter": [
+            "==",
+            [
+              "get",
+              "geometry_id"
+            ],
+            "__none__"
+          ]
+        },
+        {
+          "layer": "esfire30-hover",
+          "filter": [
+            "==",
+            [
+              "get",
+              "geometry_id"
+            ],
+            "__none__"
+          ]
+        },
+        {
+          "layer": "effis-hover",
+          "filter": [
+            "==",
+            [
+              "get",
+              "geometry_id"
+            ],
+            "effis:rda:285361:f05085eba622a5bb"
+          ]
+        }
+      ]
+    },
+    "mobile": {
+      "cursor": "pointer",
+      "highlight_filters": [
+        {
+          "layer": "icv-hover",
+          "filter": [
+            "==",
+            [
+              "get",
+              "geometry_id"
+            ],
+            "__none__"
+          ]
+        },
+        {
+          "layer": "esfire30-hover",
+          "filter": [
+            "==",
+            [
+              "get",
+              "geometry_id"
+            ],
+            "__none__"
+          ]
+        },
+        {
+          "layer": "effis-hover",
+          "filter": [
+            "==",
+            [
+              "get",
+              "geometry_id"
+            ],
+            "__none__"
+          ]
+        }
+      ]
+    },
+    "filtered": {
+      "cursor": "pointer",
+      "highlight_filters": [
+        {
+          "layer": "icv-hover",
+          "filter": [
+            "==",
+            [
+              "get",
+              "geometry_id"
+            ],
+            "__none__"
+          ]
+        },
+        {
+          "layer": "esfire30-hover",
+          "filter": [
+            "==",
+            [
+              "get",
+              "geometry_id"
+            ],
+            "__none__"
+          ]
+        },
+        {
+          "layer": "effis-hover",
+          "filter": [
+            "==",
+            [
+              "get",
+              "geometry_id"
+            ],
+            "__none__"
+          ]
+        }
+      ]
+    },
+    "hidden": {
+      "cursor": "pointer",
+      "highlight_filters": [
+        {
+          "layer": "icv-hover",
+          "filter": [
+            "==",
+            [
+              "get",
+              "geometry_id"
+            ],
+            "__none__"
+          ]
+        },
+        {
+          "layer": "esfire30-hover",
+          "filter": [
+            "==",
+            [
+              "get",
+              "geometry_id"
+            ],
+            "__none__"
+          ]
+        },
+        {
+          "layer": "effis-hover",
+          "filter": [
+            "==",
+            [
+              "get",
+              "geometry_id"
+            ],
+            "__none__"
+          ]
+        }
+      ]
+    },
+    "period": {
+      "cursor": "pointer",
+      "highlight_filters": [
+        {
+          "layer": "icv-hover",
+          "filter": [
+            "==",
+            [
+              "get",
+              "geometry_id"
+            ],
+            "__none__"
+          ]
+        },
+        {
+          "layer": "esfire30-hover",
+          "filter": [
+            "==",
+            [
+              "get",
+              "geometry_id"
+            ],
+            "__none__"
+          ]
+        },
+        {
+          "layer": "effis-hover",
+          "filter": [
+            "==",
+            [
+              "get",
+              "geometry_id"
+            ],
+            "__none__"
+          ]
+        }
+      ]
+    }
+  },
+  "mobile": {
+    "passed": true,
+    "before": {
+      "territory": {
+        "territory_scope": "autonomous_community",
+        "autonomous_community_id": "ES:CCAA:10",
+        "province_id": null,
+        "municipality_id": null
+      },
+      "selection": {
+        "selected_geometry_id": null,
+        "selected_geometry_year": null,
+        "selected_egif_record_id": null,
+        "selected_egif_year": null,
+        "selected_icv_geometry_id": null,
+        "selected_icv_geometry_year": null,
+        "selected_icv_record_id": null,
+        "selected_effis_geometry_id": null,
+        "selected_effis_geometry_year": null
+      },
+      "popup": {
+        "active": false,
+        "kind": null,
+        "hit_count": 0,
+        "source_id": null,
+        "geometry_id": null,
+        "anchor": null
+      }
+    },
+    "after": {
+      "territory": {
+        "territory_scope": "autonomous_community",
+        "autonomous_community_id": "ES:CCAA:10",
+        "province_id": null,
+        "municipality_id": null
+      },
+      "selection": {
+        "selected_geometry_id": null,
+        "selected_geometry_year": null,
+        "selected_egif_record_id": null,
+        "selected_egif_year": null,
+        "selected_icv_geometry_id": "gva:geometry:1995:3:783",
+        "selected_icv_geometry_year": 1995,
+        "selected_icv_record_id": "gva:pif-cv:1995CS5050",
+        "selected_effis_geometry_id": null,
+        "selected_effis_geometry_year": null
+      },
+      "popup": {
+        "active": true,
+        "kind": "feature",
+        "hit_count": 1,
+        "source_id": "icv",
+        "geometry_id": "gva:geometry:1995:3:783",
+        "anchor": {
+          "lng": -0.4911910000012938,
+          "lat": 40.091729792286344
+        }
+      }
+    },
+    "expected_geometry": "gva:geometry:1995:3:783",
+    "territory_unchanged": true,
+    "hover": {
+      "cursor": "pointer",
+      "highlight_filters": [
+        {
+          "layer": "icv-hover",
+          "filter": [
+            "==",
+            [
+              "get",
+              "geometry_id"
+            ],
+            "__none__"
+          ]
+        },
+        {
+          "layer": "esfire30-hover",
+          "filter": [
+            "==",
+            [
+              "get",
+              "geometry_id"
+            ],
+            "__none__"
+          ]
+        },
+        {
+          "layer": "effis-hover",
+          "filter": [
+            "==",
+            [
+              "get",
+              "geometry_id"
+            ],
+            "__none__"
+          ]
+        }
+      ]
+    },
+    "human_popup": {
+      "state": {
+        "active": true,
+        "kind": "feature",
+        "hit_count": 1,
+        "source_id": "icv",
+        "geometry_id": "gva:geometry:1995:3:783",
+        "anchor": {
+          "lng": -0.4911910000012938,
+          "lat": 40.091729792286344
+        }
+      },
+      "text": "Incendio documentado\nICV · Generalitat Valenciana\nCerrar\nFecha\n11/05/1995\nMunicipio\nArañuel\nProvincia\nCastellón/Castelló\nSuperficie\n5 ha\nCausa\nRayo\nVer detalles",
+      "details": "Ver detalles",
+      "role": "dialog",
+      "close": "Cerrar información del perímetro",
+      "shell": "true",
+      "sourceSelections": {
+        "from": 1995,
+        "to": 1995,
+        "territory_scope": "autonomous_community",
+        "autonomous_community_id": "ES:CCAA:10",
+        "province_id": null,
+        "municipality_id": null,
+        "esfire30_visible": false,
+        "egif_visible": true,
+        "icv_visible": true,
+        "effis_visible": false,
+        "selected_geometry_id": null,
+        "selected_geometry_year": null,
+        "selected_egif_record_id": null,
+        "selected_egif_year": null,
+        "selected_icv_geometry_id": "gva:geometry:1995:3:783",
+        "selected_icv_geometry_year": 1995,
+        "selected_icv_record_id": "gva:pif-cv:1995CS5050",
+        "selected_effis_geometry_id": null,
+        "selected_effis_geometry_year": null,
+        "filters": [],
+        "center": [
+          -0.491191,
+          40.091738
+        ],
+        "zoom": 12
+      },
+      "errors": []
+    },
+    "background": {
+      "point": {
+        "x": 200,
+        "y": 74.4375,
+        "point": {
+          "x": 200,
+          "y": 16
+        },
+        "lngLat": {
+          "lng": -0.4903326931162155,
+          "lat": 40.11281214250147
+        },
+        "hits": [],
+        "territories": [
+          {
+            "layer": "official-province-territories-fill",
+            "properties": {
+              "territory_id": "ES:PROV:12",
+              "parent_id": "ES:CCAA:10",
+              "source_code": "34101200000",
+              "official_name": "Castellón/Castelló",
+              "source_name": "Castelló/Castellón",
+              "territory_type": "province",
+              "bounds": "[-0.8462969,39.7146978,0.6903109,40.7886312]"
+            }
+          },
+          {
+            "layer": "official-ccaa-territories-fill",
+            "properties": {
+              "territory_id": "ES:CCAA:10",
+              "source_code": "34100000000",
+              "official_name": "Comunitat Valenciana",
+              "source_name": "Comunitat Valenciana",
+              "territory_type": "autonomous_community",
+              "bounds": "[-1.528778,37.8437849,0.6903133,40.7886312]"
+            }
+          }
+        ]
+      },
+      "before": {
+        "territory": {
+          "territory_scope": "autonomous_community",
+          "autonomous_community_id": "ES:CCAA:10",
+          "province_id": null,
+          "municipality_id": null
+        },
+        "selection": {
+          "selected_geometry_id": null,
+          "selected_geometry_year": null,
+          "selected_egif_record_id": null,
+          "selected_egif_year": null,
+          "selected_icv_geometry_id": "gva:geometry:1995:3:783",
+          "selected_icv_geometry_year": 1995,
+          "selected_icv_record_id": "gva:pif-cv:1995CS5050",
+          "selected_effis_geometry_id": null,
+          "selected_effis_geometry_year": null
+        },
+        "popup": {
+          "active": false,
+          "kind": null,
+          "hit_count": 0,
+          "source_id": null,
+          "geometry_id": null,
+          "anchor": null
+        }
+      },
+      "after": {
+        "territory": {
+          "territory_scope": "province",
+          "autonomous_community_id": "ES:CCAA:10",
+          "province_id": "ES:PROV:12",
+          "municipality_id": null
+        },
+        "selection": {
+          "selected_geometry_id": null,
+          "selected_geometry_year": null,
+          "selected_egif_record_id": null,
+          "selected_egif_year": null,
+          "selected_icv_geometry_id": null,
+          "selected_icv_geometry_year": null,
+          "selected_icv_record_id": null,
+          "selected_effis_geometry_id": null,
+          "selected_effis_geometry_year": null
+        },
+        "popup": {
+          "active": false,
+          "kind": null,
+          "hit_count": 0,
+          "source_id": null,
+          "geometry_id": null,
+          "anchor": null
+        }
+      },
+      "passed": true
+    },
+    "errors": [],
+    "new_resource_urls": []
+  },
+  "product_regressions": {
+    "temporal": {
+      "cases": {
+        "gva_1993_2024": {
+          "loaded_records": 13738,
+          "loaded_geometries": 13739,
+          "selected_geometry_id": "gva:geometry:2016:24:11582",
+          "temporal": {
+            "domain": {
+              "from": 1993,
+              "to": 2024
+            },
+            "palette": {
+              "old": "rgb(44,123,182)",
+              "recent": "rgb(240,82,46)"
+            },
+            "single_year": false,
+            "expression": [
+              "interpolate",
+              [
+                "linear"
+              ],
+              [
+                "to-number",
+                [
+                  "get",
+                  "year"
+                ]
+              ],
+              1993,
+              "rgb(44,123,182)",
+              2024,
+              "rgb(240,82,46)"
+            ]
+          },
+          "icv_fill": [
+            "interpolate",
+            [
+              "linear"
+            ],
+            [
+              "to-number",
+              [
+                "get",
+                "year"
+              ]
+            ],
+            1993,
+            "rgb(44,123,182)",
+            2024,
+            "rgb(240,82,46)"
+          ],
+          "icv_outline": [
+            "interpolate",
+            [
+              "linear"
+            ],
+            [
+              "to-number",
+              [
+                "get",
+                "year"
+              ]
+            ],
+            1993,
+            "rgb(44,123,182)",
+            2024,
+            "rgb(240,82,46)"
+          ],
+          "legend": "Año del perímetro\n1993\n2024\nMás antiguo ← → más reciente\nCAPAS\nLímite administrativo actual\nPerímetros oficiales",
+          "runtime_errors": [],
+          "browser_errors": [],
+          "elapsed_ms": 15154.73
+        },
+        "recurrence_2000_2020": {
+          "loaded_records": 8519,
+          "loaded_geometries": 8519,
+          "selected_geometry_id": "gva:geometry:2016:24:11582",
+          "temporal": {
+            "domain": {
+              "from": 2000,
+              "to": 2020
+            },
+            "palette": {
+              "old": "rgb(44,123,182)",
+              "recent": "rgb(240,82,46)"
+            },
+            "single_year": false,
+            "expression": [
+              "interpolate",
+              [
+                "linear"
+              ],
+              [
+                "to-number",
+                [
+                  "get",
+                  "year"
+                ]
+              ],
+              2000,
+              "rgb(44,123,182)",
+              2020,
+              "rgb(240,82,46)"
+            ]
+          },
+          "icv_fill": [
+            "interpolate",
+            [
+              "linear"
+            ],
+            [
+              "to-number",
+              [
+                "get",
+                "year"
+              ]
+            ],
+            2000,
+            "rgb(44,123,182)",
+            2020,
+            "rgb(240,82,46)"
+          ],
+          "icv_outline": [
+            "interpolate",
+            [
+              "linear"
+            ],
+            [
+              "to-number",
+              [
+                "get",
+                "year"
+              ]
+            ],
+            2000,
+            "rgb(44,123,182)",
+            2020,
+            "rgb(240,82,46)"
+          ],
+          "legend": "Año del perímetro\n2000\n2020\nMás antiguo ← → más reciente\nCAPAS\nLímite administrativo actual\nPerímetros oficiales",
+          "runtime_errors": [],
+          "browser_errors": [],
+          "elapsed_ms": 16745.27
+        }
+      },
+      "icv_1993_2024": {
+        "records": 13738,
+        "geometries": 13739
+      },
+      "recovered_2016_2019": {},
+      "palette": {
+        "old": "rgb(44,123,182)",
+        "recent": "rgb(240,82,46)"
+      },
+      "recurrence_human_test": "PASS",
+      "passed": true,
+      "failures": []
+    },
+    "gva_1995": {
+      "loaded_records": 467,
+      "loaded_geometries": 467,
+      "selected_geometry_id": "gva:geometry:1995:3:783",
+      "temporal": {
+        "domain": {
+          "from": 1995,
+          "to": 1995
+        },
+        "palette": {
+          "old": "rgb(44,123,182)",
+          "recent": "rgb(240,82,46)"
+        },
+        "single_year": true,
+        "expression": "rgb(44,123,182)"
+      },
+      "icv_fill": "rgb(44,123,182)",
+      "icv_outline": "rgb(44,123,182)",
+      "legend": "Año del perímetro\n1995\n1995\nAño seleccionado\nCAPAS\nLímite administrativo actual\nPerímetros oficiales",
+      "runtime_errors": [],
+      "browser_errors": [],
+      "elapsed_ms": 10574.63
+    },
+    "spain_1995": {
+      "passed": true,
+      "state": {
+        "from": 1995,
+        "to": 1995,
+        "territory_scope": "ES",
+        "autonomous_community_id": null,
+        "province_id": null,
+        "municipality_id": null,
+        "esfire30_visible": true,
+        "egif_visible": true,
+        "icv_visible": false,
+        "effis_visible": false,
+        "selected_geometry_id": "esfire30:v1:1995:3378",
+        "selected_geometry_year": 1995,
+        "selected_egif_record_id": null,
+        "selected_egif_year": null,
+        "selected_icv_geometry_id": null,
+        "selected_icv_geometry_year": null,
+        "selected_icv_record_id": null,
+        "selected_effis_geometry_id": null,
+        "selected_effis_geometry_year": null,
+        "filters": [],
+        "center": [
+          -0.85693359375,
+          41.93497650054661
+        ],
+        "zoom": 5
+      },
+      "metrics": {
+        "egif_record_count": 25557,
+        "egif_declared_forest_area_ha": 141082.17,
+        "egif_administrative_gif_count": 26,
+        "esfire30_perimeter_count": 5035
+      },
+      "errors": [],
+      "external_runtime_domains": [],
+      "network": {
+        "families": {
+          "frontend": {
+            "requests": 6,
+            "bytes": 332365,
+            "statuses": [
+              200
+            ],
+            "range_206": 0
+          },
+          "other": {
+            "requests": 33,
+            "bytes": 96365,
+            "statuses": [
+              200,
+              404
+            ],
+            "range_206": 0
+          },
+          "esfire30_pmtiles": {
+            "requests": 10,
+            "bytes": 1811399,
+            "statuses": [
+              206
+            ],
+            "range_206": 10
+          },
+          "summary": {
+            "requests": 2,
+            "bytes": 21103,
+            "statuses": [
+              200
+            ],
+            "range_206": 0
+          },
+          "highlights": {
+            "requests": 2,
+            "bytes": 20200,
+            "statuses": [
+              200
+            ],
+            "range_206": 0
+          },
+          "territories": {
+            "requests": 2,
+            "bytes": 6295978,
+            "statuses": [
+              200
+            ],
+            "range_206": 0
+          },
+          "protomaps_pmtiles": {
+            "requests": 10,
+            "bytes": 496979,
+            "statuses": [
+              206
+            ],
+            "range_206": 10
+          },
+          "glyphs": {
+            "requests": 7,
+            "bytes": 401591,
+            "statuses": [
+              200
+            ],
+            "range_206": 0
+          },
+          "egif": {
+            "requests": 1,
+            "bytes": 300164,
+            "statuses": [
+              200
+            ],
+            "range_206": 0
+          }
+        },
+        "full_pmtiles_download_observed": false,
+        "full_pmtiles_candidates": []
+      },
+      "esfire_coverage": null
+    },
+    "canarias_1995": {
+      "passed": true,
+      "state": {
+        "from": 1995,
+        "to": 1995,
+        "territory_scope": "autonomous_community",
+        "autonomous_community_id": "ES:CCAA:05",
+        "province_id": null,
+        "municipality_id": null,
+        "esfire30_visible": false,
+        "egif_visible": true,
+        "icv_visible": false,
+        "effis_visible": false,
+        "selected_geometry_id": null,
+        "selected_geometry_year": null,
+        "selected_egif_record_id": null,
+        "selected_egif_year": null,
+        "selected_icv_geometry_id": null,
+        "selected_icv_geometry_year": null,
+        "selected_icv_record_id": null,
+        "selected_effis_geometry_id": null,
+        "selected_effis_geometry_year": null,
+        "filters": [],
+        "center": [
+          -15.74806854999997,
+          28.530823535705863
+        ],
+        "zoom": 7.07582770857343
+      },
+      "metrics": {
+        "egif_record_count": 56,
+        "egif_declared_forest_area_ha": 3630.8,
+        "egif_administrative_gif_count": 1
+      },
+      "errors": [],
+      "external_runtime_domains": [],
+      "network": {
+        "families": {
+          "frontend": {
+            "requests": 6,
+            "bytes": 332365,
+            "statuses": [
+              200
+            ],
+            "range_206": 0
+          },
+          "other": {
+            "requests": 33,
+            "bytes": 96365,
+            "statuses": [
+              200,
+              404
+            ],
+            "range_206": 0
+          },
+          "esfire30_pmtiles": {
+            "requests": 6,
+            "bytes": 519391,
+            "statuses": [
+              206
+            ],
+            "range_206": 6
+          },
+          "summary": {
+            "requests": 2,
+            "bytes": 20625,
+            "statuses": [
+              200
+            ],
+            "range_206": 0
+          },
+          "territories": {
+            "requests": 3,
+            "bytes": 6474291,
+            "statuses": [
+              200
+            ],
+            "range_206": 0
+          },
+          "protomaps_pmtiles": {
+            "requests": 9,
+            "bytes": 296831,
+            "statuses": [
+              206
+            ],
+            "range_206": 9
+          },
+          "glyphs": {
+            "requests": 7,
+            "bytes": 401591,
+            "statuses": [
+              200
+            ],
+            "range_206": 0
+          },
+          "egif": {
+            "requests": 2,
+            "bytes": 305679,
+            "statuses": [
+              200
+            ],
+            "range_206": 0
+          }
+        },
+        "full_pmtiles_download_observed": false,
+        "full_pmtiles_candidates": []
+      },
+      "esfire_coverage": {
+        "from": 1985,
+        "status": "no_source_coverage",
+        "to": 2021
+      }
+    },
+    "elx_2025": {
+      "passed": true,
+      "state": {
+        "from": 2025,
+        "to": 2025,
+        "territory_scope": "municipality",
+        "autonomous_community_id": "ES:CCAA:10",
+        "province_id": "ES:PROV:03",
+        "municipality_id": "ES:MUN:03065",
+        "esfire30_visible": false,
+        "egif_visible": false,
+        "icv_visible": false,
+        "effis_visible": true,
+        "selected_geometry_id": null,
+        "selected_geometry_year": null,
+        "selected_egif_record_id": null,
+        "selected_egif_year": null,
+        "selected_icv_geometry_id": null,
+        "selected_icv_geometry_year": null,
+        "selected_icv_record_id": null,
+        "selected_effis_geometry_id": null,
+        "selected_effis_geometry_year": null,
+        "filters": [],
+        "center": [
+          -0.7,
+          39.3
+        ],
+        "zoom": 8
+      },
+      "metrics": {
+        "effis_perimeter_count": 1,
+        "effis_mapped_area_ha": 7
+      },
+      "errors": [],
+      "external_runtime_domains": [],
+      "network": {
+        "families": {
+          "frontend": {
+            "requests": 6,
+            "bytes": 332365,
+            "statuses": [
+              200
+            ],
+            "range_206": 0
+          },
+          "other": {
+            "requests": 33,
+            "bytes": 96365,
+            "statuses": [
+              200,
+              404
+            ],
+            "range_206": 0
+          },
+          "esfire30_pmtiles": {
+            "requests": 22,
+            "bytes": 738636,
+            "statuses": [
+              206
+            ],
+            "range_206": 22
+          },
+          "summary": {
+            "requests": 4,
+            "bytes": 44790,
+            "statuses": [
+              200
+            ],
+            "range_206": 0
+          },
+          "territories": {
+            "requests": 4,
+            "bytes": 7405256,
+            "statuses": [
+              200
+            ],
+            "range_206": 0
+          },
+          "protomaps_pmtiles": {
+            "requests": 25,
+            "bytes": 1091144,
+            "statuses": [
+              206
+            ],
+            "range_206": 25
+          },
+          "glyphs": {
+            "requests": 7,
+            "bytes": 401591,
+            "statuses": [
+              200
+            ],
+            "range_206": 0
+          },
+          "gva": {
+            "requests": 2,
+            "bytes": 20683,
+            "statuses": [
+              200
+            ],
+            "range_206": 0
+          }
+        },
+        "full_pmtiles_download_observed": false,
+        "full_pmtiles_candidates": []
+      },
+      "esfire_coverage": null
+    }
+  },
+  "permalinks": {
+    "native_capture": {
+      "before": {
+        "url": "https://inthurain.github.io/atlas-incendios/index.html?smoke=pais_valencia&from=1995&to=1995&egif_scope=ES%3ACCAA%3A10#es4c-state-v1=eyJ2IjoiZXM0Yy1zdGF0ZS12MSIsIm1hcCI6eyJsYXQiOjM5LjMsImxvbiI6LTAuNywieiI6OH0sInRpbWUiOnsiZnJvbSI6MTk5NSwidG8iOjE5OTV9LCJ0ZXJyaXRvcnkiOnsic2NvcGUiOiJhdXRvbm9tb3VzX2NvbW11bml0eSIsImF1dG9ub21vdXNfY29tbXVuaXR5X2lkIjoiRVM6Q0NBQToxMCIsInByb3ZpbmNlX2lkIjpudWxsLCJtdW5pY2lwYWxpdHlfaWQiOm51bGx9LCJzb3VyY2VzIjp7ImVzZmlyZTMwIjpmYWxzZSwiZWdpZiI6dHJ1ZSwiaWN2Ijp0cnVlLCJlZmZpcyI6ZmFsc2V9LCJhbmFseXNpcyI6eyJmaWx0ZXJzIjpbeyJmaWx0ZXJfaWQiOiJpY3ZfbWluX2FyZWEiLCJmaWx0ZXJfdHlwZSI6Im1pbl92YWx1ZSIsInNvdXJjZSI6ImljdiIsIm1ldHJpY19pZCI6Imljdl9kZWNsYXJlZF9mb3Jlc3RfYXJlYV9oYSIsInZhbHVlIjo1MDAsInVuaXQiOiJoYSJ9XX0sInNlbGVjdGlvbnMiOnsiZ2VvbWV0cnlfaWQiOm51bGwsImVnaWZfcmVjb3JkX2lkIjpudWxsLCJpY3ZfZ2VvbWV0cnlfaWQiOm51bGwsImljdl9yZWNvcmRfaWQiOiJndmE6cGlmLWN2OjE5OTVBTDAwNzYiLCJlZmZpc19nZW9tZXRyeV9pZCI6bnVsbH19",
+        "state": {
+          "from": 1995,
+          "to": 1995,
+          "territory_scope": "autonomous_community",
+          "autonomous_community_id": "ES:CCAA:10",
+          "province_id": null,
+          "municipality_id": null,
+          "esfire30_visible": false,
+          "egif_visible": true,
+          "icv_visible": true,
+          "effis_visible": false,
+          "selected_geometry_id": null,
+          "selected_geometry_year": null,
+          "selected_egif_record_id": null,
+          "selected_egif_year": null,
+          "selected_icv_geometry_id": null,
+          "selected_icv_geometry_year": null,
+          "selected_icv_record_id": "gva:pif-cv:1995AL0076",
+          "selected_effis_geometry_id": null,
+          "selected_effis_geometry_year": null,
+          "filters": [
+            {
+              "filter_id": "icv_min_area",
+              "filter_type": "min_value",
+              "source": "icv",
+              "metric_id": "icv_declared_forest_area_ha",
+              "value": 500,
+              "unit": "ha"
+            }
+          ],
+          "center": [
+            -0.7,
+            39.3
+          ],
+          "zoom": 8
+        },
+        "copy": "No se pudo copiar automáticamente; copia esta URL: https://inthurain.github.io/atlas-incendios/index.html?smoke=pais_valencia&from=1995&to=1995&egif_scope=ES%3ACCAA%3A10#es4c-state-v1=eyJ2IjoiZXM0Yy1zdGF0ZS12MSIsIm1hcCI6eyJsYXQiOjM5LjMsImxvbiI6LTAuNywieiI6OH0sInRpbWUiOnsiZnJvbSI6MTk5NSwidG8iOjE5OTV9LCJ0ZXJyaXRvcnkiOnsic2NvcGUiOiJhdXRvbm9tb3VzX2NvbW11bml0eSIsImF1dG9ub21vdXNfY29tbXVuaXR5X2lkIjoiRVM6Q0NBQToxMCIsInByb3ZpbmNlX2lkIjpudWxsLCJtdW5pY2lwYWxpdHlfaWQiOm51bGx9LCJzb3VyY2VzIjp7ImVzZmlyZTMwIjpmYWxzZSwiZWdpZiI6dHJ1ZSwiaWN2Ijp0cnVlLCJlZmZpcyI6ZmFsc2V9LCJhbmFseXNpcyI6eyJmaWx0ZXJzIjpbeyJmaWx0ZXJfaWQiOiJpY3ZfbWluX2FyZWEiLCJmaWx0ZXJfdHlwZSI6Im1pbl92YWx1ZSIsInNvdXJjZSI6ImljdiIsIm1ldHJpY19pZCI6Imljdl9kZWNsYXJlZF9mb3Jlc3RfYXJlYV9oYSIsInZhbHVlIjo1MDAsInVuaXQiOiJoYSJ9XX0sInNlbGVjdGlvbnMiOnsiZ2VvbWV0cnlfaWQiOm51bGwsImVnaWZfcmVjb3JkX2lkIjpudWxsLCJpY3ZfZ2VvbWV0cnlfaWQiOm51bGwsImljdl9yZWNvcmRfaWQiOiJndmE6cGlmLWN2OjE5OTVBTDAwNzYiLCJlZmZpc19nZW9tZXRyeV9pZCI6bnVsbH19"
+      }
+    },
+    "native_restore": {
+      "fresh_before_reload": {
+        "state": {
+          "from": 1995,
+          "to": 1995,
+          "territory_scope": "autonomous_community",
+          "autonomous_community_id": "ES:CCAA:10",
+          "province_id": null,
+          "municipality_id": null,
+          "esfire30_visible": false,
+          "egif_visible": true,
+          "icv_visible": true,
+          "effis_visible": false,
+          "selected_geometry_id": null,
+          "selected_geometry_year": null,
+          "selected_egif_record_id": null,
+          "selected_egif_year": null,
+          "selected_icv_geometry_id": null,
+          "selected_icv_geometry_year": null,
+          "selected_icv_record_id": "gva:pif-cv:1995AL0076",
+          "selected_effis_geometry_id": null,
+          "selected_effis_geometry_year": null,
+          "filters": [
+            {
+              "filter_id": "icv_min_area",
+              "filter_type": "min_value",
+              "source": "icv",
+              "metric_id": "icv_declared_forest_area_ha",
+              "value": 500,
+              "unit": "ha"
+            }
+          ],
+          "center": [
+            -0.7,
+            39.3
+          ],
+          "zoom": 8
+        },
+        "hash": "#es4c-state-v1=eyJ2IjoiZXM0Yy1zdGF0ZS12MSIsIm1hcCI6eyJsYXQiOjM5LjMsImxvbiI6LTAuNywieiI6OH0sInRpbWUiOnsiZnJvbSI6MTk5NSwidG8iOjE5OTV9LCJ0ZXJyaXRvcnkiOnsic2NvcGUiOiJhdXRvbm9tb3VzX2NvbW11bml0eSIsImF1dG9ub21vdXNfY29tbXVuaXR5X2lkIjoiRVM6Q0NBQToxMCIsInByb3ZpbmNlX2lkIjpudWxsLCJtdW5pY2lwYWxpdHlfaWQiOm51bGx9LCJzb3VyY2VzIjp7ImVzZmlyZTMwIjpmYWxzZSwiZWdpZiI6dHJ1ZSwiaWN2Ijp0cnVlLCJlZmZpcyI6ZmFsc2V9LCJhbmFseXNpcyI6eyJmaWx0ZXJzIjpbeyJmaWx0ZXJfaWQiOiJpY3ZfbWluX2FyZWEiLCJmaWx0ZXJfdHlwZSI6Im1pbl92YWx1ZSIsInNvdXJjZSI6ImljdiIsIm1ldHJpY19pZCI6Imljdl9kZWNsYXJlZF9mb3Jlc3RfYXJlYV9oYSIsInZhbHVlIjo1MDAsInVuaXQiOiJoYSJ9XX0sInNlbGVjdGlvbnMiOnsiZ2VvbWV0cnlfaWQiOm51bGwsImVnaWZfcmVjb3JkX2lkIjpudWxsLCJpY3ZfZ2VvbWV0cnlfaWQiOm51bGwsImljdl9yZWNvcmRfaWQiOiJndmE6cGlmLWN2OjE5OTVBTDAwNzYiLCJlZmZpc19nZW9tZXRyeV9pZCI6bnVsbH19",
+        "map_loaded": true,
+        "errors": []
+      },
+      "after_reload": {
+        "state": {
+          "from": 1995,
+          "to": 1995,
+          "territory_scope": "autonomous_community",
+          "autonomous_community_id": "ES:CCAA:10",
+          "province_id": null,
+          "municipality_id": null,
+          "esfire30_visible": false,
+          "egif_visible": true,
+          "icv_visible": true,
+          "effis_visible": false,
+          "selected_geometry_id": null,
+          "selected_geometry_year": null,
+          "selected_egif_record_id": null,
+          "selected_egif_year": null,
+          "selected_icv_geometry_id": null,
+          "selected_icv_geometry_year": null,
+          "selected_icv_record_id": "gva:pif-cv:1995AL0076",
+          "selected_effis_geometry_id": null,
+          "selected_effis_geometry_year": null,
+          "filters": [
+            {
+              "filter_id": "icv_min_area",
+              "filter_type": "min_value",
+              "source": "icv",
+              "metric_id": "icv_declared_forest_area_ha",
+              "value": 500,
+              "unit": "ha"
+            }
+          ],
+          "center": [
+            -0.7,
+            39.3
+          ],
+          "zoom": 8
+        },
+        "hash": "#es4c-state-v1=eyJ2IjoiZXM0Yy1zdGF0ZS12MSIsIm1hcCI6eyJsYXQiOjM5LjMsImxvbiI6LTAuNywieiI6OH0sInRpbWUiOnsiZnJvbSI6MTk5NSwidG8iOjE5OTV9LCJ0ZXJyaXRvcnkiOnsic2NvcGUiOiJhdXRvbm9tb3VzX2NvbW11bml0eSIsImF1dG9ub21vdXNfY29tbXVuaXR5X2lkIjoiRVM6Q0NBQToxMCIsInByb3ZpbmNlX2lkIjpudWxsLCJtdW5pY2lwYWxpdHlfaWQiOm51bGx9LCJzb3VyY2VzIjp7ImVzZmlyZTMwIjpmYWxzZSwiZWdpZiI6dHJ1ZSwiaWN2Ijp0cnVlLCJlZmZpcyI6ZmFsc2V9LCJhbmFseXNpcyI6eyJmaWx0ZXJzIjpbeyJmaWx0ZXJfaWQiOiJpY3ZfbWluX2FyZWEiLCJmaWx0ZXJfdHlwZSI6Im1pbl92YWx1ZSIsInNvdXJjZSI6ImljdiIsIm1ldHJpY19pZCI6Imljdl9kZWNsYXJlZF9mb3Jlc3RfYXJlYV9oYSIsInZhbHVlIjo1MDAsInVuaXQiOiJoYSJ9XX0sInNlbGVjdGlvbnMiOnsiZ2VvbWV0cnlfaWQiOm51bGwsImVnaWZfcmVjb3JkX2lkIjpudWxsLCJpY3ZfZ2VvbWV0cnlfaWQiOm51bGwsImljdl9yZWNvcmRfaWQiOiJndmE6cGlmLWN2OjE5OTVBTDAwNzYiLCJlZmZpc19nZW9tZXRyeV9pZCI6bnVsbH19",
+        "map_loaded": true,
+        "errors": []
+      }
+    },
+    "legacy_historic": {
+      "fresh_tab": {
+        "state": {
+          "from": 1995,
+          "to": 1995,
+          "territory_scope": "autonomous_community",
+          "autonomous_community_id": "ES:CCAA:10",
+          "province_id": null,
+          "municipality_id": null,
+          "esfire30_visible": true,
+          "egif_visible": true,
+          "icv_visible": true,
+          "effis_visible": false,
+          "selected_geometry_id": null,
+          "selected_geometry_year": null,
+          "selected_egif_record_id": null,
+          "selected_egif_year": null,
+          "selected_icv_geometry_id": null,
+          "selected_icv_geometry_year": null,
+          "selected_icv_record_id": null,
+          "selected_effis_geometry_id": null,
+          "selected_effis_geometry_year": null,
+          "filters": [],
+          "center": [
+            -0.7,
+            39.3
+          ],
+          "zoom": 8
+        },
+        "hash": "#v=1&lat=39.30000&lng=-0.70000&z=8&from=1995&to=1995&src=egif%2Cesfire30%2Cicv&province=all&min_area=0&gif=0",
+        "map_loaded": true,
+        "errors": []
+      }
+    },
+    "legacy_recent": {
+      "fresh_tab": {
+        "state": {
+          "from": 2025,
+          "to": 2025,
+          "territory_scope": "municipality",
+          "autonomous_community_id": "ES:CCAA:10",
+          "province_id": "ES:PROV:03",
+          "municipality_id": "ES:MUN:03065",
+          "esfire30_visible": true,
+          "egif_visible": true,
+          "icv_visible": false,
+          "effis_visible": true,
+          "selected_geometry_id": null,
+          "selected_geometry_year": null,
+          "selected_egif_record_id": null,
+          "selected_egif_year": null,
+          "selected_icv_geometry_id": null,
+          "selected_icv_geometry_year": null,
+          "selected_icv_record_id": null,
+          "selected_effis_geometry_id": null,
+          "selected_effis_geometry_year": null,
+          "filters": [
+            {
+              "filter_id": "effis_min_area",
+              "filter_type": "min_value",
+              "source": "effis",
+              "metric_id": "effis_mapped_area_ha",
+              "value": 10,
+              "unit": "ha"
+            }
+          ],
+          "center": [
+            -0.71,
+            38.17
+          ],
+          "zoom": 11
+        },
+        "hash": "#v=1&lat=38.17000&lng=-0.71000&z=11&from=2025&to=2025&src=effis&province=alicante&municipality=03065&min_area=10&gif=0&entity=effis%3Arda%3A285361%3Af05085eba622a5bb&geometry=effis%3Arda%3A285361%3Af05085eba622a5bb",
+        "map_loaded": true,
+        "errors": []
+      }
+    }
+  },
+  "range": {
+    "esfire30_fire_pmtiles": [
+      {
+        "request": "bytes=0-0",
+        "status": 206,
+        "content_range": "bytes 0-0/63052056",
+        "bytes": 1,
+        "byte_identical_to_local": true,
+        "elapsed_ms": 49.295,
+        "headers": {
+          "content-length": "1",
+          "content-range": "bytes 0-0/63052056",
+          "content-type": "application/octet-stream",
+          "accept-ranges": "bytes",
+          "cache-control": "max-age=600",
+          "etag": "\"6aa5b99a-3c21918\"",
+          "last-modified": "Sat, 12 Sep 2026 20:44:10 GMT",
+          "age": "36",
+          "x-cache": "HIT",
+          "x-cache-hits": "0",
+          "access-control-allow-origin": "*"
+        },
+        "passed": true
+      },
+      {
+        "request": "bytes=0-16383",
+        "status": 206,
+        "content_range": "bytes 0-16383/63052056",
+        "bytes": 16384,
+        "byte_identical_to_local": true,
+        "elapsed_ms": 61.908,
+        "headers": {
+          "content-length": "16384",
+          "content-range": "bytes 0-16383/63052056",
+          "content-type": "application/octet-stream",
+          "accept-ranges": "bytes",
+          "cache-control": "max-age=600",
+          "etag": "\"6aa5b99a-3c21918\"",
+          "last-modified": "Sat, 12 Sep 2026 20:44:10 GMT",
+          "age": "36",
+          "x-cache": "HIT",
+          "x-cache-hits": "0",
+          "access-control-allow-origin": "*"
+        },
+        "passed": true
+      }
+    ],
+    "protomaps_basemap_pmtiles": [
+      {
+        "request": "bytes=0-0",
+        "status": 206,
+        "content_range": "bytes 0-0/293324998",
+        "bytes": 1,
+        "byte_identical_to_local": true,
+        "elapsed_ms": 81.88,
+        "headers": {
+          "content-length": "1",
+          "content-range": "bytes 0-0/293324998",
+          "content-type": "application/octet-stream",
+          "accept-ranges": "bytes",
+          "cache-control": "max-age=600",
+          "etag": "\"6aa5b999-117bc8c6\"",
+          "last-modified": "Sat, 12 Sep 2026 20:44:09 GMT",
+          "age": "34",
+          "x-cache": "HIT",
+          "x-cache-hits": "0",
+          "access-control-allow-origin": "*"
+        },
+        "passed": true
+      },
+      {
+        "request": "bytes=0-16383",
+        "status": 206,
+        "content_range": "bytes 0-16383/293324998",
+        "bytes": 16384,
+        "byte_identical_to_local": true,
+        "elapsed_ms": 56.078,
+        "headers": {
+          "content-length": "16384",
+          "content-range": "bytes 0-16383/293324998",
+          "content-type": "application/octet-stream",
+          "accept-ranges": "bytes",
+          "cache-control": "max-age=600",
+          "etag": "\"6aa5b999-117bc8c6\"",
+          "last-modified": "Sat, 12 Sep 2026 20:44:09 GMT",
+          "age": "35",
+          "x-cache": "HIT",
+          "x-cache-hits": "0",
+          "access-control-allow-origin": "*"
+        },
+        "passed": true
+      }
+    ]
+  },
+  "glyphs": [
+    {
+      "path": "data/basemap/protomaps/20260902-z12/72bb270ff6fc18ccba3042834f9a9eb72901c243e7dec88b3ebb63eaafaeb729/fonts/Noto Sans Regular/0-255.pbf",
+      "status": 200,
+      "headers": {
+        "content-length": "76044",
+        "content-type": "application/octet-stream",
+        "accept-ranges": "bytes",
+        "cache-control": "max-age=600",
+        "etag": "\"6aa5b99a-1290c\"",
+        "last-modified": "Sat, 12 Sep 2026 20:44:10 GMT",
+        "age": "0",
+        "x-cache": "MISS",
+        "x-cache-hits": "0",
+        "access-control-allow-origin": "*"
+      },
+      "passed": true
+    },
+    {
+      "path": "data/basemap/protomaps/20260902-z12/72bb270ff6fc18ccba3042834f9a9eb72901c243e7dec88b3ebb63eaafaeb729/fonts/Noto Sans Regular/1024-1279.pbf",
+      "status": 200,
+      "headers": {
+        "content-length": "125320",
+        "content-type": "application/octet-stream",
+        "accept-ranges": "bytes",
+        "cache-control": "max-age=600",
+        "etag": "\"6aa5b99a-1e988\"",
+        "last-modified": "Sat, 12 Sep 2026 20:44:10 GMT",
+        "age": "0",
+        "x-cache": "MISS",
+        "x-cache-hits": "0",
+        "access-control-allow-origin": "*"
+      },
+      "passed": true
+    },
+    {
+      "path": "data/basemap/protomaps/20260902-z12/72bb270ff6fc18ccba3042834f9a9eb72901c243e7dec88b3ebb63eaafaeb729/fonts/Noto Sans Regular/11520-11775.pbf",
+      "status": 200,
+      "headers": {
+        "content-length": "98137",
+        "content-type": "application/octet-stream",
+        "accept-ranges": "bytes",
+        "cache-control": "max-age=600",
+        "etag": "\"6aa5b999-17f59\"",
+        "last-modified": "Sat, 12 Sep 2026 20:44:09 GMT",
+        "age": "0",
+        "x-cache": "MISS",
+        "x-cache-hits": "0",
+        "access-control-allow-origin": "*"
+      },
+      "passed": true
+    },
+    {
+      "path": "data/basemap/protomaps/20260902-z12/72bb270ff6fc18ccba3042834f9a9eb72901c243e7dec88b3ebb63eaafaeb729/fonts/Noto Sans Regular/1536-1791.pbf",
+      "status": 200,
+      "headers": {
+        "content-length": "110716",
+        "content-type": "application/octet-stream",
+        "accept-ranges": "bytes",
+        "cache-control": "max-age=600",
+        "etag": "\"6aa5b99a-1b07c\"",
+        "last-modified": "Sat, 12 Sep 2026 20:44:10 GMT",
+        "age": "0",
+        "x-cache": "MISS",
+        "x-cache-hits": "0",
+        "access-control-allow-origin": "*"
+      },
+      "passed": true
+    },
+    {
+      "path": "data/basemap/protomaps/20260902-z12/72bb270ff6fc18ccba3042834f9a9eb72901c243e7dec88b3ebb63eaafaeb729/fonts/Noto Sans Regular/256-511.pbf",
+      "status": 200,
+      "headers": {
+        "content-length": "127726",
+        "content-type": "application/octet-stream",
+        "accept-ranges": "bytes",
+        "cache-control": "max-age=600",
+        "etag": "\"6aa5b999-1f2ee\"",
+        "last-modified": "Sat, 12 Sep 2026 20:44:09 GMT",
+        "age": "0",
+        "x-cache": "MISS",
+        "x-cache-hits": "0",
+        "access-control-allow-origin": "*"
+      },
+      "passed": true
+    },
+    {
+      "path": "data/basemap/protomaps/20260902-z12/72bb270ff6fc18ccba3042834f9a9eb72901c243e7dec88b3ebb63eaafaeb729/fonts/Noto Sans Regular/512-767.pbf",
+      "status": 200,
+      "headers": {
+        "content-length": "94728",
+        "content-type": "application/octet-stream",
+        "accept-ranges": "bytes",
+        "cache-control": "max-age=600",
+        "etag": "\"6aa5b999-17208\"",
+        "last-modified": "Sat, 12 Sep 2026 20:44:09 GMT",
+        "age": "0",
+        "x-cache": "MISS",
+        "x-cache-hits": "0",
+        "access-control-allow-origin": "*"
+      },
+      "passed": true
+    },
+    {
+      "path": "data/basemap/protomaps/20260902-z12/72bb270ff6fc18ccba3042834f9a9eb72901c243e7dec88b3ebb63eaafaeb729/fonts/Noto Sans Regular/768-1023.pbf",
+      "status": 200,
+      "headers": {
+        "content-length": "77034",
+        "content-type": "application/octet-stream",
+        "accept-ranges": "bytes",
+        "cache-control": "max-age=600",
+        "etag": "\"6aa5b999-12cea\"",
+        "last-modified": "Sat, 12 Sep 2026 20:44:09 GMT",
+        "age": "0",
+        "x-cache": "MISS",
+        "x-cache-hits": "0",
+        "access-control-allow-origin": "*"
+      },
+      "passed": true
+    },
+    {
+      "path": "data/basemap/protomaps/20260902-z12/72bb270ff6fc18ccba3042834f9a9eb72901c243e7dec88b3ebb63eaafaeb729/fonts/Noto Sans Regular/7680-7935.pbf",
+      "status": 200,
+      "headers": {
+        "content-length": "135449",
+        "content-type": "application/octet-stream",
+        "accept-ranges": "bytes",
+        "cache-control": "max-age=600",
+        "etag": "\"6aa5b999-21119\"",
+        "last-modified": "Sat, 12 Sep 2026 20:44:09 GMT",
+        "age": "0",
+        "x-cache": "MISS",
+        "x-cache-hits": "0",
+        "access-control-allow-origin": "*"
+      },
+      "passed": true
+    },
+    {
+      "path": "data/basemap/protomaps/20260902-z12/72bb270ff6fc18ccba3042834f9a9eb72901c243e7dec88b3ebb63eaafaeb729/fonts/Noto Sans Regular/8192-8447.pbf",
+      "status": 200,
+      "headers": {
+        "content-length": "64220",
+        "content-type": "application/octet-stream",
+        "accept-ranges": "bytes",
+        "cache-control": "max-age=600",
+        "etag": "\"6aa5b99a-fadc\"",
+        "last-modified": "Sat, 12 Sep 2026 20:44:10 GMT",
+        "age": "0",
+        "x-cache": "MISS",
+        "x-cache-hits": "0",
+        "access-control-allow-origin": "*"
+      },
+      "passed": true
+    }
+  ],
+  "runtime_network": {
+    "pmtiles_request_count": 522,
+    "status_codes": [
+      206
+    ],
+    "full_download_observed": false,
+    "external_domains": []
+  },
+  "clean_profile": {
+    "icv": {
+      "passed": true,
+      "before": {
+        "territory": {
+          "territory_scope": "autonomous_community",
+          "autonomous_community_id": "ES:CCAA:10",
+          "province_id": null,
+          "municipality_id": null
+        },
+        "selection": {
+          "selected_geometry_id": null,
+          "selected_geometry_year": null,
+          "selected_egif_record_id": null,
+          "selected_egif_year": null,
+          "selected_icv_geometry_id": null,
+          "selected_icv_geometry_year": null,
+          "selected_icv_record_id": null,
+          "selected_effis_geometry_id": null,
+          "selected_effis_geometry_year": null
+        },
+        "popup": {
+          "active": false,
+          "kind": null,
+          "hit_count": 0,
+          "source_id": null,
+          "geometry_id": null,
+          "anchor": null
+        }
+      },
+      "after": {
+        "territory": {
+          "territory_scope": "autonomous_community",
+          "autonomous_community_id": "ES:CCAA:10",
+          "province_id": null,
+          "municipality_id": null
+        },
+        "selection": {
+          "selected_geometry_id": null,
+          "selected_geometry_year": null,
+          "selected_egif_record_id": null,
+          "selected_egif_year": null,
+          "selected_icv_geometry_id": "gva:geometry:1995:3:783",
+          "selected_icv_geometry_year": 1995,
+          "selected_icv_record_id": "gva:pif-cv:1995CS5050",
+          "selected_effis_geometry_id": null,
+          "selected_effis_geometry_year": null
+        },
+        "popup": {
+          "active": true,
+          "kind": "feature",
+          "hit_count": 1,
+          "source_id": "icv",
+          "geometry_id": "gva:geometry:1995:3:783",
+          "anchor": {
+            "lng": -0.49119099999703053,
+            "lat": 40.09180366166885
+          }
+        }
+      },
+      "expected_geometry": "gva:geometry:1995:3:783",
+      "territory_unchanged": true,
+      "hover": {
+        "cursor": "pointer",
+        "highlight_filters": [
+          {
+            "layer": "icv-hover",
+            "filter": [
+              "==",
+              [
+                "get",
+                "geometry_id"
+              ],
+              "__none__"
+            ]
+          },
+          {
+            "layer": "esfire30-hover",
+            "filter": [
+              "==",
+              [
+                "get",
+                "geometry_id"
+              ],
+              "__none__"
+            ]
+          },
+          {
+            "layer": "effis-hover",
+            "filter": [
+              "==",
+              [
+                "get",
+                "geometry_id"
+              ],
+              "__none__"
+            ]
+          }
+        ]
+      },
+      "human_popup": {
+        "state": {
+          "active": true,
+          "kind": "feature",
+          "hit_count": 1,
+          "source_id": "icv",
+          "geometry_id": "gva:geometry:1995:3:783",
+          "anchor": {
+            "lng": -0.49119099999703053,
+            "lat": 40.09180366166885
+          }
+        },
+        "text": "Incendio documentado\nICV · Generalitat Valenciana\nCerrar\nFecha\n11/05/1995\nMunicipio\nArañuel\nProvincia\nCastellón/Castelló\nSuperficie\n5 ha\nCausa\nRayo\nVer detalles",
+        "details": "Ver detalles",
+        "role": "dialog",
+        "close": "Cerrar información del perímetro",
+        "shell": "true",
+        "sourceSelections": {
+          "from": 1995,
+          "to": 1995,
+          "territory_scope": "autonomous_community",
+          "autonomous_community_id": "ES:CCAA:10",
+          "province_id": null,
+          "municipality_id": null,
+          "esfire30_visible": false,
+          "egif_visible": true,
+          "icv_visible": true,
+          "effis_visible": false,
+          "selected_geometry_id": null,
+          "selected_geometry_year": null,
+          "selected_egif_record_id": null,
+          "selected_egif_year": null,
+          "selected_icv_geometry_id": "gva:geometry:1995:3:783",
+          "selected_icv_geometry_year": 1995,
+          "selected_icv_record_id": "gva:pif-cv:1995CS5050",
+          "selected_effis_geometry_id": null,
+          "selected_effis_geometry_year": null,
+          "filters": [],
+          "center": [
+            -0.491191,
+            40.091738
+          ],
+          "zoom": 12
+        },
+        "errors": []
+      },
+      "background": {
+        "point": {
+          "x": 320,
+          "y": 84,
+          "point": {
+            "x": 320,
+            "y": 16
+          },
+          "lngLat": {
+            "lng": -0.5239783229959016,
+            "lat": 40.13486406511211
+          },
+          "hits": [],
+          "territories": [
+            {
+              "layer": "official-province-territories-fill",
+              "properties": {
+                "territory_id": "ES:PROV:12",
+                "parent_id": "ES:CCAA:10",
+                "source_code": "34101200000",
+                "official_name": "Castellón/Castelló",
+                "source_name": "Castelló/Castellón",
+                "territory_type": "province",
+                "bounds": "[-0.8462969,39.7146978,0.6903109,40.7886312]"
+              }
+            },
+            {
+              "layer": "official-ccaa-territories-fill",
+              "properties": {
+                "territory_id": "ES:CCAA:10",
+                "source_code": "34100000000",
+                "official_name": "Comunitat Valenciana",
+                "source_name": "Comunitat Valenciana",
+                "territory_type": "autonomous_community",
+                "bounds": "[-1.528778,37.8437849,0.6903133,40.7886312]"
+              }
+            }
+          ]
+        },
+        "before": {
+          "territory": {
+            "territory_scope": "autonomous_community",
+            "autonomous_community_id": "ES:CCAA:10",
+            "province_id": null,
+            "municipality_id": null
+          },
+          "selection": {
+            "selected_geometry_id": null,
+            "selected_geometry_year": null,
+            "selected_egif_record_id": null,
+            "selected_egif_year": null,
+            "selected_icv_geometry_id": "gva:geometry:1995:3:783",
+            "selected_icv_geometry_year": 1995,
+            "selected_icv_record_id": "gva:pif-cv:1995CS5050",
+            "selected_effis_geometry_id": null,
+            "selected_effis_geometry_year": null
+          },
+          "popup": {
+            "active": false,
+            "kind": null,
+            "hit_count": 0,
+            "source_id": null,
+            "geometry_id": null,
+            "anchor": null
+          }
+        },
+        "after": {
+          "territory": {
+            "territory_scope": "province",
+            "autonomous_community_id": "ES:CCAA:10",
+            "province_id": "ES:PROV:12",
+            "municipality_id": null
+          },
+          "selection": {
+            "selected_geometry_id": null,
+            "selected_geometry_year": null,
+            "selected_egif_record_id": null,
+            "selected_egif_year": null,
+            "selected_icv_geometry_id": null,
+            "selected_icv_geometry_year": null,
+            "selected_icv_record_id": null,
+            "selected_effis_geometry_id": null,
+            "selected_effis_geometry_year": null
+          },
+          "popup": {
+            "active": false,
+            "kind": null,
+            "hit_count": 0,
+            "source_id": null,
+            "geometry_id": null,
+            "anchor": null
+          }
+        },
+        "passed": true
+      },
+      "errors": [],
+      "new_resource_urls": []
+    },
+    "province": {
+      "passed": true,
+      "before": {
+        "territory": {
+          "territory_scope": "province",
+          "autonomous_community_id": "ES:CCAA:10",
+          "province_id": "ES:PROV:03",
+          "municipality_id": null
+        },
+        "selection": {
+          "selected_geometry_id": null,
+          "selected_geometry_year": null,
+          "selected_egif_record_id": null,
+          "selected_egif_year": null,
+          "selected_icv_geometry_id": null,
+          "selected_icv_geometry_year": null,
+          "selected_icv_record_id": null,
+          "selected_effis_geometry_id": null,
+          "selected_effis_geometry_year": null
+        },
+        "popup": {
+          "active": false,
+          "kind": null,
+          "hit_count": 0,
+          "source_id": null,
+          "geometry_id": null,
+          "anchor": null
+        }
+      },
+      "after": {
+        "territory": {
+          "territory_scope": "province",
+          "autonomous_community_id": "ES:CCAA:10",
+          "province_id": "ES:PROV:03",
+          "municipality_id": null
+        },
+        "selection": {
+          "selected_geometry_id": null,
+          "selected_geometry_year": null,
+          "selected_egif_record_id": null,
+          "selected_egif_year": null,
+          "selected_icv_geometry_id": "gva:geometry:2016:24:11828",
+          "selected_icv_geometry_year": 2016,
+          "selected_icv_record_id": "gva:pif-cv:2016AL0074",
+          "selected_effis_geometry_id": null,
+          "selected_effis_geometry_year": null
+        },
+        "popup": {
+          "active": true,
+          "kind": "feature",
+          "hit_count": 1,
+          "source_id": "icv",
+          "geometry_id": "gva:geometry:2016:24:11828",
+          "anchor": {
+            "lng": 0.17708500000159688,
+            "lat": 38.75146893667619
+          }
+        }
+      },
+      "expected_geometry": "gva:geometry:2016:24:11828",
+      "territory_unchanged": true,
+      "hover": {
+        "cursor": "pointer",
+        "highlight_filters": [
+          {
+            "layer": "icv-hover",
+            "filter": [
+              "==",
+              [
+                "get",
+                "geometry_id"
+              ],
+              "__none__"
+            ]
+          },
+          {
+            "layer": "esfire30-hover",
+            "filter": [
+              "==",
+              [
+                "get",
+                "geometry_id"
+              ],
+              "__none__"
+            ]
+          },
+          {
+            "layer": "effis-hover",
+            "filter": [
+              "==",
+              [
+                "get",
+                "geometry_id"
+              ],
+              "__none__"
+            ]
+          }
+        ]
+      },
+      "human_popup": {
+        "state": {
+          "active": true,
+          "kind": "feature",
+          "hit_count": 1,
+          "source_id": "icv",
+          "geometry_id": "gva:geometry:2016:24:11828",
+          "anchor": {
+            "lng": 0.17708500000159688,
+            "lat": 38.75146893667619
+          }
+        },
+        "text": "Incendio documentado\nICV · Generalitat Valenciana\nCerrar\nFecha\n04/09/2016\nParaje\nCumbres del Sol\nMunicipio\nel Poble Nou de Benitatxell\nProvincia\nALICANTE\nSuperficie\n689,3 ha\nCausa\nNegligencia\nGIF\nSí\nVer detalles",
+        "details": "Ver detalles",
+        "role": "dialog",
+        "close": "Cerrar información del perímetro",
+        "shell": "true",
+        "sourceSelections": {
+          "from": 2016,
+          "to": 2016,
+          "territory_scope": "province",
+          "autonomous_community_id": "ES:CCAA:10",
+          "province_id": "ES:PROV:03",
+          "municipality_id": null,
+          "esfire30_visible": false,
+          "egif_visible": true,
+          "icv_visible": true,
+          "effis_visible": false,
+          "selected_geometry_id": null,
+          "selected_geometry_year": null,
+          "selected_egif_record_id": null,
+          "selected_egif_year": null,
+          "selected_icv_geometry_id": "gva:geometry:2016:24:11828",
+          "selected_icv_geometry_year": 2016,
+          "selected_icv_record_id": "gva:pif-cv:2016AL0074",
+          "selected_effis_geometry_id": null,
+          "selected_effis_geometry_year": null,
+          "filters": [],
+          "center": [
+            0.177085,
+            38.751402
+          ],
+          "zoom": 12
+        },
+        "errors": []
+      },
+      "background": {
+        "point": {
+          "x": 320,
+          "y": 84,
+          "point": {
+            "x": 320,
+            "y": 16
+          },
+          "lngLat": {
+            "lng": 0.14429767700266893,
+            "lat": 38.79536586903663
+          },
+          "hits": [],
+          "territories": [
+            {
+              "layer": "official-municipality-territories-fill",
+              "properties": {
+                "autonomous_community_id": "ES:CCAA:10",
+                "municipality_id": "ES:MUN:03082",
+                "official_name": "Xàbia/Jávea",
+                "province_id": "ES:PROV:03"
+              }
+            },
+            {
+              "layer": "official-province-territories-fill",
+              "properties": {
+                "territory_id": "ES:PROV:03",
+                "parent_id": "ES:CCAA:10",
+                "source_code": "34100300000",
+                "official_name": "Alicante/Alacant",
+                "source_name": "Alacant/Alicante",
+                "territory_type": "province",
+                "bounds": "[-1.0941618,37.8437789,0.2340674,38.8873914]"
+              }
+            },
+            {
+              "layer": "official-ccaa-territories-fill",
+              "properties": {
+                "territory_id": "ES:CCAA:10",
+                "source_code": "34100000000",
+                "official_name": "Comunitat Valenciana",
+                "source_name": "Comunitat Valenciana",
+                "territory_type": "autonomous_community",
+                "bounds": "[-1.528778,37.8437849,0.6903133,40.7886312]"
+              }
+            }
+          ]
+        },
+        "before": {
+          "territory": {
+            "territory_scope": "province",
+            "autonomous_community_id": "ES:CCAA:10",
+            "province_id": "ES:PROV:03",
+            "municipality_id": null
+          },
+          "selection": {
+            "selected_geometry_id": null,
+            "selected_geometry_year": null,
+            "selected_egif_record_id": null,
+            "selected_egif_year": null,
+            "selected_icv_geometry_id": "gva:geometry:2016:24:11828",
+            "selected_icv_geometry_year": 2016,
+            "selected_icv_record_id": "gva:pif-cv:2016AL0074",
+            "selected_effis_geometry_id": null,
+            "selected_effis_geometry_year": null
+          },
+          "popup": {
+            "active": false,
+            "kind": null,
+            "hit_count": 0,
+            "source_id": null,
+            "geometry_id": null,
+            "anchor": null
+          }
+        },
+        "after": {
+          "territory": {
+            "territory_scope": "municipality",
+            "autonomous_community_id": "ES:CCAA:10",
+            "province_id": "ES:PROV:03",
+            "municipality_id": "ES:MUN:03082"
+          },
+          "selection": {
+            "selected_geometry_id": null,
+            "selected_geometry_year": null,
+            "selected_egif_record_id": null,
+            "selected_egif_year": null,
+            "selected_icv_geometry_id": null,
+            "selected_icv_geometry_year": null,
+            "selected_icv_record_id": null,
+            "selected_effis_geometry_id": null,
+            "selected_effis_geometry_year": null
+          },
+          "popup": {
+            "active": false,
+            "kind": null,
+            "hit_count": 0,
+            "source_id": null,
+            "geometry_id": null,
+            "anchor": null
+          }
+        },
+        "passed": true
+      },
+      "errors": [],
+      "new_resource_urls": []
+    },
+    "mobile": {
+      "passed": true,
+      "before": {
+        "territory": {
+          "territory_scope": "autonomous_community",
+          "autonomous_community_id": "ES:CCAA:10",
+          "province_id": null,
+          "municipality_id": null
+        },
+        "selection": {
+          "selected_geometry_id": null,
+          "selected_geometry_year": null,
+          "selected_egif_record_id": null,
+          "selected_egif_year": null,
+          "selected_icv_geometry_id": null,
+          "selected_icv_geometry_year": null,
+          "selected_icv_record_id": null,
+          "selected_effis_geometry_id": null,
+          "selected_effis_geometry_year": null
+        },
+        "popup": {
+          "active": false,
+          "kind": null,
+          "hit_count": 0,
+          "source_id": null,
+          "geometry_id": null,
+          "anchor": null
+        }
+      },
+      "after": {
+        "territory": {
+          "territory_scope": "autonomous_community",
+          "autonomous_community_id": "ES:CCAA:10",
+          "province_id": null,
+          "municipality_id": null
+        },
+        "selection": {
+          "selected_geometry_id": null,
+          "selected_geometry_year": null,
+          "selected_egif_record_id": null,
+          "selected_egif_year": null,
+          "selected_icv_geometry_id": "gva:geometry:1995:3:783",
+          "selected_icv_geometry_year": 1995,
+          "selected_icv_record_id": "gva:pif-cv:1995CS5050",
+          "selected_effis_geometry_id": null,
+          "selected_effis_geometry_year": null
+        },
+        "popup": {
+          "active": true,
+          "kind": "feature",
+          "hit_count": 1,
+          "source_id": "icv",
+          "geometry_id": "gva:geometry:1995:3:783",
+          "anchor": {
+            "lng": -0.4911910000012938,
+            "lat": 40.091729792286344
+          }
+        }
+      },
+      "expected_geometry": "gva:geometry:1995:3:783",
+      "territory_unchanged": true,
+      "hover": {
+        "cursor": "pointer",
+        "highlight_filters": [
+          {
+            "layer": "icv-hover",
+            "filter": [
+              "==",
+              [
+                "get",
+                "geometry_id"
+              ],
+              "__none__"
+            ]
+          },
+          {
+            "layer": "esfire30-hover",
+            "filter": [
+              "==",
+              [
+                "get",
+                "geometry_id"
+              ],
+              "__none__"
+            ]
+          },
+          {
+            "layer": "effis-hover",
+            "filter": [
+              "==",
+              [
+                "get",
+                "geometry_id"
+              ],
+              "__none__"
+            ]
+          }
+        ]
+      },
+      "human_popup": {
+        "state": {
+          "active": true,
+          "kind": "feature",
+          "hit_count": 1,
+          "source_id": "icv",
+          "geometry_id": "gva:geometry:1995:3:783",
+          "anchor": {
+            "lng": -0.4911910000012938,
+            "lat": 40.091729792286344
+          }
+        },
+        "text": "Incendio documentado\nICV · Generalitat Valenciana\nCerrar\nFecha\n11/05/1995\nMunicipio\nArañuel\nProvincia\nCastellón/Castelló\nSuperficie\n5 ha\nCausa\nRayo\nVer detalles",
+        "details": "Ver detalles",
+        "role": "dialog",
+        "close": "Cerrar información del perímetro",
+        "shell": "true",
+        "sourceSelections": {
+          "from": 1995,
+          "to": 1995,
+          "territory_scope": "autonomous_community",
+          "autonomous_community_id": "ES:CCAA:10",
+          "province_id": null,
+          "municipality_id": null,
+          "esfire30_visible": false,
+          "egif_visible": true,
+          "icv_visible": true,
+          "effis_visible": false,
+          "selected_geometry_id": null,
+          "selected_geometry_year": null,
+          "selected_egif_record_id": null,
+          "selected_egif_year": null,
+          "selected_icv_geometry_id": "gva:geometry:1995:3:783",
+          "selected_icv_geometry_year": 1995,
+          "selected_icv_record_id": "gva:pif-cv:1995CS5050",
+          "selected_effis_geometry_id": null,
+          "selected_effis_geometry_year": null,
+          "filters": [],
+          "center": [
+            -0.491191,
+            40.091738
+          ],
+          "zoom": 12
+        },
+        "errors": []
+      },
+      "background": {
+        "point": {
+          "x": 200,
+          "y": 74.4375,
+          "point": {
+            "x": 200,
+            "y": 16
+          },
+          "lngLat": {
+            "lng": -0.4903326931162155,
+            "lat": 40.11281214250147
+          },
+          "hits": [],
+          "territories": [
+            {
+              "layer": "official-province-territories-fill",
+              "properties": {
+                "territory_id": "ES:PROV:12",
+                "parent_id": "ES:CCAA:10",
+                "source_code": "34101200000",
+                "official_name": "Castellón/Castelló",
+                "source_name": "Castelló/Castellón",
+                "territory_type": "province",
+                "bounds": "[-0.8462969,39.7146978,0.6903109,40.7886312]"
+              }
+            },
+            {
+              "layer": "official-ccaa-territories-fill",
+              "properties": {
+                "territory_id": "ES:CCAA:10",
+                "source_code": "34100000000",
+                "official_name": "Comunitat Valenciana",
+                "source_name": "Comunitat Valenciana",
+                "territory_type": "autonomous_community",
+                "bounds": "[-1.528778,37.8437849,0.6903133,40.7886312]"
+              }
+            }
+          ]
+        },
+        "before": {
+          "territory": {
+            "territory_scope": "autonomous_community",
+            "autonomous_community_id": "ES:CCAA:10",
+            "province_id": null,
+            "municipality_id": null
+          },
+          "selection": {
+            "selected_geometry_id": null,
+            "selected_geometry_year": null,
+            "selected_egif_record_id": null,
+            "selected_egif_year": null,
+            "selected_icv_geometry_id": "gva:geometry:1995:3:783",
+            "selected_icv_geometry_year": 1995,
+            "selected_icv_record_id": "gva:pif-cv:1995CS5050",
+            "selected_effis_geometry_id": null,
+            "selected_effis_geometry_year": null
+          },
+          "popup": {
+            "active": false,
+            "kind": null,
+            "hit_count": 0,
+            "source_id": null,
+            "geometry_id": null,
+            "anchor": null
+          }
+        },
+        "after": {
+          "territory": {
+            "territory_scope": "province",
+            "autonomous_community_id": "ES:CCAA:10",
+            "province_id": "ES:PROV:12",
+            "municipality_id": null
+          },
+          "selection": {
+            "selected_geometry_id": null,
+            "selected_geometry_year": null,
+            "selected_egif_record_id": null,
+            "selected_egif_year": null,
+            "selected_icv_geometry_id": null,
+            "selected_icv_geometry_year": null,
+            "selected_icv_record_id": null,
+            "selected_effis_geometry_id": null,
+            "selected_effis_geometry_year": null
+          },
+          "popup": {
+            "active": false,
+            "kind": null,
+            "hit_count": 0,
+            "source_id": null,
+            "geometry_id": null,
+            "anchor": null
+          }
+        },
+        "passed": true
+      },
+      "errors": [],
+      "new_resource_urls": []
+    }
+  },
+  "staging": {
+    "preserved": true,
+    "identity": {
+      "root": {
+        "status": 200,
+        "sha256": "178390918306783d154025baf556191577902b19257fcb541f799006b07b9430"
+      },
+      "asset-manifest.json": {
+        "status": 200,
+        "sha256": "5e0610b121f54550b852460053b9c1d5c35e6be2311363f53fcbe9817762f3a9"
+      },
+      "site-identity.json": {
+        "status": 200,
+        "sha256": "6ae69340c9fb676d2331e9afbf1dd98569873b43119f73e2672665122fc4e30a"
+      }
+    }
+  },
+  "decision": {
+    "HOTFIX_PRODUCTION_EXECUTION": "PASS",
+    "NATIONAL_PRODUCT_STATUS": "LIVE_V1_0_1_UNTAGGED",
+    "REMOTE_CLICK_ROUTING": "PASS",
+    "MAP_EXPLORATION_PARITY": "PASS",
+    "V1_0_0_ROLLBACK_READY": true,
+    "ROLLBACK_REQUIRED": false,
+    "RELEASE_TAG_STATUS": "READY_FOR_V1_0_1_TAG"
+  },
+  "harness_note": "First supplemental Elx call incorrectly used territory_select with a municipality ID; corrected to municipality_select, reran only Elx; no product change or runtime regression."
+}

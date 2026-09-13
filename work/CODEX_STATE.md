@@ -1335,3 +1335,53 @@ RELEASE_TAG_TARGET = 534cfe37a7120904f48c87bba71b4fcb7423bb5f
 RECOMMENDED_HOTFIX_VERSION = national-product-v1.0.1
 RESULTS_PATH = ES_4HOT2_CLICK_ROUTING_STAGING.md; data/audit/product/es4hot2_click_routing_staging.json
 NEXT_PHASE = ES-4HOT3_V1_0_1_PRODUCTION_EXECUTION (no iniciado)
+
+## HOT3 — checkpoint antes del push
+
+PHASE = ES-4HOT3_V1_0_1_PRODUCTION_EXECUTION
+STATUS = PENDING_EXPLICIT_PUSH_AUTHORIZATION
+HOT3_PREDEPLOY_COMMIT = 5cffab72499f74ea6d1f76b516adaef291eceaf7
+ORIGIN_MAIN = b8949f99c88118e1091a83bc1853184246374c21
+AHEAD = 4
+BEHIND = 0
+DONE = prechecks producción/staging/TAR exactos; rollback v1.0.0 preservado; workflow fijo HOT2; 7 tests estáticos/negativos PASS; commit ingeniería y segundo fetch
+PENDING = autorización explícita chat para push normal y dispatch producción; después runner y aceptación HOT3 con rollback si gate crítico falla
+BLOCKER = auto-review rechazó push; main remoto sigue b8949f9, último run nacional sigue 34620607559; sin bypass
+NATIONAL_PRODUCT_STATUS = LIVE_V1_0_0
+V1_0_0_ROLLBACK_READY = true (local)
+PRODUCTION_PUSH = false
+PRODUCTION_DISPATCH = false
+TAG_CREATED = false
+RESUME = conservar 5cffab7 como predeploy; notas HOT3 sin commit reservadas al cierre; no reconstruir artifact ni modificar staging
+NEXT_PHASE = ES-4HOT3_V1_0_1_PRODUCTION_EXECUTION (continuation)
+
+## HOT3 — cierre producción v1.0.1 sin tag
+
+PHASE = ES-4HOT3_V1_0_1_PRODUCTION_EXECUTION
+STATUS = DONE
+HOTFIX_PRODUCTION_EXECUTION = PASS
+NATIONAL_PRODUCT_STATUS = LIVE_V1_0_1_UNTAGGED
+MAIN_COMMIT = 5cffab72499f74ea6d1f76b516adaef291eceaf7
+HOT3_PREDEPLOY_COMMIT = 5cffab72499f74ea6d1f76b516adaef291eceaf7
+PUSHED_RANGE = b8949f9..5cffab7 (normal push; explicit authorization)
+UNEXPECTED_AUTO_DEPLOY = false
+PRODUCTION_RUN = 34717913721
+PAGES_ARTIFACT_ID = 10305721504
+PAGES_DEPLOYMENT_ID = 6414182725
+PRODUCTION_SITE_IDENTITY = 6ae69340c9fb676d2331e9afbf1dd98569873b43119f73e2672665122fc4e30a
+DONE = runner TAR/site PASS; identidad remota exacta; 13/13 clics/taps reales y 3/3 segunda pasada limpia PASS; ambas geometrías2024 seleccionables; España/Canarias/Elx/GVA/temporal/enlaces/Range/glyphs PASS; 7 tests específicos de release PASS
+PENDING = aprobación HOT4; eventual creación autorizada del tag sobre MAIN_COMMIT, no sobre cierre documental
+REMOTE_CLICK_ROUTING = PASS
+MAP_EXPLORATION_PARITY = PASS
+V1_0_0_ROLLBACK_READY = true
+ROLLBACK_REQUIRED = false
+ROLLBACK_EXECUTED = false
+STAGING_HOT2 = PRESERVED
+V1_0_0_TAG_TARGET = 534cfe37a7120904f48c87bba71b4fcb7423bb5f (unchanged)
+RELEASE_TAG_STATUS = READY_FOR_V1_0_1_TAG
+RECOMMENDED_TAG = national-product-v1.0.1
+FUTURE_TAG_TARGET = 5cffab72499f74ea6d1f76b516adaef291eceaf7
+TAG_CREATED = false
+CLOSING_COMMIT_PUSH = false
+RESULTS_PATH = ES_4HOT3_V1_0_1_PRODUCTION_EXECUTION.md; data/audit/product/es4hot3_v1_0_1_production_execution.json
+NEXT_PHASE = ES-4HOT4_V1_0_1_POST_RELEASE_CHECKPOINT (no iniciado)
