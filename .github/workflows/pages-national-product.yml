@@ -1,4 +1,4 @@
-name: Deploy accepted Worker Atlas v1.0.2 to GitHub Pages
+name: Deploy accepted Atlas v1.0.3 to GitHub Pages
 
 on:
   workflow_dispatch:
@@ -27,7 +27,7 @@ jobs:
         uses: actions/checkout@v5
         with:
           repository: InThuRain/atlas-incendios-es4c3d4-pages-staging
-          ref: dd5608c8d8bee2e81663931f298e78e5a96c7d89
+          ref: 52bfc799b0ea091a2d24bcf1d8eb8c314effccbc
           path: accepted-staging
           persist-credentials: false
       - name: Reuse accepted transport without rebuilding product
@@ -39,6 +39,12 @@ jobs:
       - name: Apply accepted overlay and verify final identity
         working-directory: accepted-staging
         run: python3 scripts/apply_worker_product_overlay.py --site site --overlay worker-product-overlay --output runner-worker-gate.json
+      - name: Apply accepted mobile information presentation
+        working-directory: accepted-staging
+        run: python3 scripts/apply_mobile_information_overlay.py --site site --overlay mobile-information-overlay --output runner-mobile-information-gate.json
+      - name: Apply accepted popup CSS and verify final identity
+        working-directory: accepted-staging
+        run: python3 scripts/apply_popup_ergonomics_overlay.py --site site --overlay popup-ergonomics-overlay --output runner-popup-ergonomics-gate.json
 
       - name: Preserve runner identity evidence
         uses: actions/upload-artifact@v4
