@@ -1,4 +1,4 @@
-name: Deploy accepted Atlas v1.0.6 to GitHub Pages
+name: Deploy accepted Atlas v1.0.7 to GitHub Pages
 
 on:
   workflow_dispatch:
@@ -57,6 +57,9 @@ jobs:
       - name: Apply accepted desktop breadcrumb and verify final identity
         working-directory: accepted-staging
         run: python3 scripts/apply_desktop_breadcrumb_overlay.py --site site --overlay desktop-breadcrumb-overlay --output runner-desktop-breadcrumb-gate.json
+
+      - name: Apply exact locally accepted Periodo and UI clarity candidate
+        run: PYTHONPATH=accepted-staging/scripts python3 scripts/apply_v107_overlay.py --site accepted-staging/site --overlay v107-overlay --output accepted-staging/runner-v107-gate.json
 
       - name: Preserve runner identity evidence
         uses: actions/upload-artifact@v4
