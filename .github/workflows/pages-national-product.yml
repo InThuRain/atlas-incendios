@@ -1,4 +1,4 @@
-name: Deploy accepted Atlas v1.0.7 to GitHub Pages
+name: Deploy accepted Atlas v1.0.8 to GitHub Pages
 
 on:
   workflow_dispatch:
@@ -27,7 +27,7 @@ jobs:
         uses: actions/checkout@v5
         with:
           repository: InThuRain/atlas-incendios-es4c3d4-pages-staging
-          ref: 68e10faf40689ff9aa0784f4f63e8cb1a016923c
+          ref: ff5824df186517e943b7f5cbcf1cff8e013c4c4f
           path: accepted-staging
           persist-credentials: false
       - name: Reuse accepted transport without rebuilding product
@@ -58,8 +58,13 @@ jobs:
         working-directory: accepted-staging
         run: python3 scripts/apply_desktop_breadcrumb_overlay.py --site site --overlay desktop-breadcrumb-overlay --output runner-desktop-breadcrumb-gate.json
 
-      - name: Apply exact locally accepted Periodo and UI clarity candidate
-        run: PYTHONPATH=accepted-staging/scripts python3 scripts/apply_v107_overlay.py --site accepted-staging/site --overlay v107-overlay --output accepted-staging/runner-v107-gate.json
+      - name: Apply accepted Period grouping
+        working-directory: accepted-staging
+        run: python3 scripts/apply_period_grouping_overlay.py --site site --overlay period-grouping-overlay --output runner-period-grouping-gate.json
+
+      - name: Apply exact accepted basemap selector with corrected metadata
+        working-directory: accepted-staging
+        run: python3 scripts/apply_basemap_selector_overlay.py --site site --overlay basemap-selector-overlay --output runner-basemap-selector-gate.json
 
       - name: Preserve runner identity evidence
         uses: actions/upload-artifact@v4
