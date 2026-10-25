@@ -1,0 +1,82 @@
+name: Rollback accepted Atlas v1.0.8 to GitHub Pages
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Shared with the legacy workflow and pages.yml. A rollback is queued rather
+# than cancelled while an operator investigates a national deployment.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Read exact accepted staging configuration and overlay
+        uses: actions/checkout@v5
+        with:
+          repository: InThuRain/atlas-incendios-es4c3d4-pages-staging
+          ref: ff5824df186517e943b7f5cbcf1cff8e013c4c4f
+          path: accepted-staging
+          persist-credentials: false
+      - name: Reuse accepted transport without rebuilding product
+        working-directory: accepted-staging
+        run: curl --fail --location --retry 3 --output p1ab-icv.tar.gz https://github.com/InThuRain/atlas-incendios-es4c3d4-pages-staging/releases/download/national-product-v1.0.2-staging-p1ab-icv/national-product-p1ab-icv-candidate.tar.gz
+      - name: Verify unchanged reference
+        working-directory: accepted-staging
+        run: python3 scripts/check_national_product_release_gate.py --contract config/national-product-p1ab-icv-candidate-identity.json --archive p1ab-icv.tar.gz --extract-to site --output runner-reference-gate.json
+      - name: Apply accepted overlay and verify final identity
+        working-directory: accepted-staging
+        run: python3 scripts/apply_worker_product_overlay.py --site site --overlay worker-product-overlay --output runner-worker-gate.json
+      - name: Apply accepted mobile information presentation
+        working-directory: accepted-staging
+        run: python3 scripts/apply_mobile_information_overlay.py --site site --overlay mobile-information-overlay --output runner-mobile-information-gate.json
+      - name: Apply accepted popup CSS and verify final identity
+        working-directory: accepted-staging
+        run: python3 scripts/apply_popup_ergonomics_overlay.py --site site --overlay popup-ergonomics-overlay --output runner-popup-ergonomics-gate.json
+
+      - name: Apply accepted histogram brush and verify final identity
+        working-directory: accepted-staging
+        run: python3 scripts/apply_histogram_brush_overlay.py --site site --overlay histogram-brush-overlay --output runner-histogram-brush-gate.json
+
+      - name: Apply accepted ESFire30 mapped areas and verify final identity
+        working-directory: accepted-staging
+        run: python3 scripts/apply_esfire30_area_overlay.py --site site --overlay esfire30-area-overlay --output runner-esfire30-area-gate.json
+
+      - name: Apply accepted desktop breadcrumb and verify final identity
+        working-directory: accepted-staging
+        run: python3 scripts/apply_desktop_breadcrumb_overlay.py --site site --overlay desktop-breadcrumb-overlay --output runner-desktop-breadcrumb-gate.json
+
+      - name: Apply accepted Period grouping
+        working-directory: accepted-staging
+        run: python3 scripts/apply_period_grouping_overlay.py --site site --overlay period-grouping-overlay --output runner-period-grouping-gate.json
+
+      - name: Apply exact accepted basemap selector with corrected metadata
+        working-directory: accepted-staging
+        run: python3 scripts/apply_basemap_selector_overlay.py --site site --overlay basemap-selector-overlay --output runner-basemap-selector-gate.json
+
+      - name: Preserve runner identity evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: production-worker-runner-identity
+          path: accepted-staging/runner-*-gate.json
+          if-no-files-found: error
+
+      - uses: actions/configure-pages@v5
+      - name: Upload exact national Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: accepted-staging/site
+      - id: deployment
+        uses: actions/deploy-pages@v4
