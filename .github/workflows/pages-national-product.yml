@@ -1,4 +1,4 @@
-name: Deploy accepted Atlas v1.0.9 to GitHub Pages
+name: Deploy accepted Atlas territory history to GitHub Pages
 
 on:
   workflow_dispatch:
@@ -27,7 +27,7 @@ jobs:
         uses: actions/checkout@v5
         with:
           repository: InThuRain/atlas-incendios-es4c3d4-pages-staging
-          ref: 5d0386b665ae59bc059b5f1c94369faa73249685
+          ref: e3b1dbb2093e979821ca2bca0fc4220615f1beae
           path: accepted-staging
           persist-credentials: false
       - name: Reuse accepted transport without rebuilding product
@@ -69,6 +69,10 @@ jobs:
       - name: Apply exact user accepted compact permalink and verify final identity
         working-directory: accepted-staging
         run: python3 scripts/apply_permalink_compact_overlay.py --site site --overlay permalink-compact-overlay --output runner-permalink-compact-gate.json
+
+      - name: Apply exact accepted territory history and verify final identity
+        working-directory: accepted-staging
+        run: python3 scripts/apply_territory_history_overlay.py --site site --overlay territory-history-overlay --output runner-territory-history-gate.json
 
       - name: Preserve runner identity evidence
         uses: actions/upload-artifact@v4
