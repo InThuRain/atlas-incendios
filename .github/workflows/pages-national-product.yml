@@ -1,4 +1,4 @@
-name: Deploy accepted Atlas v1.0.10 CSV export to GitHub Pages
+name: Deploy accepted Atlas v1.0.11 visual identity to GitHub Pages
 
 on:
   workflow_dispatch:
@@ -77,6 +77,16 @@ jobs:
       - name: Apply exact accepted CSV export and verify final identity
         working-directory: accepted-staging
         run: python3 scripts/apply_view_data_export_overlay.py --site site --overlay view-data-export-overlay --output runner-view-data-export-gate.json
+
+      - name: Apply accepted logo and interface palette
+        run: python3 scripts/apply_branding_overlay.py --site accepted-staging/site
+
+      - name: Preserve branding identity evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: production-branding-identity
+          path: runner-branding-gate.json
+          if-no-files-found: error
 
       - name: Preserve runner identity evidence
         uses: actions/upload-artifact@v4
