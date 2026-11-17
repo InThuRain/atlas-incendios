@@ -26,15 +26,15 @@ summary:focus-visible, [tabindex]:focus-visible {
 }
 .product-header {
   border-bottom: 3px solid var(--brand-orange);
-  background: var(--brand);
-  color: var(--brand-cream);
+  background: var(--brand-cream);
+  color: var(--brand);
   box-shadow: 0 3px 12px rgb(70 23 8 / .15);
 }
-.product-header .eyebrow { color: var(--brand-cream); }
+.product-header .eyebrow { color: var(--brand); }
 .brand-logo { border-radius: .4rem; }
-.header-period { color: var(--brand-cream); background: rgb(255 243 207 / .13); }
-.product-header .share-button { color: var(--brand-dark); background: var(--brand-cream); }
-.product-header .share-button:hover { background: var(--brand-yellow); }
+.header-period { color: var(--brand-dark); background: rgb(135 6 0 / .07); }
+.product-header .share-button { color: var(--brand-cream); background: var(--brand); }
+.product-header .share-button:hover { background: var(--brand-dark); }
 .copy-status { color: var(--ink); }
 .explorer-panel h1, .explorer-panel h2, .explorer-panel h3 { color: var(--brand); }
 .section-heading h1, .summary-section > .section-heading h2,

@@ -9,8 +9,10 @@ import check_national_product_artifact as C
 import apply_view_data_export_overlay as B
 
 def main():
-    p=argparse.ArgumentParser();p.add_argument('--site',type=Path,required=True);a=p.parse_args()
-    overlay=Path('branding-overlay');contract=json.loads(Path('branding-contract.json').read_text())
+    p=argparse.ArgumentParser();p.add_argument('--site',type=Path,required=True)
+    p.add_argument('--overlay',type=Path,default=Path('branding-overlay'))
+    p.add_argument('--contract',type=Path,default=Path('branding-contract.json'));a=p.parse_args()
+    overlay=a.overlay;contract=json.loads(a.contract.read_text())
     before=B.physical(a.site)
     paths=set(contract['changed']+contract['added'])|{'asset-manifest.json','site-identity.json'}
     assert not any(p.is_symlink() for p in overlay.rglob('*'))

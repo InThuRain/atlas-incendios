@@ -2,12 +2,12 @@
   "status": "PASS_COMPOSITE_IDENTITY",
   "identity": {
     "site_file_count": 555,
-    "site_total_bytes": 817780905,
+    "site_total_bytes": 817780887,
     "payload_file_count": 553,
-    "payload_total_bytes": 817535061,
-    "payload_fingerprint": "fce11154fc5891a930b68648786f3725ed522506f9391ddfe03c5729304257ad",
-    "manifest_sha256": "e26c1c4918983dc8af150079572b869614b2252d7368f6f4f2178c7bc06c0cfe",
-    "site_identity_sha256": "eece54df4442449ef7fac2cb3382fd9d62d00850a876343d383bd00678c33af9"
+    "payload_total_bytes": 817535043,
+    "payload_fingerprint": "b9dc8cf6a3dd28e18fa84fd39ac5d0df1a1e6d9cafb114b2b9089f849fdee311",
+    "manifest_sha256": "11ecde9255284b0b2289dadd279e54a87ad7d652091e82a07a31989ed208e256",
+    "site_identity_sha256": "2c57e4ec2fdc41d0d46920c9eb2df903ff164a06066e46af670fcd2972abfe8a"
   },
   "changed": [
     "index.html",

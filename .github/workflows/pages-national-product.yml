@@ -1,4 +1,4 @@
-name: Deploy accepted Atlas v1.0.11 visual identity to GitHub Pages
+name: Deploy accepted Atlas v1.0.12 cream header to GitHub Pages
 
 on:
   workflow_dispatch:
